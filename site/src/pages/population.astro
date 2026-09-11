@@ -49,6 +49,8 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
         letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
       }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
       h1 { font-size: 1.8rem; margin: 0 0 8px; }
       .lede { color: var(--ink-muted); max-width: 60ch; margin: 0 0 24px; }
       h2 {
@@ -80,7 +82,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
   </head>
   <body>
     <main>
-      <div class="crumb">République centrafricaine</div>
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Population par préfecture</h1>
       <p class="lede">
         Deux séries : le recensement de 2003 (RGPH-3) et une estimation 2021.

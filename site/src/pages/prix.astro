@@ -1,0 +1,134 @@
+---
+// Second real content page. Chart geometry is computed here, at build time,
+// from the JSON pipeline/export_prix_json.py materializes — no chart library
+// ships to the client (CLAUDE.md's non-negotiable). See docs/decisions.md for
+// why this is hand-computed rather than Observable Plot for now.
+import data from "../data/prix.json";
+
+const series = data.series;
+const values = series.map((d) => d.value);
+const min = Math.min(...values);
+const max = Math.max(...values);
+
+const W = 900, H = 280, marginL = 46, marginR = 20, marginT = 20, marginB = 34;
+const plotW = W - marginL - marginR;
+const plotH = H - marginT - marginB;
+
+const x = (i: number) => marginL + (i / (series.length - 1)) * plotW;
+const y = (v: number) => marginT + plotH - ((v - min) / (max - min)) * plotH;
+
+const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
+
+// index of the last reconciled month (base-change boundary, Dec 2019 -> Jan 2020)
+const boundaryIndex = series.findIndex((d) => !d.reconciled) - 1;
+const boundaryX = boundaryIndex >= 0 ? x(boundaryIndex) : null;
+
+// y-axis ticks: min, mid, max
+const ticks = [min, (min + max) / 2, max];
+
+// x-axis labels: January of each year present
+const yearLabels = series
+  .map((d, i) => ({ i, year: d.period.slice(0, 4), month: d.period.slice(5, 7) }))
+  .filter((d) => d.month === "01");
+
+const latest = series[series.length - 1];
+const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Indice des prix à la consommation — Données RCA</title>
+    <style>
+      :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --ochre: #B8790F; --ochre-soft: #F1E3C6;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+      main { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
+      h1 { font-size: 1.8rem; margin: 0 0 8px; }
+      .lede { color: var(--ink-muted); max-width: 60ch; margin: 0 0 20px; }
+      .headline { font-family: ui-monospace, monospace; font-size: 2rem; margin: 0; }
+      .headline .unit { font-size: 0.9rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
+      .headline-meta { color: var(--ink-faint); font-size: 12px; margin: 4px 0 20px; }
+      svg { width: 100%; height: auto; display: block; margin: 16px 0; }
+      .gridline { stroke: var(--line); stroke-width: 1; }
+      .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
+      .line-reconciled { stroke: var(--ink-faint); stroke-width: 1.5; stroke-dasharray: 4 3; fill: none; }
+      .line-published { stroke: var(--indigo); stroke-width: 2; fill: none; }
+      .boundary { stroke: var(--ochre); stroke-width: 1; stroke-dasharray: 2 2; }
+      .boundary-label { fill: var(--ochre); font-size: 10px; font-family: ui-monospace, monospace; }
+      .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); margin-top: 4px; }
+      .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+      .swatch { width: 14px; height: 2px; display: inline-block; }
+      .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      footer a { color: var(--ink-muted); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Indice des prix à la consommation</h1>
+      <p class="lede">
+        Indice harmonisé des prix à la consommation (IHPC), toutes fonctions
+        confondues, base 2019 = 100. Série mensuelle, janvier 2015 à {latest.period}.
+      </p>
+
+      <p class="headline">{fmt(latest.value)}<span class="unit">indice, {latest.period}</span></p>
+      <p class="headline-meta">Donnée la plus récente disponible dans la série — pas nécessairement le mois en cours.</p>
+
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Indice des prix à la consommation de janvier 2015 à ${latest.period}`}>
+        {ticks.map((t) => (
+          <>
+            <line class="gridline" x1={marginL} y1={y(t)} x2={W - marginR} y2={y(t)} />
+            <text class="axis-label" x={marginL - 6} y={y(t) + 3} text-anchor="end">{fmt(t)}</text>
+          </>
+        ))}
+        {yearLabels.map((d) => (
+          <text class="axis-label" x={x(d.i)} y={H - marginB + 16} text-anchor="middle">{d.year}</text>
+        ))}
+        {boundaryX !== null && (
+          <>
+            <line class="boundary" x1={boundaryX} y1={marginT} x2={boundaryX} y2={H - marginB} />
+            <text class="boundary-label" x={boundaryX + 4} y={marginT + 10}>changement de base</text>
+          </>
+        )}
+        <polyline
+          class="line-reconciled"
+          points={series.slice(0, boundaryIndex + 2).map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ")}
+        />
+        <polyline
+          class="line-published"
+          points={series.slice(boundaryIndex + 1).map((d, i) => `${x(i + boundaryIndex + 1).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ")}
+        />
+      </svg>
+      <div class="chart-legend">
+        <span><span class="swatch" style="background:var(--ink-faint);border-top:1.5px dashed var(--ink-faint);height:0;"></span>reconcilié (base 1981 recalculée)</span>
+        <span><span class="swatch" style="background:var(--indigo);"></span>tel que publié (base 2019)</span>
+      </div>
+
+      <p class="gap-note">
+        Les valeurs de janvier 2015 à décembre 2019 ont été recalculées sur la base
+        2019 par la source elle-même, via un coefficient officiel — elles ne sont
+        pas telles qu'originellement publiées. Voir
+        <code>docs/verification-debt.md</code>. Seul l'indice global est montré ici ;
+        les 12 sous-catégories (alimentation, transport, santé…) et le taux
+        d'inflation publié ne sont pas encore intégrés.
+      </p>
+
+      <footer>
+        Source : {data.source.producer} — {data.source.dataset_name}.
+        Récupéré le {data.source.retrieved_at}.
+        <a href={data.source.url}>{data.source.url}</a>
+      </footer>
+    </main>
+  </body>
+</html>
