@@ -1,0 +1,2 @@
+indicator_id,name_fr,definition_fr,unit,theme,geographic_floor,sentence_template_id,higher_is_better
+population_totale,Population totale,"Nombre total d'habitants dénombrés (recensement) ou estimés pour cette entité géographique.",habitants,population,prefecture,population_totale_lieu,
