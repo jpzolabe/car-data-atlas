@@ -2,6 +2,7 @@
   "name": "rca-donnees-site",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.25.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

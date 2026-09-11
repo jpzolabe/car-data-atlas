@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
 
 jobs:
@@ -14,6 +14,8 @@ jobs:
       - uses: astral-sh/setup-uv@v3
       - run: uv sync
       - run: uv run ruff check .
+      - name: Data quality gates (referential integrity, well-formedness)
+        run: uv run python -m pipeline.validate
 
   build-site:
     name: Build Astro site
@@ -30,5 +32,6 @@ jobs:
         working-directory: site
       - run: pnpm build
         working-directory: site
-      # Page-weight budget check (CLAUDE.md: 150 KB/page, uncompressed) lands
-      # here once there's a real page to check — see site/README.md.
+      - name: Page-weight budget (150 KB/page, CLAUDE.md)
+        run: node check-page-weight.mjs
+        working-directory: site
