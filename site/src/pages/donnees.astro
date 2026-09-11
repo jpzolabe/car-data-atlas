@@ -27,7 +27,11 @@ const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      .file-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+        gap: 10px;
+      }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--indigo); text-decoration: underline; }
@@ -36,7 +40,7 @@ const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
       .stat { font-family: ui-monospace, monospace; font-size: 12px; color: var(--indigo); margin: 0 0 24px; }
       .file-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px;
+        padding: 14px 16px; display: flex; align-items: center; gap: 14px;
         transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       }
       .file-card:hover {
@@ -75,16 +79,18 @@ const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
       </p>
       <p class="stat">{files.length} fichiers · {totalRows.toLocaleString("fr-FR")} lignes au total</p>
 
-      {files.map((f) => (
-        <div class="file-card">
-          <div class="file-main">
-            <div class="name">{f.name}</div>
-            <div class="desc">{f.description}</div>
+      <div class="file-grid">
+        {files.map((f) => (
+          <div class="file-card">
+            <div class="file-main">
+              <div class="name">{f.name}</div>
+              <div class="desc">{f.description}</div>
+            </div>
+            <span class="rows">{f.rows.toLocaleString("fr-FR")} lignes</span>
+            <a class="dl" href={`/donnees/${f.name}`} download>Télécharger</a>
           </div>
-          <span class="rows">{f.rows.toLocaleString("fr-FR")} lignes</span>
-          <a class="dl" href={`/donnees/${f.name}`} download>Télécharger</a>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <h2>Licence</h2>
       <p>

@@ -19,7 +19,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
 // build-time-SVG approach (the "no client JS" default still holds here, it's
 // just not the letter of the budget rule that was the point — see the chat).
 const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
-const CHART_W = 640;
+const CHART_W = 1000;
 const ROW_H = 22;
 const MARGIN_L = 148;
 const MARGIN_R = 56;
@@ -63,7 +63,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         font-size: 15px;
         line-height: 1.5;
       }
-      main { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
       .crumb {
         font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
         letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
@@ -89,6 +89,13 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       }
       .bar-row:hover .bar-rect { opacity: 0.75; }
       .bar-row:hover .bar-label { fill: var(--t-pop); }
+      .region-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px 28px; margin-top: 8px;
+      }
+      .region-block h3 {
+        font-size: 13px; color: var(--ink); margin: 0 0 6px; font-weight: 600;
+      }
       table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
       th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--ink-faint);
            font-weight: 400; padding: 0 8px 6px 0; }
@@ -166,35 +173,38 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         ))}
       </svg>
 
-      {regions.map((region) => (
-        <>
-          <h2>Région {region}</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Préfecture</th>
-                <th class="num">2003 (recensement)</th>
-                <th class="num">2021 (estimation)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {byRegion.get(region)!.map((row) => (
+      <h2>Par région</h2>
+      <div class="region-grid">
+        {regions.map((region) => (
+          <div class="region-block">
+            <h3>{region}</h3>
+            <table>
+              <thead>
                 <tr>
-                  <td>{row.prefecture}</td>
-                  <td class="num">
-                    {fmt(row.pop_2003)}
-                    <span class="badge stale">ancien</span>
-                  </td>
-                  <td class="num">
-                    {fmt(row.pop_2021)}
-                    <span class="badge estime">estimé</span>
-                  </td>
+                  <th>Préfecture</th>
+                  <th class="num">2003</th>
+                  <th class="num">2021</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      ))}
+              </thead>
+              <tbody>
+                {byRegion.get(region)!.map((row) => (
+                  <tr>
+                    <td>{row.prefecture}</td>
+                    <td class="num">
+                      {fmt(row.pop_2003)}
+                      <span class="badge stale">ancien</span>
+                    </td>
+                    <td class="num">
+                      {fmt(row.pop_2021)}
+                      <span class="badge estime">estimé</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
 
       <p class="gap-note">
         Non montré ici : le découpage interne de Bangui (arrondissements,
