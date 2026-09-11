@@ -8,6 +8,67 @@
   },
   "lead_sentence": "En 2021, la population de la préfecture de Bangui était estimée à 1 425 276 habitants.",
   "lead_sentence_template_id": "population_totale_lieu_estime",
+  "national": {
+    "headline": {
+      "value": 6656269.0,
+      "period": "2025",
+      "quality_flag": "provisoire",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "RGPH-4 — résultats provisoires (recensement)"
+    },
+    "spread_pct": 20.7,
+    "spread_vs_period": "2025",
+    "all_sources": [
+      {
+        "value": 6656269.0,
+        "period": "2025",
+        "quality_flag": "provisoire",
+        "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+        "dataset_name": "RGPH-4 — résultats provisoires (recensement)",
+        "url": null
+      },
+      {
+        "value": 5513282.0,
+        "period": "2025",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5330690.0,
+        "period": "2024",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5152421.0,
+        "period": "2023",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5098039.0,
+        "period": "2022",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5112100.0,
+        "period": "2021",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      }
+    ]
+  },
   "prefectures": [
     {
       "prefecture": "Bangui",

@@ -14,6 +14,9 @@ const regions = [...byRegion.keys()].sort();
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
+const national = data.national;
+const distinctSources = [...new Set(national.all_sources.map((s) => s.producer))];
+
 // One distinct accent per région — wayfinding, not decoration: with 7 tables
 // sitting side by side in a grid, color is what lets the eye tell them apart
 // without re-reading every header. Bas-Oubangui (Bangui alone) gets a neutral
@@ -148,6 +151,38 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       }
       .badge.stale { background: var(--stale-soft); color: var(--stale); }
       .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
+      .badge.provisoire {
+        background: color-mix(in srgb, var(--t-pop) 14%, var(--surface));
+        color: var(--t-pop);
+      }
+      .national-figure {
+        margin: 20px 0; padding: 18px 20px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 3px solid var(--t-pop); border-radius: 3px;
+      }
+      .national-value {
+        font-family: ui-monospace, monospace; font-size: 2.1rem; font-weight: 600;
+        color: var(--t-pop); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+      }
+      .national-value .unit {
+        font-family: system-ui, sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--ink-faint);
+      }
+      .national-meta { font-size: 12.5px; color: var(--ink-muted); margin-top: 4px; }
+      .disclosure { margin-top: 12px; }
+      .disclosure summary {
+        cursor: pointer; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-pop);
+        list-style: none; display: flex; align-items: center; gap: 6px;
+      }
+      .disclosure summary::-webkit-details-marker { display: none; }
+      .disclosure summary::before { content: "▸"; font-size: 10px; transition: transform 0.15s ease; }
+      .disclosure[open] summary::before { transform: rotate(90deg); }
+      .disclosure-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12.5px; }
+      .disclosure-table th {
+        text-align: left; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase;
+        color: var(--ink-faint); letter-spacing: 0.04em; padding: 0 10px 6px 0; font-weight: 400;
+      }
+      .disclosure-table td { padding: 7px 10px 7px 0; border-top: 1px solid var(--line); }
+      .disclosure-table td.num { font-family: ui-monospace, monospace; }
+      .disclosure-note { font-size: 11.5px; color: var(--ink-faint); margin: 10px 0 0; max-width: 64ch; }
       footer {
         margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
         font-size: 12px; color: var(--ink-faint);
@@ -186,6 +221,41 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         Deux séries : le recensement de 2003 (RGPH-3) et une estimation 2021.
         Aucune des deux n'est actuelle — voir les notes sur chaque colonne.
       </p>
+
+      <div class="national-figure">
+        <div class="national-value">
+          {fmt(Math.round(national.headline.value))}
+          <span class="unit">habitants</span>
+          <span class="badge provisoire">provisoire</span>
+        </div>
+        <div class="national-meta">
+          {national.headline.producer} — {national.headline.dataset_name}, {national.headline.period}
+        </div>
+        <details class="disclosure">
+          <summary>{distinctSources.length} sources — écart de {national.spread_pct}% avec l'estimation la plus récente</summary>
+          <table class="disclosure-table">
+            <thead>
+              <tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr>
+            </thead>
+            <tbody>
+              {national.all_sources.map((s) => (
+                <tr>
+                  <td class="num">{fmt(Math.round(s.value))}</td>
+                  <td>{s.producer}</td>
+                  <td>{s.period}</td>
+                  <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="disclosure-note">
+            Écart calculé entre le chiffre retenu par défaut (recensement, {national.headline.period})
+            et l'estimation la plus récente d'une autre source ({national.spread_vs_period}).
+            Classement d'autorité : recensement national &gt; enquête nationale &gt;
+            estimation modélisée internationale — voir <a href="/methode/#classement">Méthode</a>.
+          </p>
+        </details>
+      </div>
 
       <p class="sentence">
         {data.lead_sentence}

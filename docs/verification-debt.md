@@ -163,6 +163,26 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   value in future work on this file.
 - **Resolved when:** not urgent to resolve — informational.
 
+### RGPH-4 national total's primary source not independently located
+
+- **What:** The national RGPH-4 provisional total (6,656,269) is real and
+  ultimately traces back to ICASEES, but this project has not independently
+  located the primary results page or press release. Two separate research
+  attempts (2026-09-05 and 2026-09-12) both failed — several `icasees.org/
+  rgph-4/*` URLs return 404, and the site's search results are additionally
+  polluted with what looks like injected spam content (a `?prizes%2F...`
+  URL pattern seen twice), which was avoided rather than visited. The figure
+  as used (`data/observations.csv`, `icasees-rgph4-provisional` source) comes
+  from `CLAUDE.md`'s own compiled domain-facts section, which states it was
+  accurate as of its September 2026 compilation but may go stale.
+- **Used in:** `data/observations.csv`, one row: country-level
+  `population_totale`, period 2025, quality_flag `provisoire`.
+- **Resolved when:** the actual ICASEES RGPH-4 results page or press release
+  is located and the figure confirmed directly against it, rather than via
+  `CLAUDE.md`'s compilation. Worth checking whether `icasees.org`'s spam
+  contamination is a sign the site itself has been compromised, which would
+  be worth flagging to ICASEES regardless of this project's own needs.
+
 ---
 
 ## Resolved
