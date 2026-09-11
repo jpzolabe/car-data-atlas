@@ -1,0 +1,294 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_education_json.py — ne pas éditer directement.",
+  "source": {
+    "producer": "UNESCO Institut de statistique (UIS)",
+    "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes, données modélisées (CR.MOD.1)",
+    "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+    "retrieved_at": "2026-09-12"
+  },
+  "source_survey": {
+    "producer": "UNESCO Institut de statistique (UIS)",
+    "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)",
+    "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+    "retrieved_at": "2026-09-12"
+  },
+  "lead_sentence": "En 2019, 27,0% d'une cohorte d'âge avait achevé l'enseignement primaire en République centrafricaine, selon la dernière enquête nationale disponible.",
+  "lead_sentence_template_id": "taux_achevement_primaire_pays_enquete",
+  "national": {
+    "headline": {
+      "value": 27.04540061950684,
+      "period": "2019",
+      "quality_flag": "enquete",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)"
+    },
+    "spread_pct": 7.4,
+    "spread_vs_period": "2019",
+    "all_sources": [
+      {
+        "value": 27.04540061950684,
+        "period": "2019",
+        "quality_flag": "enquete",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+      },
+      {
+        "value": 29.21999931335449,
+        "period": "2019",
+        "quality_flag": "estime",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes, données modélisées (CR.MOD.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+      },
+      {
+        "value": 42.91474914550781,
+        "period": "2010",
+        "quality_flag": "enquete",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+      },
+      {
+        "value": 25.17000007629395,
+        "period": "2010",
+        "quality_flag": "estime",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes, données modélisées (CR.MOD.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+      },
+      {
+        "value": 25.72724914550781,
+        "period": "2006",
+        "quality_flag": "enquete",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+      },
+      {
+        "value": 22.94000053405762,
+        "period": "2006",
+        "quality_flag": "estime",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes, données modélisées (CR.MOD.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+      },
+      {
+        "value": 21.01,
+        "period": "2000",
+        "quality_flag": "enquete",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes (CR.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+      },
+      {
+        "value": 21.53000068664551,
+        "period": "2000",
+        "quality_flag": "estime",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement, enseignement primaire, les deux sexes, données modélisées (CR.MOD.1)",
+        "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+      }
+    ]
+  },
+  "series": [
+    {
+      "period": "1981",
+      "value": 18.73999977111816
+    },
+    {
+      "period": "1982",
+      "value": 18.90999984741211
+    },
+    {
+      "period": "1983",
+      "value": 19.06999969482422
+    },
+    {
+      "period": "1984",
+      "value": 19.23999977111816
+    },
+    {
+      "period": "1985",
+      "value": 19.43000030517578
+    },
+    {
+      "period": "1986",
+      "value": 19.6200008392334
+    },
+    {
+      "period": "1987",
+      "value": 19.88999938964844
+    },
+    {
+      "period": "1988",
+      "value": 20.14999961853027
+    },
+    {
+      "period": "1989",
+      "value": 20.3700008392334
+    },
+    {
+      "period": "1990",
+      "value": 20.56999969482422
+    },
+    {
+      "period": "1991",
+      "value": 20.70999908447266
+    },
+    {
+      "period": "1992",
+      "value": 20.81999969482422
+    },
+    {
+      "period": "1993",
+      "value": 20.88999938964844
+    },
+    {
+      "period": "1994",
+      "value": 20.95999908447266
+    },
+    {
+      "period": "1995",
+      "value": 21.07999992370605
+    },
+    {
+      "period": "1996",
+      "value": 21.20000076293945
+    },
+    {
+      "period": "1997",
+      "value": 21.38999938964844
+    },
+    {
+      "period": "1998",
+      "value": 21.45000076293945
+    },
+    {
+      "period": "1999",
+      "value": 21.52000045776367
+    },
+    {
+      "period": "2000",
+      "value": 21.53000068664551
+    },
+    {
+      "period": "2001",
+      "value": 21.55999946594238
+    },
+    {
+      "period": "2002",
+      "value": 21.63999938964844
+    },
+    {
+      "period": "2003",
+      "value": 21.81999969482422
+    },
+    {
+      "period": "2004",
+      "value": 22.07999992370605
+    },
+    {
+      "period": "2005",
+      "value": 22.45999908447266
+    },
+    {
+      "period": "2006",
+      "value": 22.94000053405762
+    },
+    {
+      "period": "2007",
+      "value": 23.5
+    },
+    {
+      "period": "2008",
+      "value": 24.03000068664551
+    },
+    {
+      "period": "2009",
+      "value": 24.59000015258789
+    },
+    {
+      "period": "2010",
+      "value": 25.17000007629395
+    },
+    {
+      "period": "2011",
+      "value": 25.79000091552734
+    },
+    {
+      "period": "2012",
+      "value": 26.30999946594238
+    },
+    {
+      "period": "2013",
+      "value": 26.82999992370605
+    },
+    {
+      "period": "2014",
+      "value": 27.26000022888184
+    },
+    {
+      "period": "2015",
+      "value": 27.70999908447266
+    },
+    {
+      "period": "2016",
+      "value": 28.11000061035156
+    },
+    {
+      "period": "2017",
+      "value": 28.54000091552734
+    },
+    {
+      "period": "2018",
+      "value": 28.89999961853027
+    },
+    {
+      "period": "2019",
+      "value": 29.21999931335449
+    },
+    {
+      "period": "2020",
+      "value": 29.54999923706055
+    },
+    {
+      "period": "2021",
+      "value": 29.79000091552734
+    },
+    {
+      "period": "2022",
+      "value": 30.03000068664551
+    },
+    {
+      "period": "2023",
+      "value": 30.32999992370605
+    },
+    {
+      "period": "2024",
+      "value": 30.54999923706055
+    },
+    {
+      "period": "2025",
+      "value": 30.81999969482422
+    }
+  ],
+  "survey_points": [
+    {
+      "period": "2000",
+      "value": 21.01
+    },
+    {
+      "period": "2006",
+      "value": 25.72724914550781
+    },
+    {
+      "period": "2010",
+      "value": 42.91474914550781
+    },
+    {
+      "period": "2019",
+      "value": 27.04540061950684
+    }
+  ]
+}

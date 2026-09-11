@@ -154,3 +154,31 @@ maintainer's judgement alone — a reader can check the rule and see why a given
 source won. Ties are broken by recency of **observation**, not recency of
 **publication**, because a re-published old estimate shouldn't outrank a genuinely
 newer one just because it appeared on the web more recently.
+
+## UNESCO UIS Data API — endpoint found via its own error message, not documentation
+
+Neither the UIS's public docs page (`api.uis.unesco.org/api/public/documentation/`,
+a Swagger UI that doesn't render as fetchable text) nor the Python `unesco_reader`
+package's own documentation spelled out the actual REST URL. The old bulk-download
+pattern (`download.uis.unesco.org/bdds/...`) 404s — UIS has moved off it. Resolved
+by requesting `api.uis.unesco.org/api/public/data/indicators` with no query
+parameters at all: it returns HTTP 400 with a JSON body naming its own required
+parameters (`geoUnit`, `indicator`), which was enough to construct a working call
+directly (`?geoUnit=CAF&indicator=CR.1`). No API key required. Worth remembering
+as a technique generally: a REST API's own validation error is sometimes a faster
+path to its shape than either third-party docs or a wrapper library's source.
+
+## Education page combines two existing patterns instead of inventing a third
+
+`taux_achevement_primaire` has the same shape of disagreement as national
+population (a higher-authority but sparse source vs. a lower-authority but dense
+one) plus the same shape of "changes over time" as électricité/prix (a real annual
+series worth charting). Rather than design a new page pattern, `education.astro`
+reuses population.astro's national multi-source `<details>` disclosure block
+verbatim in structure, and infrastructures.astro's build-time SVG line chart,
+overlaying the 4 real survey points as distinct markers on the denser modelled
+line rather than picking one series to show. The disclosure table itself only
+lists the 4 survey years paired with the modelled value for those *same* years
+(not all 45 modelled years) — comparing every modelled year against one survey
+year would conflate "these two sources disagree" with "time has passed," which
+is a different, less honest question.

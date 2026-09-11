@@ -99,3 +99,22 @@ def sentence_electricity(
         f"l'électricité en République centrafricaine."
     )
     return text, "acces_electricite_pays"
+
+
+def sentence_education(period: str, value: float, quality_flag: str) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    if quality_flag == "enquete":
+        text = (
+            f"En {period}, {value_fr}% d'une cohorte d'âge avait achevé "
+            f"l'enseignement primaire en République centrafricaine, selon "
+            f"la dernière enquête nationale disponible."
+        )
+        template_id = "taux_achevement_primaire_pays_enquete"
+    else:
+        text = (
+            f"En {period}, {value_fr}% d'une cohorte d'âge aurait achevé "
+            f"l'enseignement primaire en République centrafricaine, selon "
+            f"une estimation modélisée."
+        )
+        template_id = "taux_achevement_primaire_pays_estime"
+    return text, template_id
