@@ -200,12 +200,38 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   rather than retried repeatedly, since continuing to hammer a site that's
   pushing back isn't a responsible way to build a "cron per source" scraper
   CLAUDE.md itself says should be a good citizen.
-- **Used in:** nothing yet — no education data has been ingested.
+- **Used in:** nothing yet — no education data has been ingested from ICASEES
+  specifically. **Update 2026-09-12:** the alternative named below was taken —
+  see the new UNESCO UIS entry — so `taux_achevement_primaire` now has real
+  data via that path. This entry stays open because the ICASEES yearbooks
+  themselves (more granular, national-office-published) are still unfetched.
 - **Resolved when:** retried after a real gap (a different day, not this same
-  session), ideally with a lower request rate; or an alternative source is
-  used instead (UNESCO UIS is named in `CLAUDE.md`'s source inventory for
-  international comparison and may have usable national-level education
-  indicators without touching icasees.org at all).
+  session), ideally with a lower request rate.
+
+### UNESCO UIS education data — licence not cross-verified, underlying survey per point not named
+
+- **What:** `taux_achevement_primaire` (national completion rate, primary
+  education) is fetched live from the UIS Data API
+  (`api.uis.unesco.org/api/public/data/indicators`), two indicators: `CR.1`
+  (survey-based, 4 real points for CAF: 2000/2006/2010/2019) and `CR.MOD.1`
+  (UIS's own modelled/interpolated annual series, 1981-2025). Two open gaps:
+  (1) UIS states CC BY-SA 3.0 IGO for its main site/publications but CC BY-SA
+  4.0 for the Data Browser specifically (`databrowser.uis.unesco.org/
+  terms-and-conditions`) — this project cites 4.0 since the API sits under
+  that product, but the two licences' clauses haven't been diffed. (2) The
+  API's response for `CR.1` gives only a year per point, not which underlying
+  survey produced it (MICS7? EHCVM2? an earlier round?) — CLAUDE.md's own
+  domain facts describe MICS 2018-19 giving 14.3% electricity access, so the
+  2019 education point plausibly comes from the same survey, but that's an
+  inference, not confirmed by the API response itself.
+- **Used in:** `data/sources.csv` (`unesco-uis-cr1-survey`,
+  `unesco-uis-cr1-modelled`), `data/observations.csv`
+  (`taux_achevement_primaire`, 49 rows), `site/src/pages/education.astro`.
+- **Resolved when:** the two CC BY-SA license texts are actually compared
+  clause-by-clause (or UIS is asked directly which applies to API output);
+  and/or the UIS indicator metadata endpoint (`/api/public/definitions/
+  indicators`) or a published methodology note is checked for a per-point
+  survey citation.
 
 ---
 

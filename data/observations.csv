@@ -196,3 +196,52 @@ cf-pays-centrafrique-v1,acces_electricite,2013,11.5,%,world-bank-electricity-acc
 cf-pays-centrafrique-v1,acces_electricite,2012,11,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
 cf-pays-centrafrique-v1,acces_electricite,2011,10.4,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
 cf-pays-centrafrique-v1,acces_electricite,2010,9.8,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,taux_achevement_primaire,2000,21.01,%,unesco-uis-cr1-survey,2026-09-12,enquete,"Donnée ponctuelle issue d'une enquête ou d'un recensement national, agrégée par l'UIS."
+cf-pays-centrafrique-v1,taux_achevement_primaire,2006,25.72724914550781,%,unesco-uis-cr1-survey,2026-09-12,enquete,"Donnée ponctuelle issue d'une enquête ou d'un recensement national, agrégée par l'UIS."
+cf-pays-centrafrique-v1,taux_achevement_primaire,2010,42.91474914550781,%,unesco-uis-cr1-survey,2026-09-12,enquete,"Donnée ponctuelle issue d'une enquête ou d'un recensement national, agrégée par l'UIS."
+cf-pays-centrafrique-v1,taux_achevement_primaire,2019,27.04540061950684,%,unesco-uis-cr1-survey,2026-09-12,enquete,"Donnée ponctuelle issue d'une enquête ou d'un recensement national, agrégée par l'UIS."
+cf-pays-centrafrique-v1,taux_achevement_primaire,1981,18.73999977111816,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1982,18.90999984741211,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1983,19.06999969482422,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1984,19.23999977111816,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1985,19.43000030517578,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1986,19.6200008392334,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1987,19.88999938964844,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1988,20.14999961853027,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1989,20.3700008392334,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1990,20.56999969482422,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1991,20.70999908447266,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1992,20.81999969482422,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1993,20.88999938964844,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1994,20.95999908447266,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1995,21.07999992370605,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1996,21.20000076293945,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1997,21.38999938964844,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1998,21.45000076293945,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,1999,21.52000045776367,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2000,21.53000068664551,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2001,21.55999946594238,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2002,21.63999938964844,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2003,21.81999969482422,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2004,22.07999992370605,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2005,22.45999908447266,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2006,22.94000053405762,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2007,23.5,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2008,24.03000068664551,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2009,24.59000015258789,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2010,25.17000007629395,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2011,25.79000091552734,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2012,26.30999946594238,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2013,26.82999992370605,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2014,27.26000022888184,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2015,27.70999908447266,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2016,28.11000061035156,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2017,28.54000091552734,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2018,28.89999961853027,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2019,29.21999931335449,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2020,29.54999923706055,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2021,29.79000091552734,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2022,30.03000068664551,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2023,30.32999992370605,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2024,30.54999923706055,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
+cf-pays-centrafrique-v1,taux_achevement_primaire,2025,30.81999969482422,%,unesco-uis-cr1-modelled,2026-09-12,estime,Estimation modélisée/interpolée par l'UIS pour combler les années sans enquête.
