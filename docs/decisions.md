@@ -1,5 +1,26 @@
 # Decisions
 
+## 2026-09-11 — CI silently never ran successfully until checked directly
+
+`docs/plan.md`'s Phase 2 done-criteria requires the site to update "without manual
+work," which depends on CI actually running — nobody had checked whether it did.
+It hadn't: the one run that existed (triggered by the first push, to `main`) had
+failed at `pnpm/action-setup@v4` with "No pnpm version is specified," and CI wasn't
+even configured to trigger on `develop`, where all the actual work was happening.
+
+Two real bugs, not one: (1) no pnpm version pinned anywhere — fixed via
+`packageManager` in `site/package.json`. (2) `pnpm/action-setup@v4` reads
+`package.json` from the **repo root** by default, not from wherever a later step's
+`working-directory` happens to point — since this repo's `package.json` lives in
+`site/`, the action never found the version even after fix (1). Needed the action's
+own `package_json_file: site/package.json` input to point it at the right file.
+
+**How to apply:** a green CI badge or "it ran once" is not the same as "CI actually
+checks what gets pushed" — check the actual run logs, not just that a workflow file
+exists. Any GitHub Action with a "look for a file in the working directory" default
+needs an explicit path when the relevant file isn't at the repo root, which is the
+case for every Node-related step here (site/ is not the repo root).
+
 Why the constraints in `CLAUDE.md` and `docs/plan.md` exist, so a future change to
 any of them is a deliberate decision rather than an accidental drift. Newest first.
 
