@@ -26,7 +26,11 @@
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: var(--paper);
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1100px 600px at 15% -10%, color-mix(in srgb, var(--indigo) 10%, transparent), transparent 60%),
+          radial-gradient(900px 500px at 100% 100%, color-mix(in srgb, var(--indigo) 7%, transparent), transparent 60%);
+        background-attachment: fixed;
         color: var(--ink);
         font-family: system-ui, sans-serif;
         display: flex;
@@ -121,6 +125,10 @@
       nav a {
         color: var(--indigo);
         font-size: 0.85rem;
+        transition: opacity 0.15s ease;
+      }
+      nav a:hover {
+        opacity: 0.7;
       }
       nav a.secondary {
         color: var(--ink-faint);
@@ -152,6 +160,7 @@
         <a href="/prix/">Indice des prix →</a>
         <a class="secondary" href="/sources/">Sources</a>
         <a class="secondary" href="/methode/">Méthode</a>
+        <a class="secondary" href="/donnees/">Données</a>
         <a class="secondary" href="/a-propos/">À propos</a>
       </nav>
     </main>

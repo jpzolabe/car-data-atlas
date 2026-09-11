@@ -13,6 +13,20 @@ for (const row of data.prefectures) {
 const regions = [...byRegion.keys()].sort();
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
+
+// Build-time bar chart — all 20 préfectures, 2021 estimate, ranked. Computed
+// here rather than shipped as a client chart library, per CLAUDE.md's
+// build-time-SVG approach (the "no client JS" default still holds here, it's
+// just not the letter of the budget rule that was the point — see the chat).
+const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
+const CHART_W = 640;
+const ROW_H = 22;
+const MARGIN_L = 148;
+const MARGIN_R = 56;
+const BAR_MAX_W = CHART_W - MARGIN_L - MARGIN_R;
+const maxPop = Math.max(...ranked.map((r) => r.pop_2021));
+const CHART_H = ranked.length * ROW_H + 10;
+const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
 ---
 <!doctype html>
 <html lang="fr">
@@ -30,6 +44,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         --ink-faint: #8B9188;
         --line: #D6D7C9;
         --indigo: #2A56A8;
+        --t-pop: #2A56A8;
         --stale: #AC3A1E;
         --stale-soft: #F1DFD2;
         --ochre: #B8790F;
@@ -38,7 +53,11 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: var(--paper);
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-pop) 10%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-pop) 6%, transparent), transparent 60%);
+        background-attachment: fixed;
         color: var(--ink);
         font-family: system-ui, sans-serif;
         font-size: 15px;
@@ -50,19 +69,33 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
       }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
-      h1 { font-size: 1.8rem; margin: 0 0 8px; }
-      .lede { color: var(--ink-muted); max-width: 60ch; margin: 0 0 24px; }
+      .crumb a:hover { color: var(--t-pop); text-decoration: underline; }
+      h1 {
+        font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
+        border-bottom: 3px solid var(--t-pop); padding-bottom: 4px;
+      }
+      .lede { color: var(--ink-muted); max-width: 60ch; margin: 12px 0 24px; }
       h2 {
         font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em;
-        color: var(--ink-faint); font-weight: 600; margin: 32px 0 8px;
+        color: var(--t-pop); font-weight: 600; margin: 32px 0 8px;
         border-bottom: 1px solid var(--line); padding-bottom: 6px;
       }
+      svg { width: 100%; height: auto; display: block; margin: 10px 0 4px; }
+      .bar-label { font-family: ui-monospace, monospace; font-size: 10.5px; fill: var(--ink-muted); }
+      .bar-value { font-family: ui-monospace, monospace; font-size: 10.5px; fill: var(--ink); font-weight: 600; }
+      .bar-rect {
+        fill: var(--t-pop);
+        transition: opacity 0.15s ease;
+      }
+      .bar-row:hover .bar-rect { opacity: 0.75; }
+      .bar-row:hover .bar-label { fill: var(--t-pop); }
       table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
       th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--ink-faint);
            font-weight: 400; padding: 0 8px 6px 0; }
       th.num, td.num { text-align: right; }
       td { padding: 7px 8px 7px 0; border-top: 1px solid var(--line); }
+      tbody tr { transition: background-color 0.12s ease; }
+      tbody tr:hover { background: color-mix(in srgb, var(--t-pop) 6%, transparent); }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px;
@@ -75,7 +108,8 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
       }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; }
-      .site-nav a { color: var(--indigo); font-size: 12.5px; }
+      .site-nav a { color: var(--t-pop); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
       .gap-note {
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
@@ -83,12 +117,18 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
       .sentence {
         font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
         border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-        padding: 14px 0; margin: 20px 0;
+        border-left: 3px solid var(--t-pop);
+        padding: 14px 0 14px 14px; margin: 20px 0;
       }
       .sentence-tag {
         display: block; font-style: normal; font-family: ui-monospace, monospace;
         font-size: 10px; color: var(--ink-faint); text-transform: uppercase;
         letter-spacing: 0.05em; margin-top: 6px;
+      }
+      @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      .bar-rect { transform-origin: left; animation: growBar 0.6s ease-out backwards; }
+      @media (prefers-reduced-motion: reduce) {
+        .bar-rect { animation: none; }
       }
     </style>
   </head>
@@ -105,6 +145,26 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         {data.lead_sentence}
         <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
       </p>
+
+      <h2>Classement, estimation 2021</h2>
+      <svg viewBox={`0 0 ${CHART_W} ${CHART_H}`} role="img" aria-label="Population par préfecture, estimation 2021, classée par ordre décroissant">
+        {ranked.map((row, i) => (
+          <g class="bar-row" transform={`translate(0, ${i * ROW_H})`}>
+            <text class="bar-label" x={MARGIN_L - 8} y={ROW_H / 2 + 4} text-anchor="end">{row.prefecture}</text>
+            <rect
+              class="bar-rect"
+              x={MARGIN_L}
+              y={4}
+              width={barWidth(row.pop_2021)}
+              height={ROW_H - 8}
+              style={`animation-delay: ${i * 25}ms`}
+            />
+            <text class="bar-value" x={MARGIN_L + barWidth(row.pop_2021) + 6} y={ROW_H / 2 + 4}>
+              {fmt(row.pop_2021)}
+            </text>
+          </g>
+        ))}
+      </svg>
 
       {regions.map((region) => (
         <>
@@ -151,6 +211,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
           <a href="/prix/">Indice des prix</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
         </nav>
       </footer>
