@@ -1,0 +1,693 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_prix_json.py — ne pas éditer directement.",
+  "source": {
+    "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+    "dataset_name": "Indice des Prix à la Consommation (IHPC) — Mensuel National, 2015-2026 (fichier tableau de bord)",
+    "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
+    "retrieved_at": "2026-09-11"
+  },
+  "lead_sentence": "En avril 2026, l'indice des prix à la consommation en République centrafricaine s'établissait à 122,7.",
+  "lead_sentence_template_id": "prix_ihpc_global_pays",
+  "series": [
+    {
+      "period": "2015-01",
+      "value": 85.99,
+      "reconciled": true
+    },
+    {
+      "period": "2015-02",
+      "value": 86.2,
+      "reconciled": true
+    },
+    {
+      "period": "2015-03",
+      "value": 84.55,
+      "reconciled": true
+    },
+    {
+      "period": "2015-04",
+      "value": 84.79,
+      "reconciled": true
+    },
+    {
+      "period": "2015-05",
+      "value": 85.53,
+      "reconciled": true
+    },
+    {
+      "period": "2015-06",
+      "value": 84.53,
+      "reconciled": true
+    },
+    {
+      "period": "2015-07",
+      "value": 87.14,
+      "reconciled": true
+    },
+    {
+      "period": "2015-08",
+      "value": 88.04,
+      "reconciled": true
+    },
+    {
+      "period": "2015-09",
+      "value": 87.05,
+      "reconciled": true
+    },
+    {
+      "period": "2015-10",
+      "value": 91.71,
+      "reconciled": true
+    },
+    {
+      "period": "2015-11",
+      "value": 90.56,
+      "reconciled": true
+    },
+    {
+      "period": "2015-12",
+      "value": 95.13,
+      "reconciled": true
+    },
+    {
+      "period": "2016-01",
+      "value": 95.59,
+      "reconciled": true
+    },
+    {
+      "period": "2016-02",
+      "value": 96.22,
+      "reconciled": true
+    },
+    {
+      "period": "2016-03",
+      "value": 93.8,
+      "reconciled": true
+    },
+    {
+      "period": "2016-04",
+      "value": 92.08,
+      "reconciled": true
+    },
+    {
+      "period": "2016-05",
+      "value": 89.85,
+      "reconciled": true
+    },
+    {
+      "period": "2016-06",
+      "value": 88.83,
+      "reconciled": true
+    },
+    {
+      "period": "2016-07",
+      "value": 87.04,
+      "reconciled": true
+    },
+    {
+      "period": "2016-08",
+      "value": 90.73,
+      "reconciled": true
+    },
+    {
+      "period": "2016-09",
+      "value": 94.0,
+      "reconciled": true
+    },
+    {
+      "period": "2016-10",
+      "value": 93.82,
+      "reconciled": true
+    },
+    {
+      "period": "2016-11",
+      "value": 90.37,
+      "reconciled": true
+    },
+    {
+      "period": "2016-12",
+      "value": 90.88,
+      "reconciled": true
+    },
+    {
+      "period": "2017-01",
+      "value": 92.63,
+      "reconciled": true
+    },
+    {
+      "period": "2017-02",
+      "value": 93.33,
+      "reconciled": true
+    },
+    {
+      "period": "2017-03",
+      "value": 93.91,
+      "reconciled": true
+    },
+    {
+      "period": "2017-04",
+      "value": 94.41,
+      "reconciled": true
+    },
+    {
+      "period": "2017-05",
+      "value": 95.87,
+      "reconciled": true
+    },
+    {
+      "period": "2017-06",
+      "value": 97.1,
+      "reconciled": true
+    },
+    {
+      "period": "2017-07",
+      "value": 96.95,
+      "reconciled": true
+    },
+    {
+      "period": "2017-08",
+      "value": 96.76,
+      "reconciled": true
+    },
+    {
+      "period": "2017-09",
+      "value": 97.15,
+      "reconciled": true
+    },
+    {
+      "period": "2017-10",
+      "value": 97.47,
+      "reconciled": true
+    },
+    {
+      "period": "2017-11",
+      "value": 96.37,
+      "reconciled": true
+    },
+    {
+      "period": "2017-12",
+      "value": 97.39,
+      "reconciled": true
+    },
+    {
+      "period": "2018-01",
+      "value": 96.2,
+      "reconciled": true
+    },
+    {
+      "period": "2018-02",
+      "value": 96.04,
+      "reconciled": true
+    },
+    {
+      "period": "2018-03",
+      "value": 96.25,
+      "reconciled": true
+    },
+    {
+      "period": "2018-04",
+      "value": 96.68,
+      "reconciled": true
+    },
+    {
+      "period": "2018-05",
+      "value": 97.31,
+      "reconciled": true
+    },
+    {
+      "period": "2018-06",
+      "value": 96.2,
+      "reconciled": true
+    },
+    {
+      "period": "2018-07",
+      "value": 96.36,
+      "reconciled": true
+    },
+    {
+      "period": "2018-08",
+      "value": 97.1,
+      "reconciled": true
+    },
+    {
+      "period": "2018-09",
+      "value": 96.9,
+      "reconciled": true
+    },
+    {
+      "period": "2018-10",
+      "value": 97.77,
+      "reconciled": true
+    },
+    {
+      "period": "2018-11",
+      "value": 99.17,
+      "reconciled": true
+    },
+    {
+      "period": "2018-12",
+      "value": 101.88,
+      "reconciled": true
+    },
+    {
+      "period": "2019-01",
+      "value": 100.78,
+      "reconciled": true
+    },
+    {
+      "period": "2019-02",
+      "value": 101.11,
+      "reconciled": true
+    },
+    {
+      "period": "2019-03",
+      "value": 100.68,
+      "reconciled": true
+    },
+    {
+      "period": "2019-04",
+      "value": 101.5,
+      "reconciled": true
+    },
+    {
+      "period": "2019-05",
+      "value": 99.79,
+      "reconciled": true
+    },
+    {
+      "period": "2019-06",
+      "value": 99.69,
+      "reconciled": true
+    },
+    {
+      "period": "2019-07",
+      "value": 99.8,
+      "reconciled": true
+    },
+    {
+      "period": "2019-08",
+      "value": 99.74,
+      "reconciled": true
+    },
+    {
+      "period": "2019-09",
+      "value": 99.32,
+      "reconciled": true
+    },
+    {
+      "period": "2019-10",
+      "value": 98.83,
+      "reconciled": true
+    },
+    {
+      "period": "2019-11",
+      "value": 98.95,
+      "reconciled": true
+    },
+    {
+      "period": "2019-12",
+      "value": 99.8,
+      "reconciled": true
+    },
+    {
+      "period": "2020-01",
+      "value": 99.14,
+      "reconciled": false
+    },
+    {
+      "period": "2020-02",
+      "value": 99.44,
+      "reconciled": false
+    },
+    {
+      "period": "2020-03",
+      "value": 100.8,
+      "reconciled": false
+    },
+    {
+      "period": "2020-04",
+      "value": 101.46,
+      "reconciled": false
+    },
+    {
+      "period": "2020-05",
+      "value": 101.28,
+      "reconciled": false
+    },
+    {
+      "period": "2020-06",
+      "value": 101.84,
+      "reconciled": false
+    },
+    {
+      "period": "2020-07",
+      "value": 101.9,
+      "reconciled": false
+    },
+    {
+      "period": "2020-08",
+      "value": 101.68,
+      "reconciled": false
+    },
+    {
+      "period": "2020-09",
+      "value": 101.08,
+      "reconciled": false
+    },
+    {
+      "period": "2020-10",
+      "value": 100.34,
+      "reconciled": false
+    },
+    {
+      "period": "2020-11",
+      "value": 99.98,
+      "reconciled": false
+    },
+    {
+      "period": "2020-12",
+      "value": 101.63,
+      "reconciled": false
+    },
+    {
+      "period": "2021-01",
+      "value": 104.12,
+      "reconciled": false
+    },
+    {
+      "period": "2021-02",
+      "value": 105.2,
+      "reconciled": false
+    },
+    {
+      "period": "2021-03",
+      "value": 105.73,
+      "reconciled": false
+    },
+    {
+      "period": "2021-04",
+      "value": 106.12,
+      "reconciled": false
+    },
+    {
+      "period": "2021-05",
+      "value": 107.05,
+      "reconciled": false
+    },
+    {
+      "period": "2021-06",
+      "value": 107.37,
+      "reconciled": false
+    },
+    {
+      "period": "2021-07",
+      "value": 105.54,
+      "reconciled": false
+    },
+    {
+      "period": "2021-08",
+      "value": 104.28,
+      "reconciled": false
+    },
+    {
+      "period": "2021-09",
+      "value": 104.98,
+      "reconciled": false
+    },
+    {
+      "period": "2021-10",
+      "value": 103.2,
+      "reconciled": false
+    },
+    {
+      "period": "2021-11",
+      "value": 104.18,
+      "reconciled": false
+    },
+    {
+      "period": "2021-12",
+      "value": 104.38,
+      "reconciled": false
+    },
+    {
+      "period": "2022-01",
+      "value": 104.37,
+      "reconciled": false
+    },
+    {
+      "period": "2022-02",
+      "value": 107.63,
+      "reconciled": false
+    },
+    {
+      "period": "2022-03",
+      "value": 109.31,
+      "reconciled": false
+    },
+    {
+      "period": "2022-04",
+      "value": 117.82,
+      "reconciled": false
+    },
+    {
+      "period": "2022-05",
+      "value": 111.84,
+      "reconciled": false
+    },
+    {
+      "period": "2022-06",
+      "value": 111.66,
+      "reconciled": false
+    },
+    {
+      "period": "2022-07",
+      "value": 112.11,
+      "reconciled": false
+    },
+    {
+      "period": "2022-08",
+      "value": 111.67,
+      "reconciled": false
+    },
+    {
+      "period": "2022-09",
+      "value": 110.59,
+      "reconciled": false
+    },
+    {
+      "period": "2022-10",
+      "value": 111.09,
+      "reconciled": false
+    },
+    {
+      "period": "2022-11",
+      "value": 112.18,
+      "reconciled": false
+    },
+    {
+      "period": "2022-12",
+      "value": 112.29,
+      "reconciled": false
+    },
+    {
+      "period": "2023-01",
+      "value": 115.17,
+      "reconciled": false
+    },
+    {
+      "period": "2023-02",
+      "value": 116.38,
+      "reconciled": false
+    },
+    {
+      "period": "2023-03",
+      "value": 115.06,
+      "reconciled": false
+    },
+    {
+      "period": "2023-04",
+      "value": 113.92,
+      "reconciled": false
+    },
+    {
+      "period": "2023-05",
+      "value": 115.01,
+      "reconciled": false
+    },
+    {
+      "period": "2023-06",
+      "value": 114.39,
+      "reconciled": false
+    },
+    {
+      "period": "2023-07",
+      "value": 114.36,
+      "reconciled": false
+    },
+    {
+      "period": "2023-08",
+      "value": 112.85,
+      "reconciled": false
+    },
+    {
+      "period": "2023-09",
+      "value": 112.42,
+      "reconciled": false
+    },
+    {
+      "period": "2023-10",
+      "value": 114.53,
+      "reconciled": false
+    },
+    {
+      "period": "2023-11",
+      "value": 113.32,
+      "reconciled": false
+    },
+    {
+      "period": "2023-12",
+      "value": 114.94,
+      "reconciled": false
+    },
+    {
+      "period": "2024-01",
+      "value": 116.3,
+      "reconciled": false
+    },
+    {
+      "period": "2024-02",
+      "value": 115.1,
+      "reconciled": false
+    },
+    {
+      "period": "2024-03",
+      "value": 115.14,
+      "reconciled": false
+    },
+    {
+      "period": "2024-04",
+      "value": 115.53,
+      "reconciled": false
+    },
+    {
+      "period": "2024-05",
+      "value": 115.49,
+      "reconciled": false
+    },
+    {
+      "period": "2024-06",
+      "value": 115.57,
+      "reconciled": false
+    },
+    {
+      "period": "2024-07",
+      "value": 116.12,
+      "reconciled": false
+    },
+    {
+      "period": "2024-08",
+      "value": 115.07,
+      "reconciled": false
+    },
+    {
+      "period": "2024-09",
+      "value": 114.38,
+      "reconciled": false
+    },
+    {
+      "period": "2024-10",
+      "value": 115.9,
+      "reconciled": false
+    },
+    {
+      "period": "2024-11",
+      "value": 118.28,
+      "reconciled": false
+    },
+    {
+      "period": "2024-12",
+      "value": 119.7,
+      "reconciled": false
+    },
+    {
+      "period": "2025-01",
+      "value": 120.14,
+      "reconciled": false
+    },
+    {
+      "period": "2025-02",
+      "value": 118.26,
+      "reconciled": false
+    },
+    {
+      "period": "2025-03",
+      "value": 117.17,
+      "reconciled": false
+    },
+    {
+      "period": "2025-04",
+      "value": 116.79,
+      "reconciled": false
+    },
+    {
+      "period": "2025-05",
+      "value": 117.73,
+      "reconciled": false
+    },
+    {
+      "period": "2025-06",
+      "value": 116.9,
+      "reconciled": false
+    },
+    {
+      "period": "2025-07",
+      "value": 116.59,
+      "reconciled": false
+    },
+    {
+      "period": "2025-08",
+      "value": 116.31,
+      "reconciled": false
+    },
+    {
+      "period": "2025-09",
+      "value": 115.19,
+      "reconciled": false
+    },
+    {
+      "period": "2025-10",
+      "value": 115.5,
+      "reconciled": false
+    },
+    {
+      "period": "2025-11",
+      "value": 116.9,
+      "reconciled": false
+    },
+    {
+      "period": "2025-12",
+      "value": 119.1,
+      "reconciled": false
+    },
+    {
+      "period": "2026-01",
+      "value": 118.0,
+      "reconciled": false
+    },
+    {
+      "period": "2026-02",
+      "value": 118.5,
+      "reconciled": false
+    },
+    {
+      "period": "2026-03",
+      "value": 120.7,
+      "reconciled": false
+    },
+    {
+      "period": "2026-04",
+      "value": 122.7,
+      "reconciled": false
+    }
+  ]
+}
