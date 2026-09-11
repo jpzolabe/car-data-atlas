@@ -1,0 +1,153 @@
+{
+  "generated_note": "Généré à partir de data/observations.csv via pipeline/export_population_json.py — ne pas éditer directement.",
+  "source": {
+    "producer": "citypopulation.de (relaying ICASEES data, per the page's own stated data source)",
+    "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
+    "url": "https://www.citypopulation.de/en/centralafrica/admin/",
+    "retrieved_at": "2026-09-09"
+  },
+  "lead_sentence": "En 2021, la population de la préfecture de Bangui était estimée à 1 425 276 habitants.",
+  "lead_sentence_template_id": "population_totale_lieu_estime",
+  "prefectures": [
+    {
+      "prefecture": "Bangui",
+      "region": "Bas-Oubangui",
+      "pop_2003": 824057.0,
+      "pop_2021": 1425276.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Bamingui-Bangoran",
+      "region": "Fertit",
+      "pop_2003": 43229.0,
+      "pop_2021": 82108.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Haute-Kotto",
+      "region": "Fertit",
+      "pop_2003": 90316.0,
+      "pop_2021": 128342.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Vakaga",
+      "region": "Fertit",
+      "pop_2003": 52255.0,
+      "pop_2021": 83188.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Basse-Kotto",
+      "region": "Haut-Oubangui",
+      "pop_2003": 249150.0,
+      "pop_2021": 380172.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Haut-Mbomou",
+      "region": "Haut-Oubangui",
+      "pop_2003": 57602.0,
+      "pop_2021": 52314.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Mbomou",
+      "region": "Haut-Oubangui",
+      "pop_2003": 164009.0,
+      "pop_2021": 257803.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Kémo",
+      "region": "Kaga",
+      "pop_2003": 118420.0,
+      "pop_2021": 183742.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Nana-Gribizi",
+      "region": "Kaga",
+      "pop_2003": 117816.0,
+      "pop_2021": 208821.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Ouaka",
+      "region": "Kaga",
+      "pop_2003": 276710.0,
+      "pop_2021": 446354.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Lobaye",
+      "region": "Plateaux",
+      "pop_2003": 246875.0,
+      "pop_2021": 345108.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Ombella M'Poko",
+      "region": "Plateaux",
+      "pop_2003": 155438.0,
+      "pop_2021": 269809.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Lim-pendé",
+      "region": "Yadé",
+      "pop_2003": 248948.0,
+      "pop_2021": 442151.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Ouham",
+      "region": "Yadé",
+      "pop_2003": 210021.0,
+      "pop_2021": 297904.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Ouham Pendé",
+      "region": "Yadé",
+      "pop_2003": 181559.0,
+      "pop_2021": 243315.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Ouham-Fafa",
+      "region": "Yadé",
+      "pop_2003": 159199.0,
+      "pop_2021": 225479.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Mambéré",
+      "region": "Équateur",
+      "pop_2003": 167260.0,
+      "pop_2021": 265479.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Mambéré-Kadéï",
+      "region": "Équateur",
+      "pop_2003": 197535.0,
+      "pop_2021": 273166.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Nana-Mambéré",
+      "region": "Équateur",
+      "pop_2003": 233666.0,
+      "pop_2021": 341796.0,
+      "pop_2021_flag": "estime"
+    },
+    {
+      "prefecture": "Sangha-Mbaéré",
+      "region": "Équateur",
+      "pop_2003": 101074.0,
+      "pop_2021": 138770.0,
+      "pop_2021_flag": "estime"
+    }
+  ]
+}
