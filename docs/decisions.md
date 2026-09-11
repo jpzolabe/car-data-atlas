@@ -1,5 +1,23 @@
 # Decisions
 
+## 2026-09-12 — Theme pages built flat, not under /themes/ as the sitemap specifies
+
+`docs/plan.md`'s site map puts theme pages under a `/themes/` prefix
+(`/themes/population`, `/themes/prix`, etc.), separate from place pages under
+`/lieux/`. The first two real pages were built flat instead (`/population`,
+`/prix`), matching the flat top-level pages (`/sources`, `/methode`) rather
+than the plan's nested structure — not a deliberate choice, just what
+happened. Noticed while adding a third theme page (`/infrastructures`).
+
+**How to apply:** kept it flat for this third page too, to stay internally
+consistent (all existing theme pages flat) rather than create a third,
+mixed pattern (some flat, some nested) which would be worse than either
+option alone. A bulk rename to match the plan's `/themes/` structure is
+still on the table — cheap now (3 pages, no public URLs exist yet since
+Cloudflare isn't connected), much more annoying once `/lieux/` place pages
+exist and there are real inbound links. Revisit before Phase 4 (descending
+to place pages) rather than after.
+
 ## 2026-09-11 — CI silently never ran successfully until checked directly
 
 `docs/plan.md`'s Phase 2 done-criteria requires the site to update "without manual
