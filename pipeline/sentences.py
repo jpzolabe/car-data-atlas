@@ -78,3 +78,24 @@ def sentence_prix(period: str, value: float, reconciled: bool) -> tuple[str, str
     )
     template_id = "prix_ihpc_global_pays_estime" if reconciled else "prix_ihpc_global_pays"
     return text, template_id
+
+
+def sentence_electricity(
+    period: str, value: float, previous_value: float | None
+) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    if previous_value is not None and previous_value > 0:
+        change = value - previous_value
+        if abs(change) >= 0.1:
+            direction = "en hausse" if change > 0 else "en baisse"
+            text = (
+                f"En {period}, {value_fr}% de la population avait accès à "
+                f"l'électricité en République centrafricaine, {direction} "
+                f"par rapport à l'année précédente."
+            )
+            return text, "acces_electricite_pays_tendance"
+    text = (
+        f"En {period}, {value_fr}% de la population avait accès à "
+        f"l'électricité en République centrafricaine."
+    )
+    return text, "acces_electricite_pays"
