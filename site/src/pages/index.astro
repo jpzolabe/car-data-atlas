@@ -1,8 +1,11 @@
 ---
-// Still a placeholder, not the real home page from docs/plan.md §2.2 —
-// that needs the headline-card/lead-story/theme-grid structure once more
-// than one indicator exists. This just links to what's actually built so
-// far instead of being a dead end.
+// Still a placeholder, not the real home page from docs/plan.md §2.2 (that
+// needs the headline-card/lead-story/theme-grid structure once more than two
+// indicators exist) — but it now links everywhere real and carries the
+// search box, which docs/plan.md calls "the primary navigation, not the
+// menu." Search only works after a full `pnpm build` (Pagefind indexes the
+// built dist/ output) — it's inert during `astro dev`. This is the one page
+// that carries any client JS at all, per CLAUDE.md's explicit exception.
 ---
 <!doctype html>
 <html lang="fr">
@@ -16,7 +19,9 @@
         --paper: #EDEEE6;
         --ink: #1B2420;
         --ink-muted: #5A6259;
+        --ink-faint: #8B9188;
         --indigo: #2A56A8;
+        --line: #D6D7C9;
       }
       * { box-sizing: border-box; }
       body {
@@ -31,7 +36,7 @@
         padding: 24px;
       }
       main {
-        max-width: 40ch;
+        max-width: 46ch;
         text-align: center;
       }
       h1 {
@@ -51,15 +56,74 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
       }
+      #search {
+        margin-top: 28px;
+        text-align: left;
+      }
+      #search input {
+        width: 100%;
+        font: inherit;
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: #F8F8F2;
+        color: var(--ink);
+      }
+      #search input:focus {
+        outline: 2px solid var(--indigo);
+        outline-offset: 1px;
+      }
+      #search-results {
+        list-style: none;
+        margin: 10px 0 0;
+        padding: 0;
+      }
+      #search-results li {
+        border-top: 1px solid var(--line);
+        padding: 10px 0;
+      }
+      #search-results a {
+        color: var(--indigo);
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+      #search-results a:hover {
+        text-decoration: underline;
+      }
+      #search-results .excerpt {
+        display: block;
+        color: var(--ink-muted);
+        font-size: 0.8rem;
+        margin-top: 3px;
+      }
+      #search-results .excerpt mark {
+        background: none;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      #search-status {
+        font-family: ui-monospace, monospace;
+        font-size: 0.7rem;
+        color: var(--ink-faint);
+        margin-top: 6px;
+        display: block;
+      }
       nav {
-        margin-top: 20px;
+        margin-top: 24px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 16px;
+        gap: 14px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
       }
       nav a {
         color: var(--indigo);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+      }
+      nav a.secondary {
+        color: var(--ink-faint);
       }
     </style>
   </head>
@@ -71,10 +135,71 @@
         d'où elles viennent, et ce que personne n'a encore mesuré.
       </p>
       <p class="status">En construction — deux indicateurs pour l'instant</p>
+
+      <div id="search">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Rechercher une préfecture, un indicateur…"
+          autocomplete="off"
+        />
+        <span id="search-status"></span>
+        <ul id="search-results"></ul>
+      </div>
+
       <nav>
         <a href="/population/">Population par préfecture →</a>
         <a href="/prix/">Indice des prix →</a>
+        <a class="secondary" href="/sources/">Sources</a>
+        <a class="secondary" href="/methode/">Méthode</a>
+        <a class="secondary" href="/a-propos/">À propos</a>
       </nav>
     </main>
+
+    <script is:inline type="module">
+      // Hand-built, not Pagefind's default UI bundle (~134 KB of JS/CSS for
+      // widget chrome) — this site's page-weight budget is real, so search
+      // uses the raw Pagefind API (~45 KB, loaded only on this page) plus a
+      // few lines of vanilla JS matching the site's own styling instead.
+      let pagefind;
+      const input = document.getElementById("search-input");
+      const results = document.getElementById("search-results");
+      const status = document.getElementById("search-status");
+
+      async function ensurePagefind() {
+        if (!pagefind) {
+          pagefind = await import("/pagefind/pagefind.js");
+          await pagefind.init();
+        }
+        return pagefind;
+      }
+
+      let debounceTimer;
+      input.addEventListener("input", () => {
+        clearTimeout(debounceTimer);
+        const term = input.value.trim();
+        if (!term) {
+          results.innerHTML = "";
+          status.textContent = "";
+          return;
+        }
+        debounceTimer = setTimeout(async () => {
+          status.textContent = "Recherche…";
+          const pf = await ensurePagefind();
+          const search = await pf.search(term);
+          const items = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+          status.textContent = items.length
+            ? `${items.length} résultat(s)`
+            : `Aucun résultat pour « ${term} ».`;
+          results.innerHTML = items
+            .map(
+              (item) =>
+                `<li><a href="${item.url}">${item.meta.title || item.url}</a>` +
+                `<span class="excerpt">${item.excerpt}</span></li>`
+            )
+            .join("");
+        }, 150);
+      });
+    </script>
   </body>
 </html>
