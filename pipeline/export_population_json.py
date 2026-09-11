@@ -12,6 +12,8 @@ import json
 
 import duckdb
 
+from pipeline.sentences import sentence_population
+
 OUT_PATH = "site/src/data/population.json"
 
 
@@ -45,6 +47,14 @@ def main():
         from sources where source_id = 'citypopulation-de-caf'
     """).fetchone()
 
+    # Lead sentence: the most populous préfecture, as a representative example —
+    # not one sentence per row, matching docs/plan.md's "one generated sentence
+    # per chart" pattern rather than per data point.
+    lead_row = max(rows, key=lambda r: r[3])  # r[3] = pop_2021
+    lead_text, lead_template_id = sentence_population(
+        prefecture=lead_row[0], year="2021", value=lead_row[3], reconciled=True
+    )
+
     data = {
         "generated_note": (
             "Généré à partir de data/observations.csv via "
@@ -54,6 +64,8 @@ def main():
             "producer": source[0], "dataset_name": source[1],
             "url": source[2], "retrieved_at": source[3],
         },
+        "lead_sentence": lead_text,
+        "lead_sentence_template_id": lead_template_id,
         "prefectures": [
             {
                 "prefecture": r[0], "region": r[1],

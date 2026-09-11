@@ -6,6 +6,8 @@
     "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
     "retrieved_at": "2026-09-11"
   },
+  "lead_sentence": "En avril 2026, l'indice des prix à la consommation en République centrafricaine s'établissait à 122,7.",
+  "lead_sentence_template_id": "prix_ihpc_global_pays",
   "series": [
     {
       "period": "2015-01",
