@@ -1,6 +1,8 @@
 ---
-// Phase 0 placeholder — proves the build/deploy chain works end to end.
-// Real home page per docs/plan.md §2.2 comes in Phase 2.
+// Still a placeholder, not the real home page from docs/plan.md §2.2 —
+// that needs the headline-card/lead-story/theme-grid structure once more
+// than one indicator exists. This just links to what's actually built so
+// far instead of being a dead end.
 ---
 <!doctype html>
 <html lang="fr">
@@ -49,6 +51,16 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
       }
+      nav {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+      nav a {
+        color: var(--indigo);
+        font-size: 0.9rem;
+      }
     </style>
   </head>
   <body>
@@ -58,7 +70,11 @@
         Explorer la République centrafricaine — ce que disent les données,
         d'où elles viennent, et ce que personne n'a encore mesuré.
       </p>
-      <p class="status">En construction — Phase 0</p>
+      <p class="status">En construction — deux indicateurs pour l'instant</p>
+      <nav>
+        <a href="/population/">Population par préfecture →</a>
+        <a href="/prix/">Indice des prix →</a>
+      </nav>
     </main>
   </body>
 </html>

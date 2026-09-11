@@ -132,6 +132,37 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   to when it was staffed) is found and it's confirmed those are the same reform, or
   the dates are split apart if they're not.
 
+### IHPC dashboard file's pre-2020 reconciliation isn't independently confirmed
+
+- **What:** ICASEES's own published IHPC dashboard file (CC BY 4.0, no licence
+  issue) documents, in its own methodology notes, that values from 2015-01 to
+  2019-12 were reconciled onto the post-2020 base by whoever compiled the file
+  ("à la demande de l'utilisateur"), using an official coefficient (4.12919) quoted
+  from ICASEES's own bulletin warnings. The math checks out (verified independently:
+  Dec-2019 raw 412.10 / 4.12919 ≈ 99.78, matching Jan-2020's as-published 99.14), and
+  the raw pre-2020 values are preserved unmodified in the same file's
+  `Archive_Base1981_Brute` sheet — this is unusually transparent. What's not
+  confirmed: whether this specific reconciliation is itself an ICASEES-endorsed
+  position or a working calculation for whichever user requested this dashboard
+  export. Marked `quality_flag=estime` in `observations.csv` for the affected 60
+  months rather than treated as equivalent to as-published data.
+- **Used in:** `data/observations.csv`, `prix_ihpc_global`, periods 2015-01 through
+  2019-12 (60 of 136 rows).
+- **Resolved when:** an ICASEES publication (a bulletin, a methodology note) confirms
+  this same reconciliation independently of this one dashboard file.
+
+### IHPC dashboard file's own metadata is internally inconsistent
+
+- **What:** The file's `Métadonnées` sheet states temporal coverage as "2015M1 à
+  2025M9," but the actual data columns in the `Données` sheet run through 2026M4 (a
+  note elsewhere in the file says the series was "prolongée jusqu'à avril 2026").
+  The metadata description wasn't updated when the series was extended.
+- **Used in:** not load-bearing — the pipeline (`add_ihpc_observations.py`) reads the
+  actual data columns, not the metadata sheet's stated range, so this didn't produce
+  a wrong result. Noted here so nobody trusts the metadata sheet's date range at face
+  value in future work on this file.
+- **Resolved when:** not urgent to resolve — informational.
+
 ---
 
 ## Resolved
