@@ -183,6 +183,30 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   contamination is a sign the site itself has been compromised, which would
   be worth flagging to ICASEES regardless of this project's own needs.
 
+### ICASEES education yearbook fetch blocked — likely rate-limiting, paused rather than pushed
+
+- **What:** Attempting to fetch the education statistical yearbooks (Phase 3's
+  named "second-best starting pipeline"), two real download links were found
+  (`annuaire-statistique-men-2023-vf` and the Fondamental 1
+  alphabétisation/éducation-de-base yearbook, both under
+  `icasees.org/index.php/publications/liste-des-publications/...`). The first
+  now 404s cleanly. The second returns genuinely corrupted/undecodable content
+  via both `curl` (valid gzip envelope, garbage inside) and `WebFetch` — a
+  different, worse failure mode than a clean 404. Combined with the
+  `?prizes%2F...` spam-URL contamination already logged elsewhere in this
+  file, and the sheer number of automated requests this project has sent to
+  `icasees.org` across this session, this looks like rate-limiting or
+  anti-bot protection responding to that volume — not a broken link. Stopped
+  rather than retried repeatedly, since continuing to hammer a site that's
+  pushing back isn't a responsible way to build a "cron per source" scraper
+  CLAUDE.md itself says should be a good citizen.
+- **Used in:** nothing yet — no education data has been ingested.
+- **Resolved when:** retried after a real gap (a different day, not this same
+  session), ideally with a lower request rate; or an alternative source is
+  used instead (UNESCO UIS is named in `CLAUDE.md`'s source inventory for
+  international comparison and may have usable national-level education
+  indicators without touching icasees.org at all).
+
 ---
 
 ## Resolved
