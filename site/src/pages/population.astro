@@ -78,6 +78,16 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
       }
+      .sentence {
+        font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        padding: 14px 0; margin: 20px 0;
+      }
+      .sentence-tag {
+        display: block; font-style: normal; font-family: ui-monospace, monospace;
+        font-size: 10px; color: var(--ink-faint); text-transform: uppercase;
+        letter-spacing: 0.05em; margin-top: 6px;
+      }
     </style>
   </head>
   <body>
@@ -87,6 +97,11 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
       <p class="lede">
         Deux séries : le recensement de 2003 (RGPH-3) et une estimation 2021.
         Aucune des deux n'est actuelle — voir les notes sur chaque colonne.
+      </p>
+
+      <p class="sentence">
+        {data.lead_sentence}
+        <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
       </p>
 
       {regions.map((region) => (

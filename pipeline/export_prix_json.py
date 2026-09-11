@@ -9,6 +9,8 @@ import json
 
 import duckdb
 
+from pipeline.sentences import sentence_prix
+
 OUT_PATH = "site/src/data/prix.json"
 
 
@@ -31,6 +33,11 @@ def main():
         from sources where source_id = 'icasees-ihpc-dashboard'
     """).fetchone()
 
+    latest = rows[-1]  # (period, value, quality_flag)
+    lead_text, lead_template_id = sentence_prix(
+        period=latest[0], value=latest[1], reconciled=latest[2] == "estime"
+    )
+
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
@@ -40,6 +47,8 @@ def main():
             "producer": source[0], "dataset_name": source[1],
             "url": source[2], "retrieved_at": source[3],
         },
+        "lead_sentence": lead_text,
+        "lead_sentence_template_id": lead_template_id,
         "series": [
             {"period": r[0], "value": r[1], "reconciled": r[2] == "estime"}
             for r in rows
