@@ -14,6 +14,21 @@ const regions = [...byRegion.keys()].sort();
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
+// One distinct accent per région — wayfinding, not decoration: with 7 tables
+// sitting side by side in a grid, color is what lets the eye tell them apart
+// without re-reading every header. Bas-Oubangui (Bangui alone) gets a neutral
+// rather than a 7th saturated hue, since it's the odd-one-out single-préfecture
+// région. Kept distinct from --t-pop/--t-prix used elsewhere on this page.
+const REGION_COLORS: Record<string, string> = {
+  "Plateaux": "#B33A5B",
+  "Équateur": "#2E7D5B",
+  "Yadé": "#6B4A9E",
+  "Kaga": "#C2571F",
+  "Fertit": "#1C7A9C",
+  "Haut-Oubangui": "#8A6B1F",
+  "Bas-Oubangui": "#5A6259",
+};
+
 // Build-time bar chart — all 20 préfectures, 2021 estimate, ranked. Computed
 // here rather than shipped as a client chart library, per CLAUDE.md's
 // build-time-SVG approach (the "no client JS" default still holds here, it's
@@ -89,13 +104,37 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       }
       .bar-row:hover .bar-rect { opacity: 0.75; }
       .bar-row:hover .bar-label { fill: var(--t-pop); }
+      .legend-note {
+        font-family: ui-monospace, monospace; font-size: 11.5px; color: var(--ink-faint);
+        margin: 4px 0 18px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+      }
       .region-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px 28px; margin-top: 8px;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px; margin-top: 8px;
+      }
+      .region-block {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--region-accent, var(--ink-faint));
+        border-radius: 3px;
+        padding: 14px 16px 8px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .region-block:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--region-accent, var(--ink-faint)) 55%, transparent);
       }
       .region-block h3 {
-        font-size: 13px; color: var(--ink); margin: 0 0 6px; font-weight: 600;
+        font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--region-accent, var(--ink)); margin: 0 0 8px; font-weight: 600;
+        display: flex; align-items: center; gap: 6px;
       }
+      .region-dot {
+        width: 7px; height: 7px; border-radius: 50%; flex: none;
+        background: var(--region-accent, var(--ink-faint));
+      }
+      .region-block table { font-size: 13.5px; }
+      .region-block td, .region-block th { padding: 5px 6px 5px 0; }
       table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
       th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--ink-faint);
            font-weight: 400; padding: 0 8px 6px 0; }
@@ -174,10 +213,14 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       </svg>
 
       <h2>Par région</h2>
+      <p class="legend-note">
+        Dans les tableaux ci-dessous : <span class="badge stale">2003</span> = recensement, ancien —
+        <span class="badge estime">2021</span> = estimation. Voir la note ci-dessus pour le détail.
+      </p>
       <div class="region-grid">
         {regions.map((region) => (
-          <div class="region-block">
-            <h3>{region}</h3>
+          <div class="region-block" style={`--region-accent: ${REGION_COLORS[region] ?? "var(--ink-faint)"}`}>
+            <h3><span class="region-dot"></span>{region}</h3>
             <table>
               <thead>
                 <tr>
@@ -190,14 +233,8 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
                 {byRegion.get(region)!.map((row) => (
                   <tr>
                     <td>{row.prefecture}</td>
-                    <td class="num">
-                      {fmt(row.pop_2003)}
-                      <span class="badge stale">ancien</span>
-                    </td>
-                    <td class="num">
-                      {fmt(row.pop_2021)}
-                      <span class="badge estime">estimé</span>
-                    </td>
+                    <td class="num">{fmt(row.pop_2003)}</td>
+                    <td class="num">{fmt(row.pop_2021)}</td>
                   </tr>
                 ))}
               </tbody>
