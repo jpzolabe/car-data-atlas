@@ -1,0 +1,35 @@
+{
+  "generated_note": "Généré depuis data/ via pipeline/export_public_data.py — ne pas éditer directement.",
+  "files": [
+    {
+      "name": "entities.csv",
+      "rows": 113,
+      "description": "Une ligne par unité administrative, par version. Jamais modifié en place — un redécoupage crée une nouvelle entité."
+    },
+    {
+      "name": "aliases.csv",
+      "rows": 168,
+      "description": "Chaque orthographe, variante d'accent et code source, rattachés à un identifiant canonique."
+    },
+    {
+      "name": "sources.csv",
+      "rows": 8,
+      "description": "Une ligne par source : producteur, licence, cadence, vintage géographique, mise en garde éventuelle."
+    },
+    {
+      "name": "indicators.csv",
+      "rows": 2,
+      "description": "Un indicateur par ligne : définition, unité, thème, et le niveau géographique le plus fin qu'il atteint réellement."
+    },
+    {
+      "name": "observations.csv",
+      "rows": 176,
+      "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
+    },
+    {
+      "name": "unresolved.csv",
+      "rows": 9,
+      "description": "Chaque cas que le rapprochement des sources n'a pas su résoudre — un livrable, pas un journal d'échecs."
+    }
+  ]
+}

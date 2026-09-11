@@ -16,7 +16,15 @@
         --line: #D6D7C9; --indigo: #2A56A8; --ochre: #B8790F; --stale: #AC3A1E;
       }
       * { box-sizing: border-box; }
-      body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--indigo) 8%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--indigo) 5%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
+      }
       main { max-width: 700px; margin: 0 auto; padding: 32px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
@@ -48,7 +56,8 @@
       }
       footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       .site-nav { display: flex; gap: 14px; }
-      .site-nav a { color: var(--indigo); font-size: 12.5px; }
+      .site-nav a { color: var(--indigo); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
     </style>
   </head>
   <body>
@@ -183,6 +192,7 @@
           <a href="/population/">Population</a>
           <a href="/prix/">Prix</a>
           <a href="/sources/">Sources</a>
+          <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
         </nav>
       </footer>

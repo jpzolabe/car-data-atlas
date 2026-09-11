@@ -19,7 +19,15 @@ const sources = data.sources;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
       }
       * { box-sizing: border-box; }
-      body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--indigo) 8%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--indigo) 5%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+      }
       main { max-width: 860px; margin: 0 auto; padding: 32px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
@@ -29,6 +37,12 @@ const sources = data.sources;
       .source-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px; margin-bottom: 12px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      }
+      .source-card:hover {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--indigo) 40%, var(--line));
+        box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--indigo) 50%, transparent);
       }
       .source-card h2 { font-size: 15.5px; margin: 0 0 4px; }
       .source-card .dataset { color: var(--ink-muted); font-size: 13.5px; margin: 0 0 10px; }
@@ -99,6 +113,7 @@ const sources = data.sources;
           <a href="/population/">Population</a>
           <a href="/prix/">Prix</a>
           <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
         </nav>
       </footer>
