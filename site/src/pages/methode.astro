@@ -1,0 +1,191 @@
+---
+// docs/plan.md §2.8: "publishes the rules, which is what separates this from
+// an opinion." Mostly hand-written prose, not data-driven — but grounded in
+// what Phase 1 actually found, not generic boilerplate.
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Méthode — Données RCA</title>
+    <style>
+      :root {
+        --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188;
+        --line: #D6D7C9; --indigo: #2A56A8; --ochre: #B8790F; --stale: #AC3A1E;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6; }
+      main { max-width: 700px; margin: 0 auto; padding: 32px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
+      h1 { font-size: 1.8rem; margin: 0 0 8px; }
+      .lede { color: var(--ink-muted); max-width: 62ch; margin: 0 0 8px; }
+      h2#geographie { scroll-margin-top: 20px; }
+      h2 {
+        font-size: 1.1rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line);
+      }
+      h3 { font-size: 0.95rem; margin: 20px 0 6px; }
+      p { margin: 0 0 12px; }
+      table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 14px 0; }
+      th { text-align: left; font-size: 10.5px; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; padding: 0 8px 6px 0; }
+      td { padding: 6px 8px 6px 0; border-top: 1px solid var(--line); vertical-align: top; }
+      code { font-family: ui-monospace, monospace; font-size: 0.9em; background: rgba(0,0,0,0.05); padding: 1px 4px; border-radius: 2px; }
+      .rank-list { list-style: none; padding: 0; margin: 14px 0; }
+      .rank-list li {
+        padding: 8px 12px; margin-bottom: 4px; background: #F8F8F2; border-left: 3px solid var(--indigo);
+        font-family: ui-monospace, monospace; font-size: 13px;
+      }
+      .threshold-table td:nth-child(2) { font-family: ui-monospace, monospace; }
+      .example {
+        font-style: italic; border-left: 3px solid var(--ink-faint); padding: 6px 0 6px 12px; margin: 12px 0; color: var(--ink-muted);
+      }
+      .todo {
+        background: #F1E3C6; color: var(--ochre); font-family: ui-monospace, monospace;
+        font-size: 12px; padding: 8px 12px; border-radius: 3px; margin: 12px 0;
+      }
+      footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      .site-nav { display: flex; gap: 14px; }
+      .site-nav a { color: var(--indigo); font-size: 12.5px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Méthode</h1>
+      <p class="lede">
+        Les règles qui décident quel chiffre s'affiche quand plusieurs sources
+        se contredisent, comment la fraîcheur est jugée, et comment les phrases
+        des graphiques sont écrites. Publier ces règles est ce qui distingue ce
+        site d'une opinion.
+      </p>
+
+      <h2 id="classement">Le classement d'autorité</h2>
+      <p>
+        Quand plusieurs sources publient un chiffre différent pour le même
+        indicateur, le site affiche par défaut le plus autoritaire selon ce
+        classement :
+      </p>
+      <ol class="rank-list">
+        <li>Recensement national</li>
+        <li>Enquête nationale</li>
+        <li>Donnée administrative nationale</li>
+        <li>Estimation modélisée internationale</li>
+        <li>Chiffre de portail sans source citée</li>
+      </ol>
+      <p>
+        À égalité de rang, la source la plus récente l'emporte — mais la
+        date qui compte est celle de <strong>l'observation</strong>, pas celle
+        de la publication. Une estimation republiée récemment ne dépasse pas
+        un recensement plus ancien simplement parce qu'elle est apparue en
+        ligne plus tard.
+      </p>
+      <p>
+        Le chiffre retenu par défaut est toujours accompagné d'un lien
+        « N&nbsp;sources » quand d'autres existent, qui montre l'écart entre
+        elles sans qu'il faille deviner lequel est « le bon ».
+      </p>
+
+      <h2 id="geographie">Le problème de la géographie</h2>
+      <p>
+        Les sources ne s'accordent pas sur le découpage administratif du
+        pays. Ce que ce projet a vérifié directement, pas supposé :
+      </p>
+      <table>
+        <thead><tr><th>Source</th><th>Préfectures</th><th>Sous-préfectures</th></tr></thead>
+        <tbody>
+          <tr><td>OCHA COD-AB, version 02 (vérifiée 2026-09-05)</td><td>20</td><td>85</td></tr>
+          <tr><td>Loi n°21.001 du 21 janvier 2021 (promulguée)</td><td>20</td><td>85</td></tr>
+          <tr><td>Documentation d'enquête plus ancienne</td><td>16</td><td>66</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Les deux premières lignes s'accordent — mais seulement depuis la
+        promulgation de la loi le 21 janvier 2021 ; le texte adopté en
+        décembre 2020 annonçait encore 84 sous-préfectures. Ce site suit
+        COD-AB v02 comme squelette de base, avec chaque désaccord restant
+        listé plutôt que masqué — voir <code>docs/verification-debt.md</code>
+        et <code>data/unresolved.csv</code>, qui contient à ce jour 9 cas
+        réels, dont un désaccord à trois voies non résolu sur le découpage
+        interne de Bangui (COD-AB, citypopulation.de et l'ICASEES décrivent
+        trois structures différentes).
+      </p>
+      <p>
+        Le niveau commune n'est pas couvert pour l'instant : la source de
+        référence actuelle (COD-AB v02) ne publie rien de plus fin que la
+        sous-préfecture.
+      </p>
+
+      <h2 id="fraicheur">Comment la fraîcheur est jugée</h2>
+      <p>
+        Un seuil unique pour tous les indicateurs n'aurait pas de sens — trois
+        ans, c'est vieux pour un prix, normal pour un recensement. Les seuils
+        sont donc fixés par thème :
+      </p>
+      <table class="threshold-table">
+        <thead><tr><th>Thème</th><th>Actuel</th><th>Ancien après</th></tr></thead>
+        <tbody>
+          <tr><td>Prix</td><td>&lt; 6 mois</td><td>6 mois</td></tr>
+          <tr><td>Population (recensement)</td><td>&lt; 10 ans</td><td>10 ans</td></tr>
+          <tr><td>Infrastructures sanitaires (listes)</td><td>&lt; 2 ans</td><td>2 ans</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Une estimation explicitement signalée comme provisoire ou recalculée
+        (comme les valeurs 2015-2019 de l'indice des prix, reconciliées sur
+        une base plus récente par la source elle-même) porte un badge
+        distinct plutôt que d'être traitée comme équivalente à une valeur
+        telle qu'originellement publiée.
+      </p>
+
+      <h2 id="phrases">Comment les phrases sont générées</h2>
+      <p>
+        Chaque phrase en italique accompagnant un chiffre est produite par un
+        gabarit déterministe (<code>pipeline/sentences.py</code>), rempli avec
+        les valeurs des données au moment de la construction du site. Aucun
+        modèle de langage n'intervient dans cette génération, ni dans le
+        pipeline ni sur la page — les mêmes données produisent toujours
+        exactement la même phrase, et chaque phrase est traçable jusqu'à son
+        gabarit.
+      </p>
+      <p class="example">
+        « En 2021, la population de la préfecture de Bangui était estimée à
+        1&nbsp;425&nbsp;276 habitants. »
+        <br />— gabarit <code>population_totale_lieu_estime</code>
+      </p>
+      <p>
+        Écrire ces gabarits correctement en français (accords, élisions comme
+        « de l'Ouaka » contre « de Haut-Mbomou », pluriels) s'est révélé plus
+        délicat que prévu — deux erreurs réelles ont été détectées et
+        corrigées avant publication en vérifiant la sortie sur les 20 noms de
+        préfecture réels plutôt qu'en supposant la règle générale correcte.
+      </p>
+
+      <h2 id="erreur">Signaler une erreur</h2>
+      <p>
+        Le mécanisme de signalement n'est pas encore en place.
+      </p>
+      <div class="todo">À FAIRE : ajouter un contact réel avant la mise en ligne publique — voir docs/plan.md Phase 5, "Error reporting mechanism."</div>
+
+      <h2 id="portee">Ce que ce site n'est pas</h2>
+      <p>
+        Pas un portail de données, pas un tableau de bord, pas un concurrent
+        de l'ICASEES — ce site republie et enrichit leurs données (CC BY 4.0),
+        avec l'attribution qui va avec sur chaque page concernée. Aucun indice
+        composite n'est calculé : cela reviendrait à choisir silencieusement
+        un chiffre contesté plutôt qu'un autre.
+      </p>
+
+      <footer>
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/prix/">Prix</a>
+          <a href="/sources/">Sources</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

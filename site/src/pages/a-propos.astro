@@ -1,0 +1,89 @@
+---
+// docs/plan.md §2.1: "About, licence, contact." Ownership is deliberately
+// stated as open (Part 8, open question #1) rather than inventing an
+// institutional partner that doesn't exist yet.
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>À propos — Données RCA</title>
+    <style>
+      :root { --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8; --ochre: #B8790F; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6; }
+      main { max-width: 640px; margin: 0 auto; padding: 32px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
+      h1 { font-size: 1.8rem; margin: 0 0 8px; }
+      .lede { font-style: italic; color: var(--ink-muted); max-width: 60ch; margin: 0 0 24px; }
+      h2 { font-size: 1rem; margin: 28px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+      p { margin: 0 0 12px; }
+      a { color: var(--indigo); }
+      code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+      .todo { background: #F1E3C6; color: var(--ochre); font-family: ui-monospace, monospace; font-size: 12px; padding: 8px 12px; border-radius: 3px; margin: 10px 0; }
+      ul { padding-left: 20px; margin: 0 0 12px; }
+      footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      .site-nav { display: flex; gap: 14px; }
+      .site-nav a { color: var(--indigo); font-size: 12.5px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>À propos</h1>
+      <p class="lede">
+        Explorer la République centrafricaine — ce que disent les données,
+        d'où elles viennent, et ce que personne n'a encore mesuré.
+      </p>
+
+      <h2>Ce que c'est</h2>
+      <p>
+        Une œuvre de référence publique sur la République centrafricaine :
+        des chiffres nationaux par thème, avec la possibilité de descendre
+        jusqu'à la région, la préfecture et la sous-préfecture — pas un
+        portail de données, pas un tableau de bord.
+      </p>
+      <p>
+        Ce site n'est pas un concurrent de l'ICASEES (Institut Centrafricain
+        des Statistiques et des Études Économiques et Sociales). C'est une
+        couche qui rend leurs données publiées sous licence CC BY 4.0 plus
+        faciles à consulter et à situer géographiquement.
+      </p>
+
+      <h2>Qui le construit</h2>
+      <p>Actuellement construit par une seule personne.</p>
+      <div class="todo">À FAIRE : un porteur institutionnel (association, université, ou partenariat avec l'ICASEES) reste à identifier avant le lancement public — voir docs/plan.md, Partie 8.</div>
+
+      <h2>Licence</h2>
+      <p>
+        Les données (<code>data/</code>, <code>geo/</code>, et les extractions
+        de <code>raw/</code>) sont sous licence
+        <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0</a>.
+        Le code est sous licence MIT. Détails et mises en garde par source :
+        <a href="/sources/">page Sources</a>.
+      </p>
+
+      <h2>Code source</h2>
+      <p>
+        Le dépôt complet — données, pipeline et site — est public :
+        <a href="https://github.com/jpzolabe/car-data-atlas">github.com/jpzolabe/car-data-atlas</a>.
+      </p>
+
+      <h2>Contact</h2>
+      <div class="todo">À FAIRE : adresse de contact publique à définir avant la mise en ligne.</div>
+
+      <footer>
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/prix/">Prix</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

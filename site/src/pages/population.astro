@@ -74,6 +74,8 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         font-size: 12px; color: var(--ink-faint);
       }
       footer a { color: var(--ink-muted); }
+      .site-nav { display: flex; gap: 14px; margin-top: 14px; }
+      .site-nav a { color: var(--indigo); font-size: 12.5px; }
       .gap-note {
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
@@ -145,6 +147,12 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
         Source : {data.source.producer} — {data.source.dataset_name}.
         Récupéré le {data.source.retrieved_at}.
         <a href={data.source.url}>{data.source.url}</a>
+        <nav class="site-nav">
+          <a href="/prix/">Indice des prix</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
       </footer>
     </main>
   </body>
