@@ -28,7 +28,11 @@ const sources = data.sources;
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 860px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      .source-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 14px; align-items: start;
+      }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--indigo); text-decoration: underline; }
@@ -36,7 +40,7 @@ const sources = data.sources;
       .lede { color: var(--ink-muted); max-width: 64ch; margin: 0 0 28px; }
       .source-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 16px 18px; margin-bottom: 12px;
+        padding: 16px 18px;
         transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       }
       .source-card:hover {
@@ -79,31 +83,33 @@ const sources = data.sources;
         pas seulement théorique.
       </p>
 
-      {sources.map((s) => (
-        <div class="source-card">
-          <h2>{s.producer}</h2>
-          <p class="dataset">{s.dataset_name}</p>
-          <div class="meta-row">
-            <div><span class="k">Licence</span>{s.licence}{s.licence_notes && <span class="licence-flag">⚠ voir note</span>}</div>
-            <div><span class="k">Cadence</span>{s.update_cadence || "—"}</div>
-            <div><span class="k">Récupéré le</span>{s.retrieved_at || "—"}</div>
-            <div><span class="k">Couverture</span>{s.geography_vintage || "—"}</div>
+      <div class="source-grid">
+        {sources.map((s) => (
+          <div class="source-card">
+            <h2>{s.producer}</h2>
+            <p class="dataset">{s.dataset_name}</p>
+            <div class="meta-row">
+              <div><span class="k">Licence</span>{s.licence}{s.licence_notes && <span class="licence-flag">⚠ voir note</span>}</div>
+              <div><span class="k">Cadence</span>{s.update_cadence || "—"}</div>
+              <div><span class="k">Récupéré le</span>{s.retrieved_at || "—"}</div>
+              <div><span class="k">Couverture</span>{s.geography_vintage || "—"}</div>
+            </div>
+            {s.url && <a class="url" href={s.url}>{s.url}</a>}
+            {s.licence_notes && (
+              <details>
+                <summary>Note sur la licence</summary>
+                <p>{s.licence_notes}</p>
+              </details>
+            )}
+            {s.access_notes && (
+              <details>
+                <summary>Comment cette source est utilisée ici</summary>
+                <p>{s.access_notes}</p>
+              </details>
+            )}
           </div>
-          {s.url && <a class="url" href={s.url}>{s.url}</a>}
-          {s.licence_notes && (
-            <details>
-              <summary>Note sur la licence</summary>
-              <p>{s.licence_notes}</p>
-            </details>
-          )}
-          {s.access_notes && (
-            <details>
-              <summary>Comment cette source est utilisée ici</summary>
-              <p>{s.access_notes}</p>
-            </details>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
 
       <footer>
         {sources.length} sources au total. Voir aussi <code>docs/verification-debt.md</code>
