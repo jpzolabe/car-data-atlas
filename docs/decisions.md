@@ -18,6 +18,17 @@ Cloudflare isn't connected), much more annoying once `/lieux/` place pages
 exist and there are real inbound links. Revisit before Phase 4 (descending
 to place pages) rather than after.
 
+**Resolved 2026-09-12, all 7 theme pages built - kept flat, `docs/plan.md`
+updated to match instead of renaming.** Two things tipped it: the plan's
+own site map already had `/sources`, `/methode`, `/donnees` and `/a-propos`
+flat, so only theme pages getting a prefix was itself the odd one out, not
+the consistent choice; and `/lieux/` already has its own namespace for
+place pages, so theme pages don't need a prefix to avoid colliding with
+it. Shorter URLs are also a small real win for the sharing case `docs/plan.md`
+Part 7 names explicitly (Facebook cards, journalist embeds). Still fully
+reversible later if it turns out to matter once place pages exist and start
+cross-linking into themes - nothing about Phase 4 depends on this either way.
+
 ## 2026-09-11 - CI silently never ran successfully until checked directly
 
 `docs/plan.md`'s Phase 2 done-criteria requires the site to update "without manual

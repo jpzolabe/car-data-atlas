@@ -65,13 +65,13 @@ Design test: if a journalist at RJDH would not open it twice, something is wrong
 
 ```
 /                          Accueil - national picture
-/themes/population         Theme page (national + breakdown)
-/themes/economie
-/themes/prix
-/themes/sante
-/themes/education
-/themes/agriculture
-/themes/infrastructures
+/population                Theme page (national + breakdown)
+/economie
+/prix
+/sante
+/education
+/agriculture
+/infrastructures
 /lieux/                    Index of places, searchable
 /lieux/prefecture/ouaka    Place page
 /lieux/sous-prefecture/bambari
@@ -81,6 +81,12 @@ Design test: if a journalist at RJDH would not open it twice, something is wrong
 /donnees                   Bulk downloads and the crosswalk
 /a-propos                  About, licence, contact
 ```
+
+**Updated 2026-09-12: theme pages are flat, not under `/themes/`.** All 7 were
+built flat (matching how `/sources`, `/methode`, `/donnees` and `/a-propos` were
+always flat in this same site map) rather than moved under a prefix - shorter,
+more shareable URLs, and `/lieux/` already has its own namespace so themes don't
+need one to avoid collision. See `docs/decisions.md`.
 
 All URLs French, lowercase, accent-free slugs. English mirror later under `/en/`,
 not at launch.
