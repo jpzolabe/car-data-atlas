@@ -28,7 +28,7 @@ import duckdb
 
 from pipeline.sentences import (
     sentence_economie_activite,
-    sentence_economie_croissance_admin,
+    sentence_economie_croissance_modele,
     sentence_economie_montant,
     sentence_economie_rate,
 )
@@ -42,10 +42,14 @@ MONTANT_INDICATORS = {
 }
 
 # taux_croissance_pib is built separately (build_croissance_disclosure) since
-# it now has two disagreeing sources for 2020-2021 -- World Bank's annual
-# modelled series (kept as the chart's "series") and ICASEES's own rebased
-# comptes nationaux (higher authority per méthode.astro's ranking, shown as
-# the headline with a disclosure of both). See docs/decisions.md.
+# it now has two disagreeing sources: World Bank's annual modelled series
+# (kept as the chart's "series") and ICASEES's own rebased comptes nationaux,
+# which only reaches 2021 and is otherwise the higher-authority source per
+# méthode.astro's ranking. Headline shows World Bank's latest point instead
+# of ICASEES's, on explicit direction (2026-09-13, see docs/decisions.md):
+# economic figures on this page should lead with the most current number
+# available, not the oldest-but-most-authoritative one; the ICASEES figure
+# stays fully visible in the disclosure table, just no longer the default.
 CATEGORIES = [
     ("production", "Production", [
         "pib_total",
@@ -106,14 +110,18 @@ def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dic
 
 def build_croissance_disclosure(con) -> dict:
     """taux_croissance_pib: World Bank's full annual series stays the chart
-    ("series"), but the headline and a "N sources" disclosure use ICASEES's
-    own rebased comptes nationaux for 2020-2021 where it exists -- higher
-    authority per méthode.astro's ranking (donnée administrative nationale >
-    estimation modélisée internationale), and a real, substantial
-    disagreement (about 3.4% vs about 1%) worth surfacing rather than
-    picking one silently.
+    ("series"), and its latest point (currently 2025) is also the headline;
+    the most current figure available, on explicit direction that this page's
+    economic figures should lead with recency rather than authority ranking
+    alone. ICASEES's own rebased comptes nationaux (2020-2021, higher
+    authority per méthode.astro's ranking but not current) stays fully
+    visible in the "N sources" disclosure, spread against World Bank's
+    estimate for the same year - a real, substantial disagreement (about
+    3.4% vs about 1% for 2021) worth surfacing rather than hiding now that
+    it's no longer the headline.
     """
     wb_block = build_indicator(con, "taux_croissance_pib", source_id="world-bank-gdp")
+    wb_latest = wb_block["series"][-1]
 
     admin_rows = con.execute("""
         select o.period, o.value, o.quality_flag, s.producer, s.dataset_name,
@@ -125,46 +133,45 @@ def build_croissance_disclosure(con) -> dict:
         order by o.period desc
     """, [COUNTRY_ID]).fetchall()
 
-    headline_row = admin_rows[0]  # most recent ICASEES year (2021)
-    same_year_wb = next(r for r in wb_block["series"] if r["period"] == headline_row[0])
-    spread_pct = abs(headline_row[1] - same_year_wb["value"]) / abs(same_year_wb["value"]) * 100
+    admin_latest = admin_rows[0]  # most recent ICASEES year (2021)
+    same_year_wb = next(r for r in wb_block["series"] if r["period"] == admin_latest[0])
+    spread_pct = abs(admin_latest[1] - same_year_wb["value"]) / abs(same_year_wb["value"]) * 100
 
     all_sources = [
+        {
+            "value": wb_latest["value"], "period": wb_latest["period"], "quality_flag": "estime",
+            "producer": wb_block["source"]["producer"],
+            "dataset_name": wb_block["source"]["dataset_name"],
+            "url": wb_block["source"]["url"],
+        },
+    ] + [
         {
             "value": r[1], "period": r[0], "quality_flag": r[2],
             "producer": r[3], "dataset_name": r[4], "url": r[5],
         }
         for r in admin_rows
-    ] + [
-        {
-            "value": v["value"], "period": v["period"], "quality_flag": "estime",
-            "producer": wb_block["source"]["producer"],
-            "dataset_name": wb_block["source"]["dataset_name"],
-            "url": wb_block["source"]["url"],
-        }
-        for v in wb_block["series"]
-        if v["period"] in {r[0] for r in admin_rows}
     ]
 
-    lead_text, lead_template_id = sentence_economie_croissance_admin(
-        headline_row[0], headline_row[1]
+    lead_text, lead_template_id = sentence_economie_croissance_modele(
+        wb_latest["period"], wb_latest["value"]
     )
 
     return {
         "indicator_id": "taux_croissance_pib",
-        "latest": {"period": headline_row[0], "value": headline_row[1]},
+        "latest": {"period": wb_latest["period"], "value": wb_latest["value"]},
         "series": wb_block["series"],
         "lead_sentence": lead_text,
         "lead_sentence_template_id": lead_template_id,
         "source": wb_block["source"],
         "national": {
             "headline": {
-                "value": headline_row[1], "period": headline_row[0],
-                "quality_flag": headline_row[2],
-                "producer": headline_row[3], "dataset_name": headline_row[4],
+                "value": wb_latest["value"], "period": wb_latest["period"],
+                "quality_flag": "estime",
+                "producer": wb_block["source"]["producer"],
+                "dataset_name": wb_block["source"]["dataset_name"],
             },
             "spread_pct": round(spread_pct, 1),
-            "spread_vs_period": headline_row[0],
+            "spread_vs_period": admin_latest[0],
             "all_sources": all_sources,
         },
     }

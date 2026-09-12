@@ -9,6 +9,11 @@
 // "national" in ind check below, population.astro-style disclosure rather
 // than education.astro's dual-line chart; simpler, and there are only 2
 // years of overlap to show, not a long modelled series with survey points.
+// Headline flipped 2026-09-13 to show World Bank's latest point rather than
+// ICASEES's: on this page, current beats authoritative-but-stale for the
+// default figure - see export_economie_json.py's build_croissance_disclosure
+// and docs/decisions.md. ICASEES's figure is still fully shown, just in the
+// disclosure table instead of as the default.
 //
 // Two indicators (pib_total, pib_par_habitant) are monetary (US$), not
 // percentages like everything else on this page; formatValue() below
@@ -275,13 +280,13 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                     <div class="national-figure">
                       <div class="national-value">
                         {fmtRate(ind.national.headline.value)}<span class="unit">%, {ind.national.headline.period}</span>
-                        <span class="badge administratif">administratif</span>
+                        <span class={`badge ${ind.national.headline.quality_flag}`}>{ind.national.headline.quality_flag}</span>
                       </div>
                       <div class="national-meta">
                         {ind.national.headline.producer} - {ind.national.headline.dataset_name}
                       </div>
                       <details class="disclosure">
-                        <summary>{ind.national.all_sources.length} sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                        <summary>{ind.national.all_sources.length} sources - la donnée administrative de {ind.national.spread_vs_period} diffère de {ind.national.spread_pct}% de l'estimation modélisée de la même année</summary>
                         <table class="disclosure-table">
                           <thead><tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr></thead>
                           <tbody>
@@ -296,10 +301,14 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                           </tbody>
                         </table>
                         <p class="disclosure-note">
-                          Écart calculé entre la donnée administrative et l'estimation
-                          modélisée pour la même année. Classement d'autorité : donnée
-                          administrative nationale &gt; estimation modélisée
-                          internationale - voir <a href="/methode/#classement">Méthode</a>.
+                          La figure ci-dessus est la plus récente disponible, pas
+                          nécessairement la plus autorisée : classement d'autorité, donnée
+                          administrative nationale &gt; estimation modélisée internationale
+                          - voir <a href="/methode/#classement">Méthode</a>. L'ICASEES
+                          n'a pas encore republié de comptes nationaux au-delà de 2021 ;
+                          en attendant, cette page affiche l'estimation la plus actuelle
+                          de la Banque mondiale plutôt que la dernière donnée
+                          administrative.
                         </p>
                       </details>
                     </div>

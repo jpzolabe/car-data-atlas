@@ -1774,3 +1774,65 @@ point ("un point d'entrée unique") rather than the previous wording's
 "vulgariser ces données." Kept the closing sentence about every figure
 carrying its source and year - not explicitly asked to be removed, and
 it states the site's single most load-bearing promise.
+
+## Home page: single-point charts, the manioc ticker, and left vs. centered tagline
+
+Three small population/home fixes on 2026-09-13. First, a real rendering
+bug: two population indicators (enregistrement des naissances, mariage
+avant 18 ans) each have exactly one observation - a single 2019 MICS
+point - so their sparkline drew a 1-point polyline, which SVG renders
+as nothing visible. Fixed by showing a short note ("Une seule mesure
+disponible... - pas d'évolution à montrer") instead of an empty chart
+whenever a series has fewer than 2 points; matches the voice rule
+against implying a trend from a single observation. The same pattern
+exists on education.astro (3 count indicators with 1 point each) but
+wasn't touched - flagged to the user, not fixed, since it wasn't asked.
+
+Second, dropped "Manioc, Bangui" from the home page's secondary-stats
+ticker on request - a single market-level price sat oddly next to 4
+national aggregates (PIB growth, inflation, electricity, primary
+completion) in the same row.
+
+Third, the tagline went through three more alignment passes after a
+phone screenshot: centered (looked ragged once real sentences wrapped
+across lines - centering only reads as deliberate for short, hand-broken
+lines, not flowing prose); reverted to left-aligned, capped at 480px so
+the block still centers as a unit; then restructured entirely into a
+short bold centered lead line ("Explorer la République centrafricaine à
+travers ses données !") plus a longer centered detail paragraph below
+it, per a further user-supplied structure. Lesson repeated from the map
+watermark saga: alignment/centering choices need to be evaluated against
+the actual wrapped shape of the actual text, not decided in the
+abstract - the same CSS property can look right or wrong purely as a
+function of how many words fit per line at a given width.
+
+## Croissance du PIB: recency beats authority ranking on the économie page
+
+CLAUDE.md's default rule ("show the most authoritative figure by
+default") had the économie page's Croissance du PIB card showing
+ICASEES's 2021 comptes-nationaux figure (3,44%) as the headline, per
+méthode.astro's authority ranking (national administrative data outranks
+an international modelled estimate) - correct by that rule, but the
+user pointed out on 2026-09-13 that a 2021 figure reads as stale on a
+page about the current economy, and that économie's numbers specifically
+should lead with the most current figure available rather than the
+oldest-but-most-authoritative one.
+
+This is a deliberate, page-specific override of the general rule, not a
+retraction of it: `build_croissance_disclosure` in
+pipeline/export_economie_json.py now sets the headline to World Bank's
+latest annual point (2025, an "estime" modelled figure) instead of
+ICASEES's. ICASEES's 2020-2021 figures stay fully visible in the "N
+sources" disclosure table, still labelled "administratif", with a note
+explaining that the headline shown is the most current figure available,
+not necessarily the most authoritative one, and linking to Méthode for
+the actual ranking. Nothing about the ranking itself changed - the
+première page (home) already made this same recency-over-authority call
+for its own ticker figure a few hours earlier in the same session; this
+just extends it to économie's own page for the same indicator.
+
+A companion request in the same message asked to add real government
+budget data to the Finances publiques section, sourced from wherever
+necessary (not just ICASEES) since national budgets are published
+annually and sometimes twice a year - in progress, see the next entry
+once it lands.
