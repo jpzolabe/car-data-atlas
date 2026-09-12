@@ -130,7 +130,7 @@ const newestVintage = Math.max(...allPeriods);
       <p class="lede">
         Système de santé, vaccination, mortalité, espérance de vie et VIH —
         {allIndicatorCount} indicateurs, de la Banque mondiale et de l'OMS,
-        tous nationaux. Premier thème santé du site.
+        tous nationaux.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
@@ -180,8 +180,8 @@ const newestVintage = Math.max(...allPeriods);
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux.</li>
-        <li>MICS7 (enquête nationale, lancée août 2026 selon <code>CLAUDE.md</code>) n'a pas encore publié de résultats intégrables ici.</li>
-        <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur HDX — volontairement non reconstruit ici (<code>CLAUDE.md</code> : « ne pas reconstruire ce qui existe déjà »). Voir <a href="https://data.humdata.org/">HDX</a> directement.</li>
+        <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats intégrables ici.</li>
+        <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur <a href="https://data.humdata.org/">HDX</a> — volontairement non reconstruit ici.</li>
         <li>Aucune donnée de morbidité au-delà du VIH — paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
         <li>La densité de lits d'hôpital n'a qu'un point après 2011 — c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
         <li>Aucun décompte de lits d'hôpital n'est publié directement par la Banque mondiale ou l'OMS — celui affiché ici est calculé (densité x population de la même année), pas une donnée brute.</li>

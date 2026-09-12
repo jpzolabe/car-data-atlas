@@ -97,11 +97,6 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
         border-left: 3px solid var(--t-infra); padding: 14px 0 14px 14px; margin: 20px 0;
       }
-      .sentence-tag {
-        display: block; font-style: normal; font-family: ui-monospace, monospace;
-        font-size: 10px; color: var(--ink-faint); text-transform: uppercase;
-        letter-spacing: 0.05em; margin-top: 6px;
-      }
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
       h2 { font-size: 1.15rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); }
       .indicator-grid {
@@ -146,8 +141,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       <p class="lede">
         Accès à l'électricité, à Internet, au réseau mobile, à l'eau potable
         et à l'assainissement — cinq indicateurs, tous nationaux, tous de la
-        Banque mondiale. Le thème le plus faible du site, selon
-        <code>CLAUDE.md</code> — voir ce qui manque encore ci-dessous.
+        Banque mondiale. Le thème le moins couvert des sept — voir ce qui
+        manque encore ci-dessous.
       </p>
 
       <p class="headline-label">Accès à l'électricité</p>
@@ -156,13 +151,12 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         {first.period} : {fmt(first.value)}% — {latest.period} : {fmt(latest.value)}%. Axe
         vertical débutant à zéro. Le point 2019
         ({fmt(series.find((d) => d.period === "2019")?.value ?? 0)}%) correspond
-        exactement à la valeur MICS 2018-19 citée dans CLAUDE.md — ce n'est pas
+        exactement à la valeur mesurée par l'enquête MICS 2018-19 — ce n'est pas
         une coïncidence, cette source compile en partie les mêmes enquêtes.
       </p>
 
       <p class="sentence">
         {data.lead_sentence}
-        <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
       </p>
 
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Accès à l'électricité de ${first.period} à ${latest.period}`}>
@@ -186,8 +180,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       </svg>
 
       <p class="gap-note">
-        Routes et transports ne sont pas encore intégrés — non recherchés
-        cette session, pas confirmés absents. Eau, assainissement et
+        Routes et transports ne sont pas encore intégrés — pas encore
+        cherchés, pas confirmés absents. Eau, assainissement et
         télécommunications le sont désormais, ci-dessous.
       </p>
 
