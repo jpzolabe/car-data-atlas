@@ -599,15 +599,17 @@ disclosure mechanism works on population and health facilities.
 **Status as of 2026-09-12.** Item 2 (World Bank API) done for two indicators:
 `acces_electricite` (infrastructures theme) and a World Bank cross-check row on
 `population_totale`. Item 1 (education) done via a different path than
-originally planned — the ICASEES education yearbooks (Excel) hit apparent
-rate-limiting mid-session (`docs/verification-debt.md`) and were paused rather
-than pushed further; UNESCO UIS's Data API was used instead for
-`taux_achevement_primaire`, which also exercises the disclosure mechanism a
-second time (survey vs. modelled, a real disagreement — see
-`docs/decisions.md`). Four theme pages now exist (population, prix,
-infrastructures, éducation), each with one indicator so far — "at least two
-indicators" per theme is not yet met. ICASEES yearbooks remain a real
-to-do, not abandoned.
+originally planned, then widened well past the original single-indicator
+scope — the ICASEES education yearbooks (Excel) hit apparent rate-limiting
+mid-session (`docs/verification-debt.md`) and were paused rather than pushed
+further; UNESCO UIS's Data API was used instead, and turned out to have real
+CAF data across 14 indicators (completion, enrollment, retention, literacy),
+confirmed live rather than assumed from the catalogue — see
+`docs/decisions.md`. Population, prix and infrastructures still have only one
+indicator each — "at least two indicators" per theme is met for éducation
+(14) but not the other three themes yet. ICASEES yearbooks remain a real
+to-do, not abandoned — the education page's "Ce qui n'est pas mesuré" section
+names exam results specifically as still missing.
 
 ## Phase 4 — Descending (4–6 weeks)
 

@@ -168,6 +168,34 @@ directly (`?geoUnit=CAF&indicator=CR.1`). No API key required. Worth remembering
 as a technique generally: a REST API's own validation error is sometimes a faster
 path to its shape than either third-party docs or a wrapper library's source.
 
+## Education widened from 1 to 14 indicators — checked live per indicator, not assumed from the catalogue
+
+CLAUDE.md's own indicator-ID example (`taux_achevement_primaire`) was illustrative,
+not a scope limit — stopping at one indicator when the same free, no-key API had
+real CAF data across completion, enrollment, retention and literacy would have been
+under-building for no real reason. The UIS indicator catalogue
+(`/api/public/definitions/indicators`, ~5,000 entries) reports data availability
+*globally*, not per country — a candidate indicator can show thousands of records
+worldwide and zero for CAF. Every one of the 17 UIS codes actually used here
+(`data/sources.csv`, `pipeline/fetch_education.py`) was confirmed by querying
+`?geoUnit=CAF&indicator=<code>` directly and checking for non-empty `records` before
+being added, not by trusting the catalogue's description. The API accepts a
+comma-separated indicator list, so all 17 were fetched in one call.
+
+## Education sources grouped by methodology family, not one row per indicator
+
+`data/sources.csv` has one row per *methodology*, not per indicator: completion
+(survey vs. modelled — already had 2 rows for the 1-indicator version, broadened to
+cover 3 levels rather than renamed to 6), one row for the 9 administrative/EMIS-style
+indicators (enrollment ratios, repetition, survival, out-of-school), one for the 2
+literacy indicators. All 14 indicators share one producer and one API endpoint
+pattern; a row per indicator would have been 14 near-identical rows saying the same
+thing about licence and access method 14 times. The administrative-family row is
+honest about what it doesn't know: the API response gives a value and a year, not a
+methodology tag, so whether each point is genuinely EMIS-administrative data or
+something else per-indicator isn't confirmed — logged in
+`docs/verification-debt.md` rather than asserted.
+
 ## Education page combines two existing patterns instead of inventing a third
 
 `taux_achevement_primaire` has the same shape of disagreement as national
