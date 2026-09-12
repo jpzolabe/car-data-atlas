@@ -785,3 +785,27 @@ record, or a survey. Added `osm` as its own flag rather than force-fitting
 an existing one that would misdescribe the methodology.
 
 82 indicators total now - all 7 Phase 3 source list items are done.
+
+## Follow-up: " -- " in French text read as nothing, fixed separately from the em-dash sweep
+
+User feedback after the em-dash purge: several French sentences (mostly
+new definition_fr text from update_definitions.py, and licence_notes/
+access_notes written across this session's source additions) used " -- "
+(a spaced double hyphen) as an em-dash substitute - a normal English
+technical-writing convention, but one that reads as nothing in French.
+
+Checked reader-facing Astro pages first and found zero instances in
+actual rendered French copy - every "--" there is either a CSS custom
+property (`var(--ink-faint)`, `--paper:`, etc., which must stay intact)
+or inside an English frontmatter code comment, where the convention is
+normal and CLAUDE.md's own "code and comments in English" rule already
+covers it. The real fix was scoped to three files:
+`data/indicators.csv` (28 occurrences, mostly definition_fr text),
+`data/sources.csv` (30, mostly access_notes/licence_notes rendered on
+`/sources/`), and `data/observations.csv` (352 raw occurrences, but only
+a handful of distinct sentences repeated across many rows - e.g. the
+calculated-hospital-beds note appears once per year). All replaced with
+a single hyphen, consistent with the earlier em-dash sweep's choice, so
+the project now has one punctuation convention instead of two. Confirmed
+clean afterward by grepping every built HTML page in `dist/` and checking
+that every remaining "--" is a `var(--...)` CSS reference, not text.

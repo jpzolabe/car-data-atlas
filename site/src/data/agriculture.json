@@ -240,7 +240,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Superficie agricole",
-          "definition_fr": "Superficie totale des terres agricoles, en kilomètres carrés -- la surface en valeur absolue, à distinguer de la part du territoire national (voir 'Terres agricoles' ci-dessus)."
+          "definition_fr": "Superficie totale des terres agricoles, en kilomètres carrés - la surface en valeur absolue, à distinguer de la part du territoire national (voir 'Terres agricoles' ci-dessus)."
         },
         {
           "indicator_id": "terres_arables",
@@ -319,7 +319,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Terres arables",
-          "definition_fr": "Part du territoire national en terres arables -- les terres pouvant être labourées pour des cultures temporaires, un sous-ensemble des terres agricoles."
+          "definition_fr": "Part du territoire national en terres arables - les terres pouvant être labourées pour des cultures temporaires, un sous-ensemble des terres agricoles."
         },
         {
           "indicator_id": "couverture_forestiere",
@@ -483,7 +483,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Valeur ajoutée de l'agriculture",
-          "definition_fr": "Agriculture, sylviculture et pêche, en part du PIB -- la contribution de ce secteur à la richesse produite dans le pays."
+          "definition_fr": "Agriculture, sylviculture et pêche, en part du PIB - la contribution de ce secteur à la richesse produite dans le pays."
         },
         {
           "indicator_id": "indice_production_alimentaire",
@@ -562,7 +562,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Production alimentaire",
-          "definition_fr": "Indice de la production alimentaire, base 2014-2016 = 100 -- mesure l'évolution du volume de nourriture produite dans le temps, pas son prix ni sa valeur en monnaie."
+          "definition_fr": "Indice de la production alimentaire, base 2014-2016 = 100 - mesure l'évolution du volume de nourriture produite dans le temps, pas son prix ni sa valeur en monnaie."
         },
         {
           "indicator_id": "rendement_cereales",
@@ -641,7 +641,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Rendement des céréales",
-          "definition_fr": "Rendement des céréales, en kilogrammes par hectare récolté -- la productivité des terres cultivées, à distinguer de la production totale (voir 'Production de céréales' ci-dessous), qui dépend aussi de la surface cultivée."
+          "definition_fr": "Rendement des céréales, en kilogrammes par hectare récolté - la productivité des terres cultivées, à distinguer de la production totale (voir 'Production de céréales' ci-dessous), qui dépend aussi de la surface cultivée."
         },
         {
           "indicator_id": "production_cereales",
@@ -720,7 +720,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Production de céréales",
-          "definition_fr": "Production totale de céréales, en tonnes -- le volume récolté, qui dépend à la fois de la surface cultivée et du rendement par hectare (voir 'Rendement des céréales' ci-dessus)."
+          "definition_fr": "Production totale de céréales, en tonnes - le volume récolté, qui dépend à la fois de la surface cultivée et du rendement par hectare (voir 'Rendement des céréales' ci-dessus)."
         },
         {
           "indicator_id": "consommation_engrais",
@@ -799,7 +799,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Consommation d'engrais",
-          "definition_fr": "Consommation d'engrais, en kilogrammes par hectare de terre arable -- un indicateur d'intensification agricole ; une valeur très basse signale une agriculture peu mécanisée et peu intrante."
+          "definition_fr": "Consommation d'engrais, en kilogrammes par hectare de terre arable - un indicateur d'intensification agricole ; une valeur très basse signale une agriculture peu mécanisée et peu intrante."
         }
       ]
     },
@@ -963,7 +963,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Sous-alimentation",
-          "definition_fr": "Part de la population en sous-alimentation -- dont l'apport calorique habituel est insuffisant pour mener une vie active et saine."
+          "definition_fr": "Part de la population en sous-alimentation - dont l'apport calorique habituel est insuffisant pour mener une vie active et saine."
         }
       ]
     }

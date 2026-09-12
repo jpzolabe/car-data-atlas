@@ -64,7 +64,7 @@
       "update_cadence": "monthly (per ICASEES's stated cadence; this specific dashboard file's own update frequency is unknown)",
       "retrieved_at": "2026-09-12",
       "authority_rank": "national census > national survey > international modelled estimate > unattributed portal figure - this is a national statistical office's own published series with a licence and stated methodology; among the highest tier for a value source.",
-      "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) -- see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
+      "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) - see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
     },
     {
       "source_id": "icasees-comptes-nationaux",
@@ -124,7 +124,7 @@
       "dataset_name": "Central African Republic Healthsites",
       "url": "https://data.humdata.org/dataset/central-african-republic-healthsites",
       "licence": "ODbL (Open Database License, licence d'OpenStreetMap)",
-      "licence_notes": "Cartographie collaborative, pas une enquête administrative ; la couverture dépend de l'activité des cartographes bénévoles et peut être incomplète dans les zones isolées (avertissement explicite d'HOTOSM sur la page du jeu de données). Un second jeu de données HDX (hotosm_caf_health_facilities) republie les mêmes points OpenStreetMap sous un autre nom -- non ajouté séparément pour éviter de compter la même source deux fois.",
+      "licence_notes": "Cartographie collaborative, pas une enquête administrative ; la couverture dépend de l'activité des cartographes bénévoles et peut être incomplète dans les zones isolées (avertissement explicite d'HOTOSM sur la page du jeu de données). Un second jeu de données HDX (hotosm_caf_health_facilities) republie les mêmes points OpenStreetMap sous un autre nom - non ajouté séparément pour éviter de compter la même source deux fois.",
       "geography_vintage": "mise à jour en continu par la communauté OpenStreetMap ; 425 établissements recensés au moment de la récupération",
       "update_cadence": "continu (extraction HDX mise à jour périodiquement depuis OpenStreetMap)",
       "retrieved_at": "2026-09-12",
@@ -150,11 +150,11 @@
       "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
       "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications -- les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
-      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) -- même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
+      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications - les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
+      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) - même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
       "update_cadence": "irrégulière (dépend de la publication de la prochaine enquête nationale)",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM -- l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
+      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM - l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
       "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
     },
     {
@@ -163,11 +163,11 @@
       "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
       "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que la source enquête -- voir la note sur cette source.",
+      "licence_notes": "Même licence déclarée que la source enquête - voir la note sur cette source.",
       "geography_vintage": "séries annuelles modélisées/interpolées par l'UIS, 1981-2025, pour combler les années sans enquête, un jeu par niveau",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale -- rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée",
+      "authority_rank": "estimation modélisée internationale - rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée",
       "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
     },
     {
@@ -176,12 +176,12 @@
       "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
       "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que les sources achèvement -- voir cette note. Méthodologie précise par indicateur (données administratives issues des annuaires scolaires nationaux vs estimation UIS) non confirmée point par point via cette réponse d'API -- voir docs/verification-debt.md.",
-      "geography_vintage": "couverture et fraîcheur très inégales selon l'indicateur : de 1971 à une dernière année qui va de 2011 (redoublement, survie) à 2017 (scolarisation brute secondaire) -- aucune série ne descend jusqu'à aujourd'hui",
+      "licence_notes": "Même licence déclarée que les sources achèvement - voir cette note. Méthodologie précise par indicateur (données administratives issues des annuaires scolaires nationaux vs estimation UIS) non confirmée point par point via cette réponse d'API - voir docs/verification-debt.md.",
+      "geography_vintage": "couverture et fraîcheur très inégales selon l'indicateur : de 1971 à une dernière année qui va de 2011 (redoublement, survie) à 2017 (scolarisation brute secondaire) - aucune série ne descend jusqu'à aujourd'hui",
       "update_cadence": "irrégulière",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "donnée administrative nationale compilée par l'UIS (rang intermédiaire de l'échelle publiée dans CLAUDE.md/methode.astro, entre enquête nationale et estimation modélisée internationale) -- classement provisoire, méthodologie exacte non confirmée par point",
-      "access_notes": "Récupéré via le même endpoint UIS que les indicateurs d'achèvement, indicateurs GER.1, GER.2, GER.3, GER.5T8, NERT.1.CP, REPR.1.CP, SR.1.GLAST.CP, ROFST.1.CP, ROFST.2.CP -- neuf codes, un seul appel d'API groupé (paramètre indicator accepte une liste séparée par des virgules)."
+      "authority_rank": "donnée administrative nationale compilée par l'UIS (rang intermédiaire de l'échelle publiée dans CLAUDE.md/methode.astro, entre enquête nationale et estimation modélisée internationale) - classement provisoire, méthodologie exacte non confirmée par point",
+      "access_notes": "Récupéré via le même endpoint UIS que les indicateurs d'achèvement, indicateurs GER.1, GER.2, GER.3, GER.5T8, NERT.1.CP, REPR.1.CP, SR.1.GLAST.CP, ROFST.1.CP, ROFST.2.CP - neuf codes, un seul appel d'API groupé (paramètre indicator accepte une liste séparée par des virgules)."
     },
     {
       "source_id": "unesco-uis-literacy",
@@ -189,11 +189,11 @@
       "dataset_name": "Taux d'alphabétisation, jeunes (15-24 ans) et adultes (15 ans et plus), les deux sexes (LR.AG15T24, LR.AG15T99)",
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
       "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page -- voir la note sur la source achèvement/enquête.",
-      "geography_vintage": "4 points seulement pour la RCA (1975, 2000ish, ~2010, 2019 -- mêmes années que les indicateurs d'achèvement enquête, probablement issus des mêmes recensements/enquêtes)",
+      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page - voir la note sur la source achèvement/enquête.",
+      "geography_vintage": "4 points seulement pour la RCA (1975, 2000ish, ~2010, 2019 - mêmes années que les indicateurs d'achèvement enquête, probablement issus des mêmes recensements/enquêtes)",
       "update_cadence": "irrégulière (dépend de la publication du prochain recensement ou de la prochaine enquête)",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "probablement recensement ou enquête nationale (alphabétisation se mesure généralement par recensement/enquête, pas par annuaire scolaire) -- non confirmé explicitement par l'API, voir docs/verification-debt.md",
+      "authority_rank": "probablement recensement ou enquête nationale (alphabétisation se mesure généralement par recensement/enquête, pas par annuaire scolaire) - non confirmé explicitement par l'API, voir docs/verification-debt.md",
       "access_notes": "Récupéré via le même endpoint UIS, indicateurs LR.AG15T24 et LR.AG15T99."
     },
     {
@@ -202,11 +202,11 @@
       "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1",
       "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page. Découverte après coup (2026-09-12) : la recherche initiale des indicateurs de scolarisation/rétention n'avait vérifié que la variante 'officielle' (ROFST.1.CP/2.CP), pas systématiquement l'existence d'une variante modélisée -- corrigé en recherchant explicitement '*.MOD.*' pour chaque famille d'indicateur avant de conclure qu'aucune n'existait. Aucune variante modélisée trouvée pour la scolarisation nette/brute, le redoublement ou la survie -- ces séries restent réellement limitées à leur dernière année administrative (2011-2017).",
+      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page. Découverte après coup (2026-09-12) : la recherche initiale des indicateurs de scolarisation/rétention n'avait vérifié que la variante 'officielle' (ROFST.1.CP/2.CP), pas systématiquement l'existence d'une variante modélisée - corrigé en recherchant explicitement '*.MOD.*' pour chaque famille d'indicateur avant de conclure qu'aucune n'existait. Aucune variante modélisée trouvée pour la scolarisation nette/brute, le redoublement ou la survie - ces séries restent réellement limitées à leur dernière année administrative (2011-2017).",
       "geography_vintage": "série annuelle modélisée/interpolée par l'UIS, 2000-2025",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale -- rang le plus bas de l'échelle publiée dans CLAUDE.md/methode.astro",
+      "authority_rank": "estimation modélisée internationale - rang le plus bas de l'échelle publiée dans CLAUDE.md/methode.astro",
       "access_notes": "Même endpoint que les autres indicateurs UIS de cette page, indicateurs ROFST.MOD.1/2/3. Utilisée pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) entre la donnée administrative officielle (ROFST.1.CP/2.CP/3.CP, unesco-uis-education-administrative) et cette estimation modélisée, comme pour l'achèvement."
     },
     {
@@ -227,8 +227,8 @@
       "producer": "WHO (Global Health Observatory)",
       "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
       "url": "https://ghoapi.azureedge.net/api/HWF_0002",
-      "licence": "unknown -- WHO GHO does not state a licence per-indicator on the OData API itself; WHO's general open-data terms likely apply but not verified this session",
-      "licence_notes": "Real absolute headcounts, not densities -- confirmed via WHO's OData API after finding no such figure in the World Bank's WDI (density only). Source is WHO's National Health Workforce Accounts (NHWA) portal, per each record's own Comments field. Years are irregular (whenever a country reports), not annual -- 7 points for doctors (2004-2024), 8 for nurses (2004-2024). Nurse counts in particular swing a lot year to year (835 in 2008, 5653 in 2023, 2331 in 2024) -- plausibly reporting-basis changes rather than real workforce swings; not independently explained. See docs/verification-debt.md.",
+      "licence": "unknown - WHO GHO does not state a licence per-indicator on the OData API itself; WHO's general open-data terms likely apply but not verified this session",
+      "licence_notes": "Real absolute headcounts, not densities - confirmed via WHO's OData API after finding no such figure in the World Bank's WDI (density only). Source is WHO's National Health Workforce Accounts (NHWA) portal, per each record's own Comments field. Years are irregular (whenever a country reports), not annual - 7 points for doctors (2004-2024), 8 for nurses (2004-2024). Nurse counts in particular swing a lot year to year (835 in 2008, 5653 in 2023, 2331 in 2024) - plausibly reporting-basis changes rather than real workforce swings; not independently explained. See docs/verification-debt.md.",
       "geography_vintage": "irrégulier (années de rapport disponibles, pas annuel)",
       "update_cadence": "variable",
       "retrieved_at": "2026-09-12",
@@ -359,7 +359,7 @@
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "irrégulier ; source primaire = OMS Global Health Workforce Statistics. Densité de médecins : 15 points, 1980-2023. Lits d'hôpital : seulement 6 points, le plus récent datant de 2011 -- réellement ancien, pas un artefact de récupération.",
+      "geography_vintage": "irrégulier ; source primaire = OMS Global Health Workforce Statistics. Densité de médecins : 15 points, 1980-2023. Lits d'hôpital : seulement 6 points, le plus récent datant de 2011 - réellement ancien, pas un artefact de récupération.",
       "update_cadence": "irrégulière",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
@@ -397,7 +397,7 @@
       "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": "L'ICASEES a son propre rebasage du PIB (base 2019) en cours -- ces chiffres Banque mondiale n'ont pas été comparés à la série ICASEES rebasée une fois publiée. Voir docs/verification-debt.md.",
+      "licence_notes": "L'ICASEES a son propre rebasage du PIB (base 2019) en cours - ces chiffres Banque mondiale n'ont pas été comparés à la série ICASEES rebasée une fois publiée. Voir docs/verification-debt.md.",
       "geography_vintage": "annuel ; source primaire = comptes nationaux compilés par la Banque mondiale et le FMI",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
@@ -411,7 +411,7 @@
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SI.POV.DDAY?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "irrégulier ; seulement 3 points pour la RCA (1992, un point intermédiaire, 2021) -- dépend de la disponibilité d'enquêtes de ménages, pas une série annuelle",
+      "geography_vintage": "irrégulier ; seulement 3 points pour la RCA (1992, un point intermédiaire, 2021) - dépend de la disponibilité d'enquêtes de ménages, pas une série annuelle",
       "update_cadence": "irrégulière",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, basée sur des enquêtes de ménages",
@@ -545,7 +545,7 @@
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023). Valeur très faible (proche de zéro) -- cohérent avec un usage d'engrais minimal en RCA, pas une erreur de récupération."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023). Valeur très faible (proche de zéro) - cohérent avec un usage d'engrais minimal en RCA, pas une erreur de récupération."
     },
     {
       "source_id": "world-bank-undernourishment",
@@ -623,7 +623,7 @@
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable -- deux indicateurs, deux facettes du même programme de suivi."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable - deux indicateurs, deux facettes du même programme de suivi."
     },
     {
       "source_id": "world-bank-population-growth",
@@ -644,9 +644,9 @@
       "dataset_name": "Central African Republic - Food Prices",
       "url": "https://data.humdata.org/dataset/wfp-food-prices-for-central-african-republic",
       "licence": "CC BY-IGO (http://creativecommons.org/licenses/by/3.0/igo/legalcode)",
-      "licence_notes": "HDX liste plusieurs contributeurs composant ce jeu de données (ACF, ACTED, FPMA/GIEWS de la FAO, ICASEES, mVAM du PAM) -- attribution donnée au PAM comme éditeur du jeu de données publié, conformément à sa page HDX.",
-      "geography_vintage": "marché (point), pas de zone administrative -- premier indicateur du site à ce niveau, plus fin que la sous-préfecture (CLAUDE.md).",
-      "update_cadence": "mensuel (variable selon la source -- HDX note que la fréquence réelle peut différer du mensuel annoncé)",
+      "licence_notes": "HDX liste plusieurs contributeurs composant ce jeu de données (ACF, ACTED, FPMA/GIEWS de la FAO, ICASEES, mVAM du PAM) - attribution donnée au PAM comme éditeur du jeu de données publié, conformément à sa page HDX.",
+      "geography_vintage": "marché (point), pas de zone administrative - premier indicateur du site à ce niveau, plus fin que la sous-préfecture (CLAUDE.md).",
+      "update_cadence": "mensuel (variable selon la source - HDX note que la fréquence réelle peut différer du mensuel annoncé)",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
       "access_notes": "Récupéré via le CSV public d'HDX (redirection vers une URL S3 signée, suivie automatiquement) ; pas d'authentification requise. Série 2004-2026 pour le marché de Bangui, 39 denrées disponibles au total ; seules 5 denrées de grande consommation avec des points récents (jusqu'à 2026-07) et un flag priceflag=actual (pas de valeur agrégée/estimée) ont été retenues pour l'instant."
