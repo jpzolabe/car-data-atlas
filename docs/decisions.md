@@ -949,3 +949,43 @@ pipeline; backfill entity_id for subnational data") and step 3
 before touching any place-page template - the plan's own point in
 naming these steps first was to find out what data genuinely descends
 before designing pages around it.
+
+## Phase 4, first place-page template: `/lieux/prefecture/{slug}`
+
+Built directly on the audit above rather than the full Sec2.4 spec:
+population and prix are the only 2 themes with real préfecture-level
+data today, so the template shows those two properly (headline
+population figure with rank and share of national total, a régional
+sibling comparison bar chart, a per-market price table reusing the
+`prix.astro` breakdown shape) and states the other 5 themes plainly as
+"no data at this level" in a 7-row freshness table, rather than faking a
+breakdown or omitting them silently.
+
+New export script `pipeline/export_lieux_prefecture_json.py` follows
+the same CSV -> DuckDB -> JSON handoff as every other page (Astro never
+touches the raw CSVs). One JSON entry per préfecture entity, keyed by
+slug: population (2003 + 2021, rank, share of national), markets (from
+the `marche`-level entities added in the WFP widening above), régional
+siblings (for the comparison bars), pcode aliases, and the freshness
+list. Wrote `site/src/data/lieux_prefectures.json`, 20 entries (all 20
+préfectures have population data; 16 also have market prices, matching
+the 16-of-20 préfecture coverage the WFP widening established).
+
+`[slug].astro` is the project's first `getStaticPaths()` route - every
+page before this was a flat file. New accent color `--t-lieu: #8B5E3C`
+(warm terracotta) distinguishes place pages from every theme page's own
+accent, while reusing the same layout conventions (crumb, headline
+block, disclosure-style sections, site-nav footer) established on
+population.astro/prix.astro. Also added `/lieux/` as an index page
+(grouped by région, same accent palette as population.astro's régional
+grid) since without it the 20 new pages would be reachable only by
+guessing a URL or via search - and linked it from the home page nav.
+
+Explicitly not in this pass, named on each page rather than left silent:
+locator maps (needs new geo/mapshaper infrastructure, Sec2.4 item 3) and
+sous-préfecture child pages (85 more pages, Sec2.4 item 7) - both
+sized as separate steps, not part of this first template.
+
+All 33 built pages (the 20 new ones included) pass the 150 KB budget
+with room to spare - each place page is 6-8 KB, well under even the
+lightest existing theme page.
