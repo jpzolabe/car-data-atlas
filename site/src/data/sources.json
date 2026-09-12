@@ -28,17 +28,17 @@
       "access_notes": "Endpoint direct de l'API SDMX 2.1 du FMI (api.imf.org), trouvé après que l'ancien dataservices.imf.org (documenté dans plusieurs guides tiers) s'est révélé résilié (DNS inexistant) et que le portail AfDB/Knoema (car.opendataforafrica.org/nsdp) s'est révélé entièrement rendu en JavaScript, sans API publique accessible sans navigateur. Sans authentification. Dataflow trouvé via /external/sdmx/2.1/dataflow, pas deviné."
     },
     {
-      "source_id": "icasees-ihpc-dashboard",
+      "source_id": "icasees-site",
       "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "Indice des Prix à la Consommation (IHPC) - Mensuel National, 2015-2026 (fichier tableau de bord)",
-      "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
-      "licence": "CC BY 4.0",
-      "licence_notes": "Explicitly CC BY 4.0 per the file's own Métadonnées sheet - unlike COD-AB, no licence ambiguity here. One real nuance: the file's own Notes_Methodologiques sheet documents that values from 2015-01 to 2019-12 were reconciled onto the post-2020 base by whoever compiled this dashboard file ('à la demande de l'utilisateur'), using an official coefficient (4.12919) quoted from ICASEES's own bulletin warnings - transparent and internally verified (the note checks continuity at the Dec-2019/Jan-2020 boundary), but it is not clear whether this reconciliation itself carries the same institutional endorsement as the raw monthly bulletins. Raw pre-2020 values are preserved unmodified in the same file's Archive_Base1981_Brute sheet. See docs/verification-debt.md.",
-      "geography_vintage": "2015M1 to 2026M4 in the data columns; the file's own metadata sheet states coverage as '2015M1 à 2025M9', which is stale relative to the actual columns - use the data columns as ground truth.",
-      "update_cadence": "monthly (per ICASEES's stated cadence; this specific dashboard file's own update frequency is unknown)",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "national census > national survey > international modelled estimate > unattributed portal figure - this is a national statistical office's own published series with a licence and stated methodology; among the highest tier for a value source.",
-      "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) -- see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
+      "dataset_name": "icasees.org (site principal ; sous-répertoire rgph-4/ largement en 404)",
+      "url": "https://icasees.org/",
+      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général ; non re-vérifié page par page ici)",
+      "licence_notes": "Site principal fonctionnel, avec un contenu daté de façon cohérente (MICS7 lancée ~22 août 2026, aide-mémoire rebasage PIB ~7 août 2026). ATTENTION SÉCURITÉ : une recherche web a fait remonter une URL de spam de type casino sur ce domaine (paramètre ?prizes%2F...) - évitée, non visitée. Le sous-répertoire /rgph-4/ a renvoyé 404 sur plusieurs URLs testées le 2026-09-11 ; les résultats provisoires du RGPH-4 et une éventuelle page de cartographie n'ont pas été localisés malgré plusieurs tentatives.",
+      "geography_vintage": "site vivant ; contenu RGPH-4 spécifique non localisé au 2026-09-11",
+      "update_cadence": "unknown",
+      "retrieved_at": "2026-09-11",
+      "authority_rank": "voir quality_flag par observation",
+      "access_notes": "Utilisé pour une citation précise et vérifiée : un article RGPH-4 (icasees.org/index.php/actualites/316-...) décrit Bangui comme neuf (9) arrondissements plus les communes de Bimbo et Bégoua - voir docs/verification-debt.md, désaccord Bangui."
     },
     {
       "source_id": "icasees-rgph4-provisional",
@@ -54,17 +54,17 @@
       "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
     },
     {
-      "source_id": "icasees-site",
+      "source_id": "icasees-ihpc-dashboard",
       "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "icasees.org (site principal ; sous-répertoire rgph-4/ largement en 404)",
-      "url": "https://icasees.org/",
-      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général ; non re-vérifié page par page ici)",
-      "licence_notes": "Site principal fonctionnel, avec un contenu daté de façon cohérente (MICS7 lancée ~22 août 2026, aide-mémoire rebasage PIB ~7 août 2026). ATTENTION SÉCURITÉ : une recherche web a fait remonter une URL de spam de type casino sur ce domaine (paramètre ?prizes%2F...) - évitée, non visitée. Le sous-répertoire /rgph-4/ a renvoyé 404 sur plusieurs URLs testées le 2026-09-11 ; les résultats provisoires du RGPH-4 et une éventuelle page de cartographie n'ont pas été localisés malgré plusieurs tentatives.",
-      "geography_vintage": "site vivant ; contenu RGPH-4 spécifique non localisé au 2026-09-11",
-      "update_cadence": "unknown",
-      "retrieved_at": "2026-09-11",
-      "authority_rank": "voir quality_flag par observation",
-      "access_notes": "Utilisé pour une citation précise et vérifiée : un article RGPH-4 (icasees.org/index.php/actualites/316-...) décrit Bangui comme neuf (9) arrondissements plus les communes de Bimbo et Bégoua - voir docs/verification-debt.md, désaccord Bangui."
+      "dataset_name": "Indice des Prix à la Consommation (IHPC) - Mensuel National, 2015-2026 (fichier tableau de bord)",
+      "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
+      "licence": "CC BY 4.0",
+      "licence_notes": "Explicitly CC BY 4.0 per the file's own Métadonnées sheet - unlike COD-AB, no licence ambiguity here. One real nuance: the file's own Notes_Methodologiques sheet documents that values from 2015-01 to 2019-12 were reconciled onto the post-2020 base by whoever compiled this dashboard file ('à la demande de l'utilisateur'), using an official coefficient (4.12919) quoted from ICASEES's own bulletin warnings - transparent and internally verified (the note checks continuity at the Dec-2019/Jan-2020 boundary), but it is not clear whether this reconciliation itself carries the same institutional endorsement as the raw monthly bulletins. Raw pre-2020 values are preserved unmodified in the same file's Archive_Base1981_Brute sheet. See docs/verification-debt.md.",
+      "geography_vintage": "2015M1 to 2026M4 in the data columns; the file's own metadata sheet states coverage as '2015M1 à 2025M9', which is stale relative to the actual columns - use the data columns as ground truth.",
+      "update_cadence": "monthly (per ICASEES's stated cadence; this specific dashboard file's own update frequency is unknown)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "national census > national survey > international modelled estimate > unattributed portal figure - this is a national statistical office's own published series with a licence and stated methodology; among the highest tier for a value source.",
+      "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) -- see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
     },
     {
       "source_id": "icasees-comptes-nationaux",
@@ -78,6 +78,19 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "donnée administrative nationale, publiée par l'institut national de statistique",
       "access_notes": "Extrait par lecture directe du PDF (pdfplumber) depuis l'URL de téléchargement stable d'ICASEES (composant edocman, trouvé via la page d'actualité qui annonce la publication). PDF conservé dans raw/icasees-comptes-nationaux/2026-09-12/. Valeurs transcrites du Tableau 1 (page 12) : PIB à prix courant, PIB par habitant, taux de croissance réel."
+    },
+    {
+      "source_id": "maina-master-facility-list-2019",
+      "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+      "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)",
+      "url": "https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa",
+      "licence": "CC BY",
+      "licence_notes": "Compilation académique à partir de registres publics et non-gouvernementaux de 50 pays d'Afrique subsaharienne. Publiée le 2019-07-25, non mise à jour depuis (donnée statique).",
+      "geography_vintage": "2019 uniquement ; 555 établissements pour la RCA, coordonnées disponibles mais non exploitées ici (comptage national seulement)",
+      "update_cadence": "aucune mise à jour prévue (publication académique ponctuelle)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "donnée administrative nationale (compilation de registres gouvernementaux)",
+      "access_notes": "Fichier XLSX téléchargé directement depuis l'URL de ressource stable d'HDX, filtré sur Country == 'Central African Republic'. Comptage : 555 lignes (490 publiques, 63 privées à but non lucratif, 2 non classées)."
     },
     {
       "source_id": "minurbanisme-rca-regions",
@@ -104,6 +117,19 @@
       "retrieved_at": "2026-09-05",
       "authority_rank": "n/a (geography/reference source; not an indicator value source)",
       "access_notes": "Downloaded directly: gazetteer XLSX + GeoJSON from HDX resource URLs (Shapefile/Geodatabase also available). Snapshot: raw/cod-ab-caf/2026-09-05/."
+    },
+    {
+      "source_id": "hotosm-healthsites-caf",
+      "producer": "OpenStreetMap (via healthsites.io et HOTOSM), via HDX",
+      "dataset_name": "Central African Republic Healthsites",
+      "url": "https://data.humdata.org/dataset/central-african-republic-healthsites",
+      "licence": "ODbL (Open Database License, licence d'OpenStreetMap)",
+      "licence_notes": "Cartographie collaborative, pas une enquête administrative ; la couverture dépend de l'activité des cartographes bénévoles et peut être incomplète dans les zones isolées (avertissement explicite d'HOTOSM sur la page du jeu de données). Un second jeu de données HDX (hotosm_caf_health_facilities) republie les mêmes points OpenStreetMap sous un autre nom -- non ajouté séparément pour éviter de compter la même source deux fois.",
+      "geography_vintage": "mise à jour en continu par la communauté OpenStreetMap ; 425 établissements recensés au moment de la récupération",
+      "update_cadence": "continu (extraction HDX mise à jour périodiquement depuis OpenStreetMap)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "chiffre de portail sans source citée (cartographie collaborative, pas d'enquête)",
+      "access_notes": "CSV téléchargé directement depuis l'URL de ressource stable d'HDX (redirection suivie automatiquement). Comptage : 425 lignes."
     },
     {
       "source_id": "loi-21-001-2021",
@@ -223,56 +249,30 @@
       "access_notes": "Fetched via WebFetch to corroborate the 2020 reform and record alternate name spellings."
     },
     {
-      "source_id": "world-bank-health-expenditure",
+      "source_id": "world-bank-electricity-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
+      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = OMS Global Health Expenditure Database",
+      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
+      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
     },
     {
-      "source_id": "world-bank-internet-users",
+      "source_id": "world-bank-water-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = Union internationale des télécommunications (ITU)",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
-    },
-    {
-      "source_id": "world-bank-sanitation-access",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.BASS.ZS?format=json",
+      "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
       "geography_vintage": "annuel ; source primaire = WHO/UNICEF Joint Monitoring Programme (JMP)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable -- deux indicateurs, deux facettes du même programme de suivi."
-    },
-    {
-      "source_id": "world-bank-population-growth",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population growth, annual % (SP.POP.GROW)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; dérivée de la même série SP.POP.TOTL que population_totale",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
     },
     {
       "source_id": "world-bank-urban-population",
@@ -366,17 +366,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
-      "source_id": "world-bank-electricity-access",
+      "source_id": "world-bank-health-expenditure",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
+      "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
+      "geography_vintage": "annuel ; source primaire = OMS Global Health Expenditure Database",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
     },
     {
       "source_id": "world-bank-hiv-incidence",
@@ -587,6 +587,19 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2022, la plus récente disponible malgré mrnev=15)."
     },
     {
+      "source_id": "world-bank-internet-users",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = Union internationale des télécommunications (ITU)",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
+    },
+    {
       "source_id": "world-bank-wdi-population",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "Population, total (SP.POP.TOTL)",
@@ -600,17 +613,30 @@
       "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
-      "source_id": "world-bank-water-access",
+      "source_id": "world-bank-sanitation-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
+      "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.BASS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
       "geography_vintage": "annuel ; source primaire = WHO/UNICEF Joint Monitoring Programme (JMP)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable -- deux indicateurs, deux facettes du même programme de suivi."
+    },
+    {
+      "source_id": "world-bank-population-growth",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Population growth, annual % (SP.POP.GROW)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; dérivée de la même série SP.POP.TOTL que population_totale",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
       "source_id": "wfp-food-prices-hdx",

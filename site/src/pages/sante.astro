@@ -93,6 +93,34 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
       }
       .badge.stale { background: var(--stale-soft); color: var(--stale); }
+      .badge.administratif { background: color-mix(in srgb, var(--t-sante) 14%, var(--surface)); color: var(--t-sante); }
+      .badge.osm { background: color-mix(in srgb, var(--ink-faint) 18%, var(--surface)); color: var(--ink-muted); }
+      .national-figure {
+        margin: 0; padding: 16px 18px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 3px solid var(--t-sante); border-radius: 3px;
+      }
+      .national-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-sante); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+      }
+      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.75rem; font-weight: 400; color: var(--ink-faint); }
+      .national-meta { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+      .disclosure { margin-top: 10px; }
+      .disclosure summary {
+        cursor: pointer; font-family: ui-monospace, monospace; font-size: 11.5px; color: var(--t-sante);
+        list-style: none; display: flex; align-items: center; gap: 6px;
+      }
+      .disclosure summary::-webkit-details-marker { display: none; }
+      .disclosure summary::before { content: "▸"; font-size: 10px; transition: transform 0.15s ease; }
+      .disclosure[open] summary::before { transform: rotate(90deg); }
+      .disclosure-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+      .disclosure-table th {
+        text-align: left; font-family: ui-monospace, monospace; font-size: 9.5px; text-transform: uppercase;
+        color: var(--ink-faint); letter-spacing: 0.04em; padding: 0 10px 6px 0; font-weight: 400;
+      }
+      .disclosure-table td { padding: 6px 10px 6px 0; border-top: 1px solid var(--line); }
+      .disclosure-table td.num { font-family: ui-monospace, monospace; }
+      .disclosure-note { font-size: 11px; color: var(--ink-faint); margin: 8px 0 0; max-width: 64ch; }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
         gap: 14px;
@@ -135,6 +163,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         Système de santé, vaccination, santé maternelle et infantile,
         mortalité, espérance de vie et VIH, avec des données de la Banque
         mondiale, de l'OMS et de l'UNICEF portant sur l'ensemble du pays.
+        Le nombre d'établissements de santé a deux sources qui ne
+        s'accordent pas nettement ; les deux sont montrées plutôt qu'un
+        seul chiffre choisi.
       </p>
 
       <div class="headline-block">
@@ -154,6 +185,50 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
               const stale = isStale(ind.indicator_id, ind.latest.period);
+
+              if ("national" in ind) {
+                return (
+                  <div class="indicator-card">
+                    <p class="ind-name">{ind.name_fr}</p>
+                    <p class="ind-definition">{ind.definition_fr}</p>
+                    <div class="national-figure">
+                      <div class="national-value">
+                        {fmt(ind.national.headline.value)}<span class="unit"> {ind.unit}, {ind.national.headline.period}</span>
+                        <span class={`badge ${ind.national.headline.quality_flag}`}>{ind.national.headline.quality_flag}</span>
+                      </div>
+                      <div class="national-meta">{ind.national.headline.producer}</div>
+                      <details class="disclosure">
+                        <summary>{ind.national.all_sources.length} sources - écart de {ind.national.spread_pct}%</summary>
+                        <table class="disclosure-table">
+                          <thead><tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr></thead>
+                          <tbody>
+                            {ind.national.all_sources.map((s) => (
+                              <tr>
+                                <td class="num">{fmt(s.value)}</td>
+                                <td>{s.producer}</td>
+                                <td>{s.period}</td>
+                                <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <p class="disclosure-note">
+                          Deux sources indépendantes, deux méthodes différentes (registre
+                          administratif statique contre cartographie communautaire continue) -
+                          voir <a href="/sources/">Sources</a> pour le détail complet.
+                        </p>
+                      </details>
+                    </div>
+                    <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                      <polyline class="mini-spark-line" points={spark.points} />
+                      <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                    </svg>
+                    <p class="mini-sentence">{ind.lead_sentence}</p>
+                  </div>
+                );
+              }
+
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
@@ -183,6 +258,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
         <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats ; la santé maternelle et infantile ci-dessus vient de MICS6 (2018-2019), le round précédent.</li>
         <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur <a href="https://data.humdata.org/">HDX</a> - volontairement non reconstruit ici.</li>
+        <li>Le registre gouvernemental des établissements de santé date de 2019 - largement au-delà du seuil de fraîcheur de 2 ans publié dans <a href="/methode/">Méthode</a> pour ce type de donnée ; c'est réellement la donnée la plus récente trouvée, pas un artefact d'affichage.</li>
+        <li>Localisation précise des établissements de santé (latitude/longitude) : disponible dans les deux sources mais non exploitée ici - ce thème reste au niveau national pour l'instant.</li>
         <li>Aucune donnée de morbidité au-delà du VIH - paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
         <li>La densité de lits d'hôpital n'a qu'un point après 2011 - c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
         <li>Aucun décompte de lits d'hôpital n'est publié directement par la Banque mondiale ou l'OMS - celui affiché ici est calculé (densité x population de la même année), pas une donnée brute.</li>
@@ -191,8 +268,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
 
       <footer>
         Données de cette page : World Bank (World Development Indicators),
-        OMS (Global Health Observatory) et UNICEF (Data Warehouse) - source
-        indiquée sous chaque indicateur. Détail complet par source sur la
+        OMS (Global Health Observatory), UNICEF (Data Warehouse), Maina et
+        al. (Master Facility List) et OpenStreetMap - source indiquée sous
+        chaque indicateur. Détail complet par source sur la
         page <a href="/sources/">Sources</a>.
         <nav class="site-nav">
           <a href="/population/">Population</a>

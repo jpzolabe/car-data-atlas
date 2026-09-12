@@ -19,7 +19,11 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_sante_effectif, sentence_sante_rate
+from pipeline.sentences import (
+    sentence_sante_effectif,
+    sentence_sante_etablissements,
+    sentence_sante_rate,
+)
 
 OUT_PATH = "site/src/data/sante.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
@@ -31,6 +35,7 @@ EFFECTIF_INDICATORS = {"nombre_medecins", "nombre_personnel_infirmier", "nombre_
 
 CATEGORIES = [
     ("systeme", "Système de santé", [
+        "nombre_etablissements_sante",
         "depenses_sante_pib",
         "densite_medecins",
         "nombre_medecins",
@@ -89,6 +94,60 @@ def build_indicator(con, indicator_id: str) -> dict:
     }
 
 
+def build_etablissements_disclosure(con) -> dict:
+    """nombre_etablissements_sante: the first health-facility count on the
+    site, and a real disagreement between two independent sources -- a
+    static 2019 government-registry compilation (555) and a live,
+    crowd-mapped OpenStreetMap extract (425). Same population.astro-style
+    disclosure shape as économie's taux_croissance_pib. See
+    docs/decisions.md.
+    """
+    rows = con.execute("""
+        select o.period, o.value, o.quality_flag, s.producer, s.dataset_name,
+               s.source_id, s.url, s.retrieved_at::varchar
+        from observations o
+        join sources s on o.source_id = s.source_id
+        where o.entity_id = ? and o.indicator_id = 'nombre_etablissements_sante'
+        order by o.period desc
+    """, [COUNTRY_ID]).fetchall()
+
+    headline = next(r for r in rows if r[5] == "maina-master-facility-list-2019")
+    other = next(r for r in rows if r[5] == "hotosm-healthsites-caf")
+    spread_pct = abs(headline[1] - other[1]) / other[1] * 100
+
+    lead_text, lead_template_id = sentence_sante_etablissements(
+        headline[0], headline[1], "un registre gouvernemental compilé en 2019"
+    )
+
+    return {
+        "indicator_id": "nombre_etablissements_sante",
+        "unit": "établissements",
+        "latest": {"period": headline[0], "value": headline[1]},
+        "series": [{"period": r[0], "value": r[1]} for r in sorted(rows, key=lambda r: r[0])],
+        "lead_sentence": lead_text,
+        "lead_sentence_template_id": lead_template_id,
+        "source": {
+            "producer": headline[3], "dataset_name": headline[4],
+            "url": headline[6], "retrieved_at": headline[7],
+        },
+        "national": {
+            "headline": {
+                "value": headline[1], "period": headline[0], "quality_flag": headline[2],
+                "producer": headline[3], "dataset_name": headline[4],
+            },
+            "spread_pct": round(spread_pct, 1),
+            "spread_vs_period": other[0],
+            "all_sources": [
+                {
+                    "value": r[1], "period": r[0], "quality_flag": r[2] or "osm",
+                    "producer": r[3], "dataset_name": r[4], "url": r[6],
+                }
+                for r in rows
+            ],
+        },
+    }
+
+
 def main():
     con = duckdb.connect()
     con.execute("""
@@ -105,9 +164,12 @@ def main():
     for key, label, indicator_ids in CATEGORIES:
         indicator_blocks = []
         for indicator_id in indicator_ids:
-            block = build_indicator(con, indicator_id)
+            if indicator_id == "nombre_etablissements_sante":
+                block = build_etablissements_disclosure(con)
+            else:
+                block = build_indicator(con, indicator_id)
+                block["unit"] = units[indicator_id]
             block["name_fr"] = names[indicator_id]
-            block["unit"] = units[indicator_id]
             block["definition_fr"] = definitions[indicator_id]
             indicator_blocks.append(block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})

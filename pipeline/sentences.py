@@ -428,6 +428,15 @@ def sentence_sante_effectif(indicator_id: str, period: str, value: float) -> tup
     return text, f"{indicator_id}_pays"
 
 
+def sentence_sante_etablissements(period: str, value: float, source_label: str) -> tuple[str, str]:
+    value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
+    text = (
+        f"En {period}, {source_label} recensait {value_fr} établissements "
+        f"de santé en République centrafricaine."
+    )
+    return text, "nombre_etablissements_sante_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:

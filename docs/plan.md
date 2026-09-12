@@ -815,6 +815,20 @@ framework isn't populated for this country yet, rather than implying
 broader coverage than exists. 81 indicators total now, and all 7 Phase 3
 source list items are now done except health facilities (item 7).
 
+**Update 2026-09-12 (ninth pass the same day) - item 7, health
+facilities. All 7 Phase 3 source list items now done.** Found 2
+genuinely independent national facility counts on HDX, not the 3 this
+file speculated about earlier today: Maina et al.'s 2019 academic
+Master Facility List (555, government/non-government registries,
+static) and an OpenStreetMap extract via healthsites.io (425, actively
+updated). A third HDX listing (`hotosm_caf_health_facilities`) turned
+out to be the same OSM data repackaged - checked directly, not added, to
+avoid counting one source twice. The ~30% gap between the two is real
+and shown via a disclosure UI on `/sante/` (population.astro's pattern,
+now used a third time) rather than picking one. This is santé's first
+disclosure indicator, so the disclosure CSS/markup had to be added to
+that page for the first time. 82 indicators total now.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for
