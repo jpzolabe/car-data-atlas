@@ -194,9 +194,38 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
             {place.population.rank_2021}ᵉ préfecture la plus peuplée sur {place.population.total_prefectures}, {place.population.share_of_national_pct}% de la population nationale.
           </p>
           <p class="sentence">
-            En 2003, {place.name_fr} comptait {fmt(place.population.pop_2003)} habitants (recensement) ; en 2021, l'estimation est de {fmt(place.population.pop_2021)}.
+            En 2003, {place.name_fr} comptait {fmt(place.population.pop_2003)} habitants (recensement) ; en 2021, l'estimation est de {fmt(place.population.pop_2021)}
+            {place.population.pop_2025 && <> ; la projection ICASEES 2025 (cycle HNRP), somme des projections par sous-préfecture ci-dessous, est de {fmt(place.population.pop_2025)}</>}.
           </p>
         </div>
+      )}
+
+      {place.sous_prefectures.length > 0 && (
+        <>
+          <h2>Sous-préfectures</h2>
+          <p class="headline-caption">
+            Projection ICASEES 2025 (cycle HNRP), par sous-préfecture - la plus fine profondeur
+            géographique disponible pour cet indicateur. Pas encore de page individuelle par
+            sous-préfecture (Phase 4, étape suivante).
+          </p>
+          <div class="prefecture-block" style="margin-top: 8px;">
+            <table>
+              <thead>
+                <tr><th>Sous-préfecture</th><th>2025</th></tr>
+              </thead>
+              <tbody>
+                {[...place.sous_prefectures]
+                  .sort((a: any, b: any) => b.pop_2025 - a.pop_2025)
+                  .map((sp: any) => (
+                    <tr>
+                      <td>{sp.name_fr}</td>
+                      <td>{fmt(sp.pop_2025)}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       {comparisonRows.length > 0 && (
@@ -278,7 +307,11 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
               <td>{f.theme}</td>
               <td class={f.available ? "yes" : "no"}>
                 {f.available
-                  ? (f.level === "region" ? `${f.period} (niveau régional)` : f.period)
+                  ? (f.level === "region"
+                      ? `${f.period} (niveau régional)`
+                      : f.level === "sous_prefecture"
+                        ? `${f.period} (jusqu'à la sous-préfecture)`
+                        : f.period)
                   : "aucune donnée à ce niveau"}
               </td>
             </tr>
@@ -289,7 +322,7 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
       <h2>Ce qui n'est pas encore là</h2>
       <ul class="not-measured">
         <li>Carte de localisation : pas encore construite pour les pages de lieux - nécessite une nouvelle étape de génération de cartes (geo/mapshaper), distincte de ce lot de travail.</li>
-        <li>Sous-préfectures de {place.name_fr} : elles existent dans le référentiel géographique mais n'ont pas encore leur propre page - viendra dans un lot ultérieur (Phase 4, étape suivante).</li>
+        <li>Sous-préfectures de {place.name_fr} : leur population 2025 est listée ci-dessus, mais elles n'ont pas encore chacune leur propre page - viendra dans un lot ultérieur (Phase 4, étape suivante).</li>
         <li>Santé n'est connue qu'au niveau régional ici, pas préfecture - voir la section ci-dessus.</li>
         <li>Infrastructures, éducation, économie et agriculture : ces thèmes n'ont pour l'instant que des chiffres nationaux, aucune source consultée ne descend en dessous - voir <a href="/methode/">Méthode</a>.</li>
         <li>Téléchargement dédié à ce lieu (CSV, GeoJSON) : pas encore disponible - voir <a href="/donnees/">Données</a> pour l'export complet en attendant.</li>

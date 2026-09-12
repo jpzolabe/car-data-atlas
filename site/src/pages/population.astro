@@ -255,6 +255,23 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
       }
+      .prefecture-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px; margin: 8px 0 4px;
+      }
+      .prefecture-block {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 12px 14px;
+      }
+      .prefecture-block h3 {
+        font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--t-pop); margin: 0 0 8px; font-weight: 600;
+      }
+      .prefecture-block table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+      .prefecture-block th { text-align: right; font-size: 10px; color: var(--ink-faint); font-weight: 400; padding: 0 0 4px 6px; }
+      .prefecture-block th:first-child { text-align: left; padding-left: 0; }
+      .prefecture-block td { text-align: right; padding: 3px 0 3px 6px; border-top: 1px solid var(--line); font-size: 12.5px; }
+      .prefecture-block td:first-child { text-align: left; color: var(--ink-muted); }
       .sentence {
         font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
         border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -341,7 +358,8 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       <h2>Par région</h2>
       <p class="legend-note">
         Dans les tableaux ci-dessous : <span class="badge stale">2003</span> = recensement, ancien -
-        <span class="badge estime">2021</span> = estimation. Voir la note ci-dessus pour le détail.
+        <span class="badge estime">2021</span> et <span class="badge estime">2025</span> = estimations.
+        Voir la note ci-dessus pour le détail.
       </p>
       <div class="region-grid">
         {regions.map((region) => (
@@ -353,6 +371,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
                   <th>Préfecture</th>
                   <th class="num">2003</th>
                   <th class="num">2021</th>
+                  <th class="num">2025</th>
                 </tr>
               </thead>
               <tbody>
@@ -361,6 +380,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
                     <td>{row.prefecture}</td>
                     <td class="num">{fmt(row.pop_2003)}</td>
                     <td class="num">{fmt(row.pop_2021)}</td>
+                    <td class="num">{fmt(row.pop_2025)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -372,9 +392,34 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       <p class="gap-note">
         Non montré ici : le découpage interne de Bangui (arrondissements,
         Bimbo, Bégoua) fait l'objet d'un désaccord réel entre trois sources -
-        voir <code>docs/verification-debt.md</code>. Les données par
-        sous-préfecture n'existent pas encore pour cet indicateur.
+        voir <code>docs/verification-debt.md</code>.
       </p>
+
+      <h2>Par sous-préfecture</h2>
+      <p class="legend-note">
+        Projection ICASEES 2025 (cycle HNRP), la plus fine profondeur géographique
+        disponible pour cet indicateur - 85 sous-préfectures, groupées par préfecture.
+      </p>
+      <div class="prefecture-grid">
+        {data.prefectures.map((p) => (
+          <div class="prefecture-block">
+            <h3>{p.prefecture}</h3>
+            <table>
+              <thead>
+                <tr><th>Sous-préfecture</th><th>2025</th></tr>
+              </thead>
+              <tbody>
+                {p.sous_prefectures.map((sp: any) => (
+                  <tr>
+                    <td>{sp.name_fr}</td>
+                    <td>{fmt(sp.pop_2025)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
 
       <h2>Autres indicateurs</h2>
       <div class="indicator-grid">
