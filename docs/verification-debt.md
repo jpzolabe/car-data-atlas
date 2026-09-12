@@ -249,6 +249,26 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   indicators`) or a published methodology note is checked for a per-point
   survey/methodology citation across all 15 indicators, not just completion.
 
+### ICASEES IHPC file's published "Inflation" row doesn't match a naive recomputation from the index
+
+- **What:** The same IHPC dashboard file used for `prix_ihpc_global` also has
+  a row labelled `IND14 "Inflation"` — small values (e.g. 0.4–1.9 over
+  recent months), clearly a rate rather than an index. Checked directly:
+  neither a month-over-month nor a year-over-year percent change computed
+  from the `IND1` global index series reproduces this column for any of the
+  7 most recent months tried. The file gives no formula or methodology note
+  for this specific row (its `Unité` column even says "Indice = 12
+  fonctions," which is very likely a copy-paste artifact from the row above
+  rather than a real unit for a rate). Published as-is (rule zero: real
+  numbers from a real source can be used before every detail is
+  independently reconciled) rather than guessed at or silently dropped.
+- **Used in:** `data/observations.csv`, `taux_inflation` (136 rows, all of
+  it — this isn't confined to the pre-2020 reconciled period).
+- **Resolved when:** an ICASEES publication (a bulletin, a methodology
+  note) states how this column is actually computed, or a second
+  independent source for CAR's inflation rate (e.g. IMF, World Bank
+  `FP.CPI.TOTL.ZG`) is checked against it.
+
 ---
 
 ## Resolved

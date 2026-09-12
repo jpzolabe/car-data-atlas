@@ -621,11 +621,21 @@ mid-session (`docs/verification-debt.md`) and were paused rather than pushed
 further; UNESCO UIS's Data API was used instead, and turned out to have real
 CAF data across 15 indicators (completion, enrollment, retention, literacy),
 confirmed live rather than assumed from the catalogue — see
-`docs/decisions.md`. Population, prix and infrastructures still have only one
-indicator each — "at least two indicators" per theme is met for éducation
-(15) but not the other three themes yet. ICASEES yearbooks remain a real
-to-do, not abandoned — the education page's "Ce qui n'est pas mesuré" section
-names exam results specifically as still missing.
+`docs/decisions.md`. ICASEES yearbooks remain a real to-do, not abandoned —
+the education page's "Ce qui n'est pas mesuré" section names exam results
+specifically as still missing.
+
+**Update 2026-09-12 (later the same day).** Deliberate pass to bring
+population/prix/infrastructures up towards éducation's depth, since having
+one theme at 15 indicators and three at 1 each isn't a satisfying level of
+completion. Prix went from 1 to 5: the IHPC dashboard file already
+downloaded for `prix_ihpc_global` also had 12 COICOP sub-category rows and a
+published inflation rate that were simply never parsed — added the
+inflation rate plus 3 named sub-categories (alimentation, santé,
+transports), the ones `prix.astro`'s own gap-note had already promised.
+Zero new sourcing needed for this one. "At least two indicators" per theme
+is now met for éducation (15) and prix (5); population and infrastructures
+are next.
 
 ## Phase 4 — Descending (4–6 weeks)
 

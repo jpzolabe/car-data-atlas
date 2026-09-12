@@ -248,3 +248,22 @@ result). Leading with the outcome before the causes that produce it reads
 like starting a story at the ending — this generalizes beyond this one page:
 default to whatever order lets each section explain what feeds into the
 next, not whatever order the data happened to get fetched in.
+
+## Prix widened from 1 to 5 indicators — same file, zero new sourcing
+
+Part of a deliberate pass to bring population/prix/infrastructures up
+towards éducation's depth (all three had exactly one indicator). Unlike
+éducation's UIS widening, this cost nothing in new sourcing: the IHPC
+dashboard file (`pipeline/fetch_ihpc.py`) already downloaded for
+`prix_ihpc_global` has 12 COICOP sub-category rows and a published
+"Inflation" row that were simply never parsed — `prix.astro`'s own gap-note
+already said so. Added the inflation rate plus 3 named sub-categories
+(alimentation, santé, transports) — the ones the existing gap-note text
+already promised, not an arbitrary subset. `IND11` (Enseignement) was
+checked and deliberately skipped: only 76 of 136 months are populated,
+unlike every other row's 136/136. `extract_rows()` in `fetch_ihpc.py` was
+generalized from one hardcoded row lookup to a config dict
+(`INDICATOR_CODES`) so adding a 6th indicator later means one dict entry,
+not a new function. The published inflation rate doesn't reconcile with a
+naive recomputation from the index — logged rather than silently
+reinterpreted, see `docs/verification-debt.md`.
