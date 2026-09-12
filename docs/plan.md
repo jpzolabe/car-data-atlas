@@ -1012,6 +1012,14 @@ docs/verification-debt.md. None of these 4 themes are worth revisiting
 without either a new source or ICASEES resolving the inconsistency
 directly.
 
+**Parked, 2026-09-13 - the one thing left for Phase 4's own "done when"
+bar.** Phase 4's stated finish line is "every sous-préfecture has a page
+that either shows data or explains its absence." Population data for all
+85 is ready (the 2025 ICASEES projection); no sous-préfecture pages exist
+yet - step 4's second half, explicitly deferred by the user to come back
+to later rather than build now. Pick this up before calling Phase 4
+fully done.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
