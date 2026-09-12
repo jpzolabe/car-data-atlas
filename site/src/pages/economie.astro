@@ -35,7 +35,10 @@ import agricultureData from "../data/agriculture.json";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
-  return CURRENT_YEAR - Number(period) > 5;
+  // indice_activite_economique's periods look like "2023-Q1" (quarterly) --
+  // taking the leading 4-digit year works for both that and every plain
+  // "YYYY" annual period on this page.
+  return CURRENT_YEAR - Number(period.slice(0, 4)) > 5;
 }
 
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
@@ -54,6 +57,9 @@ function formatValue(indicatorId: string, value: number): { display: string; uni
   }
   if (indicatorId === "pib_par_habitant_fcfa") {
     return { display: Math.round(value).toLocaleString("fr-FR"), unit: " FCFA" };
+  }
+  if (indicatorId === "indice_activite_economique") {
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " indice" };
   }
   if (MONTANT_INDICATORS.has(indicatorId)) {
     return value >= 1e9
@@ -348,6 +354,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         <li>Les recettes publiques n'ont pas de point après 2021.</li>
         <li>Aucune ventilation par secteur au-delà de l'agriculture (industrie, services) et aucune donnée sur l'inflation des prix à la production - la page <a href="/prix/">Prix</a> ne couvre que l'inflation à la consommation.</li>
         <li>Les comptes nationaux de l'ICASEES ne couvrent que 2019 à 2021 pour l'instant - pas de mise à jour au-delà.</li>
+        <li>Le cadre e-GDDS du FMI est censé couvrir le PIB, les prix, la dette et le secteur monétaire, mais la RCA n'y publie pour l'instant qu'un seul indicateur (l'indice d'activité économique ci-dessus), arrêté au premier trimestre 2023.</li>
       </ul>
 
       <footer>

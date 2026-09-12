@@ -697,3 +697,43 @@ same reasoning as éducation's existing `SURVEY_LINKED` split, and
 `méthode.astro`'s published threshold table now has a row for it rather
 than silently diverging from what the page tells readers. 80 indicators
 total now.
+
+## IMF NSDP: two dead ends checked directly before finding the live API
+
+Phase 3 source list item 6, flagged in the plan itself as "hard -
+JavaScript or SDMX". Both routes anticipated in `CLAUDE.md` turned out
+wrong in a specific, checkable way rather than just difficult:
+
+1. `dataservices.imf.org` (the endpoint most third-party guides and R/CRAN
+   packages document) no longer resolves at all - DNS lookup fails, not a
+   403 or a moved page. IMF retired it.
+2. `car.opendataforafrica.org/nsdp` (the AfDB/Knoema-hosted mirror
+   `CLAUDE.md` named) is genuinely all client-side rendering - fetching it
+   returns an empty shell, and every guessed API/explorer subpath on that
+   domain 403s. Confirmed, not assumed from "JavaScript-heavy sites are
+   usually like this."
+
+IMF's current SDMX 2.1 API lives at `api.imf.org` instead - found by
+requesting its own `/external/sdmx/2.1/dataflow` listing rather than
+guessing a URL, the same technique that worked for UIS, WHO GHO and
+UNICEF earlier this session. `NSDP` is a real dataflow there
+(`IMF.STA:NSDP`), live, unauthenticated.
+
+**CAR's actual e-GDDS coverage is thin.** The NSDP framework is meant to
+cover GDP, prices, government operations, debt, monetary and external
+sector - querying every dimension as a wildcard for CAF returns exactly
+one series: `TEA` (Total Economic Activity Index), quarterly, 2017-Q1 to
+2023-Q1. The regional dataflows for the area (`CPI_WCA`, `QGDP_WCA`) were
+also queried directly for CAF and returned nothing. Rather than either
+skip the source entirely or overstate what it covers, added the one real
+series as a new indicator (`indice_activite_economique`) and said plainly
+on the page that the rest of the e-GDDS framework isn't populated yet for
+this country - a gap that belongs to the source, not something this
+project chose to leave out.
+
+One new small case in `sentence_economie_activite()`: NSDP periods are
+quarterly (`2023-Q1`), unlike every other économie indicator's plain
+year - needed its own quarter-to-French mapping rather than reusing
+`period_to_fr()`, which assumes a month. `economie.astro`'s `isStale()`
+now takes the leading 4 characters of the period rather than the whole
+string, so it keeps working for both shapes. 81 indicators total now.

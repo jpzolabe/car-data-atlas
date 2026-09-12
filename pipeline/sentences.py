@@ -288,6 +288,25 @@ ECONOMIE_MONTANT_LABELS = {
 }
 
 
+QUARTER_FR = {
+    "Q1": "premier trimestre", "Q2": "deuxième trimestre",
+    "Q3": "troisième trimestre", "Q4": "quatrième trimestre",
+}
+
+
+def sentence_economie_activite(period: str, value: float) -> tuple[str, str]:
+    """period looks like '2023-Q1' -- IMF's e-GDDS NSDP indicator is
+    quarterly, unlike every other économie indicator."""
+    year, quarter = period.split("-")
+    quarter_fr = QUARTER_FR[quarter]
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    text = (
+        f"Au {quarter_fr} {year}, l'indice d'activité économique totale de "
+        f"la République centrafricaine s'établissait à {value_fr}."
+    )
+    return text, "indice_activite_economique_pays"
+
+
 def sentence_economie_montant(indicator_id: str, period: str, value: float) -> tuple[str, str]:
     if indicator_id == "pib_par_habitant":
         value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
