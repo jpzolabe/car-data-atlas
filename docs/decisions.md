@@ -607,3 +607,47 @@ favor of a plain hyphen or a semicolon. Left `raw/` snapshots untouched
 (immutable source data, not this project's own prose) and regenerated
 `site/src/data/*.json` and `site/public/donnees/*.csv` from the now-clean
 source CSVs rather than hand-editing the generated copies.
+
+## National accounts: ICASEES's rebased GDP added, and it disagrees with World Bank
+
+Phase 3 source list item 4. ICASEES's national accounts PDF (published
+2026-07-30) was fetched directly rather than guessed at from its
+announcement page - the actual download link was found by fetching the
+announcement page's raw HTML and grepping for the edocman download
+pattern already used for the IHPC dashboard file, the same technique
+worked a second time.
+
+Table 1 (page 12) gives PIB total, PIB per capita and real growth rate for
+2019-2021, all in FCFA on the new 2019 base. Extracted with pdfplumber's
+`extract_tables()`, not just `extract_text()`, specifically to rule out a
+column-merge misread before trusting the numbers - worth doing since the
+document's own narrative summary (page 7) states a different 2021 growth
+rate (1.6%) than its own table (3.44%) for the same figure. The table was
+treated as authoritative (structured data over prose) and the discrepancy
+logged in `data/sources.csv`, not resolved by guessing which one the
+authors meant.
+
+**Two new indicators** (`pib_total_fcfa`, `pib_par_habitant_fcfa`) rather
+than merging into the existing World Bank USD figures - converting
+between currencies would need an assumed exchange rate this project
+hasn't verified, and the two sources also likely use different population
+denominators (ICASEES's own RGPH-4-informed count vs whatever the World
+Bank uses), so a direct numeric comparison would be comparing two things
+that aren't quite the same measurement. Both are shown, neither is forced
+to agree with the other.
+
+**The growth rate is different: same unit (%), same concept, genuinely
+comparable.** ICASEES's 2020/2021 figures (3.41%, 3.44%) disagree with
+World Bank's modelled estimate for the same years (0.90%, 0.98%) by
+roughly 250% relatively - not a rounding difference. This is exactly what
+`CLAUDE.md`'s multi-source disclosure mechanism exists for, so
+`taux_croissance_pib` on `/economie/` now has one: ICASEES is the headline
+(donnée administrative nationale outranks estimation modélisée
+internationale per the authority ranking), World Bank's full annual
+series stays the chart, and a "N sources" disclosure shows both years
+side by side with the spread. Implemented as a population.astro-style
+disclosure (headline + expandable table) rather than éducation.astro's
+dual-line chart with overlay points - there are only 2 overlapping years
+to show, not a long modelled series needing survey points plotted on it,
+so the simpler pattern fit better. This resolves a `docs/verification-debt.md`
+item that had been open since économie was first built, moved to Resolved.

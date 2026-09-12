@@ -243,10 +243,72 @@
           "definition_fr": "Produit intérieur brut par habitant, en dollars américains courants -- le PIB total divisé par la population ; plus utile que le PIB total pour comparer le niveau de vie moyen entre pays de tailles différentes."
         },
         {
+          "indicator_id": "pib_total_fcfa",
+          "latest": {
+            "period": "2021",
+            "value": 2149622000000.0
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 1952925000000.0
+            },
+            {
+              "period": "2020",
+              "value": 2056035000000.0
+            },
+            {
+              "period": "2021",
+              "value": 2149622000000.0
+            }
+          ],
+          "lead_sentence": "En 2021, le produit intérieur brut de la République centrafricaine s'établissait à 2 149,6 milliards de francs CFA, selon les comptes nationaux rebasés de l'ICASEES.",
+          "lead_sentence_template_id": "pib_total_fcfa_pays",
+          "source": {
+            "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+            "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
+            "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "PIB (comptes nationaux, FCFA)",
+          "definition_fr": "Produit intérieur brut à prix courant, en francs CFA, selon les comptes nationaux rebasés de l'ICASEES (base 2019) ; à ne pas comparer directement au PIB en dollars ci-dessus, source, devise et méthode de conversion différentes."
+        },
+        {
+          "indicator_id": "pib_par_habitant_fcfa",
+          "latest": {
+            "period": "2021",
+            "value": 352912.0
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 364333.0
+            },
+            {
+              "period": "2020",
+              "value": 376225.0
+            },
+            {
+              "period": "2021",
+              "value": 352912.0
+            }
+          ],
+          "lead_sentence": "En 2021, le produit intérieur brut par habitant en République centrafricaine s'établissait à 352 912 francs CFA, selon les comptes nationaux rebasés de l'ICASEES.",
+          "lead_sentence_template_id": "pib_par_habitant_fcfa_pays",
+          "source": {
+            "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+            "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
+            "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "PIB par habitant (comptes nationaux, FCFA)",
+          "definition_fr": "Produit intérieur brut par habitant, en francs CFA, selon les comptes nationaux rebasés de l'ICASEES (base 2019) ; à ne pas comparer directement au PIB par habitant en dollars ci-dessus, source, devise et méthode de conversion différentes."
+        },
+        {
           "indicator_id": "taux_croissance_pib",
           "latest": {
-            "period": "2025",
-            "value": 4.49950000393781
+            "period": "2021",
+            "value": 3.44
           },
           "series": [
             {
@@ -310,13 +372,58 @@
               "value": 4.49950000393781
             }
           ],
-          "lead_sentence": "En 2025, le taux de croissance du PIB en République centrafricaine s'établissait à 4,5%.",
-          "lead_sentence_template_id": "taux_croissance_pib_pays",
+          "lead_sentence": "En 2021, le produit intérieur brut de la République centrafricaine a progressé de 3,4% en volume, selon les comptes nationaux rebasés de l'ICASEES.",
+          "lead_sentence_template_id": "taux_croissance_pib_administratif",
           "source": {
             "producer": "World Bank (World Development Indicators)",
             "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
             "retrieved_at": "2026-09-12"
+          },
+          "national": {
+            "headline": {
+              "value": 3.44,
+              "period": "2021",
+              "quality_flag": "administratif",
+              "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+              "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)"
+            },
+            "spread_pct": 250.0,
+            "spread_vs_period": "2021",
+            "all_sources": [
+              {
+                "value": 3.44,
+                "period": "2021",
+                "quality_flag": "administratif",
+                "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+                "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
+                "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0"
+              },
+              {
+                "value": 3.41,
+                "period": "2020",
+                "quality_flag": "administratif",
+                "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+                "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
+                "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0"
+              },
+              {
+                "value": 0.899999996857062,
+                "period": "2020",
+                "quality_flag": "estime",
+                "producer": "World Bank (World Development Indicators)",
+                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+                "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
+              },
+              {
+                "value": 0.982919996264229,
+                "period": "2021",
+                "quality_flag": "estime",
+                "producer": "World Bank (World Development Indicators)",
+                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+                "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
+              }
+            ]
           },
           "name_fr": "Croissance du PIB",
           "definition_fr": "Taux de croissance annuel du PIB réel -- corrigé de l'inflation, donc reflète une variation de production, pas seulement de prix."
