@@ -52,8 +52,14 @@ DISCLOSURE_CONFIG = {
     },
 }
 
+
+# Ordered to follow the student's actual path rather than an arbitrary list:
+# does a child enroll, do they stay or drop out, do they finish, and what's
+# the long-run societal result -- each section explains what feeds into the
+# next one, instead of leading with the outcome (achievement) before the
+# causes. Changed 2026-09-12 after feedback that achievement-first read like
+# starting the story at the ending -- see docs/decisions.md.
 CATEGORIES = [
-    ("achevement", "Achèvement scolaire", COMPLETION_INDICATORS),
     ("scolarisation", "Scolarisation", [
         "taux_scolarisation_net_primaire",
         "taux_scolarisation_brut_primaire",
@@ -66,6 +72,7 @@ CATEGORIES = [
         "taux_survie_primaire",
         *OUT_OF_SCHOOL_INDICATORS,
     ]),
+    ("achevement", "Achèvement scolaire", COMPLETION_INDICATORS),
     ("alphabetisation", "Alphabétisation", [
         "taux_alphabetisation_jeunes",
         "taux_alphabetisation_adultes",
@@ -190,11 +197,23 @@ def main():
             indicator_blocks.append(block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})
 
+    # One orienting figure shown before the category breakdown -- primary
+    # completion, since it's the single most legible "state of education"
+    # number and the one CLAUDE.md itself names as the example indicator.
+    # Reuses the block already built above rather than re-querying.
+    headline_indicator = next(
+        ind
+        for cat in categories
+        for ind in cat["indicators"]
+        if ind["indicator_id"] == "taux_achevement_primaire"
+    )
+
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
             "pipeline/export_education_json.py — ne pas éditer directement."
         ),
+        "headline": headline_indicator,
         "categories": categories,
     }
 
