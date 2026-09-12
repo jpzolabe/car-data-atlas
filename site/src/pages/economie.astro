@@ -9,15 +9,20 @@
 // branches on that rather than assuming every card is a "%".
 //
 // Reorganized 2026-09-12: prix and agriculture are full standalone theme
-// pages (own URL, own nav entry), but conceptually both sit inside "the
-// economy" the way most real economic dashboards treat them (IMF Article
-// IV, World Bank country pages, Trading Economics all fold prices into
-// the economy view; CLAUDE.md's own original theme list literally said
-// "agriculture et prix" as one theme before this session split them out).
-// Rather than merge the pages or move URLs, prix.json/agriculture.json are
-// imported here too, just for two brief summary cards with a link to the
-// full page -- presentation only, no data ownership change. See
-// docs/decisions.md.
+// pages (own URL) but conceptually both sit inside "the economy" the way
+// most real economic dashboards treat them (IMF Article IV, World Bank
+// country pages, Trading Economics all fold prices into the economy view;
+// CLAUDE.md's own original theme list literally said "agriculture et prix"
+// as one theme before this session split them out). Rather than merge the
+// pages or move URLs, prix.json/agriculture.json are imported here too,
+// just for two brief summary cards with a link to the full page --
+// presentation only, no data ownership change. économie is now the only
+// one of the two still linked from the home page's top-level nav --
+// agriculture and prix are reached through it (their footer cross-links on
+// every other page are unchanged). Cards ordered agriculture then prix,
+// both right after Production -- agriculture is a GDP sector (fits
+// naturally next to "how big is the economy"), prix is the price/value
+// side of the same production. See docs/decisions.md.
 import data from "../data/economie.json";
 import prixData from "../data/prix.json";
 import agricultureData from "../data/agriculture.json";
@@ -223,22 +228,6 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
 
           {category.key === "production" && (
             <>
-              <h2>Prix</h2>
-              <p class="category-note">
-                Thème complet séparé — <a href="/prix/">indice des prix à la consommation, inflation, détail par fonction</a>. Résumé ici :
-              </p>
-              <div class="satellite-card">
-                <div class="ind-value">
-                  {fmtPct(prixData.inflation.latest.value)}<span class="unit">%, {prixData.inflation.latest.period}</span>
-                </div>
-                <p class="mini-sentence">{prixData.inflation.lead_sentence}</p>
-                <a class="satellite-link" href="/prix/">Voir le détail (indice, par fonction COICOP) →</a>
-              </div>
-            </>
-          )}
-
-          {category.key === "finances_publiques" && (
-            <>
               <h2>Secteur agricole</h2>
               <p class="category-note">
                 Thème complet séparé — <a href="/agriculture/">terres, production, emploi et alimentation</a>. Résumé ici :
@@ -249,6 +238,18 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                 </div>
                 <p class="mini-sentence">{agricultureData.headline.lead_sentence}</p>
                 <a class="satellite-link" href="/agriculture/">Voir le détail (terres, production, alimentation) →</a>
+              </div>
+
+              <h2>Prix</h2>
+              <p class="category-note">
+                Thème complet séparé — <a href="/prix/">indice des prix à la consommation, inflation, détail par fonction</a>. Résumé ici :
+              </p>
+              <div class="satellite-card">
+                <div class="ind-value">
+                  {fmtPct(prixData.inflation.latest.value)}<span class="unit">%, {prixData.inflation.latest.period}</span>
+                </div>
+                <p class="mini-sentence">{prixData.inflation.lead_sentence}</p>
+                <a class="satellite-link" href="/prix/">Voir le détail (indice, par fonction COICOP) →</a>
               </div>
             </>
           )}
