@@ -230,3 +230,21 @@ lists the 4 survey years paired with the modelled value for those *same* years
 (not all 45 modelled years) — comparing every modelled year against one survey
 year would conflate "these two sources disagree" with "time has passed," which
 is a different, less honest question.
+
+## Education page reordered: one headline figure, then the student's actual path
+
+The 14-indicator version led with three large multi-source disclosure blocks
+(all 3 completion levels) immediately after the lede — the page's heaviest
+content shown first, with no orienting summary. Two fixes: (1) a lightweight
+headline block (one number, one generated sentence, a link down to the full
+breakdown) now sits above the category sections, using primary completion —
+the single most legible "state of education" figure and the one CLAUDE.md's
+own indicator-ID example names. (2) The four categories were reordered from
+achievement-first (Achèvement, Scolarisation, Rétention, Alphabétisation) to
+the actual causal chain a student goes through: Scolarisation (does a child
+enroll) → Rétention et abandon (do they stay, repeat, or drop out) →
+Achèvement scolaire (do they finish) → Alphabétisation (the long-run societal
+result). Leading with the outcome before the causes that produce it reads
+like starting a story at the ending — this generalizes beyond this one page:
+default to whatever order lets each section explain what feeds into the
+next, not whatever order the data happened to get fetched in.

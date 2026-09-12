@@ -1,14 +1,18 @@
 ---
 // Theme page, docs/plan.md Sec2.3 anatomy: theme header with coverage summary,
-// indicator blocks grouped into categories, "Ce qui n'est pas mesuré" hand-
-// written at the end. Widened from a single indicator (primary completion) to
-// 14 across 4 categories, all from UNESCO UIS -- see docs/decisions.md for why
-// (CLAUDE.md's indicator-ID example was illustrative, not a scope limit).
+// one orienting headline figure, indicator blocks grouped into categories
+// (ordered scolarisation -> retention -> achievement -> literacy, the
+// student's actual path, not achievement-first -- see docs/decisions.md),
+// "Ce qui n'est pas mesuré" hand-written at the end. Widened from a single
+// indicator (primary completion) to 15 across 4 categories, all from UNESCO
+// UIS (CLAUDE.md's indicator-ID example was illustrative, not a scope limit).
 //
-// The 3 completion indicators keep the population.astro-style multi-source
-// disclosure block (survey vs. modelled, a real disagreement). The other 11
-// have one source so far and get a compact card: value, sparkline, generated
-// sentence, source line -- no disclosure UI where there's nothing to disclose.
+// 6 indicators (3 completion levels + 3 out-of-school levels) keep the
+// population.astro-style multi-source disclosure block (a real disagreement
+// between a higher-authority point-in-time series and UIS's own modelled
+// series). The other 9 have one source so far and get a compact card: value,
+// sparkline, generated sentence, source line -- no disclosure UI where
+// there's nothing to disclose.
 import data from "../data/education.json";
 
 const CURRENT_YEAR = 2026;
@@ -102,6 +106,20 @@ const newestVintage = Math.max(...allPeriods);
       .coverage {
         font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
         margin: 0 0 28px;
+      }
+      .headline-block {
+        margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 4px solid var(--t-edu); border-radius: 3px;
+      }
+      .headline-value {
+        font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
+        color: var(--t-edu); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      }
+      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
+      .headline-link {
+        display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace;
+        font-size: 12px; color: var(--t-edu);
       }
       h2 {
         font-size: 1.15rem; margin: 40px 0 4px; padding-top: 18px;
@@ -214,22 +232,36 @@ const newestVintage = Math.max(...allPeriods);
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Éducation</h1>
       <p class="lede">
-        Achèvement scolaire, scolarisation, rétention et alphabétisation —
+        Scolarisation, rétention, achèvement scolaire et alphabétisation —
         tout ce que l'UNESCO Institut de statistique (UIS) publie pour la
-        République centrafricaine. Niveau national uniquement pour l'instant ;
-        rien par région ni par préfecture.
+        République centrafricaine, dans l'ordre du parcours d'un élève.
+        Niveau national uniquement pour l'instant ; rien par région ni par
+        préfecture.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
         niveau le plus fin : pays
       </p>
 
+      <div class="headline-block">
+        <div class="headline-value">
+          {fmt(data.headline.latest.value)}<span class="unit">%</span>
+          <span class={`badge ${data.headline.latest.quality_flag}`}>{data.headline.latest.quality_flag}</span>
+        </div>
+        <p class="headline-caption">{data.headline.name_fr}, {data.headline.latest.period} — le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
+        <p class="sentence">
+          {data.headline.lead_sentence}
+          <span class="sentence-tag">phrase générée · gabarit {data.headline.lead_sentence_template_id}</span>
+        </p>
+        <a class="headline-link" href="#achevement">Détail, sources et désaccord avec l'estimation modélisée ↓</a>
+      </div>
+
       {data.categories.map((category) => {
         const disclosureIndicators = category.indicators.filter((ind) => "national" in ind);
         const simpleIndicators = category.indicators.filter((ind) => !("national" in ind));
         return (
           <>
-            <h2>{category.label_fr}</h2>
+            <h2 id={category.key}>{category.label_fr}</h2>
             {disclosureIndicators.length > 0 && (
               <p class="category-note">
                 {disclosureIndicators.length === 1 ? "Un indicateur" : `${disclosureIndicators.length} indicateurs`} ci-dessous
