@@ -31,9 +31,10 @@
 // one of the two still linked from the home page's top-level nav;
 // agriculture and prix are reached through it (their footer cross-links on
 // every other page are unchanged). Cards ordered agriculture then prix,
-// both right after Production; agriculture is a GDP sector (fits
-// naturally next to "how big is the economy"), prix is the price/value
-// side of the same production. See docs/decisions.md.
+// injected right after whichever category renders first in data.categories
+// (production, originally - moved to right after finances publiques on
+// 2026-09-13 request, see the category.key check below and
+// export_economie_json.py's CATEGORIES order). See docs/decisions.md.
 import data from "../data/economie.json";
 import prixData from "../data/prix.json";
 import agricultureData from "../data/agriculture.json";
@@ -253,7 +254,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Économie</h1>
       <p class="lede">
-        Production, commerce extérieur, finances publiques et niveau de vie,
+        Production, finances publiques, commerce extérieur et niveau de vie,
         avec des données de la Banque mondiale portant sur l'ensemble du
         pays (aucune ventilation par région ou préfecture). Prix et
         agriculture sont des thèmes complets à part entière, résumés
@@ -360,7 +361,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
             })}
           </div>
 
-          {category.key === "production" && (
+          {category.key === "finances_publiques" && (
             <>
               <h2>Secteur agricole</h2>
               <p class="category-note">
