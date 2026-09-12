@@ -42,10 +42,16 @@ SURVEY_SOURCE = "unesco-uis-completion-survey"
 MODELLED_SOURCE = "unesco-uis-completion-modelled"
 ADMIN_SOURCE = "unesco-uis-education-administrative"
 LITERACY_SOURCE = "unesco-uis-literacy"
+OOS_MODELLED_SOURCE = "unesco-uis-outofschool-modelled"
 
 # UIS code -> (indicator_id, source_id, quality_flag). Every code below was
 # confirmed to return real, non-empty records for geoUnit=CAF before being
-# added -- see docs/decisions.md for the discovery method.
+# added -- see docs/decisions.md for the discovery method. Every *.MOD.*
+# family was explicitly checked for a modelled counterpart before a plain
+# indicator was accepted as "this is genuinely all UIS has" -- found for
+# completion and out-of-school (extends coverage to 2025), not found for
+# enrollment ratios, repetition or survival (those really do stop at their
+# last administrative year, 2011-2017).
 INDICATORS = {
     "CR.1": ("taux_achevement_primaire", SURVEY_SOURCE, "enquete"),
     "CR.MOD.1": ("taux_achevement_primaire", MODELLED_SOURCE, "estime"),
@@ -61,7 +67,11 @@ INDICATORS = {
     "REPR.1.CP": ("taux_redoublement_primaire", ADMIN_SOURCE, "administratif"),
     "SR.1.GLAST.CP": ("taux_survie_primaire", ADMIN_SOURCE, "administratif"),
     "ROFST.1.CP": ("taux_non_scolarisation_primaire", ADMIN_SOURCE, "administratif"),
+    "ROFST.MOD.1": ("taux_non_scolarisation_primaire", OOS_MODELLED_SOURCE, "estime"),
     "ROFST.2.CP": ("taux_non_scolarisation_secondaire_1er_cycle", ADMIN_SOURCE, "administratif"),
+    "ROFST.MOD.2": ("taux_non_scolarisation_secondaire_1er_cycle", OOS_MODELLED_SOURCE, "estime"),
+    "ROFST.3.CP": ("taux_non_scolarisation_secondaire_2nd_cycle", ADMIN_SOURCE, "administratif"),
+    "ROFST.MOD.3": ("taux_non_scolarisation_secondaire_2nd_cycle", OOS_MODELLED_SOURCE, "estime"),
     "LR.AG15T24": ("taux_alphabetisation_jeunes", LITERACY_SOURCE, "enquete"),
     "LR.AG15T99": ("taux_alphabetisation_adultes", LITERACY_SOURCE, "enquete"),
 }
@@ -74,6 +84,10 @@ NOTES_BY_SOURCE = {
     MODELLED_SOURCE: (
         "Estimation modélisée/interpolée par l'UIS pour combler les "
         "années sans enquête."
+    ),
+    OOS_MODELLED_SOURCE: (
+        "Estimation modélisée/interpolée par l'UIS, distincte de la donnée "
+        "administrative officielle du même indicateur."
     ),
     ADMIN_SOURCE: (
         "Donnée administrative nationale (annuaire scolaire) compilée "

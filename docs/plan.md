@@ -603,11 +603,11 @@ originally planned, then widened well past the original single-indicator
 scope — the ICASEES education yearbooks (Excel) hit apparent rate-limiting
 mid-session (`docs/verification-debt.md`) and were paused rather than pushed
 further; UNESCO UIS's Data API was used instead, and turned out to have real
-CAF data across 14 indicators (completion, enrollment, retention, literacy),
+CAF data across 15 indicators (completion, enrollment, retention, literacy),
 confirmed live rather than assumed from the catalogue — see
 `docs/decisions.md`. Population, prix and infrastructures still have only one
 indicator each — "at least two indicators" per theme is met for éducation
-(14) but not the other three themes yet. ICASEES yearbooks remain a real
+(15) but not the other three themes yet. ICASEES yearbooks remain a real
 to-do, not abandoned — the education page's "Ce qui n'est pas mesuré" section
 names exam results specifically as still missing.
 

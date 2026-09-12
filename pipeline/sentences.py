@@ -149,13 +149,6 @@ EDUCATION_RATE_LABELS = {
     ),
     "taux_redoublement_primaire": "le taux de redoublement dans le primaire",
     "taux_survie_primaire": "le taux de survie jusqu'à la dernière année du primaire",
-    "taux_non_scolarisation_primaire": (
-        "le taux de non-scolarisation des enfants d'âge du primaire"
-    ),
-    "taux_non_scolarisation_secondaire_1er_cycle": (
-        "le taux de non-scolarisation des adolescents d'âge "
-        "du premier cycle du secondaire"
-    ),
     "taux_alphabetisation_jeunes": "le taux d'alphabétisation des jeunes de 15 à 24 ans",
     "taux_alphabetisation_adultes": "le taux d'alphabétisation des adultes de 15 ans et plus",
 }
@@ -169,3 +162,36 @@ def sentence_education_rate(indicator_id: str, period: str, value: float) -> tup
         f"s'établissait à {value_fr}%."
     )
     return text, f"{indicator_id}_pays"
+
+
+# group_label_fr must fit "des {group_label_fr} n'était pas scolarisée"
+# grammatically -- checked by hand against these 3 real cases.
+OUT_OF_SCHOOL_GROUP_LABELS = {
+    "taux_non_scolarisation_primaire": "enfants d'âge du primaire",
+    "taux_non_scolarisation_secondaire_1er_cycle": (
+        "adolescents d'âge du premier cycle du secondaire"
+    ),
+    "taux_non_scolarisation_secondaire_2nd_cycle": "jeunes d'âge du second cycle du secondaire",
+}
+
+
+def sentence_out_of_school(
+    indicator_id: str, period: str, value: float, quality_flag: str
+) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    group = OUT_OF_SCHOOL_GROUP_LABELS[indicator_id]
+    if quality_flag == "administratif":
+        text = (
+            f"En {period}, {value_fr}% des {group} n'étaient pas scolarisés "
+            f"en République centrafricaine, selon la dernière donnée "
+            f"administrative disponible."
+        )
+        template_id = f"{indicator_id}_pays_administratif"
+    else:
+        text = (
+            f"En {period}, {value_fr}% des {group} n'auraient pas été "
+            f"scolarisés en République centrafricaine, selon une "
+            f"estimation modélisée."
+        )
+        template_id = f"{indicator_id}_pays_estime"
+    return text, template_id

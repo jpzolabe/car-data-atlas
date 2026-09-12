@@ -54,6 +54,12 @@ function sparkline(series: { period: string; value: number }[]) {
   };
 }
 
+function qualityLabel(flag: string): string {
+  if (flag === "enquete") return "enquête nationale";
+  if (flag === "administratif") return "donnée administrative";
+  return "estimation modélisée";
+}
+
 const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.length, 0);
 const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
 const oldestVintage = Math.min(...allPeriods);
@@ -218,128 +224,134 @@ const newestVintage = Math.max(...allPeriods);
         niveau le plus fin : pays
       </p>
 
-      {data.categories.map((category) => (
-        <>
-          <h2>{category.label_fr}</h2>
-
-          {category.key === "achevement" ? (
-            <>
+      {data.categories.map((category) => {
+        const disclosureIndicators = category.indicators.filter((ind) => "national" in ind);
+        const simpleIndicators = category.indicators.filter((ind) => !("national" in ind));
+        return (
+          <>
+            <h2>{category.label_fr}</h2>
+            {disclosureIndicators.length > 0 && (
               <p class="category-note">
-                Trois niveaux, deux sources qui ne s'accordent pas toujours :
-                une enquête nationale à quatre points dans le temps, et une
-                estimation modélisée annuelle publiée par l'UIS.
+                {disclosureIndicators.length === 1 ? "Un indicateur" : `${disclosureIndicators.length} indicateurs`} ci-dessous
+                {" "}{disclosureIndicators.length === 1 ? "a" : "ont"} deux sources qui ne s'accordent pas toujours : une donnée
+                de référence à quelques points dans le temps, et une estimation modélisée annuelle publiée par l'UIS qui va
+                jusqu'à 2025 — c'est elle qui rend le graphique plus récent que le chiffre affiché en gros.
               </p>
-              {category.indicators.map((ind) => {
-                const spark = sparkline(ind.series);
-                const stale = isStale(ind.indicator_id, ind.latest.period);
-                return (
-                  <div class="national-figure">
-                    <p class="indicator-name">{ind.name_fr}</p>
-                    <div class="national-value">
-                      {fmt(ind.latest.value)}<span class="unit">%</span>
-                      <span class="badge enquete">enquête</span>
-                      {stale && <span class="badge stale">ancien</span>}
-                    </div>
-                    <div class="national-meta">
-                      {ind.national.headline.producer} — {ind.national.headline.dataset_name}, {ind.national.headline.period}
-                    </div>
-                    <p class="sentence">
-                      {ind.lead_sentence}
-                      <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
+            )}
+
+            {disclosureIndicators.map((ind) => {
+              const spark = sparkline(ind.series);
+              const stale = isStale(ind.indicator_id, ind.latest.period);
+              const headlineLabel = qualityLabel(ind.latest.quality_flag);
+              return (
+                <div class="national-figure">
+                  <p class="indicator-name">{ind.name_fr}</p>
+                  <div class="national-value">
+                    {fmt(ind.latest.value)}<span class="unit">%</span>
+                    <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                    {stale && <span class="badge stale">ancien</span>}
+                  </div>
+                  <div class="national-meta">
+                    {ind.national.headline.producer} — {ind.national.headline.dataset_name}, {ind.national.headline.period}
+                  </div>
+                  <p class="sentence">
+                    {ind.lead_sentence}
+                    <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
+                  </p>
+                  <svg class="completion-chart" viewBox={`0 0 460 100`} role="img" aria-label={`${ind.name_fr}, estimation modélisée avec points de ${headlineLabel} superposés`}>
+                    <line class="gridline" x1="34" y1={spark.yTick} x2="450" y2={spark.yTick} />
+                    <line class="gridline" x1="34" y1={spark.yZero} x2="450" y2={spark.yZero} />
+                    <text class="axis-label" x="30" y={spark.yZero + 3} text-anchor="end">0%</text>
+                    <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
+                    <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
+                    <polyline class="line-modelled" points={spark.points} />
+                    {ind.survey_points.map((d) => {
+                      const idx = ind.series.findIndex((s) => s.period === d.period);
+                      if (idx === -1) return null;
+                      const px = 34 + (idx / Math.max(ind.series.length - 1, 1)) * (460 - 34 - 10);
+                      const py = 10 + (100 - 10 - 18) - ((d.value - 0) / (Math.max(...ind.series.map((s) => s.value)) * 1.1)) * (100 - 10 - 18);
+                      return <circle class="survey-point" cx={px} cy={py} r="4" />;
+                    })}
+                  </svg>
+                  <div class="chart-legend">
+                    <span><span class="swatch" style="background:var(--t-edu);border-top:2px dashed var(--t-edu);height:0;opacity:0.75;"></span>estimation modélisée (UIS)</span>
+                    <span><span class="swatch-dot"></span>{headlineLabel}</span>
+                  </div>
+                  <details class="disclosure">
+                    <summary>2 sources — écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                    <table class="disclosure-table">
+                      <thead><tr><th>Valeur</th><th>Statut</th><th>Période</th></tr></thead>
+                      <tbody>
+                        {ind.national.all_sources.map((s) => (
+                          <tr>
+                            <td class="num">{fmt(s.value)}%</td>
+                            <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                            <td>{s.period}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p class="disclosure-note">
+                      Écart calculé entre la {headlineLabel} et l'estimation
+                      modélisée pour la même année, pas contre la dernière
+                      année modélisée disponible. Classement d'autorité :
+                      {" "}{headlineLabel} &gt; estimation modélisée
+                      internationale — voir <a href="/methode/#classement">Méthode</a>.
                     </p>
-                    <svg class="completion-chart" viewBox={`0 0 460 100`} role="img" aria-label={`${ind.name_fr}, estimation modélisée avec points d'enquête réels superposés`}>
-                      <line class="gridline" x1="34" y1={spark.yTick} x2="450" y2={spark.yTick} />
-                      <line class="gridline" x1="34" y1={spark.yZero} x2="450" y2={spark.yZero} />
-                      <text class="axis-label" x="30" y={spark.yZero + 3} text-anchor="end">0%</text>
-                      <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
-                      <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
-                      <polyline class="line-modelled" points={spark.points} />
-                      {ind.survey_points.map((d) => {
-                        const idx = ind.series.findIndex((s) => s.period === d.period);
-                        if (idx === -1) return null;
-                        const px = 34 + (idx / Math.max(ind.series.length - 1, 1)) * (460 - 34 - 10);
-                        const py = 10 + (100 - 10 - 18) - ((d.value - 0) / (Math.max(...ind.series.map((s) => s.value)) * 1.1)) * (100 - 10 - 18);
-                        return <circle class="survey-point" cx={px} cy={py} r="4" />;
-                      })}
-                    </svg>
-                    <div class="chart-legend">
-                      <span><span class="swatch" style="background:var(--t-edu);border-top:2px dashed var(--t-edu);height:0;opacity:0.75;"></span>estimation modélisée (UIS)</span>
-                      <span><span class="swatch-dot"></span>enquête nationale</span>
-                    </div>
-                    <details class="disclosure">
-                      <summary>2 sources — écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
-                      <table class="disclosure-table">
-                        <thead><tr><th>Valeur</th><th>Statut</th><th>Période</th></tr></thead>
-                        <tbody>
-                          {ind.national.all_sources.map((s) => (
-                            <tr>
-                              <td class="num">{fmt(s.value)}%</td>
-                              <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
-                              <td>{s.period}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <p class="disclosure-note">
-                        Écart calculé entre l'enquête et l'estimation modélisée
-                        pour la même année, pas contre la dernière année
-                        modélisée disponible. Classement d'autorité : enquête
-                        nationale &gt; estimation modélisée internationale —
-                        voir <a href="/methode/#classement">Méthode</a>.
+                  </details>
+                  <span style="font-size:11.5px;color:var(--ink-faint);display:block;margin-top:10px;">
+                    {headlineLabel === "estimation modélisée" ? "Source" : headlineLabel.charAt(0).toUpperCase() + headlineLabel.slice(1)} : {ind.source_survey.dataset_name}, récupéré le {ind.source_survey.retrieved_at}, <a href={ind.source_survey.url}>{ind.source_survey.url}</a>.
+                    Modèle : récupéré le {ind.source.retrieved_at}, <a href={ind.source.url}>{ind.source.url}</a>.
+                  </span>
+                </div>
+              );
+            })}
+
+            {simpleIndicators.length > 0 && (
+              <div class="indicator-grid">
+                {simpleIndicators.map((ind) => {
+                  const spark = sparkline(ind.series);
+                  const stale = isStale(ind.indicator_id, ind.latest.period);
+                  return (
+                    <div class="indicator-card">
+                      <p class="indicator-name">{ind.name_fr}</p>
+                      <div class="indicator-value">
+                        {fmt(ind.latest.value)}<span class="unit">%, {ind.latest.period}</span>
+                        <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                        {stale && <span class="badge stale">ancien</span>}
+                      </div>
+                      <div class="indicator-meta">Niveau le plus fin : pays</div>
+                      <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                        <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
+                        <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
+                        <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">0%</text>
+                        <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                        <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                        <polyline class="spark-line" points={spark.points} />
+                      </svg>
+                      <p class="sentence">
+                        {ind.lead_sentence}
+                        <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
                       </p>
-                    </details>
-                    <span style="font-size:11.5px;color:var(--ink-faint);display:block;margin-top:10px;">
-                      Enquête : {ind.source_survey.dataset_name}, récupéré le {ind.source_survey.retrieved_at}, <a href={ind.source_survey.url}>{ind.source_survey.url}</a>.
-                      Modèle : récupéré le {ind.source.retrieved_at}, <a href={ind.source.url}>{ind.source.url}</a>.
-                    </span>
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <div class="indicator-grid">
-              {category.indicators.map((ind) => {
-                const spark = sparkline(ind.series);
-                const stale = isStale(ind.indicator_id, ind.latest.period);
-                return (
-                  <div class="indicator-card">
-                    <p class="indicator-name">{ind.name_fr}</p>
-                    <div class="indicator-value">
-                      {fmt(ind.latest.value)}<span class="unit">%, {ind.latest.period}</span>
-                      <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
-                      {stale && <span class="badge stale">ancien</span>}
+                      <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
+                        {ind.source.producer} — {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
+                      </span>
                     </div>
-                    <div class="indicator-meta">Niveau le plus fin : pays</div>
-                    <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                      <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
-                      <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
-                      <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">0%</text>
-                      <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                      <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-                      <polyline class="spark-line" points={spark.points} />
-                    </svg>
-                    <p class="sentence">
-                      {ind.lead_sentence}
-                      <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
-                    </p>
-                    <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
-                      {ind.source.producer} — {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </>
-      ))}
+                  );
+                })}
+              </div>
+            )}
+          </>
+        );
+      })}
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les 14 indicateurs sont tous nationaux ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
+        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
         <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse — l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
         <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) — l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été mise en pause cette session après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
         <li>Aucune donnée sur les infrastructures scolaires (nombre d'écoles, points d'eau, latrines) ni sur les dépenses publiques d'éducation.</li>
-        <li>La plupart des indicateurs ci-dessus datent de 2011 à 2019 — aucun n'est réellement récent. C'est un constat, pas un artefact d'affichage : l'UIS lui-même n'a rien de plus frais pour la RCA sur ces indicateurs au moment de la récupération (2026-09-12).</li>
+        <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) — l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
       </ul>
 
       <footer>

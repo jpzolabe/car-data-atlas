@@ -1,12 +1,14 @@
 """Materialize all education-theme indicators as JSON for the Astro site.
 
 Widened from a single indicator (taux_achevement_primaire) to the full set
-fetched by pipeline/fetch_education.py -- 14 indicators across 4 categories.
-The 3 completion indicators keep the national multi-source disclosure block
-(survey vs. modelled, a real disagreement); the other 11 have one source each
-so far and get a plain latest-value-plus-series treatment. Same CSV -> DuckDB
--> JSON handoff as every other export script (docs/decisions.md) -- Astro
-reads this file directly, never the raw CSVs.
+fetched by pipeline/fetch_education.py -- 15 indicators across 4 categories.
+6 indicators (3 completion levels + 3 out-of-school levels) keep the national
+multi-source disclosure block: a higher-authority point-in-time series
+(survey for completion, administrative for out-of-school) against UIS's own
+denser modelled series -- a real disagreement, not manufactured. The other 9
+have one source each so far and get a plain latest-value-plus-series
+treatment. Same CSV -> DuckDB -> JSON handoff as every other export script
+(docs/decisions.md) -- Astro reads this file directly, never the raw CSVs.
 
 Usage: uv run python -m pipeline.export_education_json
 Output: site/src/data/education.json
@@ -16,7 +18,11 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_completion, sentence_education_rate
+from pipeline.sentences import (
+    sentence_completion,
+    sentence_education_rate,
+    sentence_out_of_school,
+)
 
 OUT_PATH = "site/src/data/education.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
@@ -26,8 +32,25 @@ COMPLETION_INDICATORS = [
     "taux_achevement_secondaire_1er_cycle",
     "taux_achevement_secondaire_2nd_cycle",
 ]
-SURVEY_SOURCE = "unesco-uis-completion-survey"
-MODELLED_SOURCE = "unesco-uis-completion-modelled"
+OUT_OF_SCHOOL_INDICATORS = [
+    "taux_non_scolarisation_primaire",
+    "taux_non_scolarisation_secondaire_1er_cycle",
+    "taux_non_scolarisation_secondaire_2nd_cycle",
+]
+DISCLOSURE_CONFIG = {
+    **{
+        i: ("unesco-uis-completion-survey", "unesco-uis-completion-modelled", sentence_completion)
+        for i in COMPLETION_INDICATORS
+    },
+    **{
+        i: (
+            "unesco-uis-education-administrative",
+            "unesco-uis-outofschool-modelled",
+            sentence_out_of_school,
+        )
+        for i in OUT_OF_SCHOOL_INDICATORS
+    },
+}
 
 CATEGORIES = [
     ("achevement", "Achèvement scolaire", COMPLETION_INDICATORS),
@@ -41,8 +64,7 @@ CATEGORIES = [
     ("retention", "Rétention et abandon", [
         "taux_redoublement_primaire",
         "taux_survie_primaire",
-        "taux_non_scolarisation_primaire",
-        "taux_non_scolarisation_secondaire_1er_cycle",
+        *OUT_OF_SCHOOL_INDICATORS,
     ]),
     ("alphabetisation", "Alphabétisation", [
         "taux_alphabetisation_jeunes",
@@ -51,7 +73,8 @@ CATEGORIES = [
 ]
 
 
-def build_completion_indicator(con, indicator_id: str) -> dict:
+def build_disclosure_indicator(con, indicator_id: str) -> dict:
+    headline_source, modelled_source, sentence_fn = DISCLOSURE_CONFIG[indicator_id]
     rows = con.execute("""
         select o.period, o.value, o.quality_flag, s.producer, s.dataset_name,
                s.source_id, s.url, s.retrieved_at::varchar
@@ -61,17 +84,17 @@ def build_completion_indicator(con, indicator_id: str) -> dict:
         order by o.period desc
     """, [COUNTRY_ID, indicator_id]).fetchall()
 
-    survey_rows = [r for r in rows if r[5] == SURVEY_SOURCE]
-    modelled_rows = [r for r in rows if r[5] == MODELLED_SOURCE]
+    headline_rows = [r for r in rows if r[5] == headline_source]
+    modelled_rows = [r for r in rows if r[5] == modelled_source]
 
-    headline = survey_rows[0]
+    headline = headline_rows[0]
     same_year_modelled = next(r for r in modelled_rows if r[0] == headline[0])
     spread_pct = abs(headline[1] - same_year_modelled[1]) / same_year_modelled[1] * 100
 
-    survey_periods = {r[0] for r in survey_rows}
-    comparable_modelled = [r for r in modelled_rows if r[0] in survey_periods]
+    headline_periods = {r[0] for r in headline_rows}
+    comparable_modelled = [r for r in modelled_rows if r[0] in headline_periods]
 
-    lead_text, lead_template_id = sentence_completion(
+    lead_text, lead_template_id = sentence_fn(
         indicator_id, headline[0], headline[1], headline[2]
     )
 
@@ -90,7 +113,9 @@ def build_completion_indicator(con, indicator_id: str) -> dict:
                     "value": r[1], "period": r[0], "quality_flag": r[2],
                     "producer": r[3], "dataset_name": r[4], "url": r[6],
                 }
-                for r in sorted(survey_rows + comparable_modelled, key=lambda r: r[0], reverse=True)
+                for r in sorted(
+                    headline_rows + comparable_modelled, key=lambda r: r[0], reverse=True
+                )
             ],
         },
         "series": sorted(
@@ -98,7 +123,7 @@ def build_completion_indicator(con, indicator_id: str) -> dict:
             key=lambda d: d["period"],
         ),
         "survey_points": sorted(
-            [{"period": r[0], "value": r[1]} for r in survey_rows],
+            [{"period": r[0], "value": r[1]} for r in headline_rows],
             key=lambda d: d["period"],
         ),
         "lead_sentence": lead_text,
@@ -108,8 +133,8 @@ def build_completion_indicator(con, indicator_id: str) -> dict:
             "url": modelled_rows[0][6], "retrieved_at": modelled_rows[0][7],
         },
         "source_survey": {
-            "producer": survey_rows[0][3], "dataset_name": survey_rows[0][4],
-            "url": survey_rows[0][6], "retrieved_at": survey_rows[0][7],
+            "producer": headline_rows[0][3], "dataset_name": headline_rows[0][4],
+            "url": headline_rows[0][6], "retrieved_at": headline_rows[0][7],
         },
     }
 
@@ -157,8 +182,8 @@ def main():
     for key, label, indicator_ids in CATEGORIES:
         indicator_blocks = []
         for indicator_id in indicator_ids:
-            if indicator_id in COMPLETION_INDICATORS:
-                block = build_completion_indicator(con, indicator_id)
+            if indicator_id in DISCLOSURE_CONFIG:
+                block = build_disclosure_indicator(con, indicator_id)
             else:
                 block = build_simple_indicator(con, indicator_id)
             block["name_fr"] = names[indicator_id]
