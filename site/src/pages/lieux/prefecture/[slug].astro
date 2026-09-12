@@ -86,27 +86,18 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
     <title>{place.name_fr} - BêAfrîka Data</title>
     <style>
       :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-lieu: #D4A574;
+        --stale: #E2694A; --stale-soft: #3A211A;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
+      }
+      :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-lieu: #8B5E3C;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-          --ink-faint: #6E7161; --line: #33362A;
-          --t-lieu: #D4A574;
-          --stale: #E2694A; --stale-soft: #3A211A;
-          --ochre: #E0A83D; --ochre-soft: #3A2E12;
-        }
-      }
-      :root[data-theme="dark"] {
-        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-        --ink-faint: #6E7161; --line: #33362A;
-        --t-lieu: #D4A574;
-        --stale: #E2694A; --stale-soft: #3A211A;
-        --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {

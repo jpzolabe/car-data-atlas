@@ -1890,3 +1890,43 @@ LF, matching the other two CSVs. Lesson for next time: if
 looks fine to the eye and to Python's own `csv` module, check line-ending
 consistency (`grep -c $'\r'` vs. total line count) before assuming the
 content itself is at fault.
+
+## Dark mode becomes the default, and the dark background gets lighter
+
+Two related requests on 2026-09-13: make dark mode the site's default
+(not just an OS-follow option), and the dark background itself read as
+"too black" - wanted something closer to dark gray.
+
+Previously every page's dark palette lived behind two guards: a
+`@media (prefers-color-scheme: dark)` block (for visitors whose OS
+prefers dark and haven't chosen explicitly) and a `:root[data-theme="dark"]`
+block (for an explicit in-page choice) - the bare `:root` was always the
+light palette, meaning an OS-light visitor with no stored preference saw
+light by default. Making dark unconditionally the default meant flipping
+which selector is which: the bare `:root` on all 14 page templates now
+*is* the dark palette, with `:root[data-theme="light"]` as the explicit
+opt-out; the `@media` block is gone entirely since there's no OS-conditional
+behavior left to express. This also means dark applies correctly even
+with JavaScript disabled - the old approach depended on ThemeInit.astro's
+inline script to stamp `data-theme`, which never ran for a no-JS visitor.
+
+`ThemeToggle.astro` simplified from a 3-state Auto/Clair/Sombre cycle to
+a plain Sombre/Clair toggle: "Auto" (follow OS) doesn't mean anything
+coherent anymore once the default is unconditionally dark rather than
+OS-dependent. Choosing Clair stores that choice and stamps the attribute;
+choosing Sombre again just clears both, falling back to the new default
+rather than storing a redundant explicit "dark" - localStorage only ever
+holds "light" or nothing now. `ThemeInit.astro` shrank to match: it only
+needs to handle the one opt-out case (a stored "light" preference) before
+first paint, since dark needs no attribute to render.
+
+For the "too black" background itself: `--paper` (page background) moves
+from `#171912` (~8% lightness) to `#23251F` (~14%), and `--surface` (card
+background) from `#1F221A` to `#2B2E27`, keeping the same warm,
+slightly-green undertone as the rest of the palette rather than jumping
+to a cold neutral gray that would clash with the site's ochre/indigo
+accents. Applied identically across all 14 page templates via a script
+(the dark-value block was character-identical across every file, verified
+per-file before rewriting) rather than by hand, to guarantee consistency;
+verified afterward that no `#171912`/`#1F221A` or `prefers-color-scheme`
+reference survived anywhere in `site/src/pages/`.

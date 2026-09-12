@@ -55,24 +55,16 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     <title>Santé - BêAfrîka Data</title>
     <style>
       :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-sante: #4FC7C5;
+        --stale: #E2694A; --stale-soft: #3A211A;
+      }
+      :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-sante: #0E7C7B;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-          --ink-faint: #6E7161; --line: #33362A;
-          --t-sante: #4FC7C5;
-          --stale: #E2694A; --stale-soft: #3A211A;
-        }
-      }
-      :root[data-theme="dark"] {
-        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-        --ink-faint: #6E7161; --line: #33362A;
-        --t-sante: #4FC7C5;
-        --stale: #E2694A; --stale-soft: #3A211A;
       }
       * { box-sizing: border-box; }
       body {
