@@ -8,7 +8,7 @@ Texte complet de la licence : https://creativecommons.org/licenses/by/4.0/legalc
 Résumé en français : https://creativecommons.org/licenses/by/4.0/deed.fr
 
 Cette licence correspond à celle sous laquelle l'ICASEES (Institut Centrafricain des
-Statistiques et des Études Économiques et Sociales) publie ses propres données —
+Statistiques et des Études Économiques et Sociales) publie ses propres données -
 voir `CLAUDE.md`. Ce projet republie et enrichit ce contenu (rattachement
 géographique, historique, indication de fraîcheur) sans en changer les conditions de
 réutilisation.
@@ -21,7 +21,7 @@ fins commerciales, à condition de créditer la source.
 ## Attribution
 
 Pour toute donnée dont la source est ICASEES, l'attribution à l'ICASEES doit être
-conservée — voir la ligne de source affichée sur chaque page du site, et
+conservée - voir la ligne de source affichée sur chaque page du site, et
 `data/sources.csv` pour le détail par jeu de données.
 
 ## Restrictions par source
@@ -34,4 +34,4 @@ de republier les données elles-mêmes.
 
 ## Le code
 
-Le code de ce dépôt (`pipeline/`, `site/`) est sous licence MIT — voir `LICENSE`.
+Le code de ce dépôt (`pipeline/`, `site/`) est sous licence MIT - voir `LICENSE`.

@@ -1,6 +1,6 @@
 ---
 // Second real content page. Chart geometry is computed here, at build time,
-// from the JSON pipeline/export_prix_json.py materializes — no chart library
+// from the JSON pipeline/export_prix_json.py materializes - no chart library
 // ships to the client (CLAUDE.md's non-negotiable). See docs/decisions.md for
 // why this is hand-computed rather than Observable Plot for now.
 import data from "../data/prix.json";
@@ -63,7 +63,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Indice des prix à la consommation — Données RCA</title>
+    <title>Indice des prix à la consommation - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -105,7 +105,8 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px;
       }
-      .category-card .cat-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .category-card .cat-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .category-card .cat-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .category-card .cat-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-prix);
@@ -162,11 +163,13 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       </p>
 
       <p class="headline">{fmt(latest.value)}<span class="unit">indice, {latest.period}</span></p>
-      <p class="headline-meta">Donnée la plus récente disponible dans la série — pas nécessairement le mois en cours.</p>
+      <p class="headline-meta">{data.definition_fr}</p>
+      <p class="headline-meta">Donnée la plus récente disponible dans la série ; pas nécessairement le mois en cours.</p>
       <p class="inflation-stat">
         Inflation publiée : <strong>{fmt(inflationLatest.value)}%</strong> ({inflationLatest.period})
-        <span class="inflation-note">— chiffre publié par la source telle quelle ; voir la note ci-dessous.</span>
+        <span class="inflation-note">- chiffre publié par la source telle quelle ; voir la note ci-dessous.</span>
       </p>
+      <p class="inflation-note">{data.inflation.definition_fr}</p>
 
       <p class="sentence">
         {data.lead_sentence}
@@ -204,18 +207,18 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
 
       <p class="gap-note">
         Les valeurs de janvier 2015 à décembre 2019 ont été recalculées sur la base
-        2019 par la source elle-même, via un coefficient officiel — elles ne sont
+        2019 par la source elle-même, via un coefficient officiel - elles ne sont
         pas telles qu'originellement publiées. Voir
         <code>docs/verification-debt.md</code>. Le taux d'inflation ci-dessus est
         publié tel quel par la source : une recomputation glissement mensuel ou
         annuel à partir de l'indice global ne reproduit pas cette colonne, et sa
-        méthodologie exacte n'est pas confirmée — voir
+        méthodologie exacte n'est pas confirmée - voir
         <code>docs/verification-debt.md</code>.
       </p>
 
       <h2>Par fonction (COICOP)</h2>
       <p class="category-grid-note">
-        3 des 12 fonctions de l'IHPC — les autres (habillement, logement,
+        3 des 12 fonctions de l'IHPC - les autres (habillement, logement,
         communications, loisirs, enseignement…) ne sont pas encore intégrées ;
         l'enseignement en particulier n'a que 76 des 136 mois renseignés dans
         le fichier source.
@@ -226,6 +229,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
           return (
             <div class="category-card">
               <p class="cat-name">{cat.name_fr}</p>
+              <p class="cat-definition">{cat.definition_fr}</p>
               <p class="cat-value">{fmt(cat.latest.value)}<span class="unit"> indice, {cat.latest.period}</span></p>
               <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${cat.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                 <polyline class="cat-spark-line" points={spark.points} />
@@ -241,7 +245,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       <h2>Denrées alimentaires au marché de Bangui</h2>
       <p class="category-grid-note">
         L'IHPC ci-dessus est un indice national. Ces 5 denrées sont des prix de
-        détail réels, relevés au {data.market.entity_name} — le marché, un point
+        détail réels, relevés au {data.market.entity_name} - le marché, un point
         précis et non une zone administrative, est le niveau géographique le
         plus fin que ce site couvre pour l'instant. 34 autres denrées et 40
         autres marchés existent dans la même source mais ne sont pas encore
@@ -253,6 +257,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
           return (
             <div class="category-card">
               <p class="cat-name">{d.name_fr}</p>
+              <p class="cat-definition">{d.definition_fr}</p>
               <p class="cat-value">{fmt(d.latest.value)}<span class="unit"> {d.unit}, {d.latest.period}</span></p>
               <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${d.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                 <polyline class="cat-spark-line" points={spark.points} />
@@ -265,12 +270,12 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         })}
       </div>
       <p class="gap-note">
-        Source distincte de l'IHPC ci-dessus : {data.market.source.producer} —
+        Source distincte de l'IHPC ci-dessus : {data.market.source.producer} -
         {" "}{data.market.source.dataset_name}. Récupéré le {data.market.source.retrieved_at}.
       </p>
 
       <footer>
-        Source : {data.source.producer} — {data.source.dataset_name}.
+        Source : {data.source.producer} - {data.source.dataset_name}.
         Récupéré le {data.source.retrieved_at}.
         <a href={data.source.url}>{data.source.url}</a>
         <nav class="site-nav">

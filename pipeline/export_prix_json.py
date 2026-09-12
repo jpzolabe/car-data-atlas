@@ -64,6 +64,7 @@ def main():
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
     units = dict(con.execute("select indicator_id, unit from indicators").fetchall())
+    definitions = dict(con.execute("select indicator_id, definition_fr from indicators").fetchall())
 
     rows = fetch_series(con, "prix_ihpc_global")
 
@@ -87,6 +88,7 @@ def main():
         inflation_latest[0], inflation_latest[1]
     )
     inflation = {
+        "definition_fr": definitions["taux_inflation"],
         "latest": {"period": inflation_latest[0], "value": inflation_latest[1]},
         "series": [{"period": r[0], "value": r[1]} for r in inflation_rows],
         "lead_sentence": inflation_lead,
@@ -103,6 +105,7 @@ def main():
         categories.append({
             "indicator_id": indicator_id,
             "name_fr": names[indicator_id],
+            "definition_fr": definitions[indicator_id],
             "latest": {"period": cat_latest[0], "value": cat_latest[1]},
             "series": [{"period": r[0], "value": r[1]} for r in cat_rows],
             "lead_sentence": cat_lead,
@@ -125,6 +128,7 @@ def main():
         denrees.append({
             "indicator_id": indicator_id,
             "name_fr": names[indicator_id],
+            "definition_fr": definitions[indicator_id],
             "unit": units[indicator_id],
             "latest": {"period": d_latest[0], "value": d_latest[1]},
             "series": [{"period": r[0], "value": r[1]} for r in d_rows],
@@ -144,9 +148,10 @@ def main():
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
-            "pipeline/export_prix_json.py — ne pas éditer directement."
+            "pipeline/export_prix_json.py - ne pas éditer directement."
         ),
         "source": source_dict,
+        "definition_fr": definitions["prix_ihpc_global"],
         "lead_sentence": lead_text,
         "lead_sentence_template_id": lead_template_id,
         "series": [

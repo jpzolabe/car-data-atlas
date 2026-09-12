@@ -1,5 +1,5 @@
 """Materialize data/sources.csv as JSON for the /sources page. Same CSV -> JSON
-handoff pattern as the other export scripts — see docs/decisions.md.
+handoff pattern as the other export scripts - see docs/decisions.md.
 
 Usage: uv run python -m pipeline.export_sources_json
 Output: site/src/data/sources.json
@@ -30,7 +30,7 @@ def main():
     data = {
         "generated_note": (
             "Généré depuis data/sources.csv via "
-            "pipeline/export_sources_json.py — ne pas éditer directement."
+            "pipeline/export_sources_json.py - ne pas éditer directement."
         ),
         "sources": [dict(zip(cols, r, strict=True)) for r in rows],
     }

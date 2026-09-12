@@ -1,40 +1,40 @@
 # Decisions
 
-## 2026-09-12 — Theme pages built flat, not under /themes/ as the sitemap specifies
+## 2026-09-12 - Theme pages built flat, not under /themes/ as the sitemap specifies
 
 `docs/plan.md`'s site map puts theme pages under a `/themes/` prefix
 (`/themes/population`, `/themes/prix`, etc.), separate from place pages under
 `/lieux/`. The first two real pages were built flat instead (`/population`,
 `/prix`), matching the flat top-level pages (`/sources`, `/methode`) rather
-than the plan's nested structure — not a deliberate choice, just what
+than the plan's nested structure - not a deliberate choice, just what
 happened. Noticed while adding a third theme page (`/infrastructures`).
 
 **How to apply:** kept it flat for this third page too, to stay internally
 consistent (all existing theme pages flat) rather than create a third,
 mixed pattern (some flat, some nested) which would be worse than either
 option alone. A bulk rename to match the plan's `/themes/` structure is
-still on the table — cheap now (3 pages, no public URLs exist yet since
+still on the table - cheap now (3 pages, no public URLs exist yet since
 Cloudflare isn't connected), much more annoying once `/lieux/` place pages
 exist and there are real inbound links. Revisit before Phase 4 (descending
 to place pages) rather than after.
 
-## 2026-09-11 — CI silently never ran successfully until checked directly
+## 2026-09-11 - CI silently never ran successfully until checked directly
 
 `docs/plan.md`'s Phase 2 done-criteria requires the site to update "without manual
-work," which depends on CI actually running — nobody had checked whether it did.
+work," which depends on CI actually running - nobody had checked whether it did.
 It hadn't: the one run that existed (triggered by the first push, to `main`) had
 failed at `pnpm/action-setup@v4` with "No pnpm version is specified," and CI wasn't
 even configured to trigger on `develop`, where all the actual work was happening.
 
-Two real bugs, not one: (1) no pnpm version pinned anywhere — fixed via
+Two real bugs, not one: (1) no pnpm version pinned anywhere - fixed via
 `packageManager` in `site/package.json`. (2) `pnpm/action-setup@v4` reads
 `package.json` from the **repo root** by default, not from wherever a later step's
-`working-directory` happens to point — since this repo's `package.json` lives in
+`working-directory` happens to point - since this repo's `package.json` lives in
 `site/`, the action never found the version even after fix (1). Needed the action's
 own `package_json_file: site/package.json` input to point it at the right file.
 
 **How to apply:** a green CI badge or "it ran once" is not the same as "CI actually
-checks what gets pushed" — check the actual run logs, not just that a workflow file
+checks what gets pushed" - check the actual run logs, not just that a workflow file
 exists. Any GitHub Action with a "look for a file in the working directory" default
 needs an explicit path when the relevant file isn't at the repo root, which is the
 case for every Node-related step here (site/ is not the repo root).
@@ -42,7 +42,7 @@ case for every Node-related step here (site/ is not the repo root).
 Why the constraints in `CLAUDE.md` and `docs/plan.md` exist, so a future change to
 any of them is a deliberate decision rather than an accidental drift. Newest first.
 
-## 2026-09-04 — PDF-to-Claude-API extraction paused
+## 2026-09-04 - PDF-to-Claude-API extraction paused
 
 Irregular statistical-yearbook PDFs (the ones `pdfplumber` can't parse cleanly) were
 going to fall back to the Claude API on page images. That path is paused: it's the
@@ -54,7 +54,7 @@ it's worth turning on. Until revisited, PDFs that don't parse cleanly with
 
 **How to apply:** don't add an LLM call to the pipeline without this decision being
 revisited explicitly. If it is revisited, extracted rows must be spot-checked against
-the source PDF before entering `data/` — treat them as higher-risk than a PR from a
+the source PDF before entering `data/` - treat them as higher-risk than a PR from a
 scripted parser, not the same.
 
 ## Zero client JS / 150 KB page budget
@@ -71,7 +71,7 @@ which needs no JS at all).
 
 ## Astro over a simpler static-site generator
 
-The project isn't using Astro's main differentiator (islands / partial hydration) —
+The project isn't using Astro's main differentiator (islands / partial hydration) -
 every page today is fully static, which a simpler tool like Eleventy would also
 produce. Astro was chosen anyway because of the open question in `docs/plan.md`
 Part 8.3: whether to leave room for one interactive island later. Astro gives that
@@ -94,7 +94,7 @@ query-time DuckDB answer first. Don't add a server to solve a data-shape problem
 
 ## Charts: build-time SVG, generation method still open
 
-No charting library ships to the client — this part is fixed, and is the same
+No charting library ships to the client - this part is fixed, and is the same
 zero-JS reasoning as above applied specifically to charts. What's still open is
 *how* the SVG gets generated at build time: Observable Plot running server-side
 (via a DOM shim like `linkedom`) versus a small hand-written SVG-templating module.
@@ -105,7 +105,7 @@ number formatting and the freshness-colour system. Decide with a small spike of 
 before committing, in Phase 2.
 
 **How to apply:** don't treat "Observable Plot" as settled just because it's named
-in `CLAUDE.md` — the non-negotiable part is "no client-side charting library," not
+in `CLAUDE.md` - the non-negotiable part is "no client-side charting library," not
 the specific build-time tool.
 
 ## Two-language pipeline (Python) / site (Node) split
@@ -117,13 +117,13 @@ language to do both jobs would be worse in both directions than maintaining two
 toolchains for a solo maintainer.
 
 **How to apply:** the handoff between them is CSV/Parquet artifacts materialized by
-the Python pipeline (via DuckDB), consumed by Astro content collections — not a
+the Python pipeline (via DuckDB), consumed by Astro content collections - not a
 live API call from the site into Python at build or request time.
 
 ## CC BY 4.0 for data, MIT for code
 
 Data licence matches ICASEES's own licence for the underlying data this project
-republishes and adds provenance/geography scaffolding around — keeping the same
+republishes and adds provenance/geography scaffolding around - keeping the same
 licence keeps the attribution chain simple and avoids a licence mismatch on
 redistribution. MIT for code is a low-friction default for a project that wants
 outside contribution and reuse (the crosswalk in particular is meant to be useful to
@@ -150,17 +150,17 @@ it is.
 
 Stated in `CLAUDE.md` and `docs/plan.md` §2.8 as a *published, written* rule
 specifically so the site's default figure is never silently picked by the
-maintainer's judgement alone — a reader can check the rule and see why a given
+maintainer's judgement alone - a reader can check the rule and see why a given
 source won. Ties are broken by recency of **observation**, not recency of
 **publication**, because a re-published old estimate shouldn't outrank a genuinely
 newer one just because it appeared on the web more recently.
 
-## UNESCO UIS Data API — endpoint found via its own error message, not documentation
+## UNESCO UIS Data API - endpoint found via its own error message, not documentation
 
 Neither the UIS's public docs page (`api.uis.unesco.org/api/public/documentation/`,
 a Swagger UI that doesn't render as fetchable text) nor the Python `unesco_reader`
 package's own documentation spelled out the actual REST URL. The old bulk-download
-pattern (`download.uis.unesco.org/bdds/...`) 404s — UIS has moved off it. Resolved
+pattern (`download.uis.unesco.org/bdds/...`) 404s - UIS has moved off it. Resolved
 by requesting `api.uis.unesco.org/api/public/data/indicators` with no query
 parameters at all: it returns HTTP 400 with a JSON body naming its own required
 parameters (`geoUnit`, `indicator`), which was enough to construct a working call
@@ -168,14 +168,14 @@ directly (`?geoUnit=CAF&indicator=CR.1`). No API key required. Worth remembering
 as a technique generally: a REST API's own validation error is sometimes a faster
 path to its shape than either third-party docs or a wrapper library's source.
 
-## Education widened from 1 to 14 indicators — checked live per indicator, not assumed from the catalogue
+## Education widened from 1 to 14 indicators - checked live per indicator, not assumed from the catalogue
 
 CLAUDE.md's own indicator-ID example (`taux_achevement_primaire`) was illustrative,
-not a scope limit — stopping at one indicator when the same free, no-key API had
+not a scope limit - stopping at one indicator when the same free, no-key API had
 real CAF data across completion, enrollment, retention and literacy would have been
 under-building for no real reason. The UIS indicator catalogue
 (`/api/public/definitions/indicators`, ~5,000 entries) reports data availability
-*globally*, not per country — a candidate indicator can show thousands of records
+*globally*, not per country - a candidate indicator can show thousands of records
 worldwide and zero for CAF. Every one of the 17 UIS codes actually used here
 (`data/sources.csv`, `pipeline/fetch_education.py`) was confirmed by querying
 `?geoUnit=CAF&indicator=<code>` directly and checking for non-empty `records` before
@@ -185,7 +185,7 @@ comma-separated indicator list, so all 17 were fetched in one call.
 ## Education sources grouped by methodology family, not one row per indicator
 
 `data/sources.csv` has one row per *methodology*, not per indicator: completion
-(survey vs. modelled — already had 2 rows for the 1-indicator version, broadened to
+(survey vs. modelled - already had 2 rows for the 1-indicator version, broadened to
 cover 3 levels rather than renamed to 6), one row for the 9 administrative/EMIS-style
 indicators (enrollment ratios, repetition, survival, out-of-school), one for the 2
 literacy indicators. All 14 indicators share one producer and one API endpoint
@@ -193,7 +193,7 @@ pattern; a row per indicator would have been 14 near-identical rows saying the s
 thing about licence and access method 14 times. The administrative-family row is
 honest about what it doesn't know: the API response gives a value and a year, not a
 methodology tag, so whether each point is genuinely EMIS-administrative data or
-something else per-indicator isn't confirmed — logged in
+something else per-indicator isn't confirmed - logged in
 `docs/verification-debt.md` rather than asserted.
 
 ## Out-of-school rate widened again (14 -> 15 indicators) after a real gap was caught
@@ -227,17 +227,17 @@ verbatim in structure, and infrastructures.astro's build-time SVG line chart,
 overlaying the 4 real survey points as distinct markers on the denser modelled
 line rather than picking one series to show. The disclosure table itself only
 lists the 4 survey years paired with the modelled value for those *same* years
-(not all 45 modelled years) — comparing every modelled year against one survey
+(not all 45 modelled years) - comparing every modelled year against one survey
 year would conflate "these two sources disagree" with "time has passed," which
 is a different, less honest question.
 
 ## Education page reordered: one headline figure, then the student's actual path
 
 The 14-indicator version led with three large multi-source disclosure blocks
-(all 3 completion levels) immediately after the lede — the page's heaviest
+(all 3 completion levels) immediately after the lede - the page's heaviest
 content shown first, with no orienting summary. Two fixes: (1) a lightweight
 headline block (one number, one generated sentence, a link down to the full
-breakdown) now sits above the category sections, using primary completion —
+breakdown) now sits above the category sections, using primary completion -
 the single most legible "state of education" figure and the one CLAUDE.md's
 own indicator-ID example names. (2) The four categories were reordered from
 achievement-first (Achèvement, Scolarisation, Rétention, Alphabétisation) to
@@ -245,34 +245,34 @@ the actual causal chain a student goes through: Scolarisation (does a child
 enroll) → Rétention et abandon (do they stay, repeat, or drop out) →
 Achèvement scolaire (do they finish) → Alphabétisation (the long-run societal
 result). Leading with the outcome before the causes that produce it reads
-like starting a story at the ending — this generalizes beyond this one page:
+like starting a story at the ending - this generalizes beyond this one page:
 default to whatever order lets each section explain what feeds into the
 next, not whatever order the data happened to get fetched in.
 
-## Prix widened from 1 to 5 indicators — same file, zero new sourcing
+## Prix widened from 1 to 5 indicators - same file, zero new sourcing
 
 Part of a deliberate pass to bring population/prix/infrastructures up
 towards éducation's depth (all three had exactly one indicator). Unlike
 éducation's UIS widening, this cost nothing in new sourcing: the IHPC
 dashboard file (`pipeline/fetch_ihpc.py`) already downloaded for
 `prix_ihpc_global` has 12 COICOP sub-category rows and a published
-"Inflation" row that were simply never parsed — `prix.astro`'s own gap-note
+"Inflation" row that were simply never parsed - `prix.astro`'s own gap-note
 already said so. Added the inflation rate plus 3 named sub-categories
-(alimentation, santé, transports) — the ones the existing gap-note text
+(alimentation, santé, transports) - the ones the existing gap-note text
 already promised, not an arbitrary subset. `IND11` (Enseignement) was
 checked and deliberately skipped: only 76 of 136 months are populated,
 unlike every other row's 136/136. `extract_rows()` in `fetch_ihpc.py` was
 generalized from one hardcoded row lookup to a config dict
 (`INDICATOR_CODES`) so adding a 6th indicator later means one dict entry,
 not a new function. The published inflation rate doesn't reconcile with a
-naive recomputation from the index — logged rather than silently
+naive recomputation from the index - logged rather than silently
 reinterpreted, see `docs/verification-debt.md`.
 
 ## Infrastructures widened 1 -> 5, JSON/export renamed off "electricite"
 
-Same completion pass as prix. Added 4 World Bank indicators — internet use,
+Same completion pass as prix. Added 4 World Bank indicators - internet use,
 mobile subscriptions, basic drinking water access, basic sanitation access
-— each confirmed live for CAF before adding (all 4 have real data through
+- each confirmed live for CAF before adding (all 4 have real data through
 2022-2024, genuinely fresher than most of education's indicators).
 Électricité stays the page's headline/hero (CLAUDE.md's own domain fact
 cites it, and it already has an independent MICS cross-check); the other 4
@@ -280,12 +280,12 @@ are additive cards below, following the headline-then-breakdown rule.
 
 `pipeline/export_electricity_json.py` / `site/src/data/electricite.json`
 were retired in favour of `export_infrastructures_json.py` /
-`infrastructures.json` — the old names stopped describing the theme once it
+`infrastructures.json` - the old names stopped describing the theme once it
 covered more than electricity, and renaming now (before more pages or
 scripts came to depend on the old name) was cheaper than renaming later.
 `fetch_infrastructures.py` is a new script alongside (not replacing)
 `fetch_electricity_access.py`, since the World Bank API takes one indicator
-code per URL (unlike UIS's comma-separated list) — four indicators means
+code per URL (unlike UIS's comma-separated list) - four indicators means
 four HTTP calls either way, so there was no efficiency reason to merge them
 into one file, only a naming one, and the existing electricity fetch script
 already works and is untouched.
@@ -353,9 +353,9 @@ new accent color (`--t-eco: #3D6373`, steel blue) rather than reusing
 semantic color would have been confusing on every page, this one included.
 
 Two real gaps flagged, not hidden: `taux_pauvrete` only has 3 data points
-total (1992, one intermediate year, 2021 — depends on infrequent household
+total (1992, one intermediate year, 2021 - depends on infrequent household
 surveys), and `recettes_publiques_pib` stops at 2021. CLAUDE.md also notes
-ICASEES has its own GDP rebasing (2019 base) underway — these World Bank
+ICASEES has its own GDP rebasing (2019 base) underway - these World Bank
 figures haven't been cross-checked against that once it's published; see
 `docs/verification-debt.md`.
 
@@ -393,18 +393,18 @@ sensing) -- the staleness pattern reflects the underlying measurement
 reality, not inconsistent effort.
 
 **All 7 sitemap themes now exist: population, prix, infrastructures,
-éducation, santé, économie, agriculture — 58 indicators total.**
+éducation, santé, économie, agriculture - 58 indicators total.**
 
-## Raw figures alongside rates — checked for a real published one before computing anything
+## Raw figures alongside rates - checked for a real published one before computing anything
 
 User feedback: rates alone were hiding scale across the three newest themes
 (0.074 doctors per 1,000 people doesn't land like "532 doctors nationally"
 does). Fixed per-theme, in order of preference: (1) a real published
-absolute counterpart from the *same* source already in use — économie's
+absolute counterpart from the *same* source already in use - économie's
 exports/imports/external debt already had US$ versions alongside the %-of-
 GDP ones (`NE.EXP.GNFS.CD` next to `NE.EXP.GNFS.ZS`, etc.), agriculture's
 land/cereal indicators the same (`AG.LND.AGRI.K2` next to `AG.LND.AGRI.ZS`).
-(2) A second API, tried before giving up — santé's doctor and hospital-bed
+(2) A second API, tried before giving up - santé's doctor and hospital-bed
 *density* (World Bank WDI) had no raw-count counterpart anywhere in WDI;
 checking WHO's GHO OData API directly (`ghoapi.azureedge.net`) found real
 absolute headcounts for doctors (`HWF_0002`, National Health Workforce
@@ -418,7 +418,7 @@ bed headcount is published in WDI or GHO (checked both directly, not
 assumed). `nombre_lits_hopital` = bed density × population, computed in
 `pipeline/fetch_sante.py` for each of the 6 years the density series
 actually has, fetching that *same year's* real World Bank population
-figure each time — not today's, which would misrepresent a 2011 estimate
+figure each time - not today's, which would misrepresent a 2011 estimate
 as current. Labelled `quality_flag=estime` with the exact inputs and
 formula in `notes`, and the sentence template
 (`sentence_sante_effectif`) explicitly says "environ ... selon une
@@ -426,30 +426,30 @@ estimation calculée," never stated as a plain fact the way the two real
 WHO headcounts are.
 
 Also caught while building the nurse-count series: WHO's own numbers swing
-hard year to year (835 in 2008, 5,653 in 2023, 2,331 in 2024) — logged as
+hard year to year (835 in 2008, 5,653 in 2023, 2,331 in 2024) - logged as
 probably a reporting-methodology change rather than a real workforce
 swing, not smoothed over or hidden. See `docs/verification-debt.md`.
 
 ## Économie reorganized: brief summary cards for prix and agriculture, not a merge
 
 User feedback, with a real precedent behind it: CLAUDE.md's *original*
-theme list said "agriculture et prix" as one theme — this session split it
+theme list said "agriculture et prix" as one theme - this session split it
 into three separate pages earlier without flagging the deviation. Rather
 than reverse that (which would mean deleting or nesting `/prix/` and
 `/agriculture/`, breaking every existing link to them), `economie.astro`
 now imports `prix.json` and `agriculture.json` directly and renders one
 brief card each (headline figure, one generated sentence, a link to the
-full page) — presentation only. `pipeline/export_economie_json.py` was not
+full page) - presentation only. `pipeline/export_economie_json.py` was not
 touched for this: it still only knows about économie's own 13 indicators,
 never prix's or agriculture's. Categories reordered to match how real
 economic dashboards are laid out (IMF Article IV, World Bank country
 pages, Trading Economics): Production → **Prix** → Commerce extérieur →
-Finances publiques → **Secteur agricole** → Niveau de vie — ending on the
+Finances publiques → **Secteur agricole** → Niveau de vie - ending on the
 living-standards outcome, consistent with the causal-ordering rule already
 in place for every other theme.
 
 Deliberately did not do the more invasive version of this (nesting
-`/prix/` and `/agriculture/` under `/economie/` as URLs) — that would
+`/prix/` and `/agriculture/` under `/economie/` as URLs) - that would
 compound the already-flagged `/themes/` URL-structure debt rather than
 resolve it, and the brief-card approach delivers the actual ask (discover
 prix/agriculture from économie, with a preview) without a routing change.
@@ -459,10 +459,10 @@ prix/agriculture from économie, with a preview) without a routing change.
 `economie.astro`/`agriculture.astro`'s `formatValue()` returned unit
 strings with no leading space ("Md US$", "km²"), and the card template
 concatenated them directly onto the number with no space either
-(`{val.display}<span class="unit">{val.unit}...`) — every non-"%" card on
+(`{val.display}<span class="unit">{val.unit}...`) - every non-"%" card on
 both pages was rendering "3,07Md US$" instead of "3,07 Md US$" since first
 being built. `%` never showed the bug (it's correct with no space), which
-is presumably why it went unnoticed — none of the pages built before this
+is presumably why it went unnoticed - none of the pages built before this
 session's raw-figures pass had a non-percent unit to expose it. Fixed by
 giving every non-"%" unit string its own leading space at the source
 (`" Md US$"`, `" km²"`, etc.) rather than changing the template, since "%"
@@ -472,16 +472,16 @@ and everything else genuinely need different spacing rules.
 
 Follow-up user feedback on the reorg above. Two changes: (1) the "Secteur
 agricole" satellite card moved from after Finances publiques to
-immediately after Production, ahead of Prix — agriculture is a GDP sector,
+immediately after Production, ahead of Prix - agriculture is a GDP sector,
 so it now sits next to "how big is the economy" rather than at the far end
 of the page. New order: Production → **Secteur agricole** → **Prix** →
 Commerce extérieur → Finances publiques → Niveau de vie. (2) The home
 page's top-level nav no longer links directly to `/prix/` or
-`/agriculture/` — only `/economie/` does, matching the hub relationship:
+`/agriculture/` - only `/economie/` does, matching the hub relationship:
 if économie is where a reader discovers prix and agriculture, the home
 page shouldn't also present all three as equal peers. Both pages are
 otherwise unchanged (same URL, same content, still cross-linked from every
-other page's footer nav) — this only affects the home page's primary
+other page's footer nav) - this only affects the home page's primary
 navigation and one page's card order.
 
 ## Purged internal/AI-facing language from reader-visible text
@@ -566,3 +566,44 @@ rather than reusing that function, since the two aren't the same
 grammatical construction. Fixed and verified against all 5 real labels
 before treating the template as done, same practice as every other
 sentence template on this site.
+
+## Per-indicator definitions surfaced; page-level meta-count phrasing removed; em-dashes banned project-wide
+
+Two more rounds of the "does this read like a note to the reader, or a note
+to myself" audit, prompted by user feedback on économie's "3 indicateurs
+propres à cette page" line and similar phrasing elsewhere.
+
+**Definitions.** `indicators.csv` has carried a `definition_fr` field since
+the crosswalk was built, but no export script or page ever surfaced it -
+every indicator card showed a name and a value with no explanation of what
+was actually being measured or how to read it. Added `definition_fr` to
+every export script's per-indicator JSON block and rendered it on every
+card across all 7 theme pages. Rewrote the field itself for all 71
+indicators (`update_definitions.py`, run once) from bare technical clauses
+("Part de la population...") into short explanations that also say why the
+indicator is tracked or how to avoid misreading it - what "can exceed
+100%" implies, the difference between a rate and its absolute counterpart,
+why GDP per capita is more comparable across countries than GDP total,
+etc. No new claims beyond what the source itself already establishes -
+interpretive framing, not invented methodology.
+
+**Meta-count phrasing.** économie, agriculture, santé and éducation each
+had a `.coverage` line ("`{allIndicatorCount}` indicateurs - données de
+`{oldestVintage}` à `{newestVintage}` selon l'indicateur - niveau le plus
+fin : pays") and repeated "les `{allIndicatorCount}` indicateurs propres à
+cette page sont tous nationaux" bullets - both read as a build manifest,
+not content. Removed the coverage line outright; reworded the ledes and
+the "Ce qui n'est pas mesuré" bullets to state the substantive fact (no
+sub-national breakdown; data is from the World Bank/OMS/UIS) without
+counting the page's own indicators out loud. Also caught and fixed a
+side-effect: agriculture.astro's gap list still said food-market prices
+were "not yet integrated" - stale as of the WFP prices work earlier this
+session; reworded to point at `/prix/`.
+
+**Em-dashes.** Removed every "-" character from every file this project
+authored (code, docs, data notes, page copy) - CLAUDE.md's own text
+included - and added a Voice rule against using it going forward, in
+favor of a plain hyphen or a semicolon. Left `raw/` snapshots untouched
+(immutable source data, not this project's own prose) and regenerated
+`site/src/data/*.json` and `site/public/donnees/*.csv` from the now-clean
+source CSVs rather than hand-editing the generated copies.

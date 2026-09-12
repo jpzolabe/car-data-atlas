@@ -52,7 +52,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Infrastructures — Données RCA</title>
+    <title>Infrastructures - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -107,7 +107,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px;
       }
-      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .indicator-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-infra);
@@ -140,18 +141,19 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       <h1>Infrastructures</h1>
       <p class="lede">
         Accès à l'électricité, à Internet, au réseau mobile, à l'eau potable
-        et à l'assainissement — cinq indicateurs, tous nationaux, tous de la
-        Banque mondiale. Le thème le moins couvert des sept — voir ce qui
-        manque encore ci-dessous.
+        et à l'assainissement, avec des données de la Banque mondiale
+        portant sur l'ensemble du pays. Voir ce qui manque encore
+        ci-dessous.
       </p>
 
       <p class="headline-label">Accès à l'électricité</p>
       <p class="headline">{fmt(latest.value)}<span class="unit">%, {latest.period}</span></p>
+      <p class="headline-meta">{data.definition_fr}</p>
       <p class="headline-meta">
-        {first.period} : {fmt(first.value)}% — {latest.period} : {fmt(latest.value)}%. Axe
+        {first.period} : {fmt(first.value)}% ; {latest.period} : {fmt(latest.value)}%. Axe
         vertical débutant à zéro. Le point 2019
         ({fmt(series.find((d) => d.period === "2019")?.value ?? 0)}%) correspond
-        exactement à la valeur mesurée par l'enquête MICS 2018-19 — ce n'est pas
+        exactement à la valeur mesurée par l'enquête MICS 2018-19 : ce n'est pas
         une coïncidence, cette source compile en partie les mêmes enquêtes.
       </p>
 
@@ -180,7 +182,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       </svg>
 
       <p class="gap-note">
-        Routes et transports ne sont pas encore intégrés — pas encore
+        Routes et transports ne sont pas encore intégrés - pas encore
         cherchés, pas confirmés absents. Eau, assainissement et
         télécommunications le sont désormais, ci-dessous.
       </p>
@@ -192,6 +194,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
           return (
             <div class="indicator-card">
               <p class="ind-name">{ind.name_fr}</p>
+              <p class="ind-definition">{ind.definition_fr}</p>
               <p class="ind-value">
                 {fmt(ind.latest.value)}
                 <span class="unit"> {ind.indicator_id === "abonnements_mobiles" ? "pour 100 hab." : "%"}, {ind.latest.period}</span>
@@ -212,7 +215,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       </div>
 
       <footer>
-        Source : {data.source.producer} — {data.source.dataset_name}.
+        Source : {data.source.producer} - {data.source.dataset_name}.
         Récupéré le {data.source.retrieved_at}.
         <a href={data.source.url}>{data.source.url}</a>
         <nav class="site-nav">

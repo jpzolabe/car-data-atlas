@@ -1,11 +1,12 @@
 {
-  "generated_note": "Généré depuis data/observations.csv via pipeline/export_prix_json.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_prix_json.py - ne pas éditer directement.",
   "source": {
     "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-    "dataset_name": "Indice des Prix à la Consommation (IHPC) — Mensuel National, 2015-2026 (fichier tableau de bord)",
+    "dataset_name": "Indice des Prix à la Consommation (IHPC) - Mensuel National, 2015-2026 (fichier tableau de bord)",
     "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
     "retrieved_at": "2026-09-12"
   },
+  "definition_fr": "Indice harmonisé des prix à la consommation, toutes fonctions COICOP confondues, base 2019 = 100. Mesure l'évolution moyenne des prix payés par les ménages pour un panier de biens et services fixe ; il sert à calculer l'inflation, pas à indiquer un niveau de prix en monnaie réelle.",
   "lead_sentence": "En avril 2026, l'indice des prix à la consommation en République centrafricaine s'établissait à 122,7.",
   "lead_sentence_template_id": "prix_ihpc_global_pays",
   "series": [
@@ -691,6 +692,7 @@
     }
   ],
   "inflation": {
+    "definition_fr": "Taux d'inflation publié par l'ICASEES dans le même fichier tableau de bord que l'IHPC -- la variation en pourcentage du niveau général des prix, généralement sur un an. Voir docs/verification-debt.md pour une réserve sur sa méthodologie exacte.",
     "latest": {
       "period": "2026-04",
       "value": 0.8
@@ -1247,7 +1249,8 @@
   "categories": [
     {
       "indicator_id": "prix_ihpc_alimentation",
-      "name_fr": "IHPC — Produits alimentaires et boissons non alcoolisées",
+      "name_fr": "IHPC - Produits alimentaires et boissons non alcoolisées",
+      "definition_fr": "Indice des prix à la consommation pour la fonction COICOP 'Produits alimentaires et boissons non alcoolisées', base 2019. Suit spécifiquement le coût de l'alimentation, séparément de l'indice global qui mélange toutes les dépenses des ménages.",
       "latest": {
         "period": "2026-04",
         "value": 131.8
@@ -1803,7 +1806,8 @@
     },
     {
       "indicator_id": "prix_ihpc_sante",
-      "name_fr": "IHPC — Santé",
+      "name_fr": "IHPC - Santé",
+      "definition_fr": "Indice des prix à la consommation pour la fonction COICOP 'Santé', base 2019.",
       "latest": {
         "period": "2026-04",
         "value": 108.1
@@ -2359,7 +2363,8 @@
     },
     {
       "indicator_id": "prix_ihpc_transports",
-      "name_fr": "IHPC — Transports",
+      "name_fr": "IHPC - Transports",
+      "definition_fr": "Indice des prix à la consommation pour la fonction COICOP 'Transports', base 2019.",
       "latest": {
         "period": "2026-04",
         "value": 136.1
@@ -2926,6 +2931,7 @@
       {
         "indicator_id": "prix_manioc_kg",
         "name_fr": "Prix du manioc (cossette)",
+        "definition_fr": "Prix de détail du kilogramme de manioc séché (cossette), relevé au marché de Bangui -- un prix réel payé par les consommateurs, distinct des indices ci-dessus qui suivent une évolution relative, pas un montant en francs CFA.",
         "unit": "FCFA/kg",
         "latest": {
           "period": "2026-07",
@@ -3835,6 +3841,7 @@
       {
         "indicator_id": "prix_riz_kg",
         "name_fr": "Prix du riz",
+        "definition_fr": "Prix de détail du kilogramme de riz, relevé au marché de Bangui.",
         "unit": "FCFA/kg",
         "latest": {
           "period": "2026-07",
@@ -4680,6 +4687,7 @@
       {
         "indicator_id": "prix_mais_kg",
         "name_fr": "Prix du maïs",
+        "definition_fr": "Prix de détail du kilogramme de maïs, relevé au marché de Bangui.",
         "unit": "FCFA/kg",
         "latest": {
           "period": "2026-07",
@@ -5765,6 +5773,7 @@
       {
         "indicator_id": "prix_boeuf_kg",
         "name_fr": "Prix de la viande de bœuf",
+        "definition_fr": "Prix de détail du kilogramme de viande de bœuf, relevé au marché de Bangui.",
         "unit": "FCFA/kg",
         "latest": {
           "period": "2026-07",
@@ -6638,6 +6647,7 @@
       {
         "indicator_id": "prix_huile_palme_l",
         "name_fr": "Prix de l'huile de palme",
+        "definition_fr": "Prix de détail du litre d'huile de palme, relevé au marché de Bangui.",
         "unit": "FCFA/L",
         "latest": {
           "period": "2026-07",

@@ -1,5 +1,5 @@
 """Add citypopulation.de as an alias source, but only for entities whose name+code
-were actually fetched and confirmed directly — not the ~65 sous-préfectures that
+were actually fetched and confirmed directly - not the ~65 sous-préfectures that
 were only compared by count in the discrepancy check (see docs/verification-debt.md).
 Adding an alias for something never actually seen would be exactly the kind of
 unverified claim rule zero warns against.
@@ -8,9 +8,9 @@ Covers:
 - All 20 préfectures (full named table fetched 2026-09-09).
 - Sous-préfectures individually confirmed while diagnosing the 6-préfecture gap:
   Haut-Mbomou, Vakaga, Haute-Kotto, Lobaye (all clean), and the 2 non-conflicting
-  names from Lim-Pendé (Ngaoundaye, Paoua — Kodi is a logged conflict, not a clean
+  names from Lim-Pendé (Ngaoundaye, Paoua - Kodi is a logged conflict, not a clean
   alias; Ndim/Taley are logged as missing, not present to alias at all).
-Bangui's sous-préfectures are deliberately excluded — see the 3-way unresolved entry.
+Bangui's sous-préfectures are deliberately excluded - see the 3-way unresolved entry.
 
 Usage: uv run python -m pipeline.add_citypopulation_aliases
 """
@@ -20,7 +20,7 @@ import csv
 SOURCE_ID = "citypopulation-de-caf"
 
 # (entity pcode used to find the entity via existing cod-ab-caf alias, citypop code)
-# Where citypop's code differs from COD-AB's, that's Kodi — excluded, see docstring.
+# Where citypop's code differs from COD-AB's, that's Kodi - excluded, see docstring.
 PREFECTURES = [
     "CF51", "CF71", "CF61", "CF52", "CF63", "CF41", "CF34", "CF12", "CF24", "CF21",
     "CF62", "CF42", "CF22", "CF11", "CF43", "CF32", "CF33", "CF31", "CF23", "CF53",

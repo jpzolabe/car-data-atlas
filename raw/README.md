@@ -1,7 +1,7 @@
 # raw/
 
 Immutable snapshots of everything fetched from an external source. Nothing
-here yet — this fills up starting in Phase 1 (the geography crosswalk fetches:
+here yet - this fills up starting in Phase 1 (the geography crosswalk fetches:
 COD-AB, COD-EM, COD-PS, ICASEES cartography tables, OSM boundaries).
 
 ## Convention

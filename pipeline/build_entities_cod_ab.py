@@ -24,7 +24,7 @@ CREATED_2020 = {"Mambéré", "Lim-pendé", "Ouham-Fafa", "Bangui"}
 
 REFORM_DATE = "2020-12-10"  # date the reform bill was adopted (Xinhua). The
 # exact promulgation date and decree number are not yet verified against
-# primary legal text — see docs/verification-debt.md.
+# primary legal text - see docs/verification-debt.md.
 
 
 def slugify(name: str) -> str:
@@ -64,7 +64,7 @@ def main(snapshot_dir: str):
                 "Niveau pays, non affecté par la réforme de 2020. valid_from "
                 "laissé vide : date de fondation non vérifiée dans cette passe "
                 "(indépendance le 13 août 1960 selon connaissance générale, non "
-                "confirmée via une source primaire ici — voir "
+                "confirmée via une source primaire ici - voir "
                 "docs/verification-debt.md)."
             ),
         }
@@ -90,7 +90,7 @@ def main(snapshot_dir: str):
         created = name in CREATED_2020
         note = (
             f"Créée par la réforme administrative adoptée le {REFORM_DATE} "
-            "(source : Oubangui Médias, Xinhua, Wikipédia — texte légal "
+            "(source : Oubangui Médias, Xinhua, Wikipédia - texte légal "
             "primaire/numéro de décret non encore vérifié)."
             if created
             else (
@@ -145,7 +145,7 @@ def main(snapshot_dir: str):
                     f"Rattachée par COD-AB v02 à la préfecture correspondante "
                     f"à la date de la réforme ({REFORM_DATE}). Certaines "
                     "sous-préfectures actuelles étaient des communes avant "
-                    "2020 (12 communes promues selon la réforme) — liste "
+                    "2020 (12 communes promues selon la réforme) - liste "
                     "précise des communes promues non encore vérifiée."
                 ),
             }

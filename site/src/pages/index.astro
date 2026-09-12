@@ -1,10 +1,10 @@
 ---
 // Still a placeholder, not the real home page from docs/plan.md §2.2 (that
 // needs the headline-card/lead-story/theme-grid structure once more than two
-// indicators exist) — but it now links everywhere real and carries the
+// indicators exist) - but it now links everywhere real and carries the
 // search box, which docs/plan.md calls "the primary navigation, not the
 // menu." Search only works after a full `pnpm build` (Pagefind indexes the
-// built dist/ output) — it's inert during `astro dev`. This is the one page
+// built dist/ output) - it's inert during `astro dev`. This is the one page
 // that carries any client JS at all, per CLAUDE.md's explicit exception.
 ---
 <!doctype html>
@@ -139,10 +139,10 @@
     <main>
       <h1>Données RCA</h1>
       <p>
-        Explorer la République centrafricaine — ce que disent les données,
+        Explorer la République centrafricaine - ce que disent les données,
         d'où elles viennent, et ce que personne n'a encore mesuré.
       </p>
-      <p class="status">En construction — 71 indicateurs pour l'instant</p>
+      <p class="status">En construction - 71 indicateurs pour l'instant</p>
 
       <div id="search">
         <input
@@ -170,7 +170,7 @@
 
     <script is:inline type="module">
       // Hand-built, not Pagefind's default UI bundle (~134 KB of JS/CSS for
-      // widget chrome) — this site's page-weight budget is real, so search
+      // widget chrome) - this site's page-weight budget is real, so search
       // uses the raw Pagefind API (~45 KB, loaded only on this page) plus a
       // few lines of vanilla JS matching the site's own styling instead.
       let pagefind;

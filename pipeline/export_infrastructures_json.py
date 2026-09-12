@@ -39,6 +39,7 @@ def main():
     """)
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
+    definitions = dict(con.execute("select indicator_id, definition_fr from indicators").fetchall())
 
     rows = con.execute("""
         select period, value
@@ -70,6 +71,7 @@ def main():
         others.append({
             "indicator_id": indicator_id,
             "name_fr": names[indicator_id],
+            "definition_fr": definitions[indicator_id],
             "latest": {"period": latest[0], "value": latest[1]},
             "series": [{"period": r[0], "value": r[1]} for r in other_rows],
             "lead_sentence": cat_lead,
@@ -83,12 +85,13 @@ def main():
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
-            "pipeline/export_infrastructures_json.py — ne pas éditer directement."
+            "pipeline/export_infrastructures_json.py - ne pas éditer directement."
         ),
         "source": {
             "producer": source[0], "dataset_name": source[1],
             "url": source[2], "retrieved_at": source[3],
         },
+        "definition_fr": definitions["acces_electricite"],
         "lead_sentence": lead_text,
         "lead_sentence_template_id": lead_template_id,
         "series": [{"period": p, "value": v} for p, v in rows],

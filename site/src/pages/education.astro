@@ -64,10 +64,6 @@ function qualityLabel(flag: string): string {
   return "estimation modélisée";
 }
 
-const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.length, 0);
-const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
-const oldestVintage = Math.min(...allPeriods);
-const newestVintage = Math.max(...allPeriods);
 ---
 <!doctype html>
 <html lang="fr">
@@ -75,7 +71,7 @@ const newestVintage = Math.max(...allPeriods);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Éducation — Données RCA</title>
+    <title>Éducation - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -147,7 +143,8 @@ const newestVintage = Math.max(...allPeriods);
       }
       .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--ink-faint); }
       .national-meta { font-size: 12.5px; color: var(--ink-muted); margin-top: 4px; }
-      .indicator-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .indicator-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .disclosure { margin-top: 12px; }
       .disclosure summary {
         cursor: pointer; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
@@ -227,15 +224,11 @@ const newestVintage = Math.max(...allPeriods);
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Éducation</h1>
       <p class="lede">
-        Scolarisation, rétention, achèvement scolaire et alphabétisation —
-        tout ce que l'UNESCO Institut de statistique (UIS) publie pour la
-        République centrafricaine, dans l'ordre du parcours d'un élève.
-        Niveau national uniquement pour l'instant ; rien par région ni par
-        préfecture.
-      </p>
-      <p class="coverage">
-        {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
-        niveau le plus fin : pays
+        Scolarisation, rétention, achèvement scolaire et alphabétisation,
+        dans l'ordre du parcours d'un élève, avec tout ce que l'UNESCO
+        Institut de statistique (UIS) publie pour la République
+        centrafricaine. Niveau national uniquement pour l'instant ; rien par
+        région ni par préfecture.
       </p>
 
       <div class="headline-block">
@@ -243,7 +236,7 @@ const newestVintage = Math.max(...allPeriods);
           {fmt(data.headline.latest.value)}<span class="unit">%</span>
           <span class={`badge ${data.headline.latest.quality_flag}`}>{data.headline.latest.quality_flag}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr}, {data.headline.latest.period} — le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
+        <p class="headline-caption">{data.headline.name_fr}, {data.headline.latest.period}, le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA. {data.headline.definition_fr}</p>
         <p class="sentence">
           {data.headline.lead_sentence}
         </p>
@@ -261,7 +254,7 @@ const newestVintage = Math.max(...allPeriods);
                 {disclosureIndicators.length === 1 ? "Un indicateur" : `${disclosureIndicators.length} indicateurs`} ci-dessous
                 {" "}{disclosureIndicators.length === 1 ? "a" : "ont"} deux sources qui ne s'accordent pas toujours : une donnée
                 de référence à quelques points dans le temps, et une estimation modélisée annuelle publiée par l'UIS qui va
-                jusqu'à 2025 — c'est elle qui rend le graphique plus récent que le chiffre affiché en gros.
+                jusqu'à 2025 - c'est elle qui rend le graphique plus récent que le chiffre affiché en gros.
               </p>
             )}
 
@@ -272,13 +265,14 @@ const newestVintage = Math.max(...allPeriods);
               return (
                 <div class="national-figure">
                   <p class="indicator-name">{ind.name_fr}</p>
+                  <p class="indicator-definition">{ind.definition_fr}</p>
                   <div class="national-value">
                     {fmt(ind.latest.value)}<span class="unit">%</span>
                     <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
                     {stale && <span class="badge stale">ancien</span>}
                   </div>
                   <div class="national-meta">
-                    {ind.national.headline.producer} — {ind.national.headline.dataset_name}, {ind.national.headline.period}
+                    {ind.national.headline.producer} - {ind.national.headline.dataset_name}, {ind.national.headline.period}
                   </div>
                   <p class="sentence">
                     {ind.lead_sentence}
@@ -303,7 +297,7 @@ const newestVintage = Math.max(...allPeriods);
                     <span><span class="swatch-dot"></span>{headlineLabel}</span>
                   </div>
                   <details class="disclosure">
-                    <summary>2 sources — écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                    <summary>2 sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
                     <table class="disclosure-table">
                       <thead><tr><th>Valeur</th><th>Statut</th><th>Période</th></tr></thead>
                       <tbody>
@@ -321,7 +315,7 @@ const newestVintage = Math.max(...allPeriods);
                       modélisée pour la même année, pas contre la dernière
                       année modélisée disponible. Classement d'autorité :
                       {" "}{headlineLabel} &gt; estimation modélisée
-                      internationale — voir <a href="/methode/#classement">Méthode</a>.
+                      internationale - voir <a href="/methode/#classement">Méthode</a>.
                     </p>
                   </details>
                   <span style="font-size:11.5px;color:var(--ink-faint);display:block;margin-top:10px;">
@@ -340,6 +334,7 @@ const newestVintage = Math.max(...allPeriods);
                   return (
                     <div class="indicator-card">
                       <p class="indicator-name">{ind.name_fr}</p>
+                      <p class="indicator-definition">{ind.definition_fr}</p>
                       <div class="indicator-value">
                         {fmt(ind.latest.value)}<span class="unit">%, {ind.latest.period}</span>
                         <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
@@ -358,7 +353,7 @@ const newestVintage = Math.max(...allPeriods);
                         {ind.lead_sentence}
                       </p>
                       <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
-                        {ind.source.producer} — {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
+                        {ind.source.producer} - {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
                       </span>
                     </div>
                   );
@@ -371,11 +366,11 @@ const newestVintage = Math.max(...allPeriods);
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
-        <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse — l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
-        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) — l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été interrompue après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
+        <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
+        <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse - l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
+        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) - l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été interrompue après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
         <li>Aucune donnée sur les infrastructures scolaires (nombre d'écoles, points d'eau, latrines) ni sur les dépenses publiques d'éducation.</li>
-        <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) — l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
+        <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) - l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
       </ul>
 
       <footer>

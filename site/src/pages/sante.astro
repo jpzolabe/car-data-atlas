@@ -1,5 +1,5 @@
 ---
-// First build of the santé theme (previously nonexistent — docs/plan.md's
+// First build of the santé theme (previously nonexistent - docs/plan.md's
 // site map calls for 7 themes; this is theme #5). Same anatomy as
 // education.astro (docs/plan.md Sec2.3): headline figure, categories ordered
 // by logical sequence, "Ce qui n'est pas mesuré" hand-written. No disclosure
@@ -35,10 +35,6 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   };
 }
 
-const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.length, 0);
-const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
-const oldestVintage = Math.min(...allPeriods);
-const newestVintage = Math.max(...allPeriods);
 ---
 <!doctype html>
 <html lang="fr">
@@ -46,7 +42,7 @@ const newestVintage = Math.max(...allPeriods);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Santé — Données RCA</title>
+    <title>Santé - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -98,7 +94,8 @@ const newestVintage = Math.max(...allPeriods);
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px;
       }
-      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .indicator-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-sante); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
@@ -128,20 +125,16 @@ const newestVintage = Math.max(...allPeriods);
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Santé</h1>
       <p class="lede">
-        Système de santé, vaccination, mortalité, espérance de vie et VIH —
-        {allIndicatorCount} indicateurs, de la Banque mondiale et de l'OMS,
-        tous nationaux.
-      </p>
-      <p class="coverage">
-        {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
-        niveau le plus fin : pays
+        Système de santé, vaccination, mortalité, espérance de vie et VIH,
+        avec des données de la Banque mondiale et de l'OMS portant sur
+        l'ensemble du pays.
       </p>
 
       <div class="headline-block">
         <div class="headline-value">
           {fmt(data.headline.latest.value)}<span class="unit">ans, {data.headline.latest.period}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr} — le chiffre le plus souvent cité pour résumer l'état de santé d'une population.</p>
+        <p class="headline-caption">{data.headline.name_fr}, le chiffre le plus souvent cité pour résumer l'état de santé d'une population. {data.headline.definition_fr}</p>
         <p class="mini-sentence">
           {data.headline.lead_sentence}
         </p>
@@ -157,6 +150,7 @@ const newestVintage = Math.max(...allPeriods);
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
+                  <p class="ind-definition">{ind.definition_fr}</p>
                   <div class="ind-value">
                     {fmt(ind.latest.value)}<span class="unit"> {ind.unit}, {ind.latest.period}</span>
                     {stale && <span class="badge stale">ancien</span>}
@@ -179,13 +173,13 @@ const newestVintage = Math.max(...allPeriods);
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux.</li>
+        <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
         <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats intégrables ici.</li>
-        <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur <a href="https://data.humdata.org/">HDX</a> — volontairement non reconstruit ici.</li>
-        <li>Aucune donnée de morbidité au-delà du VIH — paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
-        <li>La densité de lits d'hôpital n'a qu'un point après 2011 — c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
-        <li>Aucun décompte de lits d'hôpital n'est publié directement par la Banque mondiale ou l'OMS — celui affiché ici est calculé (densité x population de la même année), pas une donnée brute.</li>
-        <li>Le personnel infirmier varie fortement d'une année à l'autre dans les données de l'OMS (835 en 2008, 5 653 en 2023, 2 331 en 2024) — probablement un changement de méthode de collecte, non confirmé.</li>
+        <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur <a href="https://data.humdata.org/">HDX</a> - volontairement non reconstruit ici.</li>
+        <li>Aucune donnée de morbidité au-delà du VIH - paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
+        <li>La densité de lits d'hôpital n'a qu'un point après 2011 - c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
+        <li>Aucun décompte de lits d'hôpital n'est publié directement par la Banque mondiale ou l'OMS - celui affiché ici est calculé (densité x population de la même année), pas une donnée brute.</li>
+        <li>Le personnel infirmier varie fortement d'une année à l'autre dans les données de l'OMS (835 en 2008, 5 653 en 2023, 2 331 en 2024) - probablement un changement de méthode de collecte, non confirmé.</li>
       </ul>
 
       <footer>

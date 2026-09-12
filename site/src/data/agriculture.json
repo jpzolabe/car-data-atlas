@@ -1,5 +1,5 @@
 {
-  "generated_note": "Généré depuis data/observations.csv via pipeline/export_agriculture_json.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_agriculture_json.py - ne pas éditer directement.",
   "headline": {
     "indicator_id": "emploi_agricole",
     "latest": {
@@ -76,7 +76,8 @@
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
       "retrieved_at": "2026-09-12"
     },
-    "name_fr": "Emploi agricole"
+    "name_fr": "Emploi agricole",
+    "definition_fr": "Part de l'emploi total dans l'agriculture (estimation modélisée de l'Organisation internationale du travail)."
   },
   "categories": [
     {
@@ -159,7 +160,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Terres agricoles"
+          "name_fr": "Terres agricoles",
+          "definition_fr": "Part du territoire national utilisée à des fins agricoles."
         },
         {
           "indicator_id": "superficie_agricole",
@@ -237,7 +239,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Superficie agricole"
+          "name_fr": "Superficie agricole",
+          "definition_fr": "Superficie totale des terres agricoles, en kilomètres carrés -- la surface en valeur absolue, à distinguer de la part du territoire national (voir 'Terres agricoles' ci-dessus)."
         },
         {
           "indicator_id": "terres_arables",
@@ -315,7 +318,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Terres arables"
+          "name_fr": "Terres arables",
+          "definition_fr": "Part du territoire national en terres arables -- les terres pouvant être labourées pour des cultures temporaires, un sous-ensemble des terres agricoles."
         },
         {
           "indicator_id": "couverture_forestiere",
@@ -393,7 +397,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Couverture forestière"
+          "name_fr": "Couverture forestière",
+          "definition_fr": "Part du territoire national couverte de forêt."
         }
       ]
     },
@@ -477,7 +482,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NV.AGR.TOTL.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Valeur ajoutée de l'agriculture"
+          "name_fr": "Valeur ajoutée de l'agriculture",
+          "definition_fr": "Agriculture, sylviculture et pêche, en part du PIB -- la contribution de ce secteur à la richesse produite dans le pays."
         },
         {
           "indicator_id": "indice_production_alimentaire",
@@ -555,7 +561,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.PRD.FOOD.XD?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Production alimentaire"
+          "name_fr": "Production alimentaire",
+          "definition_fr": "Indice de la production alimentaire, base 2014-2016 = 100 -- mesure l'évolution du volume de nourriture produite dans le temps, pas son prix ni sa valeur en monnaie."
         },
         {
           "indicator_id": "rendement_cereales",
@@ -633,7 +640,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Rendement des céréales"
+          "name_fr": "Rendement des céréales",
+          "definition_fr": "Rendement des céréales, en kilogrammes par hectare récolté -- la productivité des terres cultivées, à distinguer de la production totale (voir 'Production de céréales' ci-dessous), qui dépend aussi de la surface cultivée."
         },
         {
           "indicator_id": "production_cereales",
@@ -711,7 +719,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Production de céréales"
+          "name_fr": "Production de céréales",
+          "definition_fr": "Production totale de céréales, en tonnes -- le volume récolté, qui dépend à la fois de la surface cultivée et du rendement par hectare (voir 'Rendement des céréales' ci-dessus)."
         },
         {
           "indicator_id": "consommation_engrais",
@@ -789,7 +798,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Consommation d'engrais"
+          "name_fr": "Consommation d'engrais",
+          "definition_fr": "Consommation d'engrais, en kilogrammes par hectare de terre arable -- un indicateur d'intensification agricole ; une valeur très basse signale une agriculture peu mécanisée et peu intrante."
         }
       ]
     },
@@ -873,7 +883,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Emploi agricole"
+          "name_fr": "Emploi agricole",
+          "definition_fr": "Part de l'emploi total dans l'agriculture (estimation modélisée de l'Organisation internationale du travail)."
         },
         {
           "indicator_id": "taux_sous_alimentation",
@@ -951,7 +962,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SN.ITK.DEFC.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Sous-alimentation"
+          "name_fr": "Sous-alimentation",
+          "definition_fr": "Part de la population en sous-alimentation -- dont l'apport calorique habituel est insuffisant pour mener une vie active et saine."
         }
       ]
     }
