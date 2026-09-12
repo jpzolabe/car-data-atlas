@@ -2,7 +2,7 @@
 // Theme page, docs/plan.md Sec2.3 anatomy: theme header with coverage summary,
 // one orienting headline figure, indicator blocks grouped into categories
 // (ordered scolarisation -> retention -> achievement -> literacy, the
-// student's actual path, not achievement-first -- see docs/decisions.md),
+// student's actual path, not achievement-first; see docs/decisions.md),
 // "Ce qui n'est pas mesuré" hand-written at the end. Widened from a single
 // indicator (primary completion) to 15 across 4 categories, all from UNESCO
 // UIS (CLAUDE.md's indicator-ID example was illustrative, not a scope limit).
@@ -11,9 +11,11 @@
 // population.astro-style multi-source disclosure block (a real disagreement
 // between a higher-authority point-in-time series and UIS's own modelled
 // series). The other 9 have one source so far and get a compact card: value,
-// sparkline, generated sentence, source line -- no disclosure UI where
+// sparkline, generated sentence, source line; no disclosure UI where
 // there's nothing to disclose.
 import data from "../data/education.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const CURRENT_YEAR = 2026;
 
@@ -34,7 +36,7 @@ function isStale(indicatorId: string, period: string): boolean {
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 const fmtInt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 
-// Small build-time SVG line chart, shared by every indicator card -- same
+// Small build-time SVG line chart, shared by every indicator card; same
 // stroke-dasharray draw-in technique as prix.astro/infrastructures.astro,
 // just parameterized so it isn't rewritten 14 times.
 const SPARK_W = 460, SPARK_H = 100, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
@@ -69,6 +71,7 @@ function qualityLabel(flag: string): string {
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -80,6 +83,22 @@ function qualityLabel(flag: string): string {
         --t-edu: #A83C2E;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A;
+          --t-edu: #E97A62;
+          --ochre: #E0A83D; --ochre-soft: #3A2E12;
+          --stale: #E2694A; --stale-soft: #3A211A;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-edu: #E97A62;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        --stale: #E2694A; --stale-soft: #3A211A;
       }
       * { box-sizing: border-box; }
       body {
@@ -221,6 +240,7 @@ function qualityLabel(flag: string): string {
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Éducation</h1>

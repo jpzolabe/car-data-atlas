@@ -4,6 +4,8 @@
 // place pages built by [slug].astro would be orphaned (reachable only by
 // guessing a URL or via search).
 import lieux from "../../data/lieux_prefectures.json";
+import ThemeInit from "../../components/ThemeInit.astro";
+import ThemeToggle from "../../components/ThemeToggle.astro";
 
 const places = Object.values(lieux) as any[];
 
@@ -34,6 +36,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -43,6 +46,18 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-lieu: #8B5E3C;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A;
+          --t-lieu: #D4A574;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-lieu: #D4A574;
       }
       * { box-sizing: border-box; }
       body {
@@ -95,6 +110,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Lieux</h1>

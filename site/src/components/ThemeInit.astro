@@ -1,0 +1,19 @@
+---
+// Applies a stored dark-mode preference to <html> before first paint, so
+// there's no flash of the wrong theme. Must be the first thing in <head>,
+// ahead of the page's own <style> block, and must stay a plain synchronous
+// inline script (no defer/module) so it runs during head parsing rather
+// than after. Paired with ThemeToggle.astro, which writes the preference
+// this reads. One of CLAUDE.md's few named sitewide JS exceptions -
+// see docs/decisions.md's dark-mode entry.
+---
+<script is:inline>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") {
+        document.documentElement.setAttribute("data-theme", stored);
+      }
+    } catch (e) {}
+  })();
+</script>

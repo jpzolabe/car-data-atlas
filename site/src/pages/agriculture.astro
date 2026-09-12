@@ -1,16 +1,18 @@
 ---
 // Third and last brand-new theme this pass (théme #7 of 7 in docs/plan.md's
-// site map -- all sitemap themes now exist). Same anatomy as sante.astro /
+// site map; all sitemap themes now exist). Same anatomy as sante.astro /
 // economie.astro: headline figure, categories ordered by logical sequence,
-// "Ce qui n'est pas mesuré" hand-written. No disclosure blocks -- every
+// "Ce qui n'est pas mesuré" hand-written. No disclosure blocks; every
 // indicator has exactly one source so far.
 //
-// Three unit families here (%, indice, kg/ha), like économie's %/US$ split
-// -- formatValue() branches by indicator_id. consommation_engrais gets 3
+// Three unit families here (%, indice, kg/ha), like économie's %/US$ split;
+// formatValue() branches by indicator_id. consommation_engrais gets 3
 // decimals instead of 1 (its real value, ~0.044, would round to a
-// misleading "0,0" otherwise -- same fix as sentence_agriculture_rate in
+// misleading "0,0" otherwise; same fix as sentence_agriculture_rate in
 // pipeline/sentences.py).
 import data from "../data/agriculture.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -59,6 +61,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -69,6 +72,20 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-agri: #4C7A3D;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A;
+          --t-agri: #86C46B;
+          --stale: #E2694A; --stale-soft: #3A211A;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-agri: #86C46B;
+        --stale: #E2694A; --stale-soft: #3A211A;
       }
       * { box-sizing: border-box; }
       body {
@@ -141,6 +158,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Agriculture</h1>

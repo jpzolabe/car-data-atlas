@@ -3,11 +3,14 @@
 // institution take the project seriously." Reads site/src/data/sources.json,
 // materialized by pipeline/export_sources_json.py from data/sources.csv.
 import data from "../data/sources.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 const sources = data.sources;
 ---
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -17,6 +20,18 @@ const sources = data.sources;
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+          --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {
@@ -73,6 +88,7 @@ const sources = data.sources;
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Sources</h1>

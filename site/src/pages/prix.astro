@@ -4,6 +4,8 @@
 // ships to the client (CLAUDE.md's non-negotiable). See docs/decisions.md for
 // why this is hand-computed rather than Observable Plot for now.
 import data from "../data/prix.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -71,6 +73,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -81,6 +84,20 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
         --t-prix: #71811A;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+          --t-prix: #B9CC4A;
+          --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+        --t-prix: #B9CC4A;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {
@@ -179,6 +196,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Indice des prix à la consommation</h1>

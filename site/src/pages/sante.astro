@@ -3,10 +3,12 @@
 // site map calls for 7 themes; this is theme #5). Same anatomy as
 // education.astro (docs/plan.md Sec2.3): headline figure, categories ordered
 // by logical sequence, "Ce qui n'est pas mesuré" hand-written. No disclosure
-// blocks here -- every indicator has exactly one source so far, so every
+// blocks here; every indicator has exactly one source so far, so every
 // card is the plain latest-value-plus-series shape already used for
 // infrastructures/prix/population's "Autres indicateurs" sections.
 import data from "../data/sante.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const CURRENT_YEAR = 2026;
 // 5 maternal/child health indicators (added 2026-09-12, UNICEF Data
@@ -46,6 +48,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -56,6 +59,20 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-sante: #0E7C7B;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A;
+          --t-sante: #4FC7C5;
+          --stale: #E2694A; --stale-soft: #3A211A;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-sante: #4FC7C5;
+        --stale: #E2694A; --stale-soft: #3A211A;
       }
       * { box-sizing: border-box; }
       body {
@@ -156,6 +173,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Santé</h1>
