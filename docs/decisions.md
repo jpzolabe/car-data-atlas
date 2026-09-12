@@ -1564,3 +1564,55 @@ centered in the bar regardless of viewport width, with the home icon
 pinned left and the theme toggle pinned right in their own tracks.
 
 All 33 pages rebuilt clean, still well under the 150 KB budget.
+
+## Home page, fourth pass: a real composition instead of reactive patching
+
+Asked directly whether the previous 3 passes were the best achievable,
+and answered honestly: no. Those passes fixed real, valid complaints one
+at a time (remove this, consolidate that, add an icon, center that), but
+the result was still a stack of same-weight horizontal bands - identity
+strip, stat grid, theme grid - with no real focal point, and no visual
+element at all once "À la une" had been cut. Stepped back and did one
+composition pass instead of another incremental fix.
+
+**The actual structural change:** one clear hero moment instead of 6
+equal boxes. Population - the single most-cited fact about the country,
+per CLAUDE.md's own Voice section example - now gets its own distinct
+`.hero-stat` panel: a big headline number, a source line, a link through
+to `/population/`, and a real chart (the top 8 préfectures ranked,
+build-time SVG, same technique population.astro's own full chart uses).
+The other 5 quick figures (croissance PIB, inflation, électricité,
+achèvement primaire, prix du manioc) are now a de-emphasized single-line
+`.ticker` below it - compact label/value/period triples separated by
+hairlines, deliberately smaller and quieter than the hero, not another
+grid of equal-weight cards. This gives the page actual rhythm (big,
+then quiet, then a menu) instead of repeating "here is a grid of boxes"
+twice.
+
+This also brings back the one thing the previous pass's "remove À la
+une" cut entirely: a real chart. It's folded into the hero this time
+rather than reintroduced as its own separate disclosure-heavy section -
+the full multi-source disclosure (3 sources, spread %) stays on
+`/population/` itself; the home page just needs the headline figure and
+a sense of the spread across préfectures, not the complete ranked
+argument for which source to trust.
+
+Narrowed `main`'s max-width from 1080px to 900px and centered the hero
+text, search box, and identity strip - the previous pass's left-aligned
+header (title/tagline on one side, search box on the other, in a wide
+1080px container) read more like a theme page's header than a home
+page's front door. Search box got a visual upgrade to match being "the
+primary navigation, not the menu" per Sec2.2: larger, rounded, with a
+subtle shadow, rather than a plain theme-page-style input.
+
+Theme grid cards lightened (no more shadow-lift-on-hover, no left
+accent border) since the hero above now clearly carries the page's main
+visual weight - the grid's job is to be a clean, obviously-secondary
+menu, not compete with the hero for attention.
+
+Honest caveat, stated directly to the user rather than glossed over:
+this was verified structurally (build output, rendered HTML, page
+weight) exactly like every previous pass - there is still no way to
+visually confirm this actually *feels* right without opening it in a
+browser, which this session cannot do. Asked the user to look at it
+live before treating this as finished.
