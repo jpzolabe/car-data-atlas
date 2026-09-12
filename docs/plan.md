@@ -641,12 +641,26 @@ water access, basic sanitation access), all confirmed live with recent
 `infrastructures.json` now that the theme covers more than electricity —
 see `docs/decisions.md`. Population went from 1 to 4: added growth rate,
 urban population %, and age dependency ratio, all World Bank, all with data
-through 2025. **All four existing theme pages now meet "at least two
-indicators"**: éducation (15), prix (5), infrastructures (5), population
-(4) — 29 indicators total. Santé, économie and agriculture still don't
-exist as theme pages at all; that's the next real gap, along with the
-still-open Phase 3 items (WFP food prices, national accounts/GDP, MICS,
-IMF NSDP, health facilities) and the ICASEES yearbooks.
+through 2025. All four existing theme pages met "at least two indicators":
+éducation (15), prix (5), infrastructures (5), population (4).
+
+**Update 2026-09-12 (still later the same day).** User asked to build the
+remaining themes, starting with santé — the first brand-new theme page
+built this session rather than a widening of an existing one. 10 World
+Bank indicators (life expectancy, child/infant/maternal mortality, measles/
+DPT vaccination, physicians and hospital beds per capita, health spending %
+of GDP, HIV incidence), all confirmed live for CAF before adding, grouped
+into 4 categories ordered système de santé → vaccination → mortalité et
+espérance de vie → maladies — see `docs/decisions.md`. Espérance de vie is
+the headline. One real gap flagged, not hidden: hospital-bed density's
+most recent World Bank data point is from 2011.
+
+**5 of 7 sitemap themes now exist, 39 indicators total.** Économie and
+agriculture are next. Still open: the Phase 3 source list items 3-7 (WFP
+food prices — CLAUDE.md's own example indicator, national accounts/GDP,
+MICS 2018-19, IMF NSDP/SDMX, health facilities as the first 3-way
+disclosure test), the ICASEES yearbooks (paused), and the `/themes/` URL
+structure inconsistency flagged in `docs/decisions.md`.
 
 ## Phase 4 — Descending (4–6 weeks)
 

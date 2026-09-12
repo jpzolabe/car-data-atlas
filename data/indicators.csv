@@ -28,3 +28,13 @@ acces_assainissement_base,Accès à l'assainissement,Part de la population utili
 taux_croissance_population,Croissance de la population,Taux de croissance annuel de la population.,%,population,pays,population_taux_pays,
 taux_urbanisation,Population urbaine,Part de la population vivant en zone urbaine.,%,population,pays,population_taux_pays,
 taux_dependance_demographique,Taux de dépendance démographique,"Population de moins de 15 ans et de 65 ans et plus, rapportée à la population de 15-64 ans -- peut dépasser 100.",%,population,pays,population_taux_pays,
+esperance_vie,Espérance de vie à la naissance,Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes.,ans,sante,pays,sante_esperance_vie_pays,true
+taux_mortalite_moins_5ans,Mortalité des moins de 5 ans,"Probabilité de décès avant 5 ans, pour 1 000 naissances vivantes.",pour 1 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_mortalite_infantile,Mortalité infantile,"Probabilité de décès avant 1 an, pour 1 000 naissances vivantes.",pour 1 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_mortalite_maternelle,Mortalité maternelle,Décès maternels pour 100 000 naissances vivantes.,pour 100 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_vaccination_rougeole,Vaccination contre la rougeole,Part des enfants de 12 à 23 mois ayant reçu le vaccin contre la rougeole.,%,sante,pays,sante_taux_pct_pays,true
+taux_vaccination_dtc,Vaccination DTC,Part des enfants de 12 à 23 mois ayant reçu le vaccin diphtérie-tétanos-coqueluche.,%,sante,pays,sante_taux_pct_pays,true
+densite_medecins,Densité de médecins,Nombre de médecins pour 1 000 habitants.,pour 1 000 habitants,sante,pays,sante_taux_pays,true
+densite_lits_hopital,Densité de lits d'hôpital,Nombre de lits d'hôpital pour 1 000 habitants.,pour 1 000 habitants,sante,pays,sante_taux_pays,true
+depenses_sante_pib,Dépenses de santé,"Dépenses courantes de santé, en part du PIB.",% du PIB,sante,pays,sante_taux_pib_pays,
+incidence_vih,Incidence du VIH,Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans.,pour 1 000 personnes non infectées 15-49 ans,sante,pays,sante_taux_pays,false
