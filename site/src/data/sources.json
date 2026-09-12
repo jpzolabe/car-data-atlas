@@ -15,17 +15,17 @@
       "access_notes": "Fetched via WebSearch to confirm CAR's independence date (13 August 1960) for the country entity's valid_from."
     },
     {
-      "source_id": "icasees-rgph4-provisional",
-      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
-      "url": null,
-      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général - page primaire non localisée)",
-      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) compilé depuis les communications publiques d'ICASEES d'août 2026. La page de résultats primaire n'a pas été localisée indépendamment malgré plusieurs tentatives (plusieurs URL icasees.org/rgph-4/* renvoient 404 ; le site présente aussi des URL de type spam à éviter). Voir docs/verification-debt.md.",
-      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
-      "update_cadence": "décennal",
-      "retrieved_at": "2026-09-05",
-      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
-      "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
+      "source_id": "imf-egdds-nsdp",
+      "producer": "FMI (Système général de diffusion des données renforcé, e-GDDS)",
+      "dataset_name": "National Summary Data Page (NSDP), République centrafricaine",
+      "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,NSDP,7.0.0/CAF...",
+      "licence": "Conditions d'utilisation propres au FMI (Data Terms, en vigueur depuis le 2024-10-11) : réutilisation autorisée avec attribution (« Source : Fonds monétaire international ») et sans altération.",
+      "licence_notes": "Un seul indicateur publié pour la RCA dans ce cadre (indice d'activité économique totale, trimestriel) ; aucune donnée de prix, dette ou secteur monétaire n'est encore publiée pour ce pays malgré le lancement du cadre e-GDDS en mai 2025.",
+      "geography_vintage": "trimestriel, RCA uniquement",
+      "update_cadence": "trimestriel selon le calendrier e-GDDS, mais la dernière valeur disponible pour la RCA date de 2023-T1",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "donnée administrative nationale, transmise par l'ICASEES au FMI via le cadre e-GDDS",
+      "access_notes": "Endpoint direct de l'API SDMX 2.1 du FMI (api.imf.org), trouvé après que l'ancien dataservices.imf.org (documenté dans plusieurs guides tiers) s'est révélé résilié (DNS inexistant) et que le portail AfDB/Knoema (car.opendataforafrica.org/nsdp) s'est révélé entièrement rendu en JavaScript, sans API publique accessible sans navigateur. Sans authentification. Dataflow trouvé via /external/sdmx/2.1/dataflow, pas deviné."
     },
     {
       "source_id": "icasees-ihpc-dashboard",
@@ -39,6 +39,19 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "national census > national survey > international modelled estimate > unattributed portal figure - this is a national statistical office's own published series with a licence and stated methodology; among the highest tier for a value source.",
       "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) -- see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
+    },
+    {
+      "source_id": "icasees-rgph4-provisional",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
+      "url": null,
+      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général - page primaire non localisée)",
+      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) compilé depuis les communications publiques d'ICASEES d'août 2026. La page de résultats primaire n'a pas été localisée indépendamment malgré plusieurs tentatives (plusieurs URL icasees.org/rgph-4/* renvoient 404 ; le site présente aussi des URL de type spam à éviter). Voir docs/verification-debt.md.",
+      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
+      "update_cadence": "décennal",
+      "retrieved_at": "2026-09-05",
+      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
+      "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
     },
     {
       "source_id": "icasees-site",
@@ -106,6 +119,32 @@
       "access_notes": "Two independent secondary citations found and one fetched/quoted directly (limko.cm); the actual Journal Officiel PDF was not located in this pass."
     },
     {
+      "source_id": "unesco-uis-completion-survey",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications -- les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
+      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) -- même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
+      "update_cadence": "irrégulière (dépend de la publication de la prochaine enquête nationale)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM -- l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
+      "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
+    },
+    {
+      "source_id": "unesco-uis-completion-modelled",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Même licence déclarée que la source enquête -- voir la note sur cette source.",
+      "geography_vintage": "séries annuelles modélisées/interpolées par l'UIS, 1981-2025, pour combler les années sans enquête, un jeu par niveau",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale -- rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée",
+      "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
+    },
+    {
       "source_id": "unesco-uis-education-administrative",
       "producer": "UNESCO Institut de statistique (UIS)",
       "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
@@ -143,32 +182,6 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale -- rang le plus bas de l'échelle publiée dans CLAUDE.md/methode.astro",
       "access_notes": "Même endpoint que les autres indicateurs UIS de cette page, indicateurs ROFST.MOD.1/2/3. Utilisée pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) entre la donnée administrative officielle (ROFST.1.CP/2.CP/3.CP, unesco-uis-education-administrative) et cette estimation modélisée, comme pour l'achèvement."
-    },
-    {
-      "source_id": "unesco-uis-completion-survey",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications -- les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
-      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) -- même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
-      "update_cadence": "irrégulière (dépend de la publication de la prochaine enquête nationale)",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM -- l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
-      "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
-    },
-    {
-      "source_id": "unesco-uis-completion-modelled",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que la source enquête -- voir la note sur cette source.",
-      "geography_vintage": "séries annuelles modélisées/interpolées par l'UIS, 1981-2025, pour combler les années sans enquête, un jeu par niveau",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale -- rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée",
-      "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
     },
     {
       "source_id": "unicef-data-warehouse",
@@ -210,43 +223,30 @@
       "access_notes": "Fetched via WebFetch to corroborate the 2020 reform and record alternate name spellings."
     },
     {
-      "source_id": "world-bank-wdi-population",
+      "source_id": "world-bank-health-expenditure",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population, total (SP.POP.TOTL)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
+      "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
+      "geography_vintage": "annuel ; source primaire = OMS Global Health Expenditure Database",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
+    },
+    {
+      "source_id": "world-bank-internet-users",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = Union internationale des télécommunications (ITU)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
-    },
-    {
-      "source_id": "world-bank-electricity-access",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
-    },
-    {
-      "source_id": "world-bank-water-access",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = WHO/UNICEF Joint Monitoring Programme (JMP)",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
     },
     {
       "source_id": "world-bank-sanitation-access",
@@ -314,17 +314,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
     },
     {
-      "source_id": "world-bank-mobile-subscriptions",
+      "source_id": "world-bank-maternal-mortality",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Mobile cellular subscriptions, per 100 people (IT.CEL.SETS.P2)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
+      "dataset_name": "Maternal mortality ratio, per 100,000 live births (SH.STA.MMRT)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = ITU",
+      "geography_vintage": "annuel ; source primaire = WHO/UNICEF/UNFPA/World Bank/UNPD Maternal Mortality Estimation Inter-Agency Group",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2022, la plus récente disponible malgré mrnev=15)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
     },
     {
       "source_id": "world-bank-life-expectancy",
@@ -366,17 +366,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
-      "source_id": "world-bank-health-expenditure",
+      "source_id": "world-bank-electricity-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
+      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = OMS Global Health Expenditure Database",
+      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
+      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
     },
     {
       "source_id": "world-bank-hiv-incidence",
@@ -535,17 +535,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023) pour chaque indicateur. Élargi 2026-09-12 avec la production totale absolue (tonnes)."
     },
     {
-      "source_id": "world-bank-maternal-mortality",
+      "source_id": "world-bank-fertilizer",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Maternal mortality ratio, per 100,000 live births (SH.STA.MMRT)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
+      "dataset_name": "Fertilizer consumption, kg per hectare of arable land (AG.CON.FERT.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = WHO/UNICEF/UNFPA/World Bank/UNPD Maternal Mortality Estimation Inter-Agency Group",
+      "geography_vintage": "annuel ; source primaire = FAO",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023). Valeur très faible (proche de zéro) -- cohérent avec un usage d'engrais minimal en RCA, pas une erreur de récupération."
     },
     {
       "source_id": "world-bank-undernourishment",
@@ -574,30 +574,43 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
-      "source_id": "world-bank-internet-users",
+      "source_id": "world-bank-mobile-subscriptions",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
+      "dataset_name": "Mobile cellular subscriptions, per 100 people (IT.CEL.SETS.P2)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = Union internationale des télécommunications (ITU)",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
-    },
-    {
-      "source_id": "world-bank-fertilizer",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Fertilizer consumption, kg per hectare of arable land (AG.CON.FERT.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = FAO",
+      "geography_vintage": "annuel ; source primaire = ITU",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023). Valeur très faible (proche de zéro) -- cohérent avec un usage d'engrais minimal en RCA, pas une erreur de récupération."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2022, la plus récente disponible malgré mrnev=15)."
+    },
+    {
+      "source_id": "world-bank-wdi-population",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Population, total (SP.POP.TOTL)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
+      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
+    },
+    {
+      "source_id": "world-bank-water-access",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = WHO/UNICEF Joint Monitoring Programme (JMP)",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
     },
     {
       "source_id": "wfp-food-prices-hdx",

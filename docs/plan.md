@@ -798,6 +798,23 @@ survey-linked band) instead of the flat 5-year one used for World Bank's
 annual estimates, and updated méthode.astro's published threshold table
 to say so. 80 indicators total now.
 
+**Update 2026-09-12 (eighth pass the same day) - item 6, IMF NSDP/SDMX.**
+Both routes this file originally named turned out wrong in a specific,
+checkable way: `dataservices.imf.org` (documented everywhere) no longer
+resolves at all, and the AfDB/Knoema mirror
+(`car.opendataforafrica.org/nsdp`) is genuinely all client-side rendering
+with every guessed API path 403ing. IMF's current SDMX 2.1 API lives at
+`api.imf.org` instead - found via its own `/dataflow` listing, not
+guessed. CAR's actual e-GDDS coverage turned out thin: of everything the
+NSDP framework is meant to cover (GDP, prices, debt, monetary, external
+sector), CAF publishes exactly one series - a quarterly Total Economic
+Activity Index, 2017-Q1 to 2023-Q1 - confirmed by querying every
+dimension as a wildcard, not assumed absent. Added it as
+`indice_activite_economique`, and said on the page that the rest of the
+framework isn't populated for this country yet, rather than implying
+broader coverage than exists. 81 indicators total now, and all 7 Phase 3
+source list items are now done except health facilities (item 7).
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for

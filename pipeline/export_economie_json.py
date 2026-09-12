@@ -27,6 +27,7 @@ import json
 import duckdb
 
 from pipeline.sentences import (
+    sentence_economie_activite,
     sentence_economie_croissance_admin,
     sentence_economie_montant,
     sentence_economie_rate,
@@ -51,6 +52,7 @@ CATEGORIES = [
         "pib_par_habitant",
         "pib_total_fcfa",
         "pib_par_habitant_fcfa",
+        "indice_activite_economique",
     ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
@@ -82,7 +84,9 @@ def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dic
     """, [COUNTRY_ID, indicator_id, source_id, source_id]).fetchall()
 
     latest = rows[-1]
-    if indicator_id in MONTANT_INDICATORS:
+    if indicator_id == "indice_activite_economique":
+        lead_text, lead_template_id = sentence_economie_activite(latest[0], latest[1])
+    elif indicator_id in MONTANT_INDICATORS:
         lead_text, lead_template_id = sentence_economie_montant(indicator_id, latest[0], latest[1])
     else:
         lead_text, lead_template_id = sentence_economie_rate(indicator_id, latest[0], latest[1])
