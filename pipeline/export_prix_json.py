@@ -3,7 +3,7 @@
 
 Widened 2026-09-12 from the global index alone to also include the published
 inflation rate and 3 named COICOP sub-categories, all from the same already-
-downloaded file (pipeline/fetch_ihpc.py) -- see docs/decisions.md. The global
+downloaded file (pipeline/fetch_ihpc.py); see docs/decisions.md. The global
 index stays the page's headline/hero chart (top-level "series"/"lead_sentence",
 unchanged shape); inflation and the categories are additive sections below it,
 per docs/plan.md Sec2.3's headline-figure-then-breakdown rule.
@@ -27,7 +27,7 @@ OUT_PATH = "site/src/data/prix.json"
 
 CATEGORY_INDICATORS = ["prix_ihpc_alimentation", "prix_ihpc_sante", "prix_ihpc_transports"]
 
-# Market-level indicators (geographic_floor = "marche") -- entity-scoped,
+# Market-level indicators (geographic_floor = "marche"); entity-scoped,
 # unlike the country-level IHPC series above.
 MARKET_ENTITY_ID = "cf-m-bangui-v1"
 DENREE_INDICATORS = [
@@ -55,7 +55,7 @@ def fetch_market_series(con, indicator_id: str, entity_id: str) -> list[tuple]:
 
 def fetch_national_breakdown(con) -> list[dict]:
     """Phase 4 step 3: the latest price per market and per commodity,
-    grouped by préfecture -- every market with recent WFP data, not just
+    grouped by préfecture; every market with recent WFP data, not just
     Bangui. One row per market per commodity; the caller picks the latest
     period per (market, commodity) pair since coverage varies market to
     market."""

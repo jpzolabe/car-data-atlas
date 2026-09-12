@@ -970,14 +970,16 @@ worth doing until more themes reach that level):
    préfecture page now compares itself against the national average per
    préfecture, alongside the existing régional-sibling comparison - step
    6 fully covered for population. See docs/decisions.md.
-2. **Formalize `geographic_floor` for the remaining ~80 indicators**
-   (step 2) - only `population_totale` and the WFP price indicators have
-   had their floor genuinely re-verified and set this phase; the rest
-   still rely on the earlier audit's summary judgment rather than a
-   per-indicator confirmation.
-3. **Locator maps** (step 5) - the biggest lift of the two remaining:
-   needs new geo/mapshaper infrastructure for build-time SVG maps,
-   nothing built toward this yet.
+2. ~~Formalize `geographic_floor`~~ - **done 2026-09-12** (step 2).
+   New `pipeline/set_geographic_floor.py` derives every indicator's
+   floor mechanically from its actual observations rather than a manual
+   audit judgment; found and fixed one real mistake
+   (`nombre_etablissements_sante` still said `pays` after the santé
+   widening had already given it région-level rows). See
+   docs/decisions.md.
+3. **Locator maps** (step 5) - needs new geo/mapshaper infrastructure
+   for build-time SVG maps, nothing built toward this yet. The one item
+   left from the original 3.
 
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 

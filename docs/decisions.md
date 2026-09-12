@@ -1219,3 +1219,36 @@ that régional comparison, plus a one-line "Ouaka compte 1.7× cette
 moyenne" caption. Verified on both a well-above-average préfecture
 (Ouaka, 1.7×) and a well-below-average one (Vakaga, 0.3×) - bars scale
 correctly in both directions. All 33 pages still pass the 150 KB budget.
+
+## Phase 4 step 2: geographic_floor derived from observations, not re-audited from scratch
+
+Re-read the step's own wording before starting ("Set `geographic_floor`
+per indicator **from observation**") and took it literally: the right
+check isn't re-chasing each of the ~80 national-floor sources for
+theoretical subnational depth (that's a much bigger, separate kind of
+work - each successful widening this phase, WFP/santé/population, was
+its own multi-step effort), it's confirming `indicators.csv`'s stated
+floor actually matches the finest entity level each indicator's own
+observations use in `data/observations.csv` today.
+
+New `pipeline/set_geographic_floor.py`: for every `indicator_id`, finds
+the finest level (`pays` < `region` < `prefecture` < `sous_prefecture`,
+with `marche` as WFP prices' own separate leaf) among its actual
+observations, and writes that back if it disagrees with the current
+value. Grouped the 80 "pays"-floor indicators by source first
+(`world-bank-*`, `unesco-uis-*`, `unicef-data-warehouse`,
+`who-gho-health-workforce`, `imf-egdds-nsdp` account for the great
+majority) - all of those are aggregator platforms that are national-only
+by construction, already confirmed live earlier this session via each
+one's own API structure, not something worth re-querying again without
+new reason to doubt it.
+
+Running it found exactly one real, previously-missed mistake:
+**`nombre_etablissements_sante` was still marked `pays`**, even though
+the santé régional widening earlier this session had already written
+région-level observations for it - a genuine oversight in that commit,
+not something hypothetical the audit merely speculated about. Fixed to
+`region` automatically. Every other indicator's stated floor already
+matched its data; no other changes. Re-ran the script a second time to
+confirm it reports "no changes" (idempotent, safe to leave as a
+standing check rather than a one-off).
