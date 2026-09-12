@@ -2,18 +2,20 @@
 pages (docs/plan.md Sec2.4). Same CSV -> DuckDB -> JSON handoff as every
 other export script; Astro reads this file directly.
 
-Scope for this first pass: population_totale and the 5 WFP market prices
-are the only indicators confirmed to reach préfecture level (see
-docs/decisions.md's Phase 4 audit); nombre_etablissements_sante reaches
-région level only (7 régions, each covering several préfectures - see
+Scope for this pass: population_totale (now reaching sous-préfecture,
+see pipeline/fetch_icasees_population_projection.py) and the 5 WFP
+market prices are the indicators confirmed to reach below préfecture
+level; nombre_etablissements_sante reaches région level only (7 régions,
+each covering several préfectures - see
 pipeline/fetch_etablissements_sante.py), one level short of préfecture,
 and is surfaced as such rather than folded into the same "available"
 bucket as population/prix. Every other theme is included only as an
 explicit "no data at this level" entry in each place's freshness list,
-not silently omitted. Locator maps and sous-préfecture children are
-deliberately not part of this pass (see docs/plan.md Sec2.4 items 3 and
-7); they need new geo/mapshaper infrastructure and 85 more pages
-respectively, both bigger separate steps.
+not silently omitted. Each préfecture page shows its own sous-préfectures'
+2025 population figures directly (no separate page per sous-préfecture
+yet - that's still a bigger, separate step, see docs/plan.md Sec2.4 item
+4's second half). Locator maps are also still not part of this pass (item
+3); they need new geo/mapshaper infrastructure.
 
 Usage: uv run python -m pipeline.export_lieux_prefecture_json
 Output: site/src/data/lieux_prefectures.json
@@ -86,6 +88,21 @@ def main():
         # overwritten in period order -> ends up holding the latest value
         market[indicator_id] = {"period": period, "value": value}
 
+    sp_rows = con.execute("""
+        select p.entity_id as prefecture_id, sp.name_fr as sous_prefecture_name, o.value
+        from observations o
+        join entities sp on o.entity_id = sp.entity_id
+        join entities p on sp.parent_id = p.entity_id
+        where sp.level = 'sous_prefecture' and o.indicator_id = 'population_totale'
+          and o.period = '2025'
+        order by sp.name_fr
+    """).fetchall()
+    sous_prefectures_by_prefecture: dict[str, list[dict]] = {}
+    for prefecture_id, sp_name, value in sp_rows:
+        sous_prefectures_by_prefecture.setdefault(prefecture_id, []).append({
+            "name_fr": sp_name, "pop_2025": value,
+        })
+
     sante_region_rows = con.execute("""
         select entity_id, period, value
         from observations
@@ -119,6 +136,10 @@ def main():
         pop = pop_by_entity.get(entity_id, {})
         pop_2021, pop_2021_flag = pop.get("2021", (None, None))
         pop_2003, _ = pop.get("2003", (None, None))
+        pop_2025, _ = pop.get("2025", (None, None))
+        sous_prefectures = sorted(
+            sous_prefectures_by_prefecture.get(entity_id, []), key=lambda s: s["name_fr"]
+        )
 
         markets = [
             {"name_fr": m, "prices": prices}
@@ -134,8 +155,10 @@ def main():
         freshness = []
         for theme in ALL_THEMES:
             if theme == "Population" and pop_2021 is not None:
+                pop_period = "2025" if pop_2025 is not None else "2021"
                 freshness.append({
-                    "theme": theme, "period": "2021", "available": True, "level": "prefecture",
+                    "theme": theme, "period": pop_period, "available": True,
+                    "level": "sous_prefecture" if sous_prefectures else "prefecture",
                 })
             elif theme == "Prix" and markets:
                 latest_period = max(
@@ -167,6 +190,7 @@ def main():
                 "pop_2003": pop_2003,
                 "pop_2021": pop_2021,
                 "pop_2021_flag": pop_2021_flag,
+                "pop_2025": pop_2025,
                 "rank_2021": rank_by_entity.get(entity_id),
                 "total_prefectures": len(rank_by_entity),
                 "national_2021": national_2021,
@@ -174,6 +198,7 @@ def main():
                     round(pop_2021 / national_2021 * 100, 1) if national_2021 else None
                 ),
             },
+            "sous_prefectures": sous_prefectures,
             "markets": markets,
             "siblings": siblings,
             "sante_region": None if sante_region is None else {
@@ -190,10 +215,12 @@ def main():
     with_population = sum(1 for v in result.values() if v["population"])
     with_markets = sum(1 for v in result.values() if v["markets"])
     with_sante_region = sum(1 for v in result.values() if v["sante_region"])
+    with_sous_prefectures = sum(1 for v in result.values() if v["sous_prefectures"])
     print(
         f"Wrote {len(result)} préfectures to {OUT_PATH} "
         f"({with_population} with population data, {with_markets} with market prices, "
-        f"{with_sante_region} with a régional santé figure)"
+        f"{with_sante_region} with a régional santé figure, "
+        f"{with_sous_prefectures} with sous-préfecture population)"
     )
 
 

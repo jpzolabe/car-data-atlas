@@ -1141,3 +1141,64 @@ the already-used national total (2 508 for F1) before trusting any of it
 - a materially bigger and slower task than the already-deferred estimate
 assumed. Stopped here rather than push a fragile heuristic through.
 **Not revisited without that proper column-mapping approach.**
+
+## Population reaches sous-préfecture: a genuinely fresh, clean source found via HDX's dataset metadata
+
+Went back to the COD-PS lead named in CLAUDE.md's domain facts
+("built on the 2003 census projected to 2015... not yet fetched") rather
+than assume that description was still accurate - it wasn't. HDX's own
+package metadata (`api/3/action/package_show?id=cod-ps-caf`, not the
+dataset's HTML page, which 403s the same way car.opendataforafrica.org
+does) shows the dataset now carries a 2025 projection resource,
+"Projection de la population 2025 en Admin2 (ICASEES)," produced
+directly by ICASEES for the annual HNRP (Humanitarian Needs and
+Response Plan) cycle - not a third-party projection layered on old
+census data.
+
+Checked live before trusting it (same discipline as every other source
+this session): the file's `Admin2_Pcode` column (85 rows, one per
+sous-préfecture) matches every sous-préfecture pcode already in
+`data/aliases.csv` from the COD-AB v02 build, 85-for-85, no leftover, no
+gap, no fuzzy name matching needed - the cleanest join this project has
+had all session. Two other resources in the same dataset (Admin2/Admin3
+CSVs dated 2015) were checked and deliberately not used: their own HDX
+descriptions admit they don't match COD-AB's current unit counts (73 vs.
+72, 177 vs. 175) - built on the older 16-préfecture geography this
+project's crosswalk already moved past, a second crosswalk problem not
+worth taking on for an older, coarser number this new file already beats.
+
+**`population_totale` now reaches sous-préfecture** -
+`indicators.csv`'s `geographic_floor` updated from `prefecture` to
+`sous_prefecture` accordingly (docs/plan.md step 2, done for this one
+indicator). `pipeline/fetch_icasees_population_projection.py` writes both
+the 85 sous-préfecture rows straight from the file and 20 préfecture-level
+rows summed from them (grouped by `Admin1_Pcode`) - the first
+préfecture-level population figure newer than the existing 2021 estimate.
+`population.astro` gained a 2025 column on its région tables and a new
+"Par sous-préfecture" section (85 rows, grouped by préfecture, 20 small
+tables). Every préfecture place page now lists its own sous-préfectures'
+2025 populations directly, ranked descending, with the honest caveat that
+individual sous-préfecture pages don't exist yet - and the freshness
+table's Population row now reads "2025 (jusqu'à la sous-préfecture)"
+rather than "2021," reflecting the new floor. Sibling comparison bars on
+place pages still use 2021 (kept as-is; not worth re-deriving from a
+projection when the estimate is the one already anchoring rank/share
+elsewhere on the page).
+
+**Real gotcha hit while adding the new source row to `data/sources.csv`:**
+DuckDB's `read_csv_auto` failed to "sniff" the file's dialect after
+appending a field containing an escaped embedded ASCII double-quote
+(`""not yet fetched""`) - even though Python's own `csv` module parsed
+the row correctly as valid RFC 4180 (verified field-by-field). Confirmed
+by bisection: the file read fine without that one row, and failed again
+even in a 2-line reproduction of just the header plus that row. Fixed by
+using guillemets (« ») instead of embedded double quotes for the quoted
+phrase, matching the convention already used elsewhere in these CSVs.
+Worth remembering: an embedded `""..""` sequence inside a quoted CSV
+field, while valid CSV, isn't safe to assume DuckDB's sniffer will
+accept - prefer guillemets for any in-CSV quoted phrase.
+
+All 33 pages rebuilt clean and still pass the 150 KB budget (place pages
+grew to ~18 KB with the new sous-préfecture table, `/population/` to
+~59 KB); fetch verified idempotent on both `observations.csv` and
+`sources.csv`.

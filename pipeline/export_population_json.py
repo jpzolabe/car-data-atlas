@@ -6,8 +6,15 @@ or joins the raw CSVs itself.
 
 Widened 2026-09-12 to also export 3 World Bank indicators (growth rate,
 urban %, age dependency ratio) as additive "Autres indicateurs" cards,
-following the same headline-then-breakdown pattern as prix/infrastructures
--- population_totale's national multi-source disclosure stays the headline.
+following the same headline-then-breakdown pattern as prix/infrastructures;
+population_totale's national multi-source disclosure stays the headline.
+
+Widened again 2026-09-12: a 2025 ICASEES projection
+(pipeline/fetch_icasees_population_projection.py) reaches sous-préfecture
+level, this project's finest floor - the first indicator to get there.
+Préfecture rows now carry a pop_2025 column (summed from the same file's
+sous-préfecture rows) alongside the existing 2003/2021 columns, and a new
+sous-préfecture breakdown groups all 85 by their parent préfecture.
 
 Usage: uv run python -m pipeline.export_population_json
 Output: site/src/data/population.json
@@ -45,6 +52,7 @@ def main():
           max(case when o.period = '2003' then o.value end) as pop_2003,
           max(case when o.period = '2021' then o.value end) as pop_2021,
           max(case when o.period = '2021' then o.quality_flag end) as pop_2021_flag,
+          max(case when o.period = '2025' then o.value end) as pop_2025,
           max(o.source_id) as source_id
         from entities p
         join entities r on p.parent_id = r.entity_id
@@ -54,6 +62,22 @@ def main():
         group by p.name_fr, r.name_fr
         order by r.name_fr, p.name_fr
     """).fetchall()
+
+    sp_rows = con.execute("""
+        select p.name_fr as prefecture, sp.name_fr as sous_prefecture, o.value
+        from entities sp
+        join entities p on sp.parent_id = p.entity_id
+        join observations o on o.entity_id = sp.entity_id
+                             and o.indicator_id = 'population_totale'
+                             and o.period = '2025'
+        where sp.level = 'sous_prefecture'
+        order by p.name_fr, sp.name_fr
+    """).fetchall()
+    sous_prefectures_by_prefecture: dict[str, list[dict]] = {}
+    for prefecture, sous_prefecture, value in sp_rows:
+        sous_prefectures_by_prefecture.setdefault(prefecture, []).append({
+            "name_fr": sous_prefecture, "pop_2025": value,
+        })
 
     source = con.execute("""
         select producer, dataset_name, url, retrieved_at::varchar
@@ -157,7 +181,8 @@ def main():
             {
                 "prefecture": r[0], "region": r[1],
                 "pop_2003": r[2], "pop_2021": r[3],
-                "pop_2021_flag": r[4],
+                "pop_2021_flag": r[4], "pop_2025": r[5],
+                "sous_prefectures": sous_prefectures_by_prefecture.get(r[0], []),
             }
             for r in rows
         ],
@@ -167,7 +192,10 @@ def main():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"Wrote {len(rows)} préfectures + {len(others)} other indicators to {OUT_PATH}")
+    print(
+        f"Wrote {len(rows)} préfectures ({len(sp_rows)} sous-préfectures) "
+        f"+ {len(others)} other indicators to {OUT_PATH}"
+    )
 
 
 if __name__ == "__main__":

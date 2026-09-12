@@ -411,7 +411,7 @@ Organised by theme. **Verify every URL before use.**
 |---|---|---|
 | OCHA COD-AB (HDX), **v02 - fetched and used, 2026-09-05** | Admin boundaries with p-codes | **Verified, not assumed:** 20 préfectures, 85 sous-préfectures, no commune/localité layer in this version. `isopen: false` on HDX with a "humanitarian purposes only" usage caveat - see `docs/verification-debt.md`. Built `data/entities.csv`/`aliases.csv` for pays/préfecture/sous-préfecture from this snapshot. |
 | OCHA COD-EM (HDX) | Edge-matched version | For cartography; does not replace COD-AB. Not yet fetched. |
-| OCHA COD-PS (HDX) | Population statistics layer | **Built on the 2003 census projected to 2015.** Widely used and badly out of date. Not yet fetched. |
+| OCHA COD-PS (HDX), **fetched and used, 2026-09-12** | Population statistics layer | **Correction:** this row was accurate when first written but the dataset has since moved on - its own metadata now lists a 2025 ICASEES projection at sous-préfecture level (Admin2), not just the old 2003-projected-to-2015 figures. Checked live (not assumed) and used: `data/entities.csv`'s sous-préfecture pcodes match the file's `Admin2_Pcode` column 85-for-85. See `docs/decisions.md`. |
 | December 2020 reform (adopted 10 Dec 2020) | 20 préfectures, 84 sous-préfectures | Corroborated via Oubangui Médias/Xinhua/Wikipedia reporting (2026-09-05) - matches COD-AB v02's préfecture count and the specific 4 new préfectures (Mambéré, Lim-Pendé, Ouham-Fafa, Bangui) exactly. Primary decree text/number still not located; the 84-vs-85 sous-préfecture gap against COD-AB is unexplained - both logged in `docs/verification-debt.md`. |
 | ICASEES RGPH-4 cartography pages | Population by commune (2021), by ville and by sexe (2024), projections 2022–23 | On icasees.org under actualités/rgph-4 |
 | RGPH-4 provisional results | 7 régions: Plateaux, Équateur, Yadé, Kagas, Fertit, Haut-Oubangui, Bas-Oubangui | Published ~23 Aug 2026 |
@@ -947,6 +947,21 @@ than an honest gap. Abandoned this attempt rather than push a fragile
 heuristic through; not worth revisiting without proper merged-cell-aware
 column mapping and per-préfecture validation against the known national
 total. See docs/decisions.md.
+
+Better luck revisiting the COD-PS population lead instead (explicitly
+named as open a few sessions back): HDX's own dataset metadata showed it
+now carries a 2025 ICASEES sous-préfecture projection, not just the old
+2003-projected-to-2015 figures CLAUDE.md described. Checked live and
+matched 85-for-85 against this project's sous-préfecture pcodes, no fuzzy
+matching needed - `population_totale`'s `geographic_floor` is now
+`sous_prefecture`, the site's first indicator to genuinely reach that
+floor (step 2, done for this one indicator). `/population/` shows the
+full 85-row breakdown and a fresher 2025 préfecture figure; every
+préfecture place page lists its own sous-préfectures' populations
+directly. Individual sous-préfecture pages (step 4's second half) are
+still not built, but they'd have real data to show now rather than an
+inherited or empty one - a meaningfully better starting point for that
+step than existed at the top of this phase.
 
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 

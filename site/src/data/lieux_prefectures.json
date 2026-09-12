@@ -20,11 +20,22 @@
       "pop_2003": 43229.0,
       "pop_2021": 82108.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 86754.0,
       "rank_2021": 19,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 1.6
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bamingui",
+        "pop_2025": 11258.0
+      },
+      {
+        "name_fr": "Ndélé",
+        "pop_2025": 75496.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Ndélé",
@@ -74,9 +85,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -137,11 +148,30 @@
       "pop_2003": 824057.0,
       "pop_2021": 1425276.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 1486900.0,
       "rank_2021": 1,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 27.9
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bangui-Centre",
+        "pop_2025": 243097.0
+      },
+      {
+        "name_fr": "Bangui-Fleuve",
+        "pop_2025": 550323.0
+      },
+      {
+        "name_fr": "Bangui-Kagas",
+        "pop_2025": 572373.0
+      },
+      {
+        "name_fr": "Bangui-Rapides",
+        "pop_2025": 121106.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bangui",
@@ -178,9 +208,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -241,11 +271,38 @@
       "pop_2003": 249150.0,
       "pop_2021": 380172.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 399176.0,
       "rank_2021": 4,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 7.4
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Alindao",
+        "pop_2025": 131219.0
+      },
+      {
+        "name_fr": "Kembé",
+        "pop_2025": 47999.0
+      },
+      {
+        "name_fr": "Mingala",
+        "pop_2025": 41257.0
+      },
+      {
+        "name_fr": "Mobaye",
+        "pop_2025": 85883.0
+      },
+      {
+        "name_fr": "Satéma",
+        "pop_2025": 39457.0
+      },
+      {
+        "name_fr": "Zangba",
+        "pop_2025": 53361.0
+      }
+    ],
     "markets": [],
     "siblings": [
       {
@@ -269,9 +326,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -332,11 +389,34 @@
       "pop_2003": 57602.0,
       "pop_2021": 52314.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 60113.0,
       "rank_2021": 20,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 1.0
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bambouti",
+        "pop_2025": 407.0
+      },
+      {
+        "name_fr": "Djémah",
+        "pop_2025": 3202.0
+      },
+      {
+        "name_fr": "Mboki",
+        "pop_2025": 7022.0
+      },
+      {
+        "name_fr": "Obo",
+        "pop_2025": 16837.0
+      },
+      {
+        "name_fr": "Zémio",
+        "pop_2025": 32645.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Obo",
@@ -407,9 +487,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -470,11 +550,30 @@
       "pop_2003": 90316.0,
       "pop_2021": 128342.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 146455.0,
       "rank_2021": 17,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 2.5
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bria",
+        "pop_2025": 114965.0
+      },
+      {
+        "name_fr": "Ouadda",
+        "pop_2025": 10201.0
+      },
+      {
+        "name_fr": "Ouandja-Kotto",
+        "pop_2025": 15104.0
+      },
+      {
+        "name_fr": "Yalinga",
+        "pop_2025": 6184.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bria",
@@ -524,9 +623,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -587,11 +686,30 @@
       "pop_2003": 118420.0,
       "pop_2021": 183742.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 200501.0,
       "rank_2021": 15,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 3.6
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Dékoa",
+        "pop_2025": 61285.0
+      },
+      {
+        "name_fr": "Mala",
+        "pop_2025": 21469.0
+      },
+      {
+        "name_fr": "Njoukou",
+        "pop_2025": 50881.0
+      },
+      {
+        "name_fr": "Sibut",
+        "pop_2025": 66865.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Dekoa",
@@ -666,9 +784,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -729,11 +847,34 @@
       "pop_2003": 248948.0,
       "pop_2021": 442151.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 476589.0,
       "rank_2021": 3,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 8.6
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Kodi",
+        "pop_2025": 47519.0
+      },
+      {
+        "name_fr": "Ndim",
+        "pop_2025": 33878.0
+      },
+      {
+        "name_fr": "Ngaoundaye",
+        "pop_2025": 63907.0
+      },
+      {
+        "name_fr": "Paoua",
+        "pop_2025": 244426.0
+      },
+      {
+        "name_fr": "Taley",
+        "pop_2025": 86860.0
+      }
+    ],
     "markets": [],
     "siblings": [
       {
@@ -763,9 +904,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -826,11 +967,38 @@
       "pop_2003": 246875.0,
       "pop_2021": 345108.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 366709.0,
       "rank_2021": 5,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 6.8
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Boda",
+        "pop_2025": 73029.0
+      },
+      {
+        "name_fr": "Boganangone",
+        "pop_2025": 40931.0
+      },
+      {
+        "name_fr": "Boganda",
+        "pop_2025": 20486.0
+      },
+      {
+        "name_fr": "Mbaïki",
+        "pop_2025": 146973.0
+      },
+      {
+        "name_fr": "Moboma",
+        "pop_2025": 50370.0
+      },
+      {
+        "name_fr": "Mongoumba",
+        "pop_2025": 34920.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Boda",
@@ -899,9 +1067,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -962,11 +1130,30 @@
       "pop_2003": 167260.0,
       "pop_2021": 265479.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 329273.0,
       "rank_2021": 10,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 5.2
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Amada-Gaza",
+        "pop_2025": 20319.0
+      },
+      {
+        "name_fr": "Carnot",
+        "pop_2025": 183706.0
+      },
+      {
+        "name_fr": "Gadzi",
+        "pop_2025": 97966.0
+      },
+      {
+        "name_fr": "Semkpa-Mbaéré",
+        "pop_2025": 27281.0
+      }
+    ],
     "markets": [],
     "siblings": [
       {
@@ -996,9 +1183,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1059,11 +1246,30 @@
       "pop_2003": 197535.0,
       "pop_2021": 273166.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 285505.0,
       "rank_2021": 8,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 5.3
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Berbérati",
+        "pop_2025": 199199.0
+      },
+      {
+        "name_fr": "Dédé-Mokouba",
+        "pop_2025": 24253.0
+      },
+      {
+        "name_fr": "Gamboula",
+        "pop_2025": 43268.0
+      },
+      {
+        "name_fr": "Sosso-Nakombo",
+        "pop_2025": 18785.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Berbérati",
@@ -1144,9 +1350,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1207,11 +1413,34 @@
       "pop_2003": 164009.0,
       "pop_2021": 257803.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 271661.0,
       "rank_2021": 11,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 5.0
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bakouma",
+        "pop_2025": 30410.0
+      },
+      {
+        "name_fr": "Bangassou",
+        "pop_2025": 117194.0
+      },
+      {
+        "name_fr": "Gambo",
+        "pop_2025": 34464.0
+      },
+      {
+        "name_fr": "Ouango",
+        "pop_2025": 66058.0
+      },
+      {
+        "name_fr": "Rafai",
+        "pop_2025": 23534.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bangassou",
@@ -1261,9 +1490,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1324,11 +1553,26 @@
       "pop_2003": 117816.0,
       "pop_2021": 208821.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 235690.0,
       "rank_2021": 14,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 4.1
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Kaga-Bandoro",
+        "pop_2025": 161377.0
+      },
+      {
+        "name_fr": "Mbrès",
+        "pop_2025": 37754.0
+      },
+      {
+        "name_fr": "Nana-Outa",
+        "pop_2025": 36558.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Kaga-Bandoro",
@@ -1378,9 +1622,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1441,11 +1685,30 @@
       "pop_2003": 233666.0,
       "pop_2021": 341796.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 377443.0,
       "rank_2021": 6,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 6.7
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Abba",
+        "pop_2025": 33625.0
+      },
+      {
+        "name_fr": "Baboua",
+        "pop_2025": 82555.0
+      },
+      {
+        "name_fr": "Baoro",
+        "pop_2025": 63764.0
+      },
+      {
+        "name_fr": "Bouar",
+        "pop_2025": 197498.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Baboua",
@@ -1551,9 +1814,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1614,11 +1877,34 @@
       "pop_2003": 155438.0,
       "pop_2021": 269809.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 297010.0,
       "rank_2021": 9,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 5.3
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Boali",
+        "pop_2025": 67723.0
+      },
+      {
+        "name_fr": "Bogangolo",
+        "pop_2025": 12070.0
+      },
+      {
+        "name_fr": "Bossembélé",
+        "pop_2025": 65181.0
+      },
+      {
+        "name_fr": "Damara",
+        "pop_2025": 61912.0
+      },
+      {
+        "name_fr": "Yaloké",
+        "pop_2025": 90123.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bimbo",
@@ -1787,9 +2073,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1850,11 +2136,34 @@
       "pop_2003": 276710.0,
       "pop_2021": 446354.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 466306.0,
       "rank_2021": 2,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 8.7
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bakala",
+        "pop_2025": 12228.0
+      },
+      {
+        "name_fr": "Bambari",
+        "pop_2025": 227806.0
+      },
+      {
+        "name_fr": "Grimari",
+        "pop_2025": 53088.0
+      },
+      {
+        "name_fr": "Ippy",
+        "pop_2025": 61472.0
+      },
+      {
+        "name_fr": "Kouango",
+        "pop_2025": 111713.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bambari",
@@ -1929,9 +2238,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -1992,11 +2301,30 @@
       "pop_2003": 210021.0,
       "pop_2021": 297904.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 334591.0,
       "rank_2021": 7,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 5.8
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bossangoa",
+        "pop_2025": 188751.0
+      },
+      {
+        "name_fr": "Markounda",
+        "pop_2025": 41875.0
+      },
+      {
+        "name_fr": "Nana-Bakassa",
+        "pop_2025": 61816.0
+      },
+      {
+        "name_fr": "Nanga-Boguila",
+        "pop_2025": 42149.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Batangafo",
@@ -2102,9 +2430,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -2165,11 +2493,30 @@
       "pop_2003": 181559.0,
       "pop_2021": 243315.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 258469.0,
       "rank_2021": 12,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 4.8
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bocaranga",
+        "pop_2025": 109571.0
+      },
+      {
+        "name_fr": "Bossemptélé",
+        "pop_2025": 25844.0
+      },
+      {
+        "name_fr": "Bozoum",
+        "pop_2025": 78386.0
+      },
+      {
+        "name_fr": "Koui",
+        "pop_2025": 44669.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bocaranga",
@@ -2300,9 +2647,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -2363,11 +2710,30 @@
       "pop_2003": 159199.0,
       "pop_2021": 225479.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 242745.0,
       "rank_2021": 13,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 4.4
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Batangafo",
+        "pop_2025": 95085.0
+      },
+      {
+        "name_fr": "Bouca",
+        "pop_2025": 86787.0
+      },
+      {
+        "name_fr": "Kabo",
+        "pop_2025": 50032.0
+      },
+      {
+        "name_fr": "Sido",
+        "pop_2025": 10841.0
+      }
+    ],
     "markets": [],
     "siblings": [
       {
@@ -2397,9 +2763,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -2460,11 +2826,26 @@
       "pop_2003": 101074.0,
       "pop_2021": 138770.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 154965.0,
       "rank_2021": 16,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 2.7
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bambio",
+        "pop_2025": 27615.0
+      },
+      {
+        "name_fr": "Bayanga",
+        "pop_2025": 20940.0
+      },
+      {
+        "name_fr": "Nola",
+        "pop_2025": 106410.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Bayanga",
@@ -2545,9 +2926,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
@@ -2608,11 +2989,30 @@
       "pop_2003": 52255.0,
       "pop_2021": 83188.0,
       "pop_2021_flag": "estime",
+      "pop_2025": 90527.0,
       "rank_2021": 18,
       "total_prefectures": 20,
       "national_2021": 5112100.0,
       "share_of_national_pct": 1.6
     },
+    "sous_prefectures": [
+      {
+        "name_fr": "Am-Dafok",
+        "pop_2025": 10768.0
+      },
+      {
+        "name_fr": "Birao",
+        "pop_2025": 21823.0
+      },
+      {
+        "name_fr": "Ouada-Djallé",
+        "pop_2025": 7464.0
+      },
+      {
+        "name_fr": "Ouandja",
+        "pop_2025": 50472.0
+      }
+    ],
     "markets": [
       {
         "name_fr": "Marché de Birao",
@@ -2662,9 +3062,9 @@
     "freshness": [
       {
         "theme": "Population",
-        "period": "2021",
+        "period": "2025",
         "available": true,
-        "level": "prefecture"
+        "level": "sous_prefecture"
       },
       {
         "theme": "Prix",
