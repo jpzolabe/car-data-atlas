@@ -4,6 +4,11 @@ and sources (for the citation line). This is the CSV -> DuckDB -> JSON handoff
 described in docs/decisions.md — Astro reads this file directly, it never parses
 or joins the raw CSVs itself.
 
+Widened 2026-09-12 to also export 3 World Bank indicators (growth rate,
+urban %, age dependency ratio) as additive "Autres indicateurs" cards,
+following the same headline-then-breakdown pattern as prix/infrastructures
+-- population_totale's national multi-source disclosure stays the headline.
+
 Usage: uv run python -m pipeline.export_population_json
 Output: site/src/data/population.json
 """
@@ -12,9 +17,15 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_population
+from pipeline.sentences import sentence_population, sentence_population_rate
 
 OUT_PATH = "site/src/data/population.json"
+
+OTHER_INDICATORS = [
+    "taux_croissance_population",
+    "taux_urbanisation",
+    "taux_dependance_demographique",
+]
 
 
 def main():
@@ -93,6 +104,36 @@ def main():
         prefecture=lead_row[0], year="2021", value=lead_row[3], reconciled=True
     )
 
+    names = dict(con.execute(
+        "select indicator_id, name_fr from read_csv_auto('data/indicators.csv')"
+    ).fetchall())
+
+    others = []
+    for indicator_id in OTHER_INDICATORS:
+        other_rows = con.execute("""
+            select o.period, o.value, s.producer, s.dataset_name, s.url, s.retrieved_at::varchar
+            from observations o
+            join sources s on o.source_id = s.source_id
+            where o.entity_id = 'cf-pays-centrafrique-v1' and o.indicator_id = ?
+            order by o.period
+        """, [indicator_id]).fetchall()
+        other_latest = other_rows[-1]
+        other_lead, other_template_id = sentence_population_rate(
+            indicator_id, other_latest[0], other_latest[1]
+        )
+        others.append({
+            "indicator_id": indicator_id,
+            "name_fr": names[indicator_id],
+            "latest": {"period": other_latest[0], "value": other_latest[1]},
+            "series": [{"period": r[0], "value": r[1]} for r in other_rows],
+            "lead_sentence": other_lead,
+            "lead_sentence_template_id": other_template_id,
+            "source": {
+                "producer": other_latest[2], "dataset_name": other_latest[3],
+                "url": other_latest[4], "retrieved_at": other_latest[5],
+            },
+        })
+
     data = {
         "generated_note": (
             "Généré à partir de data/observations.csv via "
@@ -113,12 +154,13 @@ def main():
             }
             for r in rows
         ],
+        "other_indicators": others,
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"Wrote {len(rows)} préfectures to {OUT_PATH}")
+    print(f"Wrote {len(rows)} préfectures + {len(others)} other indicators to {OUT_PATH}")
 
 
 if __name__ == "__main__":

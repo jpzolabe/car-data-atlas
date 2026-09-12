@@ -289,3 +289,17 @@ code per URL (unlike UIS's comma-separated list) — four indicators means
 four HTTP calls either way, so there was no efficiency reason to merge them
 into one file, only a naming one, and the existing electricity fetch script
 already works and is untouched.
+
+## Population widened 1 -> 4, last of the three single-indicator themes
+
+Completes the pass started with prix and infrastructures. Added 3 World Bank
+indicators -- population growth rate, urban population %, age dependency
+ratio -- all confirmed live with genuinely current (through 2025) CAF data.
+`population_totale`'s national multi-source disclosure (RGPH-4 census vs.
+World Bank estimate) stays the headline; the 3 new ones are additive
+"Autres indicateurs" cards below the préfecture breakdown, same pattern as
+prix/infrastructures. Unlike those two, the mini sparklines here don't use
+a zero-based y-axis (`sMin = min * 0.9` instead of 0) -- these 3 series
+move within a narrow band around a nonzero baseline (e.g. dependency ratio
+~100%), and a zero-based axis would flatten the line to near-invisible
+instead of showing the actual year-to-year movement.
