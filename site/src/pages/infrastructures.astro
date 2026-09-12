@@ -9,7 +9,7 @@
 // electricite.json since the theme is no longer just electricity.
 import data from "../data/infrastructures.json";
 import ThemeInit from "../components/ThemeInit.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import SiteNav from "../components/SiteNav.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -87,7 +87,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--t-infra); text-decoration: underline; }
@@ -153,7 +153,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Infrastructures</h1>
@@ -238,11 +238,10 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         <a href={data.source.url}>{data.source.url}</a>
         <nav class="site-nav">
           <a href="/population/">Population</a>
-          <a href="/prix/">Prix</a>
+          <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/agriculture/">Agriculture</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

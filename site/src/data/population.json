@@ -70,6 +70,12 @@
       }
     ]
   },
+  "repartition_sexe": {
+    "hommes": 3312532.0,
+    "femmes": 3343737.0,
+    "hommes_pct": 49.8,
+    "femmes_pct": 50.2
+  },
   "prefectures": [
     {
       "prefecture": "Bangui",

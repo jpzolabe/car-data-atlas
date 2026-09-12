@@ -3,7 +3,7 @@
 // an opinion." Mostly hand-written prose, not data-driven - but grounded in
 // what Phase 1 actually found, not generic boilerplate.
 import ThemeInit from "../components/ThemeInit.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import SiteNav from "../components/SiteNav.astro";
 ---
 <!doctype html>
 <html lang="fr">
@@ -38,7 +38,7 @@ import ThemeToggle from "../components/ThemeToggle.astro";
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
       }
-      main { max-width: 700px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 700px; margin: 0 auto; padding: 84px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--indigo); text-decoration: underline; }
@@ -74,7 +74,7 @@ import ThemeToggle from "../components/ThemeToggle.astro";
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Méthode</h1>
@@ -210,13 +210,12 @@ import ThemeToggle from "../components/ThemeToggle.astro";
       <footer>
         <nav class="site-nav">
           <a href="/population/">Population</a>
-          <a href="/prix/">Prix</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/agriculture/">Agriculture</a>
           <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
         </nav>

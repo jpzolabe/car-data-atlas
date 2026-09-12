@@ -1,0 +1,58 @@
+---
+// Fixed top navigation bar, added 2026-09-13 per direct feedback: readers
+// shouldn't have to scroll back to the top of a long page to get home.
+// Replaces the standalone floating ThemeToggle (now a normal child here
+// instead of its own separately-fixed widget - two floating elements
+// competing for the same corner read as messier than one coherent bar).
+//
+// Deliberately minimal per the "sober, institutional, no decorative
+// icons" direction agreed earlier this session: one functional icon (a
+// plain home glyph, wayfinding, not decoration) plus text links, no
+// per-theme accent color here - this bar has to look identical and
+// legible on every page regardless of which page-specific --t-* tokens
+// exist, so it only uses the base tokens every page already defines
+// (--paper/--surface/--ink/--ink-muted/--line).
+import ThemeToggle from "./ThemeToggle.astro";
+---
+<nav class="site-nav-fixed" aria-label="Navigation principale">
+  <a href="/" class="home-link" aria-label="Accueil - Données RCA">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 11.5 12 4l9 7.5"></path>
+      <path d="M5.5 10v9.5a1 1 0 0 0 1 1H9.5v-6h5v6H17.5a1 1 0 0 0 1-1V10"></path>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="/population/">Population</a>
+    <a href="/infrastructures/">Infrastructures</a>
+    <a href="/education/">Éducation</a>
+    <a href="/sante/">Santé</a>
+    <a href="/economie/">Économie</a>
+  </div>
+  <ThemeToggle />
+</nav>
+<style>
+  .site-nav-fixed {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; gap: 18px;
+    padding: 9px 16px;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .home-link {
+    display: flex; align-items: center; justify-content: center;
+    flex: none; color: var(--ink); transition: color 0.15s ease;
+  }
+  .home-link:hover { color: var(--ink-faint); }
+  .nav-links { display: flex; gap: 16px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 560px) {
+    .nav-links { display: none; }
+  }
+</style>

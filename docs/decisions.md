@@ -1420,3 +1420,89 @@ surprise.
 
 Home page grew from 8.5 KB to ~26 KB with all this new content - still
 far under the 150 KB budget. All 33 pages rebuilt clean.
+
+## Second UI polish round: direct feedback on the new home page, plus sitewide fixes
+
+A round of specific feedback on the home page just built, acted on in
+full rather than piecemeal - each change below is small individually but
+they interact (the theme grid's redesign and the footer's harmonization
+both hinge on the same "what counts as a main theme" question, resolved
+once and applied consistently).
+
+**"Population par préfecture" renamed to "Population" everywhere** - it
+was already inconsistent before this (some pages said "Population," one
+said "Population par préfecture," the home page's old lead-story button
+said "Voir par préfecture") - now uniform. Left the population chart's
+own `aria-label` alone ("Population par préfecture, estimation 2021...")
+since that's describing the chart's actual content, not a nav label -
+different question from the one that was raised.
+
+**Added répartition hommes/femmes to `/population/`** - the split
+(3 312 532 / 3 343 737) was already sitting in the existing national
+`population_totale` observation's own notes field, from the same RGPH-4
+source already cited as the page's headline. Promoted to two real
+indicators (`population_hommes`, `population_femmes`) rather than left
+as free text, and rendered as a small labeled split bar next to the
+national disclosure. Median age was asked about too but isn't in any
+source checked yet - flagged to chase separately rather than block this
+on it.
+
+**"Par sous-préfecture" (population.astro) and "Sous-préfectures"
+(place pages) are now collapsible, closed by default** - both are long
+tables (85 and up to 8 rows) that were pushing genuinely important
+content (the national disclosure, the régional/national comparisons)
+below the fold. Implemented as native `<details>`, no JS - a new
+`.section-toggle` class styled to match each page's own existing h2
+convention (uppercase+bottom-border on population.astro,
+larger+top-border on place pages) rather than introducing a third
+heading style.
+
+**Removed "À la une" from the home page entirely** - not trimmed, cut.
+The headline cards and theme grid already do the "give a visitor the
+country in ninety seconds" job Sec2.2 describes; a full lead-story block
+underneath was one more thing between the fold and the actual menu.
+
+**Theme grid redesigned around a real objection: "why put a year right
+at this level?"** Two decisions here, both from direct answers rather
+than guessed: (1) the grid now shows **5 main themes**, not 7 - prix and
+agriculture keep their own URLs and are still directly linked (as small
+secondary links on Économie's own card), but the top-level menu reflects
+that they're conceptually part of économie rather than listing them as
+equally-weighted siblings. (2) the freshness date is gone from this
+level entirely - a plain one-line description per theme instead.
+Freshness stays exactly where it already lived: each theme's own page,
+indicator by indicator, which is where a bare date is actually
+informative instead of just a number floating next to a name.
+
+**Footer harmonized to an identical 9-link set on every single page** -
+`Population, Infrastructures, Éducation, Santé, Économie, Sources,
+Méthode, Données, À propos`. The real bug this fixes: every page's
+footer previously *excluded a link back to itself* (population.astro's
+footer had no "Population" link, prix.astro's had none for "Prix," etc.),
+so no two pages' footers ever matched, and it looked accidental rather
+than designed. Explicitly asked and confirmed: prix and agriculture are
+intentionally *not* in this footer set either - "the footprint should
+only point to the main theme pages." They're still reachable via
+Économie's page and via search; this is a deliberate narrowing to 9
+"main" entries, not an oversight.
+
+**Added a fixed top navigation bar (`SiteNav.astro`)** so a reader on a
+long page (the population page is the longest at ~63 KB now) isn't stuck
+scrolling back to the top for a way home. One functional icon (a plain
+line-drawn house, wayfinding not decoration - consistent with the
+"sober, no decorative icons" call from earlier this session) plus the 5
+main theme names, always visible. `ThemeToggle.astro` moved inside this
+bar as a normal flex child rather than its own independently-fixed
+widget - two separately-floating fixed elements in the same corner read
+as two competing pieces of chrome, not one coherent one. Styled only
+with the base tokens every page already defines
+(`--paper`/`--ink`/`--ink-muted`/`--line`), so it renders identically
+regardless of which page-specific `--t-*` accent exists - deliberately
+neutral, since this bar's job is orientation, not theme identity. Every
+page's `main` top padding increased (32px/40px -> 84px) to clear the new
+bar's height.
+
+All 33 pages rebuilt clean. Home page actually shrank (26 KB -> 18.7 KB)
+with "À la une" gone; the longest page (`/population/`) is ~63 KB,
+still far under the 150 KB budget even after the new sexe-split figure
+and the fixed nav bar's markup landing on every page.

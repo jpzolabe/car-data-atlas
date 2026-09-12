@@ -4,7 +4,7 @@
 // materialized by pipeline/export_sources_json.py from data/sources.csv.
 import data from "../data/sources.json";
 import ThemeInit from "../components/ThemeInit.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import SiteNav from "../components/SiteNav.astro";
 const sources = data.sources;
 ---
 <!doctype html>
@@ -43,7 +43,7 @@ const sources = data.sources;
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
       .source-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
         gap: 14px; align-items: start;
@@ -88,7 +88,7 @@ const sources = data.sources;
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Sources</h1>
@@ -133,12 +133,11 @@ const sources = data.sources;
         <code>data/sources.csv</code> pour les données brutes.
         <nav class="site-nav">
           <a href="/population/">Population</a>
-          <a href="/prix/">Prix</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/agriculture/">Agriculture</a>
+          <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
