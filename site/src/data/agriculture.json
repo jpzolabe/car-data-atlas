@@ -1,0 +1,803 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_agriculture_json.py — ne pas éditer directement.",
+  "headline": {
+    "indicator_id": "emploi_agricole",
+    "latest": {
+      "period": "2025",
+      "value": 66.0601029284997
+    },
+    "series": [
+      {
+        "period": "2011",
+        "value": 63.3051265150031
+      },
+      {
+        "period": "2012",
+        "value": 62.6506024096386
+      },
+      {
+        "period": "2013",
+        "value": 65.6313104854073
+      },
+      {
+        "period": "2014",
+        "value": 65.5782260099785
+      },
+      {
+        "period": "2015",
+        "value": 64.9199143238182
+      },
+      {
+        "period": "2016",
+        "value": 64.5362704614863
+      },
+      {
+        "period": "2017",
+        "value": 64.1499025108055
+      },
+      {
+        "period": "2018",
+        "value": 63.9355114938651
+      },
+      {
+        "period": "2019",
+        "value": 63.620639457259
+      },
+      {
+        "period": "2020",
+        "value": 65.4185169635447
+      },
+      {
+        "period": "2021",
+        "value": 66.1172164282564
+      },
+      {
+        "period": "2022",
+        "value": 66.0275239811822
+      },
+      {
+        "period": "2023",
+        "value": 65.8703779143077
+      },
+      {
+        "period": "2024",
+        "value": 66.0527786892868
+      },
+      {
+        "period": "2025",
+        "value": 66.0601029284997
+      }
+    ],
+    "lead_sentence": "En 2025, la part de l'emploi total dans l'agriculture en République centrafricaine s'établissait à 66,1%.",
+    "lead_sentence_template_id": "emploi_agricole_pays",
+    "source": {
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
+      "retrieved_at": "2026-09-12"
+    },
+    "name_fr": "Emploi agricole"
+  },
+  "categories": [
+    {
+      "key": "terres",
+      "label_fr": "Terres et ressources",
+      "indicators": [
+        {
+          "indicator_id": "terres_agricoles",
+          "latest": {
+            "period": "2023",
+            "value": 9.09948955022633
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 7.93813605573213
+            },
+            {
+              "period": "2010",
+              "value": 7.89688272496709
+            },
+            {
+              "period": "2011",
+              "value": 7.84808501075476
+            },
+            {
+              "period": "2012",
+              "value": 7.85225849947029
+            },
+            {
+              "period": "2013",
+              "value": 7.8614080708851
+            },
+            {
+              "period": "2014",
+              "value": 7.87778098815371
+            },
+            {
+              "period": "2015",
+              "value": 7.89351183023532
+            },
+            {
+              "period": "2016",
+              "value": 7.89270923625156
+            },
+            {
+              "period": "2017",
+              "value": 7.89399338662557
+            },
+            {
+              "period": "2018",
+              "value": 8.30203216796687
+            },
+            {
+              "period": "2019",
+              "value": 8.81890269350541
+            },
+            {
+              "period": "2020",
+              "value": 8.96866673087418
+            },
+            {
+              "period": "2021",
+              "value": 9.00526501653344
+            },
+            {
+              "period": "2022",
+              "value": 9.04218433978619
+            },
+            {
+              "period": "2023",
+              "value": 9.09948955022633
+            }
+          ],
+          "lead_sentence": "En 2023, la part du territoire consacrée à l'agriculture en République centrafricaine s'établissait à 9,1%.",
+          "lead_sentence_template_id": "terres_agricoles_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Agricultural land, arable land, forest area, % of land area (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Terres agricoles"
+        },
+        {
+          "indicator_id": "terres_arables",
+          "latest": {
+            "period": "2023",
+            "value": 2.88933834151979
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 2.99528074737552
+            },
+            {
+              "period": "2010",
+              "value": 2.94391473241517
+            },
+            {
+              "period": "2011",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2012",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2013",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2014",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2015",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2016",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2017",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2018",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2019",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2020",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2021",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2022",
+              "value": 2.88933834151979
+            },
+            {
+              "period": "2023",
+              "value": 2.88933834151979
+            }
+          ],
+          "lead_sentence": "En 2023, la part du territoire en terres arables en République centrafricaine s'établissait à 2,9%.",
+          "lead_sentence_template_id": "terres_arables_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Agricultural land, arable land, forest area, % of land area (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Terres arables"
+        },
+        {
+          "indicator_id": "couverture_forestiere",
+          "latest": {
+            "period": "2023",
+            "value": 35.6560403223217
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 36.3302192686764
+            },
+            {
+              "period": "2010",
+              "value": 36.282063629651
+            },
+            {
+              "period": "2011",
+              "value": 36.2339079906257
+            },
+            {
+              "period": "2012",
+              "value": 36.1857523516004
+            },
+            {
+              "period": "2013",
+              "value": 36.137596712575
+            },
+            {
+              "period": "2014",
+              "value": 36.0894410735497
+            },
+            {
+              "period": "2015",
+              "value": 36.0412854345244
+            },
+            {
+              "period": "2016",
+              "value": 35.9931297954991
+            },
+            {
+              "period": "2017",
+              "value": 35.9449741564737
+            },
+            {
+              "period": "2018",
+              "value": 35.8968185174484
+            },
+            {
+              "period": "2019",
+              "value": 35.8486628784231
+            },
+            {
+              "period": "2020",
+              "value": 35.8005072393977
+            },
+            {
+              "period": "2021",
+              "value": 35.7523516003724
+            },
+            {
+              "period": "2022",
+              "value": 35.7041959613471
+            },
+            {
+              "period": "2023",
+              "value": 35.6560403223217
+            }
+          ],
+          "lead_sentence": "En 2023, la couverture forestière du territoire en République centrafricaine s'établissait à 35,7%.",
+          "lead_sentence_template_id": "couverture_forestiere_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Agricultural land, arable land, forest area, % of land area (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Couverture forestière"
+        }
+      ]
+    },
+    {
+      "key": "production",
+      "label_fr": "Production",
+      "indicators": [
+        {
+          "indicator_id": "valeur_ajoutee_agriculture_pib",
+          "latest": {
+            "period": "2025",
+            "value": 27.6072515492258
+          },
+          "series": [
+            {
+              "period": "2011",
+              "value": 37.5690227836114
+            },
+            {
+              "period": "2012",
+              "value": 36.8141664735428
+            },
+            {
+              "period": "2013",
+              "value": 32.2589062460725
+            },
+            {
+              "period": "2014",
+              "value": 33.9856217226143
+            },
+            {
+              "period": "2015",
+              "value": 31.5273810283745
+            },
+            {
+              "period": "2016",
+              "value": 31.9189914897237
+            },
+            {
+              "period": "2017",
+              "value": 32.7901712257048
+            },
+            {
+              "period": "2018",
+              "value": 31.2413315121572
+            },
+            {
+              "period": "2019",
+              "value": 28.3418324649438
+            },
+            {
+              "period": "2020",
+              "value": 29.4959372264099
+            },
+            {
+              "period": "2021",
+              "value": 35.7553299980455
+            },
+            {
+              "period": "2022",
+              "value": 36.2171100024119
+            },
+            {
+              "period": "2023",
+              "value": 28.6110555239693
+            },
+            {
+              "period": "2024",
+              "value": 27.8986367879887
+            },
+            {
+              "period": "2025",
+              "value": 27.6072515492258
+            }
+          ],
+          "lead_sentence": "En 2025, le poids de l'agriculture, de la sylviculture et de la pêche dans le PIB en République centrafricaine s'établissait à 27,6%.",
+          "lead_sentence_template_id": "valeur_ajoutee_agriculture_pib_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Agriculture, forestry, and fishing, value added, % of GDP (NV.AGR.TOTL.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/NV.AGR.TOTL.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Valeur ajoutée de l'agriculture"
+        },
+        {
+          "indicator_id": "indice_production_alimentaire",
+          "latest": {
+            "period": "2022",
+            "value": 147.99
+          },
+          "series": [
+            {
+              "period": "2008",
+              "value": 69.03
+            },
+            {
+              "period": "2009",
+              "value": 70.92
+            },
+            {
+              "period": "2010",
+              "value": 96.14
+            },
+            {
+              "period": "2011",
+              "value": 99.01
+            },
+            {
+              "period": "2012",
+              "value": 100.7
+            },
+            {
+              "period": "2013",
+              "value": 87.92
+            },
+            {
+              "period": "2014",
+              "value": 95.43
+            },
+            {
+              "period": "2015",
+              "value": 97.61
+            },
+            {
+              "period": "2016",
+              "value": 106.95
+            },
+            {
+              "period": "2017",
+              "value": 108.19
+            },
+            {
+              "period": "2018",
+              "value": 119.2
+            },
+            {
+              "period": "2019",
+              "value": 134.09
+            },
+            {
+              "period": "2020",
+              "value": 141.82
+            },
+            {
+              "period": "2021",
+              "value": 144.9
+            },
+            {
+              "period": "2022",
+              "value": 147.99
+            }
+          ],
+          "lead_sentence": "En 2022, l'indice de production alimentaire en République centrafricaine s'établissait à 148,0.",
+          "lead_sentence_template_id": "indice_production_alimentaire_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Food production index, 2014-2016 = 100 (AG.PRD.FOOD.XD)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.PRD.FOOD.XD?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Production alimentaire"
+        },
+        {
+          "indicator_id": "rendement_cereales",
+          "latest": {
+            "period": "2023",
+            "value": 878.1
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 948.4
+            },
+            {
+              "period": "2010",
+              "value": 907.7
+            },
+            {
+              "period": "2011",
+              "value": 965.7
+            },
+            {
+              "period": "2012",
+              "value": 942.0
+            },
+            {
+              "period": "2013",
+              "value": 910.9
+            },
+            {
+              "period": "2014",
+              "value": 896.0
+            },
+            {
+              "period": "2015",
+              "value": 884.1
+            },
+            {
+              "period": "2016",
+              "value": 875.1
+            },
+            {
+              "period": "2017",
+              "value": 871.5
+            },
+            {
+              "period": "2018",
+              "value": 863.8
+            },
+            {
+              "period": "2019",
+              "value": 859.3
+            },
+            {
+              "period": "2020",
+              "value": 713.0
+            },
+            {
+              "period": "2021",
+              "value": 807.2
+            },
+            {
+              "period": "2022",
+              "value": 830.0
+            },
+            {
+              "period": "2023",
+              "value": 878.1
+            }
+          ],
+          "lead_sentence": "En 2023, le rendement des céréales en République centrafricaine s'établissait à 878,1 kg/ha.",
+          "lead_sentence_template_id": "rendement_cereales_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Cereal yield, kg per hectare (AG.YLD.CREL.KG)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Rendement des céréales"
+        },
+        {
+          "indicator_id": "consommation_engrais",
+          "latest": {
+            "period": "2023",
+            "value": 0.0438888888888889
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 0.217577706323687
+            },
+            {
+              "period": "2010",
+              "value": 0.294438386041439
+            },
+            {
+              "period": "2011",
+              "value": 0.445
+            },
+            {
+              "period": "2012",
+              "value": 0.281666666666667
+            },
+            {
+              "period": "2013",
+              "value": 0.143888888888889
+            },
+            {
+              "period": "2014",
+              "value": 0.00611111111111111
+            },
+            {
+              "period": "2015",
+              "value": 0.34
+            },
+            {
+              "period": "2016",
+              "value": 0.224444444444444
+            },
+            {
+              "period": "2017",
+              "value": 0.186666666666667
+            },
+            {
+              "period": "2018",
+              "value": 0.187777777777778
+            },
+            {
+              "period": "2019",
+              "value": 0.236666666666667
+            },
+            {
+              "period": "2020",
+              "value": 0.238888888888889
+            },
+            {
+              "period": "2021",
+              "value": 0.238888888888889
+            },
+            {
+              "period": "2022",
+              "value": 0.0105555555555556
+            },
+            {
+              "period": "2023",
+              "value": 0.0438888888888889
+            }
+          ],
+          "lead_sentence": "En 2023, la consommation d'engrais en République centrafricaine s'établissait à 0,044 kg/ha.",
+          "lead_sentence_template_id": "consommation_engrais_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Fertilizer consumption, kg per hectare of arable land (AG.CON.FERT.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Consommation d'engrais"
+        }
+      ]
+    },
+    {
+      "key": "emploi_alimentation",
+      "label_fr": "Emploi et alimentation",
+      "indicators": [
+        {
+          "indicator_id": "emploi_agricole",
+          "latest": {
+            "period": "2025",
+            "value": 66.0601029284997
+          },
+          "series": [
+            {
+              "period": "2011",
+              "value": 63.3051265150031
+            },
+            {
+              "period": "2012",
+              "value": 62.6506024096386
+            },
+            {
+              "period": "2013",
+              "value": 65.6313104854073
+            },
+            {
+              "period": "2014",
+              "value": 65.5782260099785
+            },
+            {
+              "period": "2015",
+              "value": 64.9199143238182
+            },
+            {
+              "period": "2016",
+              "value": 64.5362704614863
+            },
+            {
+              "period": "2017",
+              "value": 64.1499025108055
+            },
+            {
+              "period": "2018",
+              "value": 63.9355114938651
+            },
+            {
+              "period": "2019",
+              "value": 63.620639457259
+            },
+            {
+              "period": "2020",
+              "value": 65.4185169635447
+            },
+            {
+              "period": "2021",
+              "value": 66.1172164282564
+            },
+            {
+              "period": "2022",
+              "value": 66.0275239811822
+            },
+            {
+              "period": "2023",
+              "value": 65.8703779143077
+            },
+            {
+              "period": "2024",
+              "value": 66.0527786892868
+            },
+            {
+              "period": "2025",
+              "value": 66.0601029284997
+            }
+          ],
+          "lead_sentence": "En 2025, la part de l'emploi total dans l'agriculture en République centrafricaine s'établissait à 66,1%.",
+          "lead_sentence_template_id": "emploi_agricole_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Emploi agricole"
+        },
+        {
+          "indicator_id": "taux_sous_alimentation",
+          "latest": {
+            "period": "2023",
+            "value": 29.8
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 27.6
+            },
+            {
+              "period": "2010",
+              "value": 26.7
+            },
+            {
+              "period": "2011",
+              "value": 26.3
+            },
+            {
+              "period": "2012",
+              "value": 28.7
+            },
+            {
+              "period": "2013",
+              "value": 30.1
+            },
+            {
+              "period": "2014",
+              "value": 30.9
+            },
+            {
+              "period": "2015",
+              "value": 28.6
+            },
+            {
+              "period": "2016",
+              "value": 26.7
+            },
+            {
+              "period": "2017",
+              "value": 25.3
+            },
+            {
+              "period": "2018",
+              "value": 24.4
+            },
+            {
+              "period": "2019",
+              "value": 25.2
+            },
+            {
+              "period": "2020",
+              "value": 26.6
+            },
+            {
+              "period": "2021",
+              "value": 29.2
+            },
+            {
+              "period": "2022",
+              "value": 29.6
+            },
+            {
+              "period": "2023",
+              "value": 29.8
+            }
+          ],
+          "lead_sentence": "En 2023, la part de la population en sous-alimentation en République centrafricaine s'établissait à 29,8%.",
+          "lead_sentence_template_id": "taux_sous_alimentation_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Prevalence of undernourishment, % of population (SN.ITK.DEFC.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SN.ITK.DEFC.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Sous-alimentation"
+        }
+      ]
+    }
+  ]
+}

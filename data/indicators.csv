@@ -48,3 +48,12 @@ importations_pib,Importations,"Importations de biens et services, en part du PIB
 dette_exterieure_rnb,Dette extérieure,"Encours de la dette extérieure, en part du revenu national brut.",%,economie,pays,economie_taux_pays,false
 investissements_directs_etrangers,Investissements directs étrangers,"Entrées nettes d'investissements directs étrangers, en part du PIB.",%,economie,pays,economie_taux_pays,true
 recettes_publiques_pib,Recettes publiques,"Recettes de l'État hors dons, en part du PIB.",%,economie,pays,economie_taux_pays,
+valeur_ajoutee_agriculture_pib,Valeur ajoutée de l'agriculture,"Agriculture, sylviculture et pêche, en part du PIB.",%,agriculture,pays,agriculture_taux_pays,
+terres_agricoles,Terres agricoles,Part du territoire national utilisée à des fins agricoles.,%,agriculture,pays,agriculture_taux_pays,
+terres_arables,Terres arables,Part du territoire national en terres arables.,%,agriculture,pays,agriculture_taux_pays,
+couverture_forestiere,Couverture forestière,Part du territoire national couverte de forêt.,%,agriculture,pays,agriculture_taux_pays,
+indice_production_alimentaire,Production alimentaire,"Indice de la production alimentaire, base 2014-2016 = 100.",indice,agriculture,pays,agriculture_indice_pays,true
+rendement_cereales,Rendement des céréales,"Rendement des céréales, en kilogrammes par hectare récolté.",kg/ha,agriculture,pays,agriculture_kgha_pays,true
+consommation_engrais,Consommation d'engrais,"Consommation d'engrais, en kilogrammes par hectare de terre arable.",kg/ha,agriculture,pays,agriculture_kgha_pays,
+taux_sous_alimentation,Sous-alimentation,Part de la population en sous-alimentation.,%,agriculture,pays,agriculture_taux_pays,false
+emploi_agricole,Emploi agricole,Part de l'emploi total dans l'agriculture (estimation modélisée OIT).,%,agriculture,pays,agriculture_taux_pays,
