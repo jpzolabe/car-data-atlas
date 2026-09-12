@@ -777,6 +777,27 @@ summary contradicts its own data table for the 2021 growth rate (1.6% vs
 3.44%) - the table was used as authoritative, the inconsistency logged
 rather than silently picked around.
 
+**Update 2026-09-12 (seventh pass the same day) - item 5, MICS 2018-19.**
+The actual MICS6-RCA report PDF is blocked behind what looks like a
+referer/session gate on both mics.unicef.org and its S3 file host (even a
+confirmed-real file URL from the World Bank's own microdata catalog page
+403'd). Rather than force it, checked whether UNICEF republishes the same
+survey data through a structured API - it does, `sdmx.data.unicef.org`,
+live and unauthenticated, discovered via its own `/dataflow` listing.
+7 new indicators: 5 into santé (new "Santé maternelle et infantile"
+category - antenatal care, skilled birth attendance, exclusive
+breastfeeding, stunting, wasting) and 2 into population (birth
+registration, child marriage before 18 - demographic/legal-status facts,
+not health facts). Sourcing is genuinely mixed, not uniformly MICS6 -
+UNICEF's warehouse pulls whichever survey covers each indicator most
+recently, so stunting/wasting's latest point is actually a 2022 SMART
+survey, not MICS - each observation's real source is read from the API
+response and recorded per-row rather than assumed. Also gave these
+indicators a 10-year staleness threshold (matching éducation's existing
+survey-linked band) instead of the flat 5-year one used for World Bank's
+annual estimates, and updated méthode.astro's published threshold table
+to say so. 80 indicators total now.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for

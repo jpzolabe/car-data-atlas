@@ -602,6 +602,184 @@
       ]
     },
     {
+      "key": "maternelle_infantile",
+      "label_fr": "Santé maternelle et infantile",
+      "indicators": [
+        {
+          "indicator_id": "soins_prenatals_4visites",
+          "latest": {
+            "period": "2019",
+            "value": 41.4
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 38.1
+            },
+            {
+              "period": "2019",
+              "value": 41.4
+            }
+          ],
+          "lead_sentence": "En 2019, le taux de suivi prénatal (4 visites ou plus) en République centrafricaine s'établissait à 41,4%.",
+          "lead_sentence_template_id": "soins_prenatals_4visites_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Soins prénatals (4 visites ou plus)",
+          "unit": "%",
+          "definition_fr": "Part des femmes de 15 à 49 ans ayant reçu au moins 4 consultations prénatales pendant leur dernière grossesse."
+        },
+        {
+          "indicator_id": "accouchement_assiste",
+          "latest": {
+            "period": "2019",
+            "value": 40.3
+          },
+          "series": [
+            {
+              "period": "2000",
+              "value": 31.7
+            },
+            {
+              "period": "2006",
+              "value": 41.4
+            },
+            {
+              "period": "2008",
+              "value": 43.7
+            },
+            {
+              "period": "2010",
+              "value": 40.0
+            },
+            {
+              "period": "2019",
+              "value": 40.3
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'accouchement assisté par du personnel qualifié en République centrafricaine s'établissait à 40,3%.",
+          "lead_sentence_template_id": "accouchement_assiste_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Accouchement assisté par du personnel qualifié",
+          "unit": "%",
+          "definition_fr": "Part des accouchements assistés par un professionnel de santé formé (médecin, sage-femme ou infirmier)."
+        },
+        {
+          "indicator_id": "allaitement_exclusif",
+          "latest": {
+            "period": "2019",
+            "value": 36.2
+          },
+          "series": [
+            {
+              "period": "1994",
+              "value": 3.0
+            },
+            {
+              "period": "2000",
+              "value": 16.5
+            },
+            {
+              "period": "2006",
+              "value": 22.8
+            },
+            {
+              "period": "2010",
+              "value": 33.0
+            },
+            {
+              "period": "2014",
+              "value": 28.8
+            },
+            {
+              "period": "2018",
+              "value": 38.8
+            },
+            {
+              "period": "2019",
+              "value": 36.2
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'allaitement exclusif chez les 0-5 mois en République centrafricaine s'établissait à 36,2%.",
+          "lead_sentence_template_id": "allaitement_exclusif_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Allaitement exclusif (0-5 mois)",
+          "unit": "%",
+          "definition_fr": "Part des enfants de 0 à 5 mois nourris exclusivement au lait maternel, sans autre aliment ni liquide."
+        },
+        {
+          "indicator_id": "retard_croissance_enfants",
+          "latest": {
+            "period": "2022",
+            "value": 37.9
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": 37.5
+            },
+            {
+              "period": "2022",
+              "value": 37.9
+            }
+          ],
+          "lead_sentence": "En 2022, le taux de retard de croissance chez les moins de 5 ans en République centrafricaine s'établissait à 37,9%.",
+          "lead_sentence_template_id": "retard_croissance_enfants_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Retard de croissance (enfants de moins de 5 ans)",
+          "unit": "%",
+          "definition_fr": "Part des enfants de moins de 5 ans dont la taille pour l'âge est inférieure à -2 écarts-types de la référence de croissance de l'OMS (retard de croissance chronique, malnutrition sur le long terme)."
+        },
+        {
+          "indicator_id": "emaciation_enfants",
+          "latest": {
+            "period": "2022",
+            "value": 5.2
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": 6.5
+            },
+            {
+              "period": "2022",
+              "value": 5.2
+            }
+          ],
+          "lead_sentence": "En 2022, le taux d'émaciation chez les moins de 5 ans en République centrafricaine s'établissait à 5,2%.",
+          "lead_sentence_template_id": "emaciation_enfants_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Émaciation (enfants de moins de 5 ans)",
+          "unit": "%",
+          "definition_fr": "Part des enfants de moins de 5 ans dont le poids pour la taille est inférieur à -2 écarts-types de la référence de croissance de l'OMS (émaciation aiguë, malnutrition à court terme, plus urgente à traiter que le retard de croissance)."
+        }
+      ]
+    },
+    {
       "key": "mortalite",
       "label_fr": "Mortalité et espérance de vie",
       "indicators": [

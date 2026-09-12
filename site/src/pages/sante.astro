@@ -9,10 +9,17 @@
 import data from "../data/sante.json";
 
 const CURRENT_YEAR = 2026;
-// 5-year threshold, matching méthode.astro's "administrative data" band --
-// these are all annual World Bank estimates, not survey-linked.
-function isStale(period: string): boolean {
-  return CURRENT_YEAR - Number(period) > 5;
+// 5 maternal/child health indicators (added 2026-09-12, UNICEF Data
+// Warehouse) are survey-linked (MICS-style, not annually updated) - 10-year
+// threshold, matching éducation's SURVEY_LINKED band. Everything else here
+// is an annual World Bank estimate - 5-year threshold.
+const SURVEY_LINKED = new Set([
+  "soins_prenatals_4visites", "accouchement_assiste", "allaitement_exclusif",
+  "retard_croissance_enfants", "emaciation_enfants",
+]);
+function isStale(indicatorId: string, period: string): boolean {
+  const threshold = SURVEY_LINKED.has(indicatorId) ? 10 : 5;
+  return CURRENT_YEAR - Number(period) > threshold;
 }
 
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
@@ -125,9 +132,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Santé</h1>
       <p class="lede">
-        Système de santé, vaccination, mortalité, espérance de vie et VIH,
-        avec des données de la Banque mondiale et de l'OMS portant sur
-        l'ensemble du pays.
+        Système de santé, vaccination, santé maternelle et infantile,
+        mortalité, espérance de vie et VIH, avec des données de la Banque
+        mondiale, de l'OMS et de l'UNICEF portant sur l'ensemble du pays.
       </p>
 
       <div class="headline-block">
@@ -146,7 +153,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
           <div class="indicator-grid">
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
-              const stale = isStale(ind.latest.period);
+              const stale = isStale(ind.indicator_id, ind.latest.period);
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
@@ -174,7 +181,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
-        <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats intégrables ici.</li>
+        <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats ; la santé maternelle et infantile ci-dessus vient de MICS6 (2018-2019), le round précédent.</li>
         <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur <a href="https://data.humdata.org/">HDX</a> - volontairement non reconstruit ici.</li>
         <li>Aucune donnée de morbidité au-delà du VIH - paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
         <li>La densité de lits d'hôpital n'a qu'un point après 2011 - c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
@@ -183,9 +190,10 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       </ul>
 
       <footer>
-        Toutes les données de cette page : World Bank (World Development Indicators),
-        récupérées via l'API publique <a href="https://api.worldbank.org/v2/country/CAF/indicator/">api.worldbank.org</a>, le 2026-09-12.
-        Détail par source sur la page <a href="/sources/">Sources</a>.
+        Données de cette page : World Bank (World Development Indicators),
+        OMS (Global Health Observatory) et UNICEF (Data Warehouse) - source
+        indiquée sous chaque indicateur. Détail complet par source sur la
+        page <a href="/sources/">Sources</a>.
         <nav class="site-nav">
           <a href="/population/">Population</a>
           <a href="/prix/">Prix</a>

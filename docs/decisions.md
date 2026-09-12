@@ -651,3 +651,49 @@ dual-line chart with overlay points - there are only 2 overlapping years
 to show, not a long modelled series needing survey points plotted on it,
 so the simpler pattern fit better. This resolves a `docs/verification-debt.md`
 item that had been open since économie was first built, moved to Resolved.
+
+## MICS 2018-19 indicators added via UNICEF's live SDMX data warehouse
+
+Phase 3 source list item 5. Went looking for the actual MICS6-RCA PDF
+report first (icasees.org and mics.unicef.org both found via search), but
+both mics-surveys-prod.s3.amazonaws.com (the report's actual file host)
+and mics.unicef.org itself return 403 to a plain fetch - looks like
+referer/session-gated access, not a wrong URL (even the exact "Snapshots"
+pptx URL found via the World Bank's microdata catalog page 403'd the same
+way). Rather than give up or scrape around the block, checked whether
+UNICEF republishes MICS-derived indicators through a structured API
+instead - it does: `sdmx.data.unicef.org`, the same kind of live SDMX
+warehouse IMF/World Bank use, no authentication required, discovered by
+querying its own `/dataflow` endpoint rather than guessing a URL.
+
+7 new indicators, split across two themes rather than invented as a new
+one: 5 into santé (a new "Santé maternelle et infantile" category -
+antenatal care, skilled birth attendance, exclusive breastfeeding,
+stunting, wasting) and 2 into population (birth registration, child
+marriage before 18) - both are more demographic/legal-status facts than
+health facts, so they fit population's existing "Autres indicateurs"
+pattern better than a forced fit into santé.
+
+**The source isn't uniformly MICS6, and that's stated rather than
+smoothed over.** UNICEF's warehouse compiles each country-indicator from
+whichever national survey covers it most recently - most of these 7
+genuinely are MICS6 (2018-2019), but stunting and wasting have a more
+recent point from a 2022 SMART nutrition survey, used here instead of the
+older MICS point since it's real, more recent, and from the same
+UNICEF-curated series. Each observation's own `DATA_SOURCE` attribute
+from the API response was read and written into that row's `notes` field
+rather than assumed uniform - checked per-indicator, not batch-labeled.
+
+**Two sub-annual 2019 survey rounds were dropped for stunting/wasting**
+(2019-03 and 2019-11, sitting between the 2018 and 2022 points used) -
+keeping them would mix sub-annual and annual periods in what's otherwise
+a clean annual-looking series, misrepresenting occasional point surveys as
+continuously monitored. See `pipeline/fetch_unicef_mics.py`.
+
+Also gave santé and population's affected indicators a 10-year staleness
+threshold instead of the flat 5-year one used for World Bank's annually
+modelled estimates - these are survey-linked (MICS-cadence, not annual),
+same reasoning as éducation's existing `SURVEY_LINKED` split, and
+`méthode.astro`'s published threshold table now has a row for it rather
+than silently diverging from what the page tells readers. 80 indicators
+total now.

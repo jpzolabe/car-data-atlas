@@ -25,6 +25,8 @@ OTHER_INDICATORS = [
     "taux_croissance_population",
     "taux_urbanisation",
     "taux_dependance_demographique",
+    "enregistrement_naissances",
+    "mariage_precoce_filles",
 ]
 
 

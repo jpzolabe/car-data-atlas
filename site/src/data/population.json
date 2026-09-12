@@ -449,6 +449,52 @@
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
         "retrieved_at": "2026-09-12"
       }
+    },
+    {
+      "indicator_id": "enregistrement_naissances",
+      "name_fr": "Enregistrement des naissances (moins de 5 ans)",
+      "definition_fr": "Part des enfants de moins de 5 ans dont la naissance a été enregistrée auprès d'une autorité civile ; sans acte de naissance, l'accès à l'école, aux soins ou à une pièce d'identité peut être compliqué plus tard.",
+      "latest": {
+        "period": "2019",
+        "value": 44.8
+      },
+      "series": [
+        {
+          "period": "2019",
+          "value": 44.8
+        }
+      ],
+      "lead_sentence": "En 2019, le taux d'enregistrement des naissances chez les moins de 5 ans en République centrafricaine s'établissait à 44,8%.",
+      "lead_sentence_template_id": "enregistrement_naissances_pays",
+      "source": {
+        "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+        "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+        "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "mariage_precoce_filles",
+      "name_fr": "Mariage avant 18 ans (femmes de 20 à 24 ans)",
+      "definition_fr": "Part des femmes de 20 à 24 ans mariées ou en union avant l'âge de 18 ans.",
+      "latest": {
+        "period": "2019",
+        "value": 61.0
+      },
+      "series": [
+        {
+          "period": "2019",
+          "value": 61.0
+        }
+      ],
+      "lead_sentence": "En 2019, la part des femmes de 20 à 24 ans mariées avant 18 ans en République centrafricaine s'établissait à 61,0%.",
+      "lead_sentence_template_id": "mariage_precoce_filles_pays",
+      "source": {
+        "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+        "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+        "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+        "retrieved_at": "2026-09-12"
+      }
     }
   ]
 }
