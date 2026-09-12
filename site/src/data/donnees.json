@@ -1,10 +1,10 @@
 {
-  "generated_note": "Généré depuis data/ via pipeline/export_public_data.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/ via pipeline/export_public_data.py - ne pas éditer directement.",
   "files": [
     {
       "name": "entities.csv",
       "rows": 114,
-      "description": "Une ligne par unité administrative, par version. Jamais modifié en place — un redécoupage crée une nouvelle entité."
+      "description": "Une ligne par unité administrative, par version. Jamais modifié en place - un redécoupage crée une nouvelle entité."
     },
     {
       "name": "aliases.csv",
@@ -29,7 +29,7 @@
     {
       "name": "unresolved.csv",
       "rows": 9,
-      "description": "Chaque cas que le rapprochement des sources n'a pas su résoudre — un livrable, pas un journal d'échecs."
+      "description": "Chaque cas que le rapprochement des sources n'a pas su résoudre - un livrable, pas un journal d'échecs."
     }
   ]
 }

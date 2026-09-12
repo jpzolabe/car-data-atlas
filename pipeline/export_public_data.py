@@ -1,5 +1,5 @@
 """Copy the data/ CSVs into site/public/donnees/ so they're downloadable from
-the site's own domain — needed because the GitHub repo is currently private,
+the site's own domain - needed because the GitHub repo is currently private,
 so linking to raw.githubusercontent.com would 404 for anyone else. Also writes
 site/src/data/donnees.json (row counts + descriptions) for the /donnees page.
 Re-run whenever data/ changes.
@@ -12,10 +12,10 @@ import json
 import shutil
 from pathlib import Path
 
-# (filename, one-line description — same as data/README.md, kept in sync by hand)
+# (filename, one-line description - same as data/README.md, kept in sync by hand)
 FILES = [
     ("entities.csv", "Une ligne par unité administrative, par version. "
-                      "Jamais modifié en place — un redécoupage crée une nouvelle entité."),
+                      "Jamais modifié en place - un redécoupage crée une nouvelle entité."),
     ("aliases.csv", "Chaque orthographe, variante d'accent et code source, "
                      "rattachés à un identifiant canonique."),
     ("sources.csv", "Une ligne par source : producteur, licence, cadence, "
@@ -24,7 +24,7 @@ FILES = [
                         "et le niveau géographique le plus fin qu'il atteint réellement."),
     ("observations.csv", "Les valeurs elles-mêmes, format long : "
                           "entité, indicateur, période, valeur, source."),
-    ("unresolved.csv", "Chaque cas que le rapprochement des sources n'a pas su résoudre — "
+    ("unresolved.csv", "Chaque cas que le rapprochement des sources n'a pas su résoudre - "
                         "un livrable, pas un journal d'échecs."),
 ]
 
@@ -47,7 +47,7 @@ def main():
     with open(JSON_OUT, "w", encoding="utf-8") as f:
         json.dump({
             "generated_note": (
-                "Généré depuis data/ via pipeline/export_public_data.py — "
+                "Généré depuis data/ via pipeline/export_public_data.py - "
                 "ne pas éditer directement."
             ),
             "files": files_meta,

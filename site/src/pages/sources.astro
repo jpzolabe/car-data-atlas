@@ -1,5 +1,5 @@
 ---
-// Source register — docs/plan.md §2.7: "This page is what makes an
+// Source register - docs/plan.md §2.7: "This page is what makes an
 // institution take the project seriously." Reads site/src/data/sources.json,
 // materialized by pipeline/export_sources_json.py from data/sources.csv.
 import data from "../data/sources.json";
@@ -11,7 +11,7 @@ const sources = data.sources;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Sources — Données RCA</title>
+    <title>Sources - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -78,7 +78,7 @@ const sources = data.sources;
       <h1>Sources</h1>
       <p class="lede">
         Chaque source utilisée sur ce site, avec sa licence, sa date de
-        récupération et — quand elle existe — la mise en garde qui va avec.
+        récupération et - quand elle existe - la mise en garde qui va avec.
         Une licence signalée ⚠ a une restriction de réutilisation réelle,
         pas seulement théorique.
       </p>
@@ -90,9 +90,9 @@ const sources = data.sources;
             <p class="dataset">{s.dataset_name}</p>
             <div class="meta-row">
               <div><span class="k">Licence</span>{s.licence}{s.licence_notes && <span class="licence-flag">⚠ voir note</span>}</div>
-              <div><span class="k">Cadence</span>{s.update_cadence || "—"}</div>
-              <div><span class="k">Récupéré le</span>{s.retrieved_at || "—"}</div>
-              <div><span class="k">Couverture</span>{s.geography_vintage || "—"}</div>
+              <div><span class="k">Cadence</span>{s.update_cadence || "-"}</div>
+              <div><span class="k">Récupéré le</span>{s.retrieved_at || "-"}</div>
+              <div><span class="k">Couverture</span>{s.geography_vintage || "-"}</div>
             </div>
             {s.url && <a class="url" href={s.url}>{s.url}</a>}
             {s.licence_notes && (

@@ -1,7 +1,7 @@
 ---
-// First real content page — Phase 2. Reads a build-time JSON artifact
+// First real content page - Phase 2. Reads a build-time JSON artifact
 // materialized by pipeline/export_population_json.py (data/observations.csv ->
-// DuckDB join -> JSON). Astro never parses the raw CSVs itself — see
+// DuckDB join -> JSON). Astro never parses the raw CSVs itself - see
 // docs/decisions.md.
 import data from "../data/population.json";
 
@@ -17,7 +17,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR");
 const national = data.national;
 const distinctSources = [...new Set(national.all_sources.map((s) => s.producer))];
 
-// One distinct accent per région — wayfinding, not decoration: with 7 tables
+// One distinct accent per région - wayfinding, not decoration: with 7 tables
 // sitting side by side in a grid, color is what lets the eye tell them apart
 // without re-reading every header. Bas-Oubangui (Bangui alone) gets a neutral
 // rather than a 7th saturated hue, since it's the odd-one-out single-préfecture
@@ -32,10 +32,10 @@ const REGION_COLORS: Record<string, string> = {
   "Bas-Oubangui": "#5A6259",
 };
 
-// Build-time bar chart — all 20 préfectures, 2021 estimate, ranked. Computed
+// Build-time bar chart - all 20 préfectures, 2021 estimate, ranked. Computed
 // here rather than shipped as a client chart library, per CLAUDE.md's
 // build-time-SVG approach (the "no client JS" default still holds here, it's
-// just not the letter of the budget rule that was the point — see the chat).
+// just not the letter of the budget rule that was the point - see the chat).
 const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
 const CHART_W = 1000;
 
@@ -72,7 +72,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Population par préfecture — Données RCA</title>
+    <title>Population par préfecture - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6;
@@ -127,7 +127,8 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px;
       }
-      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .indicator-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-pop);
@@ -258,7 +259,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       <h1>Population par préfecture</h1>
       <p class="lede">
         Deux séries : le recensement de 2003 (RGPH-3) et une estimation 2021.
-        Aucune des deux n'est actuelle — voir les notes sur chaque colonne.
+        Aucune des deux n'est actuelle - voir les notes sur chaque colonne.
       </p>
 
       <div class="national-figure">
@@ -267,11 +268,12 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           <span class="unit">habitants</span>
           <span class="badge provisoire">provisoire</span>
         </div>
+        <p class="national-meta">{data.definition_fr}</p>
         <div class="national-meta">
-          {national.headline.producer} — {national.headline.dataset_name}, {national.headline.period}
+          {national.headline.producer} - {national.headline.dataset_name}, {national.headline.period}
         </div>
         <details class="disclosure">
-          <summary>{distinctSources.length} sources — écart de {national.spread_pct}% avec l'estimation la plus récente</summary>
+          <summary>{distinctSources.length} sources - écart de {national.spread_pct}% avec l'estimation la plus récente</summary>
           <table class="disclosure-table">
             <thead>
               <tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr>
@@ -291,7 +293,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
             Écart calculé entre le chiffre retenu par défaut (recensement, {national.headline.period})
             et l'estimation la plus récente d'une autre source ({national.spread_vs_period}).
             Classement d'autorité : recensement national &gt; enquête nationale &gt;
-            estimation modélisée internationale — voir <a href="/methode/#classement">Méthode</a>.
+            estimation modélisée internationale - voir <a href="/methode/#classement">Méthode</a>.
           </p>
         </details>
       </div>
@@ -322,7 +324,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
 
       <h2>Par région</h2>
       <p class="legend-note">
-        Dans les tableaux ci-dessous : <span class="badge stale">2003</span> = recensement, ancien —
+        Dans les tableaux ci-dessous : <span class="badge stale">2003</span> = recensement, ancien -
         <span class="badge estime">2021</span> = estimation. Voir la note ci-dessus pour le détail.
       </p>
       <div class="region-grid">
@@ -353,7 +355,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
 
       <p class="gap-note">
         Non montré ici : le découpage interne de Bangui (arrondissements,
-        Bimbo, Bégoua) fait l'objet d'un désaccord réel entre trois sources —
+        Bimbo, Bégoua) fait l'objet d'un désaccord réel entre trois sources -
         voir <code>docs/verification-debt.md</code>. Les données par
         sous-préfecture n'existent pas encore pour cet indicateur.
       </p>
@@ -365,6 +367,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           return (
             <div class="indicator-card">
               <p class="ind-name">{ind.name_fr}</p>
+              <p class="ind-definition">{ind.definition_fr}</p>
               <p class="ind-value">{fmt(Math.round(ind.latest.value * 10) / 10)}<span class="unit">%, {ind.latest.period}</span></p>
               <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                 <polyline class="mini-spark-line" points={spark.points} />
@@ -381,7 +384,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       </div>
 
       <footer>
-        Source : {data.source.producer} — {data.source.dataset_name}.
+        Source : {data.source.producer} - {data.source.dataset_name}.
         Récupéré le {data.source.retrieved_at}.
         <a href={data.source.url}>{data.source.url}</a>
         <nav class="site-nav">

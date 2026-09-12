@@ -1,5 +1,5 @@
 {
-  "generated_note": "Généré depuis data/observations.csv via pipeline/export_education_json.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_education_json.py - ne pas éditer directement.",
   "headline": {
     "indicator_id": "taux_achevement_primaire",
     "latest": {
@@ -298,7 +298,8 @@
       "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
       "retrieved_at": "2026-09-12"
     },
-    "name_fr": "Taux d'achèvement du primaire"
+    "name_fr": "Taux d'achèvement du primaire",
+    "definition_fr": "Part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un indicateur bas signifie que beaucoup d'enfants entrent à l'école mais n'en terminent pas le cycle, pas nécessairement qu'ils n'y entrent jamais."
   },
   "categories": [
     {
@@ -410,7 +411,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux net de scolarisation, primaire"
+          "name_fr": "Taux net de scolarisation, primaire",
+          "definition_fr": "Effectifs scolarisés dans le primaire ayant l'âge officiel du primaire, rapportés à la population de cet âge. Ne peut pas dépasser 100 %, contrairement au taux brut : il ne compte que les élèves à l'âge attendu pour ce cycle."
         },
         {
           "indicator_id": "taux_scolarisation_brut_primaire",
@@ -569,7 +571,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux brut de scolarisation, primaire"
+          "name_fr": "Taux brut de scolarisation, primaire",
+          "definition_fr": "Effectifs scolarisés dans le primaire, quel que soit l'âge, rapportés à la population d'âge officiellement primaire. Peut dépasser 100 % : les redoublants et les entrées tardives comptent dans les effectifs sans changer la population de référence."
         },
         {
           "indicator_id": "taux_scolarisation_brut_secondaire_1er_cycle",
@@ -632,7 +635,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux brut de scolarisation, premier cycle du secondaire"
+          "name_fr": "Taux brut de scolarisation, premier cycle du secondaire",
+          "definition_fr": "Effectifs scolarisés dans le premier cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant."
         },
         {
           "indicator_id": "taux_scolarisation_brut_secondaire_2nd_cycle",
@@ -687,7 +691,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux brut de scolarisation, second cycle du secondaire"
+          "name_fr": "Taux brut de scolarisation, second cycle du secondaire",
+          "definition_fr": "Effectifs scolarisés dans le second cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant."
         },
         {
           "indicator_id": "taux_scolarisation_brut_superieur",
@@ -822,7 +827,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux brut de scolarisation, enseignement supérieur"
+          "name_fr": "Taux brut de scolarisation, enseignement supérieur",
+          "definition_fr": "Effectifs inscrits dans l'enseignement supérieur (tertiaire), quel que soit l'âge, rapportés à la population ayant l'âge théorique de sortie du secondaire."
         }
       ]
     },
@@ -919,7 +925,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux de redoublement, primaire"
+          "name_fr": "Taux de redoublement, primaire",
+          "definition_fr": "Part des élèves du primaire, toutes années confondues, inscrits dans la même année scolaire que l'année précédente. Un taux élevé indique un système où beaucoup d'élèves recommencent une année plutôt que de progresser."
         },
         {
           "indicator_id": "taux_survie_primaire",
@@ -1002,7 +1009,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux de survie jusqu'à la dernière année du primaire"
+          "name_fr": "Taux de survie jusqu'à la dernière année du primaire",
+          "definition_fr": "Part d'une cohorte d'élèves entrés en première année du primaire qui atteignent la dernière année du cycle, avec ou sans redoublement. Se lit comme un taux d'abandon inversé."
         },
         {
           "indicator_id": "taux_non_scolarisation_primaire",
@@ -1474,7 +1482,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux de non-scolarisation, âge du primaire"
+          "name_fr": "Taux de non-scolarisation, âge du primaire",
+          "definition_fr": "Part des enfants ayant l'âge officiel du primaire qui ne sont scolarisés à aucun niveau, primaire ou autre."
         },
         {
           "indicator_id": "taux_non_scolarisation_secondaire_1er_cycle",
@@ -1714,7 +1723,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux de non-scolarisation, âge du premier cycle du secondaire"
+          "name_fr": "Taux de non-scolarisation, âge du premier cycle du secondaire",
+          "definition_fr": "Part des adolescents ayant l'âge officiel du premier cycle du secondaire qui ne sont scolarisés à aucun niveau."
         },
         {
           "indicator_id": "taux_non_scolarisation_secondaire_2nd_cycle",
@@ -1918,7 +1928,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux de non-scolarisation, âge du second cycle du secondaire"
+          "name_fr": "Taux de non-scolarisation, âge du second cycle du secondaire",
+          "definition_fr": "Part des jeunes ayant l'âge officiel du second cycle du secondaire qui ne sont scolarisés à aucun niveau."
         }
       ]
     },
@@ -2224,7 +2235,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux d'achèvement du primaire"
+          "name_fr": "Taux d'achèvement du primaire",
+          "definition_fr": "Part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un indicateur bas signifie que beaucoup d'enfants entrent à l'école mais n'en terminent pas le cycle, pas nécessairement qu'ils n'y entrent jamais."
         },
         {
           "indicator_id": "taux_achevement_secondaire_1er_cycle",
@@ -2524,7 +2536,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux d'achèvement du premier cycle du secondaire"
+          "name_fr": "Taux d'achèvement du premier cycle du secondaire",
+          "definition_fr": "Part d'une cohorte d'âge ayant achevé le premier cycle de l'enseignement secondaire (collège), tous sexes confondus."
         },
         {
           "indicator_id": "taux_achevement_secondaire_2nd_cycle",
@@ -2824,7 +2837,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux d'achèvement du second cycle du secondaire"
+          "name_fr": "Taux d'achèvement du second cycle du secondaire",
+          "definition_fr": "Part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus."
         }
       ]
     },
@@ -2865,7 +2879,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux d'alphabétisation des jeunes (15-24 ans)"
+          "name_fr": "Taux d'alphabétisation des jeunes (15-24 ans)",
+          "definition_fr": "Part de la population âgée de 15 à 24 ans capable de lire et écrire un énoncé simple sur la vie courante. Suit de près la scolarisation passée : c'est un indicateur retardé, pas immédiat."
         },
         {
           "indicator_id": "taux_alphabetisation_adultes",
@@ -2900,7 +2915,8 @@
             "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Taux d'alphabétisation des adultes (15 ans et plus)"
+          "name_fr": "Taux d'alphabétisation des adultes (15 ans et plus)",
+          "definition_fr": "Part de la population âgée de 15 ans et plus capable de lire et écrire un énoncé simple sur la vie courante."
         }
       ]
     }

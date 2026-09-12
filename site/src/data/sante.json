@@ -1,5 +1,5 @@
 {
-  "generated_note": "Généré depuis data/observations.csv via pipeline/export_sante_json.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_sante_json.py - ne pas éditer directement.",
   "headline": {
     "indicator_id": "esperance_vie",
     "latest": {
@@ -77,7 +77,8 @@
       "retrieved_at": "2026-09-12"
     },
     "name_fr": "Espérance de vie à la naissance",
-    "unit": "ans"
+    "unit": "ans",
+    "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
   },
   "categories": [
     {
@@ -161,7 +162,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Dépenses de santé",
-          "unit": "% du PIB"
+          "unit": "% du PIB",
+          "definition_fr": "Dépenses courantes de santé, en part du PIB -- inclut les dépenses publiques et privées (y compris les ménages), pas seulement le budget de l'État."
         },
         {
           "indicator_id": "densite_medecins",
@@ -240,7 +242,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Densité de médecins",
-          "unit": "pour 1 000 habitants"
+          "unit": "pour 1 000 habitants",
+          "definition_fr": "Nombre de médecins pour 1 000 habitants -- une mesure relative à la population, à ne pas confondre avec l'effectif total (voir 'Nombre de médecins' ci-dessous)."
         },
         {
           "indicator_id": "nombre_medecins",
@@ -287,7 +290,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Nombre de médecins",
-          "unit": "personnes"
+          "unit": "personnes",
+          "definition_fr": "Effectif total de médecins en exercice dans le pays -- un décompte brut, à distinguer de la densité pour 1 000 habitants (voir 'Densité de médecins' ci-dessus), qui tient compte de la taille de la population."
         },
         {
           "indicator_id": "densite_lits_hopital",
@@ -330,7 +334,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Densité de lits d'hôpital",
-          "unit": "pour 1 000 habitants"
+          "unit": "pour 1 000 habitants",
+          "definition_fr": "Nombre de lits d'hôpital pour 1 000 habitants -- une mesure de la capacité hospitalière disponible, indépendamment de la population totale du pays."
         },
         {
           "indicator_id": "nombre_lits_hopital",
@@ -373,7 +378,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Nombre de lits d'hôpital",
-          "unit": "lits"
+          "unit": "lits",
+          "definition_fr": "Estimation calculée (densité de lits x population), pas un décompte publié directement -- voir docs/verification-debt.md."
         },
         {
           "indicator_id": "nombre_personnel_infirmier",
@@ -424,7 +430,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Personnel infirmier et sages-femmes",
-          "unit": "personnes"
+          "unit": "personnes",
+          "definition_fr": "Effectif total de personnel infirmier et de sages-femmes en exercice dans le pays."
         }
       ]
     },
@@ -509,7 +516,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Vaccination contre la rougeole",
-          "unit": "%"
+          "unit": "%",
+          "definition_fr": "Part des enfants de 12 à 23 mois ayant reçu le vaccin contre la rougeole."
         },
         {
           "indicator_id": "taux_vaccination_dtc",
@@ -588,7 +596,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Vaccination DTC",
-          "unit": "%"
+          "unit": "%",
+          "definition_fr": "Part des enfants de 12 à 23 mois ayant reçu le vaccin diphtérie-tétanos-coqueluche."
         }
       ]
     },
@@ -673,7 +682,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Espérance de vie à la naissance",
-          "unit": "ans"
+          "unit": "ans",
+          "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
         },
         {
           "indicator_id": "taux_mortalite_moins_5ans",
@@ -752,7 +762,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Mortalité des moins de 5 ans",
-          "unit": "pour 1 000 naissances vivantes"
+          "unit": "pour 1 000 naissances vivantes",
+          "definition_fr": "Probabilité de décès avant 5 ans, pour 1 000 naissances vivantes. L'un des indicateurs de santé les plus suivis à l'échelle internationale, car il résume l'accès aux soins de base, à la nutrition et à l'eau potable."
         },
         {
           "indicator_id": "taux_mortalite_infantile",
@@ -831,7 +842,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Mortalité infantile",
-          "unit": "pour 1 000 naissances vivantes"
+          "unit": "pour 1 000 naissances vivantes",
+          "definition_fr": "Probabilité de décès avant 1 an, pour 1 000 naissances vivantes."
         },
         {
           "indicator_id": "taux_mortalite_maternelle",
@@ -910,7 +922,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Mortalité maternelle",
-          "unit": "pour 100 000 naissances vivantes"
+          "unit": "pour 100 000 naissances vivantes",
+          "definition_fr": "Décès maternels pour 100 000 naissances vivantes -- décès survenus pendant la grossesse, l'accouchement ou les 42 jours suivants, pour des causes liées à la grossesse."
         }
       ]
     },
@@ -995,7 +1008,8 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Incidence du VIH",
-          "unit": "pour 1 000 personnes non infectées 15-49 ans"
+          "unit": "pour 1 000 personnes non infectées 15-49 ans",
+          "definition_fr": "Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans, sur une année -- mesure les nouveaux cas, pas le nombre total de personnes vivant avec le VIH."
         }
       ]
     }

@@ -54,11 +54,6 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   };
 }
 
-const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.length, 0);
-const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
-const oldestVintage = Math.min(...allPeriods);
-const newestVintage = Math.max(...allPeriods);
-
 const headlineValue = formatValue("emploi_agricole", data.headline.latest.value);
 ---
 <!doctype html>
@@ -67,7 +62,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Agriculture — Données RCA</title>
+    <title>Agriculture - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -119,7 +114,8 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
         padding: 16px 18px;
       }
-      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
       .indicator-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-agri); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
@@ -149,21 +145,17 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Agriculture</h1>
       <p class="lede">
-        Terres et ressources, production, emploi et alimentation —
-        {allIndicatorCount} indicateurs, tous de la Banque mondiale, tous
-        nationaux. Voir aussi <a href="/economie/">Économie</a>, dont ce
-        thème est un complément sectoriel.
-      </p>
-      <p class="coverage">
-        {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
-        niveau le plus fin : pays
+        Terres et ressources, production, emploi et alimentation, avec des
+        données de la Banque mondiale portant sur l'ensemble du pays. Voir
+        aussi <a href="/economie/">Économie</a>, dont ce thème est un
+        complément sectoriel.
       </p>
 
       <div class="headline-block">
         <div class="headline-value">
           {headlineValue.display}<span class="unit">{headlineValue.unit} de l'emploi, {data.headline.latest.period}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr} — deux actifs sur trois en République centrafricaine, le trait le plus caractéristique de son économie.</p>
+        <p class="headline-caption">{data.headline.name_fr} : deux actifs sur trois en République centrafricaine, le trait le plus caractéristique de son économie. {data.headline.definition_fr}</p>
         <p class="mini-sentence">
           {data.headline.lead_sentence}
         </p>
@@ -180,6 +172,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
+                  <p class="ind-definition">{ind.definition_fr}</p>
                   <div class="ind-value">
                     {val.display}<span class="unit">{val.unit}, {ind.latest.period}</span>
                     {stale && <span class="badge stale">ancien</span>}
@@ -202,8 +195,8 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux.</li>
-        <li>Aucun prix agricole (manioc, arachide, maïs…) — ce type de donnée existe via le Programme alimentaire mondial (WFP) et HDX, à un niveau géographique différent (le marché, un point, pas une zone). Pas encore intégré.</li>
+        <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
+        <li>Les prix agricoles au marché (manioc, riz, maïs...) sont désormais suivis sur la page <a href="/prix/">Prix</a>, à un niveau géographique différent (le marché de Bangui, un point, pas une zone) - voir cette page pour le détail.</li>
         <li>Aucune donnée sur l'élevage, la pêche en tant que sous-secteur séparé, ou les surfaces cultivées par culture (manioc, maïs, arachide…).</li>
         <li>Aucune donnée sur l'accès à la terre, les régimes fonciers, ou les coopératives agricoles.</li>
       </ul>

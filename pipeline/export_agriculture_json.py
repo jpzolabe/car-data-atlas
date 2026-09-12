@@ -83,6 +83,7 @@ def main():
     """)
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
+    definitions = dict(con.execute("select indicator_id, definition_fr from indicators").fetchall())
 
     categories = []
     for key, label, indicator_ids in CATEGORIES:
@@ -90,6 +91,7 @@ def main():
         for indicator_id in indicator_ids:
             block = build_indicator(con, indicator_id)
             block["name_fr"] = names[indicator_id]
+            block["definition_fr"] = definitions[indicator_id]
             indicator_blocks.append(block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})
 
@@ -103,7 +105,7 @@ def main():
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
-            "pipeline/export_agriculture_json.py — ne pas éditer directement."
+            "pipeline/export_agriculture_json.py - ne pas éditer directement."
         ),
         "headline": headline_indicator,
         "categories": categories,

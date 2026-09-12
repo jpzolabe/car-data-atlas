@@ -1,10 +1,10 @@
-"""Fetch, snapshot, and transform the national IHPC series — the reusable,
+"""Fetch, snapshot, and transform the national IHPC series - the reusable,
 idempotent version of what add_ihpc_observations.py did as a one-off. This is
 what .github/workflows/fetch-ihpc.yml runs on a schedule.
 
 Idempotent by design: ICASEES republishes the *entire* historical series each
 time (not incremental deltas), so re-running this fully replaces every
-indicator in INDICATOR_CODES in observations.csv rather than appending —
+indicator in INDICATOR_CODES in observations.csv rather than appending -
 running it twice in a row produces the same file, not duplicates.
 
 Widened 2026-09-12 from the global index (IND1) alone to include 3 named
@@ -67,7 +67,7 @@ def fetch_snapshot() -> Path:
 def index_notes(reconciled: bool) -> str:
     return (
         "Valeur reconciliée sur la base 2019 via le coefficient officiel "
-        "4,12919 (publié dans les avertissements des bulletins IHPC) — "
+        "4,12919 (publié dans les avertissements des bulletins IHPC) - "
         "valeur brute d'origine (base 1981) conservée dans le fichier "
         "source, feuille Archive_Base1981_Brute."
         if reconciled else

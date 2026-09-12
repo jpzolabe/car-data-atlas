@@ -1,11 +1,12 @@
 {
-  "generated_note": "Généré depuis data/observations.csv via pipeline/export_infrastructures_json.py — ne pas éditer directement.",
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_infrastructures_json.py - ne pas éditer directement.",
   "source": {
     "producer": "World Bank (World Development Indicators)",
     "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
     "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
     "retrieved_at": "2026-09-12"
   },
+  "definition_fr": "Part de la population ayant accès à l'électricité, toutes sources de raccordement confondues.",
   "lead_sentence": "En 2024, 18,2% de la population avait accès à l'électricité en République centrafricaine, en hausse par rapport à l'année précédente.",
   "lead_sentence_template_id": "acces_electricite_pays_tendance",
   "series": [
@@ -74,6 +75,7 @@
     {
       "indicator_id": "taux_utilisation_internet",
       "name_fr": "Utilisation d'Internet",
+      "definition_fr": "Part de la population utilisant Internet, tous moyens d'accès confondus.",
       "latest": {
         "period": "2024",
         "value": 13.78250027
@@ -152,6 +154,7 @@
     {
       "indicator_id": "abonnements_mobiles",
       "name_fr": "Abonnements mobiles",
+      "definition_fr": "Nombre d'abonnements de téléphonie mobile pour 100 habitants. Peut dépasser 100 : une même personne peut avoir plusieurs abonnements, donc ce n'est pas un taux de possession de téléphone.",
       "latest": {
         "period": "2022",
         "value": 38.8217901039988
@@ -230,6 +233,7 @@
     {
       "indicator_id": "acces_eau_potable_base",
       "name_fr": "Accès à l'eau potable",
+      "definition_fr": "Part de la population utilisant au moins un service de base d'eau potable.",
       "latest": {
         "period": "2024",
         "value": 36.5040268237207
@@ -308,6 +312,7 @@
     {
       "indicator_id": "acces_assainissement_base",
       "name_fr": "Accès à l'assainissement",
+      "definition_fr": "Part de la population utilisant au moins un service de base d'assainissement.",
       "latest": {
         "period": "2024",
         "value": 14.0362838980325

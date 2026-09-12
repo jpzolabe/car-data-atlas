@@ -1,7 +1,7 @@
 """Materialize a JSON artifact for the Astro site from the population_totale
 observations, joined against entities (for région/préfecture names and hierarchy)
 and sources (for the citation line). This is the CSV -> DuckDB -> JSON handoff
-described in docs/decisions.md — Astro reads this file directly, it never parses
+described in docs/decisions.md - Astro reads this file directly, it never parses
 or joins the raw CSVs itself.
 
 Widened 2026-09-12 to also export 3 World Bank indicators (growth rate,
@@ -58,11 +58,11 @@ def main():
         from sources where source_id = 'citypopulation-de-caf'
     """).fetchone()
 
-    # National-level multi-source disclosure — docs/plan.md §2.5. Two genuinely
+    # National-level multi-source disclosure - docs/plan.md §2.5. Two genuinely
     # independent sources disagree on the same country: RGPH-4 (census,
     # provisional) vs World Bank WDI (modelled estimate). Per CLAUDE.md's
     # authority ranking, census outranks modelled estimate regardless of
-    # publication recency — the census row is hardcoded as the default/headline
+    # publication recency - the census row is hardcoded as the default/headline
     # here rather than computed generically, since authority_rank in
     # sources.csv is free text, not a sortable field, and there are only two
     # sources to choose between so far.
@@ -96,7 +96,7 @@ def main():
         ],
     }
 
-    # Lead sentence: the most populous préfecture, as a representative example —
+    # Lead sentence: the most populous préfecture, as a representative example -
     # not one sentence per row, matching docs/plan.md's "one generated sentence
     # per chart" pattern rather than per data point.
     lead_row = max(rows, key=lambda r: r[3])  # r[3] = pop_2021
@@ -106,6 +106,9 @@ def main():
 
     names = dict(con.execute(
         "select indicator_id, name_fr from read_csv_auto('data/indicators.csv')"
+    ).fetchall())
+    definitions = dict(con.execute(
+        "select indicator_id, definition_fr from read_csv_auto('data/indicators.csv')"
     ).fetchall())
 
     others = []
@@ -124,6 +127,7 @@ def main():
         others.append({
             "indicator_id": indicator_id,
             "name_fr": names[indicator_id],
+            "definition_fr": definitions[indicator_id],
             "latest": {"period": other_latest[0], "value": other_latest[1]},
             "series": [{"period": r[0], "value": r[1]} for r in other_rows],
             "lead_sentence": other_lead,
@@ -137,12 +141,13 @@ def main():
     data = {
         "generated_note": (
             "Généré à partir de data/observations.csv via "
-            "pipeline/export_population_json.py — ne pas éditer directement."
+            "pipeline/export_population_json.py - ne pas éditer directement."
         ),
         "source": {
             "producer": source[0], "dataset_name": source[1],
             "url": source[2], "retrieved_at": source[3],
         },
+        "definition_fr": definitions["population_totale"],
         "lead_sentence": lead_text,
         "lead_sentence_template_id": lead_template_id,
         "national": national,

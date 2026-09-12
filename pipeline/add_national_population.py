@@ -3,10 +3,10 @@ independent sources, specifically to exercise the multi-source disclosure
 mechanism (docs/plan.md §2.5) with a real conflict rather than a
 manufactured one:
 
-- ICASEES RGPH-4 provisional census (2025): 6,656,269 — the highest-authority
+- ICASEES RGPH-4 provisional census (2025): 6,656,269 - the highest-authority
   source (national census) per CLAUDE.md's ranking, but explicitly provisional.
-  This value is NOT fetched here — no live endpoint was found for it this
-  session (see docs/verification-debt.md) — it's entered as compiled in
+  This value is NOT fetched here - no live endpoint was found for it this
+  session (see docs/verification-debt.md) - it's entered as compiled in
   CLAUDE.md, with that provenance chain stated plainly rather than presented
   as freshly verified.
 - World Bank WDI (SP.POP.TOTL), fetched live via the public REST API: annual
@@ -31,7 +31,7 @@ RGPH4_ROW = {
     "notes": (
         "3 312 532 hommes / 3 343 737 femmes ; densité 10,7/km². "
         "Marqué données non encore validées par ICASEES. Chiffre compilé "
-        "dans CLAUDE.md, page primaire ICASEES non localisée cette session — "
+        "dans CLAUDE.md, page primaire ICASEES non localisée cette session - "
         "voir docs/verification-debt.md."
     ),
 }

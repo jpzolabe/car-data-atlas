@@ -1,7 +1,7 @@
 """Quality gates from CLAUDE.md, run over the data/ CSVs with DuckDB.
 
 - Every CSV row has the same number of fields as its header (catches an unquoted
-  comma inside a field silently shifting columns — has happened three times while
+  comma inside a field silently shifting columns - has happened three times while
   hand-editing sources.csv, hence a real, not hypothetical, gate)
 - Every alias's source_id exists in sources.csv
 - Every alias's entity_id exists in entities.csv
@@ -9,7 +9,7 @@
 - Every observation's entity_id, indicator_id and source_id resolve
 
 Usage: uv run python -m pipeline.validate
-Exits non-zero if any gate fails — this is what CI calls.
+Exits non-zero if any gate fails - this is what CI calls.
 """
 
 import csv
