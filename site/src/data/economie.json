@@ -426,8 +426,8 @@
         {
           "indicator_id": "taux_croissance_pib",
           "latest": {
-            "period": "2021",
-            "value": 3.44
+            "period": "2025",
+            "value": 4.49950000393781
           },
           "series": [
             {
@@ -491,8 +491,8 @@
               "value": 4.49950000393781
             }
           ],
-          "lead_sentence": "En 2021, le produit intérieur brut de la République centrafricaine a progressé de 3,4% en volume, selon les comptes nationaux rebasés de l'ICASEES.",
-          "lead_sentence_template_id": "taux_croissance_pib_administratif",
+          "lead_sentence": "En 2025, le produit intérieur brut de la République centrafricaine aurait progressé de 4,5% en volume, selon l'estimation modélisée de la Banque mondiale.",
+          "lead_sentence_template_id": "taux_croissance_pib_modele",
           "source": {
             "producer": "World Bank (World Development Indicators)",
             "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
@@ -501,15 +501,23 @@
           },
           "national": {
             "headline": {
-              "value": 3.44,
-              "period": "2021",
-              "quality_flag": "administratif",
-              "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
-              "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)"
+              "value": 4.49950000393781,
+              "period": "2025",
+              "quality_flag": "estime",
+              "producer": "World Bank (World Development Indicators)",
+              "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)"
             },
             "spread_pct": 250.0,
             "spread_vs_period": "2021",
             "all_sources": [
+              {
+                "value": 4.49950000393781,
+                "period": "2025",
+                "quality_flag": "estime",
+                "producer": "World Bank (World Development Indicators)",
+                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+                "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
+              },
               {
                 "value": 3.44,
                 "period": "2021",
@@ -525,22 +533,6 @@
                 "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
                 "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
                 "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0"
-              },
-              {
-                "value": 0.899999996857062,
-                "period": "2020",
-                "quality_flag": "estime",
-                "producer": "World Bank (World Development Indicators)",
-                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
-                "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
-              },
-              {
-                "value": 0.982919996264229,
-                "period": "2021",
-                "quality_flag": "estime",
-                "producer": "World Bank (World Development Indicators)",
-                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
-                "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
               }
             ]
           },

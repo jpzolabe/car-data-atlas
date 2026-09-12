@@ -266,6 +266,16 @@ def sentence_economie_croissance_admin(period: str, value: float) -> tuple[str, 
     return text, "taux_croissance_pib_administratif"
 
 
+def sentence_economie_croissance_modele(period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    text = (
+        f"En {period}, le produit intérieur brut de la République "
+        f"centrafricaine aurait progressé de {value_fr}% en volume, selon "
+        f"l'estimation modélisée de la Banque mondiale."
+    )
+    return text, "taux_croissance_pib_modele"
+
+
 def sentence_economie_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
     value_fr = format(round(value, 1), ".1f").replace(".", ",")
     label = ECONOMIE_RATE_LABELS[indicator_id]
