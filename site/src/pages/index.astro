@@ -152,24 +152,16 @@ const SECONDARY_STATS = [
       }
       main { max-width: 900px; margin: 0 auto; padding: 88px 24px 80px; }
 
-      .hero { position: relative; text-align: center; margin: 0 auto 8px; max-width: 640px; }
+      .hero { text-align: center; margin: 0 auto 8px; max-width: 640px; }
       .hero-map {
-        position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
-        width: 460px; max-width: 160%; height: auto; z-index: 0;
-        opacity: 0.28; pointer-events: none;
+        display: block; width: 84px; height: auto; margin: 0 auto 16px;
       }
-      .hero-map path { fill: var(--t-pop); stroke: var(--t-pop); stroke-width: 1.5; stroke-linejoin: round; }
-      h1 {
-        position: relative; z-index: 1; font-size: 2.75rem; margin: 0;
-        letter-spacing: -0.02em; font-weight: 700;
-      }
+      .hero-map path { fill: var(--t-pop); }
+      h1 { font-size: 2.75rem; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
       h1 .wordmark-data { color: var(--t-pop); font-weight: 400; margin-left: 7px; }
-      .tagline {
-        position: relative; z-index: 1; color: var(--ink-muted);
-        margin: 14px 0 26px; font-size: 15px; text-align: left;
-      }
+      .tagline { color: var(--ink-muted); margin: 14px 0 26px; font-size: 15px; text-align: left; }
 
-      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; z-index: 1; }
+      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; }
       #search input {
         width: 100%; font: inherit; font-size: 1rem; padding: 13px 16px;
         border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink);
@@ -272,6 +264,11 @@ const SECONDARY_STATS = [
     <SiteNav />
     <main>
       <div class="hero">
+        <!-- Small solid emblem above the title, not a background watermark
+             behind the text - a translucent full-width version (tried first)
+             overlapped and muddied the tagline and identity strip below it.
+             Giving the map its own space instead of sharing it with copy
+             sidesteps the saturation/legibility fight entirely. -->
         <svg class="hero-map" viewBox={prefectureMaps.view_box} aria-hidden="true">
           <path d={prefectureMaps.country_path}></path>
         </svg>

@@ -1727,3 +1727,30 @@ anything - bumped from 0.07 to 0.28 and added a matching stroke
 visibility rather than just being a soft fill blob. Still can't confirm
 this looks right without another screenshot, but the fourfold opacity
 increase should be an unambiguous, easily-noticed change either way.
+
+## Map redesign: from background watermark to a small emblem
+
+Third screenshot confirmed the guess in the previous entry was wrong in
+a specific, useful way: the 0.28-opacity full-width watermark didn't
+read as a subtle backdrop - it sat as a solid, fairly saturated
+blue-grey mass directly behind the tagline and search box, and its
+bottom edge visibly overlapped the identity-strip line below the hero
+("7 régions - ..."), muddying text it was never supposed to touch.
+Confirms the same lesson as the earlier chart removal: guessing an
+opacity/size number for something meant to share space with real copy
+is fragile regardless of the specific value chosen, because any value
+opaque enough to be visible risks fighting with whatever text happens
+to sit on top of it.
+
+Fixed by removing the sharing-space problem entirely rather than
+re-tuning the opacity again: the map is now a small (84px), fully solid
+emblem sitting in its own block *above* the title, not layered behind
+any text. No more absolute positioning, no more z-index juggling on
+`h1`/`.tagline`/`#search` to keep them readable over it - none of that
+is needed once the graphic and the copy no longer occupy the same
+space. Reads as a small crest paired with the wordmark below it, a
+common and legible pattern, rather than a hero background treatment
+that has to negotiate with everything on top of it.
+
+Home page essentially unchanged in weight (27.5 KB) - same path data,
+just restyled.
