@@ -52,6 +52,12 @@ const ICONS = {
 // 5 main themes, not all 7 site sections - prix and agriculture nest
 // under économie (their own pages/nav entries still exist elsewhere).
 const THEMES = [
+  { name: "Économie", href: "/economie/", accent: "var(--t-eco)", icon: ICONS.economie,
+    description: "PIB, commerce extérieur, dette - et prix et agriculture, en détail.",
+    subLinks: [
+      { name: "Prix", href: "/prix/" },
+      { name: "Agriculture", href: "/agriculture/" },
+    ] },
   { name: "Population", href: "/population/", accent: "var(--t-pop)", icon: ICONS.population,
     description: "Recensements et projections, jusqu'à la sous-préfecture." },
   { name: "Infrastructures", href: "/infrastructures/", accent: "var(--t-infra)", icon: ICONS.infrastructures,
@@ -60,12 +66,6 @@ const THEMES = [
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
   { name: "Santé", href: "/sante/", accent: "var(--t-sante)", icon: ICONS.sante,
     description: "Espérance de vie, mortalité, vaccination, établissements de santé." },
-  { name: "Économie", href: "/economie/", accent: "var(--t-eco)", icon: ICONS.economie,
-    description: "PIB, commerce extérieur, dette - et prix et agriculture, en détail.",
-    subLinks: [
-      { name: "Prix", href: "/prix/" },
-      { name: "Agriculture", href: "/agriculture/" },
-    ] },
 ];
 
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
@@ -177,12 +177,6 @@ const SECONDARY_STATS = [
       #search-results .excerpt mark { background: none; color: var(--ink); font-weight: 600; }
       #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; text-align: left; }
 
-      .identity-strip {
-        text-align: center; margin: 26px 0 0; font-size: 13px; color: var(--ink-faint);
-      }
-      .identity-strip a { color: var(--ink-muted); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); }
-      .identity-strip a:hover { border-bottom-style: solid; color: var(--indigo); }
-
       h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 44px 0 14px; }
 
       .hero-stat {
@@ -290,11 +284,6 @@ const SECONDARY_STATS = [
           <ul id="search-results"></ul>
         </div>
       </div>
-
-      <p class="identity-strip">
-        République centrafricaine ·
-        <a href="/methode/#geographie">7 régions · 20 préfectures · 85 sous-préfectures</a>
-      </p>
 
       <div class="hero-stat">
         <div>
