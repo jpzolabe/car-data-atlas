@@ -27,6 +27,7 @@ import prix from "../data/prix.json";
 import infrastructures from "../data/infrastructures.json";
 import education from "../data/education.json";
 import economie from "../data/economie.json";
+import prefectureMaps from "../data/prefecture_maps.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
@@ -114,7 +115,7 @@ const SECONDARY_STATS = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Données RCA</title>
+    <title>BeAfrika Data</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -151,11 +152,24 @@ const SECONDARY_STATS = [
       }
       main { max-width: 900px; margin: 0 auto; padding: 88px 24px 80px; }
 
-      .hero { text-align: center; margin: 0 auto 8px; max-width: 640px; }
-      h1 { font-size: 2.75rem; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
-      .tagline { color: var(--ink-muted); margin: 10px 0 26px; font-size: 15.5px; }
+      .hero { position: relative; text-align: center; margin: 0 auto 8px; max-width: 640px; }
+      .hero-map {
+        position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+        width: 460px; max-width: 160%; height: auto; z-index: 0;
+        opacity: 0.07; pointer-events: none;
+      }
+      .hero-map path { fill: var(--t-pop); }
+      h1 {
+        position: relative; z-index: 1; font-size: 2.75rem; margin: 0;
+        letter-spacing: -0.02em; font-weight: 700;
+      }
+      h1 .wordmark-data { color: var(--t-pop); font-weight: 400; margin-left: 7px; }
+      .tagline {
+        position: relative; z-index: 1; color: var(--ink-muted);
+        margin: 14px 0 26px; font-size: 15px; text-align: left;
+      }
 
-      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; }
+      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; z-index: 1; }
       #search input {
         width: 100%; font: inherit; font-size: 1rem; padding: 13px 16px;
         border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink);
@@ -258,10 +272,18 @@ const SECONDARY_STATS = [
     <SiteNav />
     <main>
       <div class="hero">
-        <h1>Données RCA</h1>
+        <svg class="hero-map" viewBox={prefectureMaps.view_box} aria-hidden="true">
+          <path d={prefectureMaps.country_path}></path>
+        </svg>
+        <h1>BeAfrika<span class="wordmark-data">Data</span></h1>
         <p class="tagline">
-          Explorer la République centrafricaine - ce que disent les données,
-          d'où elles viennent, et ce que personne n'a encore mesuré.
+          Ce site rassemble ce qui existe déjà sur la République centrafricaine :
+          recensements, enquêtes nationales et statistiques internationales. Chaque
+          chiffre est accompagné de sa source exacte, de sa date et du niveau
+          géographique auquel il s'applique - le pays, une préfecture, parfois un
+          simple marché. Rien n'est arrondi pour paraître plus solide qu'il ne l'est ;
+          là où personne n'a encore mesuré quelque chose, la page le dit plutôt que
+          de l'ignorer.
         </p>
         <div id="search">
           <input

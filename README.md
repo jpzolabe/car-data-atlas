@@ -1,4 +1,7 @@
-# Données RCA
+# BeAfrika Data
+
+*(named "Données RCA" until 2026-09-13 - renamed for the public site;
+internal references to "RCA" as a project shorthand are unaffected)*
 
 A public reference work about the Central African Republic: national figures
 across themes, drillable down to région, préfecture, sous-préfecture and
