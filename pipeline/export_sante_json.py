@@ -42,6 +42,13 @@ CATEGORIES = [
         "taux_vaccination_rougeole",
         "taux_vaccination_dtc",
     ]),
+    ("maternelle_infantile", "Santé maternelle et infantile", [
+        "soins_prenatals_4visites",
+        "accouchement_assiste",
+        "allaitement_exclusif",
+        "retard_croissance_enfants",
+        "emaciation_enfants",
+    ]),
     ("mortalite", "Mortalité et espérance de vie", [
         "esperance_vie",
         "taux_mortalite_moins_5ans",

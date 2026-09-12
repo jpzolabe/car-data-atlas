@@ -199,6 +199,11 @@ SANTE_LABELS = {
         "l'incidence du VIH",
         "pour 1 000 personnes non infectées de 15 à 49 ans",
     ),
+    "soins_prenatals_4visites": ("le taux de suivi prénatal (4 visites ou plus)", "%"),
+    "accouchement_assiste": ("le taux d'accouchement assisté par du personnel qualifié", "%"),
+    "allaitement_exclusif": ("le taux d'allaitement exclusif chez les 0-5 mois", "%"),
+    "retard_croissance_enfants": ("le taux de retard de croissance chez les moins de 5 ans", "%"),
+    "emaciation_enfants": ("le taux d'émaciation chez les moins de 5 ans", "%"),
 }
 
 
@@ -219,6 +224,8 @@ POPULATION_RATE_LABELS = {
     "taux_croissance_population": "le taux de croissance de la population",
     "taux_urbanisation": "la part de la population urbaine",
     "taux_dependance_demographique": "le taux de dépendance démographique",
+    "enregistrement_naissances": "le taux d'enregistrement des naissances chez les moins de 5 ans",
+    "mariage_precoce_filles": "la part des femmes de 20 à 24 ans mariées avant 18 ans",
 }
 
 
