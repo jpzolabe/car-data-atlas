@@ -248,6 +248,42 @@ def sentence_economie_montant(indicator_id: str, period: str, value: float) -> t
     return text, f"{indicator_id}_pays"
 
 
+# (label_fr, unit, decimals) -- label_fr must fit "{label_fr} en République
+# centrafricaine s'établissait à" grammatically, checked by hand against
+# these 9 real indicators. decimals defaults to 1 everywhere except
+# consommation_engrais, whose real value (~0.04) rounds to a misleading
+# "0,0" at 1 decimal -- checked by hand, not a guess.
+AGRICULTURE_LABELS = {
+    "valeur_ajoutee_agriculture_pib": (
+        "le poids de l'agriculture, de la sylviculture et de la pêche dans le PIB", "%", 1,
+    ),
+    "terres_agricoles": ("la part du territoire consacrée à l'agriculture", "%", 1),
+    "terres_arables": ("la part du territoire en terres arables", "%", 1),
+    "couverture_forestiere": ("la couverture forestière du territoire", "%", 1),
+    "indice_production_alimentaire": ("l'indice de production alimentaire", "indice", 1),
+    "rendement_cereales": ("le rendement des céréales", "kg/ha", 1),
+    "consommation_engrais": ("la consommation d'engrais", "kg/ha", 3),
+    "taux_sous_alimentation": ("la part de la population en sous-alimentation", "%", 1),
+    "emploi_agricole": ("la part de l'emploi total dans l'agriculture", "%", 1),
+}
+
+
+def sentence_agriculture_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    label, unit, decimals = AGRICULTURE_LABELS[indicator_id]
+    value_fr = format(round(value, decimals), f".{decimals}f").replace(".", ",")
+    if unit == "%":
+        suffix = f"{value_fr}%"
+    elif unit == "indice":
+        suffix = value_fr
+    else:
+        suffix = f"{value_fr} {unit}"
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {suffix}."
+    )
+    return text, f"{indicator_id}_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:

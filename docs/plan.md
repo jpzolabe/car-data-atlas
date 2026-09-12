@@ -668,12 +668,27 @@ stops at 2021. Also: ICASEES's own GDP rebasing (2019 base, per
 `CLAUDE.md`) hasn't been cross-checked against these World Bank figures —
 see `docs/verification-debt.md`.
 
-**6 of 7 sitemap themes now exist, 49 indicators total.** Agriculture is
-the last one. Still open: the Phase 3 source list items 3-7 (WFP food
-prices — CLAUDE.md's own example indicator, national accounts/GDP via PDF
-extraction, MICS 2018-19, IMF NSDP/SDMX, health facilities as the first
-3-way disclosure test), the ICASEES yearbooks (paused), and the `/themes/`
-URL structure inconsistency flagged in `docs/decisions.md`.
+**6 of 7 sitemap themes existed after économie; agriculture followed the
+same day.** 9 World Bank/FAO indicators (agricultural/arable/forest land
+%, food production index, cereal yield, fertilizer use, agriculture's
+share of GDP, undernourishment, agricultural employment), grouped terres
+et ressources → production → emploi et alimentation. Emploi agricole (66%
+of total employment) is the headline — the single most characteristic
+fact about CAR's economy. Richest and freshest of the three new themes
+this pass, no genuinely stale indicator.
+
+**All 7 sitemap themes now exist: population, prix, infrastructures,
+éducation, santé, économie, agriculture — 58 indicators total, up from 4
+at the start of this session's completion pass.** Every theme page now
+has a headline figure and logically-ordered categories per the rule
+codified earlier today. Still open: the Phase 3 source list items 3-7 (WFP
+food prices — CLAUDE.md's own example indicator, `prix_manioc_kg`,
+different geographic floor (market, a point) and different API (HDX);
+national accounts/GDP via PDF extraction; MICS 2018-19; IMF NSDP/SDMX;
+health facilities as the first 3-way disclosure test), the ICASEES
+yearbooks (paused), and the `/themes/` URL structure inconsistency flagged
+in `docs/decisions.md` — worth revisiting now, before Phase 4's place
+pages make every theme's URL a link target from elsewhere.
 
 ## Phase 4 — Descending (4–6 weeks)
 

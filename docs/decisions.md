@@ -358,3 +358,39 @@ surveys), and `recettes_publiques_pib` stops at 2021. CLAUDE.md also notes
 ICASEES has its own GDP rebasing (2019 base) underway — these World Bank
 figures haven't been cross-checked against that once it's published; see
 `docs/verification-debt.md`.
+
+## Agriculture: third and last brand-new theme -- all 7 sitemap themes now exist
+
+Same build as santé/économie: 9 World Bank/FAO indicators, each confirmed
+live for CAF before adding, categories ordered terres et ressources (what
+land exists to farm) -> production (what's grown on it) -> emploi et
+alimentation (what it means for people). Emploi agricole (66% of total
+employment) is the headline -- the single most characteristic fact about
+CAR's economy, not just the theme's most legible number.
+
+Third unit family after économie's %/US$ split: this page has %, "indice"
+(food production index, base 2014-2016=100), and kg/ha (cereal yield,
+fertilizer consumption). `formatValue()` branches by indicator_id again,
+same pattern as `economie.astro`.
+
+Caught the same class of precision bug as the earlier French-agreement
+fixes, just numeric instead of grammatical: `consommation_engrais`'s real
+value (~0.044 kg/ha) rounds to a misleading "0,0" at the 1-decimal
+precision every other indicator uses. Fixed by adding a per-indicator
+decimal-places field to `AGRICULTURE_LABELS` in `pipeline/sentences.py`
+(default 1, this one 3) rather than forcing one precision on every
+indicator regardless of its actual magnitude -- and matched the same fix
+in `agriculture.astro`'s card display, so the visible number and the
+generated sentence don't contradict each other.
+
+This is also, notably, the richest and freshest of the three new themes --
+no genuinely stale indicator, unlike santé's 2011 hospital-bed figure or
+économie's 3-point poverty series. Worth remembering when thinking about
+what "45 minutes of research per theme" actually buys: some domains
+(health workforce, poverty surveys) are inherently harder to measure
+frequently than others (agriculture, tracked continuously by FAO/remote
+sensing) -- the staleness pattern reflects the underlying measurement
+reality, not inconsistent effort.
+
+**All 7 sitemap themes now exist: population, prix, infrastructures,
+éducation, santé, économie, agriculture — 58 indicators total.**
