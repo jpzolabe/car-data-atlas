@@ -410,7 +410,7 @@ Organised by theme. **Verify every URL before use.**
 | Source | What | Notes |
 |---|---|---|
 | OCHA COD-AB (HDX), **v02 - fetched and used, 2026-09-05** | Admin boundaries with p-codes | **Verified, not assumed:** 20 préfectures, 85 sous-préfectures, no commune/localité layer in this version. `isopen: false` on HDX with a "humanitarian purposes only" usage caveat - see `docs/verification-debt.md`. Built `data/entities.csv`/`aliases.csv` for pays/préfecture/sous-préfecture from this snapshot. |
-| OCHA COD-EM (HDX) | Edge-matched version | For cartography; does not replace COD-AB. Not yet fetched. |
+| OCHA COD-EM (HDX), **used, 2026-09-12** | Edge-matched version | **Correction:** already bundled inside the COD-AB v02 zip fetched 2026-09-05 (`caf_admin1_em.geojson` etc.), not a separate dataset needing its own fetch as this row assumed when written. Used for the locator maps' préfecture boundaries. See `docs/decisions.md`. |
 | OCHA COD-PS (HDX), **fetched and used, 2026-09-12** | Population statistics layer | **Correction:** this row was accurate when first written but the dataset has since moved on - its own metadata now lists a 2025 ICASEES projection at sous-préfecture level (Admin2), not just the old 2003-projected-to-2015 figures. Checked live (not assumed) and used: `data/entities.csv`'s sous-préfecture pcodes match the file's `Admin2_Pcode` column 85-for-85. See `docs/decisions.md`. |
 | December 2020 reform (adopted 10 Dec 2020) | 20 préfectures, 84 sous-préfectures | Corroborated via Oubangui Médias/Xinhua/Wikipedia reporting (2026-09-05) - matches COD-AB v02's préfecture count and the specific 4 new préfectures (Mambéré, Lim-Pendé, Ouham-Fafa, Bangui) exactly. Primary decree text/number still not located; the 84-vs-85 sous-préfecture gap against COD-AB is unexplained - both logged in `docs/verification-debt.md`. |
 | ICASEES RGPH-4 cartography pages | Population by commune (2021), by ville and by sexe (2024), projections 2022–23 | On icasees.org under actualités/rgph-4 |
@@ -977,9 +977,24 @@ worth doing until more themes reach that level):
    (`nombre_etablissements_sante` still said `pays` after the santé
    widening had already given it région-level rows). See
    docs/decisions.md.
-3. **Locator maps** (step 5) - needs new geo/mapshaper infrastructure
-   for build-time SVG maps, nothing built toward this yet. The one item
-   left from the original 3.
+3. ~~Locator maps~~ - **done 2026-09-12** (step 5). The COD-AB v02 snapshot
+   already fetched for the crosswalk turned out to already hold real
+   boundary geometry (including edge-matched files, meant for
+   cartography) - no new fetch. `geo/raw/` and `geo/simplified/`
+   (`pipeline/build_geo_prefectures.py`) hold the country + 20
+   préfectures; `pipeline/export_prefecture_maps_json.py` projects them
+   to ready SVG paths. No new dependency (shapely, already approved, did
+   the simplification mapshaper was originally pencilled in for). Every
+   préfecture page now shows a locator map. See docs/decisions.md.
+
+**All 3 parked items are now done.** All 7 of Phase 4's numbered steps
+have real work behind them for at least one theme (population/prix reach
+préfecture or sous-préfecture; santé reaches région; every place page has
+a locator map, a régional-sibling comparison, a national comparison, and
+an honest freshness table). What's left for the phase to be fully "done"
+per its own bar: sous-préfecture pages themselves (step 4's second half,
+explicitly deferred), and widening steps 1/3/5/6 to the other 4 themes as
+their own sources allow it.
 
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
