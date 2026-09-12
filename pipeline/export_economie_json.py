@@ -3,7 +3,11 @@ script for this theme -- same category + headline structure as
 export_sante_json.py. pib_total/pib_par_habitant and the 3 new absolute-$
 indicators added 2026-09-12 (real World Bank counterparts to indicators
 already on the page, not derived) use a dedicated monetary sentence
-function; the other 8 (all "%") share one generic rate function.
+function; the 3 FCFA budget indicators added 2026-09-13 use their own
+sentence function too (forward-looking "budgétisées" phrasing, not the
+retrospective "s'établissait" used everywhere else - these are a voted
+projection for the year, not an observed outturn); everything else (all
+"%") shares one generic rate function.
 
 Categories ordered by logical sequence: production (how big is the
 economy) -> commerce extérieur (how it trades and finances itself
@@ -28,6 +32,7 @@ import duckdb
 
 from pipeline.sentences import (
     sentence_economie_activite,
+    sentence_economie_budget,
     sentence_economie_croissance_modele,
     sentence_economie_montant,
     sentence_economie_rate,
@@ -39,6 +44,10 @@ COUNTRY_ID = "cf-pays-centrafrique-v1"
 MONTANT_INDICATORS = {
     "pib_total", "pib_par_habitant", "pib_total_fcfa", "pib_par_habitant_fcfa",
     "exportations_montant", "importations_montant", "dette_exterieure_montant",
+}
+
+BUDGET_INDICATORS = {
+    "budget_ressources_totales", "budget_depenses_totales", "budget_solde_global",
 }
 
 # taux_croissance_pib is built separately (build_croissance_disclosure) since
@@ -69,6 +78,9 @@ CATEGORIES = [
     ]),
     ("finances_publiques", "Finances publiques", [
         "recettes_publiques_pib",
+        "budget_ressources_totales",
+        "budget_depenses_totales",
+        "budget_solde_global",
     ]),
     ("niveau_de_vie", "Niveau de vie", [
         "taux_chomage",
@@ -92,6 +104,8 @@ def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dic
         lead_text, lead_template_id = sentence_economie_activite(latest[0], latest[1])
     elif indicator_id in MONTANT_INDICATORS:
         lead_text, lead_template_id = sentence_economie_montant(indicator_id, latest[0], latest[1])
+    elif indicator_id in BUDGET_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_budget(indicator_id, latest[0], latest[1])
     else:
         lead_text, lead_template_id = sentence_economie_rate(indicator_id, latest[0], latest[1])
 
