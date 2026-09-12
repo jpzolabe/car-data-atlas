@@ -1,8 +1,8 @@
-# Projet - BeAfrika Data
+# Projet - BêAfrîka Data
 
 A public reference work about the Central African Republic: national figures across
 themes, with the ability to drill down to région / préfecture / sous-préfecture.
-French-first. Built by one person. Publicly named "BeAfrika Data" as of 2026-09-13
+French-first. Built by one person. Publicly named "BêAfrîka Data" as of 2026-09-13
 (was "Données RCA"); "RCA" stays fine as informal shorthand in code/docs/commits.
 
 **Scope note (2026-09-05):** commune and localité were originally in scope but are

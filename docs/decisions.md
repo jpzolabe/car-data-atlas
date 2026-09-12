@@ -1700,3 +1700,30 @@ wording verbatim.
 
 Home page grew to 27.8 KB with the map path added - still far under the
 150 KB budget. All 33 pages rebuilt clean with the new title everywhere.
+
+## Spelling correction, a user-supplied tagline, and a visible map
+
+Three quick fixes from the next round of feedback:
+
+**Spelling.** The brand name is "BêAfrîka," not "BeAfrika" - a direct
+nod to the country's own Sango name spelled correctly (Bêafrîka), not
+the stripped-diacritics version guessed at when the name was first
+picked. Fixed everywhere in one pass rather than piecemeal: every page's
+`<title>`, the home page's `<h1>` wordmark, `SiteNav`'s `aria-label`, and
+`README.md`/`CLAUDE.md`'s headers.
+
+**Tagline.** Replaced with the user's own proposed text, corrected for
+grammar/spelling but kept faithful to the original structure and
+content (their own instruction: "you can rephrase but basically that is
+the idea"). States plainly what the site does (aggregates data that
+already exists about the country), why (a simple, fast, reliable tool
+that makes the data more accessible - "vulgariser"), and the one
+concrete promise that matters (every figure carries its source and
+year).
+
+**Map visibility.** The watermark's opacity was too subtle to read as
+anything - bumped from 0.07 to 0.28 and added a matching stroke
+(`stroke-width: 1.5`) so the outline itself stays crisp at that
+visibility rather than just being a soft fill blob. Still can't confirm
+this looks right without another screenshot, but the fourfold opacity
+increase should be an unambiguous, easily-noticed change either way.
