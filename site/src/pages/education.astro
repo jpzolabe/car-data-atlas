@@ -1,36 +1,63 @@
 ---
-// Fourth theme page. Combines two patterns already established rather than
-// inventing a third: the national multi-source disclosure block from
-// population.astro (here: national survey vs. UIS modelled estimate, a real
-// disagreement — see docs/decisions.md) and the build-time SVG line chart
-// from prix.astro/infrastructures.astro, with the 4 real survey points drawn
-// as distinct markers over the denser modelled line so the reader can see
-// where the model and the survey data actually agree or diverge.
+// Theme page, docs/plan.md Sec2.3 anatomy: theme header with coverage summary,
+// indicator blocks grouped into categories, "Ce qui n'est pas mesuré" hand-
+// written at the end. Widened from a single indicator (primary completion) to
+// 14 across 4 categories, all from UNESCO UIS -- see docs/decisions.md for why
+// (CLAUDE.md's indicator-ID example was illustrative, not a scope limit).
+//
+// The 3 completion indicators keep the population.astro-style multi-source
+// disclosure block (survey vs. modelled, a real disagreement). The other 11
+// have one source so far and get a compact card: value, sparkline, generated
+// sentence, source line -- no disclosure UI where there's nothing to disclose.
 import data from "../data/education.json";
 
-const national = data.national;
-const distinctSources = [...new Set(national.all_sources.map((s) => s.producer + s.dataset_name))].length;
+const CURRENT_YEAR = 2026;
 
-const series = data.series; // modelled, dense, 1981-2025
-const surveyPoints = data.survey_points; // 4 real years
-
-const W = 1000, H = 300, marginL = 46, marginR = 20, marginT = 20, marginB = 34;
-const plotW = W - marginL - marginR;
-const plotH = H - marginT - marginB;
-
-const periodToIndex = new Map(series.map((d, i) => [d.period, i]));
-const min = 0; // honest zero-based axis for a percentage
-const allValues = [...series.map((d) => d.value), ...surveyPoints.map((d) => d.value)];
-const max = Math.ceil(Math.max(...allValues) / 5) * 5;
-
-const x = (i: number) => marginL + (i / (series.length - 1)) * plotW;
-const y = (v: number) => marginT + plotH - ((v - min) / (max - min)) * plotH;
-const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
-
-const ticks = [0, max / 2, max];
-const yearLabels = series.filter((d) => Number(d.period) % 5 === 0);
+// Achievement/literacy indicators come from the same household surveys as
+// population's census/survey figures (10-year threshold in méthode.astro);
+// administrative (school-census) indicators are meant to be annual, so 5
+// years is already generous.
+const SURVEY_LINKED = new Set([
+  "taux_achevement_primaire", "taux_achevement_secondaire_1er_cycle",
+  "taux_achevement_secondaire_2nd_cycle", "taux_alphabetisation_jeunes",
+  "taux_alphabetisation_adultes",
+]);
+function isStale(indicatorId: string, period: string): boolean {
+  const threshold = SURVEY_LINKED.has(indicatorId) ? 10 : 5;
+  return CURRENT_YEAR - Number(period) > threshold;
+}
 
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+// Small build-time SVG line chart, shared by every indicator card -- same
+// stroke-dasharray draw-in technique as prix.astro/infrastructures.astro,
+// just parameterized so it isn't rewritten 14 times.
+const SPARK_W = 460, SPARK_H = 100, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
+function sparkline(series: { period: string; value: number }[]) {
+  const plotW = SPARK_W - SPARK_ML - SPARK_MR;
+  const plotH = SPARK_H - SPARK_MT - SPARK_MB;
+  const values = series.map((d) => d.value);
+  const min = 0;
+  const max = Math.max(...values) * 1.1;
+  const x = (i: number) => SPARK_ML + (i / Math.max(series.length - 1, 1)) * plotW;
+  const y = (v: number) => SPARK_MT + plotH - ((v - min) / (max - min)) * plotH;
+  const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
+  return {
+    points,
+    firstYear: series[0].period,
+    lastYear: series[series.length - 1].period,
+    yMax: max,
+    yTick: y(max * 0.9),
+    yZero: y(0),
+    xFirst: x(0),
+    xLast: x(series.length - 1),
+  };
+}
+
+const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.length, 0);
+const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
+const oldestVintage = Math.min(...allPeriods);
+const newestVintage = Math.max(...allPeriods);
 ---
 <!doctype html>
 <html lang="fr">
@@ -38,7 +65,7 @@ const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Taux d'achèvement du primaire — Données RCA</title>
+    <title>Éducation — Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -65,26 +92,38 @@ const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-edu); padding-bottom: 4px;
       }
-      h2 { font-size: 1.1rem; margin: 32px 0 10px; }
-      .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 20px; }
+      .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
+      .coverage {
+        font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
+        margin: 0 0 28px;
+      }
+      h2 {
+        font-size: 1.15rem; margin: 40px 0 4px; padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 16px; }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
       }
       .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
       .badge.enquete { background: color-mix(in srgb, var(--t-edu) 14%, var(--surface)); color: var(--t-edu); }
+      .badge.administratif { background: color-mix(in srgb, var(--ink-faint) 18%, var(--surface)); color: var(--ink-muted); }
+      .badge.stale { background: var(--stale-soft); color: var(--stale); }
+
+      /* Completion indicators: full-width disclosure card, same structure as
+         population.astro's national-figure block. */
       .national-figure {
-        margin: 20px 0; padding: 18px 20px; background: var(--surface);
+        margin: 16px 0 32px; padding: 18px 20px; background: var(--surface);
         border: 1px solid var(--line); border-left: 3px solid var(--t-edu); border-radius: 3px;
       }
       .national-value {
-        font-family: ui-monospace, monospace; font-size: 2.1rem; font-weight: 600;
+        font-family: ui-monospace, monospace; font-size: 2rem; font-weight: 600;
         color: var(--t-edu); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
       }
-      .national-value .unit {
-        font-family: system-ui, sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--ink-faint);
-      }
+      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--ink-faint); }
       .national-meta { font-size: 12.5px; color: var(--ink-muted); margin-top: 4px; }
+      .indicator-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
       .disclosure { margin-top: 12px; }
       .disclosure summary {
         cursor: pointer; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
@@ -102,28 +141,61 @@ const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 
       .disclosure-table td.num { font-family: ui-monospace, monospace; }
       .disclosure-note { font-size: 11.5px; color: var(--ink-faint); margin: 10px 0 0; max-width: 64ch; }
       .sentence {
-        font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
-        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-        border-left: 3px solid var(--t-edu); padding: 14px 0 14px 14px; margin: 20px 0;
+        font-style: italic; font-size: 15.5px; line-height: 1.5; color: var(--ink);
+        margin: 12px 0 0; padding-left: 12px; border-left: 2px solid var(--t-edu);
       }
       .sentence-tag {
         display: block; font-style: normal; font-family: ui-monospace, monospace;
-        font-size: 10px; color: var(--ink-faint); text-transform: uppercase;
-        letter-spacing: 0.05em; margin-top: 6px;
+        font-size: 9.5px; color: var(--ink-faint); text-transform: uppercase;
+        letter-spacing: 0.05em; margin-top: 4px;
       }
-      svg { width: 100%; height: auto; display: block; margin: 16px 0; }
-      .gridline { stroke: var(--line); stroke-width: 1; }
-      .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
+      .completion-chart { width: 100%; height: auto; display: block; margin: 14px 0 6px; }
+      .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); flex-wrap: wrap; }
+      .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+      .swatch { width: 14px; height: 2px; display: inline-block; }
+      .swatch-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--t-edu); }
+      footer-line { font-size: 11.5px; color: var(--ink-faint); display: block; margin-top: 10px; }
+
+      /* Simple indicators: compact 2-column card grid. */
+      .indicator-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+        gap: 14px;
+      }
+      .indicator-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 16px 18px;
+      }
+      .indicator-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-edu); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+      }
+      .indicator-value .unit { font-family: system-ui, sans-serif; font-size: 0.8rem; font-weight: 400; color: var(--ink-faint); }
+      .indicator-meta { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+      svg.sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
+      .spark-gridline { stroke: var(--line); stroke-width: 1; }
+      .spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .spark-line {
+        stroke: var(--t-edu); stroke-width: 2; fill: none;
+        stroke-dasharray: 2000; stroke-dashoffset: 2000;
+        animation: drawSpark 1.1s ease-out forwards;
+      }
+      @keyframes drawSpark { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .spark-line, .line-modelled { animation: none !important; stroke-dashoffset: 0 !important; }
+      }
       .line-modelled {
         stroke: var(--t-edu); stroke-width: 2; stroke-dasharray: 4 3; fill: none; opacity: 0.75;
       }
       .survey-point { fill: var(--t-edu); stroke: var(--surface); stroke-width: 2; }
       .survey-label { fill: var(--ink); font-size: 10.5px; font-family: ui-monospace, monospace; }
-      .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); margin-top: 4px; flex-wrap: wrap; }
-      .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
-      .swatch { width: 14px; height: 2px; display: inline-block; }
-      .swatch-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--t-edu); }
-      .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      .gridline { stroke: var(--line); stroke-width: 1; }
+      .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
+
+      .not-measured {
+        margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7;
+      }
+      .not-measured li { margin-bottom: 4px; }
+      .gap-note { margin-top: 10px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
@@ -134,99 +206,146 @@ const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 
   <body>
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
-      <h1>Taux d'achèvement du primaire</h1>
+      <h1>Éducation</h1>
       <p class="lede">
-        Part d'une cohorte d'âge ayant achevé le cycle d'enseignement
-        primaire, tous sexes confondus. Deux séries qui ne s'accordent pas
-        toujours : une enquête nationale à quatre points dans le temps, et
-        une estimation modélisée annuelle publiée par l'UNESCO.
+        Achèvement scolaire, scolarisation, rétention et alphabétisation —
+        tout ce que l'UNESCO Institut de statistique (UIS) publie pour la
+        République centrafricaine. Niveau national uniquement pour l'instant ;
+        rien par région ni par préfecture.
+      </p>
+      <p class="coverage">
+        {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
+        niveau le plus fin : pays
       </p>
 
-      <div class="national-figure">
-        <div class="national-value">
-          {fmt(national.headline.value)}<span class="unit">%</span>
-          <span class="badge enquete">enquête</span>
-        </div>
-        <div class="national-meta">
-          {national.headline.producer} — {national.headline.dataset_name}, {national.headline.period}
-        </div>
-        <details class="disclosure">
-          <summary>{distinctSources} sources — écart de {national.spread_pct}% avec l'estimation modélisée de la même année</summary>
-          <table class="disclosure-table">
-            <thead>
-              <tr><th>Valeur</th><th>Statut</th><th>Période</th></tr>
-            </thead>
-            <tbody>
-              {national.all_sources.map((s) => (
-                <tr>
-                  <td class="num">{fmt(s.value)}%</td>
-                  <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
-                  <td>{s.period}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p class="disclosure-note">
-            Écart calculé entre l'enquête et l'estimation modélisée pour la
-            même année ({national.spread_vs_period}), pas contre la dernière
-            année modélisée disponible — comparer des années différentes
-            aurait mélangé deux désaccords distincts (source contre source,
-            et passage du temps). Le plus grand écart réel entre les deux
-            séries, sur les quatre années où l'on peut comparer, est en 2010
-            (42,9% enquête contre 25,2% modèle). Classement d'autorité :
-            enquête nationale &gt; estimation modélisée internationale — voir
-            <a href="/methode/#classement">Méthode</a>.
-          </p>
-        </details>
-      </div>
+      {data.categories.map((category) => (
+        <>
+          <h2>{category.label_fr}</h2>
 
-      <p class="sentence">
-        {data.lead_sentence}
-        <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
-      </p>
-
-      <h2>Série modélisée, 1981–{series[series.length - 1].period}</h2>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Taux d'achèvement du primaire, estimation modélisée 1981-${series[series.length - 1].period}, avec les points d'enquête réels superposés`}>
-        {ticks.map((t) => (
-          <>
-            <line class="gridline" x1={marginL} y1={y(t)} x2={W - marginR} y2={y(t)} />
-            <text class="axis-label" x={marginL - 6} y={y(t) + 3} text-anchor="end">{fmt(t)}%</text>
-          </>
-        ))}
-        {yearLabels.map((d) => (
-          <text class="axis-label" x={x(periodToIndex.get(d.period)!)} y={H - marginB + 16} text-anchor="middle">{d.period}</text>
-        ))}
-        <polyline class="line-modelled" points={points} />
-        {surveyPoints.map((d) => {
-          const idx = periodToIndex.get(d.period);
-          if (idx === undefined) return null;
-          return (
+          {category.key === "achevement" ? (
             <>
-              <circle class="survey-point" cx={x(idx)} cy={y(d.value)} r="5" />
-              <text class="survey-label" x={x(idx)} y={y(d.value) - 10} text-anchor="middle">{fmt(d.value)}%</text>
+              <p class="category-note">
+                Trois niveaux, deux sources qui ne s'accordent pas toujours :
+                une enquête nationale à quatre points dans le temps, et une
+                estimation modélisée annuelle publiée par l'UIS.
+              </p>
+              {category.indicators.map((ind) => {
+                const spark = sparkline(ind.series);
+                const stale = isStale(ind.indicator_id, ind.latest.period);
+                return (
+                  <div class="national-figure">
+                    <p class="indicator-name">{ind.name_fr}</p>
+                    <div class="national-value">
+                      {fmt(ind.latest.value)}<span class="unit">%</span>
+                      <span class="badge enquete">enquête</span>
+                      {stale && <span class="badge stale">ancien</span>}
+                    </div>
+                    <div class="national-meta">
+                      {ind.national.headline.producer} — {ind.national.headline.dataset_name}, {ind.national.headline.period}
+                    </div>
+                    <p class="sentence">
+                      {ind.lead_sentence}
+                      <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
+                    </p>
+                    <svg class="completion-chart" viewBox={`0 0 460 100`} role="img" aria-label={`${ind.name_fr}, estimation modélisée avec points d'enquête réels superposés`}>
+                      <line class="gridline" x1="34" y1={spark.yTick} x2="450" y2={spark.yTick} />
+                      <line class="gridline" x1="34" y1={spark.yZero} x2="450" y2={spark.yZero} />
+                      <text class="axis-label" x="30" y={spark.yZero + 3} text-anchor="end">0%</text>
+                      <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
+                      <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
+                      <polyline class="line-modelled" points={spark.points} />
+                      {ind.survey_points.map((d) => {
+                        const idx = ind.series.findIndex((s) => s.period === d.period);
+                        if (idx === -1) return null;
+                        const px = 34 + (idx / Math.max(ind.series.length - 1, 1)) * (460 - 34 - 10);
+                        const py = 10 + (100 - 10 - 18) - ((d.value - 0) / (Math.max(...ind.series.map((s) => s.value)) * 1.1)) * (100 - 10 - 18);
+                        return <circle class="survey-point" cx={px} cy={py} r="4" />;
+                      })}
+                    </svg>
+                    <div class="chart-legend">
+                      <span><span class="swatch" style="background:var(--t-edu);border-top:2px dashed var(--t-edu);height:0;opacity:0.75;"></span>estimation modélisée (UIS)</span>
+                      <span><span class="swatch-dot"></span>enquête nationale</span>
+                    </div>
+                    <details class="disclosure">
+                      <summary>2 sources — écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                      <table class="disclosure-table">
+                        <thead><tr><th>Valeur</th><th>Statut</th><th>Période</th></tr></thead>
+                        <tbody>
+                          {ind.national.all_sources.map((s) => (
+                            <tr>
+                              <td class="num">{fmt(s.value)}%</td>
+                              <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                              <td>{s.period}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <p class="disclosure-note">
+                        Écart calculé entre l'enquête et l'estimation modélisée
+                        pour la même année, pas contre la dernière année
+                        modélisée disponible. Classement d'autorité : enquête
+                        nationale &gt; estimation modélisée internationale —
+                        voir <a href="/methode/#classement">Méthode</a>.
+                      </p>
+                    </details>
+                    <span style="font-size:11.5px;color:var(--ink-faint);display:block;margin-top:10px;">
+                      Enquête : {ind.source_survey.dataset_name}, récupéré le {ind.source_survey.retrieved_at}, <a href={ind.source_survey.url}>{ind.source_survey.url}</a>.
+                      Modèle : récupéré le {ind.source.retrieved_at}, <a href={ind.source.url}>{ind.source.url}</a>.
+                    </span>
+                  </div>
+                );
+              })}
             </>
-          );
-        })}
-      </svg>
-      <div class="chart-legend">
-        <span><span class="swatch" style="background:var(--t-edu);border-top:2px dashed var(--t-edu);height:0;opacity:0.75;"></span>estimation modélisée (UIS, annuelle)</span>
-        <span><span class="swatch-dot"></span>enquête nationale (4 points réels)</span>
-      </div>
+          ) : (
+            <div class="indicator-grid">
+              {category.indicators.map((ind) => {
+                const spark = sparkline(ind.series);
+                const stale = isStale(ind.indicator_id, ind.latest.period);
+                return (
+                  <div class="indicator-card">
+                    <p class="indicator-name">{ind.name_fr}</p>
+                    <div class="indicator-value">
+                      {fmt(ind.latest.value)}<span class="unit">%, {ind.latest.period}</span>
+                      <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                      {stale && <span class="badge stale">ancien</span>}
+                    </div>
+                    <div class="indicator-meta">Niveau le plus fin : pays</div>
+                    <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                      <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
+                      <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
+                      <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">0%</text>
+                      <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                      <polyline class="spark-line" points={spark.points} />
+                    </svg>
+                    <p class="sentence">
+                      {ind.lead_sentence}
+                      <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
+                    </p>
+                    <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
+                      {ind.source.producer} — {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
+      ))}
 
-      <p class="gap-note">
-        L'UIS n'a pas cité, dans cette réponse d'API, l'enquête précise
-        (MICS, EHCVM…) qui a produit chaque point de la série « enquête » —
-        seule l'année est fournie. Aucune ventilation par sexe, par milieu
-        (urbain/rural) ou par quintile de richesse n'est encore intégrée ici,
-        bien que l'UIS les publie aussi. Voir <code>docs/verification-debt.md</code>.
-      </p>
+      <h2>Ce qui n'est pas mesuré</h2>
+      <ul class="not-measured">
+        <li>Rien par région, préfecture ou sous-préfecture — les 14 indicateurs sont tous nationaux ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
+        <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse — l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
+        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) — l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été mise en pause cette session après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
+        <li>Aucune donnée sur les infrastructures scolaires (nombre d'écoles, points d'eau, latrines) ni sur les dépenses publiques d'éducation.</li>
+        <li>La plupart des indicateurs ci-dessus datent de 2011 à 2019 — aucun n'est réellement récent. C'est un constat, pas un artefact d'affichage : l'UIS lui-même n'a rien de plus frais pour la RCA sur ces indicateurs au moment de la récupération (2026-09-12).</li>
+      </ul>
 
       <footer>
-        Série modélisée : {data.source.producer} — {data.source.dataset_name}.
-        Récupéré le {data.source.retrieved_at}. <a href={data.source.url}>{data.source.url}</a>
-        <br />
-        Série enquête : {data.source_survey.dataset_name}.
-        Récupéré le {data.source_survey.retrieved_at}. <a href={data.source_survey.url}>{data.source_survey.url}</a>
+        Toutes les données de cette page : UNESCO Institut de statistique (UIS),
+        récupérées via l'API publique <a href="https://api.uis.unesco.org/api/public/data/indicators">api.uis.unesco.org</a>, le 2026-09-12.
+        Détail par source sur la page <a href="/sources/">Sources</a>.
         <nav class="site-nav">
           <a href="/population/">Population</a>
           <a href="/prix/">Prix</a>

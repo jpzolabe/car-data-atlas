@@ -101,20 +101,71 @@ def sentence_electricity(
     return text, "acces_electricite_pays"
 
 
-def sentence_education(period: str, value: float, quality_flag: str) -> tuple[str, str]:
+# level_label_fr must fit "achevé {level_label_fr}" grammatically -- checked
+# by hand against these 3 real cases, not a general noun-phrase inflector.
+COMPLETION_LEVEL_LABELS = {
+    "taux_achevement_primaire": "l'enseignement primaire",
+    "taux_achevement_secondaire_1er_cycle": "le premier cycle du secondaire",
+    "taux_achevement_secondaire_2nd_cycle": "le second cycle du secondaire",
+}
+
+
+def sentence_completion(
+    indicator_id: str, period: str, value: float, quality_flag: str
+) -> tuple[str, str]:
     value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    level = COMPLETION_LEVEL_LABELS[indicator_id]
     if quality_flag == "enquete":
         text = (
             f"En {period}, {value_fr}% d'une cohorte d'âge avait achevé "
-            f"l'enseignement primaire en République centrafricaine, selon "
-            f"la dernière enquête nationale disponible."
+            f"{level} en République centrafricaine, selon la dernière "
+            f"enquête nationale disponible."
         )
-        template_id = "taux_achevement_primaire_pays_enquete"
+        template_id = f"{indicator_id}_pays_enquete"
     else:
         text = (
             f"En {period}, {value_fr}% d'une cohorte d'âge aurait achevé "
-            f"l'enseignement primaire en République centrafricaine, selon "
-            f"une estimation modélisée."
+            f"{level} en République centrafricaine, selon une estimation "
+            f"modélisée."
         )
-        template_id = "taux_achevement_primaire_pays_estime"
+        template_id = f"{indicator_id}_pays_estime"
     return text, template_id
+
+
+# label_fr must fit "{label_fr} s'établissait à" grammatically -- a noun
+# phrase, checked by hand against these 11 real indicators, not a general
+# French grammar engine.
+EDUCATION_RATE_LABELS = {
+    "taux_scolarisation_brut_primaire": "le taux brut de scolarisation dans le primaire",
+    "taux_scolarisation_net_primaire": "le taux net de scolarisation dans le primaire",
+    "taux_scolarisation_brut_secondaire_1er_cycle": (
+        "le taux brut de scolarisation dans le premier cycle du secondaire"
+    ),
+    "taux_scolarisation_brut_secondaire_2nd_cycle": (
+        "le taux brut de scolarisation dans le second cycle du secondaire"
+    ),
+    "taux_scolarisation_brut_superieur": (
+        "le taux brut de scolarisation dans l'enseignement supérieur"
+    ),
+    "taux_redoublement_primaire": "le taux de redoublement dans le primaire",
+    "taux_survie_primaire": "le taux de survie jusqu'à la dernière année du primaire",
+    "taux_non_scolarisation_primaire": (
+        "le taux de non-scolarisation des enfants d'âge du primaire"
+    ),
+    "taux_non_scolarisation_secondaire_1er_cycle": (
+        "le taux de non-scolarisation des adolescents d'âge "
+        "du premier cycle du secondaire"
+    ),
+    "taux_alphabetisation_jeunes": "le taux d'alphabétisation des jeunes de 15 à 24 ans",
+    "taux_alphabetisation_adultes": "le taux d'alphabétisation des adultes de 15 ans et plus",
+}
+
+
+def sentence_education_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label = EDUCATION_RATE_LABELS[indicator_id]
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {value_fr}%."
+    )
+    return text, f"{indicator_id}_pays"
