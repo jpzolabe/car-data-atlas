@@ -3,7 +3,7 @@
   "files": [
     {
       "name": "entities.csv",
-      "rows": 114,
+      "rows": 154,
       "description": "Une ligne par unité administrative, par version. Jamais modifié en place - un redécoupage crée une nouvelle entité."
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "name": "observations.csv",
-      "rows": 2860,
+      "rows": 5435,
       "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
     },
     {

@@ -36,6 +36,17 @@ const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 
 
 const inflationLatest = data.inflation.latest;
 
+// Short column headers for the by-préfecture breakdown table - full names
+// (data.market.breakdown_labels) are too wide for a table column.
+const DENREE_SHORT: Record<string, string> = {
+  prix_manioc_kg: "Manioc",
+  prix_riz_kg: "Riz",
+  prix_mais_kg: "Maïs",
+  prix_boeuf_kg: "Bœuf",
+  prix_huile_palme_l: "Huile",
+};
+const DENREE_ORDER = Object.keys(DENREE_SHORT);
+
 // Small build-time SVG sparkline for the "Par fonction" breakdown cards --
 // same technique as education.astro's, duplicated rather than shared, per
 // this project's one-file-per-page convention (no component library).
@@ -137,6 +148,24 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
       .swatch { width: 14px; height: 2px; display: inline-block; }
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      .prefecture-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px; margin: 8px 0 4px;
+      }
+      .prefecture-block {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 12px 14px;
+      }
+      .prefecture-block h3 {
+        font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--t-prix); margin: 0 0 8px; font-weight: 600;
+      }
+      .prefecture-block table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+      .prefecture-block th { text-align: right; font-size: 10px; color: var(--ink-faint); font-weight: 400; padding: 0 0 4px 6px; }
+      .prefecture-block th:first-child { text-align: left; padding-left: 0; }
+      .prefecture-block td { text-align: right; padding: 3px 0 3px 6px; border-top: 1px solid var(--line); font-size: 12.5px; }
+      .prefecture-block td:first-child { text-align: left; color: var(--ink-muted); }
+      .prefecture-block td.missing { color: var(--ink-faint); }
       .sentence { font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-left: 3px solid var(--t-prix); padding: 14px 0 14px 14px; margin: 20px 0; }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
@@ -247,9 +276,10 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         L'IHPC ci-dessus est un indice national. Ces 5 denrées sont des prix de
         détail réels, relevés au {data.market.entity_name} - le marché, un point
         précis et non une zone administrative, est le niveau géographique le
-        plus fin que ce site couvre pour l'instant. 34 autres denrées et 40
-        autres marchés existent dans la même source mais ne sont pas encore
-        intégrés.
+        plus fin que ce site couvre. Bangui a l'historique le plus complet
+        (2004 à aujourd'hui) ; la section suivante compare le niveau actuel
+        des prix à travers le pays. 34 autres denrées existent dans la même
+        source mais ne sont pas encore intégrées.
       </p>
       <div class="category-grid">
         {data.market.denrees.map((d) => {
@@ -272,6 +302,49 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       <p class="gap-note">
         Source distincte de l'IHPC ci-dessus : {data.market.source.producer} -
         {" "}{data.market.source.dataset_name}. Récupéré le {data.market.source.retrieved_at}.
+      </p>
+
+      <h2>Prix par préfecture</h2>
+      <p class="category-grid-note">
+        Dernier prix connu pour chaque denrée, marché par marché, groupé par
+        préfecture - 34 marchés dans 16 des 20 préfectures. Bangui a en plus
+        son historique complet ci-dessus ; ici, c'est le niveau actuel des
+        prix qui compte, pas la tendance dans le temps. Une case vide
+        signifie qu'aucun prix récent n'existe pour cette denrée à ce
+        marché, pas un prix nul.
+      </p>
+      <div class="prefecture-grid">
+        {data.market.breakdown.map((pref) => (
+          <div class="prefecture-block">
+            <h3>{pref.name_fr}</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Marché</th>
+                  {DENREE_ORDER.map((id) => <th>{DENREE_SHORT[id]}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {pref.markets.map((m) => (
+                  <tr>
+                    <td>{m.name_fr.replace("Marché de ", "")}</td>
+                    {DENREE_ORDER.map((id) =>
+                      m.prices[id]
+                        ? <td>{fmt(m.prices[id].value)}</td>
+                        : <td class="missing">-</td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+      <p class="gap-note">
+        Prix en francs CFA (manioc, riz, maïs et bœuf au kilogramme ; huile
+        de palme au litre). 4 préfectures n'ont aucun marché avec des
+        données récentes dans cette source : Basse-Kotto, Lim-Pendé,
+        Mambéré et Ouham-Fafa.
       </p>
 
       <footer>
