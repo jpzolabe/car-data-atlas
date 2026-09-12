@@ -1106,3 +1106,38 @@ All 20 préfectures now carry a régional santé figure (every préfecture
 belongs to exactly one of the 7 régions, and all 7 have data). Verified
 idempotent (re-ran the fetch twice, `data/observations.csv` row count
 unchanged) and all 33 pages still pass the 150 KB budget after rebuild.
+
+## ICASEES education yearbook: préfecture-level extraction abandoned this attempt, worse than first assessed
+
+Went back to the deferred lead above and tried to actually extract one
+clean figure (Fondamental 1 établissements per IA, to sum against the
+already-used national total of 2 508). Found the workbook's real
+structure is worse than the first pass suggested: inspecting
+`ws.merged_cells.ranges` around the F1 établissements table shows dozens
+of separate merged-cell blocks spanning wildly different column ranges
+(`A786:L786`, `M786:S786`, `T786:AC786`, `AD786:AI786`, ... out past
+column `CM`) all sharing the *same* row numbers. That means this isn't
+one wide table with a multi-row header - it's several unrelated tables
+laid out side by side, sharing row ranges, on one sheet. Reading rows
+with `values_only=True` and compacting non-null cells (the approach that
+correctly found the santé régions and confirmed the "IA" tables exist at
+all) silently interleaves values from *different, unrelated tables* into
+one list once a row range holds more than one side-by-side block - which
+is exactly what happened: a row that looked like "Bangui (IAB): 27, 0,
+26, 29, 18, 19, 20, 21, 22" was not one 9-column établissements row, it
+was fragments of at least two adjacent tables concatenated by the
+compacting step.
+
+This is a real risk, not just an inconvenience: a positional guess at
+which numbers belong to which column would produce a plausible-looking
+but silently wrong figure attributed to the wrong préfecture or the
+wrong metric - worse than the honest "no data at this level" the site
+already shows, and against rule zero's spirit even though nothing would
+technically be fabricated (the numbers are real, just possibly
+mis-attributed). Correct extraction would need per-table column mapping
+from the actual merged-cell boundaries, not sequential row reading, and
+a validation step cross-checking every extracted préfecture total against
+the already-used national total (2 508 for F1) before trusting any of it
+- a materially bigger and slower task than the already-deferred estimate
+assumed. Stopped here rather than push a fragile heuristic through.
+**Not revisited without that proper column-mapping approach.**
