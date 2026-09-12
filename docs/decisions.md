@@ -1754,3 +1754,23 @@ that has to negotiate with everything on top of it.
 
 Home page essentially unchanged in weight (27.5 KB) - same path data,
 just restyled.
+
+## Tagline revised again; a phone screenshot confirms the emblem fix worked
+
+A phone screenshot this time confirmed the small-emblem redesign in the
+previous entry actually solved the problem it was meant to: the map now
+sits fully contained above the title, nothing overlaps, and the whole
+hero reads cleanly at that width - including the nav bar's own
+narrow-viewport fallback (theme links hidden below 560px, just the home
+icon and toggle) not looking cramped either.
+
+Also swapped in a second user-proposed tagline revision, corrected for
+grammar (subject doubled with both "qu'elles" and "les données";
+"servent elles" in inverted word order where none was called for; "sur
+RCA" missing its article; "d'entre" for "d'entrée") but keeping the
+new framing intact: leads with "à travers ses données" rather than the
+plain "-", and reframes the platform's goal as a single, unique entry
+point ("un point d'entrée unique") rather than the previous wording's
+"vulgariser ces données." Kept the closing sentence about every figure
+carrying its source and year - not explicitly asked to be removed, and
+it states the site's single most load-bearing promise.
