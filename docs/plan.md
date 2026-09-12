@@ -963,6 +963,22 @@ still not built, but they'd have real data to show now rather than an
 inherited or empty one - a meaningfully better starting point for that
 step than existed at the top of this phase.
 
+**Parked, 2026-09-12 - pick one of these next when resuming Phase 4**
+(sous-préfecture pages explicitly deferred, not worth doing until more
+themes reach that level):
+
+1. **National comparison on place pages** - each préfecture page has a
+   régional-sibling comparison (step 6, partial) but nothing comparing
+   against the national figure yet. Small, self-contained addition.
+2. **Formalize `geographic_floor` for the remaining ~80 indicators**
+   (step 2) - only `population_totale` and the WFP price indicators have
+   had their floor genuinely re-verified and set this phase; the rest
+   still rely on the earlier audit's summary judgment rather than a
+   per-indicator confirmation.
+3. **Locator maps** (step 5) - the biggest lift of the three: needs new
+   geo/mapshaper infrastructure for build-time SVG maps, nothing built
+   toward this yet.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
