@@ -303,3 +303,29 @@ a zero-based y-axis (`sMin = min * 0.9` instead of 0) -- these 3 series
 move within a narrow band around a nonzero baseline (e.g. dependency ratio
 ~100%), and a zero-based axis would flatten the line to near-invisible
 instead of showing the actual year-to-year movement.
+
+## Santé: first brand-new theme page since the initial 3
+
+Population, prix, infrastructures and éducation all existed before this
+session's completion pass; santé didn't exist at all. Built the same way as
+the widening passes -- 10 World Bank indicators, each confirmed live for
+CAF before adding, grouped into 4 categories ordered by logical sequence
+(système de santé -> vaccination -> mortalité et espérance de vie ->
+maladies: what resources exist, what prevention happens, what the outcomes
+are, disease-specific burden). Espérance de vie is the headline (most
+legible single "state of health" figure). No disclosure blocks -- every
+indicator has exactly one source so far, unlike éducation's completion/
+out-of-school pairs.
+
+One real, deliberately-not-hidden gap: `SH.MED.BEDS.ZS` (hospital beds) only
+has 6 data points for CAF, the most recent from 2011 -- genuinely 15 years
+stale, not a fetch artifact. Kept anyway (rule zero: real data can be used
+even when old) and flagged with the existing "ancien" badge plus an
+explicit line in "Ce qui n'est pas mesuré."
+
+Also: the health-facility travel-time-to-nearest-facility raster already
+exists on HDX (CLAUDE.md names it explicitly under "Do not rebuild what
+exists"). Not ingested here -- linked instead. A raster wouldn't fit this
+project's CSV/DuckDB pipeline without real GeoTIFF-handling work anyway,
+and CLAUDE.md is explicit that duplicating existing HDX analysis isn't the
+point of this project.

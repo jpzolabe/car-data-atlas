@@ -145,6 +145,45 @@ def sentence_infrastructure_rate(indicator_id: str, period: str, value: float) -
     return text, f"{indicator_id}_pays"
 
 
+# (label_fr, unit_suffix) -- label_fr must fit "{label_fr} en République
+# centrafricaine s'établissait à" grammatically, checked by hand against
+# these 10 real indicators. unit_suffix carries the varied units these
+# health indicators use (years, per-1000, per-100000, % of GDP) -- "%" gets
+# no space before the sign, everything else does.
+SANTE_LABELS = {
+    "esperance_vie": ("l'espérance de vie à la naissance", "ans"),
+    "taux_mortalite_moins_5ans": (
+        "le taux de mortalité des moins de 5 ans", "pour 1 000 naissances vivantes",
+    ),
+    "taux_mortalite_infantile": (
+        "le taux de mortalité infantile", "pour 1 000 naissances vivantes",
+    ),
+    "taux_mortalite_maternelle": (
+        "le taux de mortalité maternelle", "pour 100 000 naissances vivantes",
+    ),
+    "taux_vaccination_rougeole": ("le taux de vaccination contre la rougeole", "%"),
+    "taux_vaccination_dtc": ("le taux de vaccination DTC", "%"),
+    "densite_medecins": ("la densité de médecins", "pour 1 000 habitants"),
+    "densite_lits_hopital": ("la densité de lits d'hôpital", "pour 1 000 habitants"),
+    "depenses_sante_pib": ("le poids des dépenses de santé dans le PIB", "%"),
+    "incidence_vih": (
+        "l'incidence du VIH",
+        "pour 1 000 personnes non infectées de 15 à 49 ans",
+    ),
+}
+
+
+def sentence_sante_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label, unit = SANTE_LABELS[indicator_id]
+    suffix = f"{value_fr}%" if unit == "%" else f"{value_fr} {unit}"
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {suffix}."
+    )
+    return text, f"{indicator_id}_pays"
+
+
 # label_fr must fit "{label_fr} en République centrafricaine s'établissait
 # à" grammatically -- checked by hand against these 3 real indicators.
 POPULATION_RATE_LABELS = {
