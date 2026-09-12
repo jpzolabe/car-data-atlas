@@ -922,6 +922,17 @@ likely launch with population and prix populated and most other themes
 marked "non disponible à ce niveau" rather than waiting for every theme
 to have local data. See `docs/decisions.md`.
 
+Step 4's first half is now done: `/lieux/prefecture/{slug}` (20
+préfecture pages, the project's first `getStaticPaths()` route) plus a
+`/lieux/` index grouped by région. Each page carries a population
+headline (rank, share of national), a régional sibling comparison
+(partial step 6), a per-market price table where the préfecture has one,
+and a 7-theme freshness table naming exactly which themes have no data
+at this level rather than omitting them (step 7, done honestly for this
+first template - the rest of step 7 still applies once other themes gain
+subnational data). Sous-préfecture pages (step 4's second half), locator
+maps (step 5), and the remaining comparison-component work stay open.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
