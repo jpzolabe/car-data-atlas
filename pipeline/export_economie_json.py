@@ -9,11 +9,13 @@ retrospective "s'établissait" used everywhere else - these are a voted
 projection for the year, not an observed outturn); everything else (all
 "%") shares one generic rate function.
 
-Categories ordered by logical sequence: production (how big is the
-economy) -> commerce extérieur (how it trades and finances itself
-externally) -> finances publiques (how the state finances itself) ->
-niveau de vie (what it means for people) -- ending on the outcome, not
-starting there.
+Categories ordered production -> finances publiques -> commerce extérieur
+-> niveau de vie, per explicit request (2026-09-13) to move finances
+publiques right after production, ahead of the agriculture/prix satellite
+cards that économie.astro injects right after whichever category comes
+first. Originally ordered production -> commerce -> finances publiques ->
+niveau de vie (see docs/decisions.md for that rationale); the outcome
+category (niveau de vie) still comes last either way.
 
 Prix and Agriculture are deliberately NOT indicators of this theme, even
 though économie.astro shows a brief summary card for each with a link to
@@ -67,6 +69,12 @@ CATEGORIES = [
         "pib_par_habitant_fcfa",
         "indice_activite_economique",
     ]),
+    ("finances_publiques", "Finances publiques", [
+        "recettes_publiques_pib",
+        "budget_ressources_totales",
+        "budget_depenses_totales",
+        "budget_solde_global",
+    ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
         "exportations_montant",
@@ -75,12 +83,6 @@ CATEGORIES = [
         "investissements_directs_etrangers",
         "dette_exterieure_rnb",
         "dette_exterieure_montant",
-    ]),
-    ("finances_publiques", "Finances publiques", [
-        "recettes_publiques_pib",
-        "budget_ressources_totales",
-        "budget_depenses_totales",
-        "budget_solde_global",
     ]),
     ("niveau_de_vie", "Niveau de vie", [
         "taux_chomage",
