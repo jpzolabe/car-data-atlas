@@ -201,6 +201,11 @@ function qualityLabel(flag: string): string {
       svg.sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
       .spark-gridline { stroke: var(--line); stroke-width: 1; }
       .spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-edu) 6%, transparent);
+        border-radius: 3px;
+      }
       .spark-line {
         stroke: var(--t-edu); stroke-width: 2; fill: none;
         stroke-dasharray: 2000; stroke-dashoffset: 2000;
@@ -358,14 +363,18 @@ function qualityLabel(flag: string): string {
                         {stale && <span class="badge stale">ancien</span>}
                       </div>
                       <div class="indicator-meta">Niveau le plus fin : pays</div>
-                      <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                        <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
-                        <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
-                        <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">{ind.unit ? "0" : "0%"}</text>
-                        <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                        <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-                        <polyline class="spark-line" points={spark.points} />
-                      </svg>
+                      {ind.series.length > 1 ? (
+                        <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                          <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
+                          <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
+                          <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">{ind.unit ? "0" : "0%"}</text>
+                          <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                          <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                          <polyline class="spark-line" points={spark.points} />
+                        </svg>
+                      ) : (
+                        <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+                      )}
                       <p class="sentence">
                         {ind.lead_sentence}
                       </p>

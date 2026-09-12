@@ -154,6 +154,11 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       @keyframes drawMiniSpark { to { stroke-dashoffset: 0; } }
       @media (prefers-reduced-motion: reduce) { .mini-spark-line { animation: none; stroke-dashoffset: 0; } }
       .mini-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-sante) 6%, transparent);
+        border-radius: 3px;
+      }
       .mini-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
       .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
       .not-measured li { margin-bottom: 4px; }
@@ -252,11 +257,15 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                         </details>
                       )}
                     </div>
-                    <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                      <polyline class="mini-spark-line" points={spark.points} />
-                      <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                      <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-                    </svg>
+                    {ind.series.length > 1 ? (
+                      <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                        <polyline class="mini-spark-line" points={spark.points} />
+                        <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                        <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                      </svg>
+                    ) : (
+                      <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+                    )}
                     <p class="mini-sentence">{ind.lead_sentence}</p>
                   </div>
                 );
@@ -270,11 +279,15 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                     {fmt(ind.latest.value)}<span class="unit"> {ind.unit}, {ind.latest.period}</span>
                     {stale && <span class="badge stale">ancien</span>}
                   </div>
-                  <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                    <polyline class="mini-spark-line" points={spark.points} />
-                    <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                    <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-                  </svg>
+                  {ind.series.length > 1 ? (
+                    <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                      <polyline class="mini-spark-line" points={spark.points} />
+                      <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                    </svg>
+                  ) : (
+                    <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+                  )}
                   <p class="mini-sentence">{ind.lead_sentence}</p>
                   <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
                     {ind.source.producer}. Récupéré le {ind.source.retrieved_at}.
