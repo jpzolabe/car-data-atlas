@@ -130,6 +130,12 @@ a way down.
 **No map on the home page.** A national choropleth would force choosing one contested
 population figure and hiding the other three.
 
+**Built 2026-09-13.** All 6 items above are live - headline cards mix
+population/croissance PIB/inflation/électricité/achèvement primaire/prix
+du manioc as suggested, deliberately fresh-and-stale; population is the
+lead story; the theme grid's 7 rows double as the primary menu, each
+showing that theme's own newest data date. See docs/decisions.md.
+
 ## 2.3 Theme pages
 
 The workhorse of the site. One per theme.

@@ -1367,3 +1367,56 @@ the useful output, so it's logged here rather than left unclear whether
 this was tried. Phase 4's remaining subnational depth (population,
 prix, santé) stays as scoped; these 4 themes stay national-only until a
 genuinely new source appears.
+
+## UI polish before Phase 5: the real home page, built at last
+
+The home page was still the Phase 1 placeholder - its own comment said
+so directly ("not the real home page from docs/plan.md Sec2.2 ... once
+more than two indicators exist"). That condition was met a while ago (86
+indicators, 7 themes); this was the first pass at actually building
+Sec2.2's spec now that there's real content to show. Prompted by a UI
+polish request ahead of Phase 5, with an explicit steer beforehand: keep
+the sober, institutional tone (discussed and agreed - no decorative
+icons; whatever "life" the page gets should come from real numbers and
+the generated sentences already central to this project's voice, not
+ornament).
+
+Built Sec2.2's structure exactly: header + search (unchanged), a country
+identity strip linking to `/methode/#geographie` (that anchor already
+existed), 6 headline cards, a population lead-story block, a 7-row theme
+grid, footer. Sec2.2's own explicit call - no map on the home page, since
+a national choropleth would force picking one contested population
+figure over the others - was followed too.
+
+**Headline cards deliberately mix fresh and stale, per Sec2.2's own
+instruction that this is the point, not an oversight:** population
+(2025, 1 year old), inflation (2026-04, essentially live), and manioc
+price (2026-07) sit next to taux d'achèvement du primaire (UNESCO 2019,
+7 years old - flagged in the existing site-wide stale red, `>5` years,
+the same threshold every theme page already uses). Reused each theme's
+own accent color for its card and its theme-grid row, rather than
+inventing home-page-specific colors - same "wayfinding, not decoration"
+principle already established (population.astro's région colors, the
+theme pages' own `--t-*` tokens).
+
+Theme grid vintages are computed generically, not hand-picked per theme:
+a small recursive walk collects every `{period: "..."}` field anywhere in
+a theme's JSON and takes the max, since the 7 export scripts don't all
+shape their JSON the same way (some have a flat top-level `series`,
+others `categories` of indicator blocks) and hand-extracting "the latest
+period" per theme would mean 7 different bespoke lookups to maintain.
+
+Lead story reuses population.astro's own build-time SVG bar-chart
+technique (scoped to the top 10 préfectures, smaller than the full
+20-row version) and its multi-source disclosure block verbatim in shape,
+rather than inventing new patterns for the home page specifically.
+
+One real bug caught before shipping: `prix.inflation.value` doesn't
+exist - `prix.inflation` is a full indicator block with the value nested
+under `.latest.value`, not a flat `{period, value}` pair as briefly
+assumed while first drafting the headline cards. Caught immediately by
+the build itself (`Cannot read properties of undefined`), not a runtime
+surprise.
+
+Home page grew from 8.5 KB to ~26 KB with all this new content - still
+far under the 150 KB budget. All 33 pages rebuilt clean.
