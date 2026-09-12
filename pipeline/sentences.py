@@ -80,6 +80,44 @@ def sentence_prix(period: str, value: float, reconciled: bool) -> tuple[str, str
     return text, template_id
 
 
+# label_fr must fit "l'indice des prix à la consommation {label_fr}"
+# grammatically -- checked by hand against these 3 real categories.
+PRIX_CATEGORY_LABELS = {
+    "prix_ihpc_alimentation": "des produits alimentaires et boissons non alcoolisées",
+    "prix_ihpc_sante": "de la santé",
+    "prix_ihpc_transports": "des transports",
+}
+
+
+def sentence_prix_categorie(
+    indicator_id: str, period: str, value: float, reconciled: bool
+) -> tuple[str, str]:
+    period_fr = period_to_fr(period)
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label = PRIX_CATEGORY_LABELS[indicator_id]
+    caveat = (
+        " (valeur réconciliée par la source, non telle "
+        "qu'originellement publiée)"
+        if reconciled else ""
+    )
+    text = (
+        f"En {period_fr}, l'indice des prix à la consommation {label} "
+        f"en République centrafricaine s'établissait à {value_fr}{caveat}."
+    )
+    template_id = f"{indicator_id}_pays_estime" if reconciled else f"{indicator_id}_pays"
+    return text, template_id
+
+
+def sentence_inflation(period: str, value: float) -> tuple[str, str]:
+    period_fr = period_to_fr(period)
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    text = (
+        f"En {period_fr}, le taux d'inflation publié par l'ICASEES pour la "
+        f"République centrafricaine s'établissait à {value_fr}%."
+    )
+    return text, "taux_inflation_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:
