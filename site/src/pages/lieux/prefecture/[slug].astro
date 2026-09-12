@@ -6,12 +6,16 @@
 //
 // Scope for this first pass, deliberately not the full Sec2.4 spec:
 // population and prix are the only 2 themes with real préfecture-level
-// data (this session's Phase 4 audit, docs/decisions.md), so this page
-// shows those two properly and states plainly that the other 5 don't
-// reach this level yet, rather than faking a breakdown. Locator maps and
-// sous-préfecture "children" links are named as not-yet-built rather than
-// silently absent - both need separate infrastructure (geo/mapshaper for
-// maps; 85 more pages for children) too large for this same pass.
+// data (this session's Phase 4 audit, docs/decisions.md); santé reaches
+// one level short of that, région (7, each covering several préfectures),
+// and is shown as its own honest middle case rather than folded into
+// "available" or "not available" - see the freshness table below and
+// pipeline/export_lieux_prefecture_json.py. The other 4 themes don't
+// reach below national yet, stated plainly rather than faking a
+// breakdown. Locator maps and sous-préfecture "children" links are named
+// as not-yet-built rather than silently absent - both need separate
+// infrastructure (geo/mapshaper for maps; 85 more pages for children) too
+// large for this same pass.
 import lieux from "../../../data/lieux_prefectures.json";
 import ThemeInit from "../../../components/ThemeInit.astro";
 import ThemeToggle from "../../../components/ThemeToggle.astro";
@@ -250,6 +254,21 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
         </>
       )}
 
+      {place.sante_region && (
+        <>
+          <h2>Santé<span class="level-tag" style="margin-left: 8px;">niveau régional</span></h2>
+          <p class="headline-caption">
+            {place.name_fr} fait partie de la région {place.sante_region.region_name}, qui comptait{" "}
+            {fmt(place.sante_region.value)} établissements de santé en {place.sante_region.period}
+            (registre gouvernemental) - ce chiffre couvre toute la région, pas seulement cette préfecture ;
+            aucune source consultée ne descend jusqu'au niveau préfecture pour ce thème.
+          </p>
+          <p class="headline-caption" style="margin-top: 8px;">
+            Détail national et deuxième source : <a href="/sante/">page Santé</a>.
+          </p>
+        </>
+      )}
+
       <h2>Ce que l'on sait, par thème</h2>
       <table class="freshness-table">
         <thead><tr><th>Thème</th><th>Donnée la plus récente</th></tr></thead>
@@ -258,7 +277,9 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
             <tr>
               <td>{f.theme}</td>
               <td class={f.available ? "yes" : "no"}>
-                {f.available ? f.period : "aucune donnée à ce niveau"}
+                {f.available
+                  ? (f.level === "region" ? `${f.period} (niveau régional)` : f.period)
+                  : "aucune donnée à ce niveau"}
               </td>
             </tr>
           ))}
@@ -269,7 +290,8 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
       <ul class="not-measured">
         <li>Carte de localisation : pas encore construite pour les pages de lieux - nécessite une nouvelle étape de génération de cartes (geo/mapshaper), distincte de ce lot de travail.</li>
         <li>Sous-préfectures de {place.name_fr} : elles existent dans le référentiel géographique mais n'ont pas encore leur propre page - viendra dans un lot ultérieur (Phase 4, étape suivante).</li>
-        <li>Infrastructures, éducation, santé, économie et agriculture : ces thèmes n'ont pour l'instant que des chiffres nationaux, aucune source consultée ne descend au niveau préfecture - voir <a href="/methode/">Méthode</a>.</li>
+        <li>Santé n'est connue qu'au niveau régional ici, pas préfecture - voir la section ci-dessus.</li>
+        <li>Infrastructures, éducation, économie et agriculture : ces thèmes n'ont pour l'instant que des chiffres nationaux, aucune source consultée ne descend en dessous - voir <a href="/methode/">Méthode</a>.</li>
         <li>Téléchargement dédié à ce lieu (CSV, GeoJSON) : pas encore disponible - voir <a href="/donnees/">Données</a> pour l'export complet en attendant.</li>
       </ul>
 

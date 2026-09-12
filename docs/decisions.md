@@ -1047,3 +1047,62 @@ covered `.md`/`.csv`/`.py`/`.astro`/`.yml` at the time, but these were in
 `.astro` files it should have caught; likely written after that pass ran.
 All 33 pages still pass the 150 KB budget after these changes (biggest
 is `/sources/` at 93.6 KB), and ruff/build are clean.
+
+## Phase 4: santé widened to région level (7 régions), a genuine second subnational theme
+
+Followed the same "check a source already fetched for Phase 3 before
+assuming it's national-only" instinct that found WFP's other 40 markets:
+the Master Facility List used for `nombre_etablissements_sante`'s
+national count carries an `Admin1` column, live-checked (not assumed)
+before use, and it resolves to exactly this project's 7 RGPH-4 régions
+(labels differ slightly - "Kagas" vs. "Kaga", "Bangui" vs.
+"Bas-Oubangui" - but the counts, 555 total split 23/95/48/109/85/112/83,
+match the 7 régions one-to-one with no leftover or gap). That is one
+level below national but one level short of préfecture - a genuinely
+different case from population/prix, so it gets its own honest middle
+category rather than being folded into either "available" or "not
+available" at the préfecture level.
+
+Also checked, before starting: whether ICASEES's education yearbook
+(`raw/icasees-annuaire-education/2026-09-12/annuaire_statistique_2024_2025.xlsx`,
+fetched in Phase 3) has équivalent préfecture-level ("IA" = Inspection
+Académique) tables - it does, confirmed by reading the workbook directly
+(over 80 separate "IA"-keyed tables spanning établissements, élèves,
+enseignants, mobilier, infrastructure scolaire, résultats d'examens...).
+Unlike the health facilities Admin1 column, this is not a quick win: the
+workbook is a hand-formatted statistical yearbook with dozens of
+near-duplicate table shapes, inconsistent headers ("Tot al Publ ic" with
+stray spaces, mid-table header row repeats, IA name variants like "OUHAM
+FAFA (UF)" vs. "Ouham Fafa"), and no consistent per-level Total column to
+lean on the way the santé Admin1 breakdown had. Extracting even one clean
+préfecture-level figure (say, total établissements across all 4
+education levels) means correctly identifying and parsing 4+ separate
+tables per figure, not 1. Deferred rather than attempted this pass -
+logged as a real, scoped-out lead rather than silently skipped.
+
+Implementation: `pipeline/fetch_etablissements_sante.py` now also writes
+one `nombre_etablissements_sante` observation per région
+(`REGION_ADMIN1_ALIASES` maps the Master List's 7 Admin1 labels to this
+project's région entity_ids), alongside the existing national 2-source
+row. `export_sante_json.py` attaches a `region_breakdown` list to the
+établissements disclosure block; `sante.astro` renders it as a second,
+separate `<details>` under the existing national disclosure, explicitly
+noting there's no OpenStreetMap equivalent at this level (one source, not
+two, unlike the national figure). `export_lieux_prefecture_json.py` now
+looks up each préfecture's parent région's santé figure and exposes it as
+`sante_region`; the place-page template shows it in its own section
+labeled "niveau régional," and the freshness table gets a third state
+(`level: "region"`) distinct from the préfecture-level population/prix
+rows and the "aucune donnée" rows for the other 4 themes.
+
+Also fixed while in `fetch_etablissements_sante.py`: it fetched both
+source files straight into memory without ever writing a raw snapshot,
+unlike every other fetch script in this project (CLAUDE.md's raw/
+"immutable source snapshots, never overwritten" rule) - this had been
+true since the file was first written in Phase 3 and only surfaced now
+while extending it. Both files now land under `raw/` before parsing.
+
+All 20 préfectures now carry a régional santé figure (every préfecture
+belongs to exactly one of the 7 régions, and all 7 have data). Verified
+idempotent (re-ran the fetch twice, `data/observations.csv` row count
+unchanged) and all 33 pages still pass the 150 KB budget after rebuild.

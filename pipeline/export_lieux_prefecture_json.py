@@ -4,9 +4,13 @@ other export script; Astro reads this file directly.
 
 Scope for this first pass: population_totale and the 5 WFP market prices
 are the only indicators confirmed to reach préfecture level (see
-docs/decisions.md's Phase 4 audit); every other theme is included only
-as an explicit "no data at this level" entry in each place's freshness
-list, not silently omitted. Locator maps and sous-préfecture children are
+docs/decisions.md's Phase 4 audit); nombre_etablissements_sante reaches
+région level only (7 régions, each covering several préfectures - see
+pipeline/fetch_etablissements_sante.py), one level short of préfecture,
+and is surfaced as such rather than folded into the same "available"
+bucket as population/prix. Every other theme is included only as an
+explicit "no data at this level" entry in each place's freshness list,
+not silently omitted. Locator maps and sous-préfecture children are
 deliberately not part of this pass (see docs/plan.md Sec2.4 items 3 and
 7); they need new geo/mapshaper infrastructure and 85 more pages
 respectively, both bigger separate steps.
@@ -82,6 +86,18 @@ def main():
         # overwritten in period order -> ends up holding the latest value
         market[indicator_id] = {"period": period, "value": value}
 
+    sante_region_rows = con.execute("""
+        select entity_id, period, value
+        from observations
+        where indicator_id = 'nombre_etablissements_sante'
+          and source_id = 'maina-master-facility-list-2019'
+    """).fetchall()
+    sante_by_region: dict[str, dict] = {
+        entity_id: {"period": period, "value": value}
+        for entity_id, period, value in sante_region_rows
+        if entity_id != "cf-pays-centrafrique-v1"
+    }
+
     alias_rows = con.execute("""
         select entity_id, source_id, alias, alias_type
         from aliases
@@ -113,17 +129,31 @@ def main():
             s for s in siblings_by_region.get(region_id, []) if s["entity_id"] != entity_id
         ]
 
+        sante_region = sante_by_region.get(region_id)
+
         freshness = []
         for theme in ALL_THEMES:
             if theme == "Population" and pop_2021 is not None:
-                freshness.append({"theme": theme, "period": "2021", "available": True})
+                freshness.append({
+                    "theme": theme, "period": "2021", "available": True, "level": "prefecture",
+                })
             elif theme == "Prix" and markets:
                 latest_period = max(
                     v["period"] for m in markets for v in m["prices"].values()
                 )
-                freshness.append({"theme": theme, "period": latest_period, "available": True})
+                freshness.append({
+                    "theme": theme, "period": latest_period, "available": True,
+                    "level": "prefecture",
+                })
+            elif theme == "Santé" and sante_region is not None:
+                freshness.append({
+                    "theme": theme, "period": sante_region["period"], "available": True,
+                    "level": "region",
+                })
             else:
-                freshness.append({"theme": theme, "period": None, "available": False})
+                freshness.append({
+                    "theme": theme, "period": None, "available": False, "level": None,
+                })
 
         result[slug] = {
             "entity_id": entity_id,
@@ -146,6 +176,11 @@ def main():
             },
             "markets": markets,
             "siblings": siblings,
+            "sante_region": None if sante_region is None else {
+                "region_name": region_name,
+                "period": sante_region["period"],
+                "value": sante_region["value"],
+            },
             "freshness": freshness,
         }
 
@@ -154,9 +189,11 @@ def main():
 
     with_population = sum(1 for v in result.values() if v["population"])
     with_markets = sum(1 for v in result.values() if v["markets"])
+    with_sante_region = sum(1 for v in result.values() if v["sante_region"])
     print(
         f"Wrote {len(result)} préfectures to {OUT_PATH} "
-        f"({with_population} with population data, {with_markets} with market prices)"
+        f"({with_population} with population data, {with_markets} with market prices, "
+        f"{with_sante_region} with a régional santé figure)"
     )
 
 
