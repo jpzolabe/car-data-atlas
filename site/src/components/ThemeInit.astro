@@ -1,18 +1,24 @@
 ---
-// Applies a stored dark-mode preference to <html> before first paint, so
+// Applies a stored theme preference to <html> before first paint, so
 // there's no flash of the wrong theme. Must be the first thing in <head>,
 // ahead of the page's own <style> block, and must stay a plain synchronous
 // inline script (no defer/module) so it runs during head parsing rather
 // than after. Paired with ThemeToggle.astro, which writes the preference
 // this reads. One of CLAUDE.md's few named sitewide JS exceptions -
 // see docs/decisions.md's dark-mode entry.
+//
+// Dark is the default as of 2026-09-13 (on request): every page's bare
+// :root now defines the dark palette directly, with a
+// :root[data-theme="light"] override for the light palette - so dark
+// applies even with JS disabled, no attribute needed. This script only
+// has to handle the one opt-out case: a visitor who explicitly chose
+// light.
 ---
 <script is:inline>
   (function () {
     try {
-      var stored = localStorage.getItem("theme");
-      if (stored === "dark" || stored === "light") {
-        document.documentElement.setAttribute("data-theme", stored);
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
       }
     } catch (e) {}
   })();

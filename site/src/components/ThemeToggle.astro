@@ -1,10 +1,12 @@
 ---
-// Sitewide dark-mode control: cycles Auto -> Clair -> Sombre -> Auto.
-// "Auto" means no stored preference - follows prefers-color-scheme, same
-// as a reader who never touches the control. Explicit Clair/Sombre are
-// stored in localStorage and stamped as data-theme on <html>, overriding
-// the OS setting from then on for that visitor. Paired with
-// ThemeInit.astro, which applies the stored choice before first paint.
+// Sitewide theme control: toggles Sombre <-> Clair. Sombre is the site's
+// default (2026-09-13, on request) - every page's bare :root is the dark
+// palette, so "no stored preference" already means dark with no attribute
+// needed. Choosing Clair stamps data-theme="light" on <html> and stores
+// it; choosing Sombre again just removes both, falling back to the
+// default rather than storing a redundant explicit "dark". Paired with
+// ThemeInit.astro, which applies a stored "light" choice before first
+// paint (the only case it needs to handle).
 // Styled only with the base tokens every page already defines
 // (--surface/--ink/--ink-muted/--ink-faint/--line), so it needs no
 // page-specific accent to render correctly, and can be dropped into any
@@ -15,8 +17,8 @@
 // second independently-floating fixed element next to SiteNav's own bar
 // read as two competing widgets rather than one coherent piece of chrome.
 ---
-<button id="theme-toggle" type="button" aria-label="Changer de thème (clair, sombre, ou automatique)">
-  <span id="theme-toggle-label">Thème : auto</span>
+<button id="theme-toggle" type="button" aria-label="Changer de thème (clair ou sombre)">
+  <span id="theme-toggle-label">Thème : sombre</span>
 </button>
 <style>
   #theme-toggle {
@@ -44,29 +46,24 @@
 </style>
 <script is:inline>
   (function () {
-    var STATES = ["auto", "light", "dark"];
-    var LABELS = { auto: "Thème : auto", light: "Thème : clair", dark: "Thème : sombre" };
+    var LABELS = { light: "Thème : clair", dark: "Thème : sombre" };
     var btn = document.getElementById("theme-toggle");
     var label = document.getElementById("theme-toggle-label");
 
     function current() {
-      var stored = null;
-      try {
-        stored = localStorage.getItem("theme");
-      } catch (e) {}
-      return stored === "dark" || stored === "light" ? stored : "auto";
+      return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
     }
 
     function apply(state) {
-      if (state === "auto") {
+      if (state === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        try {
+          localStorage.setItem("theme", "light");
+        } catch (e) {}
+      } else {
         document.documentElement.removeAttribute("data-theme");
         try {
           localStorage.removeItem("theme");
-        } catch (e) {}
-      } else {
-        document.documentElement.setAttribute("data-theme", state);
-        try {
-          localStorage.setItem("theme", state);
         } catch (e) {}
       }
       label.textContent = LABELS[state];
@@ -75,8 +72,7 @@
     label.textContent = LABELS[current()];
 
     btn.addEventListener("click", function () {
-      var next = STATES[(STATES.indexOf(current()) + 1) % STATES.length];
-      apply(next);
+      apply(current() === "dark" ? "light" : "dark");
     });
   })();
 </script>

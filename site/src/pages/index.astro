@@ -113,27 +113,18 @@ const SECONDARY_STATS = [
     <title>BêAfrîka Data</title>
     <style>
       :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --indigo: #6FA0E8; --line: #33362A;
+        --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
+        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
+      }
+      :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
         --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #B8790F; --ochre-soft: #F1E3C6;
         --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
         --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-          --ink-faint: #6E7161; --indigo: #6FA0E8; --line: #33362A;
-          --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
-          --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
-          --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
-        }
-      }
-      :root[data-theme="dark"] {
-        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
-        --ink-faint: #6E7161; --indigo: #6FA0E8; --line: #33362A;
-        --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
-        --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
-        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
       }
       * { box-sizing: border-box; }
       body {
