@@ -12,6 +12,30 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
 
 ## Open
 
+### ICASEES éducation yearbook has internal arithmetic inconsistencies in at least one table (2026-09-12)
+
+- **What:** While checking whether the éducation yearbook's IA
+  (préfecture) tables could be safely extracted for a Phase 4 widening,
+  found that its préscolaire établissements-by-zone table
+  (IA/Urbaine/Rurale/Total général, 19 préfectures listed - Vakaga is
+  missing from this particular table, its own separate oddity) doesn't
+  reconcile for 3 of those 19: Urbaine + Rurale ≠ Total général, each off
+  by exactly 1 (Lim-Pendé 21+4≠26, Mambéré-Kadéï 24+7≠30, Ouaka 22+3≠26).
+  Column boundaries were verified against the row's own merged-cell
+  metadata first, so this isn't a parsing mistake on this project's
+  side - it's the source workbook's own published numbers not adding up.
+- **Used in:** not used anywhere on the site - this was found precisely
+  while deciding whether to extract from this table, and the finding is
+  why nothing was extracted. The existing national
+  `nombre_etablissements_scolaires` figure (3015, used on `/education/`)
+  is unaffected: it's ICASEES's own stated headline total, taken directly
+  from a different summary row, not computed by aggregating the
+  inconsistent table.
+- **Resolved when:** either ICASEES publishes a corrected version, or
+  someone with a reason to use this specific table confirms which of the
+  three numbers is right for the affected préfectures - not something to
+  guess at. See `docs/decisions.md` for the full check.
+
 ### Dark-mode toggle not yet clicked in an actual browser (2026-09-12)
 
 - **What:** The sitewide dark-mode toggle (`ThemeInit.astro` /

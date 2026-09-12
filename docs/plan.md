@@ -996,6 +996,22 @@ per its own bar: sous-préfecture pages themselves (step 4's second half,
 explicitly deferred), and widening steps 1/3/5/6 to the other 4 themes as
 their own sources allow it.
 
+**Checked, 2026-09-12: infrastructures/éducation/économie/agriculture
+don't currently allow it.** Went through each theme's actual sources
+live rather than leave this untested. World Bank WDI (infrastructures,
+agriculture) is structurally national-only via its API. Économie's IHPC
+dashboard states "échelle nationale" on every series in its own metadata;
+its national accounts PDF has no régional tables (scanned all 65 pages).
+Éducation's yearbook does have real IA/préfecture tables, but a rigorous
+check (deriving column boundaries from the table's own merged-cell
+ranges, then verifying Urbaine + Rurale = Total général) found the
+source's own numbers don't reconcile for 3 of 19 préfectures on even the
+simplest candidate table - a genuine data-quality problem in the source,
+not a parsing gap on this project's end. See docs/decisions.md and
+docs/verification-debt.md. None of these 4 themes are worth revisiting
+without either a new source or ICASEES resolving the inconsistency
+directly.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,

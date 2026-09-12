@@ -1313,3 +1313,57 @@ true still - the maps redistribute the boundary *geometry* itself
 (simplified, but derived from and shaped like the original) on public
 pages, not just an internal ID crosswalk. Still fine for v1 per CLAUDE.md's
 own rule, but noted as the thing to actually resolve before final launch.
+
+## Widening the remaining 4 themes: checked live, all 4 come back negative
+
+Asked to widen infrastructures/éducation/économie/agriculture the same
+way population/prix/santé were - checked each theme's actual sources
+live rather than assume the earlier general audit's summary still holds,
+same discipline as every other widening this phase. Every check came
+back negative, for a genuine reason each time, not just "didn't look":
+
+- **Infrastructures, agriculture:** every indicator is a World Bank WDI
+  series. Already established earlier this session that WDI's API is
+  structurally national-only (no subnational endpoint exists to check) -
+  not worth re-querying again without a reason to doubt that.
+- **Économie, IHPC:** re-opened the already-fetched dashboard file's own
+  metadata sheet - all 14 series (IND1-IND14) explicitly state "échelle
+  nationale" in their own definition text. Not an assumption; the source
+  says so about itself.
+- **Économie, comptes nationaux:** text-scanned all 65 pages of the
+  already-fetched PDF for région/préfecture/Bangui/provincial keywords.
+  One hit, a staff title ("Chef de Service des Comptes nationaux
+  Satellites et régionaux") - a service that exists at ICASEES, not a
+  régional table in this particular document. No régional GDP breakdown
+  published here.
+- **Éducation:** this is the one worth real detail, since the yearbook
+  genuinely does have IA/préfecture tables (confirmed earlier), and this
+  time the check went further than the earlier abandoned attempt -
+  actual verification, not just spotting the risk. Took the *simplest*
+  candidate table (préscolaire établissements by zone: IA/Urbaine/Rurale/
+  Total général, a single-level header, no nested sub-categories like the
+  earlier-abandoned établissements-by-statut table) and derived its exact
+  column boundaries from that row's own merged-cell ranges specifically
+  (not reused from a different table), then ran the one check that
+  actually proves correctness: does Urbaine + Rurale equal Total général
+  for every préfecture? **It doesn't, for 3 of the 19 préfectures this
+  particular table lists** (Lim-Pendé 21+4=25≠26, Mambéré-Kadéï
+  24+7=31≠30, Ouaka 22+3=25≠26, each off by exactly 1 - Vakaga doesn't
+  appear in this table at all, which is its own separate oddity). Column
+  boundaries were verified correct against
+  the row's own merged-cell metadata, so this isn't a parsing bug on this
+  project's end - it's the source workbook's own published numbers not
+  reconciling, on the simplest, cleanest-looking table available. There's
+  no way to tell which of the three numbers is right when they disagree,
+  so none of them can be published with confidence. This is stronger
+  evidence than the earlier abandoned attempt had (that one hit a
+  structural risk; this one hit a demonstrated data-quality problem in
+  the source itself) and closes the door more firmly: **not worth
+  revisiting without contacting ICASEES directly about the underlying
+  data**, not just a better parsing approach.
+
+Net: no code changes from this check - a real "checked and no" is itself
+the useful output, so it's logged here rather than left unclear whether
+this was tried. Phase 4's remaining subnational depth (population,
+prix, santé) stays as scoped; these 4 themes stay national-only until a
+genuinely new source appears.
