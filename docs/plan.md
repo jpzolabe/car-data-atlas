@@ -835,6 +835,25 @@ now used a third time) rather than picking one. This is santé's first
 disclosure indicator, so the disclosure CSS/markup had to be added to
 that page for the first time. 82 indicators total now.
 
+**Update 2026-09-12 (tenth pass the same day) - ICASEES education
+yearbooks, retried and resolved.** The rate-limiting block logged
+earlier the same session had cleared: a single request each to the
+publications page and the 2024-2025 Annuaire Statistique's Excel
+download succeeded cleanly. The workbook is exactly as irregular as
+`CLAUDE.md` warned (one 3.7 MB sheet, tables at inconsistent positions),
+so 2 tables were found and transcribed by hand rather than parsed
+generically: a national summary by education level (3 new headcounts -
+`nombre_etablissements_scolaires`, `effectif_eleves`,
+`nombre_enseignants` - éducation's first absolute figures, matching the
+raw-figures-alongside-rates pattern), and a PSE tracking table giving a
+real Baccalauréat pass rate (`taux_reussite_baccalaureat`: 25% in 2019,
+36.66% in 2024) - closing a gap `CLAUDE.md` names by name. A second,
+more prominent exam-results table turned out to have entirely empty data
+rows (a template from an older year's file) and was deliberately not
+used - BEPC/CEPE results remain genuinely unavailable, stated as such
+rather than implied merely unfetched. 86 indicators total now - every
+item from this session's working list is done.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for

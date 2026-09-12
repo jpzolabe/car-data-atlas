@@ -32,6 +32,7 @@ function isStale(indicatorId: string, period: string): boolean {
 }
 
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+const fmtInt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 
 // Small build-time SVG line chart, shared by every indicator card -- same
 // stroke-dasharray draw-in technique as prix.astro/infrastructures.astro,
@@ -224,11 +225,12 @@ function qualityLabel(flag: string): string {
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Éducation</h1>
       <p class="lede">
-        Scolarisation, rétention, achèvement scolaire et alphabétisation,
-        dans l'ordre du parcours d'un élève, avec tout ce que l'UNESCO
-        Institut de statistique (UIS) publie pour la République
-        centrafricaine. Niveau national uniquement pour l'instant ; rien par
-        région ni par préfecture.
+        Ressources scolaires, scolarisation, rétention, achèvement et
+        alphabétisation, dans l'ordre du parcours d'un élève, avec les
+        données de l'UNESCO Institut de statistique (UIS) et de l'annuaire
+        statistique de l'ICASEES / Ministère de l'Éducation Nationale.
+        Niveau national uniquement pour l'instant ; rien par région ni par
+        préfecture.
       </p>
 
       <div class="headline-block">
@@ -331,12 +333,14 @@ function qualityLabel(flag: string): string {
                 {simpleIndicators.map((ind) => {
                   const spark = sparkline(ind.series);
                   const stale = isStale(ind.indicator_id, ind.latest.period);
+                  const unit = ind.unit ?? "%";
+                  const valueDisplay = ind.unit ? fmtInt(ind.latest.value) : fmt(ind.latest.value);
                   return (
                     <div class="indicator-card">
                       <p class="indicator-name">{ind.name_fr}</p>
                       <p class="indicator-definition">{ind.definition_fr}</p>
                       <div class="indicator-value">
-                        {fmt(ind.latest.value)}<span class="unit">%, {ind.latest.period}</span>
+                        {valueDisplay}<span class="unit"> {unit}, {ind.latest.period}</span>
                         <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
                         {stale && <span class="badge stale">ancien</span>}
                       </div>
@@ -344,7 +348,7 @@ function qualityLabel(flag: string): string {
                       <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                         <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
                         <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
-                        <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">0%</text>
+                        <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">{ind.unit ? "0" : "0%"}</text>
                         <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                         <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
                         <polyline class="spark-line" points={spark.points} />
@@ -368,15 +372,16 @@ function qualityLabel(flag: string): string {
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
         <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse - l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
-        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) - l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été interrompue après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
-        <li>Aucune donnée sur les infrastructures scolaires (nombre d'écoles, points d'eau, latrines) ni sur les dépenses publiques d'éducation.</li>
+        <li>Le taux de réussite au baccalauréat général (ci-dessus) vient de l'annuaire ICASEES ; le CEPE et le BEPC ne sont pas dans le même fichier, et un second tableau d'examens qu'il contient (session 2020/2021) est un gabarit vide, pas des chiffres réels.</li>
+        <li>Points d'eau, latrines et dépenses publiques d'éducation ne sont pas encore intégrés ; le nombre d'établissements (ci-dessus) l'est.</li>
         <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) - l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
       </ul>
 
       <footer>
-        Toutes les données de cette page : UNESCO Institut de statistique (UIS),
-        récupérées via l'API publique <a href="https://api.uis.unesco.org/api/public/data/indicators">api.uis.unesco.org</a>, le 2026-09-12.
-        Détail par source sur la page <a href="/sources/">Sources</a>.
+        Données de cette page : UNESCO Institut de statistique (UIS), récupérées via
+        l'API publique <a href="https://api.uis.unesco.org/api/public/data/indicators">api.uis.unesco.org</a>,
+        et ICASEES / Ministère de l'Éducation Nationale (annuaire statistique) - source
+        indiquée sous chaque indicateur. Détail complet par source sur la page <a href="/sources/">Sources</a>.
         <nav class="site-nav">
           <a href="/population/">Population</a>
           <a href="/prix/">Prix</a>
