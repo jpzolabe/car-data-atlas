@@ -7,11 +7,11 @@
 // this page: ICASEES's rebased comptes nationaux disagree substantially
 // with World Bank's modelled estimate for 2020-2021. Rendered via the
 // "national" in ind check below, population.astro-style disclosure rather
-// than education.astro's dual-line chart -- simpler, and there are only 2
+// than education.astro's dual-line chart; simpler, and there are only 2
 // years of overlap to show, not a long modelled series with survey points.
 //
 // Two indicators (pib_total, pib_par_habitant) are monetary (US$), not
-// percentages like everything else on this page -- formatValue() below
+// percentages like everything else on this page; formatValue() below
 // branches on that rather than assuming every card is a "%".
 //
 // Reorganized 2026-09-12: prix and agriculture are full standalone theme
@@ -21,21 +21,23 @@
 // CLAUDE.md's own original theme list literally said "agriculture et prix"
 // as one theme before this session split them out). Rather than merge the
 // pages or move URLs, prix.json/agriculture.json are imported here too,
-// just for two brief summary cards with a link to the full page --
+// just for two brief summary cards with a link to the full page;
 // presentation only, no data ownership change. économie is now the only
-// one of the two still linked from the home page's top-level nav --
+// one of the two still linked from the home page's top-level nav;
 // agriculture and prix are reached through it (their footer cross-links on
 // every other page are unchanged). Cards ordered agriculture then prix,
-// both right after Production -- agriculture is a GDP sector (fits
+// both right after Production; agriculture is a GDP sector (fits
 // naturally next to "how big is the economy"), prix is the price/value
 // side of the same production. See docs/decisions.md.
 import data from "../data/economie.json";
 import prixData from "../data/prix.json";
 import agricultureData from "../data/agriculture.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
-  // indice_activite_economique's periods look like "2023-Q1" (quarterly) --
+  // indice_activite_economique's periods look like "2023-Q1" (quarterly);
   // taking the leading 4-digit year works for both that and every plain
   // "YYYY" annual period on this page.
   return CURRENT_YEAR - Number(period.slice(0, 4)) > 5;
@@ -92,6 +94,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -103,6 +106,22 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         --t-eco: #3D6373;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A;
+          --t-eco: #7FB4C4;
+          --stale: #E2694A; --stale-soft: #3A211A;
+          --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A;
+        --t-eco: #7FB4C4;
+        --stale: #E2694A; --stale-soft: #3A211A;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {
@@ -215,6 +234,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Économie</h1>

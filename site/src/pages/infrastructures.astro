@@ -4,10 +4,12 @@
 // Sec2.3). Électricité stays the headline hero chart (CLAUDE.md's own domain
 // fact cites it, and its 2019 point independently matches MICS); internet
 // use, mobile subscriptions, water and sanitation access are additive cards
-// below, all World Bank, all confirmed live before adding -- see
+// below, all World Bank, all confirmed live before adding; see
 // docs/decisions.md. File renamed from export_electricity_json.py /
 // electricite.json since the theme is no longer just electricity.
 import data from "../data/infrastructures.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -26,7 +28,7 @@ const latest = series[series.length - 1];
 const first = series[0];
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
-// Small build-time SVG sparkline for the "Autres indicateurs" cards -- same
+// Small build-time SVG sparkline for the "Autres indicateurs" cards; same
 // technique as education.astro/prix.astro's, duplicated per this project's
 // one-file-per-page convention.
 const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
@@ -49,6 +51,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -59,6 +62,20 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
         --t-infra: #6B4A9E;
         --ochre: #B8790F; --ochre-soft: #F1E3C6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+          --t-infra: #A98BDD;
+          --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8;
+        --t-infra: #A98BDD;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {
@@ -136,6 +153,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Infrastructures</h1>

@@ -989,3 +989,61 @@ sized as separate steps, not part of this first template.
 All 33 built pages (the 20 new ones included) pass the 150 KB budget
 with room to spare - each place page is 6-8 KB, well under even the
 lightest existing theme page.
+
+## Sitewide dark-mode toggle: CLAUDE.md's client-JS budget flexed for the first time
+
+Added a combined auto+manual dark mode: with no stored preference, every
+page follows `prefers-color-scheme` (0 JS involved); a small sitewide
+button lets a reader force "clair" or "sombre" instead, storing that
+choice in `localStorage` and stamping `data-theme` on `<html>`, which
+overrides the OS setting from then on for that visitor.
+
+This is the first time CLAUDE.md's "0 KB client JS on place and theme
+pages" line has been deliberately flexed rather than treated as
+absolute - updated CLAUDE.md itself at the same time (both to name this
+as an allowed exception, and to state more plainly, in "How to read this
+document," that specific numbers/restrictions in the file are tuned
+recommendations, not rules to defend for their own sake). The toggle
+script is a few hundred bytes of hand-written vanilla JS, no
+dependencies, no framework, on every page - unlike the chart/library ban
+elsewhere in the performance budget, which is not up for the same kind
+of exception.
+
+Two new shared components, `site/src/components/ThemeInit.astro` and
+`ThemeToggle.astro` - the project's first shared (non-page) Astro
+components. `ThemeInit` is a synchronous inline script placed first in
+`<head>` on every page, applying any stored preference before first
+paint (avoids a flash of the wrong theme). `ThemeToggle` renders the
+fixed-position button plus its click handler, styled only from tokens
+every page already defines (`--surface`/`--ink`/`--ink-muted`/`--line`),
+so it drops into any page unchanged regardless of that page's own accent
+color.
+
+Discovered along the way: importing the same component into every page
+made Astro split page CSS into an external `/_astro/*.css` file once
+enough of it was shared, breaking the project's "one self-contained HTML
+file per page" assumption that `check-page-weight.mjs` relies on (its
+own comment says so explicitly). Fixed by setting
+`build.inlineStylesheets: "always"` in `astro.config.mjs` rather than
+duplicating the toggle's CSS into all 14 pages - keeps the shared
+component and the single-file invariant both intact.
+
+Every one of the 14 existing pages (all 7 themes, home, sources, méthode,
+données, à-propos, and the 2 new `/lieux/` pages) got a dark palette
+added to its `:root` block, following the same 3-state CSS pattern:
+`:root` for light defaults (unchanged), `@media (prefers-color-scheme:
+dark)` guarded by `:root:not([data-theme="light"])` for the automatic
+case, and `:root[data-theme="dark"]` for the explicit override - the
+same set of hex values in both dark blocks per page, since only the
+selector differs. Base tokens (`--paper`/`--surface`/`--ink`/etc.) got
+one shared dark palette; each page's own accent color(s) got a
+brightened variant of the same hue for legibility against a dark
+ground.
+
+While touching every page's frontmatter comment block for the toggle
+import, also caught and fixed several `--` (double-hyphen) leftovers
+from before the project's em-dash sweep - the sweep's script only
+covered `.md`/`.csv`/`.py`/`.astro`/`.yml` at the time, but these were in
+`.astro` files it should have caught; likely written after that pass ran.
+All 33 pages still pass the 150 KB budget after these changes (biggest
+is `/sources/` at 93.6 KB), and ruff/build are clean.

@@ -1,0 +1,84 @@
+---
+// Sitewide dark-mode control: cycles Auto -> Clair -> Sombre -> Auto.
+// "Auto" means no stored preference - follows prefers-color-scheme, same
+// as a reader who never touches the control. Explicit Clair/Sombre are
+// stored in localStorage and stamped as data-theme on <html>, overriding
+// the OS setting from then on for that visitor. Paired with
+// ThemeInit.astro, which applies the stored choice before first paint.
+// Styled only with the base tokens every page already defines
+// (--surface/--ink/--ink-muted/--ink-faint/--line), so it needs no
+// page-specific accent to render correctly, and can be dropped into any
+// page unchanged.
+---
+<button id="theme-toggle" type="button" aria-label="Changer de thème (clair, sombre, ou automatique)">
+  <span id="theme-toggle-label">Thème : auto</span>
+</button>
+<style>
+  #theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    font: inherit;
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  #theme-toggle:hover {
+    color: var(--ink);
+    border-color: var(--ink-faint);
+  }
+  #theme-toggle:focus-visible {
+    outline: 2px solid var(--ink-faint);
+    outline-offset: 2px;
+  }
+  @media (max-width: 640px) {
+    #theme-toggle { top: 8px; right: 8px; padding: 5px 8px; }
+  }
+</style>
+<script is:inline>
+  (function () {
+    var STATES = ["auto", "light", "dark"];
+    var LABELS = { auto: "Thème : auto", light: "Thème : clair", dark: "Thème : sombre" };
+    var btn = document.getElementById("theme-toggle");
+    var label = document.getElementById("theme-toggle-label");
+
+    function current() {
+      var stored = null;
+      try {
+        stored = localStorage.getItem("theme");
+      } catch (e) {}
+      return stored === "dark" || stored === "light" ? stored : "auto";
+    }
+
+    function apply(state) {
+      if (state === "auto") {
+        document.documentElement.removeAttribute("data-theme");
+        try {
+          localStorage.removeItem("theme");
+        } catch (e) {}
+      } else {
+        document.documentElement.setAttribute("data-theme", state);
+        try {
+          localStorage.setItem("theme", state);
+        } catch (e) {}
+      }
+      label.textContent = LABELS[state];
+    }
+
+    label.textContent = LABELS[current()];
+
+    btn.addEventListener("click", function () {
+      var next = STATES[(STATES.indexOf(current()) + 1) % STATES.length];
+      apply(next);
+    });
+  })();
+</script>

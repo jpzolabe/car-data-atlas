@@ -14,13 +14,16 @@ floor everywhere below. Revisit if a good commune source turns up.
 
 This is a set of working defaults for a solo-maintained project, not fixed law. It
 exists so decisions don't have to be re-litigated from scratch every session - treat
-it as the current best answer, not an unquestionable one. When something here stops
-fitting reality, change it here rather than quietly working around it, and note why
-in `docs/decisions.md` if the reason isn't obvious. The one thing below that stays a
+it as the current best answer, not an unquestionable one, and every specific number
+or restriction below (page-weight targets, the client-JS budget, indicator counts,
+whatever) is a recommendation tuned for where the project was when it was written,
+not a rule to defend for its own sake. When something here stops fitting reality,
+change it here rather than quietly working around it, and note why in
+`docs/decisions.md` if the reason isn't obvious. The one thing below that stays a
 hard line regardless is not fabricating values outright - see rule zero - everything
-else, including how strictly rule zero's *verification* half is enforced pre-launch,
-is a judgment call that can flex with where the project actually is (see "v1 vs.
-later" below).
+else, including how strictly rule zero's *verification* half is enforced pre-launch
+(see "v1 vs. later" below) and the client-JS line in the performance budget below, is
+a judgment call that can flex with where the project actually is.
 
 ## Rule zero: never invent data
 
@@ -212,8 +215,15 @@ Concrete targets, checked in CI - the 3G-in-Bangui constraint made testable:
 
 - Any page: under 150 KB total transferred, uncompressed, including HTML, CSS, fonts,
   SVG and images
-- Client JavaScript: 0 KB on place and theme pages. Search is the only permitted
-  exception, and only on pages that carry the search box.
+- Client JavaScript: the default is 0 KB on place and theme pages, and that default
+  stands for anything that would ship a framework, a chart library, or client-side
+  data fetching - none of that belongs on this site regardless of size. It's not a
+  hard 0, though: a few hundred bytes of hand-written vanilla JS for a real,
+  justified piece of progressive enhancement is fine (the search box on the home
+  page; the dark-mode toggle, sitewide - inline, no dependencies, reads/writes one
+  stored preference). Each such exception should be small, dependency-free, and
+  written down in `docs/decisions.md` when added - that's what keeps this a short,
+  deliberate list instead of a drift back toward "just add a script."
 - No web fonts beyond one weight-variable family, or use system fonts
 - Simplified GeoJSON per map: under 50 KB
 

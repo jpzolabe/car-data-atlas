@@ -4,6 +4,8 @@
 // DuckDB join -> JSON). Astro never parses the raw CSVs itself - see
 // docs/decisions.md.
 import data from "../data/population.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const byRegion = new Map<string, typeof data.prefectures>();
 for (const row of data.prefectures) {
@@ -39,7 +41,7 @@ const REGION_COLORS: Record<string, string> = {
 const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
 const CHART_W = 1000;
 
-// Small build-time SVG sparkline for the "Autres indicateurs" cards -- same
+// Small build-time SVG sparkline for the "Autres indicateurs" cards; same
 // technique as education.astro/prix.astro/infrastructures.astro's,
 // duplicated per this project's one-file-per-page convention.
 const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
@@ -69,6 +71,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -87,6 +90,18 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         --stale-soft: #F1DFD2;
         --ochre: #B8790F;
         --ochre-soft: #F1E3C6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8; --t-pop: #6FA0E8;
+          --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --line: #33362A; --indigo: #6FA0E8; --t-pop: #6FA0E8;
+        --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
       }
       * { box-sizing: border-box; }
       body {
@@ -254,6 +269,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Population par préfecture</h1>

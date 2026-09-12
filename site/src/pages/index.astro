@@ -4,12 +4,16 @@
 // indicators exist) - but it now links everywhere real and carries the
 // search box, which docs/plan.md calls "the primary navigation, not the
 // menu." Search only works after a full `pnpm build` (Pagefind indexes the
-// built dist/ output) - it's inert during `astro dev`. This is the one page
-// that carries any client JS at all, per CLAUDE.md's explicit exception.
+// built dist/ output) - it's inert during `astro dev`. Client JS on this
+// page: the search box, plus the sitewide dark-mode toggle every page now
+// carries - see CLAUDE.md's performance budget and ThemeToggle.astro.
+import ThemeInit from "../components/ThemeInit.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 ---
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
@@ -17,11 +21,22 @@
     <style>
       :root {
         --paper: #EDEEE6;
+        --surface: #F8F8F2;
         --ink: #1B2420;
         --ink-muted: #5A6259;
         --ink-faint: #8B9188;
         --indigo: #2A56A8;
         --line: #D6D7C9;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+          --ink-faint: #6E7161; --indigo: #6FA0E8; --line: #33362A;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #171912; --surface: #1F221A; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #6E7161; --indigo: #6FA0E8; --line: #33362A;
       }
       * { box-sizing: border-box; }
       body {
@@ -71,7 +86,7 @@
         padding: 10px 12px;
         border: 1px solid var(--line);
         border-radius: 3px;
-        background: #F8F8F2;
+        background: var(--surface);
         color: var(--ink);
       }
       #search input:focus {
@@ -136,6 +151,7 @@
     </style>
   </head>
   <body>
+    <ThemeToggle />
     <main>
       <h1>Données RCA</h1>
       <p>
