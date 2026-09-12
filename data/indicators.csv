@@ -57,3 +57,11 @@ rendement_cereales,Rendement des céréales,"Rendement des céréales, en kilogr
 consommation_engrais,Consommation d'engrais,"Consommation d'engrais, en kilogrammes par hectare de terre arable.",kg/ha,agriculture,pays,agriculture_kgha_pays,
 taux_sous_alimentation,Sous-alimentation,Part de la population en sous-alimentation.,%,agriculture,pays,agriculture_taux_pays,false
 emploi_agricole,Emploi agricole,Part de l'emploi total dans l'agriculture (estimation modélisée OIT).,%,agriculture,pays,agriculture_taux_pays,
+nombre_medecins,Nombre de médecins,Effectif total de médecins en exercice.,personnes,sante,pays,sante_effectif_pays,true
+nombre_personnel_infirmier,Personnel infirmier et sages-femmes,Effectif total de personnel infirmier et de sages-femmes en exercice.,personnes,sante,pays,sante_effectif_pays,true
+nombre_lits_hopital,Nombre de lits d'hôpital,"Estimation calculée (densité de lits x population), pas un décompte publié directement -- voir docs/verification-debt.md.",lits,sante,pays,sante_effectif_calcule_pays,true
+exportations_montant,Exportations (valeur),"Exportations de biens et services, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+importations_montant,Importations (valeur),"Importations de biens et services, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+dette_exterieure_montant,Dette extérieure (montant),"Encours de la dette extérieure, en dollars américains courants.",US$,economie,pays,economie_montant_pays,false
+superficie_agricole,Superficie agricole,"Superficie totale des terres agricoles, en kilomètres carrés.",km²,agriculture,pays,agriculture_superficie_pays,
+production_cereales,Production de céréales,"Production totale de céréales, en tonnes.",tonnes,agriculture,pays,agriculture_production_pays,true

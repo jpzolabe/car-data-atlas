@@ -19,13 +19,19 @@ function isStale(period: string): boolean {
 
 function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
   if (indicatorId === "consommation_engrais") {
-    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 3 }), unit: "kg/ha" };
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 3 }), unit: " kg/ha" };
   }
   if (indicatorId === "rendement_cereales") {
-    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: "kg/ha" };
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " kg/ha" };
   }
   if (indicatorId === "indice_production_alimentaire") {
-    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: "indice" };
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " indice" };
+  }
+  if (indicatorId === "superficie_agricole") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " km²" };
+  }
+  if (indicatorId === "production_cereales") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " tonnes" };
   }
   return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: "%" };
 }
@@ -143,9 +149,10 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Agriculture</h1>
       <p class="lede">
-        Terres et ressources, production, emploi et alimentation — 9
-        indicateurs, tous de la Banque mondiale, tous nationaux. Dernier
-        des 7 thèmes du site à être construit.
+        Terres et ressources, production, emploi et alimentation —
+        {allIndicatorCount} indicateurs, tous de la Banque mondiale, tous
+        nationaux. Voir aussi <a href="/economie/">Économie</a>, dont ce
+        thème est un complément sectoriel.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
@@ -195,7 +202,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les 9 indicateurs sont tous nationaux.</li>
+        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux.</li>
         <li>Aucun prix agricole (manioc, arachide, maïs…) — CLAUDE.md nomme explicitement <code>prix_manioc_kg</code> comme exemple d'indicateur, via WFP/HDX, avec un niveau géographique différent (le marché, un point, pas une zone). C'est un chantier séparé, pas encore commencé.</li>
         <li>Aucune donnée sur l'élevage, la pêche en tant que sous-secteur séparé, ou les surfaces cultivées par culture (manioc, maïs, arachide…).</li>
         <li>Aucune donnée sur l'accès à la terre, les régimes fonciers, ou les coopératives agricoles.</li>

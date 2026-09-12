@@ -159,6 +159,24 @@ The workhorse of the site. One per theme.
    - A `Niveau le plus fin : sous-préfecture` badge, so the reader knows how deep it goes
    - Buttons: `Données CSV`, `Image PNG`, `Intégrer`
 
+   **Rates need raw figures alongside them, where a real one is published.**
+   Added 2026-09-12 after santé/économie/agriculture shipped as %-only pages
+   (doctor *density* but never a doctor count, GDP *share* of trade but never
+   the dollar figure). A rate alone hides scale — "0.074 doctors per 1,000
+   people" doesn't land the way "532 doctors nationally" does. Prefer a
+   second real published series (World Bank/FAO often publish both — e.g.
+   `NE.EXP.GNFS.ZS` and `NE.EXP.GNFS.CD` are the same trade data as % of GDP
+   and as current US$) over computing one. When no absolute figure is
+   published anywhere (checked, not assumed — santé's doctor/bed density had
+   no raw counterpart in World Bank's WDI at all), a second API is worth
+   trying before giving up (WHO's GHO OData API had real doctor/nurse
+   headcounts WDI didn't). Only when *that* comes up empty too is a computed
+   estimate (e.g. density × population) acceptable — rule zero permits this
+   as arithmetic on two real numbers, not invention, but it must be labelled
+   as calculated, not presented as a directly-published figure, and dated to
+   the same year as the input data it's built from (a 2011 density paired
+   with a 2011 population, never a current one — see docs/decisions.md).
+
 4. **Breakdown section** — a table or bar chart of the indicator by région or
    préfecture, with links down to place pages. Only rendered for indicators that
    genuinely reach that level.
@@ -169,7 +187,22 @@ The workhorse of the site. One per theme.
    **This section is written by hand, not generated.** It is the most valuable
    content on the page and the least automatable.
 
-6. **Related themes and next steps.**
+6. **Related themes and next steps.** Where a theme is conceptually part of
+   another (prix and agriculture both sit inside "the economy" the way most
+   real economic dashboards treat them — IMF Article IV, World Bank country
+   pages, Trading Economics all fold prices and sector breakdowns into one
+   view; `CLAUDE.md`'s own original theme list even said "agriculture et
+   prix" as one theme before this session split it into three pages),
+   the parent theme's page carries a brief summary card for each related
+   theme — headline figure, one sentence, a link to the full page — rather
+   than merging the pages or moving their URLs. This is presentation only:
+   the related theme's own JSON/indicators stay owned by its own export
+   script. The Astro page (e.g. `economie.astro`) imports the related
+   theme's already-built JSON (`prix.json`, `agriculture.json`) directly for
+   the summary card; the parent theme's own export script
+   (`export_economie_json.py`) never touches that data — no duplication in
+   the pipeline layer, only in what's rendered. Added 2026-09-12 — see
+   `docs/decisions.md`.
 
 ## 2.4 Place pages
 
@@ -681,8 +714,23 @@ this pass, no genuinely stale indicator.
 éducation, santé, économie, agriculture — 58 indicators total, up from 4
 at the start of this session's completion pass.** Every theme page now
 has a headline figure and logically-ordered categories per the rule
-codified earlier today. Still open: the Phase 3 source list items 3-7 (WFP
-food prices — CLAUDE.md's own example indicator, `prix_manioc_kg`,
+codified earlier today.
+
+**Update 2026-09-12 (fourth pass the same day).** Two follow-ups from user
+feedback on the newly-built themes. (1) Rates alone were hiding scale
+(doctor density but no doctor count, GDP share of trade but no dollar
+figure) — added real absolute counterparts across santé (+3: doctors and
+nursing/midwifery headcounts from WHO's GHO API, since World Bank's WDI
+had no raw counterpart at all; a calculated hospital-bed estimate where
+*no* API had one), économie (+3: export/import/debt values in US$, real
+World Bank counterparts already published alongside the % versions), and
+agriculture (+2: agricultural land in km², cereal production in tonnes,
+same pattern). (2) Reorganized économie to carry brief summary cards for
+prix and agriculture with a link to each's full page — closer to
+`CLAUDE.md`'s original "agriculture et prix" grouping, implemented as
+cross-linking rather than a URL/data merge — see item 6 of §2.3 above.
+**66 indicators total now.** Still open: the Phase 3 source list items 3-7
+(WFP food prices — CLAUDE.md's own example indicator, `prix_manioc_kg`,
 different geographic floor (market, a point) and different API (HDX);
 national accounts/GDP via PDF extraction; MICS 2018-19; IMF NSDP/SDMX;
 health facilities as the first 3-way disclosure test), the ICASEES

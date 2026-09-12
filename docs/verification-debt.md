@@ -302,6 +302,50 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   estimate, or ICASEES publishes its own national poverty line calculation
   independently of the World Bank's $-a-day methodology.
 
+### WHO GHO health workforce data — licence unclear, nurse counts swing implausibly year to year
+
+- **What:** `nombre_medecins` and `nombre_personnel_infirmier` are fetched
+  from WHO's Global Health Observatory OData API (`ghoapi.azureedge.net`,
+  indicators `HWF_0002`/`HWF_0007`) rather than World Bank WDI, since WDI
+  only publishes density for these, never a headcount. Two open items: (1)
+  the OData API doesn't state a licence per-indicator the way World Bank's
+  API metadata does — WHO's general open-data terms likely apply but
+  weren't checked directly this session. (2) The nursing/midwifery count
+  swings hard between reporting years for CAF: 835 (2008) → 1,097 (2009) →
+  1,195 (2018) → 1,042 (2021) → 2,545 (2022) → 5,653 (2023) → 2,331 (2024).
+  A near-5x jump in one year (2022→2023) and a near-halving the next
+  (2023→2024) is far more volatile than a real national nursing workforce
+  plausibly changes — most likely a change in how data is collected or
+  reported to WHO's National Health Workforce Accounts portal between
+  those years, not a real staffing swing, but this is an inference, not
+  confirmed by anything in the API response itself.
+- **Used in:** `data/observations.csv`, `nombre_medecins` (7 rows),
+  `nombre_personnel_infirmier` (8 rows), `site/src/pages/sante.astro`.
+- **Resolved when:** WHO's general terms of use are checked directly for
+  GHO OData API output specifically; and/or ICASEES or a WHO country
+  profile document is checked for a methodology note explaining the
+  nursing-count discontinuity.
+
+### Derived hospital-bed count — a calculation, not a published figure
+
+- **What:** `nombre_lits_hopital` doesn't come from any source directly —
+  neither World Bank WDI nor WHO GHO publishes an absolute hospital-bed
+  count for CAF anywhere (checked both APIs directly before deciding to
+  compute this). Each of the 6 values is bed density (`SH.MED.BEDS.ZS`,
+  per 1,000 people) × that *same year's* real World Bank population figure
+  (`SP.POP.TOTL`) ÷ 1,000, rounded to the nearest whole bed. The most
+  recent point is 2011 (4,565 beds, from a density of 1.0/1,000 and a
+  population of 4,565,021) — as stale as the density it's built from, not
+  independently more current.
+- **Used in:** `data/observations.csv`, `nombre_lits_hopital` (6 rows),
+  `site/src/pages/sante.astro`. Labelled `quality_flag=estime` with the
+  exact density/population/year used in each row's `notes` field, and the
+  page's generated sentence explicitly says "estimation calculée," not
+  stated as a plain published fact.
+- **Resolved when:** ICASEES, WHO AFRO, or another primary source publishes
+  an actual hospital-bed census for CAR, which would replace this
+  calculation rather than supplement it.
+
 ---
 
 ## Resolved
