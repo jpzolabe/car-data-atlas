@@ -395,11 +395,89 @@
           "lead_sentence_template_id": "exportations_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS)",
+            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Exportations"
+        },
+        {
+          "indicator_id": "exportations_montant",
+          "latest": {
+            "period": "2025",
+            "value": 593132852.007634
+          },
+          "series": [
+            {
+              "period": "2011",
+              "value": 320053983.563233
+            },
+            {
+              "period": "2012",
+              "value": 289922950.677384
+            },
+            {
+              "period": "2013",
+              "value": 253274134.908027
+            },
+            {
+              "period": "2014",
+              "value": 315975056.005751
+            },
+            {
+              "period": "2015",
+              "value": 289437777.667248
+            },
+            {
+              "period": "2016",
+              "value": 270501993.134169
+            },
+            {
+              "period": "2017",
+              "value": 357682916.800674
+            },
+            {
+              "period": "2018",
+              "value": 354024742.201165
+            },
+            {
+              "period": "2019",
+              "value": 349974468.904547
+            },
+            {
+              "period": "2020",
+              "value": 353021263.260214
+            },
+            {
+              "period": "2021",
+              "value": 332868820.827631
+            },
+            {
+              "period": "2022",
+              "value": 293074002.707976
+            },
+            {
+              "period": "2023",
+              "value": 369034170.925932
+            },
+            {
+              "period": "2024",
+              "value": 412917514.039995
+            },
+            {
+              "period": "2025",
+              "value": 593132852.007634
+            }
+          ],
+          "lead_sentence": "En 2025, le montant des exportations de biens et services de la République centrafricaine s'établissait à 593,1 millions de dollars américains courants.",
+          "lead_sentence_template_id": "exportations_montant_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Exportations (valeur)"
         },
         {
           "indicator_id": "importations_pib",
@@ -473,11 +551,89 @@
           "lead_sentence_template_id": "importations_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS)",
+            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Importations"
+        },
+        {
+          "indicator_id": "importations_montant",
+          "latest": {
+            "period": "2025",
+            "value": 1029045765.67717
+          },
+          "series": [
+            {
+              "period": "2011",
+              "value": 520455628.872221
+            },
+            {
+              "period": "2012",
+              "value": 539911033.28542
+            },
+            {
+              "period": "2013",
+              "value": 396266752.37153
+            },
+            {
+              "period": "2014",
+              "value": 690077856.666958
+            },
+            {
+              "period": "2015",
+              "value": 611811304.18025
+            },
+            {
+              "period": "2016",
+              "value": 651691428.877197
+            },
+            {
+              "period": "2017",
+              "value": 826531337.145396
+            },
+            {
+              "period": "2018",
+              "value": 748917943.770559
+            },
+            {
+              "period": "2019",
+              "value": 762137823.137317
+            },
+            {
+              "period": "2020",
+              "value": 799194659.189116
+            },
+            {
+              "period": "2021",
+              "value": 778394732.807162
+            },
+            {
+              "period": "2022",
+              "value": 784669456.38734
+            },
+            {
+              "period": "2023",
+              "value": 742108359.673393
+            },
+            {
+              "period": "2024",
+              "value": 864653558.507516
+            },
+            {
+              "period": "2025",
+              "value": 1029045765.67717
+            }
+          ],
+          "lead_sentence": "En 2025, le montant des importations de biens et services de la République centrafricaine s'établissait à 1,03 milliards de dollars américains courants.",
+          "lead_sentence_template_id": "importations_montant_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Importations (valeur)"
         },
         {
           "indicator_id": "investissements_directs_etrangers",
@@ -629,11 +785,89 @@
           "lead_sentence_template_id": "dette_exterieure_rnb_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "External debt stocks, % of GNI (DT.DOD.DECT.GN.ZS)",
+            "dataset_name": "External debt stocks, % of GNI and current US$ (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Dette extérieure"
+        },
+        {
+          "indicator_id": "dette_exterieure_montant",
+          "latest": {
+            "period": "2024",
+            "value": 1045905200.4
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 655032073.2
+            },
+            {
+              "period": "2011",
+              "value": 620505554.4
+            },
+            {
+              "period": "2012",
+              "value": 626782829.0
+            },
+            {
+              "period": "2013",
+              "value": 650766057.0
+            },
+            {
+              "period": "2014",
+              "value": 712774619.5
+            },
+            {
+              "period": "2015",
+              "value": 740289908.2
+            },
+            {
+              "period": "2016",
+              "value": 743898467.8
+            },
+            {
+              "period": "2017",
+              "value": 772718360.0
+            },
+            {
+              "period": "2018",
+              "value": 835250129.2
+            },
+            {
+              "period": "2019",
+              "value": 867729783.4
+            },
+            {
+              "period": "2020",
+              "value": 907746512.3
+            },
+            {
+              "period": "2021",
+              "value": 1111435661.5
+            },
+            {
+              "period": "2022",
+              "value": 1045511289.2
+            },
+            {
+              "period": "2023",
+              "value": 1083496566.5
+            },
+            {
+              "period": "2024",
+              "value": 1045905200.4
+            }
+          ],
+          "lead_sentence": "En 2024, l'encours de la dette extérieure de la République centrafricaine s'établissait à 1,05 milliards de dollars américains courants.",
+          "lead_sentence_template_id": "dette_exterieure_montant_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "External debt stocks, % of GNI and current US$ (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Dette extérieure (montant)"
         }
       ]
     },

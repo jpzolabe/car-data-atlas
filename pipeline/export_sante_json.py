@@ -19,16 +19,24 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_sante_rate
+from pipeline.sentences import sentence_sante_effectif, sentence_sante_rate
 
 OUT_PATH = "site/src/data/sante.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
+
+# Real absolute headcounts (2 from WHO GHO, 1 computed) alongside the
+# existing density/% indicators -- see docs/decisions.md for why these
+# needed a second API (World Bank WDI only has densities).
+EFFECTIF_INDICATORS = {"nombre_medecins", "nombre_personnel_infirmier", "nombre_lits_hopital"}
 
 CATEGORIES = [
     ("systeme", "Système de santé", [
         "depenses_sante_pib",
         "densite_medecins",
+        "nombre_medecins",
         "densite_lits_hopital",
+        "nombre_lits_hopital",
+        "nombre_personnel_infirmier",
     ]),
     ("vaccination", "Vaccination", [
         "taux_vaccination_rougeole",
@@ -56,7 +64,10 @@ def build_indicator(con, indicator_id: str) -> dict:
     """, [COUNTRY_ID, indicator_id]).fetchall()
 
     latest = rows[-1]
-    lead_text, lead_template_id = sentence_sante_rate(indicator_id, latest[0], latest[1])
+    if indicator_id in EFFECTIF_INDICATORS:
+        lead_text, lead_template_id = sentence_sante_effectif(indicator_id, latest[0], latest[1])
+    else:
+        lead_text, lead_template_id = sentence_sante_rate(indicator_id, latest[0], latest[1])
 
     return {
         "indicator_id": indicator_id,
@@ -80,6 +91,7 @@ def main():
     """)
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
+    units = dict(con.execute("select indicator_id, unit from indicators").fetchall())
 
     categories = []
     for key, label, indicator_ids in CATEGORIES:
@@ -87,6 +99,7 @@ def main():
         for indicator_id in indicator_ids:
             block = build_indicator(con, indicator_id)
             block["name_fr"] = names[indicator_id]
+            block["unit"] = units[indicator_id]
             indicator_blocks.append(block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})
 

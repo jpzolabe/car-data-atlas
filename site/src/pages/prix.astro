@@ -156,6 +156,8 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       <p class="lede">
         Indice harmonisé des prix à la consommation (IHPC), toutes fonctions
         confondues, base 2019 = 100. Série mensuelle, janvier 2015 à {latest.period}.
+        Voir aussi <a href="/economie/">Économie</a>, où l'inflation est
+        résumée aux côtés du PIB et des autres indicateurs macroéconomiques.
       </p>
 
       <p class="headline">{fmt(latest.value)}<span class="unit">indice, {latest.period}</span></p>

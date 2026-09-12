@@ -76,7 +76,8 @@
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
       "retrieved_at": "2026-09-12"
     },
-    "name_fr": "Espérance de vie à la naissance"
+    "name_fr": "Espérance de vie à la naissance",
+    "unit": "ans"
   },
   "categories": [
     {
@@ -159,7 +160,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Dépenses de santé"
+          "name_fr": "Dépenses de santé",
+          "unit": "% du PIB"
         },
         {
           "indicator_id": "densite_medecins",
@@ -237,7 +239,55 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Densité de médecins"
+          "name_fr": "Densité de médecins",
+          "unit": "pour 1 000 habitants"
+        },
+        {
+          "indicator_id": "nombre_medecins",
+          "latest": {
+            "period": "2024",
+            "value": 532.0
+          },
+          "series": [
+            {
+              "period": "2004",
+              "value": 331.0
+            },
+            {
+              "period": "2009",
+              "value": 205.0
+            },
+            {
+              "period": "2015",
+              "value": 324.0
+            },
+            {
+              "period": "2018",
+              "value": 335.0
+            },
+            {
+              "period": "2021",
+              "value": 447.0
+            },
+            {
+              "period": "2023",
+              "value": 383.0
+            },
+            {
+              "period": "2024",
+              "value": 532.0
+            }
+          ],
+          "lead_sentence": "En 2024, la République centrafricaine comptait 532 médecins.",
+          "lead_sentence_template_id": "nombre_medecins_pays",
+          "source": {
+            "producer": "WHO (Global Health Observatory)",
+            "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
+            "url": "https://ghoapi.azureedge.net/api/HWF_0002",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre de médecins",
+          "unit": "personnes"
         },
         {
           "indicator_id": "densite_lits_hopital",
@@ -279,7 +329,102 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Densité de lits d'hôpital"
+          "name_fr": "Densité de lits d'hôpital",
+          "unit": "pour 1 000 habitants"
+        },
+        {
+          "indicator_id": "nombre_lits_hopital",
+          "latest": {
+            "period": "2011",
+            "value": 4565.0
+          },
+          "series": [
+            {
+              "period": "1960",
+              "value": 2096.0
+            },
+            {
+              "period": "1970",
+              "value": 3934.0
+            },
+            {
+              "period": "1980",
+              "value": 3819.0
+            },
+            {
+              "period": "1990",
+              "value": 2508.0
+            },
+            {
+              "period": "2006",
+              "value": 5253.0
+            },
+            {
+              "period": "2011",
+              "value": 4565.0
+            }
+          ],
+          "lead_sentence": "En 2011, la République centrafricaine comptait environ 4 565 lits d'hôpital, selon une estimation calculée à partir de la densité et de la population de cette année-là.",
+          "lead_sentence_template_id": "nombre_lits_hopital_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Physicians and hospital beds, per 1,000 people (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre de lits d'hôpital",
+          "unit": "lits"
+        },
+        {
+          "indicator_id": "nombre_personnel_infirmier",
+          "latest": {
+            "period": "2024",
+            "value": 2331.0
+          },
+          "series": [
+            {
+              "period": "2004",
+              "value": 1613.0
+            },
+            {
+              "period": "2008",
+              "value": 835.0
+            },
+            {
+              "period": "2009",
+              "value": 1097.0
+            },
+            {
+              "period": "2018",
+              "value": 1195.0
+            },
+            {
+              "period": "2021",
+              "value": 1042.0
+            },
+            {
+              "period": "2022",
+              "value": 2545.0
+            },
+            {
+              "period": "2023",
+              "value": 5653.0
+            },
+            {
+              "period": "2024",
+              "value": 2331.0
+            }
+          ],
+          "lead_sentence": "En 2024, la République centrafricaine comptait 2 331 membres du personnel infirmier et de sages-femmes.",
+          "lead_sentence_template_id": "nombre_personnel_infirmier_pays",
+          "source": {
+            "producer": "WHO (Global Health Observatory)",
+            "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
+            "url": "https://ghoapi.azureedge.net/api/HWF_0002",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Personnel infirmier et sages-femmes",
+          "unit": "personnes"
         }
       ]
     },
@@ -363,7 +508,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Vaccination contre la rougeole"
+          "name_fr": "Vaccination contre la rougeole",
+          "unit": "%"
         },
         {
           "indicator_id": "taux_vaccination_dtc",
@@ -441,7 +587,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Vaccination DTC"
+          "name_fr": "Vaccination DTC",
+          "unit": "%"
         }
       ]
     },
@@ -525,7 +672,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Espérance de vie à la naissance"
+          "name_fr": "Espérance de vie à la naissance",
+          "unit": "ans"
         },
         {
           "indicator_id": "taux_mortalite_moins_5ans",
@@ -603,7 +751,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité des moins de 5 ans"
+          "name_fr": "Mortalité des moins de 5 ans",
+          "unit": "pour 1 000 naissances vivantes"
         },
         {
           "indicator_id": "taux_mortalite_infantile",
@@ -681,7 +830,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité infantile"
+          "name_fr": "Mortalité infantile",
+          "unit": "pour 1 000 naissances vivantes"
         },
         {
           "indicator_id": "taux_mortalite_maternelle",
@@ -759,7 +909,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité maternelle"
+          "name_fr": "Mortalité maternelle",
+          "unit": "pour 100 000 naissances vivantes"
         }
       ]
     },
@@ -843,7 +994,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.HIV.INCD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Incidence du VIH"
+          "name_fr": "Incidence du VIH",
+          "unit": "pour 1 000 personnes non infectées 15-49 ans"
         }
       ]
     }

@@ -14,14 +14,19 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_agriculture_rate
+from pipeline.sentences import sentence_agriculture_montant, sentence_agriculture_rate
 
 OUT_PATH = "site/src/data/agriculture.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
 
+# Real absolute counterparts (World Bank), added 2026-09-12 alongside the
+# %/index/kg-ha rates already on the page.
+MONTANT_INDICATORS = {"superficie_agricole", "production_cereales"}
+
 CATEGORIES = [
     ("terres", "Terres et ressources", [
         "terres_agricoles",
+        "superficie_agricole",
         "terres_arables",
         "couverture_forestiere",
     ]),
@@ -29,6 +34,7 @@ CATEGORIES = [
         "valeur_ajoutee_agriculture_pib",
         "indice_production_alimentaire",
         "rendement_cereales",
+        "production_cereales",
         "consommation_engrais",
     ]),
     ("emploi_alimentation", "Emploi et alimentation", [
@@ -48,7 +54,12 @@ def build_indicator(con, indicator_id: str) -> dict:
     """, [COUNTRY_ID, indicator_id]).fetchall()
 
     latest = rows[-1]
-    lead_text, lead_template_id = sentence_agriculture_rate(indicator_id, latest[0], latest[1])
+    if indicator_id in MONTANT_INDICATORS:
+        lead_text, lead_template_id = sentence_agriculture_montant(
+            indicator_id, latest[0], latest[1]
+        )
+    else:
+        lead_text, lead_template_id = sentence_agriculture_rate(indicator_id, latest[0], latest[1])
 
     return {
         "indicator_id": indicator_id,

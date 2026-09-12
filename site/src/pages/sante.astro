@@ -129,8 +129,8 @@ const newestVintage = Math.max(...allPeriods);
       <h1>Santé</h1>
       <p class="lede">
         Système de santé, vaccination, mortalité, espérance de vie et VIH —
-        10 indicateurs, tous de la Banque mondiale, tous nationaux. Premier
-        thème santé du site.
+        {allIndicatorCount} indicateurs, de la Banque mondiale et de l'OMS,
+        tous nationaux. Premier thème santé du site.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
@@ -158,7 +158,7 @@ const newestVintage = Math.max(...allPeriods);
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
                   <div class="ind-value">
-                    {fmt(ind.latest.value)}<span class="unit">, {ind.latest.period}</span>
+                    {fmt(ind.latest.value)}<span class="unit"> {ind.unit}, {ind.latest.period}</span>
                     {stale && <span class="badge stale">ancien</span>}
                   </div>
                   <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
@@ -179,11 +179,13 @@ const newestVintage = Math.max(...allPeriods);
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les 10 indicateurs sont tous nationaux.</li>
+        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux.</li>
         <li>MICS7 (enquête nationale, lancée août 2026 selon <code>CLAUDE.md</code>) n'a pas encore publié de résultats intégrables ici.</li>
         <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur HDX — volontairement non reconstruit ici (<code>CLAUDE.md</code> : « ne pas reconstruire ce qui existe déjà »). Voir <a href="https://data.humdata.org/">HDX</a> directement.</li>
         <li>Aucune donnée de morbidité au-delà du VIH — paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
         <li>La densité de lits d'hôpital n'a qu'un point après 2011 — c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
+        <li>Aucun décompte de lits d'hôpital n'est publié directement par la Banque mondiale ou l'OMS — celui affiché ici est calculé (densité x population de la même année), pas une donnée brute.</li>
+        <li>Le personnel infirmier varie fortement d'une année à l'autre dans les données de l'OMS (835 en 2008, 5 653 en 2023, 2 331 en 2024) — probablement un changement de méthode de collecte, non confirmé.</li>
       </ul>
 
       <footer>

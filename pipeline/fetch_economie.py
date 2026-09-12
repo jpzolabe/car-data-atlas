@@ -48,12 +48,24 @@ INDICATORS = {
         "exportations_pib", "world-bank-trade", "%",
         "Estimation Banque mondiale, comptes nationaux.",
     ),
+    "NE.EXP.GNFS.CD": (
+        "exportations_montant", "world-bank-trade", "US$",
+        "Estimation Banque mondiale, comptes nationaux.",
+    ),
     "NE.IMP.GNFS.ZS": (
         "importations_pib", "world-bank-trade", "%",
         "Estimation Banque mondiale, comptes nationaux.",
     ),
+    "NE.IMP.GNFS.CD": (
+        "importations_montant", "world-bank-trade", "US$",
+        "Estimation Banque mondiale, comptes nationaux.",
+    ),
     "DT.DOD.DECT.GN.ZS": (
         "dette_exterieure_rnb", "world-bank-external-debt", "%",
+        "Estimation Banque mondiale, International Debt Statistics.",
+    ),
+    "DT.DOD.DECT.CD": (
+        "dette_exterieure_montant", "world-bank-external-debt", "US$",
         "Estimation Banque mondiale, International Debt Statistics.",
     ),
     "BX.KLT.DINV.WD.GD.ZS": (

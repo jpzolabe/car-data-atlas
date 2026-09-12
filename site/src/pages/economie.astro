@@ -7,7 +7,20 @@
 // Two indicators (pib_total, pib_par_habitant) are monetary (US$), not
 // percentages like everything else on this page -- formatValue() below
 // branches on that rather than assuming every card is a "%".
+//
+// Reorganized 2026-09-12: prix and agriculture are full standalone theme
+// pages (own URL, own nav entry), but conceptually both sit inside "the
+// economy" the way most real economic dashboards treat them (IMF Article
+// IV, World Bank country pages, Trading Economics all fold prices into
+// the economy view; CLAUDE.md's own original theme list literally said
+// "agriculture et prix" as one theme before this session split them out).
+// Rather than merge the pages or move URLs, prix.json/agriculture.json are
+// imported here too, just for two brief summary cards with a link to the
+// full page -- presentation only, no data ownership change. See
+// docs/decisions.md.
 import data from "../data/economie.json";
+import prixData from "../data/prix.json";
+import agricultureData from "../data/agriculture.json";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -16,12 +29,19 @@ function isStale(period: string): boolean {
 
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
+const MONTANT_INDICATORS = new Set(["exportations_montant", "importations_montant", "dette_exterieure_montant"]);
+
 function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
   if (indicatorId === "pib_total") {
-    return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: "Md US$" };
+    return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: " Md US$" };
   }
   if (indicatorId === "pib_par_habitant") {
-    return { display: Math.round(value).toLocaleString("fr-FR"), unit: "US$" };
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " US$" };
+  }
+  if (MONTANT_INDICATORS.has(indicatorId)) {
+    return value >= 1e9
+      ? { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: " Md US$" }
+      : { display: (value / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " M US$" };
   }
   return { display: fmtPct(value), unit: "%" };
 }
@@ -96,6 +116,18 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
       h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 12px; }
+      .category-note a { color: var(--t-eco); }
+      .satellite-card {
+        background: var(--surface); border: 1px dashed var(--line); border-radius: 3px;
+        padding: 16px 18px; max-width: 640px;
+      }
+      .satellite-card .ind-value {
+        font-family: ui-monospace, monospace; font-size: 1.3rem; font-weight: 600;
+        color: var(--t-eco);
+      }
+      .satellite-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
@@ -140,8 +172,10 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       <h1>Économie</h1>
       <p class="lede">
         Production, commerce extérieur, finances publiques et niveau de vie
-        — 10 indicateurs, tous de la Banque mondiale, tous nationaux.
-        Premier thème économie du site.
+        — {allIndicatorCount} indicateurs propres à cette page, tous de la
+        Banque mondiale, tous nationaux. Prix et agriculture sont des
+        thèmes complets à part entière, résumés ci-dessous avec un lien
+        vers le détail.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
@@ -186,16 +220,48 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
               );
             })}
           </div>
+
+          {category.key === "production" && (
+            <>
+              <h2>Prix</h2>
+              <p class="category-note">
+                Thème complet séparé — <a href="/prix/">indice des prix à la consommation, inflation, détail par fonction</a>. Résumé ici :
+              </p>
+              <div class="satellite-card">
+                <div class="ind-value">
+                  {fmtPct(prixData.inflation.latest.value)}<span class="unit">%, {prixData.inflation.latest.period}</span>
+                </div>
+                <p class="mini-sentence">{prixData.inflation.lead_sentence}</p>
+                <a class="satellite-link" href="/prix/">Voir le détail (indice, par fonction COICOP) →</a>
+              </div>
+            </>
+          )}
+
+          {category.key === "finances_publiques" && (
+            <>
+              <h2>Secteur agricole</h2>
+              <p class="category-note">
+                Thème complet séparé — <a href="/agriculture/">terres, production, emploi et alimentation</a>. Résumé ici :
+              </p>
+              <div class="satellite-card">
+                <div class="ind-value">
+                  {fmtPct(agricultureData.headline.latest.value)}<span class="unit">%, {agricultureData.headline.latest.period}</span>
+                </div>
+                <p class="mini-sentence">{agricultureData.headline.lead_sentence}</p>
+                <a class="satellite-link" href="/agriculture/">Voir le détail (terres, production, alimentation) →</a>
+              </div>
+            </>
+          )}
         </>
       ))}
 
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
-        <li>Rien par région, préfecture ou sous-préfecture — les 10 indicateurs sont tous nationaux.</li>
+        <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs propres à cette page sont tous nationaux.</li>
         <li>L'ICASEES rebase actuellement le PIB national sur une base 2019 (selon <code>CLAUDE.md</code>) — cette série Banque mondiale n'a pas été comparée à la série ICASEES rebasée une fois publiée. Voir <code>docs/verification-debt.md</code>.</li>
         <li>Le taux de pauvreté n'a que 3 points dans le temps (1992, un point intermédiaire, 2021) — il dépend de la disponibilité d'enquêtes de ménages, pas d'une série annuelle.</li>
         <li>Les recettes publiques n'ont pas de point après 2021.</li>
-        <li>Aucune ventilation sectorielle (agriculture, mines, services) et aucune donnée sur l'inflation des prix à la production — voir la page <a href="/prix/">Prix</a> pour l'inflation à la consommation.</li>
+        <li>Aucune ventilation par secteur au-delà de l'agriculture (industrie, services) et aucune donnée sur l'inflation des prix à la production — la page <a href="/prix/">Prix</a> ne couvre que l'inflation à la consommation.</li>
       </ul>
 
       <footer>

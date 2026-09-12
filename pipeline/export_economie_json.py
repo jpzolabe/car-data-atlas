@@ -1,14 +1,22 @@
 """Materialize the économie theme as JSON for the Astro site. First export
 script for this theme -- same category + headline structure as
-export_sante_json.py. Two indicators (pib_total, pib_par_habitant) use a
-dedicated monetary sentence function; the other 8 (all "%") share one
-generic rate function.
+export_sante_json.py. pib_total/pib_par_habitant and the 3 new absolute-$
+indicators added 2026-09-12 (real World Bank counterparts to indicators
+already on the page, not derived) use a dedicated monetary sentence
+function; the other 8 (all "%") share one generic rate function.
 
 Categories ordered by logical sequence: production (how big is the
 economy) -> commerce extérieur (how it trades and finances itself
 externally) -> finances publiques (how the state finances itself) ->
 niveau de vie (what it means for people) -- ending on the outcome, not
 starting there.
+
+Prix and Agriculture are deliberately NOT indicators of this theme, even
+though économie.astro shows a brief summary card for each with a link to
+their own full page -- that's presentation (economie.astro imports
+prix.json/agriculture.json directly for the cards), not data ownership.
+Keeps each theme's JSON containing only the indicators that are actually
+économie's own. See docs/decisions.md.
 
 Usage: uv run python -m pipeline.export_economie_json
 Output: site/src/data/economie.json
@@ -23,7 +31,10 @@ from pipeline.sentences import sentence_economie_montant, sentence_economie_rate
 OUT_PATH = "site/src/data/economie.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
 
-MONTANT_INDICATORS = {"pib_total", "pib_par_habitant"}
+MONTANT_INDICATORS = {
+    "pib_total", "pib_par_habitant",
+    "exportations_montant", "importations_montant", "dette_exterieure_montant",
+}
 
 CATEGORIES = [
     ("production", "Production", [
@@ -33,9 +44,12 @@ CATEGORIES = [
     ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
+        "exportations_montant",
         "importations_pib",
+        "importations_montant",
         "investissements_directs_etrangers",
         "dette_exterieure_rnb",
+        "dette_exterieure_montant",
     ]),
     ("finances_publiques", "Finances publiques", [
         "recettes_publiques_pib",

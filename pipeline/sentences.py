@@ -230,21 +230,39 @@ def sentence_economie_rate(indicator_id: str, period: str, value: float) -> tupl
     return text, f"{indicator_id}_pays"
 
 
+# label_fr must fit "{label_fr} de la République centrafricaine
+# s'établissait à" grammatically -- singular subjects throughout (checked
+# by hand), same fix as depenses_sante_pib/dette_exterieure_rnb's labels:
+# a plural subject here ("les exportations...") would need a plural verb.
+ECONOMIE_MONTANT_LABELS = {
+    "pib_total": "le produit intérieur brut",
+    "exportations_montant": "le montant des exportations de biens et services",
+    "importations_montant": "le montant des importations de biens et services",
+    "dette_exterieure_montant": "l'encours de la dette extérieure",
+}
+
+
 def sentence_economie_montant(indicator_id: str, period: str, value: float) -> tuple[str, str]:
-    if indicator_id == "pib_total":
-        billions_fr = format(round(value / 1e9, 2), ".2f").replace(".", ",")
-        text = (
-            f"En {period}, le produit intérieur brut de la République "
-            f"centrafricaine s'établissait à {billions_fr} milliards de "
-            f"dollars américains courants."
-        )
-    else:  # pib_par_habitant
+    if indicator_id == "pib_par_habitant":
         value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
         text = (
             f"En {period}, le produit intérieur brut par habitant en "
             f"République centrafricaine s'établissait à {value_fr} "
             f"dollars américains courants."
         )
+        return text, f"{indicator_id}_pays"
+
+    label = ECONOMIE_MONTANT_LABELS[indicator_id]
+    if value >= 1e9:
+        amount_fr = format(round(value / 1e9, 2), ".2f").replace(".", ",")
+        unit_phrase = "milliards de dollars américains courants"
+    else:
+        amount_fr = format(round(value / 1e6, 1), ".1f").replace(".", ",")
+        unit_phrase = "millions de dollars américains courants"
+    text = (
+        f"En {period}, {label} de la République centrafricaine "
+        f"s'établissait à {amount_fr} {unit_phrase}."
+    )
     return text, f"{indicator_id}_pays"
 
 
@@ -281,6 +299,49 @@ def sentence_agriculture_rate(indicator_id: str, period: str, value: float) -> t
         f"En {period}, {label} en République centrafricaine "
         f"s'établissait à {suffix}."
     )
+    return text, f"{indicator_id}_pays"
+
+
+# (label_fr, unit) -- label_fr must fit "{label_fr} de la République
+# centrafricaine s'établissait à" grammatically -- singular subjects,
+# same reasoning as ECONOMIE_MONTANT_LABELS.
+AGRICULTURE_MONTANT_LABELS = {
+    "superficie_agricole": ("la superficie agricole", "km²"),
+    "production_cereales": ("la production de céréales", "tonnes"),
+}
+
+
+def sentence_agriculture_montant(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    label, unit = AGRICULTURE_MONTANT_LABELS[indicator_id]
+    value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
+    text = (
+        f"En {period}, {label} de la République centrafricaine "
+        f"s'établissait à {value_fr} {unit}."
+    )
+    return text, f"{indicator_id}_pays"
+
+
+# (label_fr, is_estimate) -- label_fr is the plural noun that follows
+# "comptait {value} {label_fr}". is_estimate adds a calculated-estimate
+# caveat and drops the false precision of stating it as a plain fact.
+SANTE_EFFECTIF_LABELS = {
+    "nombre_medecins": ("médecins", False),
+    "nombre_personnel_infirmier": ("membres du personnel infirmier et de sages-femmes", False),
+    "nombre_lits_hopital": ("lits d'hôpital", True),
+}
+
+
+def sentence_sante_effectif(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
+    label, is_estimate = SANTE_EFFECTIF_LABELS[indicator_id]
+    if is_estimate:
+        text = (
+            f"En {period}, la République centrafricaine comptait environ "
+            f"{value_fr} {label}, selon une estimation calculée à partir "
+            f"de la densité et de la population de cette année-là."
+        )
+    else:
+        text = f"En {period}, la République centrafricaine comptait {value_fr} {label}."
     return text, f"{indicator_id}_pays"
 
 

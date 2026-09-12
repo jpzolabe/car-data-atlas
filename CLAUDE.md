@@ -69,11 +69,16 @@ sous-préfecture), and curious readers arrive at the country before the sous-pr�
 
 - **Home** — national headline figures across themes
 - **Theme pages** — one per theme (population, économie, santé, éducation,
-  agriculture et prix, infrastructures). National series over time, charts, sources,
-  what is and isn't measured. Each offers a breakdown to descend. Once a theme has
-  more than one or two indicators: lead with one orienting headline figure before
-  any breakdown, and group/order indicators by logical sequence (e.g. a causal
-  chain) rather than by fetch order or an arbitrary list — see docs/plan.md §2.3.
+  agriculture, prix, infrastructures — 7 in total, all built as of 2026-09-12).
+  National series over time, charts, sources, what is and isn't measured. Each
+  offers a breakdown to descend. Once a theme has more than one or two indicators:
+  lead with one orienting headline figure before any breakdown, and group/order
+  indicators by logical sequence (e.g. a causal chain) rather than by fetch order
+  or an arbitrary list — see docs/plan.md §2.3. Prix and agriculture are each a
+  full page in their own right, but both are also conceptually part of the
+  economy (most real economic dashboards fold prices and sector breakdowns into
+  one view) — économie's own page carries a brief summary card and link for each,
+  without merging the pages or moving their URLs.
 - **Place pages** — a single place across all themes. Reached by drilling down or by
   direct search.
 

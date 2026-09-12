@@ -394,3 +394,76 @@ reality, not inconsistent effort.
 
 **All 7 sitemap themes now exist: population, prix, infrastructures,
 éducation, santé, économie, agriculture — 58 indicators total.**
+
+## Raw figures alongside rates — checked for a real published one before computing anything
+
+User feedback: rates alone were hiding scale across the three newest themes
+(0.074 doctors per 1,000 people doesn't land like "532 doctors nationally"
+does). Fixed per-theme, in order of preference: (1) a real published
+absolute counterpart from the *same* source already in use — économie's
+exports/imports/external debt already had US$ versions alongside the %-of-
+GDP ones (`NE.EXP.GNFS.CD` next to `NE.EXP.GNFS.ZS`, etc.), agriculture's
+land/cereal indicators the same (`AG.LND.AGRI.K2` next to `AG.LND.AGRI.ZS`).
+(2) A second API, tried before giving up — santé's doctor and hospital-bed
+*density* (World Bank WDI) had no raw-count counterpart anywhere in WDI;
+checking WHO's GHO OData API directly (`ghoapi.azureedge.net`) found real
+absolute headcounts for doctors (`HWF_0002`, National Health Workforce
+Accounts) and nursing/midwifery personnel (`HWF_0007`) that WDI simply
+doesn't carry. Indicator codes found the same way as UIS's endpoint
+earlier this session: querying `Indicator?$filter=contains(IndicatorName,
+'Medical doctors')` rather than guessing.
+
+(3) Only when neither existed anywhere was a value computed: no hospital-
+bed headcount is published in WDI or GHO (checked both directly, not
+assumed). `nombre_lits_hopital` = bed density × population, computed in
+`pipeline/fetch_sante.py` for each of the 6 years the density series
+actually has, fetching that *same year's* real World Bank population
+figure each time — not today's, which would misrepresent a 2011 estimate
+as current. Labelled `quality_flag=estime` with the exact inputs and
+formula in `notes`, and the sentence template
+(`sentence_sante_effectif`) explicitly says "environ ... selon une
+estimation calculée," never stated as a plain fact the way the two real
+WHO headcounts are.
+
+Also caught while building the nurse-count series: WHO's own numbers swing
+hard year to year (835 in 2008, 5,653 in 2023, 2,331 in 2024) — logged as
+probably a reporting-methodology change rather than a real workforce
+swing, not smoothed over or hidden. See `docs/verification-debt.md`.
+
+## Économie reorganized: brief summary cards for prix and agriculture, not a merge
+
+User feedback, with a real precedent behind it: CLAUDE.md's *original*
+theme list said "agriculture et prix" as one theme — this session split it
+into three separate pages earlier without flagging the deviation. Rather
+than reverse that (which would mean deleting or nesting `/prix/` and
+`/agriculture/`, breaking every existing link to them), `economie.astro`
+now imports `prix.json` and `agriculture.json` directly and renders one
+brief card each (headline figure, one generated sentence, a link to the
+full page) — presentation only. `pipeline/export_economie_json.py` was not
+touched for this: it still only knows about économie's own 13 indicators,
+never prix's or agriculture's. Categories reordered to match how real
+economic dashboards are laid out (IMF Article IV, World Bank country
+pages, Trading Economics): Production → **Prix** → Commerce extérieur →
+Finances publiques → **Secteur agricole** → Niveau de vie — ending on the
+living-standards outcome, consistent with the causal-ordering rule already
+in place for every other theme.
+
+Deliberately did not do the more invasive version of this (nesting
+`/prix/` and `/agriculture/` under `/economie/` as URLs) — that would
+compound the already-flagged `/themes/` URL-structure debt rather than
+resolve it, and the brief-card approach delivers the actual ask (discover
+prix/agriculture from économie, with a preview) without a routing change.
+
+## Unit-suffix spacing bug found while adding the raw figures
+
+`economie.astro`/`agriculture.astro`'s `formatValue()` returned unit
+strings with no leading space ("Md US$", "km²"), and the card template
+concatenated them directly onto the number with no space either
+(`{val.display}<span class="unit">{val.unit}...`) — every non-"%" card on
+both pages was rendering "3,07Md US$" instead of "3,07 Md US$" since first
+being built. `%` never showed the bug (it's correct with no space), which
+is presumably why it went unnoticed — none of the pages built before this
+session's raw-figures pass had a non-percent unit to expose it. Fixed by
+giving every non-"%" unit string its own leading space at the source
+(`" Md US$"`, `" km²"`, etc.) rather than changing the template, since "%"
+and everything else genuinely need different spacing rules.

@@ -27,6 +27,10 @@ INDICATORS = {
         "terres_agricoles", "world-bank-land-use", "%",
         "Estimation FAO, compilée par la Banque mondiale.",
     ),
+    "AG.LND.AGRI.K2": (
+        "superficie_agricole", "world-bank-land-use", "km²",
+        "Estimation FAO, compilée par la Banque mondiale.",
+    ),
     "AG.LND.ARBL.ZS": (
         "terres_arables", "world-bank-land-use", "%",
         "Estimation FAO, compilée par la Banque mondiale.",
@@ -41,6 +45,10 @@ INDICATORS = {
     ),
     "AG.YLD.CREL.KG": (
         "rendement_cereales", "world-bank-cereal-yield", "kg/ha",
+        "Estimation FAO, compilée par la Banque mondiale.",
+    ),
+    "AG.PRD.CREL.MT": (
+        "production_cereales", "world-bank-cereal-yield", "tonnes",
         "Estimation FAO, compilée par la Banque mondiale.",
     ),
     "AG.CON.FERT.ZS": (
