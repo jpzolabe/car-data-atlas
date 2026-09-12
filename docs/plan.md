@@ -854,6 +854,14 @@ used - BEPC/CEPE results remain genuinely unavailable, stated as such
 rather than implied merely unfetched. 86 indicators total now - every
 item from this session's working list is done.
 
+**Phase 3's own "done when" bar is now met:** every theme page exists
+with far more than 2 indicators (86 total across 7 themes), and the
+disclosure mechanism works on population *and* health facilities (plus
+éducation and économie, not required but done anyway). What's still
+open from the "alongside" list is share-card generation, embeds and PNG
+export - none of that was part of this session's ask, and none of it
+blocks moving on to Phase 4.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for
