@@ -267,3 +267,25 @@ generalized from one hardcoded row lookup to a config dict
 not a new function. The published inflation rate doesn't reconcile with a
 naive recomputation from the index — logged rather than silently
 reinterpreted, see `docs/verification-debt.md`.
+
+## Infrastructures widened 1 -> 5, JSON/export renamed off "electricite"
+
+Same completion pass as prix. Added 4 World Bank indicators — internet use,
+mobile subscriptions, basic drinking water access, basic sanitation access
+— each confirmed live for CAF before adding (all 4 have real data through
+2022-2024, genuinely fresher than most of education's indicators).
+Électricité stays the page's headline/hero (CLAUDE.md's own domain fact
+cites it, and it already has an independent MICS cross-check); the other 4
+are additive cards below, following the headline-then-breakdown rule.
+
+`pipeline/export_electricity_json.py` / `site/src/data/electricite.json`
+were retired in favour of `export_infrastructures_json.py` /
+`infrastructures.json` — the old names stopped describing the theme once it
+covered more than electricity, and renaming now (before more pages or
+scripts came to depend on the old name) was cheaper than renaming later.
+`fetch_infrastructures.py` is a new script alongside (not replacing)
+`fetch_electricity_access.py`, since the World Bank API takes one indicator
+code per URL (unlike UIS's comma-separated list) — four indicators means
+four HTTP calls either way, so there was no efficiency reason to merge them
+into one file, only a naming one, and the existing electricity fetch script
+already works and is untouched.

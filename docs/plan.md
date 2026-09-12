@@ -633,9 +633,15 @@ downloaded for `prix_ihpc_global` also had 12 COICOP sub-category rows and a
 published inflation rate that were simply never parsed — added the
 inflation rate plus 3 named sub-categories (alimentation, santé,
 transports), the ones `prix.astro`'s own gap-note had already promised.
-Zero new sourcing needed for this one. "At least two indicators" per theme
-is now met for éducation (15) and prix (5); population and infrastructures
-are next.
+Zero new sourcing needed for this one. Infrastructures went from 1 to 5:
+added 4 World Bank indicators (internet use, mobile subscriptions, basic
+water access, basic sanitation access), all confirmed live with recent
+(2022-2024) CAF data before adding. `export_electricity_json.py`/
+`electricite.json` retired in favour of `export_infrastructures_json.py`/
+`infrastructures.json` now that the theme covers more than electricity —
+see `docs/decisions.md`. "At least two indicators" per theme is now met for
+éducation (15), prix (5) and infrastructures (5); population (still 1) is
+next.
 
 ## Phase 4 — Descending (4–6 weeks)
 

@@ -1,0 +1,387 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_infrastructures_json.py — ne pas éditer directement.",
+  "source": {
+    "producer": "World Bank (World Development Indicators)",
+    "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+    "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
+    "retrieved_at": "2026-09-12"
+  },
+  "lead_sentence": "En 2024, 18,2% de la population avait accès à l'électricité en République centrafricaine, en hausse par rapport à l'année précédente.",
+  "lead_sentence_template_id": "acces_electricite_pays_tendance",
+  "series": [
+    {
+      "period": "2010",
+      "value": 9.8
+    },
+    {
+      "period": "2011",
+      "value": 10.4
+    },
+    {
+      "period": "2012",
+      "value": 11.0
+    },
+    {
+      "period": "2013",
+      "value": 11.5
+    },
+    {
+      "period": "2014",
+      "value": 12.0
+    },
+    {
+      "period": "2015",
+      "value": 12.7
+    },
+    {
+      "period": "2016",
+      "value": 13.4
+    },
+    {
+      "period": "2017",
+      "value": 14.1
+    },
+    {
+      "period": "2018",
+      "value": 14.6
+    },
+    {
+      "period": "2019",
+      "value": 14.3
+    },
+    {
+      "period": "2020",
+      "value": 15.4
+    },
+    {
+      "period": "2021",
+      "value": 15.7
+    },
+    {
+      "period": "2022",
+      "value": 15.7
+    },
+    {
+      "period": "2023",
+      "value": 17.6
+    },
+    {
+      "period": "2024",
+      "value": 18.2
+    }
+  ],
+  "other_indicators": [
+    {
+      "indicator_id": "taux_utilisation_internet",
+      "name_fr": "Utilisation d'Internet",
+      "latest": {
+        "period": "2024",
+        "value": 13.78250027
+      },
+      "series": [
+        {
+          "period": "2008",
+          "value": 1.0
+        },
+        {
+          "period": "2009",
+          "value": 1.799999952
+        },
+        {
+          "period": "2010",
+          "value": 2.0
+        },
+        {
+          "period": "2011",
+          "value": 2.200000048
+        },
+        {
+          "period": "2012",
+          "value": 2.400000095
+        },
+        {
+          "period": "2013",
+          "value": 2.5
+        },
+        {
+          "period": "2014",
+          "value": 2.700000048
+        },
+        {
+          "period": "2015",
+          "value": 2.900000095
+        },
+        {
+          "period": "2016",
+          "value": 3.099999905
+        },
+        {
+          "period": "2017",
+          "value": 4.0
+        },
+        {
+          "period": "2018",
+          "value": 5.099999905
+        },
+        {
+          "period": "2019",
+          "value": 7.509200096
+        },
+        {
+          "period": "2022",
+          "value": 13.75360012
+        },
+        {
+          "period": "2023",
+          "value": 13.8416996
+        },
+        {
+          "period": "2024",
+          "value": 13.78250027
+        }
+      ],
+      "lead_sentence": "En 2024, le taux d'utilisation d'Internet en République centrafricaine s'établissait à 13,8%.",
+      "lead_sentence_template_id": "taux_utilisation_internet_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "abonnements_mobiles",
+      "name_fr": "Abonnements mobiles",
+      "latest": {
+        "period": "2022",
+        "value": 38.8217901039988
+      },
+      "series": [
+        {
+          "period": "2008",
+          "value": 12.5027857083947
+        },
+        {
+          "period": "2009",
+          "value": 19.0689343696367
+        },
+        {
+          "period": "2010",
+          "value": 21.7946380977499
+        },
+        {
+          "period": "2011",
+          "value": 21.7401847658532
+        },
+        {
+          "period": "2012",
+          "value": 24.7918387246771
+        },
+        {
+          "period": "2013",
+          "value": 29.3015343940304
+        },
+        {
+          "period": "2014",
+          "value": 24.9962039132355
+        },
+        {
+          "period": "2015",
+          "value": 26.8396654368244
+        },
+        {
+          "period": "2016",
+          "value": 26.4835649048309
+        },
+        {
+          "period": "2017",
+          "value": 24.5204193752763
+        },
+        {
+          "period": "2018",
+          "value": 26.2215810621653
+        },
+        {
+          "period": "2019",
+          "value": 32.2626859489842
+        },
+        {
+          "period": "2020",
+          "value": 36.426009643045
+        },
+        {
+          "period": "2021",
+          "value": 35.8169832358522
+        },
+        {
+          "period": "2022",
+          "value": 38.8217901039988
+        }
+      ],
+      "lead_sentence": "En 2022, le nombre d'abonnements mobiles en République centrafricaine s'établissait à 38,8 pour 100 habitants.",
+      "lead_sentence_template_id": "abonnements_mobiles_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Mobile cellular subscriptions, per 100 people (IT.CEL.SETS.P2)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "acces_eau_potable_base",
+      "name_fr": "Accès à l'eau potable",
+      "latest": {
+        "period": "2024",
+        "value": 36.5040268237207
+      },
+      "series": [
+        {
+          "period": "2010",
+          "value": 47.6121825064348
+        },
+        {
+          "period": "2011",
+          "value": 46.5333196670966
+        },
+        {
+          "period": "2012",
+          "value": 45.4644259836138
+        },
+        {
+          "period": "2013",
+          "value": 44.4049337595255
+        },
+        {
+          "period": "2014",
+          "value": 43.3540006911393
+        },
+        {
+          "period": "2015",
+          "value": 42.3113468572103
+        },
+        {
+          "period": "2016",
+          "value": 41.2766435897443
+        },
+        {
+          "period": "2017",
+          "value": 40.2488145100733
+        },
+        {
+          "period": "2018",
+          "value": 39.2275482962991
+        },
+        {
+          "period": "2019",
+          "value": 38.2122663974409
+        },
+        {
+          "period": "2020",
+          "value": 37.2024024961025
+        },
+        {
+          "period": "2021",
+          "value": 36.1973817854423
+        },
+        {
+          "period": "2022",
+          "value": 36.2950440146654
+        },
+        {
+          "period": "2023",
+          "value": 36.3972597405494
+        },
+        {
+          "period": "2024",
+          "value": 36.5040268237207
+        }
+      ],
+      "lead_sentence": "En 2024, le taux d'accès à un service de base d'eau potable en République centrafricaine s'établissait à 36,5%.",
+      "lead_sentence_template_id": "acces_eau_potable_base_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "acces_assainissement_base",
+      "name_fr": "Accès à l'assainissement",
+      "latest": {
+        "period": "2024",
+        "value": 14.0362838980325
+      },
+      "series": [
+        {
+          "period": "2010",
+          "value": 17.9009516216973
+        },
+        {
+          "period": "2011",
+          "value": 17.5040118095515
+        },
+        {
+          "period": "2012",
+          "value": 17.1121597682915
+        },
+        {
+          "period": "2013",
+          "value": 16.7250416550218
+        },
+        {
+          "period": "2014",
+          "value": 16.3420825760043
+        },
+        {
+          "period": "2015",
+          "value": 15.9631877672806
+        },
+        {
+          "period": "2016",
+          "value": 15.5882414691861
+        },
+        {
+          "period": "2017",
+          "value": 15.2164870297134
+        },
+        {
+          "period": "2018",
+          "value": 14.8478356260426
+        },
+        {
+          "period": "2019",
+          "value": 14.481982156805
+        },
+        {
+          "period": "2020",
+          "value": 14.1186349646869
+        },
+        {
+          "period": "2021",
+          "value": 13.7575074575386
+        },
+        {
+          "period": "2022",
+          "value": 13.8462941483121
+        },
+        {
+          "period": "2023",
+          "value": 13.939220081887
+        },
+        {
+          "period": "2024",
+          "value": 14.0362838980325
+        }
+      ],
+      "lead_sentence": "En 2024, le taux d'accès à un service de base d'assainissement en République centrafricaine s'établissait à 14,0%.",
+      "lead_sentence_template_id": "acces_assainissement_base_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.BASS.ZS?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    }
+  ]
+}
