@@ -1252,3 +1252,64 @@ not something hypothetical the audit merely speculated about. Fixed to
 matched its data; no other changes. Re-ran the script a second time to
 confirm it reports "no changes" (idempotent, safe to leave as a
 standing check rather than a one-off).
+
+## Phase 4 step 5: locator maps, the last parked item
+
+Checked first, rather than assumed: the COD-AB v02 snapshot already
+fetched for the crosswalk
+(`raw/cod-ab-caf/2026-09-05/caf_admin_boundaries.geojson.zip`) turned out
+to already contain real boundary geometry, including the "_em"
+(edge-matched) files CLAUDE.md's own source notes call out as
+specifically meant for cartography - no new fetch needed, this was
+processing work on data already sitting in `raw/`. Joined every
+préfecture polygon to its entity_id via `adm1_pcode`, checked live
+against `data/aliases.csv`: 20-for-20, no fuzzy matching, same clean-join
+pattern as the WFP/santé/population widenings earlier this phase.
+
+**No new dependency added.** `geo/README.md`'s original plan named
+mapshaper for simplification; used `shapely.simplify()` instead (Douglas-
+Peucker, tolerance 0.02° ≈ 2 km) since shapely was already an approved
+pipeline dependency and mapshaper would have been a new one - CLAUDE.md's
+"ask before adding any dependency" made this an easy call, not a
+compromise. Verified valid geometry at that tolerance for the country
+outline and all 20 préfectures, and checked the total point count first
+(25 713 raw points across the 20 préfectures alone) before picking a
+tolerance, rather than guessing: 0.02° gets that down to ~1 765 points
+combined with the country outline, keeping every simplified file well
+under the 50 KB per-map budget (largest is the country outline at 13 KB).
+
+Two new pipeline scripts, matching the project's existing two-stage
+build/export pattern: `build_geo_prefectures.py` writes the reusable
+`geo/raw/{entity_id}.geojson` and `geo/simplified/{entity_id}.geojson`
+files (21 each - country + 20 préfectures) that `geo/README.md` already
+planned for; `export_prefecture_maps_json.py` reads those and does the
+one piece of actual new geometry work this needed: a simple
+equirectangular projection (longitude scaled by cos(mean latitude), one
+shared scale factor fit to a 700px-wide viewBox from the country's own
+bounding box) that turns each polygon into a ready `"M x,y L x,y ... Z"`
+SVG path string. Astro pages do zero geometry math - they get plain path
+data and a shared `view_box`, matching every other page's build-time-only
+rule.
+
+Verified the projection is geographically sane by checking real
+préfectures' projected bounding boxes against where they actually sit in
+CAR: Vakaga (far northeast) landed top-right, Haut-Mbomou (southeast)
+landed right-and-lower-half, Nana-Mambéré (far west) landed at the
+left edge, Bangui (south, on the river) landed near the bottom - all
+correct, not just "a shape appeared."
+
+Each préfecture place page now shows a locator map: the country outline,
+all 20 préfecture boundaries in a thin neutral stroke, and the current
+préfecture filled in the page's own `--t-lieu` accent. Place pages grew
+from ~18 KB to ~44 KB with the added path data (the full map dataset,
+~24 KB, is shared/repeated per page since every page is still one
+self-contained HTML file) - still comfortably under the 150 KB budget.
+
+**Also updated `docs/verification-debt.md`'s COD-AB licence entry:** its
+"humanitarian purposes only" caveat was logged back in Phase 1 as "not
+yet used for anything," which stopped being true once the crosswalk
+itself started using COD-AB's tabular pcodes, and is now more concretely
+true still - the maps redistribute the boundary *geometry* itself
+(simplified, but derived from and shaped like the original) on public
+pages, not just an internal ID crosswalk. Still fine for v1 per CLAUDE.md's
+own rule, but noted as the thing to actually resolve before final launch.

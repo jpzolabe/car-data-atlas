@@ -44,8 +44,15 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   shared or made public, users must include the following disclaimer: [...]"*
   `CLAUDE.md` assumed this was straightforwardly open ("the humanitarian sector
   standard"); it isn't, at least not for a public-facing non-humanitarian product.
-- **Used in:** not yet used for anything committed. Surfaced during the first Phase 1
-  fetch attempt, before any entities/geometry were pulled in.
+- **Used in:** `data/entities.csv`/`aliases.csv` (the crosswalk itself, tabular
+  pcodes only) since Phase 1. Now also the actual boundary geometry, as of
+  2026-09-12's locator maps (`geo/raw/`, `geo/simplified/`,
+  `pipeline/build_geo_prefectures.py`) - this is the point where the caveat
+  above stops being hypothetical: the geometry itself is now redistributed
+  (simplified, but derived from and shaped like the original) on public
+  pages, not just used internally to build an ID crosswalk. Not blocking for
+  v1 per CLAUDE.md's own rule, but this is the item to resolve before the
+  site is presented as a finished public v1 - see "Resolved when" below.
 - **Resolved when:** either (a) redistribution is swapped for citation-only (link to
   HDX, don't mirror the geometry/data), (b) an alternate boundary source without this
   restriction is found and used instead, or (c) an actual licence conversation
