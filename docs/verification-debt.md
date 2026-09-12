@@ -210,37 +210,44 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
 
 ### UNESCO UIS education data — licence not cross-verified, underlying survey/methodology per point not named
 
-- **What:** 14 education indicators are fetched live from the UIS Data API
+- **What:** 15 education indicators are fetched live from the UIS Data API
   (`api.uis.unesco.org/api/public/data/indicators`) — completion (primary,
   lower secondary, upper secondary; survey `CR.1/2/3` + modelled
-  `CR.MOD.1/2/3`), enrollment and retention (`GER.1/2/3/5T8`, `NERT.1.CP`,
-  `REPR.1.CP`, `SR.1.GLAST.CP`, `ROFST.1.CP/2.CP`), and literacy
-  (`LR.AG15T24`, `LR.AG15T99`). Originally just `taux_achevement_primaire`
-  (`CR.1`/`CR.MOD.1`); widened 2026-09-12 once the same API was confirmed to
-  have real CAF data well beyond that — see `docs/decisions.md`. Three open
-  gaps, one carried over and two new: (1) UIS states CC BY-SA 3.0 IGO for its
-  main site/publications but CC BY-SA 4.0 for the Data Browser specifically
-  (`databrowser.uis.unesco.org/terms-and-conditions`) — this project cites
-  4.0 since the API sits under that product, but the two licences' clauses
-  haven't been diffed. (2) For the completion indicators, the API's response
-  gives only a year per point, not which underlying survey produced it
-  (MICS7? EHCVM2? an earlier round?) — plausibly the same survey that gave
-  MICS 2018-19's 14.3% electricity figure for the 2019 point, but that's an
-  inference, not confirmed by the API. (3) For the 9
-  administrative/enrollment/retention indicators, the API doesn't tag
-  methodology at all — this project has labelled them "administrative"
-  (school-census/EMIS data, the standard UIS approach for this indicator
-  family) based on general knowledge of UIS methodology, not a per-point
-  confirmation from the API response itself.
+  `CR.MOD.1/2/3`), enrollment and repetition/survival (`GER.1/2/3/5T8`,
+  `NERT.1.CP`, `REPR.1.CP`, `SR.1.GLAST.CP` — no modelled counterpart exists
+  for any of these, confirmed by searching the full indicator catalogue for
+  `*.MOD.*` variants of each, not assumed), out-of-school (primary/lower
+  secondary/upper secondary; administrative `ROFST.1/2/3.CP` + modelled
+  `ROFST.MOD.1/2/3`), and literacy (`LR.AG15T24`, `LR.AG15T99`). Originally
+  just `taux_achevement_primaire` (`CR.1`/`CR.MOD.1`); widened 2026-09-12 in
+  two passes once the same API was confirmed to have real CAF data well
+  beyond that — see `docs/decisions.md` (the second pass specifically because
+  the first one hadn't checked every indicator family for a modelled
+  variant, only completion — a real miss, not a hypothetical one). Three
+  open gaps, one carried over and two general: (1) UIS states CC BY-SA 3.0
+  IGO for its main site/publications but CC BY-SA 4.0 for the Data Browser
+  specifically (`databrowser.uis.unesco.org/terms-and-conditions`) — this
+  project cites 4.0 since the API sits under that product, but the two
+  licences' clauses haven't been diffed. (2) For the completion and
+  out-of-school indicators, the API's response gives only a year per point
+  for the higher-authority series, not which underlying survey/administrative
+  round produced it — plausibly the same MICS/EHCVM rounds that produced
+  other CLAUDE.md-cited figures, but that's an inference, not confirmed by
+  the API. (3) For the enrollment/repetition/survival indicators, the API
+  doesn't tag methodology at all — this project has labelled them
+  "administrative" (school-census/EMIS data, the standard UIS approach for
+  this indicator family) based on general knowledge of UIS methodology, not
+  a per-point confirmation from the API response itself.
 - **Used in:** `data/sources.csv` (`unesco-uis-completion-survey`,
   `unesco-uis-completion-modelled`, `unesco-uis-education-administrative`,
-  `unesco-uis-literacy`), `data/observations.csv` (323 rows across 14
-  `taux_*` indicators), `site/src/pages/education.astro`.
+  `unesco-uis-outofschool-modelled`, `unesco-uis-literacy`),
+  `data/observations.csv` (404 rows across 15 `taux_*` indicators),
+  `site/src/pages/education.astro`.
 - **Resolved when:** the two CC BY-SA license texts are actually compared
   clause-by-clause (or UIS is asked directly which applies to API output);
   and/or the UIS indicator metadata endpoint (`/api/public/definitions/
   indicators`) or a published methodology note is checked for a per-point
-  survey/methodology citation across all 14 indicators, not just completion.
+  survey/methodology citation across all 15 indicators, not just completion.
 
 ---
 

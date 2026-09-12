@@ -196,6 +196,26 @@ methodology tag, so whether each point is genuinely EMIS-administrative data or
 something else per-indicator isn't confirmed — logged in
 `docs/verification-debt.md` rather than asserted.
 
+## Out-of-school rate widened again (14 -> 15 indicators) after a real gap was caught
+
+The first widening pass (1 -> 14 indicators) checked completion for a modelled
+counterpart (`CR.MOD.*`) but didn't systematically check the other 8
+administrative-family indicators the same way -- caught when asked directly
+"couldn't you find newer data on education," which prompted re-checking every
+family explicitly for a `*.MOD.*` variant rather than trusting the first pass.
+Result: out-of-school rate does have one (`ROFST.MOD.1/2/3`, reaching 2025);
+enrollment ratios, repetition and survival genuinely don't -- confirmed absent
+from the catalogue, not just unfetched. Also found `ROFST.3.CP` (upper
+secondary out-of-school), a level the first pass had skipped entirely. All
+three out-of-school indicators were moved from the plain
+latest-value-plus-series treatment into the same disclosure pattern as
+completion (administrative figure as headline, modelled series as the
+comparison/chart line) -- `pipeline/export_education_json.py`'s
+`build_completion_indicator` was generalized into `build_disclosure_indicator`,
+driven by a `DISCLOSURE_CONFIG` dict, rather than duplicated. Lesson for next
+time: "checked the API" needs to mean "checked every plausible variant," not
+"checked the first indicator code that matched."
+
 ## Education page combines two existing patterns instead of inventing a third
 
 `taux_achevement_primaire` has the same shape of disagreement as national
