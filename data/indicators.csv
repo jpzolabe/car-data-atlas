@@ -25,3 +25,6 @@ taux_utilisation_internet,Utilisation d'Internet,Part de la population utilisant
 abonnements_mobiles,Abonnements mobiles,Nombre d'abonnements de téléphonie mobile pour 100 habitants -- peut dépasser 100 (abonnements multiples par personne).,pour 100 habitants,infrastructures,pays,infrastructure_taux_pays,true
 acces_eau_potable_base,Accès à l'eau potable,Part de la population utilisant au moins un service de base d'eau potable.,%,infrastructures,pays,infrastructure_taux_pays,true
 acces_assainissement_base,Accès à l'assainissement,Part de la population utilisant au moins un service de base d'assainissement.,%,infrastructures,pays,infrastructure_taux_pays,true
+taux_croissance_population,Croissance de la population,Taux de croissance annuel de la population.,%,population,pays,population_taux_pays,
+taux_urbanisation,Population urbaine,Part de la population vivant en zone urbaine.,%,population,pays,population_taux_pays,
+taux_dependance_demographique,Taux de dépendance démographique,"Population de moins de 15 ans et de 65 ans et plus, rapportée à la population de 15-64 ans -- peut dépasser 100.",%,population,pays,population_taux_pays,

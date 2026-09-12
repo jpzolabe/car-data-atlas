@@ -145,6 +145,25 @@ def sentence_infrastructure_rate(indicator_id: str, period: str, value: float) -
     return text, f"{indicator_id}_pays"
 
 
+# label_fr must fit "{label_fr} en République centrafricaine s'établissait
+# à" grammatically -- checked by hand against these 3 real indicators.
+POPULATION_RATE_LABELS = {
+    "taux_croissance_population": "le taux de croissance de la population",
+    "taux_urbanisation": "la part de la population urbaine",
+    "taux_dependance_demographique": "le taux de dépendance démographique",
+}
+
+
+def sentence_population_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label = POPULATION_RATE_LABELS[indicator_id]
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {value_fr}%."
+    )
+    return text, f"{indicator_id}_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:

@@ -639,9 +639,14 @@ water access, basic sanitation access), all confirmed live with recent
 (2022-2024) CAF data before adding. `export_electricity_json.py`/
 `electricite.json` retired in favour of `export_infrastructures_json.py`/
 `infrastructures.json` now that the theme covers more than electricity —
-see `docs/decisions.md`. "At least two indicators" per theme is now met for
-éducation (15), prix (5) and infrastructures (5); population (still 1) is
-next.
+see `docs/decisions.md`. Population went from 1 to 4: added growth rate,
+urban population %, and age dependency ratio, all World Bank, all with data
+through 2025. **All four existing theme pages now meet "at least two
+indicators"**: éducation (15), prix (5), infrastructures (5), population
+(4) — 29 indicators total. Santé, économie and agriculture still don't
+exist as theme pages at all; that's the next real gap, along with the
+still-open Phase 3 items (WFP food prices, national accounts/GDP, MICS,
+IMF NSDP, health facilities) and the ICASEES yearbooks.
 
 ## Phase 4 — Descending (4–6 weeks)
 

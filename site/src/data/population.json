@@ -210,5 +210,241 @@
       "pop_2021": 138770.0,
       "pop_2021_flag": "estime"
     }
+  ],
+  "other_indicators": [
+    {
+      "indicator_id": "taux_croissance_population",
+      "name_fr": "Croissance de la population",
+      "latest": {
+        "period": "2025",
+        "value": 3.36794044132968
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 1.59035970102042
+        },
+        {
+          "period": "2012",
+          "value": 0.998867377606297
+        },
+        {
+          "period": "2013",
+          "value": 0.682377856508138
+        },
+        {
+          "period": "2014",
+          "value": -0.415235398986532
+        },
+        {
+          "period": "2015",
+          "value": 0.132677645471712
+        },
+        {
+          "period": "2016",
+          "value": 1.80553237158984
+        },
+        {
+          "period": "2017",
+          "value": 1.67978155291511
+        },
+        {
+          "period": "2018",
+          "value": 1.76068487647458
+        },
+        {
+          "period": "2019",
+          "value": 1.34469255324203
+        },
+        {
+          "period": "2020",
+          "value": 1.64324789708014
+        },
+        {
+          "period": "2021",
+          "value": 1.68608971248183
+        },
+        {
+          "period": "2022",
+          "value": -0.275432271573156
+        },
+        {
+          "period": "2023",
+          "value": 1.06107453184959
+        },
+        {
+          "period": "2024",
+          "value": 3.40139844069992
+        },
+        {
+          "period": "2025",
+          "value": 3.36794044132968
+        }
+      ],
+      "lead_sentence": "En 2025, le taux de croissance de la population en République centrafricaine s'établissait à 3,4%.",
+      "lead_sentence_template_id": "taux_croissance_population_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population growth, annual % (SP.POP.GROW)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "taux_urbanisation",
+      "name_fr": "Population urbaine",
+      "latest": {
+        "period": "2025",
+        "value": 44.5532156681816
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 38.8030669465007
+        },
+        {
+          "period": "2012",
+          "value": 39.0301696038517
+        },
+        {
+          "period": "2013",
+          "value": 39.3042963482777
+        },
+        {
+          "period": "2014",
+          "value": 39.6226521868738
+        },
+        {
+          "period": "2015",
+          "value": 39.9824421267351
+        },
+        {
+          "period": "2016",
+          "value": 40.3808711749566
+        },
+        {
+          "period": "2017",
+          "value": 40.8151443386334
+        },
+        {
+          "period": "2018",
+          "value": 41.2824666248606
+        },
+        {
+          "period": "2019",
+          "value": 41.7800430407332
+        },
+        {
+          "period": "2020",
+          "value": 42.3050785933463
+        },
+        {
+          "period": "2021",
+          "value": 42.8547782897949
+        },
+        {
+          "period": "2022",
+          "value": 43.2751967457285
+        },
+        {
+          "period": "2023",
+          "value": 43.6983692134165
+        },
+        {
+          "period": "2024",
+          "value": 44.1243555638904
+        },
+        {
+          "period": "2025",
+          "value": 44.5532156681816
+        }
+      ],
+      "lead_sentence": "En 2025, la part de la population urbaine en République centrafricaine s'établissait à 44,6%.",
+      "lead_sentence_template_id": "taux_urbanisation_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Urban population, % of total population (SP.URB.TOTL.IN.ZS)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "taux_dependance_demographique",
+      "name_fr": "Taux de dépendance démographique",
+      "latest": {
+        "period": "2025",
+        "value": 103.585626770159
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 92.9822017540374
+        },
+        {
+          "period": "2012",
+          "value": 95.3176865088711
+        },
+        {
+          "period": "2013",
+          "value": 97.9595630955148
+        },
+        {
+          "period": "2014",
+          "value": 101.4546167589
+        },
+        {
+          "period": "2015",
+          "value": 103.91701516784
+        },
+        {
+          "period": "2016",
+          "value": 104.212210458458
+        },
+        {
+          "period": "2017",
+          "value": 104.593668985404
+        },
+        {
+          "period": "2018",
+          "value": 104.958245074818
+        },
+        {
+          "period": "2019",
+          "value": 104.954476234215
+        },
+        {
+          "period": "2020",
+          "value": 104.549331492918
+        },
+        {
+          "period": "2021",
+          "value": 105.023375496256
+        },
+        {
+          "period": "2022",
+          "value": 105.587559345916
+        },
+        {
+          "period": "2023",
+          "value": 105.177562449203
+        },
+        {
+          "period": "2024",
+          "value": 104.726849849797
+        },
+        {
+          "period": "2025",
+          "value": 103.585626770159
+        }
+      ],
+      "lead_sentence": "En 2025, le taux de dépendance démographique en République centrafricaine s'établissait à 103,6%.",
+      "lead_sentence_template_id": "taux_dependance_demographique_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Age dependency ratio, % of working-age population (SP.POP.DPND)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    }
   ]
 }
