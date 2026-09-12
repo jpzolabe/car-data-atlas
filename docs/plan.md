@@ -938,11 +938,15 @@ reaches région level (7 régions) via the Master Facility List's own
 Admin1 column, one level short of préfecture - genuinely different from
 "no data" or "préfecture-level," so it's its own case in the freshness
 table (`level: "region"`) rather than forced into either bucket. Also
-checked and deferred: ICASEES's education yearbook does have real
-préfecture-level ("IA") tables, but extracting them is materially harder
-than either widening done so far (dozens of inconsistent per-metric
-tables in one hand-formatted workbook, not one clean flat file) - a real
-lead for a future pass, not attempted this one. See docs/decisions.md.
+checked: ICASEES's education yearbook does have real préfecture-level
+("IA") tables, but a real extraction attempt found its sheet lays out
+many unrelated tables side by side sharing row ranges, not one table per
+row block - naive row reading silently interleaves values from different
+tables, risking a wrong number attributed to the wrong préfecture rather
+than an honest gap. Abandoned this attempt rather than push a fragile
+heuristic through; not worth revisiting without proper merged-cell-aware
+column mapping and per-préfecture validation against the known national
+total. See docs/decisions.md.
 
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
