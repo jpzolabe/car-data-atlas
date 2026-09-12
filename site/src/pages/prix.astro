@@ -50,7 +50,11 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
   const x = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW;
   const y = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
   const points = s.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
-  return { points, sMin, sMax, yMin: y(sMin), yMax: y(sMax), firstYear: s[0].period.slice(0, 4), lastYear: s[s.length - 1].period.slice(0, 4) };
+  return {
+    points, sMin, sMax, yMin: y(sMin), yMax: y(sMax),
+    firstYear: s[0].period.slice(0, 4), lastYear: s[s.length - 1].period.slice(0, 4),
+    xFirst: x(0), xLast: x(s.length - 1),
+  };
 }
 ---
 <!doctype html>
@@ -115,6 +119,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       }
       @keyframes drawSpark { to { stroke-dashoffset: 0; } }
       @media (prefers-reduced-motion: reduce) { .cat-spark-line { animation: none; stroke-dashoffset: 0; } }
+      .cat-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
       .cat-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
       svg { width: 100%; height: auto; display: block; margin: 16px 0; }
       .gridline { stroke: var(--line); stroke-width: 1; }
@@ -222,6 +227,8 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
               <p class="cat-value">{fmt(cat.latest.value)}<span class="unit"> indice, {cat.latest.period}</span></p>
               <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${cat.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                 <polyline class="cat-spark-line" points={spark.points} />
+                <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
               </svg>
               <p class="cat-sentence">{cat.lead_sentence}</p>
             </div>

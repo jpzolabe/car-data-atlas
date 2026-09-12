@@ -53,7 +53,10 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW2;
   const sy = (v: number) => SPARK_MT + plotH2 - ((v - sMin) / (sMax - sMin)) * plotH2;
   const pts = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
-  return { points: pts, firstYear: s[0].period, lastYear: s[s.length - 1].period };
+  return {
+    points: pts, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    xFirst: sx(0), xLast: sx(s.length - 1),
+  };
 }
 const ROW_H = 22;
 const MARGIN_L = 148;
@@ -138,6 +141,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       }
       @keyframes drawMiniSpark { to { stroke-dashoffset: 0; } }
       @media (prefers-reduced-motion: reduce) { .mini-spark-line { animation: none; stroke-dashoffset: 0; } }
+      .mini-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
       .mini-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
       .bar-label { font-family: ui-monospace, monospace; font-size: 10.5px; fill: var(--ink-muted); }
       .bar-value { font-family: ui-monospace, monospace; font-size: 10.5px; fill: var(--ink); font-weight: 600; }
@@ -370,6 +374,8 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
               <p class="ind-value">{fmt(Math.round(ind.latest.value * 10) / 10)}<span class="unit">%, {ind.latest.period}</span></p>
               <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                 <polyline class="mini-spark-line" points={spark.points} />
+                <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
               </svg>
               <p class="mini-sentence">{ind.lead_sentence}</p>
               <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
