@@ -483,3 +483,34 @@ page shouldn't also present all three as equal peers. Both pages are
 otherwise unchanged (same URL, same content, still cross-linked from every
 other page's footer nav) — this only affects the home page's primary
 navigation and one page's card order.
+
+## Purged internal/AI-facing language from reader-visible text
+
+User feedback: several pages had text that read like notes-to-self rather
+than content for a site visitor -- a "phrase générée · gabarit
+population_totale_lieu_estime" tag under every generated sentence (4
+pages: population, prix, infrastructures, éducation ×3), "Premier thème
+santé du site" in santé's lede (meaningless to a reader -- of course it's
+the only health theme), "cette session"/"cette passe" scattered across
+gap-notes and even inside `data/sources.csv` fields rendered on `/sources/`
+(licence_notes/access_notes are shown in `<details>` blocks there), and
+several visible citations of `CLAUDE.md` by name -- an internal project
+brief a reader has no way to interpret, not a data source.
+
+Removed the sentence-tag entirely from all 4 pages (`.sentence-tag`
+CSS and markup) -- `/methode/` keeps its one worked example
+(`gabarit population_totale_lieu_estime`) since that page's actual purpose
+is explaining the sentence-generation mechanism to a curious reader, unlike
+the tag's use elsewhere as build-transparency clutter nobody asked to see.
+Reworded every "cette session"/"cette passe" and "CLAUDE.md" reference in
+visible copy to state the fact plainly instead (e.g. "le PIB rebasé...
+n'a pas été comparé" instead of "...au moment de la rédaction de
+CLAUDE.md..."). Left `CLAUDE.md` mentions inside `authority_rank` alone --
+that field is never rendered on `/sources/` (checked `sources.astro`'s
+template directly), so it's genuinely internal metadata, not reader-facing
+content, same category as a code comment. `docs/verification-debt.md`
+references were also left alone throughout -- unlike `CLAUDE.md` (a private
+planning artifact), the "known gaps" file is a deliberate part of this
+project's own transparency design (rule zero: "gaps are content"), and a
+data-savvy reader who downloads the CSVs from `/donnees/` can genuinely
+follow that reference.

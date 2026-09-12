@@ -245,11 +245,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         border-left: 3px solid var(--t-pop);
         padding: 14px 0 14px 14px; margin: 20px 0;
       }
-      .sentence-tag {
-        display: block; font-style: normal; font-family: ui-monospace, monospace;
-        font-size: 10px; color: var(--ink-faint); text-transform: uppercase;
-        letter-spacing: 0.05em; margin-top: 6px;
-      }
       @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
       .bar-rect { transform-origin: left; animation: growBar 0.6s ease-out backwards; }
       @media (prefers-reduced-motion: reduce) {
@@ -303,7 +298,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
 
       <p class="sentence">
         {data.lead_sentence}
-        <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
       </p>
 
       <h2>Classement, estimation 2021</h2>

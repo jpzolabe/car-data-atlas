@@ -168,11 +168,6 @@ const newestVintage = Math.max(...allPeriods);
         font-style: italic; font-size: 15.5px; line-height: 1.5; color: var(--ink);
         margin: 12px 0 0; padding-left: 12px; border-left: 2px solid var(--t-edu);
       }
-      .sentence-tag {
-        display: block; font-style: normal; font-family: ui-monospace, monospace;
-        font-size: 9.5px; color: var(--ink-faint); text-transform: uppercase;
-        letter-spacing: 0.05em; margin-top: 4px;
-      }
       .completion-chart { width: 100%; height: auto; display: block; margin: 14px 0 6px; }
       .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); flex-wrap: wrap; }
       .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
@@ -251,7 +246,6 @@ const newestVintage = Math.max(...allPeriods);
         <p class="headline-caption">{data.headline.name_fr}, {data.headline.latest.period} — le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
         <p class="sentence">
           {data.headline.lead_sentence}
-          <span class="sentence-tag">phrase générée · gabarit {data.headline.lead_sentence_template_id}</span>
         </p>
         <a class="headline-link" href="#achevement">Détail, sources et désaccord avec l'estimation modélisée ↓</a>
       </div>
@@ -288,7 +282,6 @@ const newestVintage = Math.max(...allPeriods);
                   </div>
                   <p class="sentence">
                     {ind.lead_sentence}
-                    <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
                   </p>
                   <svg class="completion-chart" viewBox={`0 0 460 100`} role="img" aria-label={`${ind.name_fr}, estimation modélisée avec points de ${headlineLabel} superposés`}>
                     <line class="gridline" x1="34" y1={spark.yTick} x2="450" y2={spark.yTick} />
@@ -363,7 +356,6 @@ const newestVintage = Math.max(...allPeriods);
                       </svg>
                       <p class="sentence">
                         {ind.lead_sentence}
-                        <span class="sentence-tag">phrase générée · gabarit {ind.lead_sentence_template_id}</span>
                       </p>
                       <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
                         {ind.source.producer} — {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
@@ -381,7 +373,7 @@ const newestVintage = Math.max(...allPeriods);
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture — les {allIndicatorCount} indicateurs sont tous nationaux ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
         <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse — l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
-        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) — l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été mise en pause cette session après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
+        <li>Aucun résultat d'examen national (CEPE, BEPC, baccalauréat) — l'ICASEES publie des annuaires statistiques scolaires en Excel qui les contiennent probablement, mais leur récupération a été interrompue après un ralentissement apparent du site (voir <code>docs/verification-debt.md</code>).</li>
         <li>Aucune donnée sur les infrastructures scolaires (nombre d'écoles, points d'eau, latrines) ni sur les dépenses publiques d'éducation.</li>
         <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) — l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
       </ul>

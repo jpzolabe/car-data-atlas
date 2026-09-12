@@ -137,7 +137,6 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       .swatch { width: 14px; height: 2px; display: inline-block; }
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
       .sentence { font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-left: 3px solid var(--t-prix); padding: 14px 0 14px 14px; margin: 20px 0; }
-      .sentence-tag { display: block; font-style: normal; font-family: ui-monospace, monospace; font-size: 10px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 6px; }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; }
@@ -169,7 +168,6 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
 
       <p class="sentence">
         {data.lead_sentence}
-        <span class="sentence-tag">phrase générée · gabarit {data.lead_sentence_template_id}</span>
       </p>
 
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Indice des prix à la consommation de janvier 2015 à ${latest.period}`}>
