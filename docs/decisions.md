@@ -1616,3 +1616,42 @@ weight) exactly like every previous pass - there is still no way to
 visually confirm this actually *feels* right without opening it in a
 browser, which this session cannot do. Asked the user to look at it
 live before treating this as finished.
+
+## Home page, fifth pass: real screenshot, real bug, chart cut again
+
+The user sent an actual screenshot (light on this session's usual text-
+only verification) - and it surfaced a genuine rendering bug the
+previous pass's structural checks couldn't have caught: Bangui's value
+label ("1 425 276") was clipped past the chart's right edge inside the
+hero panel. Confirmed the cause - `MARGIN_R` was sized for the shorter
+value labels of smaller préfectures, not Bangui's own (the largest, by
+definition the widest text in its own chart).
+
+Rather than just widen the margin, cut the embedded chart from the hero
+entirely, per the user's own read of the screenshot: the block was
+visually heavy, and a multi-row horizontal bar chart with right-aligned
+value text is inherently a bad fit for narrow viewports regardless of
+how its margins are tuned - the same clipping risk just resurfaces at a
+different préfecture once the container narrows. The hero is now
+label + big number + one-line source + a link through to `/population/`
+only, a single flex row that wraps cleanly at any width since nothing
+in it has a fixed pixel geometry. The full ranked chart already exists
+on `/population/` itself, so nothing was actually lost by removing the
+duplicate.
+
+Also converted `.ticker` from flex-wrap with `border-right` dividers to
+a CSS grid (`repeat(auto-fit, minmax(150px, 1fr))`) with `border-left`
+dividers, the same pattern already used for the theme-appropriate
+`.stat-strip` earlier in the session - the screenshot showed the
+flex version's real failure mode too: the 5th item didn't fit the row
+and wrapped alone, with no divider matching the row above it. Grid
+handles that reflow predictably instead.
+
+Net effect: home page dropped further, 25.6 KB -> 22.1 KB - removing a
+whole SVG chart is not just a design call here, it's real bytes back
+under budget. This is the first pass in this whole home-page saga
+verified against an actual rendering rather than structural checks
+alone, and it caught something none of the earlier structural-only
+passes did - worth remembering: for anything genuinely about how a page
+*looks*, a screenshot is doing verification work no amount of HTML/CSS
+source-reading can substitute for.

@@ -1,18 +1,16 @@
 ---
-// The real home page, docs/plan.md Sec2.2. Redesigned 2026-09-13 after
-// direct feedback that the first pass (built earlier the same day) still
-// felt like a stack of same-weight boxes with no real focal point -
-// stepping back from reactive patching to one coherent pass instead.
-//
-// The structural change from that first pass: one clear hero moment
-// (population - the country's single most-cited fact, with its own
-// chart) instead of 6 equal headline cards; the other 5 quick figures
-// are now a de-emphasized single-line ticker, not another grid of boxes.
-// This also brings back a real chart (cut in the previous pass along
-// with "À la une"), but folded into the hero rather than bolted on as
-// its own separate disclosure-heavy section - full multi-source
-// disclosure stays on /population/ itself, this is just the headline
-// figure plus a look at the spread across préfectures.
+// The real home page, docs/plan.md Sec2.2. Redesigned 2026-09-13, twice
+// the same day: first pass still felt like a stack of same-weight boxes
+// with no focal point, so that got replaced with one hero moment
+// (population) plus a de-emphasized ticker for the other 5 quick
+// figures. That hero briefly carried an embedded ranked-préfectures bar
+// chart too - cut again almost immediately, this time on direct
+// feedback with a screenshot: the chart made the block visually heavy
+// and didn't hold up at phone widths (long value labels like "1 425
+// 276" clipped past the chart's right edge at narrow widths - a real
+// rendering bug, not just a size preference). The hero is headline
+// figure + source + link only now; the full ranked chart already lives
+// on /population/ itself, so nothing was actually lost.
 //
 // Theme grid (5 main themes, prix/agriculture nested under économie) and
 // the "no icons except one functional glyph family" stance are unchanged
@@ -108,15 +106,6 @@ const SECONDARY_STATS = [
     period: manioc.latest.period, accent: "var(--t-prix)", href: "/prix/",
   },
 ];
-
-// Hero chart: top 8 préfectures by population, the same build-time-SVG
-// bar approach population.astro uses on its own full 20-row chart, just
-// shorter - this is the page's one real visual, not a second data table.
-const ranked = [...population.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021).slice(0, 8);
-const CHART_W = 640, ROW_H = 22, MARGIN_L = 132, MARGIN_R = 56;
-const CHART_H = ranked.length * ROW_H + 4;
-const maxPop = Math.max(...ranked.map((r) => r.pop_2021));
-const barWidth = (v: number) => Math.round((v / maxPop) * (CHART_W - MARGIN_L - MARGIN_R) * 10) / 10;
 ---
 <!doctype html>
 <html lang="fr">
@@ -194,45 +183,42 @@ const barWidth = (v: number) => Math.round((v / maxPop) * (CHART_W - MARGIN_L - 
       h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 44px 0 14px; }
 
       .hero-stat {
-        margin-top: 40px; padding: 26px 28px; background: var(--surface);
+        margin-top: 36px; padding: 22px 26px; background: var(--surface);
         border: 1px solid var(--line); border-left: 4px solid var(--t-pop); border-radius: 6px;
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
       }
-      .hero-stat-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
       .hero-stat-label { font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 8px; }
       .hero-stat-value {
-        font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 700; color: var(--t-pop);
+        font-family: ui-monospace, monospace; font-size: 2.3rem; font-weight: 700; color: var(--t-pop);
         margin: 0; line-height: 1; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
       }
-      .hero-stat-value .unit { font-size: 0.95rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
-      .hero-stat-source { font-size: 12.5px; color: var(--ink-muted); margin: 8px 0 0; }
+      .hero-stat-value .unit { font-size: 0.85rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .hero-stat-source { font-size: 12px; color: var(--ink-muted); margin: 8px 0 0; max-width: 46ch; }
       .hero-stat-cta {
         font-size: 13px; color: var(--t-pop); text-decoration: none; white-space: nowrap;
         padding-bottom: 3px; border-bottom: 1px solid color-mix(in srgb, var(--t-pop) 40%, transparent);
+        flex: none;
       }
       .hero-stat-cta:hover { border-bottom-color: var(--t-pop); }
       .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 10px; padding: 2px 6px; border-radius: 2px; background: var(--ochre-soft); color: var(--ochre); }
 
-      svg.hero-chart { width: 100%; height: auto; display: block; margin: 22px 0 0; }
-      .bar-label { font-family: ui-monospace, monospace; font-size: 11px; fill: var(--ink-muted); }
-      .bar-value { font-family: ui-monospace, monospace; font-size: 11px; fill: var(--ink); font-weight: 600; }
-      .bar-rect { fill: var(--t-pop); transform-origin: left; animation: growBar 0.5s ease-out backwards; }
-      @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-      @media (prefers-reduced-motion: reduce) { .bar-rect { animation: none; } }
-
       .ticker {
-        display: flex; flex-wrap: wrap; margin-top: 10px;
-        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+        overflow: hidden;
       }
       .ticker-item {
-        display: flex; align-items: baseline; gap: 7px; padding: 12px 16px 12px 0;
-        margin-right: 16px; text-decoration: none; color: inherit;
+        display: flex; flex-direction: column; gap: 3px; padding: 12px 14px;
+        text-decoration: none; color: inherit; border-left: 1px solid var(--line);
+        transition: background-color 0.15s ease;
       }
-      .ticker-item:not(:last-child) { border-right: 1px solid var(--line); }
-      .ticker-label { font-size: 12px; color: var(--ink-muted); }
-      .ticker-item:hover .ticker-label { color: var(--ink); }
-      .ticker-value { font-family: ui-monospace, monospace; font-size: 13.5px; font-weight: 600; color: var(--ticker-accent); }
+      .ticker-item:first-child { border-left: none; }
+      .ticker-item:hover { background: color-mix(in srgb, var(--ticker-accent) 6%, transparent); }
+      .ticker-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.02em; }
+      .ticker-item:hover .ticker-label { color: var(--ink-muted); }
+      .ticker-value { font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: var(--ticker-accent); }
       .ticker-value .unit { font-size: 10px; color: var(--ink-faint); font-family: system-ui, sans-serif; }
-      .ticker-period { font-size: 10.5px; color: var(--ink-faint); }
+      .ticker-period { font-size: 10px; color: var(--ink-faint); }
       .ticker-period.stale { color: var(--stale); }
 
       .theme-rows {
@@ -294,28 +280,15 @@ const barWidth = (v: number) => Math.round((v / maxPop) * (CHART_W - MARGIN_L - 
       </p>
 
       <div class="hero-stat">
-        <div class="hero-stat-header">
-          <div>
-            <p class="hero-stat-label">Population</p>
-            <p class="hero-stat-value">
-              {fmt(population.national.headline.value)}<span class="unit">habitants</span>
-              <span class="badge">provisoire</span>
-            </p>
-            <p class="hero-stat-source">
-              {population.national.headline.producer} - {population.national.headline.dataset_name}, {population.national.headline.period}
-            </p>
-          </div>
-          <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
+        <div>
+          <p class="hero-stat-label">Population</p>
+          <p class="hero-stat-value">
+            {fmt(population.national.headline.value)}<span class="unit">habitants</span>
+            <span class="badge">provisoire</span>
+          </p>
+          <p class="hero-stat-source">ICASEES, RGPH-4 - résultats provisoires (recensement), {population.national.headline.period}</p>
         </div>
-        <svg class="hero-chart" viewBox={`0 0 ${CHART_W} ${CHART_H}`} role="img" aria-label="Les 8 préfectures les plus peuplées, estimation 2021">
-          {ranked.map((row, i) => (
-            <g transform={`translate(0, ${i * ROW_H})`}>
-              <text class="bar-label" x={MARGIN_L - 8} y={ROW_H / 2 + 4} text-anchor="end">{row.prefecture}</text>
-              <rect class="bar-rect" x={MARGIN_L} y={4} width={barWidth(row.pop_2021)} height={ROW_H - 8} style={`animation-delay: ${i * 30}ms`} />
-              <text class="bar-value" x={MARGIN_L + barWidth(row.pop_2021) + 6} y={ROW_H / 2 + 4}>{fmt(row.pop_2021)}</text>
-            </g>
-          ))}
-        </svg>
+        <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
       </div>
 
       <div class="ticker">
