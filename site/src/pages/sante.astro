@@ -172,7 +172,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         <div class="headline-value">
           {fmt(data.headline.latest.value)}<span class="unit">ans, {data.headline.latest.period}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr}, le chiffre le plus souvent cité pour résumer l'état de santé d'une population. {data.headline.definition_fr}</p>
+        <p class="headline-caption">L'espérance de vie à la naissance est le chiffre le plus souvent cité pour résumer l'état de santé d'une population.</p>
+        <p class="headline-caption">{data.headline.definition_fr}</p>
         <p class="mini-sentence">
           {data.headline.lead_sentence}
         </p>

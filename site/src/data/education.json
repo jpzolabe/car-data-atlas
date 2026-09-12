@@ -299,7 +299,7 @@
       "retrieved_at": "2026-09-12"
     },
     "name_fr": "Taux d'achèvement du primaire",
-    "definition_fr": "Part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un indicateur bas signifie que beaucoup d'enfants entrent à l'école mais n'en terminent pas le cycle, pas nécessairement qu'ils n'y entrent jamais."
+    "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un chiffre bas signifie que beaucoup d'enfants entrent à l'école sans en terminer le cycle, et non qu'ils n'y entrent jamais."
   },
   "categories": [
     {
@@ -328,7 +328,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Nombre d'établissements scolaires",
-          "definition_fr": "Décompte national d'établissements scolaires (préscolaire, primaire, secondaire, technique et professionnel), public et privé confondus, à partir du recensement scolaire administratif annuel.",
+          "definition_fr": "Cet indicateur donne un décompte national des établissements scolaires (préscolaire, primaire, secondaire, technique et professionnel), public et privé confondus, à partir du recensement scolaire administratif annuel.",
           "unit": "établissements"
         },
         {
@@ -353,7 +353,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Effectif des élèves",
-          "definition_fr": "Nombre total d'élèves inscrits, tous niveaux d'enseignement confondus (préscolaire à l'enseignement technique et professionnel), public et privé confondus.",
+          "definition_fr": "Cet indicateur donne le nombre total d'élèves inscrits, tous niveaux d'enseignement confondus, du préscolaire à l'enseignement technique et professionnel, public et privé confondus.",
           "unit": "élèves"
         },
         {
@@ -378,7 +378,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Nombre d'enseignants",
-          "definition_fr": "Nombre total d'enseignants en poste, tous niveaux d'enseignement confondus, public et privé confondus.",
+          "definition_fr": "Cet indicateur donne le nombre total d'enseignants en poste, tous niveaux d'enseignement confondus, public et privé confondus.",
           "unit": "enseignants"
         }
       ]
@@ -493,7 +493,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux net de scolarisation, primaire",
-          "definition_fr": "Effectifs scolarisés dans le primaire ayant l'âge officiel du primaire, rapportés à la population de cet âge. Ne peut pas dépasser 100 %, contrairement au taux brut : il ne compte que les élèves à l'âge attendu pour ce cycle."
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le primaire et ayant l'âge officiel du primaire à la population de cet âge. Contrairement au taux brut, il ne peut pas dépasser 100 %, puisqu'il ne compte que les élèves ayant l'âge attendu pour ce cycle."
         },
         {
           "indicator_id": "taux_scolarisation_brut_primaire",
@@ -653,7 +653,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux brut de scolarisation, primaire",
-          "definition_fr": "Effectifs scolarisés dans le primaire, quel que soit l'âge, rapportés à la population d'âge officiellement primaire. Peut dépasser 100 % : les redoublants et les entrées tardives comptent dans les effectifs sans changer la population de référence."
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le primaire, quel que soit leur âge, à la population d'âge officiellement primaire. Il peut dépasser 100 %, car les redoublants et les entrées tardives comptent dans les effectifs sans changer la population de référence."
         },
         {
           "indicator_id": "taux_scolarisation_brut_secondaire_1er_cycle",
@@ -717,7 +717,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux brut de scolarisation, premier cycle du secondaire",
-          "definition_fr": "Effectifs scolarisés dans le premier cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant."
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le premier cycle du secondaire, quel que soit leur âge, à la population d'âge officiel correspondant."
         },
         {
           "indicator_id": "taux_scolarisation_brut_secondaire_2nd_cycle",
@@ -773,7 +773,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux brut de scolarisation, second cycle du secondaire",
-          "definition_fr": "Effectifs scolarisés dans le second cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant."
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le second cycle du secondaire, quel que soit leur âge, à la population d'âge officiel correspondant."
         },
         {
           "indicator_id": "taux_scolarisation_brut_superieur",
@@ -909,7 +909,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux brut de scolarisation, enseignement supérieur",
-          "definition_fr": "Effectifs inscrits dans l'enseignement supérieur (tertiaire), quel que soit l'âge, rapportés à la population ayant l'âge théorique de sortie du secondaire."
+          "definition_fr": "Ce taux rapporte les effectifs inscrits dans l'enseignement supérieur, quel que soit leur âge, à la population ayant l'âge théorique de sortie du secondaire."
         }
       ]
     },
@@ -1007,7 +1007,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de redoublement, primaire",
-          "definition_fr": "Part des élèves du primaire, toutes années confondues, inscrits dans la même année scolaire que l'année précédente. Un taux élevé indique un système où beaucoup d'élèves recommencent une année plutôt que de progresser."
+          "definition_fr": "Ce taux mesure la part des élèves du primaire, toutes années confondues, inscrits dans la même classe que l'année précédente. Un taux élevé indique un système où beaucoup d'élèves redoublent plutôt que de progresser."
         },
         {
           "indicator_id": "taux_survie_primaire",
@@ -1091,7 +1091,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de survie jusqu'à la dernière année du primaire",
-          "definition_fr": "Part d'une cohorte d'élèves entrés en première année du primaire qui atteignent la dernière année du cycle, avec ou sans redoublement. Se lit comme un taux d'abandon inversé."
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'élèves entrés en première année du primaire qui atteignent la dernière année du cycle, avec ou sans redoublement. Il se lit comme l'inverse d'un taux d'abandon."
         },
         {
           "indicator_id": "taux_non_scolarisation_primaire",
@@ -1564,7 +1564,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de non-scolarisation, âge du primaire",
-          "definition_fr": "Part des enfants ayant l'âge officiel du primaire qui ne sont scolarisés à aucun niveau, primaire ou autre."
+          "definition_fr": "Ce taux mesure la part des enfants ayant l'âge officiel du primaire qui ne sont scolarisés à aucun niveau, primaire ou autre."
         },
         {
           "indicator_id": "taux_non_scolarisation_secondaire_1er_cycle",
@@ -1805,7 +1805,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de non-scolarisation, âge du premier cycle du secondaire",
-          "definition_fr": "Part des adolescents ayant l'âge officiel du premier cycle du secondaire qui ne sont scolarisés à aucun niveau."
+          "definition_fr": "Ce taux mesure la part des adolescents ayant l'âge officiel du premier cycle du secondaire qui ne sont scolarisés à aucun niveau."
         },
         {
           "indicator_id": "taux_non_scolarisation_secondaire_2nd_cycle",
@@ -2010,7 +2010,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de non-scolarisation, âge du second cycle du secondaire",
-          "definition_fr": "Part des jeunes ayant l'âge officiel du second cycle du secondaire qui ne sont scolarisés à aucun niveau."
+          "definition_fr": "Ce taux mesure la part des jeunes ayant l'âge officiel du second cycle du secondaire qui ne sont scolarisés à aucun niveau."
         }
       ]
     },
@@ -2317,7 +2317,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux d'achèvement du primaire",
-          "definition_fr": "Part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un indicateur bas signifie que beaucoup d'enfants entrent à l'école mais n'en terminent pas le cycle, pas nécessairement qu'ils n'y entrent jamais."
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un chiffre bas signifie que beaucoup d'enfants entrent à l'école sans en terminer le cycle, et non qu'ils n'y entrent jamais."
         },
         {
           "indicator_id": "taux_achevement_secondaire_1er_cycle",
@@ -2618,7 +2618,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux d'achèvement du premier cycle du secondaire",
-          "definition_fr": "Part d'une cohorte d'âge ayant achevé le premier cycle de l'enseignement secondaire (collège), tous sexes confondus."
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le premier cycle de l'enseignement secondaire (collège), tous sexes confondus."
         },
         {
           "indicator_id": "taux_achevement_secondaire_2nd_cycle",
@@ -2919,7 +2919,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux d'achèvement du second cycle du secondaire",
-          "definition_fr": "Part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus."
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus."
         },
         {
           "indicator_id": "taux_reussite_baccalaureat",
@@ -2947,7 +2947,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de réussite au baccalauréat général",
-          "definition_fr": "Part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues."
+          "definition_fr": "Ce taux mesure la part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues."
         }
       ]
     },
@@ -2989,7 +2989,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux d'alphabétisation des jeunes (15-24 ans)",
-          "definition_fr": "Part de la population âgée de 15 à 24 ans capable de lire et écrire un énoncé simple sur la vie courante. Suit de près la scolarisation passée : c'est un indicateur retardé, pas immédiat."
+          "definition_fr": "Ce taux mesure la part de la population âgée de 15 à 24 ans capable de lire et écrire un énoncé simple sur la vie courante. Il reflète surtout la scolarisation passée, ce qui en fait un indicateur retardé plutôt qu'immédiat."
         },
         {
           "indicator_id": "taux_alphabetisation_adultes",
@@ -3025,7 +3025,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux d'alphabétisation des adultes (15 ans et plus)",
-          "definition_fr": "Part de la population âgée de 15 ans et plus capable de lire et écrire un énoncé simple sur la vie courante."
+          "definition_fr": "Ce taux mesure la part de la population âgée de 15 ans et plus capable de lire et écrire un énoncé simple sur la vie courante."
         }
       ]
     }
