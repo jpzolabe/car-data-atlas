@@ -1202,3 +1202,20 @@ All 33 pages rebuilt clean and still pass the 150 KB budget (place pages
 grew to ~18 KB with the new sous-préfecture table, `/population/` to
 ~59 KB); fetch verified idempotent on both `observations.csv` and
 `sources.csv`.
+
+## Phase 4 step 6, second half: national comparison on place pages
+
+Picked from the 3 parked options (national comparison / geographic_floor
+audit / locator maps) - the smallest, self-contained one, and no new
+export data needed since `national_2021` and `total_prefectures` were
+already in `lieux_prefectures.json` from the earlier place-page work.
+
+Compares each préfecture against the **national average per préfecture**
+(national 2021 population ÷ 20), not the whole-country total - dividing
+first keeps both bars on a comparable scale, the same reasoning already
+applied to the régional-sibling comparison above it. Rendered with the
+same `.comparison-row`/`.comparison-bar-fill` markup already used for
+that régional comparison, plus a one-line "Ouaka compte 1.7× cette
+moyenne" caption. Verified on both a well-above-average préfecture
+(Ouaka, 1.7×) and a well-below-average one (Vakaga, 0.3×) - bars scale
+correctly in both directions. All 33 pages still pass the 150 KB budget.

@@ -51,6 +51,24 @@ const comparisonRows = place.population
     ].sort((a, b) => b.pop_2021 - a.pop_2021)
   : [];
 const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
+
+// National comparison: this préfecture against the national average per
+// préfecture (national_2021 / 20), not the whole-country total - dividing
+// by 20 first keeps the two bars on a comparable scale, which comparing
+// straight against the national total wouldn't. Phase 4 step 6's other
+// half (docs/plan.md, "Parked" note) - the régional-sibling comparison
+// above already covers the first half.
+const nationalAveragePop = place.population
+  ? place.population.national_2021 / place.population.total_prefectures
+  : 0;
+const nationalComparisonRows = place.population
+  ? [
+      { name_fr: place.name_fr, pop_2021: place.population.pop_2021, isSelf: true },
+      { name_fr: "Moyenne nationale par préfecture", pop_2021: nationalAveragePop, isSelf: false },
+    ]
+  : [];
+const maxNationalComparisonPop = Math.max(1, ...nationalComparisonRows.map((r) => r.pop_2021));
+const nationalRatio = place.population ? place.population.pop_2021 / nationalAveragePop : 0;
 ---
 <!doctype html>
 <html lang="fr">
@@ -240,6 +258,31 @@ const maxComparisonPop = Math.max(1, ...comparisonRows.map((r) => r.pop_2021));
                   <div
                     class={`comparison-bar-fill ${r.isSelf ? "isSelf" : ""}`}
                     style={`width: ${(r.pop_2021 / maxComparisonPop * 100).toFixed(1)}%`}
+                  ></div>
+                </div>
+                <span class="comparison-value">{fmt(r.pop_2021)}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {nationalComparisonRows.length > 0 && (
+        <>
+          <h2>Comparaison nationale</h2>
+          <p class="headline-caption">
+            Population 2021 de {place.name_fr}, contre la moyenne nationale par préfecture
+            (population nationale 2021 divisée par {place.population.total_prefectures}) -
+            {" "}{place.name_fr} compte {nationalRatio.toFixed(1)}× cette moyenne.
+          </p>
+          <div style="margin-top: 12px;">
+            {nationalComparisonRows.map((r) => (
+              <div class="comparison-row">
+                <span class={`comparison-label ${r.isSelf ? "isSelf" : ""}`}>{r.name_fr}</span>
+                <div class="comparison-bar-track">
+                  <div
+                    class={`comparison-bar-fill ${r.isSelf ? "isSelf" : ""}`}
+                    style={`width: ${(r.pop_2021 / maxNationalComparisonPop * 100).toFixed(1)}%`}
                   ></div>
                 </div>
                 <span class="comparison-value">{fmt(r.pop_2021)}</span>
