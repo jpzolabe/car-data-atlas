@@ -337,7 +337,7 @@ One row per administrative unit *per version*.
 | `entity_id` | stable forever, never reused. Format `cf-p-ouaka-v1` |
 | `name_fr` | canonical French name with accents |
 | `slug` | accent-free URL slug |
-| `level` | `pays` / `region` / `prefecture` / `sous_prefecture` — commune/localite dropped from scope 2026-09-05, see `CLAUDE.md` |
+| `level` | `pays` / `region` / `prefecture` / `sous_prefecture` — commune/localite dropped from scope 2026-09-05, see `CLAUDE.md`. `marche` added 2026-09-12 for WFP food-price markets — a point, not an administrative area, and not part of the pays→region→prefecture→sous_prefecture hierarchy (its `parent_id` is the prefecture it sits within, for lack of a better anchor, not a claim of administrative nesting) |
 | `parent_id` | entity_id of parent, empty for country |
 | `valid_from` | ISO date. When this version came into effect |
 | `valid_to` | ISO date or empty for current |
@@ -737,6 +737,24 @@ health facilities as the first 3-way disclosure test), the ICASEES
 yearbooks (paused), and the `/themes/` URL structure inconsistency flagged
 in `docs/decisions.md` — worth revisiting now, before Phase 4's place
 pages make every theme's URL a link target from elsewhere.
+
+**Update 2026-09-12 (fifth pass the same day) — item 3, WFP food prices.**
+The first source at market-level geography — a point, not an
+administrative area, and genuinely deeper than sous-préfecture. HDX's
+"Central African Republic - Food Prices" dataset (CC BY-IGO) has 41 markets
+and 39 commodities, 2004 to present; checked live rather than assumed
+before picking anything. Bangui market, Retail pricetype, 5 staple
+commodities with monthly `priceflag=actual` data continuing into 2026
+(manioc, riz, maïs, bœuf, huile de palme) were added as 5 new indicators —
+71 total now. Required a new entity level, `marche` (`cf-m-bangui-v1`,
+parented to the Bangui prefecture entity for lack of a better anchor, not
+an administrative claim) — see the entities.csv table above and
+`docs/decisions.md`. Rendered as its own section on `/prix/`, separate from
+the national IHPC series, with the geographic-floor difference stated
+plainly per CLAUDE.md's transparency principle rather than blended in as
+if it were the same kind of figure. 34 other commodities and 40 other
+markets exist in the same source and are named as not-yet-covered rather
+than silently absent.
 
 ## Phase 4 — Descending (4–6 weeks)
 

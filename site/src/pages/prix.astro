@@ -155,8 +155,10 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       <p class="lede">
         Indice harmonisé des prix à la consommation (IHPC), toutes fonctions
         confondues, base 2019 = 100. Série mensuelle, janvier 2015 à {latest.period}.
-        Voir aussi <a href="/economie/">Économie</a>, où l'inflation est
-        résumée aux côtés du PIB et des autres indicateurs macroéconomiques.
+        Plus bas sur cette page, les prix réels de 5 denrées de grande
+        consommation au marché de Bangui. Voir aussi
+        <a href="/economie/">Économie</a>, où l'inflation est résumée aux
+        côtés du PIB et des autres indicateurs macroéconomiques.
       </p>
 
       <p class="headline">{fmt(latest.value)}<span class="unit">indice, {latest.period}</span></p>
@@ -235,6 +237,37 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
           );
         })}
       </div>
+
+      <h2>Denrées alimentaires au marché de Bangui</h2>
+      <p class="category-grid-note">
+        L'IHPC ci-dessus est un indice national. Ces 5 denrées sont des prix de
+        détail réels, relevés au {data.market.entity_name} — le marché, un point
+        précis et non une zone administrative, est le niveau géographique le
+        plus fin que ce site couvre pour l'instant. 34 autres denrées et 40
+        autres marchés existent dans la même source mais ne sont pas encore
+        intégrés.
+      </p>
+      <div class="category-grid">
+        {data.market.denrees.map((d) => {
+          const spark = sparkline(d);
+          return (
+            <div class="category-card">
+              <p class="cat-name">{d.name_fr}</p>
+              <p class="cat-value">{fmt(d.latest.value)}<span class="unit"> {d.unit}, {d.latest.period}</span></p>
+              <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${d.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                <polyline class="cat-spark-line" points={spark.points} />
+                <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+              </svg>
+              <p class="cat-sentence">{d.lead_sentence}</p>
+            </div>
+          );
+        })}
+      </div>
+      <p class="gap-note">
+        Source distincte de l'IHPC ci-dessus : {data.market.source.producer} —
+        {" "}{data.market.source.dataset_name}. Récupéré le {data.market.source.retrieved_at}.
+      </p>
 
       <footer>
         Source : {data.source.producer} — {data.source.dataset_name}.

@@ -108,6 +108,35 @@ def sentence_prix_categorie(
     return text, template_id
 
 
+# label_fr must fit "le kilogramme de {label_fr} se vendait à" (or "le litre
+# de ... " for the one non-kg unit) grammatically -- checked by hand against
+# these 5 real commodities. unit_word distinguishes "kilogramme" from "litre".
+PRIX_DENREE_LABELS = {
+    "prix_manioc_kg": ("manioc (cossette séchée)", "kilogramme"),
+    "prix_riz_kg": ("riz", "kilogramme"),
+    "prix_mais_kg": ("maïs", "kilogramme"),
+    "prix_boeuf_kg": ("viande de bœuf", "kilogramme"),
+    "prix_huile_palme_l": ("huile de palme", "litre"),
+}
+
+
+def sentence_prix_denree(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    period_fr = period_to_fr(period)
+    value_fr = format_int_fr(value)
+    label, unit_word = PRIX_DENREE_LABELS[indicator_id]
+    # "huile" is h-muet (elides); reusing elide_de's h-aspire exception list
+    # would be wrong here since none of these 5 labels start with one, but
+    # the check is kept explicit rather than assumed for the same reason
+    # elide_de documents its own limits above.
+    elides = label[0].lower() in "aeiouy" or label.lower().startswith("huile")
+    de_label = "d'" + label if elides else "de " + label
+    text = (
+        f"En {period_fr}, le {unit_word} {de_label} se vendait à "
+        f"{value_fr} francs CFA au marché de Bangui."
+    )
+    return text, f"{indicator_id}_marche"
+
+
 def sentence_inflation(period: str, value: float) -> tuple[str, str]:
     period_fr = period_to_fr(period)
     value_fr = format(round(value, 1), ".1f").replace(".", ",")

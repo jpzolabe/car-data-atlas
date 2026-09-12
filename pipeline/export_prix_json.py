@@ -16,11 +16,23 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_inflation, sentence_prix, sentence_prix_categorie
+from pipeline.sentences import (
+    sentence_inflation,
+    sentence_prix,
+    sentence_prix_categorie,
+    sentence_prix_denree,
+)
 
 OUT_PATH = "site/src/data/prix.json"
 
 CATEGORY_INDICATORS = ["prix_ihpc_alimentation", "prix_ihpc_sante", "prix_ihpc_transports"]
+
+# Market-level indicators (geographic_floor = "marche") -- entity-scoped,
+# unlike the country-level IHPC series above.
+MARKET_ENTITY_ID = "cf-m-bangui-v1"
+DENREE_INDICATORS = [
+    "prix_manioc_kg", "prix_riz_kg", "prix_mais_kg", "prix_boeuf_kg", "prix_huile_palme_l",
+]
 
 
 def fetch_series(con, indicator_id: str) -> list[tuple]:
@@ -32,15 +44,26 @@ def fetch_series(con, indicator_id: str) -> list[tuple]:
     """, [indicator_id]).fetchall()
 
 
+def fetch_market_series(con, indicator_id: str, entity_id: str) -> list[tuple]:
+    return con.execute("""
+        select period, value, quality_flag
+        from observations
+        where indicator_id = ? and entity_id = ?
+        order by period
+    """, [indicator_id, entity_id]).fetchall()
+
+
 def main():
     con = duckdb.connect()
     con.execute("""
         create view observations as select * from read_csv_auto('data/observations.csv');
         create view sources as select * from read_csv_auto('data/sources.csv');
         create view indicators as select * from read_csv_auto('data/indicators.csv');
+        create view entities as select * from read_csv_auto('data/entities.csv');
     """)
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
+    units = dict(con.execute("select indicator_id, unit from indicators").fetchall())
 
     rows = fetch_series(con, "prix_ihpc_global")
 
@@ -86,6 +109,38 @@ def main():
             "lead_sentence_template_id": cat_template_id,
         })
 
+    wfp_source = con.execute("""
+        select producer, dataset_name, url, retrieved_at::varchar
+        from sources where source_id = 'wfp-food-prices-hdx'
+    """).fetchone()
+    market_name = con.execute("""
+        select name_fr from entities where entity_id = ?
+    """, [MARKET_ENTITY_ID]).fetchone()[0]
+
+    denrees = []
+    for indicator_id in DENREE_INDICATORS:
+        d_rows = fetch_market_series(con, indicator_id, MARKET_ENTITY_ID)
+        d_latest = d_rows[-1]
+        d_lead, d_template_id = sentence_prix_denree(indicator_id, d_latest[0], d_latest[1])
+        denrees.append({
+            "indicator_id": indicator_id,
+            "name_fr": names[indicator_id],
+            "unit": units[indicator_id],
+            "latest": {"period": d_latest[0], "value": d_latest[1]},
+            "series": [{"period": r[0], "value": r[1]} for r in d_rows],
+            "lead_sentence": d_lead,
+            "lead_sentence_template_id": d_template_id,
+        })
+
+    market = {
+        "entity_name": market_name,
+        "source": {
+            "producer": wfp_source[0], "dataset_name": wfp_source[1],
+            "url": wfp_source[2], "retrieved_at": wfp_source[3],
+        },
+        "denrees": denrees,
+    }
+
     data = {
         "generated_note": (
             "Généré depuis data/observations.csv via "
@@ -100,6 +155,7 @@ def main():
         ],
         "inflation": inflation,
         "categories": categories,
+        "market": market,
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
@@ -107,7 +163,7 @@ def main():
 
     print(
         f"Wrote {len(rows)} months (global) + inflation + "
-        f"{len(categories)} categories to {OUT_PATH}"
+        f"{len(categories)} categories + {len(denrees)} market denrées to {OUT_PATH}"
     )
 
 

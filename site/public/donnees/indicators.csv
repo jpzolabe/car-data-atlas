@@ -1,3 +1,72 @@
 indicator_id,name_fr,definition_fr,unit,theme,geographic_floor,sentence_template_id,higher_is_better
 population_totale,Population totale,"Nombre total d'habitants dénombrés (recensement) ou estimés pour cette entité géographique.",habitants,population,prefecture,population_totale_lieu,
 prix_ihpc_global,Indice des prix à la consommation (IHPC),"Indice harmonisé des prix à la consommation, toutes fonctions COICOP confondues, base 2019.",indice,prix,pays,prix_ihpc_global_pays,
+acces_electricite,Accès à l'électricité,"Part de la population ayant accès à l'électricité.",%,infrastructures,pays,acces_electricite_pays,true
+taux_achevement_primaire,Taux d'achèvement du primaire,"Part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus.",%,education,pays,taux_achevement_primaire_pays,true
+taux_achevement_secondaire_1er_cycle,Taux d'achèvement du premier cycle du secondaire,"Part d'une cohorte d'âge ayant achevé le premier cycle de l'enseignement secondaire (collège), tous sexes confondus.",%,education,pays,taux_achevement_secondaire_1er_cycle_pays,true
+taux_achevement_secondaire_2nd_cycle,Taux d'achèvement du second cycle du secondaire,"Part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus.",%,education,pays,taux_achevement_secondaire_2nd_cycle_pays,true
+taux_scolarisation_brut_primaire,"Taux brut de scolarisation, primaire","Effectifs scolarisés dans le primaire, quel que soit l'âge, rapportés à la population d'âge officiellement primaire -- peut dépasser 100% (redoublants, entrées tardives).",%,education,pays,taux_scolarisation_brut_primaire_pays,true
+taux_scolarisation_net_primaire,"Taux net de scolarisation, primaire","Effectifs scolarisés dans le primaire ayant l'âge officiel du primaire, rapportés à la population de cet âge -- ne peut pas dépasser 100%.",%,education,pays,taux_scolarisation_net_primaire_pays,true
+taux_scolarisation_brut_secondaire_1er_cycle,"Taux brut de scolarisation, premier cycle du secondaire","Effectifs scolarisés dans le premier cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant.",%,education,pays,taux_scolarisation_brut_secondaire_1er_cycle_pays,true
+taux_scolarisation_brut_secondaire_2nd_cycle,"Taux brut de scolarisation, second cycle du secondaire","Effectifs scolarisés dans le second cycle du secondaire, quel que soit l'âge, rapportés à la population d'âge officiel correspondant.",%,education,pays,taux_scolarisation_brut_secondaire_2nd_cycle_pays,true
+taux_scolarisation_brut_superieur,"Taux brut de scolarisation, enseignement supérieur","Effectifs inscrits dans l'enseignement supérieur (tertiaire), quel que soit l'âge, rapportés à la population ayant l'âge théorique de sortie du secondaire.",%,education,pays,taux_scolarisation_brut_superieur_pays,true
+taux_redoublement_primaire,"Taux de redoublement, primaire","Part des élèves du primaire, toutes années confondues, inscrits dans la même année scolaire que l'année précédente.",%,education,pays,taux_redoublement_primaire_pays,false
+taux_survie_primaire,Taux de survie jusqu'à la dernière année du primaire,"Part d'une cohorte d'élèves entrés en première année du primaire qui atteignent la dernière année du cycle, avec ou sans redoublement.",%,education,pays,taux_survie_primaire_pays,true
+taux_non_scolarisation_primaire,"Taux de non-scolarisation, âge du primaire",Part des enfants ayant l'âge officiel du primaire qui ne sont scolarisés à aucun niveau.,%,education,pays,taux_non_scolarisation_primaire_pays,false
+taux_non_scolarisation_secondaire_1er_cycle,"Taux de non-scolarisation, âge du premier cycle du secondaire",Part des adolescents ayant l'âge officiel du premier cycle du secondaire qui ne sont scolarisés à aucun niveau.,%,education,pays,taux_non_scolarisation_secondaire_1er_cycle_pays,false
+taux_non_scolarisation_secondaire_2nd_cycle,"Taux de non-scolarisation, âge du second cycle du secondaire",Part des jeunes ayant l'âge officiel du second cycle du secondaire qui ne sont scolarisés à aucun niveau.,%,education,pays,taux_non_scolarisation_secondaire_2nd_cycle_pays,false
+taux_alphabetisation_jeunes,Taux d'alphabétisation des jeunes (15-24 ans),Part de la population âgée de 15 à 24 ans capable de lire et écrire un énoncé simple sur la vie courante.,%,education,pays,taux_alphabetisation_jeunes_pays,true
+taux_alphabetisation_adultes,Taux d'alphabétisation des adultes (15 ans et plus),Part de la population âgée de 15 ans et plus capable de lire et écrire un énoncé simple sur la vie courante.,%,education,pays,taux_alphabetisation_adultes_pays,true
+prix_ihpc_alimentation,IHPC — Produits alimentaires et boissons non alcoolisées,"Indice des prix à la consommation pour la fonction COICOP 'Produits alimentaires et boissons non alcoolisées', base 2019.",indice,prix,pays,prix_ihpc_categorie_pays,
+prix_ihpc_transports,IHPC — Transports,"Indice des prix à la consommation pour la fonction COICOP 'Transports', base 2019.",indice,prix,pays,prix_ihpc_categorie_pays,
+prix_ihpc_sante,IHPC — Santé,"Indice des prix à la consommation pour la fonction COICOP 'Santé', base 2019.",indice,prix,pays,prix_ihpc_categorie_pays,
+taux_inflation,Taux d'inflation,Taux d'inflation publié par l'ICASEES dans le même fichier tableau de bord que l'IHPC -- voir docs/verification-debt.md pour une réserve sur sa méthodologie exacte.,%,prix,pays,taux_inflation_pays,false
+taux_utilisation_internet,Utilisation d'Internet,Part de la population utilisant Internet.,%,infrastructures,pays,infrastructure_taux_pays,true
+abonnements_mobiles,Abonnements mobiles,Nombre d'abonnements de téléphonie mobile pour 100 habitants -- peut dépasser 100 (abonnements multiples par personne).,pour 100 habitants,infrastructures,pays,infrastructure_taux_pays,true
+acces_eau_potable_base,Accès à l'eau potable,Part de la population utilisant au moins un service de base d'eau potable.,%,infrastructures,pays,infrastructure_taux_pays,true
+acces_assainissement_base,Accès à l'assainissement,Part de la population utilisant au moins un service de base d'assainissement.,%,infrastructures,pays,infrastructure_taux_pays,true
+taux_croissance_population,Croissance de la population,Taux de croissance annuel de la population.,%,population,pays,population_taux_pays,
+taux_urbanisation,Population urbaine,Part de la population vivant en zone urbaine.,%,population,pays,population_taux_pays,
+taux_dependance_demographique,Taux de dépendance démographique,"Population de moins de 15 ans et de 65 ans et plus, rapportée à la population de 15-64 ans -- peut dépasser 100.",%,population,pays,population_taux_pays,
+esperance_vie,Espérance de vie à la naissance,Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes.,ans,sante,pays,sante_esperance_vie_pays,true
+taux_mortalite_moins_5ans,Mortalité des moins de 5 ans,"Probabilité de décès avant 5 ans, pour 1 000 naissances vivantes.",pour 1 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_mortalite_infantile,Mortalité infantile,"Probabilité de décès avant 1 an, pour 1 000 naissances vivantes.",pour 1 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_mortalite_maternelle,Mortalité maternelle,Décès maternels pour 100 000 naissances vivantes.,pour 100 000 naissances vivantes,sante,pays,sante_taux_pays,false
+taux_vaccination_rougeole,Vaccination contre la rougeole,Part des enfants de 12 à 23 mois ayant reçu le vaccin contre la rougeole.,%,sante,pays,sante_taux_pct_pays,true
+taux_vaccination_dtc,Vaccination DTC,Part des enfants de 12 à 23 mois ayant reçu le vaccin diphtérie-tétanos-coqueluche.,%,sante,pays,sante_taux_pct_pays,true
+densite_medecins,Densité de médecins,Nombre de médecins pour 1 000 habitants.,pour 1 000 habitants,sante,pays,sante_taux_pays,true
+densite_lits_hopital,Densité de lits d'hôpital,Nombre de lits d'hôpital pour 1 000 habitants.,pour 1 000 habitants,sante,pays,sante_taux_pays,true
+depenses_sante_pib,Dépenses de santé,"Dépenses courantes de santé, en part du PIB.",% du PIB,sante,pays,sante_taux_pib_pays,
+incidence_vih,Incidence du VIH,Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans.,pour 1 000 personnes non infectées 15-49 ans,sante,pays,sante_taux_pays,false
+pib_total,PIB,"Produit intérieur brut, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+pib_par_habitant,PIB par habitant,"Produit intérieur brut par habitant, en dollars américains courants.",US$,economie,pays,economie_montant_pays,true
+taux_croissance_pib,Croissance du PIB,Taux de croissance annuel du PIB réel.,%,economie,pays,economie_taux_pays,true
+taux_pauvrete,Taux de pauvreté,"Part de la population vivant sous le seuil de 3,00 $ par jour (PPA 2021).",%,economie,pays,economie_taux_pays,false
+taux_chomage,Taux de chômage,Part de la population active sans emploi (estimation modélisée OIT).,%,economie,pays,economie_taux_pays,false
+exportations_pib,Exportations,"Exportations de biens et services, en part du PIB.",%,economie,pays,economie_taux_pays,
+importations_pib,Importations,"Importations de biens et services, en part du PIB.",%,economie,pays,economie_taux_pays,
+dette_exterieure_rnb,Dette extérieure,"Encours de la dette extérieure, en part du revenu national brut.",%,economie,pays,economie_taux_pays,false
+investissements_directs_etrangers,Investissements directs étrangers,"Entrées nettes d'investissements directs étrangers, en part du PIB.",%,economie,pays,economie_taux_pays,true
+recettes_publiques_pib,Recettes publiques,"Recettes de l'État hors dons, en part du PIB.",%,economie,pays,economie_taux_pays,
+valeur_ajoutee_agriculture_pib,Valeur ajoutée de l'agriculture,"Agriculture, sylviculture et pêche, en part du PIB.",%,agriculture,pays,agriculture_taux_pays,
+terres_agricoles,Terres agricoles,Part du territoire national utilisée à des fins agricoles.,%,agriculture,pays,agriculture_taux_pays,
+terres_arables,Terres arables,Part du territoire national en terres arables.,%,agriculture,pays,agriculture_taux_pays,
+couverture_forestiere,Couverture forestière,Part du territoire national couverte de forêt.,%,agriculture,pays,agriculture_taux_pays,
+indice_production_alimentaire,Production alimentaire,"Indice de la production alimentaire, base 2014-2016 = 100.",indice,agriculture,pays,agriculture_indice_pays,true
+rendement_cereales,Rendement des céréales,"Rendement des céréales, en kilogrammes par hectare récolté.",kg/ha,agriculture,pays,agriculture_kgha_pays,true
+consommation_engrais,Consommation d'engrais,"Consommation d'engrais, en kilogrammes par hectare de terre arable.",kg/ha,agriculture,pays,agriculture_kgha_pays,
+taux_sous_alimentation,Sous-alimentation,Part de la population en sous-alimentation.,%,agriculture,pays,agriculture_taux_pays,false
+emploi_agricole,Emploi agricole,Part de l'emploi total dans l'agriculture (estimation modélisée OIT).,%,agriculture,pays,agriculture_taux_pays,
+nombre_medecins,Nombre de médecins,Effectif total de médecins en exercice.,personnes,sante,pays,sante_effectif_pays,true
+nombre_personnel_infirmier,Personnel infirmier et sages-femmes,Effectif total de personnel infirmier et de sages-femmes en exercice.,personnes,sante,pays,sante_effectif_pays,true
+nombre_lits_hopital,Nombre de lits d'hôpital,"Estimation calculée (densité de lits x population), pas un décompte publié directement -- voir docs/verification-debt.md.",lits,sante,pays,sante_effectif_calcule_pays,true
+exportations_montant,Exportations (valeur),"Exportations de biens et services, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+importations_montant,Importations (valeur),"Importations de biens et services, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+dette_exterieure_montant,Dette extérieure (montant),"Encours de la dette extérieure, en dollars américains courants.",US$,economie,pays,economie_montant_pays,false
+superficie_agricole,Superficie agricole,"Superficie totale des terres agricoles, en kilomètres carrés.",km²,agriculture,pays,agriculture_superficie_pays,
+production_cereales,Production de céréales,"Production totale de céréales, en tonnes.",tonnes,agriculture,pays,agriculture_production_pays,true
+prix_manioc_kg,Prix du manioc (cossette),"Prix de détail du kilogramme de manioc séché (cossette), au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_riz_kg,Prix du riz,"Prix de détail du kilogramme de riz, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_mais_kg,Prix du maïs,"Prix de détail du kilogramme de maïs, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_boeuf_kg,Prix de la viande de bœuf,"Prix de détail du kilogramme de viande de bœuf, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_huile_palme_l,Prix de l'huile de palme,"Prix de détail du litre d'huile de palme, au marché de Bangui.",FCFA/L,prix,marche,prix_denree_marche,false

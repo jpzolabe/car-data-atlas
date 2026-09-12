@@ -1,0 +1,68 @@
+name: Fetch WFP food prices (scheduled)
+
+# CLAUDE.md: "GitHub Actions — cron per source: fetch, snapshot, transform, open
+# a PR if data changed. Human review before merge." Same shape as
+# fetch-ihpc.yml, for the WFP Central African Republic food prices source
+# (data/sources.csv: wfp-food-prices-hdx).
+#
+# HDX's own listing says updates are nominally monthly but can occur more or
+# less often (its own caveats field) -- monthly cron is enough to catch a new
+# month promptly without being wasteful.
+
+on:
+  schedule:
+    - cron: "0 6 15 * *" # 15th of each month, 06:00 UTC
+  workflow_dispatch: {} # manual trigger, e.g. for testing this workflow itself
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fetch-wfp-prix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - uses: astral-sh/setup-uv@v3
+      - run: uv sync
+
+      - name: Fetch and transform
+        run: uv run python -m pipeline.fetch_wfp_prix
+
+      - name: Re-export site JSON
+        run: uv run python -m pipeline.export_prix_json
+
+      - name: Quality gates
+        run: uv run python -m pipeline.validate
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/observations.csv site/src/data/prix.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open PR if data changed
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="data-update/wfp-prix-$(date +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git add data/observations.csv raw/wfp-food-prices/ site/src/data/prix.json
+          git commit -m "data: refresh WFP food prices (marché de Bangui)"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --base develop \
+            --head "$BRANCH" \
+            --title "data: WFP food prices refresh $(date +%Y-%m-%d)" \
+            --body "Automated fetch from WFP's Central African Republic food prices dataset on HDX. Quality gates (pipeline.validate) passed. Human review requested before merge, per CLAUDE.md — check the diff for anything that looks like a discontinuity rather than a real month-over-month change."
