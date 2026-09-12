@@ -141,6 +141,11 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       @keyframes drawSpark { to { stroke-dashoffset: 0; } }
       @media (prefers-reduced-motion: reduce) { .cat-spark-line { animation: none; stroke-dashoffset: 0; } }
       .cat-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-prix) 6%, transparent);
+        border-radius: 3px;
+      }
       .cat-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
       svg { width: 100%; height: auto; display: block; margin: 16px 0; }
       .gridline { stroke: var(--line); stroke-width: 1; }
@@ -270,11 +275,15 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
               <p class="cat-name">{cat.name_fr}</p>
               <p class="cat-definition">{cat.definition_fr}</p>
               <p class="cat-value">{fmt(cat.latest.value)}<span class="unit"> indice, {cat.latest.period}</span></p>
-              <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${cat.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                <polyline class="cat-spark-line" points={spark.points} />
-                <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-              </svg>
+              {cat.series.length > 1 ? (
+                <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${cat.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                  <polyline class="cat-spark-line" points={spark.points} />
+                  <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                  <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                </svg>
+              ) : (
+                <p class="single-point-note">Une seule mesure disponible ({cat.latest.period}) - pas d'évolution à montrer.</p>
+              )}
               <p class="cat-sentence">{cat.lead_sentence}</p>
             </div>
           );
@@ -299,11 +308,15 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
               <p class="cat-name">{d.name_fr}</p>
               <p class="cat-definition">{d.definition_fr}</p>
               <p class="cat-value">{fmt(d.latest.value)}<span class="unit"> {d.unit}, {d.latest.period}</span></p>
-              <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${d.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
-                <polyline class="cat-spark-line" points={spark.points} />
-                <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
-                <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
-              </svg>
+              {d.series.length > 1 ? (
+                <svg class="cat-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${d.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                  <polyline class="cat-spark-line" points={spark.points} />
+                  <text class="cat-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                  <text class="cat-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                </svg>
+              ) : (
+                <p class="single-point-note">Une seule mesure disponible ({d.latest.period}) - pas d'évolution à montrer.</p>
+              )}
               <p class="cat-sentence">{d.lead_sentence}</p>
             </div>
           );
