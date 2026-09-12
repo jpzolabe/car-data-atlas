@@ -1,23 +1,29 @@
 ---
-// The real home page, docs/plan.md Sec2.2 - built 2026-09-13 now that all
-// 7 themes exist with real data (the placeholder comment here used to say
-// this needed "more than two indicators"; there are 86 now). Structure
-// follows Sec2.2 with one deliberate departure from the original spec,
-// per direct feedback: no lead-story block (Sec2.2's own §4, dropped -
-// the headline cards plus the theme grid already do the "give a curious
-// visitor the country in ninety seconds" job on their own), and the
-// theme grid shows 5 main themes rather than all 7 site sections - prix
-// and agriculture are their own pages (own URLs, own nav entries
-// elsewhere) but conceptually sit inside économie, so the home page's
-// top-level menu reflects that instead of listing 7 flat, equally-weighted
-// rows. No map, per Sec2.2's own explicit call (a national choropleth
-// would force picking one contested population figure over the others).
+// The real home page, docs/plan.md Sec2.2. Redesigned 2026-09-13 after
+// direct feedback that the first pass (built earlier the same day) still
+// felt like a stack of same-weight boxes with no real focal point -
+// stepping back from reactive patching to one coherent pass instead.
+//
+// The structural change from that first pass: one clear hero moment
+// (population - the country's single most-cited fact, with its own
+// chart) instead of 6 equal headline cards; the other 5 quick figures
+// are now a de-emphasized single-line ticker, not another grid of boxes.
+// This also brings back a real chart (cut in the previous pass along
+// with "À la une"), but folded into the hero rather than bolted on as
+// its own separate disclosure-heavy section - full multi-source
+// disclosure stays on /population/ itself, this is just the headline
+// figure plus a look at the spread across préfectures.
+//
+// Theme grid (5 main themes, prix/agriculture nested under économie) and
+// the "no icons except one functional glyph family" stance are unchanged
+// from the previous pass - those calls were right, the overall
+// composition around them wasn't.
 //
 // Client JS on this page: the search box (existing exception) plus the
 // sitewide dark-mode toggle every page carries - see CLAUDE.md's
-// performance budget and ThemeToggle.astro. Everything else - headline
-// cards - is computed here at build time from the same JSON artifacts
-// each theme page already reads.
+// performance budget and ThemeToggle.astro. Everything else is computed
+// here at build time from the same JSON artifacts each theme page
+// already reads.
 import population from "../data/population.json";
 import prix from "../data/prix.json";
 import infrastructures from "../data/infrastructures.json";
@@ -33,16 +39,9 @@ const isStale = (period: string) => CURRENT_YEAR - yearOf(period) > 5;
 const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
-// 5 main themes, not all 7 site sections - prix and agriculture nest
-// under économie here (their own pages/nav entries still exist
-// elsewhere, see footer). No freshness date at this level: with only 5
-// broad rows this is a plain menu + one-line coverage description, not a
-// vintage report - each theme's own page is where freshness actually
-// belongs, indicator by indicator.
 // One-glyph icon per theme, same stroke style as the nav bar's home icon
 // (currentColor, 2px stroke, round caps) so the whole set reads as one
-// family rather than mismatched clip-art - wayfinding, not decoration,
-// same reasoning as the nav bar's own icon.
+// family rather than mismatched clip-art - wayfinding, not decoration.
 const ICONS = {
   population: `<circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20v-1.2a6.5 6.5 0 0 1 13 0V20"></path>`,
   infrastructures: `<path d="M13 2 5 14h5.5L9 22l9-13h-5.5L13 2Z"></path>`,
@@ -51,6 +50,8 @@ const ICONS = {
   economie: `<path d="M4 4v16h16"></path><path d="M7 15.5l4-4.5 3.2 3 5-6"></path>`,
 };
 
+// 5 main themes, not all 7 site sections - prix and agriculture nest
+// under économie (their own pages/nav entries still exist elsewhere).
 const THEMES = [
   { name: "Population", href: "/population/", accent: "var(--t-pop)", icon: ICONS.population,
     description: "Recensements et projections, jusqu'à la sous-préfecture." },
@@ -69,15 +70,11 @@ const THEMES = [
 ];
 
 const manioc = prix.market.denrees.find((d: any) => d.indicator_id === "prix_manioc_kg");
-// taux_croissance_pib's own "latest"/"national.headline" is deliberately
-// ICASEES's 2021 figure on /economie/ itself (administrative data
-// outranks a modelled estimate there, per méthode.astro's authority
-// ranking - a considered policy, not staleness to fix). The home page's
-// job is different: a quick, current snapshot, not the full ranked
-// disclosure - so this specifically takes the last point of the World
-// Bank's own annual series instead, the freshest real figure available
-// (2025), labelled as what it is (a World Bank estimate, not the
-// administrative one économie leads with).
+// taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
+// figure on /economie/ (administrative data outranks a modelled
+// estimate there, per méthode.astro's authority ranking - correct and
+// unchanged). The home page ticker wants a current snapshot instead, so
+// this takes the last point of the World Bank series directly.
 const croissancePibSeries = economie.categories
   .flatMap((c: any) => c.indicators)
   .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
@@ -85,35 +82,41 @@ const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
 const electricite = infrastructures.series[infrastructures.series.length - 1];
 const achevementPrimaire = education.headline.national.headline;
 
-// Deliberately mixes fresh and stale (docs/plan.md Sec2.2: "showing that
-// electricity access comes from an older survey is the point").
-const HEADLINE_CARDS = [
-  {
-    label: "Population", value: fmt(population.national.headline.value), unit: "habitants",
-    period: population.national.headline.period, note: "provisoire",
-    source: "ICASEES, RGPH-4", accent: "var(--t-pop)", href: "/population/",
-  },
+// De-emphasized ticker, deliberately mixing fresh and stale (docs/plan.md
+// Sec2.2: "showing that a figure comes from an older survey is the
+// point") - secondary to the population hero below, not another grid of
+// equal-weight boxes.
+const SECONDARY_STATS = [
   {
     label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
-    period: croissancePibLatest.period, source: "Banque mondiale", accent: "var(--t-eco)", href: "/economie/",
+    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/",
   },
   {
-    label: "Inflation annuelle", value: fmtPct(prix.inflation.latest.value), unit: "%",
-    period: prix.inflation.latest.period, source: "ICASEES, IHPC", accent: "var(--t-prix)", href: "/prix/",
+    label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
+    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/",
   },
   {
-    label: "Accès à l'électricité", value: fmtPct(electricite.value), unit: "%",
-    period: electricite.period, source: "Banque mondiale", accent: "var(--t-infra)", href: "/infrastructures/",
+    label: "Électricité", value: fmtPct(electricite.value), unit: "%",
+    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/",
   },
   {
-    label: "Achèvement du primaire", value: fmtPct(achevementPrimaire.value), unit: "%",
-    period: achevementPrimaire.period, source: "UNESCO (UIS)", accent: "var(--t-edu)", href: "/education/",
+    label: "Achèvement primaire", value: fmtPct(achevementPrimaire.value), unit: "%",
+    period: achevementPrimaire.period, accent: "var(--t-edu)", href: "/education/",
   },
   {
-    label: "Prix du manioc, Bangui", value: fmt(manioc.latest.value), unit: "FCFA/kg",
-    period: manioc.latest.period, source: "ICASEES, IHPC", accent: "var(--t-prix)", href: "/prix/",
+    label: "Manioc, Bangui", value: fmt(manioc.latest.value), unit: "FCFA/kg",
+    period: manioc.latest.period, accent: "var(--t-prix)", href: "/prix/",
   },
 ];
+
+// Hero chart: top 8 préfectures by population, the same build-time-SVG
+// bar approach population.astro uses on its own full 20-row chart, just
+// shorter - this is the page's one real visual, not a second data table.
+const ranked = [...population.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021).slice(0, 8);
+const CHART_W = 640, ROW_H = 22, MARGIN_L = 132, MARGIN_R = 56;
+const CHART_H = ranked.length * ROW_H + 4;
+const maxPop = Math.max(...ranked.map((r) => r.pop_2021));
+const barWidth = (v: number) => Math.round((v / maxPop) * (CHART_W - MARGIN_L - MARGIN_R) * 10) / 10;
 ---
 <!doctype html>
 <html lang="fr">
@@ -157,73 +160,97 @@ const HEADLINE_CARDS = [
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+      main { max-width: 900px; margin: 0 auto; padding: 88px 24px 80px; }
 
-      .site-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; }
-      h1 { font-size: 2.1rem; margin: 0; letter-spacing: -0.01em; }
-      .tagline { color: var(--ink-muted); max-width: 46ch; margin: 6px 0 0; font-size: 14.5px; }
+      .hero { text-align: center; margin: 0 auto 8px; max-width: 640px; }
+      h1 { font-size: 2.75rem; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
+      .tagline { color: var(--ink-muted); margin: 10px 0 26px; font-size: 15.5px; }
 
-      #search { width: 100%; max-width: 380px; }
+      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; }
       #search input {
-        width: 100%; font: inherit; font-size: 0.95rem; padding: 10px 12px;
-        border: 1px solid var(--line); border-radius: 3px; background: var(--surface); color: var(--ink);
+        width: 100%; font: inherit; font-size: 1rem; padding: 13px 16px;
+        border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink);
+        box-shadow: 0 2px 10px -4px rgba(0,0,0,0.08);
       }
       #search input:focus { outline: 2px solid var(--indigo); outline-offset: 1px; }
-      #search-results { list-style: none; margin: 10px 0 0; padding: 0; position: relative; z-index: 5; }
-      #search-results li { border-top: 1px solid var(--line); padding: 10px 0; background: var(--paper); }
+      #search-results {
+        list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
+        width: 100%; background: var(--paper); border-radius: 6px;
+      }
+      #search-results li:first-child { border-top: none; }
+      #search-results li { border-top: 1px solid var(--line); padding: 10px 2px; text-align: left; }
       #search-results a { color: var(--indigo); font-size: 0.9rem; text-decoration: none; }
       #search-results a:hover { text-decoration: underline; }
       #search-results .excerpt { display: block; color: var(--ink-muted); font-size: 0.8rem; margin-top: 3px; }
       #search-results .excerpt mark { background: none; color: var(--ink); font-weight: 600; }
-      #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; }
+      #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; text-align: left; }
 
       .identity-strip {
-        margin: 22px 0 0; font-size: 13.5px; color: var(--ink-muted);
-        padding-top: 16px; border-top: 1px solid var(--line);
+        text-align: center; margin: 26px 0 0; font-size: 13px; color: var(--ink-faint);
       }
-      .identity-strip a { color: var(--indigo); text-decoration: none; border-bottom: 1px dotted var(--indigo); }
-      .identity-strip a:hover { border-bottom-style: solid; }
+      .identity-strip a { color: var(--ink-muted); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); }
+      .identity-strip a:hover { border-bottom-style: solid; color: var(--indigo); }
 
-      h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 40px 0 14px; }
+      h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 44px 0 14px; }
 
-      .stat-strip {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
-        overflow: hidden;
+      .hero-stat {
+        margin-top: 40px; padding: 26px 28px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 4px solid var(--t-pop); border-radius: 6px;
       }
-      .stat-item {
-        padding: 16px 18px; text-decoration: none; color: inherit;
-        border-left: 1px solid var(--line); border-top: 1px solid transparent;
-        transition: background-color 0.15s ease;
+      .hero-stat-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+      .hero-stat-label { font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 8px; }
+      .hero-stat-value {
+        font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 700; color: var(--t-pop);
+        margin: 0; line-height: 1; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
       }
-      .stat-item:first-child { border-left: none; }
-      .stat-item:hover { background: color-mix(in srgb, var(--stat-accent) 7%, transparent); }
-      .stat-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 6px; }
-      .stat-value {
-        font-family: ui-monospace, monospace; font-size: 1.3rem; font-weight: 600; color: var(--stat-accent);
-        margin: 0; display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
+      .hero-stat-value .unit { font-size: 0.95rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .hero-stat-source { font-size: 12.5px; color: var(--ink-muted); margin: 8px 0 0; }
+      .hero-stat-cta {
+        font-size: 13px; color: var(--t-pop); text-decoration: none; white-space: nowrap;
+        padding-bottom: 3px; border-bottom: 1px solid color-mix(in srgb, var(--t-pop) 40%, transparent);
       }
-      .stat-value .unit { font-size: 0.62rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
-      .stat-source { font-size: 10.5px; color: var(--ink-muted); margin: 6px 0 0; }
-      .stat-source.stale { color: var(--stale); }
-      .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 9.5px; padding: 1px 5px; border-radius: 2px; margin-left: 4px; background: var(--ochre-soft); color: var(--ochre); }
+      .hero-stat-cta:hover { border-bottom-color: var(--t-pop); }
+      .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 10px; padding: 2px 6px; border-radius: 2px; background: var(--ochre-soft); color: var(--ochre); }
+
+      svg.hero-chart { width: 100%; height: auto; display: block; margin: 22px 0 0; }
+      .bar-label { font-family: ui-monospace, monospace; font-size: 11px; fill: var(--ink-muted); }
+      .bar-value { font-family: ui-monospace, monospace; font-size: 11px; fill: var(--ink); font-weight: 600; }
+      .bar-rect { fill: var(--t-pop); transform-origin: left; animation: growBar 0.5s ease-out backwards; }
+      @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      @media (prefers-reduced-motion: reduce) { .bar-rect { animation: none; } }
+
+      .ticker {
+        display: flex; flex-wrap: wrap; margin-top: 10px;
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      }
+      .ticker-item {
+        display: flex; align-items: baseline; gap: 7px; padding: 12px 16px 12px 0;
+        margin-right: 16px; text-decoration: none; color: inherit;
+      }
+      .ticker-item:not(:last-child) { border-right: 1px solid var(--line); }
+      .ticker-label { font-size: 12px; color: var(--ink-muted); }
+      .ticker-item:hover .ticker-label { color: var(--ink); }
+      .ticker-value { font-family: ui-monospace, monospace; font-size: 13.5px; font-weight: 600; color: var(--ticker-accent); }
+      .ticker-value .unit { font-size: 10px; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .ticker-period { font-size: 10.5px; color: var(--ink-faint); }
+      .ticker-period.stale { color: var(--stale); }
 
       .theme-rows {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 14px;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
       }
       .theme-row {
-        padding: 16px 18px; border-radius: 3px;
-        background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--row-accent);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        padding: 15px 17px; border-radius: 5px;
+        background: var(--surface); border: 1px solid var(--line);
+        transition: border-color 0.15s ease, background-color 0.15s ease;
       }
-      .theme-row:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--row-accent) 55%, transparent); }
+      .theme-row:hover { border-color: var(--row-accent); background: color-mix(in srgb, var(--row-accent) 5%, var(--surface)); }
       .theme-row .theme-heading { display: flex; align-items: center; gap: 9px; }
       .theme-row .theme-icon { flex: none; color: var(--row-accent); }
-      .theme-row .theme-name { font-size: 16px; font-weight: 600; color: var(--row-accent); text-decoration: none; }
+      .theme-row .theme-name { font-size: 15.5px; font-weight: 600; color: var(--row-accent); text-decoration: none; }
       .theme-row .theme-name:hover { text-decoration: underline; }
-      .theme-row .theme-description { font-size: 12.5px; color: var(--ink-muted); margin: 7px 0 0; line-height: 1.45; }
-      .theme-row .theme-sublinks { margin: 10px 0 0; display: flex; gap: 12px; }
+      .theme-row .theme-description { font-size: 12px; color: var(--ink-muted); margin: 7px 0 0; line-height: 1.45; }
+      .theme-row .theme-sublinks { margin: 9px 0 0; display: flex; gap: 12px; }
       .theme-row .theme-sublinks a {
         font-size: 11.5px; color: var(--ink-faint);
         text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px;
@@ -231,7 +258,7 @@ const HEADLINE_CARDS = [
       .theme-row .theme-sublinks a:hover { color: var(--row-accent); }
 
       footer {
-        margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line);
+        margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--line);
         font-size: 12.5px; color: var(--ink-faint); display: flex; flex-wrap: wrap;
         justify-content: space-between; gap: 12px;
       }
@@ -244,14 +271,12 @@ const HEADLINE_CARDS = [
   <body>
     <SiteNav />
     <main>
-      <div class="site-header">
-        <div>
-          <h1>Données RCA</h1>
-          <p class="tagline">
-            Explorer la République centrafricaine - ce que disent les données,
-            d'où elles viennent, et ce que personne n'a encore mesuré.
-          </p>
-        </div>
+      <div class="hero">
+        <h1>Données RCA</h1>
+        <p class="tagline">
+          Explorer la République centrafricaine - ce que disent les données,
+          d'où elles viennent, et ce que personne n'a encore mesuré.
+        </p>
         <div id="search">
           <input
             type="text" id="search-input"
@@ -268,16 +293,37 @@ const HEADLINE_CARDS = [
         <a href="/methode/#geographie">7 régions · 20 préfectures · 85 sous-préfectures</a>
       </p>
 
-      <h2>En bref</h2>
-      <div class="stat-strip">
-        {HEADLINE_CARDS.map((c) => (
-          <a class="stat-item" href={c.href} style={`--stat-accent: ${c.accent}`}>
-            <p class="stat-label">{c.label}</p>
-            <p class="stat-value">{c.value}<span class="unit">{c.unit}</span></p>
-            <p class={`stat-source ${isStale(c.period) ? "stale" : ""}`}>
-              {c.source}, {c.period}
-              {c.note && <span class="badge">{c.note}</span>}
+      <div class="hero-stat">
+        <div class="hero-stat-header">
+          <div>
+            <p class="hero-stat-label">Population</p>
+            <p class="hero-stat-value">
+              {fmt(population.national.headline.value)}<span class="unit">habitants</span>
+              <span class="badge">provisoire</span>
             </p>
+            <p class="hero-stat-source">
+              {population.national.headline.producer} - {population.national.headline.dataset_name}, {population.national.headline.period}
+            </p>
+          </div>
+          <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
+        </div>
+        <svg class="hero-chart" viewBox={`0 0 ${CHART_W} ${CHART_H}`} role="img" aria-label="Les 8 préfectures les plus peuplées, estimation 2021">
+          {ranked.map((row, i) => (
+            <g transform={`translate(0, ${i * ROW_H})`}>
+              <text class="bar-label" x={MARGIN_L - 8} y={ROW_H / 2 + 4} text-anchor="end">{row.prefecture}</text>
+              <rect class="bar-rect" x={MARGIN_L} y={4} width={barWidth(row.pop_2021)} height={ROW_H - 8} style={`animation-delay: ${i * 30}ms`} />
+              <text class="bar-value" x={MARGIN_L + barWidth(row.pop_2021) + 6} y={ROW_H / 2 + 4}>{fmt(row.pop_2021)}</text>
+            </g>
+          ))}
+        </svg>
+      </div>
+
+      <div class="ticker">
+        {SECONDARY_STATS.map((s) => (
+          <a class="ticker-item" href={s.href} style={`--ticker-accent: ${s.accent}`}>
+            <span class="ticker-label">{s.label}</span>
+            <span class="ticker-value">{s.value}<span class="unit">{s.unit}</span></span>
+            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>{s.period}</span>
           </a>
         ))}
       </div>
