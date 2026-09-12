@@ -203,6 +203,51 @@ def sentence_population_rate(indicator_id: str, period: str, value: float) -> tu
     return text, f"{indicator_id}_pays"
 
 
+# label_fr must fit "{label_fr} en République centrafricaine s'établissait
+# à" grammatically -- checked by hand against these 8 real indicators. All
+# use "%", unlike santé's varied units, so no unit-branching needed here.
+ECONOMIE_RATE_LABELS = {
+    "taux_croissance_pib": "le taux de croissance du PIB",
+    "taux_pauvrete": "le taux de pauvreté (seuil de 3,00 $ par jour, PPA 2021)",
+    "taux_chomage": "le taux de chômage",
+    "exportations_pib": "la part des exportations dans le PIB",
+    "importations_pib": "la part des importations dans le PIB",
+    "dette_exterieure_rnb": "le poids de la dette extérieure dans le revenu national brut",
+    "investissements_directs_etrangers": (
+        "la part des investissements directs étrangers dans le PIB"
+    ),
+    "recettes_publiques_pib": "la part des recettes publiques dans le PIB",
+}
+
+
+def sentence_economie_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label = ECONOMIE_RATE_LABELS[indicator_id]
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {value_fr}%."
+    )
+    return text, f"{indicator_id}_pays"
+
+
+def sentence_economie_montant(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    if indicator_id == "pib_total":
+        billions_fr = format(round(value / 1e9, 2), ".2f").replace(".", ",")
+        text = (
+            f"En {period}, le produit intérieur brut de la République "
+            f"centrafricaine s'établissait à {billions_fr} milliards de "
+            f"dollars américains courants."
+        )
+    else:  # pib_par_habitant
+        value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
+        text = (
+            f"En {period}, le produit intérieur brut par habitant en "
+            f"République centrafricaine s'établissait à {value_fr} "
+            f"dollars américains courants."
+        )
+    return text, f"{indicator_id}_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:

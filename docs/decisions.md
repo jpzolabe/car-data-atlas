@@ -329,3 +329,32 @@ exists"). Not ingested here -- linked instead. A raster wouldn't fit this
 project's CSV/DuckDB pipeline without real GeoTIFF-handling work anyway,
 and CLAUDE.md is explicit that duplicating existing HDX analysis isn't the
 point of this project.
+
+## Économie: second brand-new theme, first with non-percentage indicators
+
+Same build as santé -- 10 World Bank indicators, each confirmed live for
+CAF before adding, categories ordered production -> commerce extérieur ->
+finances publiques -> niveau de vie (how big the economy is, how it trades
+and finances itself, how the state finances itself, what it means for
+people -- ending on the outcome, not starting there). PIB par habitant is
+the headline.
+
+First theme page where not every indicator shares a unit: `pib_total` and
+`pib_par_habitant` are US$, not %, unlike every other indicator across
+population/prix/infrastructures/éducation/santé so far. Rather than force
+a generic "%"-only formatter, `economie.astro`'s `formatValue()` branches
+by indicator_id, and `pipeline/sentences.py` gets a dedicated
+`sentence_economie_montant()` (billions for the total, plain thousands-
+separated dollars for per-capita) alongside the generic
+`sentence_economie_rate()` used for the other 8. Also picked a genuinely
+new accent color (`--t-eco: #3D6373`, steel blue) rather than reusing
+`--ochre` (`#B8790F`), which is already the site-wide semantic color for
+"estimated" badges -- a theme's brand color colliding with an existing
+semantic color would have been confusing on every page, this one included.
+
+Two real gaps flagged, not hidden: `taux_pauvrete` only has 3 data points
+total (1992, one intermediate year, 2021 — depends on infrequent household
+surveys), and `recettes_publiques_pib` stops at 2021. CLAUDE.md also notes
+ICASEES has its own GDP rebasing (2019 base) underway — these World Bank
+figures haven't been cross-checked against that once it's published; see
+`docs/verification-debt.md`.

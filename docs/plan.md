@@ -655,12 +655,25 @@ espérance de vie → maladies — see `docs/decisions.md`. Espérance de vie is
 the headline. One real gap flagged, not hidden: hospital-bed density's
 most recent World Bank data point is from 2011.
 
-**5 of 7 sitemap themes now exist, 39 indicators total.** Économie and
-agriculture are next. Still open: the Phase 3 source list items 3-7 (WFP
-food prices — CLAUDE.md's own example indicator, national accounts/GDP,
-MICS 2018-19, IMF NSDP/SDMX, health facilities as the first 3-way
-disclosure test), the ICASEES yearbooks (paused), and the `/themes/` URL
-structure inconsistency flagged in `docs/decisions.md`.
+**5 of 7 sitemap themes existed after santé; économie followed the same
+day.** 10 more World Bank indicators (GDP total/per capita/growth, poverty,
+unemployment, exports, imports, external debt, FDI, government revenue),
+grouped production → commerce extérieur → finances publiques → niveau de
+vie. PIB par habitant is the headline. First theme with non-percentage
+indicators (GDP figures are US$) — `economie.astro` and
+`sentence_economie_montant()` handle that explicitly rather than forcing
+everything through a "%"-only formatter. Two gaps flagged: poverty rate has
+only 3 data points ever (infrequent household surveys), government revenue
+stops at 2021. Also: ICASEES's own GDP rebasing (2019 base, per
+`CLAUDE.md`) hasn't been cross-checked against these World Bank figures —
+see `docs/verification-debt.md`.
+
+**6 of 7 sitemap themes now exist, 49 indicators total.** Agriculture is
+the last one. Still open: the Phase 3 source list items 3-7 (WFP food
+prices — CLAUDE.md's own example indicator, national accounts/GDP via PDF
+extraction, MICS 2018-19, IMF NSDP/SDMX, health facilities as the first
+3-way disclosure test), the ICASEES yearbooks (paused), and the `/themes/`
+URL structure inconsistency flagged in `docs/decisions.md`.
 
 ## Phase 4 — Descending (4–6 weeks)
 

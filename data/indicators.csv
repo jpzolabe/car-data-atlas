@@ -38,3 +38,13 @@ densite_medecins,Densité de médecins,Nombre de médecins pour 1 000 habitants.
 densite_lits_hopital,Densité de lits d'hôpital,Nombre de lits d'hôpital pour 1 000 habitants.,pour 1 000 habitants,sante,pays,sante_taux_pays,true
 depenses_sante_pib,Dépenses de santé,"Dépenses courantes de santé, en part du PIB.",% du PIB,sante,pays,sante_taux_pib_pays,
 incidence_vih,Incidence du VIH,Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans.,pour 1 000 personnes non infectées 15-49 ans,sante,pays,sante_taux_pays,false
+pib_total,PIB,"Produit intérieur brut, en dollars américains courants.",US$,economie,pays,economie_montant_pays,
+pib_par_habitant,PIB par habitant,"Produit intérieur brut par habitant, en dollars américains courants.",US$,economie,pays,economie_montant_pays,true
+taux_croissance_pib,Croissance du PIB,Taux de croissance annuel du PIB réel.,%,economie,pays,economie_taux_pays,true
+taux_pauvrete,Taux de pauvreté,"Part de la population vivant sous le seuil de 3,00 $ par jour (PPA 2021).",%,economie,pays,economie_taux_pays,false
+taux_chomage,Taux de chômage,Part de la population active sans emploi (estimation modélisée OIT).,%,economie,pays,economie_taux_pays,false
+exportations_pib,Exportations,"Exportations de biens et services, en part du PIB.",%,economie,pays,economie_taux_pays,
+importations_pib,Importations,"Importations de biens et services, en part du PIB.",%,economie,pays,economie_taux_pays,
+dette_exterieure_rnb,Dette extérieure,"Encours de la dette extérieure, en part du revenu national brut.",%,economie,pays,economie_taux_pays,false
+investissements_directs_etrangers,Investissements directs étrangers,"Entrées nettes d'investissements directs étrangers, en part du PIB.",%,economie,pays,economie_taux_pays,true
+recettes_publiques_pib,Recettes publiques,"Recettes de l'État hors dons, en part du PIB.",%,economie,pays,economie_taux_pays,
