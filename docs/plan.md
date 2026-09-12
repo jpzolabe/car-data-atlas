@@ -134,7 +134,23 @@ The workhorse of the site. One per theme.
    coverage summary: how many indicators, oldest and newest vintage, deepest
    geographic level reached.
 
-2. **Indicator blocks**, one per indicator, repeated. Each block contains:
+2. **Headline figure** — required once a theme has more than one or two
+   indicators, added 2026-09-12 after the éducation page shipped with 15
+   indicators and no orienting summary (a reader hit three large multi-source
+   disclosure blocks before anything else). One number, one generated
+   sentence, a link down to the full breakdown — no chart or table here. Pick
+   the single most legible, most commonly-understood figure in the theme as
+   the headline, not necessarily whichever indicator happened to be added
+   first.
+
+3. **Indicator blocks**, one per indicator, repeated. Where indicators fall
+   into natural categories (as éducation's completion/enrollment/retention/
+   literacy do), group them, and order both the categories and the
+   indicators within them by logical or causal sequence — e.g. éducation
+   goes scolarisation → rétention → achèvement → alphabétisation, a
+   student's actual path, not achievement-first — rather than by fetch order
+   or an arbitrary list. Leading with an outcome before the causes that
+   produce it reads like starting a story at the ending. Each block contains:
    - Indicator name and current value at national level
    - A chart — line for time series, horizontal bars for composition or ranking
    - **One generated French sentence** describing what the chart shows
@@ -143,17 +159,17 @@ The workhorse of the site. One per theme.
    - A `Niveau le plus fin : sous-préfecture` badge, so the reader knows how deep it goes
    - Buttons: `Données CSV`, `Image PNG`, `Intégrer`
 
-3. **Breakdown section** — a table or bar chart of the indicator by région or
+4. **Breakdown section** — a table or bar chart of the indicator by région or
    préfecture, with links down to place pages. Only rendered for indicators that
    genuinely reach that level.
 
-4. **Ce qui n'est pas mesuré** — an explicit list. For the education theme, for
+5. **Ce qui n'est pas mesuré** — an explicit list. For the education theme, for
    example: no data on teacher qualifications since X, no data on secondary
    completion by sous-préfecture, exam results not published in machine-readable form.
    **This section is written by hand, not generated.** It is the most valuable
    content on the page and the least automatable.
 
-5. **Related themes and next steps.**
+6. **Related themes and next steps.**
 
 ## 2.4 Place pages
 

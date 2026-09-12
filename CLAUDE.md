@@ -70,7 +70,10 @@ sous-préfecture), and curious readers arrive at the country before the sous-pr�
 - **Home** — national headline figures across themes
 - **Theme pages** — one per theme (population, économie, santé, éducation,
   agriculture et prix, infrastructures). National series over time, charts, sources,
-  what is and isn't measured. Each offers a breakdown to descend.
+  what is and isn't measured. Each offers a breakdown to descend. Once a theme has
+  more than one or two indicators: lead with one orienting headline figure before
+  any breakdown, and group/order indicators by logical sequence (e.g. a causal
+  chain) rather than by fetch order or an arbitrary list — see docs/plan.md §2.3.
 - **Place pages** — a single place across all themes. Reached by drilling down or by
   direct search.
 
