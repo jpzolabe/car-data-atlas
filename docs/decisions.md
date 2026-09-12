@@ -1506,3 +1506,61 @@ All 33 pages rebuilt clean. Home page actually shrank (26 KB -> 18.7 KB)
 with "À la une" gone; the longest page (`/population/`) is ~63 KB,
 still far under the 150 KB budget even after the new sexe-split figure
 and the fixed nav bar's markup landing on every page.
+
+## Third UI polish round: stale croissance du PIB, a real bug caught fixing it, home page consolidation
+
+**Croissance du PIB on the home page was showing 2021 - the actual bug
+was in `index.astro`, not stale data.** Checked live before assuming
+anything needed a new source (per the instruction not to restrain to
+CLAUDE.md's list if the data was genuinely out of date): the World Bank
+WDI API (`world-bank-gdp`, already used for this exact indicator) has
+real data through 2025 (4.5%). Then checked further, since that's a
+surprising thing to have missed - and found this project's own git
+history already had 2025 in `data/observations.csv` from the *very
+first* économie fetch, months of session-time before this round. The
+World Bank series was never stale; `index.astro`'s headline card was
+reading `taux_croissance_pib`'s `.latest` field, which is deliberately
+ICASEES's 2021 figure on `/economie/` (administrative data outranks a
+modelled estimate there, per méthode.astro's authority ranking - correct
+and unchanged) rather than the World Bank series' own last point. Fixed
+by having the home page card read the end of `.series` directly instead,
+labelled "Banque mondiale" rather than "ICASEES" since it's genuinely a
+different number for a different purpose (a quick current snapshot, not
+the full ranked disclosure `/economie/` correctly leads with).
+
+**Re-ran `fetch_economie.py` anyway to confirm currency directly rather
+than trust the git-history check alone - and caught a real, separate
+bug in the process:** the re-run silently deleted ICASEES's own 2
+`taux_croissance_pib` rows (2020, 2021) - the script's replace-before-
+insert logic filtered by `indicator_id` alone, not `source_id`, so
+refreshing World Bank's rows under that same indicator_id wiped out the
+*other* source's rows for it too. Restored both rows exactly (verified
+byte-for-byte against the last commit) and fixed the filter to key on
+`source_id` instead - this would have silently recurred on every future
+re-run otherwise, including an eventual automated one. Worth
+remembering for any future multi-source indicator: a fetch script's
+"idempotent full-replace" is only safe when it owns every row under that
+indicator_id, which stops being true the moment a second source starts
+contributing to the same one. The re-run's actual data values came back
+identical to what was already on disk (confirmed by diffing the
+generated JSON) - the value was this bug-catch, not new figures.
+
+**Home page redesign, second pass, per direct feedback that it still
+felt like "too many blocks":** the 6 headline cards (each its own
+bordered, shadowed box) are now one consolidated `.stat-strip` - a single
+bordered surface with 6 columns divided by hairlines rather than 6
+separate floating cards. Same information, same click-through behaviour,
+one visual object instead of six. The theme grid now also carries one
+small line-icon per theme (person/bolt/book/heart/bar-chart), same
+stroke style as the nav bar's own home icon so the whole icon set reads
+as one family - a considered exception to "no decorative icons," these
+are wayfinding glyphs next to text that's already there, not ornament
+replacing information.
+
+**Nav bar centered**, per direct request: restructured `SiteNav.astro`
+from a left-anchored flex row to a 3-column grid
+(`grid-template-columns: 1fr auto 1fr`) so the theme links sit genuinely
+centered in the bar regardless of viewport width, with the home icon
+pinned left and the theme toggle pinned right in their own tracks.
+
+All 33 pages rebuilt clean, still well under the 150 KB budget.

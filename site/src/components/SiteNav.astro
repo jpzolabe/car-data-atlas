@@ -28,12 +28,14 @@ import ThemeToggle from "./ThemeToggle.astro";
     <a href="/sante/">Santé</a>
     <a href="/economie/">Économie</a>
   </div>
-  <ThemeToggle />
+  <div class="theme-toggle-slot">
+    <ThemeToggle />
+  </div>
 </nav>
 <style>
   .site-nav-fixed {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; gap: 18px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px;
     padding: 9px 16px;
     background: color-mix(in srgb, var(--paper) 92%, transparent);
     backdrop-filter: blur(6px);
@@ -42,17 +44,22 @@ import ThemeToggle from "./ThemeToggle.astro";
   }
   .home-link {
     display: flex; align-items: center; justify-content: center;
-    flex: none; color: var(--ink); transition: color 0.15s ease;
+    justify-self: start; color: var(--ink); transition: color 0.15s ease;
   }
   .home-link:hover { color: var(--ink-faint); }
-  .nav-links { display: flex; gap: 16px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+  .nav-links {
+    display: flex; gap: 20px; justify-content: center;
+    overflow-x: auto; scrollbar-width: none; max-width: 100%;
+  }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a {
     font-size: 13px; color: var(--ink-muted); text-decoration: none; white-space: nowrap;
     transition: color 0.15s ease;
   }
   .nav-links a:hover { color: var(--ink); }
+  .theme-toggle-slot { justify-self: end; }
   @media (max-width: 560px) {
     .nav-links { display: none; }
+    .site-nav-fixed { grid-template-columns: auto 1fr auto; }
   }
 </style>

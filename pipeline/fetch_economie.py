@@ -1,15 +1,15 @@
 """Fetch economic indicators for CAR from the World Bank API. First fetch
-script for the économie theme (previously nonexistent) -- same idempotent
+script for the économie theme (previously nonexistent); same idempotent
 full-replace, one-HTTP-call-per-code pattern as fetch_sante.py.
 
 All 10 codes below were confirmed to return real, non-empty CAF data before
-being added -- most through 2024-2025. Two exceptions, flagged rather than
+being added - most through 2024-2025. Two exceptions, flagged rather than
 smoothed over: SI.POV.DDAY (poverty) only has 3 points total (household
 surveys are infrequent), and GC.REV.XGRT.GD.ZS (government revenue) stops
 at 2021.
 
-CLAUDE.md notes ICASEES has its own GDP rebasing (to a 2019 base) underway
--- these World Bank figures haven't been cross-checked against that once
+CLAUDE.md notes ICASEES has its own GDP rebasing (to a 2019 base) underway;
+these World Bank figures haven't been cross-checked against that once
 published. See data/sources.csv and docs/verification-debt.md.
 
 Usage: uv run python -m pipeline.fetch_economie
@@ -38,7 +38,7 @@ INDICATORS = {
     ),
     "SI.POV.DDAY": (
         "taux_pauvrete", "world-bank-poverty", "%",
-        "Estimation basée sur enquête de ménages -- seulement 3 points disponibles pour la RCA.",
+        "Estimation basée sur enquête de ménages ; seulement 3 points disponibles pour la RCA.",
     ),
     "SL.UEM.TOTL.ZS": (
         "taux_chomage", "world-bank-unemployment", "%",
@@ -74,7 +74,7 @@ INDICATORS = {
     ),
     "GC.REV.XGRT.GD.ZS": (
         "recettes_publiques_pib", "world-bank-government-revenue", "%",
-        "Estimation Banque mondiale, IMF Government Finance Statistics -- dernier point 2021.",
+        "Estimation Banque mondiale, IMF Government Finance Statistics ; dernier point 2021.",
     ),
 }
 
@@ -112,10 +112,16 @@ def main():
         fieldnames = reader.fieldnames
         existing = list(reader)
 
-    replaced_indicators = {v[0] for v in INDICATORS.values()}
+    # Filter on source_id too, not just indicator_id: taux_croissance_pib
+    # (and potentially others) is also populated by
+    # icasees-comptes-nationaux's own fetch script under the same
+    # indicator_id - an indicator_id-only filter here would silently
+    # delete that other source's rows on every re-run. Caught 2026-09-13
+    # after a re-run wiped both of ICASEES's taux_croissance_pib rows.
+    replaced_source_ids = {v[1] for v in INDICATORS.values()}
     existing = [
         r for r in existing
-        if not (r["entity_id"] == COUNTRY_ID and r["indicator_id"] in replaced_indicators)
+        if not (r["entity_id"] == COUNTRY_ID and r["source_id"] in replaced_source_ids)
     ]
 
     with open("data/observations.csv", "w", newline="", encoding="utf-8") as f:

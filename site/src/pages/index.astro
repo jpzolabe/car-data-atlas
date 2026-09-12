@@ -39,16 +39,28 @@ const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits:
 // broad rows this is a plain menu + one-line coverage description, not a
 // vintage report - each theme's own page is where freshness actually
 // belongs, indicator by indicator.
+// One-glyph icon per theme, same stroke style as the nav bar's home icon
+// (currentColor, 2px stroke, round caps) so the whole set reads as one
+// family rather than mismatched clip-art - wayfinding, not decoration,
+// same reasoning as the nav bar's own icon.
+const ICONS = {
+  population: `<circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20v-1.2a6.5 6.5 0 0 1 13 0V20"></path>`,
+  infrastructures: `<path d="M13 2 5 14h5.5L9 22l9-13h-5.5L13 2Z"></path>`,
+  education: `<path d="M12 6.2c-2-1.4-5-1.9-8-1.4v13.4c3-.5 6 0 8 1.4 2-1.4 5-1.9 8-1.4V4.8c-3-.5-6 0-8 1.4Z"></path><path d="M12 6.2v13.4"></path>`,
+  sante: `<path d="M12 20s-7.3-4.4-9.6-8.7C.6 7.8 2.2 4 6 4c2.1 0 3.9 1.4 6 4 2.1-2.6 3.9-4 6-4 3.8 0 5.4 3.8 3.6 7.3C19.3 15.6 12 20 12 20Z"></path>`,
+  economie: `<path d="M4 4v16h16"></path><path d="M7 15.5l4-4.5 3.2 3 5-6"></path>`,
+};
+
 const THEMES = [
-  { name: "Population", href: "/population/", accent: "var(--t-pop)",
+  { name: "Population", href: "/population/", accent: "var(--t-pop)", icon: ICONS.population,
     description: "Recensements et projections, jusqu'à la sous-préfecture." },
-  { name: "Infrastructures", href: "/infrastructures/", accent: "var(--t-infra)",
+  { name: "Infrastructures", href: "/infrastructures/", accent: "var(--t-infra)", icon: ICONS.infrastructures,
     description: "Électricité, eau, assainissement, internet et téléphonie." },
-  { name: "Éducation", href: "/education/", accent: "var(--t-edu)",
+  { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
-  { name: "Santé", href: "/sante/", accent: "var(--t-sante)",
+  { name: "Santé", href: "/sante/", accent: "var(--t-sante)", icon: ICONS.sante,
     description: "Espérance de vie, mortalité, vaccination, établissements de santé." },
-  { name: "Économie", href: "/economie/", accent: "var(--t-eco)",
+  { name: "Économie", href: "/economie/", accent: "var(--t-eco)", icon: ICONS.economie,
     description: "PIB, commerce extérieur, dette - et prix et agriculture, en détail.",
     subLinks: [
       { name: "Prix", href: "/prix/" },
@@ -57,9 +69,19 @@ const THEMES = [
 ];
 
 const manioc = prix.market.denrees.find((d: any) => d.indicator_id === "prix_manioc_kg");
-const croissancePib = economie.categories
+// taux_croissance_pib's own "latest"/"national.headline" is deliberately
+// ICASEES's 2021 figure on /economie/ itself (administrative data
+// outranks a modelled estimate there, per méthode.astro's authority
+// ranking - a considered policy, not staleness to fix). The home page's
+// job is different: a quick, current snapshot, not the full ranked
+// disclosure - so this specifically takes the last point of the World
+// Bank's own annual series instead, the freshest real figure available
+// (2025), labelled as what it is (a World Bank estimate, not the
+// administrative one économie leads with).
+const croissancePibSeries = economie.categories
   .flatMap((c: any) => c.indicators)
-  .find((i: any) => i.indicator_id === "taux_croissance_pib");
+  .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
+const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
 const electricite = infrastructures.series[infrastructures.series.length - 1];
 const achevementPrimaire = education.headline.national.headline;
 
@@ -72,8 +94,8 @@ const HEADLINE_CARDS = [
     source: "ICASEES, RGPH-4", accent: "var(--t-pop)", href: "/population/",
   },
   {
-    label: "Croissance du PIB", value: fmtPct(croissancePib.latest.value), unit: "%",
-    period: croissancePib.latest.period, source: "ICASEES", accent: "var(--t-eco)", href: "/economie/",
+    label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
+    period: croissancePibLatest.period, source: "Banque mondiale", accent: "var(--t-eco)", href: "/economie/",
   },
   {
     label: "Inflation annuelle", value: fmtPct(prix.inflation.latest.value), unit: "%",
@@ -164,26 +186,31 @@ const HEADLINE_CARDS = [
 
       h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 40px 0 14px; }
 
-      .headline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-      .headline-card {
-        display: block; background: var(--surface); border: 1px solid var(--line);
-        border-left: 3px solid var(--card-accent); border-radius: 3px; padding: 14px 16px;
-        text-decoration: none; color: inherit; transition: transform 0.15s ease, box-shadow 0.15s ease;
+      .stat-strip {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+        overflow: hidden;
       }
-      .headline-card:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--card-accent) 55%, transparent); }
-      .headline-card .card-label { font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 6px; }
-      .headline-card .card-value {
-        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600; color: var(--card-accent);
+      .stat-item {
+        padding: 16px 18px; text-decoration: none; color: inherit;
+        border-left: 1px solid var(--line); border-top: 1px solid transparent;
+        transition: background-color 0.15s ease;
+      }
+      .stat-item:first-child { border-left: none; }
+      .stat-item:hover { background: color-mix(in srgb, var(--stat-accent) 7%, transparent); }
+      .stat-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 6px; }
+      .stat-value {
+        font-family: ui-monospace, monospace; font-size: 1.3rem; font-weight: 600; color: var(--stat-accent);
         margin: 0; display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
       }
-      .headline-card .card-value .unit { font-size: 0.7rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
-      .headline-card .card-source { font-size: 11px; color: var(--ink-muted); margin: 6px 0 0; }
-      .headline-card .card-source.stale { color: var(--stale); }
+      .stat-value .unit { font-size: 0.62rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .stat-source { font-size: 10.5px; color: var(--ink-muted); margin: 6px 0 0; }
+      .stat-source.stale { color: var(--stale); }
       .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 9.5px; padding: 1px 5px; border-radius: 2px; margin-left: 4px; background: var(--ochre-soft); color: var(--ochre); }
 
       .theme-rows {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 14px; border-top: 1px solid var(--line); padding-top: 14px;
+        gap: 14px;
       }
       .theme-row {
         padding: 16px 18px; border-radius: 3px;
@@ -191,9 +218,11 @@ const HEADLINE_CARDS = [
         transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
       .theme-row:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--row-accent) 55%, transparent); }
-      .theme-row .theme-name { font-size: 16px; font-weight: 600; color: var(--row-accent); text-decoration: none; display: inline-block; }
+      .theme-row .theme-heading { display: flex; align-items: center; gap: 9px; }
+      .theme-row .theme-icon { flex: none; color: var(--row-accent); }
+      .theme-row .theme-name { font-size: 16px; font-weight: 600; color: var(--row-accent); text-decoration: none; }
       .theme-row .theme-name:hover { text-decoration: underline; }
-      .theme-row .theme-description { font-size: 12.5px; color: var(--ink-muted); margin: 5px 0 0; line-height: 1.45; }
+      .theme-row .theme-description { font-size: 12.5px; color: var(--ink-muted); margin: 7px 0 0; line-height: 1.45; }
       .theme-row .theme-sublinks { margin: 10px 0 0; display: flex; gap: 12px; }
       .theme-row .theme-sublinks a {
         font-size: 11.5px; color: var(--ink-faint);
@@ -240,12 +269,12 @@ const HEADLINE_CARDS = [
       </p>
 
       <h2>En bref</h2>
-      <div class="headline-grid">
+      <div class="stat-strip">
         {HEADLINE_CARDS.map((c) => (
-          <a class="headline-card" href={c.href} style={`--card-accent: ${c.accent}`}>
-            <p class="card-label">{c.label}</p>
-            <p class="card-value">{c.value}<span class="unit">{c.unit}</span></p>
-            <p class={`card-source ${isStale(c.period) ? "stale" : ""}`}>
+          <a class="stat-item" href={c.href} style={`--stat-accent: ${c.accent}`}>
+            <p class="stat-label">{c.label}</p>
+            <p class="stat-value">{c.value}<span class="unit">{c.unit}</span></p>
+            <p class={`stat-source ${isStale(c.period) ? "stale" : ""}`}>
               {c.source}, {c.period}
               {c.note && <span class="badge">{c.note}</span>}
             </p>
@@ -257,7 +286,10 @@ const HEADLINE_CARDS = [
       <div class="theme-rows">
         {THEMES.map((t) => (
           <div class="theme-row" style={`--row-accent: ${t.accent}`}>
-            <a class="theme-name" href={t.href}>{t.name}</a>
+            <div class="theme-heading">
+              <svg class="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={t.icon} />
+              <a class="theme-name" href={t.href}>{t.name}</a>
+            </div>
             <p class="theme-description">{t.description}</p>
             {t.subLinks && (
               <div class="theme-sublinks">
