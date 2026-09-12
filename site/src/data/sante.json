@@ -76,8 +76,8 @@
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
       "retrieved_at": "2026-09-12"
     },
-    "name_fr": "Espérance de vie à la naissance",
     "unit": "ans",
+    "name_fr": "Espérance de vie à la naissance",
     "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
   },
   "categories": [
@@ -85,6 +85,63 @@
       "key": "systeme",
       "label_fr": "Système de santé",
       "indicators": [
+        {
+          "indicator_id": "nombre_etablissements_sante",
+          "unit": "établissements",
+          "latest": {
+            "period": "2019",
+            "value": 555.0
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 555.0
+            },
+            {
+              "period": "2026",
+              "value": 425.0
+            }
+          ],
+          "lead_sentence": "En 2019, un registre gouvernemental compilé en 2019 recensait 555 établissements de santé en République centrafricaine.",
+          "lead_sentence_template_id": "nombre_etablissements_sante_pays",
+          "source": {
+            "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+            "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)",
+            "url": "https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa",
+            "retrieved_at": "2026-09-12"
+          },
+          "national": {
+            "headline": {
+              "value": 555.0,
+              "period": "2019",
+              "quality_flag": "administratif",
+              "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+              "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)"
+            },
+            "spread_pct": 30.6,
+            "spread_vs_period": "2026",
+            "all_sources": [
+              {
+                "value": 425.0,
+                "period": "2026",
+                "quality_flag": "osm",
+                "producer": "OpenStreetMap (via healthsites.io et HOTOSM), via HDX",
+                "dataset_name": "Central African Republic Healthsites",
+                "url": "https://data.humdata.org/dataset/central-african-republic-healthsites"
+              },
+              {
+                "value": 555.0,
+                "period": "2019",
+                "quality_flag": "administratif",
+                "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+                "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)",
+                "url": "https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa"
+              }
+            ]
+          },
+          "name_fr": "Nombre d'établissements de santé",
+          "definition_fr": "Décompte national d'établissements de santé (hôpitaux, centres et postes de santé). Deux sources disponibles, qui ne s'accordent pas : un registre gouvernemental compilé en 2019 et une cartographie communautaire (OpenStreetMap) mise à jour en continu ; voir le détail des deux chiffres ci-dessous plutôt qu'un seul nombre."
+        },
         {
           "indicator_id": "depenses_sante_pib",
           "latest": {
@@ -161,8 +218,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Dépenses de santé",
           "unit": "% du PIB",
+          "name_fr": "Dépenses de santé",
           "definition_fr": "Dépenses courantes de santé, en part du PIB -- inclut les dépenses publiques et privées (y compris les ménages), pas seulement le budget de l'État."
         },
         {
@@ -241,8 +298,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Densité de médecins",
           "unit": "pour 1 000 habitants",
+          "name_fr": "Densité de médecins",
           "definition_fr": "Nombre de médecins pour 1 000 habitants -- une mesure relative à la population, à ne pas confondre avec l'effectif total (voir 'Nombre de médecins' ci-dessous)."
         },
         {
@@ -289,8 +346,8 @@
             "url": "https://ghoapi.azureedge.net/api/HWF_0002",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Nombre de médecins",
           "unit": "personnes",
+          "name_fr": "Nombre de médecins",
           "definition_fr": "Effectif total de médecins en exercice dans le pays -- un décompte brut, à distinguer de la densité pour 1 000 habitants (voir 'Densité de médecins' ci-dessus), qui tient compte de la taille de la population."
         },
         {
@@ -333,8 +390,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Densité de lits d'hôpital",
           "unit": "pour 1 000 habitants",
+          "name_fr": "Densité de lits d'hôpital",
           "definition_fr": "Nombre de lits d'hôpital pour 1 000 habitants -- une mesure de la capacité hospitalière disponible, indépendamment de la population totale du pays."
         },
         {
@@ -377,8 +434,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Nombre de lits d'hôpital",
           "unit": "lits",
+          "name_fr": "Nombre de lits d'hôpital",
           "definition_fr": "Estimation calculée (densité de lits x population), pas un décompte publié directement -- voir docs/verification-debt.md."
         },
         {
@@ -429,8 +486,8 @@
             "url": "https://ghoapi.azureedge.net/api/HWF_0002",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Personnel infirmier et sages-femmes",
           "unit": "personnes",
+          "name_fr": "Personnel infirmier et sages-femmes",
           "definition_fr": "Effectif total de personnel infirmier et de sages-femmes en exercice dans le pays."
         }
       ]
@@ -515,8 +572,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Vaccination contre la rougeole",
           "unit": "%",
+          "name_fr": "Vaccination contre la rougeole",
           "definition_fr": "Part des enfants de 12 à 23 mois ayant reçu le vaccin contre la rougeole."
         },
         {
@@ -595,8 +652,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Vaccination DTC",
           "unit": "%",
+          "name_fr": "Vaccination DTC",
           "definition_fr": "Part des enfants de 12 à 23 mois ayant reçu le vaccin diphtérie-tétanos-coqueluche."
         }
       ]
@@ -629,8 +686,8 @@
             "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Soins prénatals (4 visites ou plus)",
           "unit": "%",
+          "name_fr": "Soins prénatals (4 visites ou plus)",
           "definition_fr": "Part des femmes de 15 à 49 ans ayant reçu au moins 4 consultations prénatales pendant leur dernière grossesse."
         },
         {
@@ -669,8 +726,8 @@
             "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Accouchement assisté par du personnel qualifié",
           "unit": "%",
+          "name_fr": "Accouchement assisté par du personnel qualifié",
           "definition_fr": "Part des accouchements assistés par un professionnel de santé formé (médecin, sage-femme ou infirmier)."
         },
         {
@@ -717,8 +774,8 @@
             "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Allaitement exclusif (0-5 mois)",
           "unit": "%",
+          "name_fr": "Allaitement exclusif (0-5 mois)",
           "definition_fr": "Part des enfants de 0 à 5 mois nourris exclusivement au lait maternel, sans autre aliment ni liquide."
         },
         {
@@ -745,8 +802,8 @@
             "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Retard de croissance (enfants de moins de 5 ans)",
           "unit": "%",
+          "name_fr": "Retard de croissance (enfants de moins de 5 ans)",
           "definition_fr": "Part des enfants de moins de 5 ans dont la taille pour l'âge est inférieure à -2 écarts-types de la référence de croissance de l'OMS (retard de croissance chronique, malnutrition sur le long terme)."
         },
         {
@@ -773,8 +830,8 @@
             "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Émaciation (enfants de moins de 5 ans)",
           "unit": "%",
+          "name_fr": "Émaciation (enfants de moins de 5 ans)",
           "definition_fr": "Part des enfants de moins de 5 ans dont le poids pour la taille est inférieur à -2 écarts-types de la référence de croissance de l'OMS (émaciation aiguë, malnutrition à court terme, plus urgente à traiter que le retard de croissance)."
         }
       ]
@@ -859,8 +916,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Espérance de vie à la naissance",
           "unit": "ans",
+          "name_fr": "Espérance de vie à la naissance",
           "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
         },
         {
@@ -939,8 +996,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité des moins de 5 ans",
           "unit": "pour 1 000 naissances vivantes",
+          "name_fr": "Mortalité des moins de 5 ans",
           "definition_fr": "Probabilité de décès avant 5 ans, pour 1 000 naissances vivantes. L'un des indicateurs de santé les plus suivis à l'échelle internationale, car il résume l'accès aux soins de base, à la nutrition et à l'eau potable."
         },
         {
@@ -1019,8 +1076,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité infantile",
           "unit": "pour 1 000 naissances vivantes",
+          "name_fr": "Mortalité infantile",
           "definition_fr": "Probabilité de décès avant 1 an, pour 1 000 naissances vivantes."
         },
         {
@@ -1099,8 +1156,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Mortalité maternelle",
           "unit": "pour 100 000 naissances vivantes",
+          "name_fr": "Mortalité maternelle",
           "definition_fr": "Décès maternels pour 100 000 naissances vivantes -- décès survenus pendant la grossesse, l'accouchement ou les 42 jours suivants, pour des causes liées à la grossesse."
         }
       ]
@@ -1185,8 +1242,8 @@
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.HIV.INCD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
-          "name_fr": "Incidence du VIH",
           "unit": "pour 1 000 personnes non infectées 15-49 ans",
+          "name_fr": "Incidence du VIH",
           "definition_fr": "Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans, sur une année -- mesure les nouveaux cas, pas le nombre total de personnes vivant avec le VIH."
         }
       ]

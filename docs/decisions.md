@@ -737,3 +737,51 @@ year - needed its own quarter-to-French mapping rather than reusing
 `period_to_fr()`, which assumes a month. `economie.astro`'s `isStale()`
 now takes the leading 4 characters of the period rather than the whole
 string, so it keeps working for both shapes. 81 indicators total now.
+
+## Health facilities: a real 2-source disagreement, not the planned 3-way test
+
+Phase 3 source list item 7, flagged as "hard - multiple conflicting
+sources" and, in an earlier pass this session, described as "the first
+3-way disclosure test" - that turned out to be aspirational wording, not
+a firm target: 2 genuinely independent sources were found, not 3, and
+forcing a third would have meant double-counting one of them.
+
+Checked HDX for Central African Republic health facility datasets and
+found three candidates, not two:
+- **Health Facilities in Sub-Saharan Africa** (Maina et al. 2019,
+  Scientific Data) - an academic compilation from government and
+  non-government facility registries across 50 countries, static since
+  its 2019-07-25 publication. 555 rows for CAR (490 public, 63 private
+  non-profit).
+- **Central African Republic Healthsites** - an HDX export of
+  OpenStreetMap health-facility tags via healthsites.io/HOTOSM, actively
+  updated (last modified 2026-08-28). 425 rows.
+- **hotosm_caf_health_facilities** - a second HDX listing, also OSM data
+  via HOTOSM's raw-data-api. Checked its description directly: same
+  underlying OpenStreetMap tags as the healthsites export, just packaged
+  differently. Using both would have looked like two sources agreeing
+  when it's really one source counted twice - left out rather than
+  padding the disclosure to 3.
+
+The 555-vs-425 gap (about 30%) is real and worth showing, not a rounding
+difference - and it's not obviously explainable as "one is wrong": the
+government registry is a static 2019 snapshot that could be missing
+facilities opened since, while OSM coverage depends on where volunteer
+mappers have been active and could be missing facilities in areas nobody
+has mapped. Both plausible, neither confirmed, so both are shown with a
+disclosure UI (population.astro's pattern, reused a third time this
+session) rather than the page picking one.
+
+This is santé's first disclosure indicator, so the disclosure CSS
+(`.national-figure`, `.disclosure`, badges) had to be added to
+`sante.astro` for the first time - copied from the économie/population
+implementations rather than redesigned, keeping the pattern visually
+consistent across the three pages that now use it.
+
+**Quality-flag vocabulary needed a new value.** The existing badges
+(`administratif`, `estime`, `provisoire`, `enquete`) don't fit
+crowd-sourced OSM data - it's not a modelled estimate, an administrative
+record, or a survey. Added `osm` as its own flag rather than force-fitting
+an existing one that would misdescribe the methodology.
+
+82 indicators total now - all 7 Phase 3 source list items are done.

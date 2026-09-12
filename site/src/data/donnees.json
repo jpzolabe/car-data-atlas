@@ -13,17 +13,17 @@
     },
     {
       "name": "sources.csv",
-      "rows": 49,
+      "rows": 51,
       "description": "Une ligne par source : producteur, licence, cadence, vintage géographique, mise en garde éventuelle."
     },
     {
       "name": "indicators.csv",
-      "rows": 81,
+      "rows": 82,
       "description": "Un indicateur par ligne : définition, unité, thème, et le niveau géographique le plus fin qu'il atteint réellement."
     },
     {
       "name": "observations.csv",
-      "rows": 2853,
+      "rows": 2855,
       "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
     },
     {
