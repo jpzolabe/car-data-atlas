@@ -12,6 +12,29 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
 
 ## Open
 
+### Dark-mode toggle not yet clicked in an actual browser (2026-09-12)
+
+- **What:** The sitewide dark-mode toggle (`ThemeInit.astro` /
+  `ThemeToggle.astro`, added 2026-09-12) was verified by reading the built
+  HTML/CSS/JS output directly - script ordering, selector correctness,
+  the minified `data-theme` rules, the toggle button present exactly once
+  on all 33 pages - not by actually clicking it in a browser. No browser
+  automation tool is available in this environment. Static-analysis
+  verification is solid for structural correctness (does the right markup
+  exist, in the right order) but doesn't catch things only a real render
+  would show: whether the three-state cycle feels right, whether any
+  page's dark palette has a legibility problem in practice, whether the
+  fixed-position button collides with anything on a narrow viewport.
+- **Used in:** every page (`site/src/components/ThemeInit.astro`,
+  `ThemeToggle.astro`, and the dark `:root` overrides added to all 14
+  page files - see `docs/decisions.md`'s dark-mode entry).
+- **Resolved when:** someone (the user, most likely) runs `pnpm dev` or
+  `pnpm preview` from `site/` and clicks the "Thème" button on a few
+  pages - confirming the three states cycle correctly, dark mode reads
+  cleanly on at least one light-heavy page (e.g. `/sources/`) and one
+  chart-heavy page (e.g. `/prix/`), and the button doesn't overlap page
+  content on mobile widths.
+
 ### COD-AB licence - "humanitarian purposes only" restriction
 
 - **What:** The HDX listing for `cod-ab-caf` (fetched 2026-09-04) carries `isopen:
