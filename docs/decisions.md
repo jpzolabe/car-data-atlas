@@ -467,3 +467,19 @@ session's raw-figures pass had a non-percent unit to expose it. Fixed by
 giving every non-"%" unit string its own leading space at the source
 (`" Md US$"`, `" km²"`, etc.) rather than changing the template, since "%"
 and everything else genuinely need different spacing rules.
+
+## Économie hub, round 2: agriculture card moved up, home page nav trimmed
+
+Follow-up user feedback on the reorg above. Two changes: (1) the "Secteur
+agricole" satellite card moved from after Finances publiques to
+immediately after Production, ahead of Prix — agriculture is a GDP sector,
+so it now sits next to "how big is the economy" rather than at the far end
+of the page. New order: Production → **Secteur agricole** → **Prix** →
+Commerce extérieur → Finances publiques → Niveau de vie. (2) The home
+page's top-level nav no longer links directly to `/prix/` or
+`/agriculture/` — only `/economie/` does, matching the hub relationship:
+if économie is where a reader discovers prix and agriculture, the home
+page shouldn't also present all three as equal peers. Both pages are
+otherwise unchanged (same URL, same content, still cross-linked from every
+other page's footer nav) — this only affects the home page's primary
+navigation and one page's card order.
