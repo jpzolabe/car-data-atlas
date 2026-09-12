@@ -77,7 +77,7 @@
       "retrieved_at": "2026-09-12"
     },
     "name_fr": "PIB par habitant",
-    "definition_fr": "Produit intérieur brut par habitant, en dollars américains courants - le PIB total divisé par la population ; plus utile que le PIB total pour comparer le niveau de vie moyen entre pays de tailles différentes."
+    "definition_fr": "Le produit intérieur brut par habitant, en dollars américains courants, correspond au PIB total divisé par la population. Il est plus utile que le PIB total pour comparer le niveau de vie moyen entre pays de tailles différentes."
   },
   "categories": [
     {
@@ -161,7 +161,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "PIB",
-          "definition_fr": "Produit intérieur brut, en dollars américains courants - la valeur totale de tout ce qui est produit dans le pays en un an."
+          "definition_fr": "Le produit intérieur brut, exprimé en dollars américains courants, correspond à la valeur totale de tout ce qui est produit dans le pays en un an."
         },
         {
           "indicator_id": "pib_par_habitant",
@@ -240,7 +240,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "PIB par habitant",
-          "definition_fr": "Produit intérieur brut par habitant, en dollars américains courants - le PIB total divisé par la population ; plus utile que le PIB total pour comparer le niveau de vie moyen entre pays de tailles différentes."
+          "definition_fr": "Le produit intérieur brut par habitant, en dollars américains courants, correspond au PIB total divisé par la population. Il est plus utile que le PIB total pour comparer le niveau de vie moyen entre pays de tailles différentes."
         },
         {
           "indicator_id": "pib_total_fcfa",
@@ -271,7 +271,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "PIB (comptes nationaux, FCFA)",
-          "definition_fr": "Produit intérieur brut à prix courant, en francs CFA, selon les comptes nationaux rebasés de l'ICASEES (base 2019) ; à ne pas comparer directement au PIB en dollars ci-dessus, source, devise et méthode de conversion différentes."
+          "definition_fr": "Le produit intérieur brut à prix courant, en francs CFA, provient des comptes nationaux rebasés de l'ICASEES (base 2019). Il ne doit pas être comparé directement au PIB en dollars ci-dessus : la source, la devise et la méthode de conversion diffèrent."
         },
         {
           "indicator_id": "pib_par_habitant_fcfa",
@@ -302,7 +302,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "PIB par habitant (comptes nationaux, FCFA)",
-          "definition_fr": "Produit intérieur brut par habitant, en francs CFA, selon les comptes nationaux rebasés de l'ICASEES (base 2019) ; à ne pas comparer directement au PIB par habitant en dollars ci-dessus, source, devise et méthode de conversion différentes."
+          "definition_fr": "Le produit intérieur brut par habitant, en francs CFA, provient des comptes nationaux rebasés de l'ICASEES (base 2019). Il ne doit pas être comparé directement au PIB par habitant en dollars ci-dessus : la source, la devise et la méthode de conversion diffèrent."
         },
         {
           "indicator_id": "indice_activite_economique",
@@ -421,7 +421,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Indice d'activité économique (trimestriel)",
-          "definition_fr": "Indice trimestriel de l'activité économique totale, publié dans le cadre e-GDDS du FMI. Contrairement aux autres indicateurs économiques de cette page, qui sont annuels, celui-ci permet de suivre l'évolution entre deux points de PIB annuels."
+          "definition_fr": "Cet indice trimestriel mesure l'activité économique totale et est publié dans le cadre e-GDDS du FMI. Contrairement aux autres indicateurs économiques de cette page, qui sont annuels, il permet de suivre l'évolution entre deux points de PIB annuels."
         },
         {
           "indicator_id": "taux_croissance_pib",
@@ -545,7 +545,7 @@
             ]
           },
           "name_fr": "Croissance du PIB",
-          "definition_fr": "Taux de croissance annuel du PIB réel - corrigé de l'inflation, donc reflète une variation de production, pas seulement de prix."
+          "definition_fr": "Ce taux mesure la croissance annuelle du PIB réel, corrigé de l'inflation ; il reflète donc une variation de production, et non seulement de prix."
         }
       ]
     },
@@ -630,7 +630,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Exportations",
-          "definition_fr": "Exportations de biens et services, en part du PIB."
+          "definition_fr": "Cet indicateur mesure les exportations de biens et de services en part du PIB."
         },
         {
           "indicator_id": "exportations_montant",
@@ -709,7 +709,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Exportations (valeur)",
-          "definition_fr": "Exportations de biens et services, en dollars américains courants - la valeur en monnaie, à distinguer de la part du PIB (voir 'Exportations' ci-dessus)."
+          "definition_fr": "Cet indicateur donne la valeur des exportations de biens et de services, en dollars américains courants, à distinguer de leur part dans le PIB (voir « Exportations » ci-dessus)."
         },
         {
           "indicator_id": "importations_pib",
@@ -788,7 +788,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Importations",
-          "definition_fr": "Importations de biens et services, en part du PIB."
+          "definition_fr": "Cet indicateur mesure les importations de biens et de services en part du PIB."
         },
         {
           "indicator_id": "importations_montant",
@@ -867,7 +867,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Importations (valeur)",
-          "definition_fr": "Importations de biens et services, en dollars américains courants."
+          "definition_fr": "Cet indicateur donne la valeur des importations de biens et de services, en dollars américains courants."
         },
         {
           "indicator_id": "investissements_directs_etrangers",
@@ -946,7 +946,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Investissements directs étrangers",
-          "definition_fr": "Entrées nettes d'investissements directs étrangers, en part du PIB - capitaux investis par des entreprises étrangères dans le pays, moins les sorties correspondantes."
+          "definition_fr": "Cet indicateur mesure les entrées nettes d'investissements directs étrangers en part du PIB, c'est-à-dire les capitaux investis par des entreprises étrangères dans le pays, moins les sorties correspondantes."
         },
         {
           "indicator_id": "dette_exterieure_rnb",
@@ -1025,7 +1025,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Dette extérieure",
-          "definition_fr": "Encours de la dette extérieure, en part du revenu national brut - indique le poids de la dette relativement à la taille de l'économie, plutôt que son montant en valeur absolue (voir 'Dette extérieure (montant)' ci-dessous)."
+          "definition_fr": "Cet indicateur rapporte l'encours de la dette extérieure au revenu national brut. Il indique le poids de la dette par rapport à la taille de l'économie, plutôt que son montant en valeur absolue (voir « Dette extérieure (montant) » ci-dessous)."
         },
         {
           "indicator_id": "dette_exterieure_montant",
@@ -1104,7 +1104,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Dette extérieure (montant)",
-          "definition_fr": "Encours de la dette extérieure, en dollars américains courants - le montant total dû, à distinguer de son poids relatif au revenu national (voir 'Dette extérieure' ci-dessus)."
+          "definition_fr": "Cet indicateur donne l'encours de la dette extérieure, en dollars américains courants, c'est-à-dire le montant total dû, à distinguer de son poids relatif au revenu national (voir « Dette extérieure » ci-dessus)."
         }
       ]
     },
@@ -1185,7 +1185,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Recettes publiques",
-          "definition_fr": "Recettes de l'État hors dons, en part du PIB - ce que l'État collecte par ses propres moyens (impôts, taxes, etc.), sans l'aide extérieure budgétaire."
+          "definition_fr": "Cet indicateur mesure les recettes de l'État hors dons, en part du PIB, c'est-à-dire ce que l'État collecte par ses propres moyens (impôts, taxes, etc.), sans l'aide extérieure budgétaire."
         }
       ]
     },
@@ -1270,7 +1270,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de chômage",
-          "definition_fr": "Part de la population active sans emploi (estimation modélisée de l'Organisation internationale du travail, pas un décompte administratif direct)."
+          "definition_fr": "Ce taux mesure la part de la population active sans emploi. C'est une estimation modélisée de l'Organisation internationale du travail, et non un décompte administratif direct."
         },
         {
           "indicator_id": "taux_pauvrete",
@@ -1301,7 +1301,7 @@
             "retrieved_at": "2026-09-12"
           },
           "name_fr": "Taux de pauvreté",
-          "definition_fr": "Part de la population vivant sous le seuil de 3,00 $ par jour (en parité de pouvoir d'achat 2021) - le seuil international d'extrême pauvreté, utilisé pour comparer la pauvreté entre pays."
+          "definition_fr": "Ce taux mesure la part de la population vivant sous le seuil de 3,00 $ par jour, en parité de pouvoir d'achat 2021. C'est le seuil international d'extrême pauvreté, utilisé pour comparer la pauvreté entre pays."
         }
       ]
     }

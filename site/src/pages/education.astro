@@ -238,7 +238,8 @@ function qualityLabel(flag: string): string {
           {fmt(data.headline.latest.value)}<span class="unit">%</span>
           <span class={`badge ${data.headline.latest.quality_flag}`}>{data.headline.latest.quality_flag}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr}, {data.headline.latest.period}, le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA. {data.headline.definition_fr}</p>
+        <p class="headline-caption">Le taux d'achèvement du primaire ({data.headline.latest.period}) est le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
+        <p class="headline-caption">{data.headline.definition_fr}</p>
         <p class="sentence">
           {data.headline.lead_sentence}
         </p>

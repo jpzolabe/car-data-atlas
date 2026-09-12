@@ -872,3 +872,36 @@ explicitly: re-verify cell positions by hand for each future year's file
 rather than trusting the same code to still be correct. 86 indicators
 total now - the last item on this session's list before the
 comptes-nationaux-style "one-off, hand-verified" pattern.
+
+## Indicator definitions rewritten as complete French sentences, not noun-phrase fragments
+
+User feedback on the économie headline caption: "PIB par habitant, le
+chiffre le plus souvent cité... Produit intérieur brut par habitant, en
+dollars américains courants - le PIB total divisé par la population ;
+plus utile que..." read as ungrammatical. The root cause was structural,
+not a one-off typo: most of `definition_fr` across `data/indicators.csv`
+was written in a dictionary/glossary register - bare noun phrases chained
+with dashes and semicolons, no article, no main verb - which reads fine
+in isolation the way a dictionary entry does, but breaks down the moment
+it follows an actual sentence (the headline caption's fixed phrase), or
+whenever a reader expects a paragraph of French prose rather than a
+label.
+
+Rewrote all 86 definitions as complete sentences: every one now has a
+proper subject (varying naturally - "Ce taux", "Cet indicateur", "Cet
+indice", "Ce prix", "Le produit intérieur brut...") and a real verb
+("mesure", "donne", "compte", "correspond à", "rapporte"), with any
+second clause written as its own full sentence instead of a
+dash-appended fragment. Kept the same facts and the same interpretive
+additions from the earlier "surface indicator definitions" pass - this
+was a grammar fix, not a content change.
+
+Also fixed the 4 headline captions that concatenated `{name_fr}` +
+a fixed phrase + `{definition_fr}` into one paragraph (économie,
+agriculture, éducation, santé) - each headline indicator is fixed per
+page, so the caption's opening clause is now hand-written with its
+correct article ("Le PIB par habitant est...", "L'espérance de vie à la
+naissance est...") instead of interpolating the bare `name_fr` without
+one. Split into two separate `<p class="headline-caption">` paragraphs
+rather than one run-on, matching the pattern infrastructures.astro/
+population.astro/prix.astro already used for their headline definitions.
