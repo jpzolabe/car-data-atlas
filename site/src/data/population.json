@@ -295,7 +295,7 @@
     {
       "indicator_id": "taux_urbanisation",
       "name_fr": "Population urbaine",
-      "definition_fr": "Part de la population résidant dans une zone classée urbaine par les autorités nationales -- la définition d'une zone 'urbaine' varie d'un pays à l'autre.",
+      "definition_fr": "Part de la population résidant dans une zone classée urbaine par les autorités nationales - la définition d'une zone 'urbaine' varie d'un pays à l'autre.",
       "latest": {
         "period": "2025",
         "value": 44.5532156681816

@@ -78,7 +78,7 @@
     },
     "unit": "ans",
     "name_fr": "Espérance de vie à la naissance",
-    "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
+    "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes - une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
   },
   "categories": [
     {
@@ -220,7 +220,7 @@
           },
           "unit": "% du PIB",
           "name_fr": "Dépenses de santé",
-          "definition_fr": "Dépenses courantes de santé, en part du PIB -- inclut les dépenses publiques et privées (y compris les ménages), pas seulement le budget de l'État."
+          "definition_fr": "Dépenses courantes de santé, en part du PIB - inclut les dépenses publiques et privées (y compris les ménages), pas seulement le budget de l'État."
         },
         {
           "indicator_id": "densite_medecins",
@@ -300,7 +300,7 @@
           },
           "unit": "pour 1 000 habitants",
           "name_fr": "Densité de médecins",
-          "definition_fr": "Nombre de médecins pour 1 000 habitants -- une mesure relative à la population, à ne pas confondre avec l'effectif total (voir 'Nombre de médecins' ci-dessous)."
+          "definition_fr": "Nombre de médecins pour 1 000 habitants - une mesure relative à la population, à ne pas confondre avec l'effectif total (voir 'Nombre de médecins' ci-dessous)."
         },
         {
           "indicator_id": "nombre_medecins",
@@ -348,7 +348,7 @@
           },
           "unit": "personnes",
           "name_fr": "Nombre de médecins",
-          "definition_fr": "Effectif total de médecins en exercice dans le pays -- un décompte brut, à distinguer de la densité pour 1 000 habitants (voir 'Densité de médecins' ci-dessus), qui tient compte de la taille de la population."
+          "definition_fr": "Effectif total de médecins en exercice dans le pays - un décompte brut, à distinguer de la densité pour 1 000 habitants (voir 'Densité de médecins' ci-dessus), qui tient compte de la taille de la population."
         },
         {
           "indicator_id": "densite_lits_hopital",
@@ -392,7 +392,7 @@
           },
           "unit": "pour 1 000 habitants",
           "name_fr": "Densité de lits d'hôpital",
-          "definition_fr": "Nombre de lits d'hôpital pour 1 000 habitants -- une mesure de la capacité hospitalière disponible, indépendamment de la population totale du pays."
+          "definition_fr": "Nombre de lits d'hôpital pour 1 000 habitants - une mesure de la capacité hospitalière disponible, indépendamment de la population totale du pays."
         },
         {
           "indicator_id": "nombre_lits_hopital",
@@ -436,7 +436,7 @@
           },
           "unit": "lits",
           "name_fr": "Nombre de lits d'hôpital",
-          "definition_fr": "Estimation calculée (densité de lits x population), pas un décompte publié directement -- voir docs/verification-debt.md."
+          "definition_fr": "Estimation calculée (densité de lits x population), pas un décompte publié directement - voir docs/verification-debt.md."
         },
         {
           "indicator_id": "nombre_personnel_infirmier",
@@ -918,7 +918,7 @@
           },
           "unit": "ans",
           "name_fr": "Espérance de vie à la naissance",
-          "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes -- une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
+          "definition_fr": "Nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes - une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
         },
         {
           "indicator_id": "taux_mortalite_moins_5ans",
@@ -1158,7 +1158,7 @@
           },
           "unit": "pour 100 000 naissances vivantes",
           "name_fr": "Mortalité maternelle",
-          "definition_fr": "Décès maternels pour 100 000 naissances vivantes -- décès survenus pendant la grossesse, l'accouchement ou les 42 jours suivants, pour des causes liées à la grossesse."
+          "definition_fr": "Décès maternels pour 100 000 naissances vivantes - décès survenus pendant la grossesse, l'accouchement ou les 42 jours suivants, pour des causes liées à la grossesse."
         }
       ]
     },
@@ -1244,7 +1244,7 @@
           },
           "unit": "pour 1 000 personnes non infectées 15-49 ans",
           "name_fr": "Incidence du VIH",
-          "definition_fr": "Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans, sur une année -- mesure les nouveaux cas, pas le nombre total de personnes vivant avec le VIH."
+          "definition_fr": "Nouvelles infections par le VIH pour 1 000 personnes non infectées âgées de 15 à 49 ans, sur une année - mesure les nouveaux cas, pas le nombre total de personnes vivant avec le VIH."
         }
       ]
     }

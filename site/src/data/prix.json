@@ -692,7 +692,7 @@
     }
   ],
   "inflation": {
-    "definition_fr": "Taux d'inflation publié par l'ICASEES dans le même fichier tableau de bord que l'IHPC -- la variation en pourcentage du niveau général des prix, généralement sur un an. Voir docs/verification-debt.md pour une réserve sur sa méthodologie exacte.",
+    "definition_fr": "Taux d'inflation publié par l'ICASEES dans le même fichier tableau de bord que l'IHPC - la variation en pourcentage du niveau général des prix, généralement sur un an. Voir docs/verification-debt.md pour une réserve sur sa méthodologie exacte.",
     "latest": {
       "period": "2026-04",
       "value": 0.8
@@ -2931,7 +2931,7 @@
       {
         "indicator_id": "prix_manioc_kg",
         "name_fr": "Prix du manioc (cossette)",
-        "definition_fr": "Prix de détail du kilogramme de manioc séché (cossette), relevé au marché de Bangui -- un prix réel payé par les consommateurs, distinct des indices ci-dessus qui suivent une évolution relative, pas un montant en francs CFA.",
+        "definition_fr": "Prix de détail du kilogramme de manioc séché (cossette), relevé au marché de Bangui - un prix réel payé par les consommateurs, distinct des indices ci-dessus qui suivent une évolution relative, pas un montant en francs CFA.",
         "unit": "FCFA/kg",
         "latest": {
           "period": "2026-07",
