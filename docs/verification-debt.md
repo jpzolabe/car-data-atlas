@@ -357,6 +357,27 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   an actual hospital-bed census for CAR, which would replace this
   calculation rather than supplement it.
 
+### Ministère des Finances budget note - licence not stated (2026-09-13)
+
+- **What:** `data/sources.csv`'s `mfb-note-information-2026` (the Ministère
+  des Finances et du Budget's "Note d'Information du Marché des Titres
+  Publics de la RCA", January 2026) is published in the open on
+  finances.gouv.cf but carries no licence statement anywhere in the
+  52-page document - unlike ICASEES, which explicitly publishes under CC
+  BY 4.0. It's an official government document (signed and stamped by the
+  Minister), found via web search rather than linked from anywhere else on
+  the ministry's own site, and image-based (scanned pages, no extractable
+  text - read page-by-page as images to transcribe Tableaux 2, 4 and 5).
+- **Used in:** the three new `budget_*` indicators (`budget_ressources_totales`,
+  `budget_depenses_totales`, `budget_solde_global`) on `/economie/`'s
+  Finances publiques category, added 2026-09-13 on explicit request to
+  cover the annual state budget rather than relying only on ICASEES.
+- **Resolved when:** either the ministry publishes an explicit reuse
+  licence, or these figures get cross-checked against a second primary
+  source (e.g. the Loi de Finances 2026 text itself, or a future IMF
+  Article IV / e-GDDS publication citing the same budget) before the site
+  is presented as a finished public v1.
+
 ---
 
 ## Resolved

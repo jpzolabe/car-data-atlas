@@ -1836,3 +1836,57 @@ budget data to the Finances publiques section, sourced from wherever
 necessary (not just ICASEES) since national budgets are published
 annually and sometimes twice a year - in progress, see the next entry
 once it lands.
+
+## Real 2026 budget data, and a CSV that quietly had the wrong line endings
+
+ICASEES doesn't publish the state budget (comptes nationaux measure
+economic output, not government finance), so the new `budget_*`
+indicators went to the actual primary source instead: the Ministère des
+Finances et du Budget's own "Note d'Information du Marché des Titres
+Publics de la RCA" (January 2026), found via web search since
+finances.gouv.cf doesn't link it from anywhere obvious. It's a scanned,
+image-based PDF with no extractable text - read page by page as images
+(the same technique CLAUDE.md prescribes for irregular statistical-yearbook
+layouts) to transcribe Tableaux 2, 4 and 5: the Loi de Finances 2026,
+adopted by the Assemblée Nationale on 10 December 2025, projects total
+resources of 368,43 milliards FCFA against total expenditure of 396,35
+milliards FCFA, a voted deficit of 27,92 milliards FCFA (-1,2% of PIB).
+Three new indicators (`budget_ressources_totales`, `budget_depenses_totales`,
+`budget_solde_global`) carry these as a single 2026 observation each,
+explicitly labelled "administratif" and worded in the lead sentence as a
+voted projection ("étaient budgétisées à...", "prévoyait un déficit
+de...") rather than an observed outturn, since a Loi de Finances is what
+parliament approved for the year, not what actually got spent. Logged in
+`docs/verification-debt.md`: the source document states no reuse licence
+anywhere in its 52 pages, unlike ICASEES's explicit CC BY 4.0.
+
+Also reused the single-point-chart fix from earlier today
+(`ind.series.length > 1` guard around the sparkline, else a short note)
+on économie.astro's generic indicator cards - the same invisible-chart bug
+would otherwise have hit all three new indicators, each a single 2026
+observation with nothing to draw a line between yet.
+
+Separately, a real infrastructure bug surfaced while adding these three
+rows to `data/sources.csv`: appending them with Python's `csv` module
+(`lineterminator="\n"`) made DuckDB's `read_csv_auto` fail to sniff the
+file's dialect at all, on every delimiter/quote candidate it tried, with
+an error that gave no hint the actual problem was line endings. Root
+cause, found by bisection (a file with just 54 of the original rows
+parsed fine; the same 54 rows plus a *duplicate* of an existing row, with
+no new content, failed the same way): `data/sources.csv` already had
+Windows CRLF line endings on disk (54 `\r\n`, apparently left over from
+whenever it was last through an actual `git checkout` under this
+environment's `core.autocrlf`), while `data/indicators.csv` and
+`data/observations.csv` are plain LF throughout, having been edited
+in-place by earlier pipeline sessions since their last checkout. Appending
+a bare-LF row to the CRLF file left exactly one line with a different
+terminator than the other 54, and that inconsistency - not any actual
+delimiter or quoting problem - was what broke DuckDB's sniffer completely
+(confirmed: `strict_mode=false` parsed the file correctly despite the
+mixed endings; `sample_size=-1` alone did not help, ruling out a
+sample-truncation theory first). Fixed by normalizing the whole file to
+LF, matching the other two CSVs. Lesson for next time: if
+`read_csv_auto` ever again fails to "detect a dialect" on a file that
+looks fine to the eye and to Python's own `csv` module, check line-ending
+consistency (`grep -c $'\r'` vs. total line count) before assuming the
+content itself is at fault.

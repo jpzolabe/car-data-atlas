@@ -359,6 +359,31 @@ def sentence_economie_montant(indicator_id: str, period: str, value: float) -> t
     return text, f"{indicator_id}_pays"
 
 
+BUDGET_LABELS = {
+    "budget_ressources_totales": "les ressources totales votées au budget de l'État",
+    "budget_depenses_totales": "les dépenses totales votées au budget de l'État",
+}
+
+
+def sentence_economie_budget(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    amount_fr = format(round(abs(value) / 1e9, 2), ".2f").replace(".", ",")
+
+    if indicator_id == "budget_solde_global":
+        etat = "un déficit" if value < 0 else "un excédent"
+        text = (
+            f"Pour {period}, la loi de finances centrafricaine prévoyait "
+            f"{etat} budgétaire de {amount_fr} milliards de francs CFA."
+        )
+        return text, f"{indicator_id}_pays"
+
+    label = BUDGET_LABELS[indicator_id]
+    text = (
+        f"Pour {period}, {label} de la République centrafricaine "
+        f"étaient budgétisées à {amount_fr} milliards de francs CFA."
+    )
+    return text, f"{indicator_id}_pays"
+
+
 # (label_fr, unit, decimals) -- label_fr must fit "{label_fr} en République
 # centrafricaine s'établissait à" grammatically, checked by hand against
 # these 9 real indicators. decimals defaults to 1 everywhere except
