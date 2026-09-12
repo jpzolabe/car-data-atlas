@@ -1,8 +1,14 @@
 ---
 // Second brand-new theme this pass (théme #6 of 7 in docs/plan.md's site
 // map). Same anatomy as sante.astro: headline figure, categories ordered by
-// logical sequence, "Ce qui n'est pas mesuré" hand-written. No disclosure
-// blocks -- every indicator has exactly one source so far.
+// logical sequence, "Ce qui n'est pas mesuré" hand-written.
+//
+// taux_croissance_pib (added 2026-09-12) is the one disclosure indicator on
+// this page: ICASEES's rebased comptes nationaux disagree substantially
+// with World Bank's modelled estimate for 2020-2021. Rendered via the
+// "national" in ind check below, population.astro-style disclosure rather
+// than education.astro's dual-line chart -- simpler, and there are only 2
+// years of overlap to show, not a long modelled series with survey points.
 //
 // Two indicators (pib_total, pib_par_habitant) are monetary (US$), not
 // percentages like everything else on this page -- formatValue() below
@@ -42,6 +48,12 @@ function formatValue(indicatorId: string, value: number): { display: string; uni
   }
   if (indicatorId === "pib_par_habitant") {
     return { display: Math.round(value).toLocaleString("fr-FR"), unit: " US$" };
+  }
+  if (indicatorId === "pib_total_fcfa") {
+    return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " Md FCFA" };
+  }
+  if (indicatorId === "pib_par_habitant_fcfa") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " FCFA" };
   }
   if (MONTANT_INDICATORS.has(indicatorId)) {
     return value >= 1e9
@@ -84,6 +96,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-eco: #3D6373;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
+        --ochre: #B8790F; --ochre-soft: #F1E3C6;
       }
       * { box-sizing: border-box; }
       body {
@@ -133,6 +146,34 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
       }
       .badge.stale { background: var(--stale-soft); color: var(--stale); }
+      .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
+      .badge.administratif { background: color-mix(in srgb, var(--t-eco) 14%, var(--surface)); color: var(--t-eco); }
+      .national-figure {
+        margin: 0; padding: 16px 18px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 3px solid var(--t-eco); border-radius: 3px;
+      }
+      .national-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-eco); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+      }
+      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.75rem; font-weight: 400; color: var(--ink-faint); }
+      .national-meta { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+      .disclosure { margin-top: 10px; }
+      .disclosure summary {
+        cursor: pointer; font-family: ui-monospace, monospace; font-size: 11.5px; color: var(--t-eco);
+        list-style: none; display: flex; align-items: center; gap: 6px;
+      }
+      .disclosure summary::-webkit-details-marker { display: none; }
+      .disclosure summary::before { content: "▸"; font-size: 10px; transition: transform 0.15s ease; }
+      .disclosure[open] summary::before { transform: rotate(90deg); }
+      .disclosure-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+      .disclosure-table th {
+        text-align: left; font-family: ui-monospace, monospace; font-size: 9.5px; text-transform: uppercase;
+        color: var(--ink-faint); letter-spacing: 0.04em; padding: 0 10px 6px 0; font-weight: 400;
+      }
+      .disclosure-table td { padding: 6px 10px 6px 0; border-top: 1px solid var(--line); }
+      .disclosure-table td.num { font-family: ui-monospace, monospace; }
+      .disclosure-note { font-size: 11px; color: var(--ink-faint); margin: 8px 0 0; max-width: 64ch; }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
         gap: 14px;
@@ -197,6 +238,57 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
               const spark = sparkline(ind);
               const stale = isStale(ind.latest.period);
               const val = formatValue(ind.indicator_id, ind.latest.value);
+
+              if ("national" in ind) {
+                const fmtRate = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
+                return (
+                  <div class="indicator-card">
+                    <p class="ind-name">{ind.name_fr}</p>
+                    <p class="ind-definition">{ind.definition_fr}</p>
+                    <div class="national-figure">
+                      <div class="national-value">
+                        {fmtRate(ind.national.headline.value)}<span class="unit">%, {ind.national.headline.period}</span>
+                        <span class="badge administratif">administratif</span>
+                      </div>
+                      <div class="national-meta">
+                        {ind.national.headline.producer} - {ind.national.headline.dataset_name}
+                      </div>
+                      <details class="disclosure">
+                        <summary>{ind.national.all_sources.length} sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                        <table class="disclosure-table">
+                          <thead><tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr></thead>
+                          <tbody>
+                            {ind.national.all_sources.map((s) => (
+                              <tr>
+                                <td class="num">{fmtRate(s.value)}%</td>
+                                <td>{s.producer}</td>
+                                <td>{s.period}</td>
+                                <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <p class="disclosure-note">
+                          Écart calculé entre la donnée administrative et l'estimation
+                          modélisée pour la même année. Classement d'autorité : donnée
+                          administrative nationale &gt; estimation modélisée
+                          internationale - voir <a href="/methode/#classement">Méthode</a>.
+                        </p>
+                      </details>
+                    </div>
+                    <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                      <polyline class="mini-spark-line" points={spark.points} />
+                      <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                    </svg>
+                    <p class="mini-sentence">{ind.lead_sentence}</p>
+                    <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
+                      Graphique : {ind.source.producer} (série complète). Récupéré le {ind.source.retrieved_at}.
+                    </span>
+                  </div>
+                );
+              }
+
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
@@ -252,10 +344,10 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
-        <li>L'ICASEES rebase actuellement le PIB national sur une base 2019 - cette série Banque mondiale n'a pas été comparée à la série ICASEES rebasée une fois publiée. Voir <code>docs/verification-debt.md</code>.</li>
         <li>Le taux de pauvreté n'a que 3 points dans le temps (1992, un point intermédiaire, 2021) - il dépend de la disponibilité d'enquêtes de ménages, pas d'une série annuelle.</li>
         <li>Les recettes publiques n'ont pas de point après 2021.</li>
         <li>Aucune ventilation par secteur au-delà de l'agriculture (industrie, services) et aucune donnée sur l'inflation des prix à la production - la page <a href="/prix/">Prix</a> ne couvre que l'inflation à la consommation.</li>
+        <li>Les comptes nationaux de l'ICASEES ne couvrent que 2019 à 2021 pour l'instant - pas de mise à jour au-delà.</li>
       </ul>
 
       <footer>

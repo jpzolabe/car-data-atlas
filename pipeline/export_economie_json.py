@@ -26,21 +26,31 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_economie_montant, sentence_economie_rate
+from pipeline.sentences import (
+    sentence_economie_croissance_admin,
+    sentence_economie_montant,
+    sentence_economie_rate,
+)
 
 OUT_PATH = "site/src/data/economie.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
 
 MONTANT_INDICATORS = {
-    "pib_total", "pib_par_habitant",
+    "pib_total", "pib_par_habitant", "pib_total_fcfa", "pib_par_habitant_fcfa",
     "exportations_montant", "importations_montant", "dette_exterieure_montant",
 }
 
+# taux_croissance_pib is built separately (build_croissance_disclosure) since
+# it now has two disagreeing sources for 2020-2021 -- World Bank's annual
+# modelled series (kept as the chart's "series") and ICASEES's own rebased
+# comptes nationaux (higher authority per méthode.astro's ranking, shown as
+# the headline with a disclosure of both). See docs/decisions.md.
 CATEGORIES = [
     ("production", "Production", [
         "pib_total",
         "pib_par_habitant",
-        "taux_croissance_pib",
+        "pib_total_fcfa",
+        "pib_par_habitant_fcfa",
     ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
@@ -61,14 +71,15 @@ CATEGORIES = [
 ]
 
 
-def build_indicator(con, indicator_id: str) -> dict:
+def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dict:
     rows = con.execute("""
         select o.period, o.value, s.producer, s.dataset_name, s.url, s.retrieved_at::varchar
         from observations o
         join sources s on o.source_id = s.source_id
         where o.entity_id = ? and o.indicator_id = ?
+              and (? is null or o.source_id = ?)
         order by o.period
-    """, [COUNTRY_ID, indicator_id]).fetchall()
+    """, [COUNTRY_ID, indicator_id, source_id, source_id]).fetchall()
 
     latest = rows[-1]
     if indicator_id in MONTANT_INDICATORS:
@@ -85,6 +96,72 @@ def build_indicator(con, indicator_id: str) -> dict:
         "source": {
             "producer": latest[2], "dataset_name": latest[3],
             "url": latest[4], "retrieved_at": latest[5],
+        },
+    }
+
+
+def build_croissance_disclosure(con) -> dict:
+    """taux_croissance_pib: World Bank's full annual series stays the chart
+    ("series"), but the headline and a "N sources" disclosure use ICASEES's
+    own rebased comptes nationaux for 2020-2021 where it exists -- higher
+    authority per méthode.astro's ranking (donnée administrative nationale >
+    estimation modélisée internationale), and a real, substantial
+    disagreement (about 3.4% vs about 1%) worth surfacing rather than
+    picking one silently.
+    """
+    wb_block = build_indicator(con, "taux_croissance_pib", source_id="world-bank-gdp")
+
+    admin_rows = con.execute("""
+        select o.period, o.value, o.quality_flag, s.producer, s.dataset_name,
+               s.url, s.retrieved_at::varchar
+        from observations o
+        join sources s on o.source_id = s.source_id
+        where o.entity_id = ? and o.indicator_id = 'taux_croissance_pib'
+              and o.source_id = 'icasees-comptes-nationaux'
+        order by o.period desc
+    """, [COUNTRY_ID]).fetchall()
+
+    headline_row = admin_rows[0]  # most recent ICASEES year (2021)
+    same_year_wb = next(r for r in wb_block["series"] if r["period"] == headline_row[0])
+    spread_pct = abs(headline_row[1] - same_year_wb["value"]) / abs(same_year_wb["value"]) * 100
+
+    all_sources = [
+        {
+            "value": r[1], "period": r[0], "quality_flag": r[2],
+            "producer": r[3], "dataset_name": r[4], "url": r[5],
+        }
+        for r in admin_rows
+    ] + [
+        {
+            "value": v["value"], "period": v["period"], "quality_flag": "estime",
+            "producer": wb_block["source"]["producer"],
+            "dataset_name": wb_block["source"]["dataset_name"],
+            "url": wb_block["source"]["url"],
+        }
+        for v in wb_block["series"]
+        if v["period"] in {r[0] for r in admin_rows}
+    ]
+
+    lead_text, lead_template_id = sentence_economie_croissance_admin(
+        headline_row[0], headline_row[1]
+    )
+
+    return {
+        "indicator_id": "taux_croissance_pib",
+        "latest": {"period": headline_row[0], "value": headline_row[1]},
+        "series": wb_block["series"],
+        "lead_sentence": lead_text,
+        "lead_sentence_template_id": lead_template_id,
+        "source": wb_block["source"],
+        "national": {
+            "headline": {
+                "value": headline_row[1], "period": headline_row[0],
+                "quality_flag": headline_row[2],
+                "producer": headline_row[3], "dataset_name": headline_row[4],
+            },
+            "spread_pct": round(spread_pct, 1),
+            "spread_vs_period": headline_row[0],
+            "all_sources": all_sources,
         },
     }
 
@@ -108,6 +185,11 @@ def main():
             block["name_fr"] = names[indicator_id]
             block["definition_fr"] = definitions[indicator_id]
             indicator_blocks.append(block)
+        if key == "production":
+            croissance_block = build_croissance_disclosure(con)
+            croissance_block["name_fr"] = names["taux_croissance_pib"]
+            croissance_block["definition_fr"] = definitions["taux_croissance_pib"]
+            indicator_blocks.append(croissance_block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})
 
     headline_indicator = next(

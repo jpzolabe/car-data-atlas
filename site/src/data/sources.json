@@ -15,17 +15,17 @@
       "access_notes": "Fetched via WebSearch to confirm CAR's independence date (13 August 1960) for the country entity's valid_from."
     },
     {
-      "source_id": "icasees-rgph4-provisional",
+      "source_id": "icasees-site",
       "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
-      "url": null,
-      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général - page primaire non localisée)",
-      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) compilé depuis les communications publiques d'ICASEES d'août 2026. La page de résultats primaire n'a pas été localisée indépendamment malgré plusieurs tentatives (plusieurs URL icasees.org/rgph-4/* renvoient 404 ; le site présente aussi des URL de type spam à éviter). Voir docs/verification-debt.md.",
-      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
-      "update_cadence": "décennal",
-      "retrieved_at": "2026-09-05",
-      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
-      "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
+      "dataset_name": "icasees.org (site principal ; sous-répertoire rgph-4/ largement en 404)",
+      "url": "https://icasees.org/",
+      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général ; non re-vérifié page par page ici)",
+      "licence_notes": "Site principal fonctionnel, avec un contenu daté de façon cohérente (MICS7 lancée ~22 août 2026, aide-mémoire rebasage PIB ~7 août 2026). ATTENTION SÉCURITÉ : une recherche web a fait remonter une URL de spam de type casino sur ce domaine (paramètre ?prizes%2F...) - évitée, non visitée. Le sous-répertoire /rgph-4/ a renvoyé 404 sur plusieurs URLs testées le 2026-09-11 ; les résultats provisoires du RGPH-4 et une éventuelle page de cartographie n'ont pas été localisés malgré plusieurs tentatives.",
+      "geography_vintage": "site vivant ; contenu RGPH-4 spécifique non localisé au 2026-09-11",
+      "update_cadence": "unknown",
+      "retrieved_at": "2026-09-11",
+      "authority_rank": "voir quality_flag par observation",
+      "access_notes": "Utilisé pour une citation précise et vérifiée : un article RGPH-4 (icasees.org/index.php/actualites/316-...) décrit Bangui comme neuf (9) arrondissements plus les communes de Bimbo et Bégoua - voir docs/verification-debt.md, désaccord Bangui."
     },
     {
       "source_id": "icasees-ihpc-dashboard",
@@ -41,17 +41,30 @@
       "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) -- see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
     },
     {
-      "source_id": "icasees-site",
+      "source_id": "icasees-rgph4-provisional",
       "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "icasees.org (site principal ; sous-répertoire rgph-4/ largement en 404)",
-      "url": "https://icasees.org/",
-      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général ; non re-vérifié page par page ici)",
-      "licence_notes": "Site principal fonctionnel, avec un contenu daté de façon cohérente (MICS7 lancée ~22 août 2026, aide-mémoire rebasage PIB ~7 août 2026). ATTENTION SÉCURITÉ : une recherche web a fait remonter une URL de spam de type casino sur ce domaine (paramètre ?prizes%2F...) - évitée, non visitée. Le sous-répertoire /rgph-4/ a renvoyé 404 sur plusieurs URLs testées le 2026-09-11 ; les résultats provisoires du RGPH-4 et une éventuelle page de cartographie n'ont pas été localisés malgré plusieurs tentatives.",
-      "geography_vintage": "site vivant ; contenu RGPH-4 spécifique non localisé au 2026-09-11",
-      "update_cadence": "unknown",
-      "retrieved_at": "2026-09-11",
-      "authority_rank": "voir quality_flag par observation",
-      "access_notes": "Utilisé pour une citation précise et vérifiée : un article RGPH-4 (icasees.org/index.php/actualites/316-...) décrit Bangui comme neuf (9) arrondissements plus les communes de Bimbo et Bégoua - voir docs/verification-debt.md, désaccord Bangui."
+      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
+      "url": null,
+      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général - page primaire non localisée)",
+      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) compilé depuis les communications publiques d'ICASEES d'août 2026. La page de résultats primaire n'a pas été localisée indépendamment malgré plusieurs tentatives (plusieurs URL icasees.org/rgph-4/* renvoient 404 ; le site présente aussi des URL de type spam à éviter). Voir docs/verification-debt.md.",
+      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
+      "update_cadence": "décennal",
+      "retrieved_at": "2026-09-05",
+      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
+      "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
+    },
+    {
+      "source_id": "icasees-comptes-nationaux",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Études Économiques et Sociales)",
+      "dataset_name": "Comptes nationaux définitifs 2019-2021 de la République centrafricaine (base 2019, SCN 2008)",
+      "url": "https://icasees.org/index.php/component/edocman/comptes-nationaux-definitifs-2019-2021-de-la-republique-centrafricaine/download?Itemid=0",
+      "licence": "CC BY 4.0 (licence standard ICASEES)",
+      "licence_notes": "Rebasage complet de la comptabilité nationale sur une nouvelle année de base (2019) et le système SCN 2008, publié le 2026-07-30. Table 1 du document (page 12) rapporte un taux de croissance réel de 3,44% pour 2021, mais le résumé narratif du même document (page 7) donne 1,6% pour la même année ; la table a été retenue comme valeur structurée faisant foi, l'écart avec le texte narratif est noté sans être résolu. Voir docs/verification-debt.md.",
+      "geography_vintage": "comptes nationaux 2019, 2020 et 2021 uniquement ; pas encore de mise à jour au-delà",
+      "update_cadence": "annuel (aucune périodicité annoncée pour la prochaine édition)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "donnée administrative nationale, publiée par l'institut national de statistique",
+      "access_notes": "Extrait par lecture directe du PDF (pdfplumber) depuis l'URL de téléchargement stable d'ICASEES (composant edocman, trouvé via la page d'actualité qui annonce la publication). PDF conservé dans raw/icasees-comptes-nationaux/2026-09-12/. Valeurs transcrites du Tableau 1 (page 12) : PIB à prix courant, PIB par habitant, taux de croissance réel."
     },
     {
       "source_id": "minurbanisme-rca-regions",
@@ -91,19 +104,6 @@
       "retrieved_at": "2026-09-11",
       "authority_rank": "national législation (highest tier in the authority ranking for administrative structure)",
       "access_notes": "Two independent secondary citations found and one fetched/quoted directly (limko.cm); the actual Journal Officiel PDF was not located in this pass."
-    },
-    {
-      "source_id": "unesco-uis-literacy",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Taux d'alphabétisation, jeunes (15-24 ans) et adultes (15 ans et plus), les deux sexes (LR.AG15T24, LR.AG15T99)",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page -- voir la note sur la source achèvement/enquête.",
-      "geography_vintage": "4 points seulement pour la RCA (1975, 2000ish, ~2010, 2019 -- mêmes années que les indicateurs d'achèvement enquête, probablement issus des mêmes recensements/enquêtes)",
-      "update_cadence": "irrégulière (dépend de la publication du prochain recensement ou de la prochaine enquête)",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "probablement recensement ou enquête nationale (alphabétisation se mesure généralement par recensement/enquête, pas par annuaire scolaire) -- non confirmé explicitement par l'API, voir docs/verification-debt.md",
-      "access_notes": "Récupéré via le même endpoint UIS, indicateurs LR.AG15T24 et LR.AG15T99."
     },
     {
       "source_id": "unesco-uis-outofschool-modelled",
@@ -158,6 +158,19 @@
       "access_notes": "Récupéré via le même endpoint UIS que les indicateurs d'achèvement, indicateurs GER.1, GER.2, GER.3, GER.5T8, NERT.1.CP, REPR.1.CP, SR.1.GLAST.CP, ROFST.1.CP, ROFST.2.CP -- neuf codes, un seul appel d'API groupé (paramètre indicator accepte une liste séparée par des virgules)."
     },
     {
+      "source_id": "unesco-uis-literacy",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'alphabétisation, jeunes (15-24 ans) et adultes (15 ans et plus), les deux sexes (LR.AG15T24, LR.AG15T99)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Même licence déclarée que les autres sources UIS de cette page -- voir la note sur la source achèvement/enquête.",
+      "geography_vintage": "4 points seulement pour la RCA (1975, 2000ish, ~2010, 2019 -- mêmes années que les indicateurs d'achèvement enquête, probablement issus des mêmes recensements/enquêtes)",
+      "update_cadence": "irrégulière (dépend de la publication du prochain recensement ou de la prochaine enquête)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "probablement recensement ou enquête nationale (alphabétisation se mesure généralement par recensement/enquête, pas par annuaire scolaire) -- non confirmé explicitement par l'API, voir docs/verification-debt.md",
+      "access_notes": "Récupéré via le même endpoint UIS, indicateurs LR.AG15T24 et LR.AG15T99."
+    },
+    {
       "source_id": "who-gho-health-workforce",
       "producer": "WHO (Global Health Observatory)",
       "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
@@ -197,17 +210,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
     },
     {
-      "source_id": "world-bank-agricultural-employment",
+      "source_id": "world-bank-wdi-population",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
+      "dataset_name": "Population, total (SP.POP.TOTL)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = estimations modélisées de l'Organisation internationale du travail (OIT)",
+      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
+      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
       "source_id": "world-bank-internet-users",
@@ -299,19 +312,6 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
-    },
-    {
-      "source_id": "world-bank-wdi-population",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population, total (SP.POP.TOTL)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
       "source_id": "world-bank-maternal-mortality",
@@ -561,6 +561,19 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
     },
     {
+      "source_id": "world-bank-agricultural-employment",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = estimations modélisées de l'Organisation internationale du travail (OIT)",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
+    },
+    {
       "source_id": "world-bank-electricity-access",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
@@ -584,7 +597,7 @@
       "update_cadence": "mensuel (variable selon la source -- HDX note que la fréquence réelle peut différer du mensuel annoncé)",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré via le CSV public d'HDX (redirection vers une URL S3 signée, suivie automatiquement) -- pas d'authentification requise. Série 2004-2026 pour le marché de Bangui, 39 denrées disponibles au total ; seules 5 denrées de grande consommation avec des points récents (jusqu'à 2026-07) et un flag priceflag=actual (pas de valeur agrégée/estimée) ont été retenues pour l'instant."
+      "access_notes": "Récupéré via le CSV public d'HDX (redirection vers une URL S3 signée, suivie automatiquement) ; pas d'authentification requise. Série 2004-2026 pour le marché de Bangui, 39 denrées disponibles au total ; seules 5 denrées de grande consommation avec des points récents (jusqu'à 2026-07) et un flag priceflag=actual (pas de valeur agrégée/estimée) ont été retenues pour l'instant."
     },
     {
       "source_id": "citypopulation-de-caf",

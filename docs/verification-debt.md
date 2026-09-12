@@ -269,24 +269,6 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   independent source for CAR's inflation rate (e.g. IMF, World Bank
   `FP.CPI.TOTL.ZG`) is checked against it.
 
-### World Bank GDP figures not cross-checked against ICASEES's own rebasing
-
-- **What:** `pib_total`, `pib_par_habitant` and `taux_croissance_pib` are
-  fetched from the World Bank API (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD,
-  NY.GDP.MKTP.KD.ZG). `CLAUDE.md`'s domain facts state ICASEES was rebasing
-  the national GDP series to a 2019 base "underway" as of its September
-  2026 compilation. Once that rebased series is published, it hasn't been
-  checked against these World Bank figures - the two may or may not
-  diverge, similar to how RGPH-4's population figure diverges from World
-  Bank's population estimate.
-- **Used in:** `data/observations.csv`, `pib_total` / `pib_par_habitant` /
-  `taux_croissance_pib` (15 rows each), `site/src/pages/economie.astro`.
-- **Resolved when:** ICASEES publishes its rebased GDP series and it's
-  fetched and compared directly against the World Bank figures already on
-  the page - either confirming they're consistent, or surfacing a real
-  disagreement worth its own multi-source disclosure block, the way
-  population's RGPH-4-vs-World-Bank comparison already works.
-
 ### Poverty rate (économie) has only 3 real data points
 
 - **What:** `taux_pauvrete` (World Bank SI.POV.DDAY, poverty headcount
@@ -367,3 +349,28 @@ citations of the same law, which is enough to close this as resolved rather than
 open. Bonus: this same law is confirmed to define **175 communes** as a real legal
 level (not something an old COD-AB edition invented) - relevant if a commune source
 is ever found, since 175 would be the expected target count.
+
+### World Bank GDP figures cross-checked against ICASEES's own rebasing (2026-09-12)
+
+ICASEES published its rebased comptes nationaux (base 2019, SCN 2008) for
+2019-2021 on 2026-07-30. Fetched the actual PDF and cross-checked its
+Tableau 1 growth-rate figures against the World Bank's modelled estimate
+for the same years: they disagree substantially (ICASEES 3.41%/3.44% for
+2020/2021 vs World Bank 0.90%/0.98%, a roughly 250% relative spread for
+2021). This is now surfaced as a real multi-source disclosure on
+`/economie/` rather than silently picking one, per `CLAUDE.md`'s authority
+ranking (donnée administrative nationale outranks estimation modélisée
+internationale, so ICASEES is the headline). GDP total and per-capita in
+FCFA were also added as new indicators (`pib_total_fcfa`,
+`pib_par_habitant_fcfa`) rather than forced into the existing USD ones,
+since converting between the two currencies would require an assumed
+exchange rate this project hasn't verified - see
+`pipeline/add_comptes_nationaux.py`.
+
+One loose end, not resolved: the PDF's own narrative summary (page 7)
+states a 2021 growth rate of 1.6%, which contradicts its own Tableau 1
+value of 3.44% for the same year and the same concept. The tabulated
+value was used as authoritative (structured data over prose), and the
+inconsistency is logged in `data/sources.csv`'s `licence_notes` for
+`icasees-comptes-nationaux` rather than resolved by guessing which one the
+document's authors meant.

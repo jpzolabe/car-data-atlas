@@ -249,6 +249,16 @@ ECONOMIE_RATE_LABELS = {
 }
 
 
+def sentence_economie_croissance_admin(period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    text = (
+        f"En {period}, le produit intérieur brut de la République "
+        f"centrafricaine a progressé de {value_fr}% en volume, selon les "
+        f"comptes nationaux rebasés de l'ICASEES."
+    )
+    return text, "taux_croissance_pib_administratif"
+
+
 def sentence_economie_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
     value_fr = format(round(value, 1), ".1f").replace(".", ",")
     label = ECONOMIE_RATE_LABELS[indicator_id]
@@ -278,6 +288,24 @@ def sentence_economie_montant(indicator_id: str, period: str, value: float) -> t
             f"En {period}, le produit intérieur brut par habitant en "
             f"République centrafricaine s'établissait à {value_fr} "
             f"dollars américains courants."
+        )
+        return text, f"{indicator_id}_pays"
+
+    if indicator_id == "pib_par_habitant_fcfa":
+        value_fr = format(round(value), ",").replace(",", THOUSANDS_SEP)
+        text = (
+            f"En {period}, le produit intérieur brut par habitant en "
+            f"République centrafricaine s'établissait à {value_fr} francs "
+            f"CFA, selon les comptes nationaux rebasés de l'ICASEES."
+        )
+        return text, f"{indicator_id}_pays"
+
+    if indicator_id == "pib_total_fcfa":
+        amount_fr = format(value / 1e9, ",.1f").replace(",", THOUSANDS_SEP).replace(".", ",")
+        text = (
+            f"En {period}, le produit intérieur brut de la République "
+            f"centrafricaine s'établissait à {amount_fr} milliards de "
+            f"francs CFA, selon les comptes nationaux rebasés de l'ICASEES."
         )
         return text, f"{indicator_id}_pays"
 

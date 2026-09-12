@@ -756,6 +756,27 @@ if it were the same kind of figure. 34 other commodities and 40 other
 markets exist in the same source and are named as not-yet-covered rather
 than silently absent.
 
+**Update 2026-09-12 (sixth pass the same day) - item 4, national accounts
+and GDP.** ICASEES published rebased comptes nationaux (base 2019, SCN
+2008) for 2019-2021 on 2026-07-30 - fetched the actual PDF (pdfplumber,
+`extract_tables()` used to rule out a column-merge misread) rather than
+assumed from its announcement page. Added 2 new indicators (`pib_total_fcfa`,
+`pib_par_habitant_fcfa`) rather than converting into the existing USD
+figures, since that would need an assumed exchange rate this project
+hasn't verified. More importantly, this resolved a real open item from
+`docs/verification-debt.md`: ICASEES's growth rate for 2020-2021 (3.41%,
+3.44%) disagrees substantially with the World Bank's modelled estimate for
+the same years (0.90%, 0.98%) - a genuine ~250% relative spread, not a
+rounding difference. Économie now has its first multi-source disclosure
+(`taux_croissance_pib`), following the authority ranking (donnée
+administrative nationale outranks estimation modélisée internationale) -
+population and éducation already had this mechanism, so this is a third,
+not the first, but the first for a macroeconomic figure. 73 indicators
+total now. One thing found but not resolved: the PDF's own narrative
+summary contradicts its own data table for the 2021 growth rate (1.6% vs
+3.44%) - the table was used as authoritative, the inconsistency logged
+rather than silently picked around.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for
