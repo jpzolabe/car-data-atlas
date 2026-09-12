@@ -84,6 +84,24 @@ def main():
         from sources where source_id = 'citypopulation-de-caf'
     """).fetchone()
 
+    # Répartition par sexe - same RGPH-4 observation the national headline
+    # already cites (the split was sitting in that row's own notes field;
+    # promoted to real indicators, see docs/decisions.md).
+    hommes = con.execute("""
+        select value from observations
+        where entity_id = 'cf-pays-centrafrique-v1' and indicator_id = 'population_hommes'
+    """).fetchone()[0]
+    femmes = con.execute("""
+        select value from observations
+        where entity_id = 'cf-pays-centrafrique-v1' and indicator_id = 'population_femmes'
+    """).fetchone()[0]
+    sexe_total = hommes + femmes
+    repartition_sexe = {
+        "hommes": hommes, "femmes": femmes,
+        "hommes_pct": round(hommes / sexe_total * 100, 1),
+        "femmes_pct": round(femmes / sexe_total * 100, 1),
+    }
+
     # National-level multi-source disclosure - docs/plan.md §2.5. Two genuinely
     # independent sources disagree on the same country: RGPH-4 (census,
     # provisional) vs World Bank WDI (modelled estimate). Per CLAUDE.md's
@@ -177,6 +195,7 @@ def main():
         "lead_sentence": lead_text,
         "lead_sentence_template_id": lead_template_id,
         "national": national,
+        "repartition_sexe": repartition_sexe,
         "prefectures": [
             {
                 "prefecture": r[0], "region": r[1],

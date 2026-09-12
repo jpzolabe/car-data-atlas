@@ -5,7 +5,7 @@
 // docs/decisions.md.
 import data from "../data/population.json";
 import ThemeInit from "../components/ThemeInit.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import SiteNav from "../components/SiteNav.astro";
 
 const byRegion = new Map<string, typeof data.prefectures>();
 for (const row of data.prefectures) {
@@ -15,6 +15,7 @@ for (const row of data.prefectures) {
 const regions = [...byRegion.keys()].sort();
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
+const fmtDecimal = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
 const national = data.national;
 const distinctSources = [...new Set(national.all_sources.map((s) => s.producer))];
@@ -75,7 +76,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Population par préfecture - Données RCA</title>
+    <title>Population - Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6;
@@ -116,7 +117,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         font-size: 15px;
         line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
       .crumb {
         font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
         letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
@@ -133,6 +134,17 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         color: var(--t-pop); font-weight: 600; margin: 32px 0 8px;
         border-bottom: 1px solid var(--line); padding-bottom: 6px;
       }
+      .section-toggle { margin: 32px 0 8px; }
+      .section-toggle summary {
+        font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em;
+        color: var(--t-pop); font-weight: 600; margin: 0 0 8px;
+        border-bottom: 1px solid var(--line); padding-bottom: 6px;
+        cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px;
+      }
+      .section-toggle summary::-webkit-details-marker { display: none; }
+      .section-toggle summary::before { content: "▸"; font-size: 11px; transition: transform 0.15s ease; }
+      .section-toggle[open] summary::before { transform: rotate(90deg); }
+      .section-toggle summary:hover { color: var(--indigo); }
       svg { width: 100%; height: auto; display: block; margin: 10px 0 4px; }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
@@ -243,6 +255,11 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       .disclosure-table td { padding: 7px 10px 7px 0; border-top: 1px solid var(--line); }
       .disclosure-table td.num { font-family: ui-monospace, monospace; }
       .disclosure-note { font-size: 11.5px; color: var(--ink-faint); margin: 10px 0 0; max-width: 64ch; }
+      .sexe-split { margin-top: 16px; max-width: 420px; }
+      .sexe-bar { display: flex; height: 10px; border-radius: 2px; overflow: hidden; }
+      .sexe-hommes { background: var(--t-pop); }
+      .sexe-femmes { background: var(--ochre); }
+      .sexe-labels { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--ink-muted); margin-top: 5px; }
       footer {
         margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
         font-size: 12px; color: var(--ink-faint);
@@ -286,10 +303,10 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
-      <h1>Population par préfecture</h1>
+      <h1>Population</h1>
       <p class="lede">
         Deux séries : le recensement de 2003 (RGPH-3) et une estimation 2021.
         Aucune des deux n'est actuelle - voir les notes sur chaque colonne.
@@ -329,6 +346,16 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
             estimation modélisée internationale - voir <a href="/methode/#classement">Méthode</a>.
           </p>
         </details>
+        <div class="sexe-split">
+          <div class="sexe-bar">
+            <div class="sexe-hommes" style={`width: ${data.repartition_sexe.hommes_pct}%`}></div>
+            <div class="sexe-femmes" style={`width: ${data.repartition_sexe.femmes_pct}%`}></div>
+          </div>
+          <div class="sexe-labels">
+            <span>Hommes - {fmtDecimal(data.repartition_sexe.hommes_pct)}% ({fmt(data.repartition_sexe.hommes)})</span>
+            <span>Femmes - {fmtDecimal(data.repartition_sexe.femmes_pct)}% ({fmt(data.repartition_sexe.femmes)})</span>
+          </div>
+        </div>
       </div>
 
       <p class="sentence">
@@ -395,31 +422,33 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         voir <code>docs/verification-debt.md</code>.
       </p>
 
-      <h2>Par sous-préfecture</h2>
-      <p class="legend-note">
-        Projection ICASEES 2025 (cycle HNRP), la plus fine profondeur géographique
-        disponible pour cet indicateur - 85 sous-préfectures, groupées par préfecture.
-      </p>
-      <div class="prefecture-grid">
-        {data.prefectures.map((p) => (
-          <div class="prefecture-block">
-            <h3>{p.prefecture}</h3>
-            <table>
-              <thead>
-                <tr><th>Sous-préfecture</th><th>2025</th></tr>
-              </thead>
-              <tbody>
-                {p.sous_prefectures.map((sp: any) => (
-                  <tr>
-                    <td>{sp.name_fr}</td>
-                    <td>{fmt(sp.pop_2025)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-      </div>
+      <details class="section-toggle">
+        <summary>Par sous-préfecture</summary>
+        <p class="legend-note">
+          Projection ICASEES 2025 (cycle HNRP), la plus fine profondeur géographique
+          disponible pour cet indicateur - 85 sous-préfectures, groupées par préfecture.
+        </p>
+        <div class="prefecture-grid">
+          {data.prefectures.map((p) => (
+            <div class="prefecture-block">
+              <h3>{p.prefecture}</h3>
+              <table>
+                <thead>
+                  <tr><th>Sous-préfecture</th><th>2025</th></tr>
+                </thead>
+                <tbody>
+                  {p.sous_prefectures.map((sp: any) => (
+                    <tr>
+                      <td>{sp.name_fr}</td>
+                      <td>{fmt(sp.pop_2025)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      </details>
 
       <h2>Autres indicateurs</h2>
       <div class="indicator-grid">
@@ -449,12 +478,11 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         Récupéré le {data.source.retrieved_at}.
         <a href={data.source.url}>{data.source.url}</a>
         <nav class="site-nav">
-          <a href="/prix/">Indice des prix</a>
+          <a href="/population/">Population</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/agriculture/">Agriculture</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

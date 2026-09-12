@@ -9,26 +9,27 @@
 // (--surface/--ink/--ink-muted/--ink-faint/--line), so it needs no
 // page-specific accent to render correctly, and can be dropped into any
 // page unchanged.
+//
+// No longer self-positioning (was position:fixed top-right) - lives
+// inside SiteNav.astro's fixed bar now, as a normal flex child, since a
+// second independently-floating fixed element next to SiteNav's own bar
+// read as two competing widgets rather than one coherent piece of chrome.
 ---
 <button id="theme-toggle" type="button" aria-label="Changer de thème (clair, sombre, ou automatique)">
   <span id="theme-toggle-label">Thème : auto</span>
 </button>
 <style>
   #theme-toggle {
-    position: fixed;
-    top: 14px;
-    right: 14px;
-    z-index: 50;
     font: inherit;
     font-family: ui-monospace, monospace;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--ink-muted);
-    background: var(--surface);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 3px;
-    padding: 6px 10px;
+    padding: 5px 9px;
     cursor: pointer;
     transition: color 0.15s ease, border-color 0.15s ease;
   }
@@ -39,9 +40,6 @@
   #theme-toggle:focus-visible {
     outline: 2px solid var(--ink-faint);
     outline-offset: 2px;
-  }
-  @media (max-width: 640px) {
-    #theme-toggle { top: 8px; right: 8px; padding: 5px 8px; }
   }
 </style>
 <script is:inline>

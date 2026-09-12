@@ -12,7 +12,7 @@
 // pipeline/sentences.py).
 import data from "../data/agriculture.json";
 import ThemeInit from "../components/ThemeInit.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import SiteNav from "../components/SiteNav.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -97,7 +97,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--t-agri); text-decoration: underline; }
@@ -158,7 +158,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Agriculture</h1>
@@ -226,7 +226,6 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         Détail par source sur la page <a href="/sources/">Sources</a>.
         <nav class="site-nav">
           <a href="/population/">Population</a>
-          <a href="/prix/">Prix</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>

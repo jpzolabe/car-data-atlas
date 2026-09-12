@@ -429,7 +429,10 @@ Organised by theme. **Verify every URL before use.**
 ## 4.2 Population
 
 - ICASEES RGPH-4 provisional results (2025): 6,656,269 - 3,312,532 M / 3,343,737 F,
-  density 10.7/km². Marked *données non encore validées*.
+  density 10.7/km². Marked *données non encore validées*. **The M/F split is now on
+  `/population/`** as its own pair of indicators (2026-09-13). **Median age requested
+  too, 2026-09-13 - not yet checked against any source**, unlike M/F this isn't
+  sitting in an observation already in hand; needs a real look before adding.
 - Historical censuses: 1975, 1988, 2003. ICASEES publishes the 1975 report; the NADA
   catalogue holds the 1975 census entry.
 - COD-PS (2003 projected to 2015).

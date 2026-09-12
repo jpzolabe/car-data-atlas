@@ -85,3 +85,5 @@ nombre_etablissements_scolaires,Nombre d'établissements scolaires,"Cet indicate
 effectif_eleves,Effectif des élèves,"Cet indicateur donne le nombre total d'élèves inscrits, tous niveaux d'enseignement confondus, du préscolaire à l'enseignement technique et professionnel, public et privé confondus.",élèves,education,pays,education_effectif_pays,true
 nombre_enseignants,Nombre d'enseignants,"Cet indicateur donne le nombre total d'enseignants en poste, tous niveaux d'enseignement confondus, public et privé confondus.",enseignants,education,pays,education_effectif_pays,true
 taux_reussite_baccalaureat,Taux de réussite au baccalauréat général,"Ce taux mesure la part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues.",%,education,pays,taux_reussite_baccalaureat_pays,true
+population_hommes,Population masculine,"Cet indicateur donne le nombre d'hommes dénombrés lors du recensement, à l'échelle nationale.",habitants,population,pays,,
+population_femmes,Population féminine,"Cet indicateur donne le nombre de femmes dénombrées lors du recensement, à l'échelle nationale.",habitants,population,pays,,

@@ -20,7 +20,7 @@
 import lieux from "../../../data/lieux_prefectures.json";
 import prefectureMaps from "../../../data/prefecture_maps.json";
 import ThemeInit from "../../../components/ThemeInit.astro";
-import ThemeToggle from "../../../components/ThemeToggle.astro";
+import SiteNav from "../../../components/SiteNav.astro";
 
 export function getStaticPaths() {
   return Object.values(lieux).map((p: any) => ({
@@ -118,7 +118,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
@@ -163,6 +163,14 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
       }
       .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
       h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      .section-toggle { margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      .section-toggle summary {
+        font-size: 1.15rem; cursor: pointer; list-style: none;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .section-toggle summary::-webkit-details-marker { display: none; }
+      .section-toggle summary::before { content: "▸"; font-size: 14px; color: var(--t-lieu); transition: transform 0.15s ease; }
+      .section-toggle[open] summary::before { transform: rotate(90deg); }
       .sentence {
         font-style: italic; font-size: 15.5px; line-height: 1.5; color: var(--ink);
         margin: 12px 0 0; padding-left: 12px; border-left: 2px solid var(--t-lieu);
@@ -194,7 +202,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
     </style>
   </head>
   <body>
-    <ThemeToggle />
+    <SiteNav />
     <main>
       <div class="crumb">
         <a href="/">République centrafricaine</a> / <a href="/lieux/">Lieux</a>
@@ -244,8 +252,8 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
       )}
 
       {place.sous_prefectures.length > 0 && (
-        <>
-          <h2>Sous-préfectures</h2>
+        <details class="section-toggle">
+          <summary>Sous-préfectures</summary>
           <p class="headline-caption">
             Projection ICASEES 2025 (cycle HNRP), par sous-préfecture - la plus fine profondeur
             géographique disponible pour cet indicateur. Pas encore de page individuelle par
@@ -268,7 +276,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
               </tbody>
             </table>
           </div>
-        </>
+        </details>
       )}
 
       {comparisonRows.length > 0 && (
@@ -399,15 +407,13 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
       <footer>
         Données : voir chaque thème pour le détail des sources. Crosswalk géographique : <a href="/methode/">Méthode</a>.
         <nav class="site-nav">
-          <a href="/lieux/">Toutes les préfectures</a>
           <a href="/population/">Population</a>
-          <a href="/prix/">Prix</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/agriculture/">Agriculture</a>
           <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
           <a href="/a-propos/">À propos</a>
         </nav>
