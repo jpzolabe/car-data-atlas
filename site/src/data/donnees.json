@@ -3,7 +3,7 @@
   "files": [
     {
       "name": "entities.csv",
-      "rows": 113,
+      "rows": 114,
       "description": "Une ligne par unité administrative, par version. Jamais modifié en place — un redécoupage crée une nouvelle entité."
     },
     {
@@ -13,17 +13,17 @@
     },
     {
       "name": "sources.csv",
-      "rows": 8,
+      "rows": 46,
       "description": "Une ligne par source : producteur, licence, cadence, vintage géographique, mise en garde éventuelle."
     },
     {
       "name": "indicators.csv",
-      "rows": 2,
+      "rows": 71,
       "description": "Un indicateur par ligne : définition, unité, thème, et le niveau géographique le plus fin qu'il atteint réellement."
     },
     {
       "name": "observations.csv",
-      "rows": 176,
+      "rows": 2800,
       "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
     },
     {

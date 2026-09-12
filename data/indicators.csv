@@ -65,3 +65,8 @@ importations_montant,Importations (valeur),"Importations de biens et services, e
 dette_exterieure_montant,Dette extérieure (montant),"Encours de la dette extérieure, en dollars américains courants.",US$,economie,pays,economie_montant_pays,false
 superficie_agricole,Superficie agricole,"Superficie totale des terres agricoles, en kilomètres carrés.",km²,agriculture,pays,agriculture_superficie_pays,
 production_cereales,Production de céréales,"Production totale de céréales, en tonnes.",tonnes,agriculture,pays,agriculture_production_pays,true
+prix_manioc_kg,Prix du manioc (cossette),"Prix de détail du kilogramme de manioc séché (cossette), au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_riz_kg,Prix du riz,"Prix de détail du kilogramme de riz, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_mais_kg,Prix du maïs,"Prix de détail du kilogramme de maïs, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_boeuf_kg,Prix de la viande de bœuf,"Prix de détail du kilogramme de viande de bœuf, au marché de Bangui.",FCFA/kg,prix,marche,prix_denree_marche,false
+prix_huile_palme_l,Prix de l'huile de palme,"Prix de détail du litre d'huile de palme, au marché de Bangui.",FCFA/L,prix,marche,prix_denree_marche,false

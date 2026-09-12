@@ -514,3 +514,55 @@ planning artifact), the "known gaps" file is a deliberate part of this
 project's own transparency design (rule zero: "gaps are content"), and a
 data-savvy reader who downloads the CSVs from `/donnees/` can genuinely
 follow that reference.
+
+## WFP food prices: first market-level source
+
+Phase 3 source list item 3. HDX's "Central African Republic - Food Prices"
+dataset (CC BY-IGO), checked live via the HDX API rather than assumed from
+its catalogue listing: 41 markets, 39 commodities, 2004-01 to 2026-07,
+updated roughly monthly. This is the source CLAUDE.md itself names as the
+example of a different geographic floor ("food prices stop at the market,
+a point, not an area") -- the first real test of that claim.
+
+Scope for v1: Bangui market only (the capital, and this dataset's most
+complete series), Retail pricetype, `priceflag=actual` rows only (no
+aggregated/estimated values), and only the 5 staple commodities whose
+monthly data continues into 2026 rather than stopping around 2018-2021 --
+checked per-commodity before picking (`Cassava (cossette)`, `Rice`,
+`Maize`, `Meat (beef)`, `Oil (palm)`; the plain `Cassava` row was skipped
+in favor of `Cassava (cossette)` since it stops in 2021). 34 other
+commodities and 40 other markets exist in the same file and are named on
+the page as not yet covered.
+
+**Required a new entity level.** `entities.csv` previously only had
+`pays`/`region`/`prefecture`/`sous_prefecture` -- a strict administrative
+hierarchy. A market doesn't fit that: it's a point, not an area, and WFP's
+file gives no finer administrative attribution than the market name
+itself. Added `marche` as a new level with a single entity so far
+(`cf-m-bangui-v1`), `parent_id` set to the Bangui prefecture entity as the
+least-wrong available anchor -- documented as exactly that, not as a claim
+that markets nest inside prefectures the way sous-préfectures do. Its
+`valid_from` (2004-01-15) is the date of the first observation available
+in the source, not a claim about when the market itself came into
+existence, which isn't documented anywhere -- worded that way in the
+entity's own notes so it can't be misread later.
+
+**Rendered as a distinct section on `/prix/`**, not blended into the IHPC
+series -- different geography, different source, different unit (real
+FCFA retail prices vs. an index). The section states the geographic-floor
+difference in its own intro line rather than leaving a reader to infer it
+from a change in numbers, per CLAUDE.md's "each indicator has its own
+geographic floor" principle. `export_prix_json.py` gained a
+`fetch_market_series()` that filters by `entity_id` in addition to
+`indicator_id` -- the country-level series functions deliberately weren't
+touched, since every existing indicator on this site is still
+single-entity (national) and didn't need that filter until now.
+
+**One template fix caught by reading the generated output, not assumed
+correct:** "le litre de huile de palme" is wrong French ("huile" is
+h-muet and elides) -- `elide_de()` already existed for a different case
+(place names after "de"), so this needed its own small elision check
+rather than reusing that function, since the two aren't the same
+grammatical construction. Fixed and verified against all 5 real labels
+before treating the template as done, same practice as every other
+sentence template on this site.
