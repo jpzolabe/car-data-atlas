@@ -905,3 +905,47 @@ naissance est...") instead of interpolating the bare `name_fr` without
 one. Split into two separate `<p class="headline-caption">` paragraphs
 rather than one run-on, matching the pattern infrastructures.astro/
 population.astro/prix.astro already used for their headline definitions.
+
+## Phase 4, first real step: WFP prices widened to every market, a genuine "by préfecture" breakdown
+
+Started Phase 4 with the source that was already closest to ready: WFP's
+food price file was fetched Bangui-only in the Phase 3 pass, but the same
+already-downloaded file covers 41 markets - checked live before widening
+(not assumed from Bangui's own coverage), 34 of them have real, recent
+(2025-2026) monthly data for all or most of the same 5 staple commodities
+already on the page, spread across 16 of the 20 préfectures.
+
+**Every market is now its own `marche`-level entity** (40 new ones, plus
+the existing `cf-m-bangui-v1`), parented to the préfecture its `admin1`
+column names - matched by exact name against `data/entities.csv`, no
+fuzzy matching needed, since WFP's own admin1 values are already spelled
+the same way. Each entity's `valid_from` uses that market's true
+first-observed date in the full file, computed directly rather than
+using the truncated fetch window's start date, so the entity record
+doesn't imply a market is newer than it actually is.
+
+**Deliberately capped non-Bangui markets to 2025-01 onward, not full
+history.** Fetching all 40 markets' complete history (back to 2004 for
+some) would add roughly 14,000 rows to `observations.csv` for a
+breakdown table that only needs "the current price, across the country,"
+not two decades of trend per market - Bangui already carries that
+detailed role. This is a scope decision, not a data quality shortcut:
+every value kept is real and dated correctly, just deliberately not the
+whole available history for markets that aren't the page's flagship one.
+
+**New `/prix/` section: "Prix par préfecture"** - a small table per
+préfecture, one row per market, one column per commodity, showing the
+latest known price (real geographic price variation shows up
+immediately: beef is 6 000 FCFA/kg in Bangui vs 3 000 in Ndélé). A
+missing cell means no recent price exists for that denrée at that
+market, stated as such rather than shown as zero. 4 préfectures
+(Basse-Kotto, Lim-Pendé, Mambéré, Ouham-Fafa) have no market with recent
+data in this source at all - named explicitly rather than silently
+absent from the table.
+
+This is Phase 4 step 1 ("wire the crosswalk into the observation
+pipeline; backfill entity_id for subnational data") and step 3
+("breakdown sections on theme pages") done together for one real theme,
+before touching any place-page template - the plan's own point in
+naming these steps first was to find out what data genuinely descends
+before designing pages around it.

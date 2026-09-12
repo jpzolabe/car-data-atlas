@@ -7162,6 +7162,941 @@
         "lead_sentence": "En juillet 2026, le litre d'huile de palme se vendait à 775 francs CFA au marché de Bangui.",
         "lead_sentence_template_id": "prix_huile_palme_l_marche"
       }
-    ]
+    ],
+    "breakdown": [
+      {
+        "name_fr": "Bamingui-Bangoran",
+        "markets": [
+          {
+            "name_fr": "Marché de Ndélé",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 144.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 230.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 3000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1450.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Bangui",
+        "markets": [
+          {
+            "name_fr": "Marché de Bangui",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 365.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 6000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 775.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Haut-Mbomou",
+        "markets": [
+          {
+            "name_fr": "Marché de Obo",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-06",
+                "value": 308.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-06",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-05",
+                "value": 250.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2025-12",
+                "value": 3250.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Zemio",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 423.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 622.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 4250.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 700.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Haute-Kotto",
+        "markets": [
+          {
+            "name_fr": "Marché de Bria",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 250.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 338.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 825.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1550.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Kémo",
+        "markets": [
+          {
+            "name_fr": "Marché de Dekoa",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 106.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 203.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 3500.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1000.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Sibut",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 115.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 243.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 800.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Lobaye",
+        "markets": [
+          {
+            "name_fr": "Marché de Boda",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 163.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 600.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Mbaïki",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 950.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 950.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Mambéré-Kadéï",
+        "markets": [
+          {
+            "name_fr": "Marché de Berbérati",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 146.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 257.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 900.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Carnot",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 183.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 311.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 838.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 900.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Mbomou",
+        "markets": [
+          {
+            "name_fr": "Marché de Bangassou",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 144.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 257.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 825.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-06",
+                "value": 3500.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 275.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Nana-Gribizi",
+        "markets": [
+          {
+            "name_fr": "Marché de Kaga-Bandoro",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 144.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 216.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 3750.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1225.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Nana-Mambéré",
+        "markets": [
+          {
+            "name_fr": "Marché de Baboua",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 154.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1000.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 750.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Baoro",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 125.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 257.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 775.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1150.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bouar",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 154.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 750.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-06",
+                "value": 1000.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Ombella M'Poko",
+        "markets": [
+          {
+            "name_fr": "Marché de Bimbo",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 378.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 763.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 700.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Boali",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-06",
+                "value": 173.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 775.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1000.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bossemptélé",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 115.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 297.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1225.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bégoua",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 324.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 6000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 775.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Damara",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 154.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 284.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-06",
+                "value": 3750.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1100.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Yaloké",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 125.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 257.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 950.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Ouaka",
+        "markets": [
+          {
+            "name_fr": "Marché de Bambari",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 154.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-06",
+                "value": 2500.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 750.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Ippy",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 106.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 324.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 3000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1050.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Ouham",
+        "markets": [
+          {
+            "name_fr": "Marché de Batangafo",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 231.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 270.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-06",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1500.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bossangoa",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 154.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 230.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1225.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bouca",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 115.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1250.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 189.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Ouham Pendé",
+        "markets": [
+          {
+            "name_fr": "Marché de Bocaranga",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 231.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 311.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 600.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1500.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Bozoum",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-06",
+                "value": 203.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4250.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1350.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Ngaoundaye",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 243.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 775.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1500.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Paoua",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 173.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 324.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 813.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 4250.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 1500.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Sangha-Mbaéré",
+        "markets": [
+          {
+            "name_fr": "Marché de Bayanga",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 192.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 432.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 850.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 550.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              }
+            }
+          },
+          {
+            "name_fr": "Marché de Nola",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 173.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 365.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 800.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2026-07",
+                "value": 550.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name_fr": "Vakaga",
+        "markets": [
+          {
+            "name_fr": "Marché de Birao",
+            "prices": {
+              "prix_manioc_kg": {
+                "period": "2026-07",
+                "value": 462.0
+              },
+              "prix_mais_kg": {
+                "period": "2026-07",
+                "value": 514.0
+              },
+              "prix_riz_kg": {
+                "period": "2026-07",
+                "value": 4000.0
+              },
+              "prix_boeuf_kg": {
+                "period": "2026-07",
+                "value": 5000.0
+              },
+              "prix_huile_palme_l": {
+                "period": "2025-08",
+                "value": 480.77
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "breakdown_labels": {
+      "prix_manioc_kg": "Prix du manioc (cossette)",
+      "prix_riz_kg": "Prix du riz",
+      "prix_mais_kg": "Prix du maïs",
+      "prix_boeuf_kg": "Prix de la viande de bœuf",
+      "prix_huile_palme_l": "Prix de l'huile de palme"
+    }
   }
 }

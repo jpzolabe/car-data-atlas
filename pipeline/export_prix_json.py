@@ -53,6 +53,45 @@ def fetch_market_series(con, indicator_id: str, entity_id: str) -> list[tuple]:
     """, [indicator_id, entity_id]).fetchall()
 
 
+def fetch_national_breakdown(con) -> list[dict]:
+    """Phase 4 step 3: the latest price per market and per commodity,
+    grouped by préfecture -- every market with recent WFP data, not just
+    Bangui. One row per market per commodity; the caller picks the latest
+    period per (market, commodity) pair since coverage varies market to
+    market."""
+    placeholders = ",".join(["?"] * len(DENREE_INDICATORS))
+    rows = con.execute(f"""
+        select p.name_fr as prefecture_name, e.name_fr as market_name,
+               o.indicator_id, o.period, o.value
+        from observations o
+        join entities e on o.entity_id = e.entity_id
+        join entities p on e.parent_id = p.entity_id
+        where o.indicator_id in ({placeholders}) and e.level = 'marche'
+        order by o.period
+    """, DENREE_INDICATORS).fetchall()
+
+    latest_by_market_indicator: dict[tuple[str, str, str], tuple[str, float]] = {}
+    for prefecture_name, market_name, indicator_id, period, value in rows:
+        latest_by_market_indicator[(prefecture_name, market_name, indicator_id)] = (period, value)
+
+    prefectures: dict[str, dict[str, dict]] = {}
+    for key, latest in latest_by_market_indicator.items():
+        prefecture_name, market_name, indicator_id = key
+        period, value = latest
+        pref = prefectures.setdefault(prefecture_name, {})
+        market = pref.setdefault(market_name, {})
+        market[indicator_id] = {"period": period, "value": value}
+
+    result = []
+    for prefecture_name in sorted(prefectures):
+        markets = [
+            {"name_fr": market_name, "prices": prices}
+            for market_name, prices in sorted(prefectures[prefecture_name].items())
+        ]
+        result.append({"name_fr": prefecture_name, "markets": markets})
+    return result
+
+
 def main():
     con = duckdb.connect()
     con.execute("""
@@ -136,6 +175,8 @@ def main():
             "lead_sentence_template_id": d_template_id,
         })
 
+    breakdown = fetch_national_breakdown(con)
+
     market = {
         "entity_name": market_name,
         "source": {
@@ -143,6 +184,8 @@ def main():
             "url": wfp_source[2], "retrieved_at": wfp_source[3],
         },
         "denrees": denrees,
+        "breakdown": breakdown,
+        "breakdown_labels": {i: names[i] for i in DENREE_INDICATORS},
     }
 
     data = {
@@ -166,9 +209,12 @@ def main():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+    total_markets = sum(len(p["markets"]) for p in breakdown)
     print(
         f"Wrote {len(rows)} months (global) + inflation + "
-        f"{len(categories)} categories + {len(denrees)} market denrées to {OUT_PATH}"
+        f"{len(categories)} categories + {len(denrees)} market denrées + "
+        f"breakdown ({total_markets} markets across {len(breakdown)} préfectures) "
+        f"to {OUT_PATH}"
     )
 
 

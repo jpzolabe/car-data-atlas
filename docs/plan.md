@@ -908,6 +908,20 @@ re-derived from scratch later:**
 **Done when:** every sous-préfecture has a page that either shows data or explains its
 absence, and no page shows a misleading empty chart.
 
+**Status as of 2026-09-12.** Started with steps 1+3 together on the
+theme that was closest to ready: WFP food prices, previously fetched
+Bangui-only, widened to all 34 markets with real recent data (16 of 20
+préfectures), each a new `marche`-level entity parented to its
+préfecture. `/prix/` now has a "Prix par préfecture" breakdown table -
+the first real subnational content on the site beyond `population_totale`.
+`geographic_floor` per indicator (step 2) and the other 85 indicators'
+sources still need the same live-data audit before place pages (step 4)
+are designed - most of them are World Bank/UNESCO/WHO/IMF national
+aggregates with no subnational breakdown to wire up, so place pages will
+likely launch with population and prix populated and most other themes
+marked "non disponible à ce niveau" rather than waiting for every theme
+to have local data. See `docs/decisions.md`.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
