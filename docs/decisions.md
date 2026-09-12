@@ -1655,3 +1655,48 @@ alone, and it caught something none of the earlier structural-only
 passes did - worth remembering: for anything genuinely about how a page
 *looks*, a screenshot is doing verification work no amount of HTML/CSS
 source-reading can substitute for.
+
+## Site renamed to "BeAfrika Data"; landing page gets a map watermark and a real intro paragraph
+
+Second screenshot from the user, this time asking for three things
+rather than pointing at a bug: an actual name instead of the generic
+"Données RCA," a visual element on the home page echoing the country
+itself, and a fuller introduction than the one-sentence tagline.
+
+**Name.** Went through two rounds of offered options (Repères RCA /
+Kodro / Centrafrique en Chiffres / Boussole Centrafrique, then narrowed
+to Centrafrique Data / Kodro Data / Chiffres RCA / RCA Data) before the
+user picked their own: **BeAfrika Data** - a stylized nod to "Bêafrîka,"
+the country's own Sango name (as in Ködörösêse tî Bêafrîka, the Central
+African Republic's Sango name), paired with "Data" to keep the identity
+the user asked for explicitly across both rounds. Replaced "Données
+RCA" everywhere it appeared: every page's `<title>`, the home page's
+`<h1>` (styled as a two-part wordmark - "BeAfrika" in the page's ink
+color, "Data" in the population accent, lighter weight), `SiteNav`'s
+home-link `aria-label`, and the top-level headers of `README.md` and
+`CLAUDE.md` (both left a one-line note that "RCA" stays fine as
+shorthand in code/docs/commits - this renames the public-facing brand,
+not the whole project's internal vocabulary).
+
+**Map watermark.** Reused `site/src/data/prefecture_maps.json`'s
+`country_path` - already-projected, already-simplified real boundary
+geometry from the locator-maps work earlier this session, not a new
+asset - as a large, very-low-opacity silhouette behind the hero title.
+Picked this over drawing the national flag: the flag has an official
+spec (colors, proportions, star position) that would need verifying
+rather than reusing something already known-correct, while the map
+outline is real geographic data this project already fetched, simplified
+and verified once. Lower risk, and more in the spirit of a data-driven
+reference site than an illustrated flag would have been.
+
+**Intro text.** Expanded the one-sentence tagline into a real paragraph:
+what the site actually does (compiles what already exists - censuses,
+national surveys, international statistics), the concrete provenance
+promise (source, date, geographic level on every figure), and the two
+non-negotiable principles from CLAUDE.md's own three - not rounding a
+number to look more solid than it is, and stating gaps rather than
+hiding them - in plain language rather than restating the file's own
+wording verbatim.
+
+Home page grew to 27.8 KB with the map path added - still far under the
+150 KB budget. All 33 pages rebuilt clean with the new title everywhere.
