@@ -862,6 +862,37 @@ open from the "alongside" list is share-card generation, embeds and PNG
 export - none of that was part of this session's ask, and none of it
 blocks moving on to Phase 4.
 
+**Complexity note on the 3 deferred items, 2026-09-12, so this isn't
+re-derived from scratch later:**
+- **Embeds - low.** No new dependency. Pull the existing indicator-card
+  markup (chart + sentence + source line) into a reusable partial and
+  generate one small standalone Astro route per indicator
+  (`/embed/economie/pib_par_habitant/`) meant to sit in an `<iframe>`.
+  Mechanical across 86 indicators, no new tooling.
+- **PNG export of existing charts - medium.** The charts are already
+  build-time SVG, so rasterizing isn't conceptually hard, but nothing in
+  the stack converts SVG to PNG today - would need a new dependency
+  (`resvg-js` is the natural fit: prebuilt binaries, no system libs,
+  unlike `sharp`/`cairosvg`). Also needs each chart rendered standalone,
+  not just inline inside a full page.
+- **Share cards - medium-high, mostly a design problem.** Same
+  rasterization dependency, but a genuinely new visual template (big
+  number + source + date, Facebook-card-sized) that doesn't exist, and a
+  scoping decision on which facts get a card before place pages exist
+  (probably just each theme's headline indicator - 7 cards, not "every
+  place and every finding" as originally scoped, which assumes place
+  pages). The cheap, high-leverage piece inside this item: wiring
+  generated images into `<meta property="og:image">` so a *shared link*
+  auto-previews correctly on Facebook with no user action - worth doing
+  before the manual "download PNG" button.
+- **The one real blocker:** all three PNG-producing features need the
+  same new dependency, which means asking first per `CLAUDE.md`'s "ask
+  before adding any dependency."
+- **Recommendation:** do Phase 4 (place pages) first - this is a
+  distribution feature and only matters once there's a public URL to
+  share, which is still behind the deferred Cloudflare deployment.
+  Revisit closer to launch.
+
 ## Phase 4 - Descending (4–6 weeks)
 
 1. Wire the crosswalk into the observation pipeline; backfill `entity_id` for
