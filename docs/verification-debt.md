@@ -269,6 +269,39 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   independent source for CAR's inflation rate (e.g. IMF, World Bank
   `FP.CPI.TOTL.ZG`) is checked against it.
 
+### World Bank GDP figures not cross-checked against ICASEES's own rebasing
+
+- **What:** `pib_total`, `pib_par_habitant` and `taux_croissance_pib` are
+  fetched from the World Bank API (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD,
+  NY.GDP.MKTP.KD.ZG). `CLAUDE.md`'s domain facts state ICASEES was rebasing
+  the national GDP series to a 2019 base "underway" as of its September
+  2026 compilation. Once that rebased series is published, it hasn't been
+  checked against these World Bank figures — the two may or may not
+  diverge, similar to how RGPH-4's population figure diverges from World
+  Bank's population estimate.
+- **Used in:** `data/observations.csv`, `pib_total` / `pib_par_habitant` /
+  `taux_croissance_pib` (15 rows each), `site/src/pages/economie.astro`.
+- **Resolved when:** ICASEES publishes its rebased GDP series and it's
+  fetched and compared directly against the World Bank figures already on
+  the page — either confirming they're consistent, or surfacing a real
+  disagreement worth its own multi-source disclosure block, the way
+  population's RGPH-4-vs-World-Bank comparison already works.
+
+### Poverty rate (économie) has only 3 real data points
+
+- **What:** `taux_pauvrete` (World Bank SI.POV.DDAY, poverty headcount
+  ratio at $3.00/day 2021 PPP) has exactly 3 non-null observations for CAF
+  across the entire available history: 1992, one intermediate year, and
+  2021 — it depends on infrequent household survey rounds, not an annual
+  series. The 71.6% figure shown (2021) is real but old relative to most
+  other économie indicators on the same page (which run through 2024-2025).
+- **Used in:** `data/observations.csv`, `taux_pauvrete` (3 rows),
+  `site/src/pages/economie.astro`.
+- **Resolved when:** a newer household survey round (MICS7, EHCVM2 — both
+  named as in-progress in `CLAUDE.md`) publishes an updated poverty
+  estimate, or ICASEES publishes its own national poverty line calculation
+  independently of the World Bank's $-a-day methodology.
+
 ---
 
 ## Resolved

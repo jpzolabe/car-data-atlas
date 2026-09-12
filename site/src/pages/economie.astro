@@ -1,21 +1,30 @@
 ---
-// First build of the santé theme (previously nonexistent — docs/plan.md's
-// site map calls for 7 themes; this is theme #5). Same anatomy as
-// education.astro (docs/plan.md Sec2.3): headline figure, categories ordered
-// by logical sequence, "Ce qui n'est pas mesuré" hand-written. No disclosure
-// blocks here -- every indicator has exactly one source so far, so every
-// card is the plain latest-value-plus-series shape already used for
-// infrastructures/prix/population's "Autres indicateurs" sections.
-import data from "../data/sante.json";
+// Second brand-new theme this pass (théme #6 of 7 in docs/plan.md's site
+// map). Same anatomy as sante.astro: headline figure, categories ordered by
+// logical sequence, "Ce qui n'est pas mesuré" hand-written. No disclosure
+// blocks -- every indicator has exactly one source so far.
+//
+// Two indicators (pib_total, pib_par_habitant) are monetary (US$), not
+// percentages like everything else on this page -- formatValue() below
+// branches on that rather than assuming every card is a "%".
+import data from "../data/economie.json";
 
 const CURRENT_YEAR = 2026;
-// 5-year threshold, matching méthode.astro's "administrative data" band --
-// these are all annual World Bank estimates, not survey-linked.
 function isStale(period: string): boolean {
   return CURRENT_YEAR - Number(period) > 5;
 }
 
-const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
+  if (indicatorId === "pib_total") {
+    return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: "Md US$" };
+  }
+  if (indicatorId === "pib_par_habitant") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: "US$" };
+  }
+  return { display: fmtPct(value), unit: "%" };
+}
 
 // Small build-time SVG sparkline, same technique as every other theme page.
 const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 40, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
@@ -39,6 +48,8 @@ const allIndicatorCount = data.categories.reduce((sum, c) => sum + c.indicators.
 const allPeriods = data.categories.flatMap((c) => c.indicators.map((i) => Number(i.latest.period)));
 const oldestVintage = Math.min(...allPeriods);
 const newestVintage = Math.max(...allPeriods);
+
+const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value);
 ---
 <!doctype html>
 <html lang="fr">
@@ -46,12 +57,12 @@ const newestVintage = Math.max(...allPeriods);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Santé — Données RCA</title>
+    <title>Économie — Données RCA</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9;
-        --t-sante: #0E7C7B;
+        --t-eco: #3D6373;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
       }
       * { box-sizing: border-box; }
@@ -59,28 +70,28 @@ const newestVintage = Math.max(...allPeriods);
         margin: 0;
         background-color: var(--paper);
         background-image:
-          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-sante) 9%, transparent), transparent 60%),
-          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-sante) 6%, transparent), transparent 60%);
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-eco) 9%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-eco) 6%, transparent), transparent 60%);
         background-attachment: fixed;
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-sante); text-decoration: underline; }
+      .crumb a:hover { color: var(--t-eco); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
-        border-bottom: 3px solid var(--t-sante); padding-bottom: 4px;
+        border-bottom: 3px solid var(--t-eco); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
-      .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-sante); margin: 0 0 28px; }
+      .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); margin: 0 0 28px; }
       .headline-block {
         margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
-        border: 1px solid var(--line); border-left: 4px solid var(--t-sante); border-radius: 3px;
+        border: 1px solid var(--line); border-left: 4px solid var(--t-eco); border-radius: 3px;
       }
       .headline-value {
         font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
-        color: var(--t-sante); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+        color: var(--t-eco); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
       }
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
@@ -101,12 +112,12 @@ const newestVintage = Math.max(...allPeriods);
       .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 6px; }
       .indicator-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
-        color: var(--t-sante); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+        color: var(--t-eco); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
       }
       .indicator-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
       svg.mini-sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
       .mini-spark-line {
-        stroke: var(--t-sante); stroke-width: 2; fill: none;
+        stroke: var(--t-eco); stroke-width: 2; fill: none;
         stroke-dasharray: 2000; stroke-dashoffset: 2000;
         animation: drawMiniSpark 1.1s ease-out forwards;
       }
@@ -119,18 +130,18 @@ const newestVintage = Math.max(...allPeriods);
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
-      .site-nav a { color: var(--t-sante); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a { color: var(--t-eco); font-size: 12.5px; transition: opacity 0.15s ease; }
       .site-nav a:hover { opacity: 0.7; }
     </style>
   </head>
   <body>
     <main>
       <div class="crumb"><a href="/">République centrafricaine</a></div>
-      <h1>Santé</h1>
+      <h1>Économie</h1>
       <p class="lede">
-        Système de santé, vaccination, mortalité, espérance de vie et VIH —
-        10 indicateurs, tous de la Banque mondiale, tous nationaux. Premier
-        thème santé du site.
+        Production, commerce extérieur, finances publiques et niveau de vie
+        — 10 indicateurs, tous de la Banque mondiale, tous nationaux.
+        Premier thème économie du site.
       </p>
       <p class="coverage">
         {allIndicatorCount} indicateurs · données de {oldestVintage} à {newestVintage} selon l'indicateur ·
@@ -139,9 +150,9 @@ const newestVintage = Math.max(...allPeriods);
 
       <div class="headline-block">
         <div class="headline-value">
-          {fmt(data.headline.latest.value)}<span class="unit">ans, {data.headline.latest.period}</span>
+          {headlineValue.display}<span class="unit">{headlineValue.unit}/habitant, {data.headline.latest.period}</span>
         </div>
-        <p class="headline-caption">{data.headline.name_fr} — le chiffre le plus souvent cité pour résumer l'état de santé d'une population.</p>
+        <p class="headline-caption">{data.headline.name_fr} — le chiffre le plus souvent cité pour résumer le niveau de richesse d'un pays.</p>
         <p class="mini-sentence">
           {data.headline.lead_sentence}
         </p>
@@ -154,11 +165,12 @@ const newestVintage = Math.max(...allPeriods);
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
               const stale = isStale(ind.latest.period);
+              const val = formatValue(ind.indicator_id, ind.latest.value);
               return (
                 <div class="indicator-card">
                   <p class="ind-name">{ind.name_fr}</p>
                   <div class="ind-value">
-                    {fmt(ind.latest.value)}<span class="unit">, {ind.latest.period}</span>
+                    {val.display}<span class="unit">{val.unit}, {ind.latest.period}</span>
                     {stale && <span class="badge stale">ancien</span>}
                   </div>
                   <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
@@ -180,10 +192,10 @@ const newestVintage = Math.max(...allPeriods);
       <h2>Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture — les 10 indicateurs sont tous nationaux.</li>
-        <li>MICS7 (enquête nationale, lancée août 2026 selon <code>CLAUDE.md</code>) n'a pas encore publié de résultats intégrables ici.</li>
-        <li>Le raster de temps de trajet à pied vers l'établissement de santé le plus proche existe déjà sur HDX — volontairement non reconstruit ici (<code>CLAUDE.md</code> : « ne pas reconstruire ce qui existe déjà »). Voir <a href="https://data.humdata.org/">HDX</a> directement.</li>
-        <li>Aucune donnée de morbidité au-delà du VIH — paludisme, tuberculose et maladies évitables par la vaccination (au-delà de la rougeole et du DTC) ne sont pas intégrées.</li>
-        <li>La densité de lits d'hôpital n'a qu'un point après 2011 — c'est réellement tout ce que la Banque mondiale a pour la RCA sur cet indicateur, pas un artefact d'affichage.</li>
+        <li>L'ICASEES rebase actuellement le PIB national sur une base 2019 (selon <code>CLAUDE.md</code>) — cette série Banque mondiale n'a pas été comparée à la série ICASEES rebasée une fois publiée. Voir <code>docs/verification-debt.md</code>.</li>
+        <li>Le taux de pauvreté n'a que 3 points dans le temps (1992, un point intermédiaire, 2021) — il dépend de la disponibilité d'enquêtes de ménages, pas d'une série annuelle.</li>
+        <li>Les recettes publiques n'ont pas de point après 2021.</li>
+        <li>Aucune ventilation sectorielle (agriculture, mines, services) et aucune donnée sur l'inflation des prix à la production — voir la page <a href="/prix/">Prix</a> pour l'inflation à la consommation.</li>
       </ul>
 
       <footer>
@@ -195,7 +207,7 @@ const newestVintage = Math.max(...allPeriods);
           <a href="/prix/">Prix</a>
           <a href="/infrastructures/">Infrastructures</a>
           <a href="/education/">Éducation</a>
-          <a href="/economie/">Économie</a>
+          <a href="/sante/">Santé</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
