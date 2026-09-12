@@ -1,10 +1,10 @@
 """Materialize the santé theme as JSON for the Astro site. First export
-script for this theme (previously nonexistent) -- same CSV -> DuckDB -> JSON
+script for this theme (previously nonexistent); same CSV -> DuckDB -> JSON
 handoff as export_education_json.py, and the same category + headline
 structure (docs/plan.md Sec2.3), since santé has 10 indicators across
-natural groups just like éducation does. No multi-source disclosure yet --
-every indicator has exactly one source so far, so every block is the plain
-latest-value-plus-series shape.
+natural groups just like éducation does. No multi-source disclosure
+otherwise; every other indicator has exactly one source so far, so every
+other block is the plain latest-value-plus-series shape.
 
 Categories ordered by logical sequence per the headline-then-breakdown rule
 (docs/decisions.md): what resources exist (système de santé) -> what
@@ -29,7 +29,7 @@ OUT_PATH = "site/src/data/sante.json"
 COUNTRY_ID = "cf-pays-centrafrique-v1"
 
 # Real absolute headcounts (2 from WHO GHO, 1 computed) alongside the
-# existing density/% indicators -- see docs/decisions.md for why these
+# existing density/% indicators; see docs/decisions.md for why these
 # needed a second API (World Bank WDI only has densities).
 EFFECTIF_INDICATORS = {"nombre_medecins", "nombre_personnel_infirmier", "nombre_lits_hopital"}
 
@@ -94,9 +94,28 @@ def build_indicator(con, indicator_id: str) -> dict:
     }
 
 
+def build_etablissements_region_breakdown(con) -> list[dict]:
+    """The Master List's own Admin1 column resolves to this project's 7
+    régions (see pipeline/fetch_etablissements_sante.py's
+    REGION_ADMIN1_ALIASES) - a real, if partial, subnational floor for this
+    indicator, Master List only (healthsites.io has no equivalent régional
+    field to compare against, so no second-source disclosure at this
+    level).
+    """
+    rows = con.execute("""
+        select e.name_fr, o.value
+        from observations o
+        join entities e on o.entity_id = e.entity_id
+        where e.level = 'region' and o.indicator_id = 'nombre_etablissements_sante'
+          and o.source_id = 'maina-master-facility-list-2019'
+        order by o.value desc
+    """).fetchall()
+    return [{"region_name": r[0], "value": r[1]} for r in rows]
+
+
 def build_etablissements_disclosure(con) -> dict:
     """nombre_etablissements_sante: the first health-facility count on the
-    site, and a real disagreement between two independent sources -- a
+    site, and a real disagreement between two independent sources: a
     static 2019 government-registry compilation (555) and a live,
     crowd-mapped OpenStreetMap extract (425). Same population.astro-style
     disclosure shape as économie's taux_croissance_pib. See
@@ -145,6 +164,7 @@ def build_etablissements_disclosure(con) -> dict:
                 for r in rows
             ],
         },
+        "region_breakdown": build_etablissements_region_breakdown(con),
     }
 
 
@@ -154,6 +174,7 @@ def main():
         create view observations as select * from read_csv_auto('data/observations.csv');
         create view sources as select * from read_csv_auto('data/sources.csv');
         create view indicators as select * from read_csv_auto('data/indicators.csv');
+        create view entities as select * from read_csv_auto('data/entities.csv');
     """)
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())

@@ -933,6 +933,17 @@ first template - the rest of step 7 still applies once other themes gain
 subnational data). Sous-préfecture pages (step 4's second half), locator
 maps (step 5), and the remaining comparison-component work stay open.
 
+A second theme now goes subnational: `nombre_etablissements_sante`
+reaches région level (7 régions) via the Master Facility List's own
+Admin1 column, one level short of préfecture - genuinely different from
+"no data" or "préfecture-level," so it's its own case in the freshness
+table (`level: "region"`) rather than forced into either bucket. Also
+checked and deferred: ICASEES's education yearbook does have real
+préfecture-level ("IA") tables, but extracting them is materially harder
+than either widening done so far (dozens of inconsistent per-metric
+tables in one hand-formatted workbook, not one clean flat file) - a real
+lead for a future pass, not attempted this one. See docs/decisions.md.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,

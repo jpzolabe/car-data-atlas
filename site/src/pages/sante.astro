@@ -237,6 +237,27 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                           voir <a href="/sources/">Sources</a> pour le détail complet.
                         </p>
                       </details>
+                      {ind.region_breakdown && ind.region_breakdown.length > 0 && (
+                        <details class="disclosure">
+                          <summary>Répartition régionale ({ind.region_breakdown.length} régions)</summary>
+                          <table class="disclosure-table">
+                            <thead><tr><th>Région</th><th>Établissements</th></tr></thead>
+                            <tbody>
+                              {ind.region_breakdown.map((r) => (
+                                <tr>
+                                  <td>{r.region_name}</td>
+                                  <td class="num">{fmt(r.value)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                          <p class="disclosure-note">
+                            Même registre 2019 que le total national ci-dessus, ventilé par région -
+                            aucun chiffre OpenStreetMap équivalent à ce niveau, donc un seul avis ici,
+                            pas deux.
+                          </p>
+                        </details>
+                      )}
                     </div>
                     <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                       <polyline class="mini-spark-line" points={spark.points} />

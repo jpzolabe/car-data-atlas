@@ -139,6 +139,36 @@
               }
             ]
           },
+          "region_breakdown": [
+            {
+              "region_name": "Plateaux",
+              "value": 112.0
+            },
+            {
+              "region_name": "Haut-Oubangui",
+              "value": 109.0
+            },
+            {
+              "region_name": "Équateur",
+              "value": 95.0
+            },
+            {
+              "region_name": "Kaga",
+              "value": 85.0
+            },
+            {
+              "region_name": "Yadé",
+              "value": 83.0
+            },
+            {
+              "region_name": "Fertit",
+              "value": 48.0
+            },
+            {
+              "region_name": "Bas-Oubangui",
+              "value": 23.0
+            }
+          ],
           "name_fr": "Nombre d'établissements de santé",
           "definition_fr": "Cet indicateur donne un décompte national des établissements de santé : hôpitaux, centres et postes de santé. Deux sources sont disponibles et ne s'accordent pas, un registre gouvernemental compilé en 2019 et une cartographie communautaire (OpenStreetMap) mise à jour en continu ; le détail des deux chiffres est présenté ci-dessous plutôt qu'un seul nombre choisi."
         },

@@ -66,41 +66,53 @@
         "pop_2021": 83188.0
       }
     ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -158,41 +170,53 @@
       }
     ],
     "siblings": [],
+    "sante_region": {
+      "region_name": "Bas-Oubangui",
+      "period": "2019",
+      "value": 23.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -237,41 +261,53 @@
         "pop_2021": 257803.0
       }
     ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -363,41 +399,53 @@
         "pop_2021": 257803.0
       }
     ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -468,41 +516,53 @@
         "pop_2021": 83188.0
       }
     ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -598,41 +658,53 @@
         "pop_2021": 446354.0
       }
     ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -683,41 +755,53 @@
         "pop_2021": 225479.0
       }
     ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -807,41 +891,53 @@
         "pop_2021": 269809.0
       }
     ],
+    "sante_region": {
+      "region_name": "Plateaux",
+      "period": "2019",
+      "value": 112.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -892,41 +988,53 @@
         "pop_2021": 138770.0
       }
     ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1028,41 +1136,53 @@
         "pop_2021": 138770.0
       }
     ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1133,41 +1253,53 @@
         "pop_2021": 52314.0
       }
     ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1238,41 +1370,53 @@
         "pop_2021": 446354.0
       }
     ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1399,41 +1543,53 @@
         "pop_2021": 138770.0
       }
     ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1623,41 +1779,53 @@
         "pop_2021": 345108.0
       }
     ],
+    "sante_region": {
+      "region_name": "Plateaux",
+      "period": "2019",
+      "value": 112.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1753,41 +1921,53 @@
         "pop_2021": 208821.0
       }
     ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -1914,41 +2094,53 @@
         "pop_2021": 225479.0
       }
     ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -2100,41 +2292,53 @@
         "pop_2021": 225479.0
       }
     ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -2185,41 +2389,53 @@
         "pop_2021": 243315.0
       }
     ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -2321,41 +2537,53 @@
         "pop_2021": 341796.0
       }
     ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   },
@@ -2426,41 +2654,53 @@
         "pop_2021": 128342.0
       }
     ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
     "freshness": [
       {
         "theme": "Population",
         "period": "2021",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Prix",
         "period": "2026-07",
-        "available": true
+        "available": true,
+        "level": "prefecture"
       },
       {
         "theme": "Infrastructures",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Éducation",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Santé",
-        "period": null,
-        "available": false
+        "period": "2019",
+        "available": true,
+        "level": "region"
       },
       {
         "theme": "Économie",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       },
       {
         "theme": "Agriculture",
         "period": null,
-        "available": false
+        "available": false,
+        "level": null
       }
     ]
   }
