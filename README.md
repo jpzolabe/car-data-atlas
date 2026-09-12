@@ -1,4 +1,4 @@
-# BeAfrika Data
+# BêAfrîka Data
 
 *(named "Données RCA" until 2026-09-13 - renamed for the public site;
 internal references to "RCA" as a project shorthand are unaffected)*

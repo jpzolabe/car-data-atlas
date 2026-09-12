@@ -115,7 +115,7 @@ const SECONDARY_STATS = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>BeAfrika Data</title>
+    <title>BêAfrîka Data</title>
     <style>
       :root {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
@@ -156,9 +156,9 @@ const SECONDARY_STATS = [
       .hero-map {
         position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
         width: 460px; max-width: 160%; height: auto; z-index: 0;
-        opacity: 0.07; pointer-events: none;
+        opacity: 0.28; pointer-events: none;
       }
-      .hero-map path { fill: var(--t-pop); }
+      .hero-map path { fill: var(--t-pop); stroke: var(--t-pop); stroke-width: 1.5; stroke-linejoin: round; }
       h1 {
         position: relative; z-index: 1; font-size: 2.75rem; margin: 0;
         letter-spacing: -0.02em; font-weight: 700;
@@ -275,15 +275,13 @@ const SECONDARY_STATS = [
         <svg class="hero-map" viewBox={prefectureMaps.view_box} aria-hidden="true">
           <path d={prefectureMaps.country_path}></path>
         </svg>
-        <h1>BeAfrika<span class="wordmark-data">Data</span></h1>
+        <h1>BêAfrîka<span class="wordmark-data">Data</span></h1>
         <p class="tagline">
-          Ce site rassemble ce qui existe déjà sur la République centrafricaine :
-          recensements, enquêtes nationales et statistiques internationales. Chaque
-          chiffre est accompagné de sa source exacte, de sa date et du niveau
-          géographique auquel il s'applique - le pays, une préfecture, parfois un
-          simple marché. Rien n'est arrondi pour paraître plus solide qu'il ne l'est ;
-          là où personne n'a encore mesuré quelque chose, la page le dit plutôt que
-          de l'ignorer.
+          Explorer la République centrafricaine - ce que disent les données, d'où
+          elles viennent, à quoi elles servent. Cette plateforme agrège les données
+          déjà existantes sur le pays, dans le but de fournir un outil simple,
+          rapide et fiable à utiliser, et de vulgariser ces données. Chaque donnée
+          est accompagnée de sa source et de son année de production.
         </p>
         <div id="search">
           <input
