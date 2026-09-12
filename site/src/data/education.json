@@ -303,6 +303,87 @@
   },
   "categories": [
     {
+      "key": "ressources",
+      "label_fr": "Ressources scolaires",
+      "indicators": [
+        {
+          "indicator_id": "nombre_etablissements_scolaires",
+          "latest": {
+            "period": "2024",
+            "value": 4078.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 4078.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 4 078 établissements scolaires.",
+          "lead_sentence_template_id": "nombre_etablissements_scolaires_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre d'établissements scolaires",
+          "definition_fr": "Décompte national d'établissements scolaires (préscolaire, primaire, secondaire, technique et professionnel), public et privé confondus, à partir du recensement scolaire administratif annuel.",
+          "unit": "établissements"
+        },
+        {
+          "indicator_id": "effectif_eleves",
+          "latest": {
+            "period": "2024",
+            "value": 1425970.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 1425970.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 1 425 970 élèves.",
+          "lead_sentence_template_id": "effectif_eleves_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Effectif des élèves",
+          "definition_fr": "Nombre total d'élèves inscrits, tous niveaux d'enseignement confondus (préscolaire à l'enseignement technique et professionnel), public et privé confondus.",
+          "unit": "élèves"
+        },
+        {
+          "indicator_id": "nombre_enseignants",
+          "latest": {
+            "period": "2024",
+            "value": 18959.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 18959.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 18 959 enseignants.",
+          "lead_sentence_template_id": "nombre_enseignants_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre d'enseignants",
+          "definition_fr": "Nombre total d'enseignants en poste, tous niveaux d'enseignement confondus, public et privé confondus.",
+          "unit": "enseignants"
+        }
+      ]
+    },
+    {
       "key": "scolarisation",
       "label_fr": "Scolarisation",
       "indicators": [
@@ -2839,6 +2920,34 @@
           },
           "name_fr": "Taux d'achèvement du second cycle du secondaire",
           "definition_fr": "Part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus."
+        },
+        {
+          "indicator_id": "taux_reussite_baccalaureat",
+          "latest": {
+            "period": "2024",
+            "value": 36.66,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 25.0
+            },
+            {
+              "period": "2024",
+              "value": 36.66
+            }
+          ],
+          "lead_sentence": "En 2024, le taux de réussite au baccalauréat général en République centrafricaine s'établissait à 36,7%.",
+          "lead_sentence_template_id": "taux_reussite_baccalaureat_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de réussite au baccalauréat général",
+          "definition_fr": "Part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues."
         }
       ]
     },

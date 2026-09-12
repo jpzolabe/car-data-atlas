@@ -508,7 +508,27 @@ EDUCATION_RATE_LABELS = {
     "taux_survie_primaire": "le taux de survie jusqu'à la dernière année du primaire",
     "taux_alphabetisation_jeunes": "le taux d'alphabétisation des jeunes de 15 à 24 ans",
     "taux_alphabetisation_adultes": "le taux d'alphabétisation des adultes de 15 ans et plus",
+    "taux_reussite_baccalaureat": "le taux de réussite au baccalauréat général",
 }
+
+
+# label must fit "la République centrafricaine comptait {value} {label}"
+# grammatically -- checked by hand against these 3 real indicators.
+EDUCATION_EFFECTIF_LABELS = {
+    "nombre_etablissements_scolaires": "établissements scolaires",
+    "effectif_eleves": "élèves",
+    "nombre_enseignants": "enseignants",
+}
+
+
+def sentence_education_effectif(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format_int_fr(value)
+    label = EDUCATION_EFFECTIF_LABELS[indicator_id]
+    text = (
+        f"Pour l'année scolaire {period}-{int(period) + 1}, la République "
+        f"centrafricaine comptait {value_fr} {label}."
+    )
+    return text, f"{indicator_id}_pays"
 
 
 def sentence_education_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:

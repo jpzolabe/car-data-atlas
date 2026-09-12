@@ -20,6 +20,7 @@ import duckdb
 
 from pipeline.sentences import (
     sentence_completion,
+    sentence_education_effectif,
     sentence_education_rate,
     sentence_out_of_school,
 )
@@ -59,7 +60,16 @@ DISCLOSURE_CONFIG = {
 # next one, instead of leading with the outcome (achievement) before the
 # causes. Changed 2026-09-12 after feedback that achievement-first read like
 # starting the story at the ending -- see docs/decisions.md.
+EFFECTIF_INDICATORS = {
+    "nombre_etablissements_scolaires", "effectif_eleves", "nombre_enseignants",
+}
+
 CATEGORIES = [
+    ("ressources", "Ressources scolaires", [
+        "nombre_etablissements_scolaires",
+        "effectif_eleves",
+        "nombre_enseignants",
+    ]),
     ("scolarisation", "Scolarisation", [
         "taux_scolarisation_net_primaire",
         "taux_scolarisation_brut_primaire",
@@ -72,7 +82,7 @@ CATEGORIES = [
         "taux_survie_primaire",
         *OUT_OF_SCHOOL_INDICATORS,
     ]),
-    ("achevement", "Achèvement scolaire", COMPLETION_INDICATORS),
+    ("achevement", "Achèvement scolaire", [*COMPLETION_INDICATORS, "taux_reussite_baccalaureat"]),
     ("alphabetisation", "Alphabétisation", [
         "taux_alphabetisation_jeunes",
         "taux_alphabetisation_adultes",
@@ -157,7 +167,12 @@ def build_simple_indicator(con, indicator_id: str) -> dict:
     """, [COUNTRY_ID, indicator_id]).fetchall()
 
     latest = rows[0]
-    lead_text, lead_template_id = sentence_education_rate(indicator_id, latest[0], latest[1])
+    if indicator_id in EFFECTIF_INDICATORS:
+        lead_text, lead_template_id = sentence_education_effectif(
+            indicator_id, latest[0], latest[1]
+        )
+    else:
+        lead_text, lead_template_id = sentence_education_rate(indicator_id, latest[0], latest[1])
 
     return {
         "indicator_id": indicator_id,
@@ -185,6 +200,7 @@ def main():
 
     names = dict(con.execute("select indicator_id, name_fr from indicators").fetchall())
     definitions = dict(con.execute("select indicator_id, definition_fr from indicators").fetchall())
+    units = dict(con.execute("select indicator_id, unit from indicators").fetchall())
 
     categories = []
     for key, label, indicator_ids in CATEGORIES:
@@ -196,6 +212,8 @@ def main():
                 block = build_simple_indicator(con, indicator_id)
             block["name_fr"] = names[indicator_id]
             block["definition_fr"] = definitions[indicator_id]
+            if indicator_id in EFFECTIF_INDICATORS:
+                block["unit"] = units[indicator_id]
             indicator_blocks.append(block)
         categories.append({"key": key, "label_fr": label, "indicators": indicator_blocks})
 

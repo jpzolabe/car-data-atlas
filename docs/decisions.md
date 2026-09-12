@@ -820,3 +820,55 @@ a single hyphen, consistent with the earlier em-dash sweep's choice, so
 the project now has one punctuation convention instead of two. Confirmed
 clean afterward by grepping every built HTML page in `dist/` and checking
 that every remaining "--" is a `var(--...)` CSS reference, not text.
+
+## ICASEES education yearbooks: retried successfully, real gaps closed
+
+The rate-limiting block logged earlier this same session had cleared by
+the time this was retried later: a single request each to the
+publications listing page and the 2024-2025 Annuaire Statistique's Excel
+download both succeeded cleanly, no corrupted content or 404s. Moved from
+`docs/verification-debt.md`'s Open list to Resolved.
+
+The workbook is exactly as irregular as `CLAUDE.md` warned - a single
+3.7 MB sheet, narrative text and tables at inconsistent positions, a
+multi-page acronym glossary before any real data. Found two usable
+tables by reading through it, not by pattern-matching column headers
+generically:
+
+- A national summary by education level (établissements, élèves,
+  enseignants), summed across the 4 levels into 3 new headline
+  indicators (`nombre_etablissements_scolaires`, `effectif_eleves`,
+  `nombre_enseignants`) - éducation's first absolute headcounts,
+  matching the "raw figures alongside rates" pattern already established
+  for santé/économie/agriculture. Added as a new "Ressources scolaires"
+  category, first in the page's order (santé-style: what capacity exists
+  before what happens to students).
+- A PSE (Plan Sectoriel de l'Éducation) tracking table with an
+  unambiguous "Valeur de base (2019) / Valeur réalisée 2024" header,
+  giving a real Baccalauréat général pass rate (25% -> 36.66%) -
+  `taux_reussite_baccalaureat`, closing a gap `CLAUDE.md` names by name
+  ("BEPC and Baccalauréat results are not published in machine-readable
+  form. Digitising them would be an original contribution."). Added to
+  the existing "Achèvement scolaire" category alongside the completion
+  disclosure indicators, as a plain single-source card.
+
+**A second, more prominent-looking exam-results table was checked and
+deliberately not used.** Row-labeled "Résultats aux examens... de
+l'année précédente (2020/2021)," it looked like it would finally give
+BEPC/CEPE figures too - but every data row beneath its header is empty,
+a template structure carried over from an older year's file rather than
+this year's real numbers. Confirmed by reading the actual cell values,
+not assumed populated from the header alone. BEPC and CEPE results
+remain genuinely unavailable in this source, not just unfetched -
+`education.astro`'s gap-note says so plainly instead of implying they'd
+simply been missed.
+
+**Hand-transcribed, not parsed generically, on purpose.** A script
+reading today's exact cell positions would silently misread a future
+year's differently-laid-out edition instead of failing loudly - CLAUDE.md
+itself flags this layout inconsistency as expected, not exceptional, for
+these yearbooks. `pipeline/add_annuaire_education.py` documents this
+explicitly: re-verify cell positions by hand for each future year's file
+rather than trusting the same code to still be correct. 86 indicators
+total now - the last item on this session's list before the
+comptes-nationaux-style "one-off, hand-verified" pattern.
