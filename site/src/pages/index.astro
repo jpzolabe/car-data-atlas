@@ -68,7 +68,6 @@ const THEMES = [
     ] },
 ];
 
-const manioc = prix.market.denrees.find((d: any) => d.indicator_id === "prix_manioc_kg");
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
 // figure on /economie/ (administrative data outranks a modelled
 // estimate there, per méthode.astro's authority ranking - correct and
@@ -101,10 +100,6 @@ const SECONDARY_STATS = [
   {
     label: "Achèvement primaire", value: fmtPct(achevementPrimaire.value), unit: "%",
     period: achevementPrimaire.period, accent: "var(--t-edu)", href: "/education/",
-  },
-  {
-    label: "Manioc, Bangui", value: fmt(manioc.latest.value), unit: "FCFA/kg",
-    period: manioc.latest.period, accent: "var(--t-prix)", href: "/prix/",
   },
 ];
 ---
