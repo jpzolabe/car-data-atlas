@@ -159,7 +159,9 @@ const SECONDARY_STATS = [
       .hero-map path { fill: var(--t-pop); }
       h1 { font-size: 2.75rem; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
       h1 .wordmark-data { color: var(--t-pop); font-weight: 400; margin-left: 7px; }
-      .tagline { color: var(--ink-muted); margin: 14px auto 26px; max-width: 480px; font-size: 15px; line-height: 1.75; text-align: left; }
+      .tagline { margin: 14px auto 26px; max-width: 560px; text-align: center; }
+      .tagline-lead { color: var(--ink); font-size: 17px; font-weight: 600; margin: 0 0 8px; }
+      .tagline-detail { color: var(--ink-muted); font-size: 14.5px; line-height: 1.7; margin: 0; }
 
       #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; }
       #search input {
@@ -273,16 +275,16 @@ const SECONDARY_STATS = [
           <path d={prefectureMaps.country_path}></path>
         </svg>
         <h1>BêAfrîka<span class="wordmark-data">Data</span></h1>
-        <p class="tagline">
-          Explorer la République centrafricaine à travers ses données : ce
-          qu'elles disent, d'où elles viennent et à quoi elles servent.
-          <br />
-          Cette plateforme agrège les données existantes sur la RCA afin de
-          fournir un point d'entrée unique : un outil simple, rapide et fiable.
-          <br />
-          Chaque donnée est accompagnée de sa source et de son année de
-          production.
-        </p>
+        <div class="tagline">
+          <p class="tagline-lead">Explorer la République centrafricaine à travers ses données !</p>
+          <p class="tagline-detail">
+            Ce qu'elles disent, d'où elles viennent et à quoi elles servent.
+            Cette plateforme agrège les données existantes sur la RCA afin de
+            fournir un point d'entrée unique : un outil simple, rapide et
+            fiable. Chaque donnée est accompagnée de sa source et de son
+            année de production.
+          </p>
+        </div>
         <div id="search">
           <input
             type="text" id="search-input"
