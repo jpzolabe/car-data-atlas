@@ -21,3 +21,7 @@ prix_ihpc_alimentation,IHPC — Produits alimentaires et boissons non alcoolisé
 prix_ihpc_transports,IHPC — Transports,"Indice des prix à la consommation pour la fonction COICOP 'Transports', base 2019.",indice,prix,pays,prix_ihpc_categorie_pays,
 prix_ihpc_sante,IHPC — Santé,"Indice des prix à la consommation pour la fonction COICOP 'Santé', base 2019.",indice,prix,pays,prix_ihpc_categorie_pays,
 taux_inflation,Taux d'inflation,Taux d'inflation publié par l'ICASEES dans le même fichier tableau de bord que l'IHPC -- voir docs/verification-debt.md pour une réserve sur sa méthodologie exacte.,%,prix,pays,taux_inflation_pays,false
+taux_utilisation_internet,Utilisation d'Internet,Part de la population utilisant Internet.,%,infrastructures,pays,infrastructure_taux_pays,true
+abonnements_mobiles,Abonnements mobiles,Nombre d'abonnements de téléphonie mobile pour 100 habitants -- peut dépasser 100 (abonnements multiples par personne).,pour 100 habitants,infrastructures,pays,infrastructure_taux_pays,true
+acces_eau_potable_base,Accès à l'eau potable,Part de la population utilisant au moins un service de base d'eau potable.,%,infrastructures,pays,infrastructure_taux_pays,true
+acces_assainissement_base,Accès à l'assainissement,Part de la population utilisant au moins un service de base d'assainissement.,%,infrastructures,pays,infrastructure_taux_pays,true

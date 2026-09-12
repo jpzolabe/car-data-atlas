@@ -118,6 +118,33 @@ def sentence_inflation(period: str, value: float) -> tuple[str, str]:
     return text, "taux_inflation_pays"
 
 
+# (label_fr, unit_suffix) -- label_fr must fit "{label_fr} en République
+# centrafricaine s'établissait à" grammatically, checked by hand against
+# these 4 real indicators. unit_suffix distinguishes "%" (no space before
+# the sign) from "pour 100 habitants" (a count, not a percentage).
+INFRASTRUCTURE_LABELS = {
+    "taux_utilisation_internet": ("le taux d'utilisation d'Internet", "%"),
+    "abonnements_mobiles": ("le nombre d'abonnements mobiles", "pour 100 habitants"),
+    "acces_eau_potable_base": (
+        "le taux d'accès à un service de base d'eau potable", "%",
+    ),
+    "acces_assainissement_base": (
+        "le taux d'accès à un service de base d'assainissement", "%",
+    ),
+}
+
+
+def sentence_infrastructure_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format(round(value, 1), ".1f").replace(".", ",")
+    label, unit = INFRASTRUCTURE_LABELS[indicator_id]
+    suffix = f"{value_fr}%" if unit == "%" else f"{value_fr} {unit}"
+    text = (
+        f"En {period}, {label} en République centrafricaine "
+        f"s'établissait à {suffix}."
+    )
+    return text, f"{indicator_id}_pays"
+
+
 def sentence_electricity(
     period: str, value: float, previous_value: float | None
 ) -> tuple[str, str]:
