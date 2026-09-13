@@ -1096,3 +1096,9 @@ Candidate first pieces:
    but the decision affects the i18n structure now.
 5. **Does anyone in CAR actually use it?** Unanswerable until Phase 2 ships. It is the
    real test of the project and everything else is preparation for asking it.
+6. **A real public contact address.** À propos currently points to a personal
+   LinkedIn profile; méthode's error-reporting section says the mechanism
+   doesn't exist yet. Resolve before public launch (Phase 5 item 6, error
+   reporting mechanism) - not before, and not as a visible on-page TODO
+   note in the meantime (removed from méthode.astro 2026-09-13; tracked
+   here instead).
