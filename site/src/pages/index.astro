@@ -33,7 +33,9 @@ import SiteNav from "../components/SiteNav.astro";
 
 const CURRENT_YEAR = 2026;
 const yearOf = (period: string) => Number(period.slice(0, 4));
-const isStale = (period: string) => CURRENT_YEAR - yearOf(period) > 5;
+// méthode.astro's own threshold table: "< 5 ans" = actuel, "5 ans" = déjà
+// ancien - so exactly 5 years old must already read as stale.
+const isStale = (period: string) => CURRENT_YEAR - yearOf(period) >= 5;
 
 const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });

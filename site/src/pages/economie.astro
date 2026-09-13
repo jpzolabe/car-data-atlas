@@ -45,8 +45,10 @@ const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
   // indice_activite_economique's periods look like "2023-Q1" (quarterly);
   // taking the leading 4-digit year works for both that and every plain
-  // "YYYY" annual period on this page.
-  return CURRENT_YEAR - Number(period.slice(0, 4)) > 5;
+  // "YYYY" annual period on this page. méthode.astro's own threshold
+  // table: "< 5 ans" = actuel, "5 ans" = déjà ancien - so exactly 5
+  // years old must already read as stale.
+  return CURRENT_YEAR - Number(period.slice(0, 4)) >= 5;
 }
 
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });

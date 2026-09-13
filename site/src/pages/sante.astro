@@ -20,8 +20,10 @@ const SURVEY_LINKED = new Set([
   "retard_croissance_enfants", "emaciation_enfants",
 ]);
 function isStale(indicatorId: string, period: string): boolean {
+  // méthode.astro's own threshold table: "< N ans" = actuel, "N ans" =
+  // déjà ancien - so exactly N years old must already read as stale.
   const threshold = SURVEY_LINKED.has(indicatorId) ? 10 : 5;
-  return CURRENT_YEAR - Number(period) > threshold;
+  return CURRENT_YEAR - Number(period) >= threshold;
 }
 
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
