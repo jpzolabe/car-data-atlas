@@ -14,6 +14,7 @@
 // (--paper/--surface/--ink/--ink-muted/--line).
 import ThemeToggle from "./ThemeToggle.astro";
 ---
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 <nav class="site-nav-fixed" aria-label="Navigation principale">
   <a href="/" class="home-link" aria-label="Accueil - BêAfrîka Data">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -33,6 +34,18 @@ import ThemeToggle from "./ThemeToggle.astro";
   </div>
 </nav>
 <style>
+  .skip-link {
+    position: absolute; top: -100%; left: 8px; z-index: 200;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 3px; padding: 8px 14px; font-size: 13px; text-decoration: none;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus {
+    top: 8px;
+  }
+  @media print {
+    .skip-link { display: none; }
+  }
   .site-nav-fixed {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px;
@@ -61,5 +74,8 @@ import ThemeToggle from "./ThemeToggle.astro";
   @media (max-width: 560px) {
     .nav-links { display: none; }
     .site-nav-fixed { grid-template-columns: auto 1fr auto; }
+  }
+  @media print {
+    .site-nav-fixed { display: none; }
   }
 </style>

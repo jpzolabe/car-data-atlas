@@ -20,7 +20,14 @@ import SiteNav from "../components/SiteNav.astro";
       }
       :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188;
-        --line: #D6D7C9; --indigo: #2A56A8; --ochre: #B8790F; --stale: #AC3A1E;
+        --line: #D6D7C9; --indigo: #2A56A8; --ochre: #8C5A0C; --stale: #AC3A1E;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188;
+        --line: #D6D7C9; --indigo: #2A56A8; --ochre: #8C5A0C; --stale: #AC3A1E;
+      }
+        body { background: #fff !important; background-image: none !important; }
       }
       * { box-sizing: border-box; }
       body {
@@ -65,7 +72,7 @@ import SiteNav from "../components/SiteNav.astro";
   </head>
   <body>
     <SiteNav />
-    <main>
+    <main id="main-content">
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Méthode</h1>
       <p class="lede">
@@ -107,7 +114,7 @@ import SiteNav from "../components/SiteNav.astro";
         pays. Ce que ce projet a vérifié directement, pas supposé :
       </p>
       <table>
-        <thead><tr><th>Source</th><th>Préfectures</th><th>Sous-préfectures</th></tr></thead>
+        <thead><tr><th scope="col">Source</th><th scope="col">Préfectures</th><th scope="col">Sous-préfectures</th></tr></thead>
         <tbody>
           <tr><td>OCHA COD-AB, version 02 (vérifiée 2026-09-05)</td><td>20</td><td>85</td></tr>
           <tr><td>Loi n°21.001 du 21 janvier 2021 (promulguée)</td><td>20</td><td>85</td></tr>
@@ -138,7 +145,7 @@ import SiteNav from "../components/SiteNav.astro";
         sont donc fixés par thème :
       </p>
       <table class="threshold-table">
-        <thead><tr><th>Thème</th><th>Actuel</th><th>Ancien après</th></tr></thead>
+        <thead><tr><th scope="col">Thème</th><th scope="col">Actuel</th><th scope="col">Ancien après</th></tr></thead>
         <tbody>
           <tr><td>Prix</td><td>&lt; 6 mois</td><td>6 mois</td></tr>
           <tr><td>Population (recensement)</td><td>&lt; 10 ans</td><td>10 ans</td></tr>

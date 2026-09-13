@@ -1930,3 +1930,58 @@ accents. Applied identically across all 14 page templates via a script
 per-file before rewriting) rather than by hand, to guarantee consistency;
 verified afterward that no `#171912`/`#1F221A` or `prefers-color-scheme`
 reference survived anywhere in `site/src/pages/`.
+
+## Phase 5 kickoff: the four items doable without a human decision
+
+Phase 5's checklist has 8 items; 3 of them (a governance partner, an error-reporting
+mechanism plus a real public contact address, and the actual launch outreach) need a
+decision only the user can make. This pass does the other 4.
+
+**"Ce qui n'est pas mesuré" on the 3 remaining themes.** 4 of 7 theme pages already
+had this section; population, infrastructures and prix didn't. Wrote real, specific
+gaps for each rather than generic filler - checked each page's actual JSON data
+model first so nothing claimed as "missing" was already covered elsewhere. Dropped
+one draft bullet for population (a claim that the 2003 and 2025 préfecture columns
+aren't directly comparable due to boundary changes) after realizing it wasn't
+actually verified against how the pipeline sources the 2003 figure - said nothing
+rather than assert an unconfirmed caveat.
+
+**Bulk downloads, reviewed rather than rebuilt.** Found a real bug while reviewing:
+`site/src/data/donnees.json` and the actual files under `site/public/donnees/` were
+stale copies from 2026-09-12, undercounting every table (`observations.csv` said
+5,435 rows; the real file has 5,552) - missing everything added since, including this
+week's budget indicators and the population sex breakdown. `pipeline/export_public_data.py`
+isn't wired into any routine rebuild step - nothing re-runs it when `data/*.csv`
+changes, so it goes stale silently. Re-ran it now; still worth building a proper
+"run everything" step before launch so this can't recur unnoticed.
+
+**A print stylesheet.** Added `@media print` to all 14 page templates, forcing the
+light palette's own token values regardless of the visitor's dark/light choice (most
+browsers strip background images/colors from print by default, but not text color -
+a dark-mode visitor printing a page would otherwise get pale text on white paper) and
+forcing `body`'s background to plain white. Hid the fixed `SiteNav` bar (chrome, not
+content) centrally in `SiteNav.astro` rather than per-page, and hid the home page's
+search box specifically - both have no meaning on paper.
+
+**A real accessibility pass**, not a nominal one - found and fixed actual bugs rather
+than just adding ARIA decoration:
+- Every `<th>` sitewide (37 across 7 files) had no `scope="col"` - added it
+  everywhere; screen readers can't reliably associate header and data cells without
+  it, especially outside a `<thead>`.
+- The home page's search input had only a `placeholder`, which isn't a reliable
+  accessible name - added a real `aria-label`. Its live result-count status span had
+  no `aria-live`, so a screen-reader user typing would never hear how many results
+  came back - added `aria-live="polite"`.
+- No skip-to-content link existed anywhere, meaning a keyboard user had to tab
+  through the fixed nav bar on every single page load - added one, centrally, in
+  `SiteNav.astro`.
+- Computed actual WCAG contrast ratios for every badge color pair rather than
+  eyeballing them (the same rigor as the earlier dark-mode `--ink-faint` fix): found
+  the light-mode "estime" badge (`--ochre` text on `--ochre-soft` background,
+  `#B8790F` on `#F1E3C6`) at 2.86:1 - a real, pre-existing fail, well under the 4.5:1
+  AA threshold for normal-size text, unrelated to and predating this session's dark
+  mode work. Darkened `--ochre`'s light value to `#8C5A0C` (4.62:1) across all 10
+  files that declare it; checked every other place it's used (an SVG chart label on
+  prix.astro, a progress-bar fill on population.astro) to confirm nothing else broke.
+  Heading hierarchy and focus-outline suppression were also checked sitewide and
+  came back clean - not everything found was broken.
