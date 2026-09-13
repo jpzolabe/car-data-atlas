@@ -95,6 +95,11 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   HDX, don't mirror the geometry/data), (b) an alternate boundary source without this
   restriction is found and used instead, or (c) an actual licence conversation
   clarifies this project qualifies for use/redistribution.
+- **Parked, 2026-09-13:** raised to the user as a decision point (this is the one
+  item the revised licensing policy explicitly still flags - an *explicit*
+  restriction, not mere ambiguity). Explicitly deferred rather than decided -
+  come back to this before the boundary geometry is presented as a finished
+  public v1, not before.
 
 ### COD-AB admin counts have moved since `CLAUDE.md` was compiled - now with a precise second-source cross-check
 
