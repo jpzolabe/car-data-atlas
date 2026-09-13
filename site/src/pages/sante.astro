@@ -133,7 +133,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       .disclosure-table td.num { font-family: ui-monospace, monospace; }
       .disclosure-note { font-size: 11px; color: var(--ink-faint); margin: 8px 0 0; max-width: 64ch; }
       .indicator-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
         gap: 14px;
       }
       .indicator-card {
