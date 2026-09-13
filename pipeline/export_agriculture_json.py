@@ -23,6 +23,10 @@ COUNTRY_ID = "cf-pays-centrafrique-v1"
 # %/index/kg-ha rates already on the page.
 MONTANT_INDICATORS = {"superficie_agricole", "production_cereales"}
 
+# "Production agricole" rather than bare "Production" (2026-09-13): the
+# label doubles as this category's in-page jump-nav link on agriculture.astro,
+# where "Production" alone is ambiguous next to economie.astro's own
+# "Production" category (GDP/output) - the two pages are one click apart.
 CATEGORIES = [
     ("terres", "Terres et ressources", [
         "terres_agricoles",
@@ -30,7 +34,7 @@ CATEGORIES = [
         "terres_arables",
         "couverture_forestiere",
     ]),
-    ("production", "Production", [
+    ("production", "Production agricole", [
         "valeur_ajoutee_agriculture_pib",
         "indice_production_alimentaire",
         "rendement_cereales",

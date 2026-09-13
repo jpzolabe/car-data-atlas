@@ -13,6 +13,11 @@
 // series). The other 9 have one source so far and get a compact card: value,
 // sparkline, generated sentence, source line; no disclosure UI where
 // there's nothing to disclose.
+//
+// section-nav (added 2026-09-13): sticky in-page jump menu, one link per
+// category (ids already existed via category.key) plus "Ce qui n'est pas
+// mesuré" - same pattern as economie.astro. Categories stay fully expanded;
+// this is pure navigation, nothing gets collapsed.
 import data from "../data/education.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -112,6 +117,21 @@ function qualityLabel(flag: string): string {
         border-bottom: 3px solid var(--t-edu); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-edu); border-color: var(--t-edu); }
       .coverage {
         font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
         margin: 0 0 28px;
@@ -132,7 +152,7 @@ function qualityLabel(flag: string): string {
       }
       h2 {
         font-size: 1.15rem; margin: 40px 0 4px; padding-top: 18px;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid var(--line); scroll-margin-top: 104px;
       }
       .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 16px; }
       .badge {
@@ -251,6 +271,12 @@ function qualityLabel(flag: string): string {
         national uniquement pour l'instant : aucune ventilation par
         région ou préfecture.
       </p>
+
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label_fr}</a>
+        ))}
+      </nav>
 
       <div class="headline-block">
         <div class="headline-value">
@@ -392,7 +418,7 @@ function qualityLabel(flag: string): string {
         );
       })}
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
         <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse - l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>

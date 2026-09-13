@@ -6,6 +6,10 @@
 // blocks here; every indicator has exactly one source so far, so every
 // card is the plain latest-value-plus-series shape already used for
 // infrastructures/prix/population's "Autres indicateurs" sections.
+//
+// section-nav (added 2026-09-13): sticky in-page jump menu, one link per
+// category plus "Ce qui n'est pas mesuré" - same pattern as economie.astro
+// and education.astro. Categories stay fully expanded; pure navigation.
 import data from "../data/sante.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -87,6 +91,21 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         border-bottom: 3px solid var(--t-sante); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-sante); border-color: var(--t-sante); }
       .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-sante); margin: 0 0 28px; }
       .headline-block {
         margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
@@ -98,7 +117,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       }
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
-      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
@@ -186,6 +205,12 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         arbitrairement.
       </p>
 
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label_fr}</a>
+        ))}
+      </nav>
+
       <div class="headline-block">
         <div class="headline-value">
           {fmt(data.headline.latest.value)}<span class="unit">ans, {data.headline.latest.period}</span>
@@ -199,7 +224,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
 
       {data.categories.map((category) => (
         <>
-          <h2>{category.label_fr}</h2>
+          <h2 id={category.key}>{category.label_fr}</h2>
           <div class="indicator-grid">
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
@@ -301,7 +326,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         </>
       ))}
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
         <li>MICS7 (enquête nationale, lancée en août 2026) n'a pas encore publié de résultats ; la santé maternelle et infantile ci-dessus vient de MICS6 (2018-2019), le round précédent.</li>

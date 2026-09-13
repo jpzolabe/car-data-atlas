@@ -404,7 +404,7 @@
     },
     {
       "key": "production",
-      "label_fr": "Production",
+      "label_fr": "Production agricole",
       "indicators": [
         {
           "indicator_id": "valeur_ajoutee_agriculture_pib",

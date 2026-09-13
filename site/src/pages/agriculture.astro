@@ -5,6 +5,11 @@
 // "Ce qui n'est pas mesuré" hand-written. No disclosure blocks; every
 // indicator has exactly one source so far.
 //
+// section-nav (added 2026-09-13): sticky in-page jump menu, one link per
+// category plus "Ce qui n'est pas mesuré" - same pattern as economie.astro,
+// education.astro and sante.astro. Categories stay fully expanded; pure
+// navigation.
+//
 // Three unit families here (%, indice, kg/ha), like économie's %/US$ split;
 // formatValue() branches by indicator_id. consommation_engrais gets 3
 // decimals instead of 1 (its real value, ~0.044, would round to a
@@ -100,6 +105,21 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         border-bottom: 3px solid var(--t-agri); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-agri); border-color: var(--t-agri); }
       .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-agri); margin: 0 0 28px; }
       .headline-block {
         margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
@@ -111,7 +131,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
       }
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
-      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
@@ -168,6 +188,12 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         dont ce thème est le complément sectoriel.
       </p>
 
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label_fr}</a>
+        ))}
+      </nav>
+
       <div class="headline-block">
         <div class="headline-value">
           {headlineValue.display}<span class="unit">{headlineValue.unit} de l'emploi, {data.headline.latest.period}</span>
@@ -181,7 +207,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
 
       {data.categories.map((category) => (
         <>
-          <h2>{category.label_fr}</h2>
+          <h2 id={category.key}>{category.label_fr}</h2>
           <div class="indicator-grid">
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
@@ -215,7 +241,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         </>
       ))}
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
         <li>Les prix agricoles au marché (manioc, riz, maïs...) sont désormais suivis sur la page <a href="/prix/">Prix</a>, à un niveau géographique différent (le marché de Bangui, un point, pas une zone) - voir cette page pour le détail.</li>
