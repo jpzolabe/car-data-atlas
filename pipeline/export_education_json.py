@@ -172,7 +172,9 @@ def build_simple_indicator(con, indicator_id: str) -> dict:
             indicator_id, latest[0], latest[1]
         )
     else:
-        lead_text, lead_template_id = sentence_education_rate(indicator_id, latest[0], latest[1])
+        lead_text, lead_template_id = sentence_education_rate(
+            indicator_id, latest[0], latest[1], latest[2]
+        )
 
     return {
         "indicator_id": indicator_id,

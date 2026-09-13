@@ -566,13 +566,21 @@ def sentence_education_effectif(indicator_id: str, period: str, value: float) ->
     return text, f"{indicator_id}_pays"
 
 
-def sentence_education_rate(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+def sentence_education_rate(
+    indicator_id: str, period: str, value: float, quality_flag: str | None = None
+) -> tuple[str, str]:
     value_fr = format(round(value, 1), ".1f").replace(".", ",")
     label = EDUCATION_RATE_LABELS[indicator_id]
-    text = (
-        f"En {period}, {label} en République centrafricaine "
-        f"s'établissait à {value_fr}%."
-    )
+    if quality_flag == "provisoire":
+        text = (
+            f"En {period}, {label} en République centrafricaine "
+            f"s'établissait à {value_fr}%, un résultat provisoire."
+        )
+    else:
+        text = (
+            f"En {period}, {label} en République centrafricaine "
+            f"s'établissait à {value_fr}%."
+        )
     return text, f"{indicator_id}_pays"
 
 
