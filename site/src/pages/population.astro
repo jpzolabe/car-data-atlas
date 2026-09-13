@@ -3,6 +3,12 @@
 // materialized by pipeline/export_population_json.py (data/observations.csv ->
 // DuckDB join -> JSON). Astro never parses the raw CSVs itself - see
 // docs/decisions.md.
+//
+// section-nav (added 2026-09-13): sticky in-page jump menu. This page has no
+// dynamic categories like economie/education/sante, just 3 static sections
+// (Classement, Par région, Autres indicateurs) - hand-written links rather
+// than a .map() over a categories array. Same visual pattern as the other
+// theme pages otherwise; sections stay fully expanded, pure navigation.
 import data from "../data/population.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -122,10 +128,26 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         border-bottom: 3px solid var(--t-pop); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 60ch; margin: 12px 0 24px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-pop); border-color: var(--t-pop); }
       h2 {
         font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em;
         color: var(--t-pop); font-weight: 600; margin: 32px 0 8px;
         border-bottom: 1px solid var(--line); padding-bottom: 6px;
+        scroll-margin-top: 104px;
       }
       .section-toggle { margin: 32px 0 8px; }
       .section-toggle summary {
@@ -315,6 +337,12 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         dépendance, enregistrement des naissances, mariage précoce).
       </p>
 
+      <nav class="section-nav" aria-label="Sections de la page">
+        <a href="#classement">Classement des préfectures, 2021</a>
+        <a href="#par-region">Population par région</a>
+        <a href="#autres-indicateurs">Autres indicateurs démographiques</a>
+      </nav>
+
       <div class="national-figure">
         <div class="national-value">
           {fmt(Math.round(national.headline.value))}
@@ -365,7 +393,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         {data.lead_sentence}
       </p>
 
-      <h2>Classement, estimation 2021</h2>
+      <h2 id="classement">Classement des préfectures, 2021</h2>
       <svg viewBox={`0 0 ${CHART_W} ${CHART_H}`} role="img" aria-label="Population par préfecture, estimation 2021, classée par ordre décroissant">
         {ranked.map((row, i) => (
           <g class="bar-row" transform={`translate(0, ${i * ROW_H})`}>
@@ -385,7 +413,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         ))}
       </svg>
 
-      <h2>Par région</h2>
+      <h2 id="par-region">Population par région</h2>
       <p class="legend-note">
         Dans les tableaux ci-dessous : <span class="badge stale">2003</span> = recensement, ancien -
         <span class="badge estime">2021</span> et <span class="badge estime">2025</span> = estimations.
@@ -453,7 +481,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         </div>
       </details>
 
-      <h2>Autres indicateurs</h2>
+      <h2 id="autres-indicateurs">Autres indicateurs démographiques</h2>
       <div class="indicator-grid">
         {data.other_indicators.map((ind) => {
           const spark = sparkline(ind);

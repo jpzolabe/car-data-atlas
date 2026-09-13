@@ -3,6 +3,15 @@
 // map). Same anatomy as sante.astro: headline figure, categories ordered by
 // logical sequence, "Ce qui n'est pas mesuré" hand-written.
 //
+// section-nav (added 2026-09-13): a sticky in-page jump menu, one link per
+// category plus the agriculture/prix satellite cards and "Ce qui n'est pas
+// mesuré" - lets a reader jump straight to a section instead of scrolling.
+// Explicit request: categories themselves stay fully expanded, nothing gets
+// collapsed - this is pure navigation. Zero JS: plain <a href="#id"> anchor
+// links, position:sticky to stay visible under SiteNav's own fixed bar while
+// scrolling. h2's scroll-margin-top accounts for both bars' combined height
+// so a jump doesn't hide the heading underneath them.
+//
 // taux_croissance_pib (added 2026-09-12) is the one disclosure indicator on
 // this page: ICASEES's rebased comptes nationaux disagree substantially
 // with World Bank's modelled estimate for 2020-2021. Rendered via the
@@ -145,6 +154,21 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         border-bottom: 3px solid var(--t-eco); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); max-width: 62ch; margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-eco); border-color: var(--t-eco); }
       .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); margin: 0 0 28px; }
       .headline-block {
         margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
@@ -156,7 +180,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       }
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
-      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
       .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 12px; }
       .category-note a { color: var(--t-eco); }
       .satellite-card {
@@ -255,6 +279,20 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         dédiée.
       </p>
 
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <>
+            <a href={`#${category.key}`}>{category.label_fr}</a>
+            {category.key === "finances_publiques" && (
+              <>
+                <a href="#secteur-agricole">Secteur agricole</a>
+                <a href="#prix">Prix</a>
+              </>
+            )}
+          </>
+        ))}
+      </nav>
+
       <div class="headline-block">
         <div class="headline-value">
           {headlineValue.display}<span class="unit">{headlineValue.unit}/habitant, {data.headline.latest.period}</span>
@@ -268,7 +306,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
 
       {data.categories.map((category) => (
         <>
-          <h2>{category.label_fr}</h2>
+          <h2 id={category.key}>{category.label_fr}</h2>
           <div class="indicator-grid">
             {category.indicators.map((ind) => {
               const spark = sparkline(ind);
@@ -357,7 +395,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
 
           {category.key === "finances_publiques" && (
             <>
-              <h2>Secteur agricole</h2>
+              <h2 id="secteur-agricole">Secteur agricole</h2>
               <p class="category-note">
                 L'agriculture représente une part importante de l'économie et de l'emploi en République centrafricaine.
               </p>
@@ -369,7 +407,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                 <a class="satellite-link" href="/agriculture/">Voir le détail (terres, production, alimentation) →</a>
               </div>
 
-              <h2>Prix</h2>
+              <h2 id="prix">Prix</h2>
               <p class="category-note">
                 L'inflation résume en un chiffre l'évolution des prix à la consommation.
               </p>
@@ -385,7 +423,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         </>
       ))}
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
         <li>Le taux de pauvreté n'a que 3 points dans le temps (1992, un point intermédiaire, 2021) - il dépend de la disponibilité d'enquêtes de ménages, pas d'une série annuelle.</li>
