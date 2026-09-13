@@ -692,7 +692,7 @@
     }
   ],
   "inflation": {
-    "definition_fr": "Ce taux, publié par l'ICASEES dans le même tableau de bord que l'IHPC, indique la variation en pourcentage du niveau général des prix, généralement sur un an. Sa méthodologie exacte n'est pas entièrement confirmée ; voir docs/verification-debt.md.",
+    "definition_fr": "Ce taux, publié par l'ICASEES dans le même tableau de bord que l'IHPC, indique la variation en pourcentage du niveau général des prix, généralement sur un an. Sa méthodologie exacte n'est pas entièrement confirmée.",
     "latest": {
       "period": "2026-04",
       "value": 0.8

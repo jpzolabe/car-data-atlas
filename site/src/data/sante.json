@@ -466,7 +466,7 @@
           },
           "unit": "lits",
           "name_fr": "Nombre de lits d'hôpital",
-          "definition_fr": "Cette valeur est une estimation calculée (densité de lits multipliée par la population), et non un décompte publié directement ; voir docs/verification-debt.md."
+          "definition_fr": "Cette valeur est une estimation calculée (densité de lits multipliée par la population), et non un décompte publié directement."
         },
         {
           "indicator_id": "nombre_personnel_infirmier",
