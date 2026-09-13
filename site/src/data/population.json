@@ -1,7 +1,7 @@
 {
   "generated_note": "Généré à partir de data/observations.csv via pipeline/export_population_json.py - ne pas éditer directement.",
   "source": {
-    "producer": "citypopulation.de (relaying ICASEES data, per the page's own stated data source)",
+    "producer": "citypopulation.de (relayant les données de l'ICASEES, selon la source indiquée par la page elle-même)",
     "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
     "url": "https://www.citypopulation.de/en/centralafrica/admin/",
     "retrieved_at": "2026-09-09"

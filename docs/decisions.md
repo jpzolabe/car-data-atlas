@@ -1985,3 +1985,54 @@ than just adding ARIA decoration:
   prix.astro, a progress-bar fill on population.astro) to confirm nothing else broke.
   Heading hierarchy and focus-outline suppression were also checked sitewide and
   came back clean - not everything found was broken.
+
+## Nine sources.csv rows were in English, on a French site
+
+Caught on the /sources/ page (spotted by the user): the Encyclopædia Britannica
+row's licence note and access note were plain English sentences, rendered directly
+to readers. CLAUDE.md's own convention ("code, comments, commit messages... in
+English; only user-facing content is French") already covered this - `data/sources.csv`'s
+`licence_notes`/`access_notes`/`geography_vintage`/`update_cadence`/`authority_rank`
+fields are reader-facing (rendered on /sources/ inside the "Note sur la licence" and
+"Comment cette source est utilisée ici" disclosures, and `geography_vintage`/
+`update_cadence` sit directly in each card's visible meta row, not hidden behind a
+click) - this had just never been checked as a body of content before.
+
+Scanned every row for genuine English prose rather than trusting a keyword match
+(early passes over-matched: "via" and "and" both appear legitimately in French
+text - "via l'API", "PIB, PIB par habitant et..." - so the real filter needed at
+least 2 strong English-only markers - "the", "used", "fetched", "only", "with" -
+not just one). Found 9 rows written entirely in English, all evidently from earlier
+sessions before this convention was enforced as strictly: `cod-ab-caf`,
+`wikipedia-fr-prefectures`, `citypopulation-de-caf`, `britannica-car-history`,
+`loi-21-001-2021`, `icasees-ihpc-dashboard`, `minurbanisme-rca-regions`,
+`who-gho-health-workforce`, `icasees-projection-population-2025`. Translated all 9
+in full, preserving every fact, number, date and URL exactly - only the descriptive
+prose changed language. Also used the pass to fix a couple of things noticed along
+the way rather than translate stale content faithfully: `minurbanisme-rca-regions`'s
+note still said the régions-préfectures mapping rested on one source, when this
+session's own earlier work had already found a second one - updated to reflect
+that; `who-gho-health-workforce`'s note now mentions the live re-check that already
+happened.
+
+**Deliberately left as-is:** `dataset_name` fields (e.g. "GDP, GDP per capita and
+GDP growth..." for World Bank, "Individuals using the Internet, % of population"
+for a WDI indicator) stay in their original language - these are citations of the
+source's own actual published title, not this project's own descriptive prose, the
+same way a French text would cite an English book's real title rather than
+inventing a translated one.
+
+**Real bug found while fixing this:** several theme pages' own JSON files
+(`population.json`, `prix.json`, `sante.json`) embed a source's producer/dataset
+name directly at export time via a live join against `data/sources.csv` - so fixing
+the CSV wasn't enough on its own; every export script that touches an affected
+source needed re-running, or the fix wouldn't actually reach the live page. Caught
+by re-scanning every page's actual rendered text for English words after the CSV
+fix, not by assuming the CSV fix was sufficient: population.astro's footer still
+said "citypopulation.de (relaying ICASEES data, per the page's own stated data
+source)" until `export_population_json.py` was re-run.
+
+Also checked the whole site for other leftover internal-instruction content (the
+kind of thing the "À FAIRE" TODO boxes removed earlier this session were) - scanned
+every rendered page for TODO/FIXME/placeholder/WIP-style markers. Found nothing
+beyond the search input's legitimate HTML `placeholder` attribute.
