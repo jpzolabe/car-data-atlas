@@ -16,7 +16,9 @@ import SiteNav from "../components/SiteNav.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
-  return CURRENT_YEAR - Number(period) > 5;
+  // méthode.astro's own threshold table: "< 5 ans" = actuel, "5 ans" =
+  // déjà ancien - so exactly 5 years old must already read as stale.
+  return CURRENT_YEAR - Number(period) >= 5;
 }
 
 function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
