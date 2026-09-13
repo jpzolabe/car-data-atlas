@@ -2,7 +2,7 @@
   "generated_note": "Généré depuis data/observations.csv via pipeline/export_infrastructures_json.py - ne pas éditer directement.",
   "source": {
     "producer": "World Bank (World Development Indicators)",
-    "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+    "dataset_name": "Accès à l'électricité, % de la population (EG.ELC.ACCS.ZS)",
     "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
     "retrieved_at": "2026-09-12"
   },
@@ -146,7 +146,7 @@
       "lead_sentence_template_id": "taux_utilisation_internet_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
+        "dataset_name": "Personnes utilisant Internet, % de la population (IT.NET.USER.ZS)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
         "retrieved_at": "2026-09-12"
       }
@@ -225,7 +225,7 @@
       "lead_sentence_template_id": "abonnements_mobiles_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Mobile cellular subscriptions, per 100 people (IT.CEL.SETS.P2)",
+        "dataset_name": "Abonnements à la téléphonie mobile cellulaire, pour 100 habitants (IT.CEL.SETS.P2)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
         "retrieved_at": "2026-09-12"
       }
@@ -304,7 +304,7 @@
       "lead_sentence_template_id": "acces_eau_potable_base_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
+        "dataset_name": "Personnes utilisant des services d'eau potable au moins basiques, % de la population (SH.H2O.BASW.ZS)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
         "retrieved_at": "2026-09-12"
       }
@@ -383,7 +383,7 @@
       "lead_sentence_template_id": "acces_assainissement_base_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
+        "dataset_name": "Personnes utilisant des services d'assainissement au moins basiques, % de la population (SH.STA.BASS.ZS)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.BASS.ZS?format=json",
         "retrieved_at": "2026-09-12"
       }

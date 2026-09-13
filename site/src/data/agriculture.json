@@ -72,7 +72,7 @@
     "lead_sentence_template_id": "emploi_agricole_pays",
     "source": {
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+      "dataset_name": "Emploi dans l'agriculture, % de l'emploi total, estimation modélisée de l'OIT (SL.AGR.EMPL.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
       "retrieved_at": "2026-09-12"
     },
@@ -156,7 +156,7 @@
           "lead_sentence_template_id": "terres_agricoles_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Agricultural land, arable land, forest area, % of land area, and agricultural land in sq. km (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
+            "dataset_name": "Terres agricoles, terres arables, superficie forestière, % de la superficie des terres, et terres agricoles en km² (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -235,7 +235,7 @@
           "lead_sentence_template_id": "superficie_agricole_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Agricultural land, arable land, forest area, % of land area, and agricultural land in sq. km (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
+            "dataset_name": "Terres agricoles, terres arables, superficie forestière, % de la superficie des terres, et terres agricoles en km² (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -314,7 +314,7 @@
           "lead_sentence_template_id": "terres_arables_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Agricultural land, arable land, forest area, % of land area, and agricultural land in sq. km (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
+            "dataset_name": "Terres agricoles, terres arables, superficie forestière, % de la superficie des terres, et terres agricoles en km² (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -393,7 +393,7 @@
           "lead_sentence_template_id": "couverture_forestiere_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Agricultural land, arable land, forest area, % of land area, and agricultural land in sq. km (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
+            "dataset_name": "Terres agricoles, terres arables, superficie forestière, % de la superficie des terres, et terres agricoles en km² (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -478,7 +478,7 @@
           "lead_sentence_template_id": "valeur_ajoutee_agriculture_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Agriculture, forestry, and fishing, value added, % of GDP (NV.AGR.TOTL.ZS)",
+            "dataset_name": "Agriculture, sylviculture et pêche, valeur ajoutée, % du PIB (NV.AGR.TOTL.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NV.AGR.TOTL.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -557,7 +557,7 @@
           "lead_sentence_template_id": "indice_production_alimentaire_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Food production index, 2014-2016 = 100 (AG.PRD.FOOD.XD)",
+            "dataset_name": "Indice de production alimentaire, 2014-2016 = 100 (AG.PRD.FOOD.XD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.PRD.FOOD.XD?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -636,7 +636,7 @@
           "lead_sentence_template_id": "rendement_cereales_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Cereal yield, kg per hectare, and cereal production, metric tons (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
+            "dataset_name": "Rendement céréalier, kg par hectare, et production céréalière, tonnes métriques (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -715,7 +715,7 @@
           "lead_sentence_template_id": "production_cereales_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Cereal yield, kg per hectare, and cereal production, metric tons (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
+            "dataset_name": "Rendement céréalier, kg par hectare, et production céréalière, tonnes métriques (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -794,7 +794,7 @@
           "lead_sentence_template_id": "consommation_engrais_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Fertilizer consumption, kg per hectare of arable land (AG.CON.FERT.ZS)",
+            "dataset_name": "Consommation d'engrais, kg par hectare de terre arable (AG.CON.FERT.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -879,7 +879,7 @@
           "lead_sentence_template_id": "emploi_agricole_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+            "dataset_name": "Emploi dans l'agriculture, % de l'emploi total, estimation modélisée de l'OIT (SL.AGR.EMPL.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -958,7 +958,7 @@
           "lead_sentence_template_id": "taux_sous_alimentation_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Prevalence of undernourishment, % of population (SN.ITK.DEFC.ZS)",
+            "dataset_name": "Prévalence de la sous-alimentation, % de la population (SN.ITK.DEFC.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SN.ITK.DEFC.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },

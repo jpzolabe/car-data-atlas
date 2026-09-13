@@ -2,7 +2,7 @@
   "generated_note": "Généré à partir de data/observations.csv via pipeline/export_population_json.py - ne pas éditer directement.",
   "source": {
     "producer": "citypopulation.de (relayant les données de l'ICASEES, selon la source indiquée par la page elle-même)",
-    "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
+    "dataset_name": "République centrafricaine : découpage administratif (préfectures et sous-préfectures)",
     "url": "https://www.citypopulation.de/en/centralafrica/admin/",
     "retrieved_at": "2026-09-09"
   },
@@ -33,7 +33,7 @@
         "period": "2025",
         "quality_flag": "estime",
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
       },
       {
@@ -41,7 +41,7 @@
         "period": "2024",
         "quality_flag": "estime",
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
       },
       {
@@ -49,7 +49,7 @@
         "period": "2023",
         "quality_flag": "estime",
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
       },
       {
@@ -57,7 +57,7 @@
         "period": "2022",
         "quality_flag": "estime",
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
       },
       {
@@ -65,7 +65,7 @@
         "period": "2021",
         "quality_flag": "estime",
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population, total (SP.POP.TOTL)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
       }
     ]
@@ -693,7 +693,7 @@
       "lead_sentence_template_id": "taux_croissance_population_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Population growth, annual % (SP.POP.GROW)",
+        "dataset_name": "Croissance de la population, % annuel (SP.POP.GROW)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
         "retrieved_at": "2026-09-12"
       }
@@ -772,7 +772,7 @@
       "lead_sentence_template_id": "taux_urbanisation_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Urban population, % of total population (SP.URB.TOTL.IN.ZS)",
+        "dataset_name": "Population urbaine, % de la population totale (SP.URB.TOTL.IN.ZS)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
         "retrieved_at": "2026-09-12"
       }
@@ -851,7 +851,7 @@
       "lead_sentence_template_id": "taux_dependance_demographique_pays",
       "source": {
         "producer": "World Bank (World Development Indicators)",
-        "dataset_name": "Age dependency ratio, % of working-age population (SP.POP.DPND)",
+        "dataset_name": "Taux de dépendance démographique, % de la population d'âge actif (SP.POP.DPND)",
         "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
         "retrieved_at": "2026-09-12"
       }

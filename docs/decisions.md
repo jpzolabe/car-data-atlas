@@ -2036,3 +2036,32 @@ Also checked the whole site for other leftover internal-instruction content (the
 kind of thing the "À FAIRE" TODO boxes removed earlier this session were) - scanned
 every rendered page for TODO/FIXME/placeholder/WIP-style markers. Found nothing
 beyond the search input's legitimate HTML `placeholder` attribute.
+
+**Follow-up, same day:** the previous fix didn't go far enough - the user pointed out
+`citypopulation-de-caf`'s `dataset_name` was still in English ("Central African
+Republic: Administrative Division (Prefectures and Sub-Prefectures)"). Checked
+whether that was actually the source's own literal published title before deciding
+whether to translate it (it wasn't - the real page heading is just "Central African
+Republic: Administrative Division"; the parenthetical was this project's own
+English commentary from an earlier session, not a quotation). That reopened the
+whole "keep dataset_name in its original language" judgment call from the earlier
+entry - checked precedent properly this time instead of assuming: UNESCO UIS's own
+`dataset_name` rows were already translated to French with the API code kept in
+parens (e.g. "Taux d'achèvement (...) (CR.1, CR.2, CR.3)"), while every World Bank
+row was left in raw English. Inconsistent, not a deliberate two-tier policy - the
+World Bank ones were evidently added in one bulk pass that never got the French
+treatment. Translated all 35 remaining English `dataset_name` fields (`cod-ab-caf`,
+`citypopulation-de-caf`, `britannica-car-history`, `wfp-food-prices-hdx`,
+`who-gho-health-workforce`, and 30 `world-bank-*` rows) to match the UNESCO
+convention: French description, technical API/indicator code left as-is in
+parentheses since that's a literal identifier, not prose.
+
+Regenerated every export script this time, not just the three that broke last
+time - dataset_name (unlike the licence/access notes from the first pass) is
+embedded and rendered on theme pages too (population/economie/education/
+infrastructures/sante/agriculture/prix), not just on /sources/. Re-ran the full
+rendered-text scan afterward; every remaining English-looking match checked by hand
+and confirmed legitimate (a literal API code, a URL, or an organization's own
+official name like "World Food Programme" or a cited page title like "Terms and
+Conditions" - the same category of exception as `dataset_name` itself, applied
+consistently rather than case-by-case).
