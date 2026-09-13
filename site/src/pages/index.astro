@@ -60,14 +60,14 @@ const THEMES = [
       { name: "Prix", href: "/prix/" },
       { name: "Agriculture", href: "/agriculture/" },
     ] },
+  { name: "Santé", href: "/sante/", accent: "var(--t-sante)", icon: ICONS.sante,
+    description: "Espérance de vie, mortalité, vaccination, établissements de santé." },
   { name: "Population", href: "/population/", accent: "var(--t-pop)", icon: ICONS.population,
     description: "Recensements et projections, jusqu'à la sous-préfecture." },
   { name: "Infrastructures", href: "/infrastructures/", accent: "var(--t-infra)", icon: ICONS.infrastructures,
     description: "Électricité, eau, assainissement, internet et téléphonie." },
   { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
-  { name: "Santé", href: "/sante/", accent: "var(--t-sante)", icon: ICONS.sante,
-    description: "Espérance de vie, mortalité, vaccination, établissements de santé." },
 ];
 
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
@@ -80,7 +80,9 @@ const croissancePibSeries = economie.categories
   .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
 const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
 const electricite = infrastructures.series[infrastructures.series.length - 1];
-const achevementPrimaire = education.headline.national.headline;
+const reussiteBac = education.categories
+  .flatMap((c: any) => c.indicators)
+  .find((i: any) => i.indicator_id === "taux_reussite_baccalaureat").latest;
 
 // De-emphasized ticker, deliberately mixing fresh and stale (docs/plan.md
 // Sec2.2: "showing that a figure comes from an older survey is the
@@ -100,8 +102,8 @@ const SECONDARY_STATS = [
     period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/",
   },
   {
-    label: "Achèvement primaire", value: fmtPct(achevementPrimaire.value), unit: "%",
-    period: achevementPrimaire.period, accent: "var(--t-edu)", href: "/education/",
+    label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
+    period: reussiteBac.period, accent: "var(--t-edu)", href: "/education/",
   },
 ];
 ---
