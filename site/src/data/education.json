@@ -2924,9 +2924,9 @@
         {
           "indicator_id": "taux_reussite_baccalaureat",
           "latest": {
-            "period": "2024",
-            "value": 36.66,
-            "quality_flag": "administratif"
+            "period": "2026",
+            "value": 25.83,
+            "quality_flag": "provisoire"
           },
           "series": [
             {
@@ -2936,15 +2936,19 @@
             {
               "period": "2024",
               "value": 36.66
+            },
+            {
+              "period": "2026",
+              "value": 25.83
             }
           ],
-          "lead_sentence": "En 2024, le taux de réussite au baccalauréat général en République centrafricaine s'établissait à 36,7%.",
+          "lead_sentence": "En 2026, le taux de réussite au baccalauréat général en République centrafricaine s'établissait à 25,8%, un résultat provisoire.",
           "lead_sentence_template_id": "taux_reussite_baccalaureat_pays",
           "source": {
-            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
-            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
-            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
-            "retrieved_at": "2026-09-12"
+            "producer": "Ministère de l'Éducation Nationale (RCA)",
+            "dataset_name": "Résultats du baccalauréat, premier tour, session 2026 (communiqué du ministère, relayé par la presse)",
+            "url": "https://www.journaldebangui.com/rca-baccalaureat-2026-2583-de-reussite-au-premier-tour/",
+            "retrieved_at": "2026-09-14"
           },
           "name_fr": "Taux de réussite au baccalauréat général",
           "definition_fr": "Ce taux mesure la part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues."

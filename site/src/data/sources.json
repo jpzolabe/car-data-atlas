@@ -132,6 +132,19 @@
       "access_notes": "7 pages régionales individuelles récupérées via WebFetch, listes de préfectures citées directement."
     },
     {
+      "source_id": "moen-bac-2026-premier-tour",
+      "producer": "Ministère de l'Éducation Nationale (RCA)",
+      "dataset_name": "Résultats du baccalauréat, premier tour, session 2026 (communiqué du ministère, relayé par la presse)",
+      "url": "https://www.journaldebangui.com/rca-baccalaureat-2026-2583-de-reussite-au-premier-tour/",
+      "licence": "non précisée",
+      "licence_notes": "Aucun document officiel public (PDF, page du site du ministère) localisé pour cette annonce - seule la reprise par la presse locale (Journal de Bangui, RJDH) a pu être consultée. Statistique communiquée par le ministère à la presse, pas de restriction de réutilisation énoncée.",
+      "geography_vintage": "national uniquement ; premier tour seulement, avant la session de rattrapage",
+      "update_cadence": "annuelle (communiqué de presse en marge de la session d'examen ; l'annuaire statistique officiel, s'il couvre 2025-2026, donnera plus tard un taux final comparable aux valeurs 2019/2024 de cette même série)",
+      "retrieved_at": "2026-09-14",
+      "authority_rank": "donnée administrative nationale (communiqué du ministère de tutelle, relayé par la presse - pas encore intégré à l'annuaire statistique officiel)",
+      "access_notes": "Résultat du premier tour de la session de juin 2026 : 33 684 candidats inscrits (30 251 série générale, 3 433 série technique), 8 703 admis dès le premier tour, taux de réussite 25,83%. Chiffre du premier tour uniquement - ne couvre pas la session de rattrapage qui suit habituellement ; à ce titre non directement comparable aux valeurs 2019 et 2024 de la même série, qui sont des taux annuels finaux tirés de l'annuaire statistique de l'éducation. Retrouvé par recherche web, article du Journal de Bangui daté du 12 août 2026, qui cite lui-même l'annonce du ministère de l'Éducation nationale (également reprise par RJDH le 7 août 2026)."
+    },
+    {
       "source_id": "mfb-note-information-2026",
       "producer": "Ministère des Finances et du Budget (République centrafricaine)",
       "dataset_name": "Note d'Information du Marché des Titres Publics de la RCA (janvier 2026)",
@@ -182,19 +195,6 @@
       "retrieved_at": "2026-09-11",
       "authority_rank": "législation nationale (rang le plus élevé du classement d'autorité pour le découpage administratif)",
       "access_notes": "Deux citations secondaires indépendantes trouvées, dont une récupérée et citée directement (limko.cm) ; le PDF du Journal Officiel lui-même n'a pas été localisé lors de cette recherche."
-    },
-    {
-      "source_id": "unesco-uis-completion-modelled",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que la source enquête - voir la note sur cette source.",
-      "geography_vintage": "séries annuelles modélisées/interpolées par l'UIS, 1981-2025, pour combler les années sans enquête, un jeu par niveau",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale - rang le plus bas de l'échelle publiée sur la page Méthode, hors chiffre de portail sans source citée",
-      "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
     },
     {
       "source_id": "unesco-uis-education-administrative",
@@ -249,6 +249,19 @@
       "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
     },
     {
+      "source_id": "unesco-uis-completion-modelled",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Même licence déclarée que la source enquête - voir la note sur cette source.",
+      "geography_vintage": "séries annuelles modélisées/interpolées par l'UIS, 1981-2025, pour combler les années sans enquête, un jeu par niveau",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale - rang le plus bas de l'échelle publiée sur la page Méthode, hors chiffre de portail sans source citée",
+      "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
+    },
+    {
       "source_id": "unicef-data-warehouse",
       "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
       "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
@@ -288,17 +301,17 @@
       "access_notes": "Récupéré via WebFetch pour corroborer la réforme de 2020 et noter les variantes orthographiques des noms."
     },
     {
-      "source_id": "world-bank-trade",
+      "source_id": "world-bank-external-debt",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
+      "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = comptes nationaux compilés par la Banque mondiale et le FMI",
+      "geography_vintage": "annuel ; source primaire = International Debt Statistics de la Banque mondiale",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025) pour chaque indicateur. Élargi 2026-09-12 des versions % du PIB aux versions en valeur absolue (dollars courants)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Élargi 2026-09-12 de la version % du RNB à la version en valeur absolue (dollars courants)."
     },
     {
       "source_id": "world-bank-water-access",
@@ -312,19 +325,6 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
-    },
-    {
-      "source_id": "world-bank-child-mortality",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = UN IGME (Inter-agency Group for Child Mortality Estimation)",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
     },
     {
       "source_id": "world-bank-maternal-mortality",
@@ -444,17 +444,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
-      "source_id": "world-bank-external-debt",
+      "source_id": "world-bank-trade",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
+      "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = International Debt Statistics de la Banque mondiale",
+      "geography_vintage": "annuel ; source primaire = comptes nationaux compilés par la Banque mondiale et le FMI",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Élargi 2026-09-12 de la version % du RNB à la version en valeur absolue (dollars courants)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025) pour chaque indicateur. Élargi 2026-09-12 des versions % du PIB aux versions en valeur absolue (dollars courants)."
     },
     {
       "source_id": "world-bank-fdi",
@@ -600,6 +600,19 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
     },
     {
+      "source_id": "world-bank-age-dependency",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Taux de dépendance démographique, % de la population d'âge actif (SP.POP.DPND)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; dérivée de la structure par âge de la même série démographique",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
+    },
+    {
       "source_id": "world-bank-urban-population",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "Population urbaine, % de la population totale (SP.URB.TOTL.IN.ZS)",
@@ -639,19 +652,6 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
     },
     {
-      "source_id": "world-bank-wdi-population",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population totale (SP.POP.TOTL)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée sur la page Méthode, hors chiffre de portail sans source citée)",
-      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
-    },
-    {
       "source_id": "world-bank-sanitation-access",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "Personnes utilisant des services d'assainissement au moins basiques, % de la population (SH.STA.BASS.ZS)",
@@ -665,17 +665,30 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable - deux indicateurs, deux facettes du même programme de suivi."
     },
     {
-      "source_id": "world-bank-age-dependency",
+      "source_id": "world-bank-wdi-population",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Taux de dépendance démographique, % de la population d'âge actif (SP.POP.DPND)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
+      "dataset_name": "Population totale (SP.POP.TOTL)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; dérivée de la structure par âge de la même série démographique",
+      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée sur la page Méthode, hors chiffre de portail sans source citée)",
+      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
+    },
+    {
+      "source_id": "world-bank-child-mortality",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = UN IGME (Inter-agency Group for Child Mortality Estimation)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
     },
     {
       "source_id": "wfp-food-prices-hdx",

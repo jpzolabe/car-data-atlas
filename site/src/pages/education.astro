@@ -71,6 +71,7 @@ function sparkline(series: { period: string; value: number }[]) {
 function qualityLabel(flag: string): string {
   if (flag === "enquete") return "enquête nationale";
   if (flag === "administratif") return "donnée administrative";
+  if (flag === "provisoire") return "résultat provisoire";
   return "estimation modélisée";
 }
 
@@ -172,6 +173,7 @@ function qualityLabel(flag: string): string {
       .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
       .badge.enquete { background: color-mix(in srgb, var(--t-edu) 14%, var(--surface)); color: var(--t-edu); }
       .badge.administratif { background: color-mix(in srgb, var(--ink-faint) 18%, var(--surface)); color: var(--ink-muted); }
+      .badge.provisoire { background: transparent; border: 1px solid var(--t-edu); color: var(--t-edu); }
       .badge.stale { background: var(--stale-soft); color: var(--stale); }
 
       /* Completion indicators: full-width disclosure card, same structure as
