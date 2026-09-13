@@ -1029,6 +1029,17 @@ yet - step 4's second half, explicitly deferred by the user to come back
 to later rather than build now. Pick this up before calling Phase 4
 fully done.
 
+---
+
+**Phase 4 status, saved 2026-09-13 - work moves to Phase 5 from here.**
+All 7 numbered steps have real work behind them for at least one theme.
+Widening to infrastructures/éducation/économie/agriculture was checked
+live and closed as not currently possible (see above) - not a gap to
+revisit without a new development. The single remaining item against
+Phase 4's own "done when" bar is sous-préfecture pages themselves,
+explicitly parked at the user's request. Everything below this line is
+Phase 5 work, started 2026-09-13 while that one item stays parked.
+
 ## Phase 5 - Coverage, polish, launch (3–4 weeks)
 
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
@@ -1044,6 +1055,18 @@ fully done.
    OCHA, the World Bank country office; post to HDX.
 
 **Done when:** somebody who is not you has cited it.
+
+**Status, 2026-09-13.** Items 3 and 5 done (every theme now has *ce qui n'est pas
+mesuré*; bulk downloads reviewed, a real staleness bug found and fixed). Item 4's
+print stylesheet and accessibility pass done; its "French copy edit by a native
+speaker" is meaningfully underway - this session's own language audit found and
+fixed 44 English-language entries on `/sources/` left over from earlier sessions -
+but a real human native-speaker pass is still worth doing before launch, not
+something this project can fully self-certify. Item 1 substantially advanced (14
+open verification-debt items down to 10; see docs/verification-debt.md). Items 2
+(`/couverture`), 6 (error reporting + a real contact address) and 7 (governance
+partner) not started - 6 and 7 need a decision only the user can make; 2 needs a
+design pass before building. Item 8 waits until the rest is in real shape.
 
 ## Phase 6 - Sustaining (ongoing)
 
