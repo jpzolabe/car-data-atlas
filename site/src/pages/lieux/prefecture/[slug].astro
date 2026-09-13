@@ -97,7 +97,17 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
         --ink-faint: #8B9188; --line: #D6D7C9;
         --t-lieu: #8B5E3C;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
-        --ochre: #B8790F; --ochre-soft: #F1E3C6;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-lieu: #8B5E3C;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+        body { background: #fff !important; background-image: none !important; }
       }
       * { box-sizing: border-box; }
       body {
@@ -194,7 +204,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
   </head>
   <body>
     <SiteNav />
-    <main>
+    <main id="main-content">
       <div class="crumb">
         <a href="/">République centrafricaine</a> / <a href="/lieux/">Lieux</a>
       </div>
@@ -253,7 +263,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
           <div class="prefecture-block" style="margin-top: 8px;">
             <table>
               <thead>
-                <tr><th>Sous-préfecture</th><th>2025</th></tr>
+                <tr><th scope="col">Sous-préfecture</th><th scope="col">2025</th></tr>
               </thead>
               <tbody>
                 {[...place.sous_prefectures]
@@ -326,8 +336,8 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
             <table>
               <thead>
                 <tr>
-                  <th>Marché</th>
-                  {DENREE_ORDER.map((id) => <th>{DENREE_SHORT[id]}</th>)}
+                  <th scope="col">Marché</th>
+                  {DENREE_ORDER.map((id) => <th scope="col">{DENREE_SHORT[id]}</th>)}
                 </tr>
               </thead>
               <tbody>
@@ -367,7 +377,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
 
       <h2>Ce que l'on sait, par thème</h2>
       <table class="freshness-table">
-        <thead><tr><th>Thème</th><th>Donnée la plus récente</th></tr></thead>
+        <thead><tr><th scope="col">Thème</th><th scope="col">Donnée la plus récente</th></tr></thead>
         <tbody>
           {place.freshness.map((f: any) => (
             <tr>

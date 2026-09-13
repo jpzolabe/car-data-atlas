@@ -67,7 +67,16 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
         --t-infra: #6B4A9E;
-        --ochre: #B8790F; --ochre-soft: #F1E3C6;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --t-infra: #6B4A9E;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+        body { background: #fff !important; background-image: none !important; }
       }
       * { box-sizing: border-box; }
       body {
@@ -107,6 +116,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         border-left: 3px solid var(--t-infra); padding: 14px 0 14px 14px; margin: 20px 0;
       }
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
+      .not-measured li { margin-bottom: 4px; }
       h2 { font-size: 1.15rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
@@ -151,7 +162,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   </head>
   <body>
     <SiteNav />
-    <main>
+    <main id="main-content">
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Infrastructures</h1>
       <p class="lede">
@@ -232,6 +243,15 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
           );
         })}
       </div>
+
+      <h2>Ce qui n'est pas mesuré</h2>
+      <ul class="not-measured">
+        <li>Routes et transports ne sont pas encore intégrés - pas encore cherchés, pas confirmés absents.</li>
+        <li>Rien par région, préfecture ou sous-préfecture : la Banque mondiale (World Development Indicators) ne publie ces indicateurs qu'au niveau national pour la RCA.</li>
+        <li>Seul l'accès est mesuré, pas la qualité de service - pannes d'électricité, débit Internet réel ou potabilité de l'eau ne sont pas couverts.</li>
+        <li>Aucune répartition urbain/rural, alors que l'écart est généralement large pour ce type d'indicateur.</li>
+        <li>Le logement (matériaux de construction, surpeuplement) n'est pas couvert par ce thème.</li>
+      </ul>
 
       <footer>
         Source : {data.source.producer} - {data.source.dataset_name}.

@@ -24,7 +24,15 @@ const sources = data.sources;
       :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
-        --ochre: #B8790F; --ochre-soft: #F1E3C6;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+        body { background: #fff !important; background-image: none !important; }
       }
       * { box-sizing: border-box; }
       body {
@@ -82,7 +90,7 @@ const sources = data.sources;
   </head>
   <body>
     <SiteNav />
-    <main>
+    <main id="main-content">
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Sources</h1>
       <p class="lede">

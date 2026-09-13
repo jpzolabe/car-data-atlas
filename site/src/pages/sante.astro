@@ -72,6 +72,15 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         --t-sante: #0E7C7B;
         --stale: #AC3A1E; --stale-soft: #F6DCD5;
       }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-sante: #0E7C7B;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+        body { background: #fff !important; background-image: none !important; }
+      }
       * { box-sizing: border-box; }
       body {
         margin: 0;
@@ -192,7 +201,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   </head>
   <body>
     <SiteNav />
-    <main>
+    <main id="main-content">
       <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Santé</h1>
       <p class="lede">
@@ -244,7 +253,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                       <details class="disclosure">
                         <summary>{ind.national.all_sources.length} sources - écart de {ind.national.spread_pct}%</summary>
                         <table class="disclosure-table">
-                          <thead><tr><th>Valeur</th><th>Producteur</th><th>Période</th><th>Statut</th></tr></thead>
+                          <thead><tr><th scope="col">Valeur</th><th scope="col">Producteur</th><th scope="col">Période</th><th scope="col">Statut</th></tr></thead>
                           <tbody>
                             {ind.national.all_sources.map((s) => (
                               <tr>
@@ -266,7 +275,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                         <details class="disclosure">
                           <summary>Répartition régionale ({ind.region_breakdown.length} régions)</summary>
                           <table class="disclosure-table">
-                            <thead><tr><th>Région</th><th>Établissements</th></tr></thead>
+                            <thead><tr><th scope="col">Région</th><th scope="col">Établissements</th></tr></thead>
                             <tbody>
                               {ind.region_breakdown.map((r) => (
                                 <tr>
