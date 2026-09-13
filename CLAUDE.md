@@ -39,14 +39,22 @@ values (e.g. `999999`) and never in `data/`.
 
 **v1 vs. later.** "Never fabricate" is permanent. How hard we chase full legal
 clearance and cross-source veracity on every figure *before using it at all* is not -
-for v1, real data from a real, cited source can be used even if its licence terms
-aren't fully resolved or it hasn't been cross-checked against every other source yet.
-The difference that matters: a number that came from somewhere real can be corrected
-once we look closer; a number we made up can't be, because there's nothing underneath
-it to correct. Track what's unverified or unresolved-licence in
-`docs/verification-debt.md` as it comes up, and clear that list before the site is
-presented as final or promoted as authoritative - it isn't a permanent exemption, it's
-a queue.
+for v1, real data from a real, cited source can be used even if it hasn't been
+cross-checked against every other source yet. The difference that matters: a number
+that came from somewhere real can be corrected once we look closer; a number we made
+up can't be, because there's nothing underneath it to correct. Track what's
+unverified in `docs/verification-debt.md` as it comes up.
+
+**Licensing (revised 2026-09-13).** This is a non-commercial public reference work,
+not a resold product - citing the source plainly is enough for essentially any figure.
+An unstated, ambiguous, or unresolved licence is not a blocker and doesn't need to be
+logged as debt to clear before launch; use the data, cite it, move on. The one real
+exception is a source that states an *explicit* restriction - "for humanitarian
+purposes only," a required attribution disclaimer, a stated prohibition on
+redistribution - which is a genuine constraint on a public product, not mere
+ambiguity, and does need an actual decision (citation instead of redistribution, an
+alternate source, or a real licence conversation). Log only those specific cases in
+`docs/verification-debt.md`.
 
 ## What this is
 
@@ -161,16 +169,17 @@ mapping every source's names and codes to canonical IDs.
   indicators, a 100m walking-travel-time-to-health-facility raster.
 - OpenStreetMap - coverage largely from the 2013–14 HOT crisis activation.
 
-**Check redistribution rights per source.** ACLED and DHS have licence restrictions
-that are not as open as their presence on HDX implies, and this turns out to be more
-common than that - e.g. COD-AB itself currently carries a "humanitarian purposes
-only" usage restriction on its HDX listing, discovered when actually fetched rather
-than assumed from its reputation as "the humanitarian sector standard." **For v1,
-this doesn't block using a source** - log it in `docs/verification-debt.md` with what
-the restriction actually says, use what's needed to keep building, and resolve
-properly (redistribution swapped for citation, alternate source, or an actual
-licence conversation) before the data is presented as a final public v1, not before
-every use.
+**Watch for an explicit redistribution restriction, not mere ambiguity.** Most
+sources just don't say - that's fine, see "Licensing" above. A few state something
+active: ACLED and DHS have real licence restrictions despite their presence on HDX
+implying openness, and COD-AB's own HDX listing carries a "humanitarian purposes
+only" clause with a required disclaimer if the data is shared or made public -
+discovered when actually fetched, not assumed from its reputation as "the
+humanitarian sector standard." **This doesn't block using a source for v1** - log
+the actual restriction text in `docs/verification-debt.md`, use what's needed to keep
+building, and resolve properly (redistribution swapped for citation, an alternate
+source, or an actual licence conversation) before the data is presented as a
+finished public v1.
 
 **Political sensitivity.** Census results feed representation and resource allocation.
 Publish provisional figures with their caveat; do not present them as settled.

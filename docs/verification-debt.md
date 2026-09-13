@@ -1,10 +1,19 @@
 # Verification debt
 
 The "come back to this" list. Per `CLAUDE.md`'s rule zero v1 note: real, sourced data
-can be used in v1 before its licence is fully resolved or it's been cross-checked
-against other sources - logged here instead of blocking. This list needs to be empty,
-or at least reviewed item by item, before the site is presented as a finished public
-v1 or promoted as authoritative. It is not a place to file things and forget them.
+can be used in v1 before it's been cross-checked against other sources - logged here
+instead of blocking. This list needs to be reviewed item by item before the site is
+presented as a finished public v1 or promoted as authoritative. It is not a place to
+file things and forget them.
+
+**Revised 2026-09-13:** this list no longer tracks plain licence ambiguity or an
+unstated licence - per `CLAUDE.md`'s revised licensing stance, that's not this
+project's problem to solve for a non-commercial reference work, only to disclose via
+citation. Several entries below that were purely about licence status were closed on
+this date for that reason (see each entry's note). What's still tracked here: an
+*explicit* usage restriction on a source (a real constraint, not ambiguity), and
+genuine data-quality problems - numbers that don't reconcile, gaps, stale figures -
+regardless of licence.
 
 Each entry: what's unresolved, where it's used, what "resolved" would look like.
 
@@ -31,6 +40,11 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   is unaffected: it's ICASEES's own stated headline total, taken directly
   from a different summary row, not computed by aggregating the
   inconsistent table.
+- **Re-checked live 2026-09-13:** checked ICASEES's publications listing for
+  a newer édition since this was found - the file used
+  (`annuaire_statistique_2024_2025.xlsx`) is still the most recent one
+  available; no corrected version has been published. Genuinely can't
+  reconcile this without ICASEES issuing a fix.
 - **Resolved when:** either ICASEES publishes a corrected version, or
   someone with a reason to use this specific table confirms which of the
   three numbers is right for the affected préfectures - not something to
@@ -158,22 +172,6 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   schemes - they may both be legitimate but describing different things (e.g.
   administrative zones vs. communes), not actually contradictory.
 
-### Régions → préfectures mapping has only one source
-
-- **What:** The 7 RGPH-4 régions were mapped onto the 20 préfectures using 7
-  individual pages on `minurbanisme-rca.org` (Ministère de l'Urbanisme), fetched
-  2026-09-05. This is a government site with administrative-directorate pages, not a
-  law or decree, and no second independent source was checked. It's only internally
-  consistent (the 7 lists sum to exactly 20 préfectures, no gaps or overlaps) - that's
-  a good sign, not confirmation. Also: `CLAUDE.md` originally named one région
-  "Kagas" (plural); the ministry site consistently calls it "Kaga" (singular) -
-  entities.csv uses "Kaga" as canonical, "Kagas" not yet recorded as an alias.
-- **Used in:** `data/entities.csv` (7 région rows, `cf-r-*-v1`), and to re-parent all
-  20 préfecture rows from the country directly to their région.
-- **Resolved when:** a second source (RGPH-4's own régions definition, if a primary
-  ICASEES document naming the régions can be found, rather than reporting about it)
-  confirms the same 7×préfectures composition.
-
 ### Région `valid_from` date is a governance date, not necessarily RGPH-4's
 
 - **What:** Régions were given `valid_from = 2024-06-01`, based on reporting that
@@ -181,6 +179,15 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   ministry pages, not independently verified as *the* date RGPH-4's 7-région
   structure itself took effect (which may predate the governors being appointed to
   administer it).
+
+  **Re-checked live 2026-09-13:** fetched limko.cm's "nouvelles divisions
+  administratives" page directly (the same page that independently confirmed the
+  7×préfectures composition, see Resolved) looking specifically for whether it ties
+  the régions to a creation date separate from the governors' appointment. It
+  doesn't - it mentions Loi n°21.001 du 21 janvier 2021 only in connection with
+  "circonscriptions administratives" broadly, without saying explicitly whether that
+  same law defined the 7 régions or a different, later reform did. Genuinely still
+  unresolved; this attempt didn't find grounds to change the stored date either way.
 - **Used in:** all 7 région rows in `data/entities.csv`.
 - **Resolved when:** the actual date the 7-région structure was defined (as opposed
   to when it was staffed) is found and it's confirmed those are the same reform, or
@@ -217,27 +224,7 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   value in future work on this file.
 - **Resolved when:** not urgent to resolve - informational.
 
-### RGPH-4 national total's primary source not independently located
-
-- **What:** The national RGPH-4 provisional total (6,656,269) is real and
-  ultimately traces back to ICASEES, but this project has not independently
-  located the primary results page or press release. Two separate research
-  attempts (2026-09-05 and 2026-09-12) both failed - several `icasees.org/
-  rgph-4/*` URLs return 404, and the site's search results are additionally
-  polluted with what looks like injected spam content (a `?prizes%2F...`
-  URL pattern seen twice), which was avoided rather than visited. The figure
-  as used (`data/observations.csv`, `icasees-rgph4-provisional` source) comes
-  from `CLAUDE.md`'s own compiled domain-facts section, which states it was
-  accurate as of its September 2026 compilation but may go stale.
-- **Used in:** `data/observations.csv`, one row: country-level
-  `population_totale`, period 2025, quality_flag `provisoire`.
-- **Resolved when:** the actual ICASEES RGPH-4 results page or press release
-  is located and the figure confirmed directly against it, rather than via
-  `CLAUDE.md`'s compilation. Worth checking whether `icasees.org`'s spam
-  contamination is a sign the site itself has been compromised, which would
-  be worth flagging to ICASEES regardless of this project's own needs.
-
-### UNESCO UIS education data - licence not cross-verified, underlying survey/methodology per point not named
+### UNESCO UIS education data - underlying survey/methodology not named per point
 
 - **What:** 15 education indicators are fetched live from the UIS Data API
   (`api.uis.unesco.org/api/public/data/indicators`) - completion (primary,
@@ -250,53 +237,32 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   `ROFST.MOD.1/2/3`), and literacy (`LR.AG15T24`, `LR.AG15T99`). Originally
   just `taux_achevement_primaire` (`CR.1`/`CR.MOD.1`); widened 2026-09-12 in
   two passes once the same API was confirmed to have real CAF data well
-  beyond that - see `docs/decisions.md` (the second pass specifically because
-  the first one hadn't checked every indicator family for a modelled
-  variant, only completion - a real miss, not a hypothetical one). Three
-  open gaps, one carried over and two general: (1) UIS states CC BY-SA 3.0
-  IGO for its main site/publications but CC BY-SA 4.0 for the Data Browser
-  specifically (`databrowser.uis.unesco.org/terms-and-conditions`) - this
-  project cites 4.0 since the API sits under that product, but the two
-  licences' clauses haven't been diffed. (2) For the completion and
-  out-of-school indicators, the API's response gives only a year per point
-  for the higher-authority series, not which underlying survey/administrative
-  round produced it - plausibly the same MICS/EHCVM rounds that produced
-  other CLAUDE.md-cited figures, but that's an inference, not confirmed by
-  the API. (3) For the enrollment/repetition/survival indicators, the API
-  doesn't tag methodology at all - this project has labelled them
-  "administrative" (school-census/EMIS data, the standard UIS approach for
-  this indicator family) based on general knowledge of UIS methodology, not
-  a per-point confirmation from the API response itself.
+  beyond that - see `docs/decisions.md`. Two open gaps, both about what the
+  underlying methodology actually is, not licence (the licence-comparison
+  gap that used to be listed here - CC BY-SA 3.0 vs 4.0 - is closed per
+  `CLAUDE.md`'s revised licensing stance, 2026-09-13): (1) for the
+  completion and out-of-school indicators, the API's response gives only a
+  year per point for the higher-authority series, not which underlying
+  survey/administrative round produced it - plausibly the same MICS/EHCVM
+  rounds that produced other CLAUDE.md-cited figures, but that's an
+  inference, not confirmed by the API. (2) for the enrollment/repetition/
+  survival indicators, the API doesn't tag methodology at all - this
+  project has labelled them "administrative" (school-census/EMIS data, the
+  standard UIS approach for this indicator family) based on general
+  knowledge of UIS methodology, not a per-point confirmation from the API
+  response itself.
 - **Used in:** `data/sources.csv` (`unesco-uis-completion-survey`,
   `unesco-uis-completion-modelled`, `unesco-uis-education-administrative`,
   `unesco-uis-outofschool-modelled`, `unesco-uis-literacy`),
   `data/observations.csv` (404 rows across 15 `taux_*` indicators),
   `site/src/pages/education.astro`.
-- **Resolved when:** the two CC BY-SA license texts are actually compared
-  clause-by-clause (or UIS is asked directly which applies to API output);
-  and/or the UIS indicator metadata endpoint (`/api/public/definitions/
-  indicators`) or a published methodology note is checked for a per-point
-  survey/methodology citation across all 15 indicators, not just completion.
+- **Resolved when:** the UIS indicator metadata endpoint
+  (`/api/public/definitions/indicators`) or a published methodology note is
+  checked for a per-point survey/methodology citation across all 15
+  indicators, not just completion. Low priority - a completeness
+  improvement, not a correctness problem (the values themselves aren't in
+  question).
 
-### ICASEES IHPC file's published "Inflation" row doesn't match a naive recomputation from the index
-
-- **What:** The same IHPC dashboard file used for `prix_ihpc_global` also has
-  a row labelled `IND14 "Inflation"` - small values (e.g. 0.4–1.9 over
-  recent months), clearly a rate rather than an index. Checked directly:
-  neither a month-over-month nor a year-over-year percent change computed
-  from the `IND1` global index series reproduces this column for any of the
-  7 most recent months tried. The file gives no formula or methodology note
-  for this specific row (its `Unité` column even says "Indice = 12
-  fonctions," which is very likely a copy-paste artifact from the row above
-  rather than a real unit for a rate). Published as-is (rule zero: real
-  numbers from a real source can be used before every detail is
-  independently reconciled) rather than guessed at or silently dropped.
-- **Used in:** `data/observations.csv`, `taux_inflation` (136 rows, all of
-  it - this isn't confined to the pre-2020 reconciled period).
-- **Resolved when:** an ICASEES publication (a bulletin, a methodology
-  note) states how this column is actually computed, or a second
-  independent source for CAR's inflation rate (e.g. IMF, World Bank
-  `FP.CPI.TOTL.ZG`) is checked against it.
 
 ### Poverty rate (économie) has only 3 real data points
 
@@ -306,6 +272,17 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   2021 - it depends on infrequent household survey rounds, not an annual
   series. The 71.6% figure shown (2021) is real but old relative to most
   other économie indicators on the same page (which run through 2024-2025).
+
+  **Re-checked live 2026-09-13:** no MICS7 or EHCVM2 poverty results
+  published yet (both still in progress per `CLAUDE.md`'s own domain
+  facts). Search did surface other CAR poverty figures in circulation -
+  a World Bank national-poverty-line estimate around 68.8-69% and the
+  2023 "Central African Republic Poverty Assessment" report - but those
+  use a different methodology (national poverty line, not the $3/day 2021
+  PPP international line this project's indicator tracks), so they're not
+  a fresher point on the *same* series, just a different measure entirely.
+  Genuinely can't reconcile or freshen this one; 2021 remains the latest
+  real point for this specific indicator.
 - **Used in:** `data/observations.csv`, `taux_pauvrete` (3 rows),
   `site/src/pages/economie.astro`.
 - **Resolved when:** a newer household survey round (MICS7, EHCVM2 - both
@@ -313,29 +290,37 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   estimate, or ICASEES publishes its own national poverty line calculation
   independently of the World Bank's $-a-day methodology.
 
-### WHO GHO health workforce data - licence unclear, nurse counts swing implausibly year to year
+### WHO GHO health workforce data - nurse counts swing implausibly year to year
 
 - **What:** `nombre_medecins` and `nombre_personnel_infirmier` are fetched
   from WHO's Global Health Observatory OData API (`ghoapi.azureedge.net`,
   indicators `HWF_0002`/`HWF_0007`) rather than World Bank WDI, since WDI
-  only publishes density for these, never a headcount. Two open items: (1)
-  the OData API doesn't state a licence per-indicator the way World Bank's
-  API metadata does - WHO's general open-data terms likely apply but
-  weren't checked directly this session. (2) The nursing/midwifery count
-  swings hard between reporting years for CAF: 835 (2008) → 1,097 (2009) →
-  1,195 (2018) → 1,042 (2021) → 2,545 (2022) → 5,653 (2023) → 2,331 (2024).
-  A near-5x jump in one year (2022→2023) and a near-halving the next
-  (2023→2024) is far more volatile than a real national nursing workforce
-  plausibly changes - most likely a change in how data is collected or
-  reported to WHO's National Health Workforce Accounts portal between
-  those years, not a real staffing swing, but this is an inference, not
-  confirmed by anything in the API response itself.
+  only publishes density for these, never a headcount. (The licence-unclear
+  concern that used to be listed here is closed per `CLAUDE.md`'s revised
+  licensing stance, 2026-09-13 - this is properly cited regardless.) The
+  nursing/midwifery count swings hard between reporting years for CAF: 835
+  (2008) → 1,097 (2009) → 1,195 (2018) → 1,042 (2021) → 2,545 (2022) → 5,653
+  (2023) → 2,331 (2024). A near-5x jump in one year (2022→2023) and a
+  near-halving the next (2023→2024) is far more volatile than a real
+  national nursing workforce plausibly changes.
+
+  **Re-checked live 2026-09-13**, attempting reconciliation rather than
+  re-describing the problem: queried the GHO OData API directly for every
+  CAF data point on this indicator. All of it matches what's already in
+  `data/observations.csv` exactly - nothing has changed or been corrected
+  upstream since this was first fetched. Every single point, from 2004
+  through 2024, carries the identical generic comment ("NHWA data portal,
+  December 2025 update") with no per-year distinction - so the API itself
+  gives no basis to tell whether 2023's spike or 2024's drop reflects a
+  real event, a reporting-completeness change, or a data-entry issue at
+  WHO's National Health Workforce Accounts portal. Genuinely can't
+  reconcile this from the data available; it's not a case of us using
+  stale data, WHO's own published series is this volatile.
 - **Used in:** `data/observations.csv`, `nombre_medecins` (7 rows),
   `nombre_personnel_infirmier` (8 rows), `site/src/pages/sante.astro`.
-- **Resolved when:** WHO's general terms of use are checked directly for
-  GHO OData API output specifically; and/or ICASEES or a WHO country
-  profile document is checked for a methodology note explaining the
-  nursing-count discontinuity.
+- **Resolved when:** ICASEES or a WHO country profile document is checked
+  for a methodology note explaining the nursing-count discontinuity, since
+  the API itself won't yield one.
 
 ### Derived hospital-bed count - a calculation, not a published figure
 
@@ -348,6 +333,11 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   recent point is 2011 (4,565 beds, from a density of 1.0/1,000 and a
   population of 4,565,021) - as stale as the density it's built from, not
   independently more current.
+
+  **Re-checked live 2026-09-13:** queried `SH.MED.BEDS.ZS` directly against
+  the World Bank API for 2012-2025 - every single year is `null`. 2011 is
+  confirmed as genuinely the latest bed-density figure that exists anywhere
+  for CAF, not a stale cache on this project's end.
 - **Used in:** `data/observations.csv`, `nombre_lits_hopital` (6 rows),
   `site/src/pages/sante.astro`. Labelled `quality_flag=estime` with the
   exact density/population/year used in each row's `notes` field, and the
@@ -357,30 +347,75 @@ Each entry: what's unresolved, where it's used, what "resolved" would look like.
   an actual hospital-bed census for CAR, which would replace this
   calculation rather than supplement it.
 
-### Ministère des Finances budget note - licence not stated (2026-09-13)
-
-- **What:** `data/sources.csv`'s `mfb-note-information-2026` (the Ministère
-  des Finances et du Budget's "Note d'Information du Marché des Titres
-  Publics de la RCA", January 2026) is published in the open on
-  finances.gouv.cf but carries no licence statement anywhere in the
-  52-page document - unlike ICASEES, which explicitly publishes under CC
-  BY 4.0. It's an official government document (signed and stamped by the
-  Minister), found via web search rather than linked from anywhere else on
-  the ministry's own site, and image-based (scanned pages, no extractable
-  text - read page-by-page as images to transcribe Tableaux 2, 4 and 5).
-- **Used in:** the three new `budget_*` indicators (`budget_ressources_totales`,
-  `budget_depenses_totales`, `budget_solde_global`) on `/economie/`'s
-  Finances publiques category, added 2026-09-13 on explicit request to
-  cover the annual state budget rather than relying only on ICASEES.
-- **Resolved when:** either the ministry publishes an explicit reuse
-  licence, or these figures get cross-checked against a second primary
-  source (e.g. the Loi de Finances 2026 text itself, or a future IMF
-  Article IV / e-GDDS publication citing the same budget) before the site
-  is presented as a finished public v1.
-
 ---
 
 ## Resolved
+
+### Ministère des Finances budget note - closed, licence policy revised (2026-09-13)
+
+Was: `data/sources.csv`'s `mfb-note-information-2026` (the Ministère des Finances et
+du Budget's "Note d'Information du Marché des Titres Publics de la RCA", January
+2026) carries no licence statement anywhere in the 52-page document. Closed same-day
+per `CLAUDE.md`'s revised licensing stance: this is a real, official government
+document, properly cited (producer, dataset name, retrieval date, URL in
+`data/sources.csv`), and an unstated licence on a non-commercial reference site isn't
+a blocker. Still worth a real cross-check against a second primary source (the Loi de
+Finances 2026 text itself, or a future IMF Article IV / e-GDDS publication) if one
+surfaces, but that's an accuracy improvement now, not a licence gate.
+
+### Régions → préfectures mapping, confirmed by a second independent source (2026-09-13)
+
+The 7 régions' composition (which préfectures belong to which) had only ever been
+checked against one source: 7 individual pages on `minurbanisme-rca.org`. Found a
+genuine second, independent source - limko.cm's "nouvelles divisions administratives
+de la République centrafricaine" (13 July 2024, the same page also used elsewhere in
+this project's decree research) - and it lists all 7 régions with their préfectures
+explicitly. Compared directly against `data/entities.csv`'s stored mapping: exact
+match on all 7 régions × 20 préfectures, no gaps, no overlaps, no reassignments
+(one minor spelling variant, "Nana-Grébizi" vs. stored "Nana-Gribizi" - not a
+structural disagreement). The régions→préfectures composition is now confirmed by
+two independent sources. What's still open: whether this same source or law also
+fixes the régions' own creation date - see the `valid_from` entry below, which this
+same page didn't resolve.
+
+### ICASEES IHPC "Inflation" row, cross-checked against World Bank's independent series (2026-09-13)
+
+The IHPC dashboard file's `IND14 "Inflation"` row couldn't be reproduced by a naive
+month-over-month or year-over-year recomputation from the file's own `IND1` global
+index series - logged as unreconciled rather than guessed at. Resolved by doing the
+independent cross-check its own "resolved when" suggested: queried World Bank's
+`FP.CPI.TOTL.ZG` (inflation, consumer prices, annual %) for CAF directly and compared
+it against this project's stored December value for each year -
+
+| Year | `taux_inflation` (ICASEES, December) | World Bank `FP.CPI.TOTL.ZG` (annual) |
+|---|---|---|
+| 2021 | 4.26% | 4.26% |
+| 2022 | 5.58% | 5.58% |
+| 2023 | 2.99% | 2.98% |
+| 2024 | 1.48% | 1.48% |
+
+Matches exactly or within rounding at every single point checked. The published row
+is a genuine year-over-year ("glissement annuel") inflation rate, externally
+validated against an independent source - not an unexplained or suspect number. The
+exact internal formula ICASEES uses still isn't confirmed (the file itself gives no
+methodology note), but that's no longer a live concern about the *values* being
+wrong, just an unanswered "how," which isn't blocking.
+
+### RGPH-4 national total's primary source, now independently located (2026-09-13)
+
+Two prior research attempts (2026-09-05, 2026-09-12) both failed to find ICASEES's
+own RGPH-4 results page directly - several `icasees.org/rgph-4/*` URLs returned 404,
+and the site's search results were polluted with what looked like injected spam
+(`?prizes%2F...` URLs, avoided rather than visited). Found on the third attempt: the
+actual results page is `https://www.icasees.org/index.php?q=statistiques&r=resultats`
+(a query-string URL, not a clean `/rgph-4/` path, which is likely why it hadn't
+surfaced before). It states, verbatim: "RCA en 2025 selon les résultats provisoires
+du RGPH-4" - Total 6 656 269 (3 312 532 hommes / 3 343 737 femmes), superficie
+623 000 km², densité 10,7/km², with the same "données non encore validées" caveat
+this project already carried. Matches `data/observations.csv`'s stored figure
+exactly. `data/sources.csv`'s `icasees-rgph4-provisional` row updated with the
+confirmed URL and licence/access notes rewritten to reflect direct verification
+instead of a compiled, unverified chain of provenance.
 
 ### The 84-vs-85 decree/COD-AB sous-préfecture gap (2026-09-11)
 
