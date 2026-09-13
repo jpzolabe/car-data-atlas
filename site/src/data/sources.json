@@ -4,7 +4,7 @@
     {
       "source_id": "britannica-car-history",
       "producer": "Encyclopædia Britannica",
-      "dataset_name": "History of Central African Republic (article)",
+      "dataset_name": "Histoire de la République centrafricaine (article)",
       "url": "https://www.britannica.com/place/Central-African-Republic/Independence",
       "licence": "non précisée - article d'encyclopédie, pas des données sous licence ouverte",
       "licence_notes": "Utilisée uniquement pour confirmer un seul fait historique bien établi (la date d'indépendance) comme référence tertiaire quasi primaire ; non utilisée pour quoi que ce soit de contesté comme le découpage administratif.",
@@ -147,7 +147,7 @@
     {
       "source_id": "cod-ab-caf",
       "producer": "OCHA RCA (contributeur) ; source des données selon les métadonnées HDX : ICASEES ; contrôle qualité par OCHA FIS / HDX",
-      "dataset_name": "Central African Republic - Subnational Administrative Boundaries (COD-AB), version 02",
+      "dataset_name": "République centrafricaine - Limites administratives infranationales (COD-AB), version 02",
       "url": "https://data.humdata.org/dataset/cod-ab-caf",
       "licence": "CC BY-IGO",
       "licence_notes": "Les métadonnées HDX indiquent isopen:false. Mise en garde : en attente de validation par l'ICASEES ; le Coordonnateur humanitaire a accordé une autorisation spéciale pour un usage strictement humanitaire (2025) ; une clause de non-responsabilité ONU/neutralité RCA est obligatoire en cas de partage ou de publication. Pas encore résolu pour la redistribution publique de ce projet ; voir docs/verification-debt.md.",
@@ -264,7 +264,7 @@
     {
       "source_id": "who-gho-health-workforce",
       "producer": "WHO (Global Health Observatory)",
-      "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
+      "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
       "url": "https://ghoapi.azureedge.net/api/HWF_0002",
       "licence": "non précisée - l'API OData du GHO de l'OMS n'indique pas de licence par indicateur ; les conditions générales de données ouvertes de l'OMS s'appliquent probablement mais n'ont pas été vérifiées cette session",
       "licence_notes": "De vrais effectifs absolus, pas des densités - confirmé via l'API OData de l'OMS après avoir constaté qu'aucun tel chiffre n'existe dans les WDI de la Banque mondiale (densité uniquement). La source est le portail des Comptes Nationaux du Personnel de Santé (NHWA) de l'OMS, selon le champ Comments de chaque enregistrement. Les années sont irrégulières (selon les déclarations de chaque pays), pas annuelles - 7 points pour les médecins (2004-2024), 8 pour les infirmiers (2004-2024). Les effectifs infirmiers en particulier varient beaucoup d'une année à l'autre (835 en 2008, 5653 en 2023, 2331 en 2024) ; probablement des changements de base de déclaration plutôt que de réels changements d'effectifs, non expliqué indépendamment malgré une nouvelle vérification directe de l'API le 2026-09-13. Voir docs/verification-debt.md.",
@@ -290,7 +290,7 @@
     {
       "source_id": "world-bank-trade",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+      "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -303,7 +303,7 @@
     {
       "source_id": "world-bank-water-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "People using at least basic drinking water services, % of population (SH.H2O.BASW.ZS)",
+      "dataset_name": "Personnes utilisant des services d'eau potable au moins basiques, % de la population (SH.H2O.BASW.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.H2O.BASW.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -316,7 +316,7 @@
     {
       "source_id": "world-bank-child-mortality",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Mortality rate, under-5 and infant, per 1,000 live births (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+      "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -329,7 +329,7 @@
     {
       "source_id": "world-bank-maternal-mortality",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Maternal mortality ratio, per 100,000 live births (SH.STA.MMRT)",
+      "dataset_name": "Taux de mortalité maternelle, pour 100 000 naissances vivantes (SH.STA.MMRT)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -342,7 +342,7 @@
     {
       "source_id": "world-bank-life-expectancy",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Life expectancy at birth, total (SP.DYN.LE00.IN)",
+      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -355,7 +355,7 @@
     {
       "source_id": "world-bank-immunization",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Immunization, measles and DPT, % of children 12-23 months (SH.IMM.MEAS, SH.IMM.IDPT)",
+      "dataset_name": "Vaccination, rougeole et DTC, % des enfants de 12 à 23 mois (SH.IMM.MEAS, SH.IMM.IDPT)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -368,7 +368,7 @@
     {
       "source_id": "world-bank-health-workforce",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Physicians and hospital beds, per 1,000 people (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+      "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -381,7 +381,7 @@
     {
       "source_id": "world-bank-health-expenditure",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
+      "dataset_name": "Dépenses courantes de santé, % du PIB (SH.XPD.CHEX.GD.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -394,7 +394,7 @@
     {
       "source_id": "world-bank-hiv-incidence",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "HIV incidence, ages 15-49, per 1,000 uninfected population (SH.HIV.INCD.ZS)",
+      "dataset_name": "Incidence du VIH, 15-49 ans, pour 1 000 personnes non infectées (SH.HIV.INCD.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.HIV.INCD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -407,7 +407,7 @@
     {
       "source_id": "world-bank-gdp",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+      "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": "L'ICASEES a son propre rebasage du PIB (base 2019) en cours - ces chiffres Banque mondiale n'ont pas été comparés à la série ICASEES rebasée une fois publiée. Voir docs/verification-debt.md.",
@@ -420,7 +420,7 @@
     {
       "source_id": "world-bank-poverty",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Poverty headcount ratio at $3.00/day, 2021 PPP, % of population (SI.POV.DDAY)",
+      "dataset_name": "Taux de pauvreté à 3,00 $/jour, PPA 2021, % de la population (SI.POV.DDAY)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SI.POV.DDAY?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -433,7 +433,7 @@
     {
       "source_id": "world-bank-unemployment",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Unemployment, total, % of total labor force, modeled ILO estimate (SL.UEM.TOTL.ZS)",
+      "dataset_name": "Chômage, total, % de la population active totale, estimation modélisée de l'OIT (SL.UEM.TOTL.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.UEM.TOTL.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -446,7 +446,7 @@
     {
       "source_id": "world-bank-external-debt",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "External debt stocks, % of GNI and current US$ (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+      "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -459,7 +459,7 @@
     {
       "source_id": "world-bank-fdi",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Foreign direct investment, net inflows, % of GDP (BX.KLT.DINV.WD.GD.ZS)",
+      "dataset_name": "Investissements directs étrangers, entrées nettes, % du PIB (BX.KLT.DINV.WD.GD.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/BX.KLT.DINV.WD.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -472,7 +472,7 @@
     {
       "source_id": "world-bank-government-revenue",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Revenue, excluding grants, % of GDP (GC.REV.XGRT.GD.ZS)",
+      "dataset_name": "Recettes, hors dons, % du PIB (GC.REV.XGRT.GD.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/GC.REV.XGRT.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -485,7 +485,7 @@
     {
       "source_id": "world-bank-agriculture-value-added",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Agriculture, forestry, and fishing, value added, % of GDP (NV.AGR.TOTL.ZS)",
+      "dataset_name": "Agriculture, sylviculture et pêche, valeur ajoutée, % du PIB (NV.AGR.TOTL.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/NV.AGR.TOTL.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -498,7 +498,7 @@
     {
       "source_id": "world-bank-land-use",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Agricultural land, arable land, forest area, % of land area, and agricultural land in sq. km (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
+      "dataset_name": "Terres agricoles, terres arables, superficie forestière, % de la superficie des terres, et terres agricoles en km² (AG.LND.AGRI.ZS, AG.LND.ARBL.ZS, AG.LND.FRST.ZS, AG.LND.AGRI.K2)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.LND.AGRI.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -511,7 +511,7 @@
     {
       "source_id": "world-bank-food-production",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Food production index, 2014-2016 = 100 (AG.PRD.FOOD.XD)",
+      "dataset_name": "Indice de production alimentaire, 2014-2016 = 100 (AG.PRD.FOOD.XD)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.PRD.FOOD.XD?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -524,7 +524,7 @@
     {
       "source_id": "world-bank-cereal-yield",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Cereal yield, kg per hectare, and cereal production, metric tons (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
+      "dataset_name": "Rendement céréalier, kg par hectare, et production céréalière, tonnes métriques (AG.YLD.CREL.KG, AG.PRD.CREL.MT)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.YLD.CREL.KG?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -537,7 +537,7 @@
     {
       "source_id": "world-bank-fertilizer",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Fertilizer consumption, kg per hectare of arable land (AG.CON.FERT.ZS)",
+      "dataset_name": "Consommation d'engrais, kg par hectare de terre arable (AG.CON.FERT.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/AG.CON.FERT.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -550,7 +550,7 @@
     {
       "source_id": "world-bank-undernourishment",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Prevalence of undernourishment, % of population (SN.ITK.DEFC.ZS)",
+      "dataset_name": "Prévalence de la sous-alimentation, % de la population (SN.ITK.DEFC.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SN.ITK.DEFC.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -563,7 +563,7 @@
     {
       "source_id": "world-bank-agricultural-employment",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Employment in agriculture, % of total employment, modeled ILO estimate (SL.AGR.EMPL.ZS)",
+      "dataset_name": "Emploi dans l'agriculture, % de l'emploi total, estimation modélisée de l'OIT (SL.AGR.EMPL.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.AGR.EMPL.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -576,7 +576,7 @@
     {
       "source_id": "world-bank-mobile-subscriptions",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Mobile cellular subscriptions, per 100 people (IT.CEL.SETS.P2)",
+      "dataset_name": "Abonnements à la téléphonie mobile cellulaire, pour 100 habitants (IT.CEL.SETS.P2)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -589,7 +589,7 @@
     {
       "source_id": "world-bank-internet-users",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Individuals using the Internet, % of population (IT.NET.USER.ZS)",
+      "dataset_name": "Personnes utilisant Internet, % de la population (IT.NET.USER.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.NET.USER.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -602,7 +602,7 @@
     {
       "source_id": "world-bank-urban-population",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Urban population, % of total population (SP.URB.TOTL.IN.ZS)",
+      "dataset_name": "Population urbaine, % de la population totale (SP.URB.TOTL.IN.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -615,7 +615,7 @@
     {
       "source_id": "world-bank-population-growth",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population growth, annual % (SP.POP.GROW)",
+      "dataset_name": "Croissance de la population, % annuel (SP.POP.GROW)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -628,7 +628,7 @@
     {
       "source_id": "world-bank-electricity-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+      "dataset_name": "Accès à l'électricité, % de la population (EG.ELC.ACCS.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -641,7 +641,7 @@
     {
       "source_id": "world-bank-wdi-population",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population, total (SP.POP.TOTL)",
+      "dataset_name": "Population totale (SP.POP.TOTL)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -654,7 +654,7 @@
     {
       "source_id": "world-bank-sanitation-access",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
+      "dataset_name": "Personnes utilisant des services d'assainissement au moins basiques, % de la population (SH.STA.BASS.ZS)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.BASS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -667,7 +667,7 @@
     {
       "source_id": "world-bank-age-dependency",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Age dependency ratio, % of working-age population (SP.POP.DPND)",
+      "dataset_name": "Taux de dépendance démographique, % de la population d'âge actif (SP.POP.DPND)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
@@ -680,7 +680,7 @@
     {
       "source_id": "wfp-food-prices-hdx",
       "producer": "World Food Programme (WFP)",
-      "dataset_name": "Central African Republic - Food Prices",
+      "dataset_name": "République centrafricaine - Prix alimentaires",
       "url": "https://data.humdata.org/dataset/wfp-food-prices-for-central-african-republic",
       "licence": "CC BY-IGO (http://creativecommons.org/licenses/by/3.0/igo/legalcode)",
       "licence_notes": "HDX liste plusieurs contributeurs composant ce jeu de données (ACF, ACTED, FPMA/GIEWS de la FAO, ICASEES, mVAM du PAM) - attribution donnée au PAM comme éditeur du jeu de données publié, conformément à sa page HDX.",
@@ -693,7 +693,7 @@
     {
       "source_id": "citypopulation-de-caf",
       "producer": "citypopulation.de (relayant les données de l'ICASEES, selon la source indiquée par la page elle-même)",
-      "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
+      "dataset_name": "République centrafricaine : découpage administratif (préfectures et sous-préfectures)",
       "url": "https://www.citypopulation.de/en/centralafrica/admin/",
       "licence": "non précisée - aucune licence indiquée sur le site",
       "licence_notes": "citypopulation.de n'indique lui-même aucune licence ; le site nomme l'ICASEES (CC BY 4.0) comme source de ses données, mais les conditions de redistribution du tableau compilé lui-même ne sont pas vérifiées. La page indique que ses chiffres de sous-préfecture pour 2021 sont le « résultat d'une cartographie numérique incomplète réalisée en préparation du prochain recensement » ; utilisé ici comme vérification croisée, pas comme source par défaut pour les entités.",

@@ -72,7 +72,7 @@
     "lead_sentence_template_id": "pib_par_habitant_pays",
     "source": {
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+      "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
       "retrieved_at": "2026-09-12"
     },
@@ -156,7 +156,7 @@
           "lead_sentence_template_id": "pib_total_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+            "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -235,7 +235,7 @@
           "lead_sentence_template_id": "pib_par_habitant_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+            "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -495,7 +495,7 @@
           "lead_sentence_template_id": "taux_croissance_pib_modele",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+            "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -505,7 +505,7 @@
               "period": "2025",
               "quality_flag": "estime",
               "producer": "World Bank (World Development Indicators)",
-              "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)"
+              "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)"
             },
             "spread_pct": 250.0,
             "spread_vs_period": "2021",
@@ -515,7 +515,7 @@
                 "period": "2025",
                 "quality_flag": "estime",
                 "producer": "World Bank (World Development Indicators)",
-                "dataset_name": "GDP, GDP per capita and GDP growth, current US$ / annual % (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
+                "dataset_name": "PIB, PIB par habitant et croissance du PIB, US$ courants / % annuel (NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, NY.GDP.MKTP.KD.ZG)",
                 "url": "https://api.worldbank.org/v2/country/CAF/indicator/NY.GDP.MKTP.CD?format=json"
               },
               {
@@ -613,7 +613,7 @@
           "lead_sentence_template_id": "recettes_publiques_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Revenue, excluding grants, % of GDP (GC.REV.XGRT.GD.ZS)",
+            "dataset_name": "Recettes, hors dons, % du PIB (GC.REV.XGRT.GD.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/GC.REV.XGRT.GD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -767,7 +767,7 @@
           "lead_sentence_template_id": "exportations_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -846,7 +846,7 @@
           "lead_sentence_template_id": "exportations_montant_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -925,7 +925,7 @@
           "lead_sentence_template_id": "importations_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1004,7 +1004,7 @@
           "lead_sentence_template_id": "importations_montant_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+            "dataset_name": "Exportations et importations de biens et services, % du PIB et US$ courants (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1083,7 +1083,7 @@
           "lead_sentence_template_id": "investissements_directs_etrangers_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Foreign direct investment, net inflows, % of GDP (BX.KLT.DINV.WD.GD.ZS)",
+            "dataset_name": "Investissements directs étrangers, entrées nettes, % du PIB (BX.KLT.DINV.WD.GD.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/BX.KLT.DINV.WD.GD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1162,7 +1162,7 @@
           "lead_sentence_template_id": "dette_exterieure_rnb_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "External debt stocks, % of GNI and current US$ (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+            "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1241,7 +1241,7 @@
           "lead_sentence_template_id": "dette_exterieure_montant_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "External debt stocks, % of GNI and current US$ (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+            "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1326,7 +1326,7 @@
           "lead_sentence_template_id": "taux_chomage_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Unemployment, total, % of total labor force, modeled ILO estimate (SL.UEM.TOTL.ZS)",
+            "dataset_name": "Chômage, total, % de la population active totale, estimation modélisée de l'OIT (SL.UEM.TOTL.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SL.UEM.TOTL.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1357,7 +1357,7 @@
           "lead_sentence_template_id": "taux_pauvrete_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Poverty headcount ratio at $3.00/day, 2021 PPP, % of population (SI.POV.DDAY)",
+            "dataset_name": "Taux de pauvreté à 3,00 $/jour, PPA 2021, % de la population (SI.POV.DDAY)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SI.POV.DDAY?format=json",
             "retrieved_at": "2026-09-12"
           },

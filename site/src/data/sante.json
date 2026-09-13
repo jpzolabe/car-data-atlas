@@ -72,7 +72,7 @@
     "lead_sentence_template_id": "esperance_vie_pays",
     "source": {
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Life expectancy at birth, total (SP.DYN.LE00.IN)",
+      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
       "retrieved_at": "2026-09-12"
     },
@@ -244,7 +244,7 @@
           "lead_sentence_template_id": "depenses_sante_pib_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Current health expenditure, % of GDP (SH.XPD.CHEX.GD.ZS)",
+            "dataset_name": "Dépenses courantes de santé, % du PIB (SH.XPD.CHEX.GD.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -324,7 +324,7 @@
           "lead_sentence_template_id": "densite_medecins_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Physicians and hospital beds, per 1,000 people (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -372,7 +372,7 @@
           "lead_sentence_template_id": "nombre_medecins_pays",
           "source": {
             "producer": "WHO (Global Health Observatory)",
-            "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
+            "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
             "url": "https://ghoapi.azureedge.net/api/HWF_0002",
             "retrieved_at": "2026-09-12"
           },
@@ -416,7 +416,7 @@
           "lead_sentence_template_id": "densite_lits_hopital_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Physicians and hospital beds, per 1,000 people (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -460,7 +460,7 @@
           "lead_sentence_template_id": "nombre_lits_hopital_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Physicians and hospital beds, per 1,000 people (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -512,7 +512,7 @@
           "lead_sentence_template_id": "nombre_personnel_infirmier_pays",
           "source": {
             "producer": "WHO (Global Health Observatory)",
-            "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
+            "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
             "url": "https://ghoapi.azureedge.net/api/HWF_0002",
             "retrieved_at": "2026-09-12"
           },
@@ -598,7 +598,7 @@
           "lead_sentence_template_id": "taux_vaccination_rougeole_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Immunization, measles and DPT, % of children 12-23 months (SH.IMM.MEAS, SH.IMM.IDPT)",
+            "dataset_name": "Vaccination, rougeole et DTC, % des enfants de 12 à 23 mois (SH.IMM.MEAS, SH.IMM.IDPT)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -678,7 +678,7 @@
           "lead_sentence_template_id": "taux_vaccination_dtc_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Immunization, measles and DPT, % of children 12-23 months (SH.IMM.MEAS, SH.IMM.IDPT)",
+            "dataset_name": "Vaccination, rougeole et DTC, % des enfants de 12 à 23 mois (SH.IMM.MEAS, SH.IMM.IDPT)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -942,7 +942,7 @@
           "lead_sentence_template_id": "esperance_vie_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Life expectancy at birth, total (SP.DYN.LE00.IN)",
+            "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1022,7 +1022,7 @@
           "lead_sentence_template_id": "taux_mortalite_moins_5ans_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Mortality rate, under-5 and infant, per 1,000 live births (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+            "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1102,7 +1102,7 @@
           "lead_sentence_template_id": "taux_mortalite_infantile_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Mortality rate, under-5 and infant, per 1,000 live births (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+            "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1182,7 +1182,7 @@
           "lead_sentence_template_id": "taux_mortalite_maternelle_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Maternal mortality ratio, per 100,000 live births (SH.STA.MMRT)",
+            "dataset_name": "Taux de mortalité maternelle, pour 100 000 naissances vivantes (SH.STA.MMRT)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
             "retrieved_at": "2026-09-12"
           },
@@ -1268,7 +1268,7 @@
           "lead_sentence_template_id": "incidence_vih_pays",
           "source": {
             "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "HIV incidence, ages 15-49, per 1,000 uninfected population (SH.HIV.INCD.ZS)",
+            "dataset_name": "Incidence du VIH, 15-49 ans, pour 1 000 personnes non infectées (SH.HIV.INCD.ZS)",
             "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.HIV.INCD.ZS?format=json",
             "retrieved_at": "2026-09-12"
           },

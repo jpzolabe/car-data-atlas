@@ -2923,7 +2923,7 @@
     "entity_name": "Marché de Bangui",
     "source": {
       "producer": "World Food Programme (WFP)",
-      "dataset_name": "Central African Republic - Food Prices",
+      "dataset_name": "République centrafricaine - Prix alimentaires",
       "url": "https://data.humdata.org/dataset/wfp-food-prices-for-central-african-republic",
       "retrieved_at": "2026-09-12"
     },
