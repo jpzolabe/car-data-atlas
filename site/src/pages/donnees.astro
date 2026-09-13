@@ -9,6 +9,7 @@ import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 const files = data.files;
 const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
+const coverage = data.coverage;
 ---
 <!doctype html>
 <html lang="fr">
@@ -70,7 +71,17 @@ const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
       .file-card a.dl:hover { background: var(--indigo); color: var(--surface); }
       .file-main { flex: 1; min-width: 0; }
       h2 { font-size: 1rem; margin: 32px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+      h2.first { margin-top: 0; padding-top: 0; border-top: none; }
       p { margin: 0 0 12px; }
+      .category-grid-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 16px; max-width: 68ch; }
+      .table-scroll { overflow-x: auto; margin-bottom: 8px; }
+      .coverage-table { width: 100%; border-collapse: collapse; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+      .coverage-table th {
+        text-align: left; font-family: ui-monospace, monospace; font-size: 10.5px; text-transform: uppercase;
+        letter-spacing: 0.04em; color: var(--ink-faint); font-weight: 400; padding: 0 14px 8px 0; white-space: nowrap;
+      }
+      .coverage-table td { padding: 7px 14px 7px 0; border-top: 1px solid var(--line); white-space: nowrap; }
+      .coverage-table td.gap { color: var(--ink-faint); }
       a { color: var(--indigo); }
       code { font-family: ui-monospace, monospace; font-size: 0.9em; }
       footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
@@ -91,6 +102,46 @@ const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
       </p>
       <p class="stat">{files.length} fichiers · {totalRows.toLocaleString("fr-FR")} lignes au total</p>
 
+      <h2 class="first">Couverture</h2>
+      <p class="category-grid-note">
+        Pour chaque thème, le nombre d'indicateurs qui atteignent chaque niveau
+        géographique, calculé directement depuis <code>indicators.csv</code> -
+        un indicateur qui descend jusqu'à la sous-préfecture compte aussi pour
+        les niveaux plus larges (région, préfecture), puisqu'un chiffre fin
+        peut toujours être agrégé vers le haut. Le marché (colonne à part) est
+        un point précis, pas une zone administrative - il ne s'emboîte pas
+        dans les autres niveaux. Un 0 est une lacune réelle, pas une case
+        vide : voir la section « Ce qui n'est pas mesuré » de chaque thème
+        pour le détail.
+      </p>
+      <div class="table-scroll">
+        <table class="coverage-table">
+          <thead>
+            <tr>
+              <th scope="col">Thème</th>
+              <th scope="col">Pays</th>
+              <th scope="col">Région</th>
+              <th scope="col">Préfecture</th>
+              <th scope="col">Sous-préfecture</th>
+              <th scope="col">Marché</th>
+            </tr>
+          </thead>
+          <tbody>
+            {coverage.map((row) => (
+              <tr>
+                <td><a href={`/${row.theme_id}/`}>{row.label}</a></td>
+                <td class={row.by_level.pays === 0 ? "gap" : ""}>{row.by_level.pays}/{row.total}</td>
+                <td class={row.by_level.region === 0 ? "gap" : ""}>{row.by_level.region}/{row.total}</td>
+                <td class={row.by_level.prefecture === 0 ? "gap" : ""}>{row.by_level.prefecture}/{row.total}</td>
+                <td class={row.by_level.sous_prefecture === 0 ? "gap" : ""}>{row.by_level.sous_prefecture}/{row.total}</td>
+                <td class={row.marche === 0 ? "gap" : ""}>{row.marche > 0 ? `${row.marche}/${row.total}` : "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Fichiers</h2>
       <div class="file-grid">
         {files.map((f) => (
           <div class="file-card">

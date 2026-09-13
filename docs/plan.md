@@ -1045,7 +1045,8 @@ Phase 5 work, started 2026-09-13 while that one item stays parked.
 1. **Clear `docs/verification-debt.md`** - every open item resolved or, at minimum,
    consciously accepted and stated as a caveat on the relevant page. This is the gate
    that was deliberately deferred since Phase 1; it comes due here, not before.
-2. The `/couverture` matrix and completeness choropleth.
+2. The coverage matrix (folded into `/donnees` rather than a separate `/couverture`
+   page, per user direction 2026-09-13) and completeness choropleth.
 3. Hand-written *ce qui n'est pas mesuré* sections for all seven themes.
 4. Print stylesheet, accessibility pass, French copy edit by a native speaker.
 5. Bulk downloads.
@@ -1063,10 +1064,15 @@ speaker" is meaningfully underway - this session's own language audit found and
 fixed 44 English-language entries on `/sources/` left over from earlier sessions -
 but a real human native-speaker pass is still worth doing before launch, not
 something this project can fully self-certify. Item 1 substantially advanced (14
-open verification-debt items down to 10; see docs/verification-debt.md). Items 2
-(`/couverture`), 6 (error reporting + a real contact address) and 7 (governance
-partner) not started - 6 and 7 need a decision only the user can make; 2 needs a
-design pass before building. Item 8 waits until the rest is in real shape.
+open verification-debt items down to 10; see docs/verification-debt.md). Item 2's
+matrix done, on `/donnees` (theme x geographic level, computed live from
+`indicators.csv`'s own `geographic_floor` column, not a separate hand-maintained
+claim - see `pipeline/export_public_data.py`'s `build_coverage()`); the
+choropleth half is deliberately deferred, since only prix has a real geographic
+gap worth mapping (4 of 20 préfectures with no market data) and the added build
+effort wasn't judged worth it yet for the other themes' uniform coverage. Items 6
+(error reporting + a real contact address) and 7 (governance partner) still need
+a decision only the user can make. Item 8 waits until the rest is in real shape.
 
 ## Phase 6 - Sustaining (ongoing)
 
