@@ -6,13 +6,13 @@
       "producer": "Encyclopædia Britannica",
       "dataset_name": "History of Central African Republic (article)",
       "url": "https://www.britannica.com/place/Central-African-Republic/Independence",
-      "licence": "unknown - encyclopedia article, not open-licensed data",
-      "licence_notes": "Used only to confirm a single well-established historical fact (independence date) as a primary-ish tertiary reference; not used for anything contested like the administrative boundaries.",
-      "geography_vintage": "article as of 2026-09-11 fetch",
-      "update_cadence": "continuously editable",
+      "licence": "non précisée - article d'encyclopédie, pas des données sous licence ouverte",
+      "licence_notes": "Utilisée uniquement pour confirmer un seul fait historique bien établi (la date d'indépendance) comme référence tertiaire quasi primaire ; non utilisée pour quoi que ce soit de contesté comme le découpage administratif.",
+      "geography_vintage": "état de l'article au moment de la récupération du 2026-09-11",
+      "update_cadence": "modifiable en continu",
       "retrieved_at": "2026-09-11",
-      "authority_rank": "n/a (single-fact confirmation only)",
-      "access_notes": "Fetched via WebSearch to confirm CAR's independence date (13 August 1960) for the country entity's valid_from."
+      "authority_rank": "s.o. (confirmation d'un seul fait uniquement)",
+      "access_notes": "Récupéré via WebSearch pour confirmer la date d'indépendance de la RCA (13 août 1960) pour le valid_from de l'entité pays."
     },
     {
       "source_id": "imf-egdds-nsdp",
@@ -28,6 +28,45 @@
       "access_notes": "Endpoint direct de l'API SDMX 2.1 du FMI (api.imf.org), trouvé après que l'ancien dataservices.imf.org (documenté dans plusieurs guides tiers) s'est révélé résilié (DNS inexistant) et que le portail AfDB/Knoema (car.opendataforafrica.org/nsdp) s'est révélé entièrement rendu en JavaScript, sans API publique accessible sans navigateur. Sans authentification. Dataflow trouvé via /external/sdmx/2.1/dataflow, pas deviné."
     },
     {
+      "source_id": "icasees-projection-population-2025",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "Projection de la population 2025 (cycle HNRP), par sous-préfecture",
+      "url": "https://data.humdata.org/dataset/cod-ps-caf",
+      "licence": "CC BY-IGO",
+      "licence_notes": "Licence indiquée directement sur la fiche du jeu de données HDX (cc-by-igo), et non la mention générale CC BY 4.0 de l'ICASEES utilisée pour certaines autres sources ici. Produite par l'ICASEES pour le cycle de planification annuel du HNRP (Plan de Réponse aux Besoins Humanitaires), diffusée via l'espace HDX d'OCHA plutôt que directement sur icasees.org.",
+      "geography_vintage": "Colonne Admin2_Pcode vérifiée en direct par rapport à chaque pcode de sous-préfecture dans data/aliases.csv (issu de la construction COD-AB v02) - les 85 correspondent exactement, donc ce fichier utilise déjà la même géographie que le rapprochement de ce projet, contrairement aux autres ressources Admin2/Admin3 du jeu de données (millésime 2015, construites sur l'ancien découpage à 16 préfectures ; non utilisées ici, voir pipeline/fetch_icasees_population_projection.py).",
+      "update_cadence": "annuelle (liée au cycle de planification du HNRP)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "Projection de l'institut national de statistique lui-même, produite pour un cycle officiel de planification humanitaire - autorité plus élevée qu'une projection tierce, bien qu'il s'agisse toujours d'une projection et non d'un recensement (2003 reste le dernier dénombrement réel).",
+      "access_notes": "Trouvé via les métadonnées de la fiche du jeu de données cod-ps-caf sur HDX (api/3/action/package_show), pas supposé à partir de la note de faits de CLAUDE.md, qui décrivait ce jeu de données comme obsolète et « pas encore récupéré » ; c'était exact au moment de sa rédaction, mais le jeu de données a depuis reçu des projections jusqu'en 2025. Récupéré dans raw/icasees-projection-population-2025/2026-09-12/."
+    },
+    {
+      "source_id": "icasees-rgph4-provisional",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
+      "url": "https://www.icasees.org/index.php?q=statistiques&r=resultats",
+      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général)",
+      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) confirmé directement le 2026-09-13 sur la page de résultats primaire d'ICASEES (paramètres q=statistiques&r=resultats), qui affiche exactement ces valeurs sous le titre \"RCA en 2025 selon les résultats provisoires du RGPH-4\", avec la même mise en garde \"données non encore validées\". Auparavant compilé depuis des communications publiques sans URL primaire localisée malgré plusieurs tentatives (2026-09-05, 2026-09-12) - voir la section Resolved de docs/verification-debt.md.",
+      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
+      "update_cadence": "décennal",
+      "retrieved_at": "2026-09-05",
+      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
+      "access_notes": "Confirmé directement à la source primaire le 2026-09-13 (auparavant une chaîne de provenance non vérifiée). Page consultée via l'URL ci-dessus ; densité (10,7/km²) et superficie (623 000 km²) également affichées sur la même page."
+    },
+    {
+      "source_id": "icasees-ihpc-dashboard",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "Indice des Prix à la Consommation (IHPC) - Mensuel National, 2015-2026 (fichier tableau de bord)",
+      "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
+      "licence": "CC BY 4.0",
+      "licence_notes": "Explicitement en CC BY 4.0 selon la propre feuille Métadonnées du fichier - contrairement à COD-AB, aucune ambiguïté de licence ici. Une vraie nuance : la propre feuille Notes_Méthodologiques du fichier documente que les valeurs de 2015-01 à 2019-12 ont été raccordées à la base post-2020 par la personne ayant compilé ce fichier tableau de bord (« à la demande de l'utilisateur »), à l'aide d'un coefficient officiel (4,12919) cité des avertissements des propres bulletins de l'ICASEES - transparent et vérifié en interne (la note vérifie la continuité à la frontière déc-2019/janv-2020), mais on ne sait pas clairement si ce raccordement porte le même aval institutionnel que les bulletins mensuels bruts. Les valeurs brutes pré-2020 sont conservées inchangées dans la feuille Archive_Base1981_Brute du même fichier. Voir docs/verification-debt.md.",
+      "geography_vintage": "2015M1 à 2026M4 dans les colonnes de données ; la propre feuille de métadonnées du fichier indique une couverture « 2015M1 à 2025M9 », obsolète par rapport aux colonnes réelles - se fier aux colonnes de données comme référence.",
+      "update_cadence": "mensuelle (selon la cadence déclarée par l'ICASEES ; la fréquence de mise à jour de ce fichier tableau de bord spécifique est inconnue)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "recensement national > enquête nationale > estimation modélisée internationale > chiffre de portail sans source citée - il s'agit d'une série publiée par l'institut national de statistique lui-même, avec une licence et une méthodologie déclarée ; parmi le rang le plus élevé pour une source de valeur.",
+      "access_notes": "Récupéré via la liste actualités/ihpc du site de l'ICASEES (icasees.org/index.php/actualites/ihpc), lien direct vers le fichier edocman trouvé, téléchargé dans raw/icasees-ihpc/2026-09-11/, re-récupéré le 2026-09-12. Élargi le 2026-09-12 de l'indice global seul (IND1) pour couvrir aussi 3 sous-catégories COICOP nommées (alimentation IND2, santé IND7, transports IND8) et la ligne Inflation publiée (IND14) - voir docs/verification-debt.md ; l'écart trouvé dans IND14 est désormais résolu par recoupement avec la série indépendante de la Banque mondiale. 9 autres sous-catégories COICOP (dont Enseignement, seulement 76/136 mois renseignés) restent non intégrées."
+    },
+    {
       "source_id": "icasees-site",
       "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
       "dataset_name": "icasees.org (site principal ; sous-répertoire rgph-4/ largement en 404)",
@@ -39,32 +78,6 @@
       "retrieved_at": "2026-09-11",
       "authority_rank": "voir quality_flag par observation",
       "access_notes": "Utilisé pour une citation précise et vérifiée : un article RGPH-4 (icasees.org/index.php/actualites/316-...) décrit Bangui comme neuf (9) arrondissements plus les communes de Bimbo et Bégoua - voir docs/verification-debt.md, désaccord Bangui."
-    },
-    {
-      "source_id": "icasees-rgph4-provisional",
-      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
-      "url": null,
-      "licence": "CC BY 4.0 (déclaré pour les données ICASEES en général - page primaire non localisée)",
-      "licence_notes": "Chiffre national (6 656 269 ; 3 312 532 hommes / 3 343 737 femmes) compilé depuis les communications publiques d'ICASEES d'août 2026. La page de résultats primaire n'a pas été localisée indépendamment malgré plusieurs tentatives (plusieurs URL icasees.org/rgph-4/* renvoient 404 ; le site présente aussi des URL de type spam à éviter). Voir docs/verification-debt.md.",
-      "geography_vintage": "dénombrement fin 2025 ; publication ~23 août 2026",
-      "update_cadence": "décennal",
-      "retrieved_at": "2026-09-05",
-      "authority_rank": "recensement national (rang le plus élevé), bien que marqué provisoire/non validé par ICASEES.",
-      "access_notes": "Chaîne de provenance : ICASEES -> compilation pour ce projet. Pas de vérification directe à la source primaire."
-    },
-    {
-      "source_id": "icasees-ihpc-dashboard",
-      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
-      "dataset_name": "Indice des Prix à la Consommation (IHPC) - Mensuel National, 2015-2026 (fichier tableau de bord)",
-      "url": "https://www.icasees.org/edocman/ipc_ihpc/JD_ODP_IPC_Mensuel_National_RCA_ODP1.0.xlsx",
-      "licence": "CC BY 4.0",
-      "licence_notes": "Explicitly CC BY 4.0 per the file's own Métadonnées sheet - unlike COD-AB, no licence ambiguity here. One real nuance: the file's own Notes_Methodologiques sheet documents that values from 2015-01 to 2019-12 were reconciled onto the post-2020 base by whoever compiled this dashboard file ('à la demande de l'utilisateur'), using an official coefficient (4.12919) quoted from ICASEES's own bulletin warnings - transparent and internally verified (the note checks continuity at the Dec-2019/Jan-2020 boundary), but it is not clear whether this reconciliation itself carries the same institutional endorsement as the raw monthly bulletins. Raw pre-2020 values are preserved unmodified in the same file's Archive_Base1981_Brute sheet. See docs/verification-debt.md.",
-      "geography_vintage": "2015M1 to 2026M4 in the data columns; the file's own metadata sheet states coverage as '2015M1 à 2025M9', which is stale relative to the actual columns - use the data columns as ground truth.",
-      "update_cadence": "monthly (per ICASEES's stated cadence; this specific dashboard file's own update frequency is unknown)",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "national census > national survey > international modelled estimate > unattributed portal figure - this is a national statistical office's own published series with a licence and stated methodology; among the highest tier for a value source.",
-      "access_notes": "Fetched via the ICASEES site's actualités/ihpc listing (icasees.org/index.php/actualites/ihpc), found the direct edocman file link, downloaded to raw/icasees-ihpc/2026-09-11/, re-fetched 2026-09-12. Widened 2026-09-12 from the global index (IND1) alone to also cover 3 named COICOP sub-categories (alimentation IND2, santé IND7, transports IND8) and the published Inflation line (IND14) - see docs/verification-debt.md for a real discrepancy found in IND14 (a naive recomputation from IND1 doesn't reproduce it). 9 other COICOP sub-categories (incl. Enseignement, only 76/136 months populated) remain uningested."
     },
     {
       "source_id": "icasees-comptes-nationaux",
@@ -110,26 +123,39 @@
       "producer": "Ministère de l'Urbanisme (RCA)",
       "dataset_name": "7 pages régionales (minurbanisme-rca.org/1-plateaux/ … /7-bas-oubangui/)",
       "url": "https://www.minurbanisme-rca.org/",
-      "licence": "unknown - government site, no licence stated",
-      "licence_notes": "Government site with no stated content licence found. Ministry administrative-directorate pages, not a law/decree. Used to map the 7 RGPH-4 régions onto the 20 préfectures - recoupé only by the fact that the 7 lists sum to exactly 20 préfectures with no gaps or overlap, not by a second independent source yet. See docs/verification-debt.md.",
-      "geography_vintage": "current site content as of 2026-09-05 fetch",
-      "update_cadence": "unknown",
+      "licence": "non précisée - site gouvernemental, aucune licence indiquée",
+      "licence_notes": "Site gouvernemental sans licence de contenu déclarée. Pages de directions administratives ministérielles, pas une loi ou un décret. Utilisé pour rattacher les 7 régions RGPH-4 aux 20 préfectures. Confirmé depuis par une seconde source indépendante (limko.cm) - composition exacte des 7 régions x 20 préfectures vérifiée le 2026-09-13, voir la section Resolved de docs/verification-debt.md.",
+      "geography_vintage": "contenu actuel du site au moment de la récupération du 2026-09-05",
+      "update_cadence": "inconnue",
       "retrieved_at": "2026-09-05",
-      "authority_rank": "n/a (used for régions-to-préfectures mapping only)",
-      "access_notes": "Fetched 7 individual région pages via WebFetch and quoted their préfecture lists directly."
+      "authority_rank": "s.o. (utilisée uniquement pour le rattachement régions-préfectures)",
+      "access_notes": "7 pages régionales individuelles récupérées via WebFetch, listes de préfectures citées directement."
+    },
+    {
+      "source_id": "mfb-note-information-2026",
+      "producer": "Ministère des Finances et du Budget (République centrafricaine)",
+      "dataset_name": "Note d'Information du Marché des Titres Publics de la RCA (janvier 2026)",
+      "url": "https://finances.gouv.cf/sites/default/files/2026-02/RCA%20NOTE_D'INFORMATION_2026.pdf",
+      "licence": "non précisée",
+      "licence_notes": "Document officiel publié en libre accès sur le site du ministère (finances.gouv.cf), sans mention de licence de réutilisation. Traité comme les autres sources gouvernementales à licence non résolue de ce projet pour le v1 : voir docs/verification-debt.md.",
+      "geography_vintage": "exercice budgétaire 2026, Loi de Finances adoptée par l'Assemblée nationale le 10 décembre 2025",
+      "update_cadence": "annuel (une loi de finances par exercice ; le document lui-même précise qu'il fera l'objet de mises à jour en cours d'année si nécessaire, notamment via un collectif budgétaire)",
+      "retrieved_at": "2026-09-13",
+      "authority_rank": "donnée administrative nationale (loi votée par l'Assemblée nationale, chiffres prévisionnels et non l'exécution réelle)",
+      "access_notes": "PDF trouvé via recherche web (le site finances.gouv.cf ne liste pas cette note ailleurs qu'en lien direct) ; document scanné/en images, sans texte extractible par les outils habituels (pdfplumber) - lu page par page comme images. Valeurs transcrites des Tableaux 2, 4 et 5 (pages 22-24) : ressources du budget général 2026 par source, dépenses de l'État en 2026 par nature, soldes budgétaires 2026."
     },
     {
       "source_id": "cod-ab-caf",
-      "producer": "OCHA CAR (contributor); dataset_source per HDX metadata: ICASEES; QA by OCHA FIS / HDX",
+      "producer": "OCHA RCA (contributeur) ; source des données selon les métadonnées HDX : ICASEES ; contrôle qualité par OCHA FIS / HDX",
       "dataset_name": "Central African Republic - Subnational Administrative Boundaries (COD-AB), version 02",
       "url": "https://data.humdata.org/dataset/cod-ab-caf",
       "licence": "CC BY-IGO",
-      "licence_notes": "HDX metadata flags isopen:false. Caveat: awaiting ICASEES validation; Humanitarian Coordinator granted special approval for humanitarian-purposes-only use (2025); mandatory UN/CAR-neutrality disclaimer if shared or made public. Not yet resolved for this project's public redistribution - see docs/verification-debt.md.",
-      "geography_vintage": "v02; valid_on 2024-05-30; reviewed 2026-03-06; 20 préfectures / 85 sous-préfectures; no commune/localité layer in this version",
-      "update_cadence": "~365 days (HDX data_update_frequency)",
+      "licence_notes": "Les métadonnées HDX indiquent isopen:false. Mise en garde : en attente de validation par l'ICASEES ; le Coordonnateur humanitaire a accordé une autorisation spéciale pour un usage strictement humanitaire (2025) ; une clause de non-responsabilité ONU/neutralité RCA est obligatoire en cas de partage ou de publication. Pas encore résolu pour la redistribution publique de ce projet ; voir docs/verification-debt.md.",
+      "geography_vintage": "v02 ; valide depuis le 2024-05-30 ; révisée le 2026-03-06 ; 20 préfectures / 85 sous-préfectures ; aucune couche commune/localité dans cette version",
+      "update_cadence": "~365 jours (fréquence de mise à jour HDX)",
       "retrieved_at": "2026-09-05",
-      "authority_rank": "n/a (geography/reference source; not an indicator value source)",
-      "access_notes": "Downloaded directly: gazetteer XLSX + GeoJSON from HDX resource URLs (Shapefile/Geodatabase also available). Snapshot: raw/cod-ab-caf/2026-09-05/."
+      "authority_rank": "s.o. (source géographique/de référence ; pas une source de valeur d'indicateur)",
+      "access_notes": "Téléchargé directement : gazetteer XLSX + GeoJSON depuis les URL de ressources HDX (Shapefile/Geodatabase également disponibles). Instantané : raw/cod-ab-caf/2026-09-05/."
     },
     {
       "source_id": "hotosm-healthsites-caf",
@@ -149,26 +175,13 @@
       "producer": "République Centrafricaine (Assemblée nationale / promulgation présidentielle)",
       "dataset_name": "Loi n°21.001 du 21 janvier 2021 relative aux circonscriptions administratives",
       "url": null,
-      "licence": "unknown - primary legal text not directly located",
-      "licence_notes": "Full legal PDF/Journal Officiel text not yet fetched directly - cited and quoted via two independent secondary pages (limko.cm, and a makanisi.org page that returned 403) that both give the same figures: 7 régions, 20 préfectures, 85 sous-préfectures, 175 communes. This is the promulgated version, dated over a month after the 10 Dec 2020 adoption reported by Oubangui Médias/Xinhua (which said 84 sous-préfectures) - the number most likely changed between adoption and promulgation. Also states Bangui has 10 arrondissements (previously 8) - a third figure against ICASEES's own '9', separately unresolved.",
-      "geography_vintage": "promulgated 2021-01-21",
-      "update_cadence": "n/a (law, not updated)",
+      "licence": "non précisée - texte légal primaire non localisé directement",
+      "licence_notes": "Le texte légal complet (PDF du Journal Officiel) n'a pas encore été récupéré directement - cité via deux pages secondaires indépendantes (limko.cm, et une page makanisi.org qui a renvoyé une erreur 403) qui donnent toutes deux les mêmes chiffres : 7 régions, 20 préfectures, 85 sous-préfectures, 175 communes. Il s'agit de la version promulguée, datée de plus d'un mois après l'adoption du 10 décembre 2020 rapportée par Oubangui Médias/Xinhua (qui indiquait 84 sous-préfectures) ; le chiffre a probablement changé entre l'adoption et la promulgation. Indique aussi que Bangui compte 10 arrondissements (contre 8 auparavant) - un troisième chiffre face au « 9 » de l'ICASEES lui-même, non résolu séparément.",
+      "geography_vintage": "promulguée le 2021-01-21",
+      "update_cadence": "s.o. (loi, non mise à jour)",
       "retrieved_at": "2026-09-11",
-      "authority_rank": "national législation (highest tier in the authority ranking for administrative structure)",
-      "access_notes": "Two independent secondary citations found and one fetched/quoted directly (limko.cm); the actual Journal Officiel PDF was not located in this pass."
-    },
-    {
-      "source_id": "unesco-uis-completion-survey",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications - les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
-      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) - même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
-      "update_cadence": "irrégulière (dépend de la publication de la prochaine enquête nationale)",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM - l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
-      "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
+      "authority_rank": "législation nationale (rang le plus élevé du classement d'autorité pour le découpage administratif)",
+      "access_notes": "Deux citations secondaires indépendantes trouvées, dont une récupérée et citée directement (limko.cm) ; le PDF du Journal Officiel lui-même n'a pas été localisé lors de cette recherche."
     },
     {
       "source_id": "unesco-uis-completion-modelled",
@@ -223,6 +236,19 @@
       "access_notes": "Même endpoint que les autres indicateurs UIS de cette page, indicateurs ROFST.MOD.1/2/3. Utilisée pour exercer le mécanisme de divulgation multi-source (docs/plan.md §2.5) entre la donnée administrative officielle (ROFST.1.CP/2.CP/3.CP, unesco-uis-education-administrative) et cette estimation modélisée, comme pour l'achèvement."
     },
     {
+      "source_id": "unesco-uis-completion-survey",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Déclarée sur la page Terms and Conditions du UIS Data Browser (databrowser.uis.unesco.org/terms-and-conditions) ; le site institutionnel UIS lui-même cite CC BY-SA 3.0 IGO pour ses publications - les deux licences n'ont pas été comparées clause par clause. Voir docs/verification-debt.md.",
+      "geography_vintage": "données ponctuelles agrégées par l'UIS à partir d'enquêtes/recensements nationaux (MICS, EHCVM, RGPH selon l'année) ; 4 points seulement pour la RCA par niveau (2000, 2006, 2010, 2019), pas une série annuelle. Renommée depuis unesco-uis-cr1-survey le 2026-09-12 pour refléter sa portée réelle (3 niveaux, pas seulement le primaire) - même source, même identifiant conservé pour ne pas casser les observations déjà enregistrées sous ce nom.",
+      "update_cadence": "irrégulière (dépend de la publication de la prochaine enquête nationale)",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "enquête nationale (le point 2019 provient très probablement du MICS7 ou d'une enquête EHCVM - l'UIS ne cite pas l'enquête source exacte par point dans cette réponse d'API, seule l'année ; voir docs/verification-debt.md)",
+      "access_notes": "Récupéré directement via l'API REST publique de l'UIS Data API (api.uis.unesco.org/api/public/data/indicators), sans authentification. Endpoint découvert par tâtonnement (l'ancien point de téléchargement en masse bdds/ renvoie 404) puis confirmé par le message d'erreur 400 de l'API elle-même, qui documente ses propres paramètres requis. CR.2 et CR.3 récupérés via le même endpoint, seul le paramètre indicator change."
+    },
+    {
       "source_id": "unicef-data-warehouse",
       "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
       "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
@@ -240,8 +266,8 @@
       "producer": "WHO (Global Health Observatory)",
       "dataset_name": "Medical doctors and nursing/midwifery personnel, number (HWF_0002, HWF_0007)",
       "url": "https://ghoapi.azureedge.net/api/HWF_0002",
-      "licence": "unknown - WHO GHO does not state a licence per-indicator on the OData API itself; WHO's general open-data terms likely apply but not verified this session",
-      "licence_notes": "Real absolute headcounts, not densities - confirmed via WHO's OData API after finding no such figure in the World Bank's WDI (density only). Source is WHO's National Health Workforce Accounts (NHWA) portal, per each record's own Comments field. Years are irregular (whenever a country reports), not annual - 7 points for doctors (2004-2024), 8 for nurses (2004-2024). Nurse counts in particular swing a lot year to year (835 in 2008, 5653 in 2023, 2331 in 2024) - plausibly reporting-basis changes rather than real workforce swings; not independently explained. See docs/verification-debt.md.",
+      "licence": "non précisée - l'API OData du GHO de l'OMS n'indique pas de licence par indicateur ; les conditions générales de données ouvertes de l'OMS s'appliquent probablement mais n'ont pas été vérifiées cette session",
+      "licence_notes": "De vrais effectifs absolus, pas des densités - confirmé via l'API OData de l'OMS après avoir constaté qu'aucun tel chiffre n'existe dans les WDI de la Banque mondiale (densité uniquement). La source est le portail des Comptes Nationaux du Personnel de Santé (NHWA) de l'OMS, selon le champ Comments de chaque enregistrement. Les années sont irrégulières (selon les déclarations de chaque pays), pas annuelles - 7 points pour les médecins (2004-2024), 8 pour les infirmiers (2004-2024). Les effectifs infirmiers en particulier varient beaucoup d'une année à l'autre (835 en 2008, 5653 en 2023, 2331 en 2024) ; probablement des changements de base de déclaration plutôt que de réels changements d'effectifs, non expliqué indépendamment malgré une nouvelle vérification directe de l'API le 2026-09-13. Voir docs/verification-debt.md.",
       "geography_vintage": "irrégulier (années de rapport disponibles, pas annuel)",
       "update_cadence": "variable",
       "retrieved_at": "2026-09-12",
@@ -254,25 +280,25 @@
       "dataset_name": "Préfectures de la République centrafricaine (article)",
       "url": "https://fr.wikipedia.org/wiki/Pr%C3%A9fectures_de_la_R%C3%A9publique_centrafricaine",
       "licence": "CC BY-SA",
-      "licence_notes": "Not a primary administrative source - used only to cross-check name spelling variants and chef-lieu pairings, not as an authority for the crosswalk itself.",
-      "geography_vintage": "current article state as of 2026-09-05 fetch; attributes the 20-préfecture structure to 'la loi de 2020-2021'",
-      "update_cadence": "continuously editable",
+      "licence_notes": "Pas une source administrative primaire - utilisée seulement pour vérifier les variantes orthographiques des noms et les associations chef-lieu, pas comme autorité pour le rapprochement lui-même.",
+      "geography_vintage": "état actuel de l'article au moment de la récupération du 2026-09-05 ; attribue la structure à 20 préfectures à « la loi de 2020-2021 »",
+      "update_cadence": "modifiable en continu",
       "retrieved_at": "2026-09-05",
-      "authority_rank": "n/a (used for name cross-checking only)",
-      "access_notes": "Fetched via WebFetch to corroborate the 2020 reform and record alternate name spellings."
+      "authority_rank": "s.o. (utilisée uniquement pour la vérification des noms)",
+      "access_notes": "Récupéré via WebFetch pour corroborer la réforme de 2020 et noter les variantes orthographiques des noms."
     },
     {
-      "source_id": "world-bank-electricity-access",
+      "source_id": "world-bank-trade",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
+      "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
+      "geography_vintage": "annuel ; source primaire = comptes nationaux compilés par la Banque mondiale et le FMI",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025) pour chaque indicateur. Élargi 2026-09-12 des versions % du PIB aux versions en valeur absolue (dollars courants)."
     },
     {
       "source_id": "world-bank-water-access",
@@ -286,19 +312,6 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
-    },
-    {
-      "source_id": "world-bank-age-dependency",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Age dependency ratio, % of working-age population (SP.POP.DPND)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; dérivée de la structure par âge de la même série démographique",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
       "source_id": "world-bank-child-mortality",
@@ -429,19 +442,6 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
-    },
-    {
-      "source_id": "world-bank-trade",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Exports and imports of goods and services, % of GDP and current US$ (NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS, NE.EXP.GNFS.CD, NE.IMP.GNFS.CD)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/NE.EXP.GNFS.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = comptes nationaux compilés par la Banque mondiale et le FMI",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025) pour chaque indicateur. Élargi 2026-09-12 des versions % du PIB aux versions en valeur absolue (dollars courants)."
     },
     {
       "source_id": "world-bank-external-debt",
@@ -600,17 +600,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
     },
     {
-      "source_id": "world-bank-wdi-population",
+      "source_id": "world-bank-urban-population",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Population, total (SP.POP.TOTL)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
+      "dataset_name": "Urban population, % of total population (SP.URB.TOTL.IN.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
+      "geography_vintage": "annuel ; source primaire = projections ONU-Habitat / DAES, définitions nationales de zone urbaine",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
-      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
       "source_id": "world-bank-population-growth",
@@ -626,6 +626,32 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
+      "source_id": "world-bank-electricity-access",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Access to electricity, % of population (EG.ELC.ACCS.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19 citée dans CLAUDE.md)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
+    },
+    {
+      "source_id": "world-bank-wdi-population",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Population, total (SP.POP.TOTL)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "estimations annuelles, mi-année ; dernière mise à jour des métadonnées 2026-07-13",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée dans CLAUDE.md, hors chiffre de portail sans source citée)",
+      "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
+    },
+    {
       "source_id": "world-bank-sanitation-access",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "People using at least basic sanitation services, % of population (SH.STA.BASS.ZS)",
@@ -639,13 +665,13 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable - deux indicateurs, deux facettes du même programme de suivi."
     },
     {
-      "source_id": "world-bank-urban-population",
+      "source_id": "world-bank-age-dependency",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Urban population, % of total population (SP.URB.TOTL.IN.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
+      "dataset_name": "Age dependency ratio, % of working-age population (SP.POP.DPND)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = projections ONU-Habitat / DAES, définitions nationales de zone urbaine",
+      "geography_vintage": "annuel ; dérivée de la structure par âge de la même série démographique",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
@@ -666,16 +692,16 @@
     },
     {
       "source_id": "citypopulation-de-caf",
-      "producer": "citypopulation.de (relaying ICASEES data, per the page's own stated data source)",
+      "producer": "citypopulation.de (relayant les données de l'ICASEES, selon la source indiquée par la page elle-même)",
       "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
       "url": "https://www.citypopulation.de/en/centralafrica/admin/",
-      "licence": "unknown - no licence stated on site",
-      "licence_notes": "citypopulation.de itself states no licence; it names ICASEES (CC BY 4.0) as its data source but the compiled table's own redistribution terms aren't verified. Page states its 2021 sub-prefecture figures are 'result of an incomplete digital mapping done in preparation of the next population census' - used here as a cross-check, not as the default source for entities.",
-      "geography_vintage": "2003 census column + 2021 estimate column; site itself flags the 2021 admin breakdown as incomplete",
-      "update_cadence": "unknown",
+      "licence": "non précisée - aucune licence indiquée sur le site",
+      "licence_notes": "citypopulation.de n'indique lui-même aucune licence ; le site nomme l'ICASEES (CC BY 4.0) comme source de ses données, mais les conditions de redistribution du tableau compilé lui-même ne sont pas vérifiées. La page indique que ses chiffres de sous-préfecture pour 2021 sont le « résultat d'une cartographie numérique incomplète réalisée en préparation du prochain recensement » ; utilisé ici comme vérification croisée, pas comme source par défaut pour les entités.",
+      "geography_vintage": "colonne recensement 2003 + colonne estimation 2021 ; le site signale lui-même que la ventilation administrative de 2021 est incomplète",
+      "update_cadence": "inconnue",
       "retrieved_at": "2026-09-09",
-      "authority_rank": "2003 column: recensement (higher authority); 2021 column: estimation explicitly flagged incomplete by the source (lower authority)",
-      "access_notes": "Fetched via WebFetch + raw HTML snapshot (raw/citypopulation-de-caf/2026-09-09/admin_index.html); population figures transcribed to raw/citypopulation-de-caf/2026-09-09/admin_table_transcribed.csv, not yet parsed programmatically from the HTML."
+      "authority_rank": "colonne 2003 : recensement (autorité plus élevée) ; colonne 2021 : estimation explicitement signalée incomplète par la source (autorité plus faible)",
+      "access_notes": "Récupéré via WebFetch + instantané HTML brut (raw/citypopulation-de-caf/2026-09-09/admin_index.html) ; chiffres de population transcrits dans raw/citypopulation-de-caf/2026-09-09/admin_table_transcribed.csv, pas encore extraits automatiquement du HTML."
     }
   ]
 }
