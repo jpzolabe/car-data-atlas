@@ -104,8 +104,12 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW;
   const sy = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
   const points = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
+  // Hover targets: one per data point, native <title> tooltip - no chart
+  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // See docs/decisions.md.
+  const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   return {
-    points, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    points, hoverPoints, firstYear: s[0].period, lastYear: s[s.length - 1].period,
     xFirst: sx(0), xLast: sx(s.length - 1),
   };
 }
@@ -252,6 +256,8 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       }
       .indicator-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
       svg.mini-sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-eco); }
       .mini-spark-line {
         stroke: var(--t-eco); stroke-width: 2; fill: none;
         stroke-dasharray: 2000; stroke-dashoffset: 2000;
@@ -368,6 +374,14 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                       <polyline class="mini-spark-line" points={spark.points} />
                       <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                       <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                      {spark.hoverPoints.map((p) => {
+                        const pv = formatValue(ind.indicator_id, p.value);
+                        return (
+                          <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                            <title>{p.period} : {pv.display}{pv.unit}</title>
+                          </circle>
+                        );
+                      })}
                     </svg>
                     <p class="mini-sentence">{ind.lead_sentence}</p>
                     <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
@@ -390,6 +404,14 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                       <polyline class="mini-spark-line" points={spark.points} />
                       <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                       <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                      {spark.hoverPoints.map((p) => {
+                        const pv = formatValue(ind.indicator_id, p.value);
+                        return (
+                          <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                            <title>{p.period} : {pv.display}{pv.unit}</title>
+                          </circle>
+                        );
+                      })}
                     </svg>
                   ) : (
                     <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>

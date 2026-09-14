@@ -56,8 +56,13 @@ function sparkline(series: { period: string; value: number }[]) {
   const x = (i: number) => SPARK_ML + (i / Math.max(series.length - 1, 1)) * plotW;
   const y = (v: number) => SPARK_MT + plotH - ((v - min) / (max - min)) * plotH;
   const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
+  // Hover targets: one per data point, native <title> tooltip - no chart
+  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // See docs/decisions.md. Left out of prix.astro's monthly series, where
+  // the same technique would blow the page-weight budget (dense series).
+  const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
   return {
-    points,
+    points, hoverPoints,
     firstYear: series[0].period,
     lastYear: series[series.length - 1].period,
     yMax: max,
@@ -253,6 +258,8 @@ function qualityLabel(flag: string): string {
         stroke: var(--t-edu); stroke-width: 2; stroke-dasharray: 4 3; fill: none; opacity: 0.75;
       }
       .survey-point { fill: var(--t-edu); stroke: var(--surface); stroke-width: 2; }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-edu); }
       .survey-label { fill: var(--ink); font-size: 10.5px; font-family: ui-monospace, monospace; }
       .gridline { stroke: var(--line); stroke-width: 1; }
       .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
@@ -344,12 +351,21 @@ function qualityLabel(flag: string): string {
                     <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
                     <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
                     <polyline class="line-modelled" points={spark.points} />
+                    {spark.hoverPoints.map((p) => (
+                      <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                        <title>{p.period} : {fmt(p.value)}% (estimation modélisée)</title>
+                      </circle>
+                    ))}
                     {ind.survey_points.map((d) => {
                       const idx = ind.series.findIndex((s) => s.period === d.period);
                       if (idx === -1) return null;
                       const px = 34 + (idx / Math.max(ind.series.length - 1, 1)) * (460 - 34 - 10);
                       const py = 10 + (100 - 10 - 18) - ((d.value - 0) / (Math.max(...ind.series.map((s) => s.value)) * 1.1)) * (100 - 10 - 18);
-                      return <circle class="survey-point" cx={px} cy={py} r="4" />;
+                      return (
+                        <circle class="survey-point" cx={px} cy={py} r="4">
+                          <title>{d.period} : {fmt(d.value)}% ({headlineLabel})</title>
+                        </circle>
+                      );
                     })}
                   </svg>
                   <div class="chart-legend">
@@ -411,6 +427,11 @@ function qualityLabel(flag: string): string {
                           <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                           <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
                           <polyline class="spark-line" points={spark.points} />
+                          {spark.hoverPoints.map((p) => (
+                            <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                              <title>{p.period} : {ind.unit ? fmtInt(p.value) : fmt(p.value)} {unit}</title>
+                            </circle>
+                          ))}
                         </svg>
                       ) : (
                         <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
