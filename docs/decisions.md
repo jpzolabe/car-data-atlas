@@ -1,5 +1,51 @@
 # Decisions
 
+## 2026-09-14 - Chart hover values: native SVG `<title>` tooltips, not a JS tooltip
+
+User feedback: hovering over any chart showed nothing - every line chart on
+the site is a static `<polyline>` with no per-point markers, titles, or JS.
+Two ways to fix it were considered: (1) a small `<circle>` per data point
+wrapped in `<title>`, giving the browser's own tooltip for free, zero added
+client bytes; (2) a small hand-written hover script (track mouse position,
+find the nearest point, show a custom-styled floating tooltip) - nicer UX
+(no native-tooltip delay, works styled, could support touch), but a new
+client-JS exception in the same category as the dark-mode toggle/search box,
+needing to be logged here and wired into every chart individually since
+there's no shared chart component.
+
+Went with (1), consistent with CLAUDE.md's zero-client-JS-for-charts rule
+being the default answer before reaching for JS. Added to every polyline/
+sparkline across population, éducation, santé, économie, infrastructures
+and agriculture (population's ranked-préfecture bar chart already prints
+its value as visible text next to each bar, so it didn't need this).
+
+**`prix.astro` was deliberately left out.** Its series are monthly, not
+annual: the main IHPC chart alone has 136 points, and the 5 market-price
+sparklines (Bangui since 2004) run 126-268 points each - about 1,585 points
+total across the page's charts. Measured directly before deciding: adding
+one `<circle>`+`<title>` per point there costs roughly 150 bytes each once
+Astro's own scoped-style attribute is counted, pushing `/prix/` from 64.8 KB
+to 296.8 KB - a hard fail against the 150 KB budget, not a close call. Every
+other theme's series tops out at 45 points (éducation's completion/
+out-of-school disclosure indicators), where the same technique costs a few
+KB, not hundreds - confirmed by building and running
+`site/check-page-weight.mjs` after the change, not assumed safe from the
+main chart's cost alone.
+
+**How to apply:** if prix's monthly charts get hover values later, this
+same per-point `<circle>+<title>` technique is not the way - option (2)
+above (a small shared JS tooltip driven by one compact embedded data array)
+is the one that scales to dense series, since it doesn't repeat per-point
+XML tag overhead. Re-check page weight after any change that adds markup
+per data point, especially on a page with a long series - the cost model
+breaks down well before 150+ points, not gradually.
+
+`éducation.astro` is worth watching: it's now at 144.3 KB (was 89.5 KB),
+the least headroom of any page under the budget, entirely from its six
+45-point disclosure charts. Adding another éducation indicator with a long
+series, or lengthening an existing one, could tip it over - check page
+weight before assuming there's room.
+
 ## 2026-09-12 - Theme pages built flat, not under /themes/ as the sitemap specifies
 
 `docs/plan.md`'s site map puts theme pages under a `/themes/` prefix

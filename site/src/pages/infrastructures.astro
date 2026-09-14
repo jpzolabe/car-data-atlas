@@ -28,6 +28,11 @@ const latest = series[series.length - 1];
 const first = series[0];
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
+// Hover targets: one per data point, native <title> tooltip - no chart
+// library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+// See docs/decisions.md.
+const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
+
 // Small build-time SVG sparkline for the "Autres indicateurs" cards; same
 // technique as education.astro/prix.astro's, duplicated per this project's
 // one-file-per-page convention.
@@ -42,8 +47,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW2;
   const sy = (v: number) => SPARK_MT + plotH2 - ((v - sMin) / (sMax - sMin)) * plotH2;
   const pts = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
+  const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   return {
-    points: pts, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    points: pts, hoverPoints, firstYear: s[0].period, lastYear: s[s.length - 1].period,
     yZero: sy(0), xFirst: sx(0), xLast: sx(s.length - 1),
   };
 }
@@ -110,6 +116,8 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         animation: drawLine 1.4s ease-out forwards;
       }
       .area-fill { fill: url(#infraGradient); }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-infra); }
       .sentence {
         font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
         border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -205,6 +213,11 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         ))}
         <polygon class="area-fill" points={`${points} ${x(series.length - 1)},${y(0)} ${x(0)},${y(0)}`} />
         <polyline class="line-published" points={points} />
+        {hoverPoints.map((p) => (
+          <circle class="hover-pt" cx={p.cx} cy={p.cy} r="5">
+            <title>{p.period} : {fmt(p.value)}%</title>
+          </circle>
+        ))}
       </svg>
 
       <p class="gap-note">
@@ -231,6 +244,11 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                   <polyline class="mini-spark-line" points={spark.points} />
                   <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                   <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                  {spark.hoverPoints.map((p) => (
+                    <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                      <title>{p.period} : {fmt(p.value)} {ind.indicator_id === "abonnements_mobiles" ? "pour 100 hab." : "%"}</title>
+                    </circle>
+                  ))}
                 </svg>
               ) : (
                 <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
