@@ -61,8 +61,17 @@ function sparkline(series: { period: string; value: number }[]) {
   // See docs/decisions.md. Left out of prix.astro's monthly series, where
   // the same technique would blow the page-weight budget (dense series).
   const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
+  // One or two intermediate year labels (roughly a third and two-thirds of
+  // the way through), so a reader isn't left guessing at the shape between
+  // the two endpoints - user feedback, only first/last year were labelled.
+  const midLabels = [...new Set([
+    Math.round((series.length - 1) / 3),
+    Math.round((series.length - 1) * 2 / 3),
+  ])]
+    .filter((i) => i > 0 && i < series.length - 1)
+    .map((i) => ({ x: x(i), year: series[i].period }));
   return {
-    points, hoverPoints,
+    points, hoverPoints, midLabels,
     firstYear: series[0].period,
     lastYear: series[series.length - 1].period,
     yMax: max,
@@ -349,6 +358,9 @@ function qualityLabel(flag: string): string {
                     <line class="gridline" x1="34" y1={spark.yZero} x2="450" y2={spark.yZero} />
                     <text class="axis-label" x="30" y={spark.yZero + 3} text-anchor="end">0%</text>
                     <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
+                    {spark.midLabels.map((m) => (
+                      <text class="axis-label" x={m.x} y="96" text-anchor="middle">{m.year}</text>
+                    ))}
                     <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
                     <polyline class="line-modelled" points={spark.points} />
                     {spark.hoverPoints.map((p) => (
@@ -425,6 +437,9 @@ function qualityLabel(flag: string): string {
                           <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
                           <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">{ind.unit ? "0" : "0%"}</text>
                           <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                          {spark.midLabels.map((m) => (
+                            <text class="spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                          ))}
                           <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
                           <polyline class="spark-line" points={spark.points} />
                           {spark.hoverPoints.map((p) => (

@@ -48,8 +48,16 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
   // See docs/decisions.md.
   const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
+  // One or two intermediate year labels (roughly a third and two-thirds of
+  // the way through) - user feedback, only first/last year were labelled.
+  const midLabels = [...new Set([
+    Math.round((s.length - 1) / 3),
+    Math.round((s.length - 1) * 2 / 3),
+  ])]
+    .filter((i) => i > 0 && i < s.length - 1)
+    .map((i) => ({ x: sx(i), year: s[i].period }));
   return {
-    points, hoverPoints, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    points, hoverPoints, midLabels, firstYear: s[0].period, lastYear: s[s.length - 1].period,
     xFirst: sx(0), xLast: sx(s.length - 1),
   };
 }
@@ -303,6 +311,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                       <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                         <polyline class="mini-spark-line" points={spark.points} />
                         <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                        {spark.midLabels.map((m) => (
+                          <text class="mini-spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                        ))}
                         <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
                         {spark.hoverPoints.map((p) => (
                           <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
@@ -330,6 +341,9 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                     <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                       <polyline class="mini-spark-line" points={spark.points} />
                       <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      {spark.midLabels.map((m) => (
+                        <text class="mini-spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                      ))}
                       <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
                       {spark.hoverPoints.map((p) => (
                         <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
