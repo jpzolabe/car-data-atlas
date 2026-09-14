@@ -279,7 +279,7 @@
       "producer": "WHO (Global Health Observatory)",
       "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
       "url": "https://ghoapi.azureedge.net/api/HWF_0002",
-      "licence": "non précisée - l'API OData du GHO de l'OMS n'indique pas de licence par indicateur ; les conditions générales de données ouvertes de l'OMS s'appliquent probablement mais n'ont pas été vérifiées cette session",
+      "licence": "non précisée - l'API OData du GHO de l'OMS n'indique pas de licence par indicateur ; les conditions générales de données ouvertes de l'OMS s'appliquent probablement mais n'ont pas été vérifiées",
       "licence_notes": "De vrais effectifs absolus, pas des densités - confirmé via l'API OData de l'OMS après avoir constaté qu'aucun tel chiffre n'existe dans les WDI de la Banque mondiale (densité uniquement). La source est le portail des Comptes Nationaux du Personnel de Santé (NHWA) de l'OMS, selon le champ Comments de chaque enregistrement. Les années sont irrégulières (selon les déclarations de chaque pays), pas annuelles - 7 points pour les médecins (2004-2024), 8 pour les infirmiers (2004-2024). Les effectifs infirmiers en particulier varient beaucoup d'une année à l'autre (835 en 2008, 5653 en 2023, 2331 en 2024) ; probablement des changements de base de déclaration plutôt que de réels changements d'effectifs, non expliqué indépendamment malgré une nouvelle vérification directe de l'API le 2026-09-13.",
       "geography_vintage": "irrégulier (années de rapport disponibles, pas annuel)",
       "update_cadence": "variable",
