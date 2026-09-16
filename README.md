@@ -39,8 +39,12 @@ uv run python -m pipeline.export_public_data   # regenerate site/public/donnees 
 uv run python -m pipeline.export_sources_json   # regenerate site/src/data/sources.json
 ```
 
-Each `pipeline/export_*.py` script rebuilds one JSON file the site reads from
-`data/*.csv` via DuckDB - re-run the relevant one after editing a CSV.
+Each `pipeline/export_*.py` script (10 of them) rebuilds one JSON file the
+site reads from `data/*.csv` via DuckDB - re-run the relevant one after
+editing a CSV. `uv run python -m pipeline.validate` checks CSV
+well-formedness and referential integrity, and is what CI calls - run it
+before committing a data change. See `pipeline/README.md` for the full
+script inventory (fetch/add/build/export).
 
 Most sources also fetch automatically: two scheduled GitHub Actions jobs run
 weekly and monthly for the sources with real month-to-month movement
