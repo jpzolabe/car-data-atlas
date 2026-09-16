@@ -6,7 +6,6 @@
 import lieux from "../../data/lieux_prefectures.json";
 import ThemeInit from "../../components/ThemeInit.astro";
 import SiteNav from "../../components/SiteNav.astro";
-import Crumb from "../../components/Crumb.astro";
 
 const places = Object.values(lieux) as any[];
 
@@ -111,7 +110,6 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-lieu" />
       <h1>Lieux</h1>
       <p class="lede">
         Les 20 préfectures, regroupées par région. Chaque page rassemble ce que

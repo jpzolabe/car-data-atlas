@@ -13,7 +13,6 @@
 import data from "../data/sante.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const CURRENT_YEAR = 2026;
 // 5 maternal/child health indicators (added 2026-09-12, UNICEF Data
@@ -222,7 +221,6 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-sante" />
       <h1>Santé</h1>
       <p class="lede">
         Le système de santé dans son ensemble - vaccination, santé

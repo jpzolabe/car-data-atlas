@@ -49,7 +49,6 @@ import prixData from "../data/prix.json";
 import agricultureData from "../data/agriculture.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -298,7 +297,6 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-eco" />
       <h1>Économie</h1>
       <p class="lede">
         La production, les finances publiques, le commerce extérieur et

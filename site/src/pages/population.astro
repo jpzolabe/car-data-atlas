@@ -12,7 +12,6 @@
 import data from "../data/population.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const byRegion = new Map<string, typeof data.prefectures>();
 for (const row of data.prefectures) {
@@ -362,7 +361,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-pop" />
       <h1>Population</h1>
       <p class="lede">
         Recensements et projections de la population, du niveau national

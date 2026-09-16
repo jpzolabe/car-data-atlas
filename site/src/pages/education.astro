@@ -21,7 +21,6 @@
 import data from "../data/education.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const CURRENT_YEAR = 2026;
 
@@ -289,7 +288,6 @@ function badgeLabel(flag: string): string {
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-edu" />
       <h1>Éducation</h1>
       <p class="lede">
         Le parcours scolaire dans son ensemble - ressources,

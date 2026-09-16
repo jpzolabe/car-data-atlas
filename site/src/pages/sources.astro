@@ -5,7 +5,6 @@
 import data from "../data/sources.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 const sources = data.sources;
 ---
 <!doctype html>
@@ -89,7 +88,6 @@ const sources = data.sources;
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--indigo" />
       <h1>Sources</h1>
       <p class="lede">
         Chaque source utilisée sur ce site, avec sa licence, sa date de

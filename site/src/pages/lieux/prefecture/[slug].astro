@@ -21,7 +21,6 @@ import lieux from "../../../data/lieux_prefectures.json";
 import prefectureMaps from "../../../data/prefecture_maps.json";
 import ThemeInit from "../../../components/ThemeInit.astro";
 import SiteNav from "../../../components/SiteNav.astro";
-import Crumb from "../../../components/Crumb.astro";
 
 export function getStaticPaths() {
   return Object.values(lieux).map((p: any) => ({
@@ -193,6 +192,9 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
       .freshness-table .no { color: var(--ink-faint); font-style: italic; }
       .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
       .not-measured li { margin-bottom: 4px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
@@ -203,7 +205,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-lieu" trail={[{ label: "Lieux", href: "/lieux/" }]} />
+      <div class="crumb"><a href="/lieux/">Lieux</a></div>
       <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
 
       <div class="identity-block">

@@ -10,7 +10,6 @@
 import data from "../data/infrastructures.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -192,7 +191,6 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-infra" />
       <h1>Infrastructures</h1>
       <p class="lede">
         L'accès de la population aux infrastructures essentielles -

@@ -6,7 +6,6 @@
 import data from "../data/prix.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -214,7 +213,6 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-prix" />
       <h1>Indice des prix à la consommation</h1>
       <p class="lede">
         L'indice harmonisé des prix à la consommation (IHPC), toutes

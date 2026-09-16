@@ -18,7 +18,6 @@
 import data from "../data/agriculture.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Crumb from "../components/Crumb.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -199,7 +198,6 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
   <body>
     <SiteNav />
     <main id="main-content">
-      <Crumb accent="--t-agri" />
       <h1>Agriculture</h1>
       <p class="lede">
         Les terres et ressources agricoles, la production, l'emploi rural
