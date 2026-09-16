@@ -195,6 +195,11 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
+      .gap-note {
+        font-style: italic; color: var(--ink-muted); font-size: 13.5px;
+        border-left: 3px solid var(--ink-faint); padding-left: 12px; margin: 4px 0 20px;
+      }
+      .gap-note a { color: var(--t-lieu); }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
@@ -207,6 +212,13 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
     <main id="main-content">
       <div class="crumb"><a href="/prefectures/">Préfectures</a></div>
       <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
+
+      <p class="gap-note">
+        Beaucoup d'indicateurs importants - PIB, commerce extérieur, résultats
+        aux examens, entre autres - n'existent qu'à l'échelle nationale et ne
+        descendent pas jusqu'au niveau de la préfecture : à explorer plutôt via
+        <a href="/#explorer-par-theme">Explorer par thème</a>.
+      </p>
 
       <div class="identity-block">
         <dl>
