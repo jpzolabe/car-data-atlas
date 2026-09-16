@@ -51,6 +51,7 @@ const ICONS = {
   education: `<path d="M12 6.2c-2-1.4-5-1.9-8-1.4v13.4c3-.5 6 0 8 1.4 2-1.4 5-1.9 8-1.4V4.8c-3-.5-6 0-8 1.4Z"></path><path d="M12 6.2v13.4"></path>`,
   sante: `<path d="M12 20s-7.3-4.4-9.6-8.7C.6 7.8 2.2 4 6 4c2.1 0 3.9 1.4 6 4 2.1-2.6 3.9-4 6-4 3.8 0 5.4 3.8 3.6 7.3C19.3 15.6 12 20 12 20Z"></path>`,
   economie: `<path d="M4 4v16h16"></path><path d="M7 15.5l4-4.5 3.2 3 5-6"></path>`,
+  prefectures: `<path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>`,
 };
 
 // 5 main themes, not all 7 site sections - prix and agriculture nest
@@ -70,6 +71,8 @@ const THEMES = [
     description: "Électricité, eau, assainissement, internet et téléphonie." },
   { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
+  { name: "Ou explorer par préfecture", href: "/prefectures/", accent: "var(--t-lieu)", icon: ICONS.prefectures,
+    description: "Les 20 préfectures, chacune comparée à ses voisines de région et à la moyenne nationale." },
 ];
 
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
@@ -163,14 +166,14 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         --ink-faint: #8C8F7F; --indigo: #6FA0E8; --line: #33362A;
         --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
         --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
-        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
+        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B; --t-lieu: #D4A574;
       }
       :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
         --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
         --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
-        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D; --t-lieu: #8B5E3C;
       }
       @media print {
         :root {
@@ -178,7 +181,7 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
         --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
         --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
-        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D; --t-lieu: #8B5E3C;
       }
         body { background: #fff !important; background-image: none !important; }
         #search { display: none; }
