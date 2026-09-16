@@ -1,8 +1,11 @@
 ---
 // Index for Phase 4's place pages - lists all 20 préfectures grouped by
-// région, each linking to /lieux/prefecture/{slug}. Without this page the
-// place pages built by [slug].astro would be orphaned (reachable only by
-// guessing a URL or via search).
+// région, each linking to /lieux/prefecture/{slug}. Named "Résumé par
+// préfecture" (not "villes"/"lieux") because that's the real floor of the
+// data - no source here goes finer than préfecture/sous-préfecture, see
+// CLAUDE.md's scope note on commune/localité. Linked from SiteNav and every
+// page's footer nav like the other theme pages - this page itself was
+// orphaned (reachable only by guessing the URL) until that was added.
 import lieux from "../../data/lieux_prefectures.json";
 import ThemeInit from "../../components/ThemeInit.astro";
 import SiteNav from "../../components/SiteNav.astro";
@@ -40,7 +43,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Lieux - BêAfrîka Data</title>
+    <title>Résumé par préfecture - BêAfrîka Data</title>
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
@@ -110,10 +113,11 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
   <body>
     <SiteNav />
     <main id="main-content">
-      <h1>Lieux</h1>
+      <h1>Résumé par préfecture</h1>
       <p class="lede">
-        Les 20 préfectures, regroupées par région. Chaque page rassemble ce que
-        l'on sait d'un lieu, tous thèmes confondus - et dit explicitement ce
+        Les 20 préfectures, regroupées par région - le niveau le plus fin que
+        couvre une source pour l'instant. Chaque page rassemble ce que l'on
+        sait d'une préfecture, tous thèmes confondus, et dit explicitement ce
         qui n'est pas encore mesuré à ce niveau.
       </p>
 
@@ -144,6 +148,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/lieux/">Résumé par préfecture</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
