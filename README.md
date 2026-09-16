@@ -5,8 +5,6 @@ across themes, drillable down to région, préfecture, sous-préfecture and
 commune - every number carrying its source and its date, and every gap stated
 rather than hidden.
 
-> Explorer la République centrafricaine - ce que disent les données, d'où
-> elles viennent, et ce que personne n'a encore mesuré.
 
 ## What this is
 
@@ -43,6 +41,14 @@ uv run python -m pipeline.export_sources_json   # regenerate site/src/data/sourc
 
 Each `pipeline/export_*.py` script rebuilds one JSON file the site reads from
 `data/*.csv` via DuckDB - re-run the relevant one after editing a CSV.
+
+Most sources also fetch automatically: two scheduled GitHub Actions jobs run
+weekly and monthly for the sources with real month-to-month movement
+(`.github/workflows/fetch-ihpc.yml`, `fetch-wfp-prix.yml`), and a third
+checks the remaining sources once a month (`fetch-monthly.yml`) - each run
+opens a pull request if the data actually changed, reviewed by hand before
+merging. One source (a static 2019 academic dataset) is excluded since it
+will never be revised.
 
 Site (Node, `pnpm`):
 
