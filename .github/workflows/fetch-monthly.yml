@@ -1,0 +1,129 @@
+name: Fetch remaining sources (monthly)
+
+# CLAUDE.md: "GitHub Actions - cron per source: fetch, snapshot, transform,
+# open a PR if data changed. Human review before merge." fetch-ihpc.yml and
+# fetch-wfp-prix.yml already do this at their own tuned cadences (weekly,
+# monthly) for the two sources with real month-to-month movement. Every
+# other fetch script feeds a source that's either annual (World Bank,
+# UNESCO), irregular (tied to the next national survey), or quarterly (IMF
+# NSDP) - one matrix job covering all of them monthly catches a new
+# release within at most a few weeks of publication without needing 10
+# near-identical workflow files. Each matrix entry still opens its own PR,
+# so review stays per-source (CLAUDE.md's "check the diff for a
+# discontinuity" applies to one source's numbers at a time, not a mixed
+# diff across several).
+#
+# maina-master-facility-list-2019 (fetch_etablissements_sante.py) is
+# deliberately excluded: data/sources.csv marks its update_cadence as
+# "aucune mise à jour prévue (publication académique ponctuelle)" - a
+# one-time academic dataset that will never be revised, so scheduling it
+# would only ever produce no-op runs forever.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 1st of each month, 06:00 UTC
+  workflow_dispatch: {} # manual trigger, e.g. for testing this workflow itself, or one source
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # one source's fetch breaking shouldn't cancel the rest
+      matrix:
+        include:
+          - id: agriculture
+            fetch: pipeline.fetch_agriculture
+            export: pipeline.export_agriculture_json
+            label: agriculture indicators (World Bank)
+          - id: economie
+            fetch: pipeline.fetch_economie
+            export: pipeline.export_economie_json
+            label: économie indicators (World Bank)
+          - id: education
+            fetch: pipeline.fetch_education
+            export: pipeline.export_education_json
+            label: éducation indicators (UNESCO UIS)
+          - id: electricity
+            fetch: pipeline.fetch_electricity_access
+            export: pipeline.export_infrastructures_json
+            label: électricité access (World Bank)
+          - id: population-projection
+            fetch: pipeline.fetch_icasees_population_projection
+            export: pipeline.export_population_json pipeline.export_lieux_prefecture_json
+            label: population projection, sous-préfecture (ICASEES via HDX)
+          - id: imf-nsdp
+            fetch: pipeline.fetch_imf_nsdp
+            export: pipeline.export_economie_json
+            label: IMF e-GDDS NSDP (indice d'activité économique)
+          - id: infrastructures
+            fetch: pipeline.fetch_infrastructures
+            export: pipeline.export_infrastructures_json
+            label: infrastructures indicators (World Bank)
+          - id: population-indicators
+            fetch: pipeline.fetch_population_indicators
+            export: pipeline.export_population_json
+            label: population indicators (World Bank)
+          - id: sante
+            fetch: pipeline.fetch_sante
+            export: pipeline.export_sante_json
+            label: santé indicators (World Bank + WHO)
+          - id: unicef-mics
+            fetch: pipeline.fetch_unicef_mics
+            export: pipeline.export_sante_json pipeline.export_population_json
+            label: MICS child health/protection indicators (UNICEF)
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - uses: astral-sh/setup-uv@v3
+      - run: uv sync
+
+      - name: Fetch and transform
+        run: uv run python -m ${{ matrix.fetch }}
+
+      - name: Re-export site JSON
+        run: |
+          for m in ${{ matrix.export }}; do
+            uv run python -m "$m"
+          done
+
+      - name: Refresh bulk-download mirror
+        run: uv run python -m pipeline.export_public_data
+
+      - name: Quality gates
+        run: uv run python -m pipeline.validate
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/ site/src/data/ site/public/donnees/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open PR if data changed
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="data-update/${{ matrix.id }}-$(date +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git add data/ raw/ site/src/data/ site/public/donnees/
+          git commit -m "data: refresh ${{ matrix.id }}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --base develop \
+            --head "$BRANCH" \
+            --title "data: ${{ matrix.id }} refresh $(date +%Y-%m-%d)" \
+            --body "Automated monthly fetch: ${{ matrix.label }}. Quality gates (pipeline.validate) passed. Human review requested before merge, per CLAUDE.md - check the diff for anything that looks like a discontinuity rather than a real change."
