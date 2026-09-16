@@ -27,6 +27,8 @@ import prix from "../data/prix.json";
 import infrastructures from "../data/infrastructures.json";
 import education from "../data/education.json";
 import economie from "../data/economie.json";
+import sante from "../data/sante.json";
+import agriculture from "../data/agriculture.json";
 import prefectureMaps from "../data/prefecture_maps.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -80,32 +82,72 @@ const croissancePibSeries = economie.categories
   .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
 const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
 const electricite = infrastructures.series[infrastructures.series.length - 1];
-const reussiteBac = education.categories
-  .flatMap((c: any) => c.indicators)
-  .find((i: any) => i.indicator_id === "taux_reussite_baccalaureat").latest;
+
+const findLatest = (theme: any, id: string) =>
+  theme.categories.flatMap((c: any) => c.indicators).find((i: any) => i.indicator_id === id).latest;
+const findOther = (theme: any, id: string) =>
+  theme.other_indicators.find((i: any) => i.indicator_id === id).latest;
+
+// Rotating ticker pool (added 2026-09-16, docs/decisions.md): the ticker
+// used to hardcode the same 4 stats forever. Picked one legible,
+// plainly-named figure per theme area rather than every indicator on the
+// site - understandability mattered more than coverage here. Each entry
+// keeps the same shape SECONDARY_STATS always had.
+const reussiteBac = findLatest(education, "taux_reussite_baccalaureat");
+const POOL = [
+  { label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
+    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/" },
+  { label: "Taux de chômage", ...(() => { const v = findLatest(economie, "taux_chomage");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-eco)", href: "/economie/" },
+  { label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
+    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/" },
+  { label: "Accès à l'électricité", value: fmtPct(electricite.value), unit: "%",
+    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Accès à Internet", ...(() => { const v = findOther(infrastructures, "taux_utilisation_internet");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Accès à l'eau potable", ...(() => { const v = findOther(infrastructures, "acces_eau_potable_base");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
+    period: `${reussiteBac.period} (1er tour)`, accent: "var(--t-edu)", href: "/education/" },
+  { label: "Alphabétisation des jeunes", ...(() => { const v = findLatest(education, "taux_alphabetisation_jeunes");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-edu)", href: "/education/" },
+  { label: "Espérance de vie", ...(() => { const v = findLatest(sante, "esperance_vie");
+    return { value: fmtPct(v.value), unit: " ans", period: v.period }; })(),
+    accent: "var(--t-sante)", href: "/sante/" },
+  { label: "Vaccination contre la rougeole", ...(() => { const v = findLatest(sante, "taux_vaccination_rougeole");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-sante)", href: "/sante/" },
+  { label: "Emploi agricole", ...(() => { const v = findLatest(agriculture, "emploi_agricole");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-agri)", href: "/agriculture/" },
+  { label: "Sous-alimentation", ...(() => { const v = findLatest(agriculture, "taux_sous_alimentation");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-agri)", href: "/agriculture/" },
+  { label: "Croissance de la population", ...(() => { const v = findOther(population, "taux_croissance_population");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-pop)", href: "/population/" },
+  { label: "Population urbaine", ...(() => { const v = findOther(population, "taux_urbanisation");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-pop)", href: "/population/" },
+].map((s) => ({ ...s, stale: isStale(s.period) }));
 
 // De-emphasized ticker, deliberately mixing fresh and stale (docs/plan.md
 // Sec2.2: "showing that a figure comes from an older survey is the
 // point") - secondary to the population hero below, not another grid of
-// equal-weight boxes.
-const SECONDARY_STATS = [
-  {
-    label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
-    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/",
-  },
-  {
-    label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
-    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/",
-  },
-  {
-    label: "Électricité", value: fmtPct(electricite.value), unit: "%",
-    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/",
-  },
-  {
-    label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
-    period: `${reussiteBac.period} (1er tour)`, accent: "var(--t-edu)", href: "/education/",
-  },
-];
+// equal-weight boxes. Shows a 4-item rotating window of POOL, advancing
+// by one position per day (build-time date here for the no-JS render;
+// the inline script below redoes the same computation from the visitor's
+// own clock so it stays correct between deploys without needing a daily
+// rebuild - see docs/decisions.md).
+const dayOfYear = Math.floor(
+  (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86_400_000
+);
+const tickerStart = dayOfYear % POOL.length;
+const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.length]);
 ---
 <!doctype html>
 <html lang="fr">
@@ -305,17 +347,43 @@ const SECONDARY_STATS = [
         <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
       </div>
 
-      <div class="ticker">
-        {SECONDARY_STATS.map((s) => (
-          <a class="ticker-item" href={s.href} style={`--ticker-accent: ${s.accent}`}>
+      <div class="ticker" id="ticker">
+        {SECONDARY_STATS.map((s, i) => (
+          <a class="ticker-item" id={`ticker-item-${i}`} href={s.href} style={`--ticker-accent: ${s.accent}`}>
             <span class="ticker-label">{s.label}</span>
             <span class="ticker-value">{s.value}<span class="unit">{s.unit}</span></span>
-            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>
-              {s.period}{isStale(s.period) && " · ancien"}
+            <span class={`ticker-period ${s.stale ? "stale" : ""}`}>
+              {s.period}{s.stale && " · ancien"}
             </span>
           </a>
         ))}
       </div>
+      <script type="application/json" id="ticker-pool" is:inline set:html={JSON.stringify(POOL)} />
+      <script is:inline>
+        // Rotates the 4 ticker slots to a different window of the pool
+        // each day, using the visitor's own clock. No interval, nothing
+        // moves after this runs once on load: only rewritten if the
+        // visitor's local day differs from what the server rendered (a
+        // stale deploy, or a visit past midnight).
+        const pool = JSON.parse(document.getElementById("ticker-pool").textContent);
+        const now = new Date();
+        const startOfYear = new Date(now.getFullYear(), 0, 0);
+        const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / 86_400_000);
+        const start = dayOfYear % pool.length;
+        for (let i = 0; i < 4; i++) {
+          const stat = pool[(start + i) % pool.length];
+          const item = document.getElementById(`ticker-item-${i}`);
+          if (!item) continue;
+          item.href = stat.href;
+          item.style.setProperty("--ticker-accent", stat.accent);
+          item.querySelector(".ticker-label").textContent = stat.label;
+          item.querySelector(".ticker-value").innerHTML =
+            `${stat.value}<span class="unit">${stat.unit}</span>`;
+          const periodEl = item.querySelector(".ticker-period");
+          periodEl.textContent = stat.period + (stat.stale ? " · ancien" : "");
+          periodEl.classList.toggle("stale", stat.stale);
+        }
+      </script>
 
       <h2>Explorer par thème</h2>
       <div class="theme-rows">
