@@ -26,8 +26,8 @@ MISSING = [
      "Haute-Kotto : présent dans COD-AB v02, absent de citypopulation.de."),
     ("Moboma (CF126)", "Lobaye : présent dans COD-AB v02, absent de citypopulation.de."),
     ("Ndim (CF343 selon COD-AB v02)",
-     "Lim-Pendé : présent dans COD-AB v02, absent de citypopulation.de."),
-    ("Taley (CF345)", "Lim-Pendé : présent dans COD-AB v02, absent de citypopulation.de."),
+     "Lim-pendé : présent dans COD-AB v02, absent de citypopulation.de."),
+    ("Taley (CF345)", "Lim-pendé : présent dans COD-AB v02, absent de citypopulation.de."),
 ]
 
 CONFLICTS = [

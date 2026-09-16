@@ -89,6 +89,16 @@ function qualityLabel(flag: string): string {
   return "estimation modélisée";
 }
 
+// Compact badge text - the raw quality_flag values ("enquete", "estime")
+// are missing their accents; this only fixes that, it isn't the longer
+// prose form qualityLabel() produces for sentences.
+function badgeLabel(flag: string): string {
+  if (flag === "enquete") return "enquête";
+  if (flag === "estime") return "estimé";
+  if (flag === "osm") return "OSM";
+  return flag;
+}
+
 ---
 <!doctype html>
 <html lang="fr">
@@ -309,7 +319,7 @@ function qualityLabel(flag: string): string {
       <div class="headline-block">
         <div class="headline-value">
           {fmt(data.headline.latest.value)}<span class="unit">%</span>
-          <span class={`badge ${data.headline.latest.quality_flag}`}>{data.headline.latest.quality_flag}</span>
+          <span class={`badge ${data.headline.latest.quality_flag}`}>{badgeLabel(data.headline.latest.quality_flag)}</span>
         </div>
         <p class="headline-caption">Le taux d'achèvement du primaire ({data.headline.latest.period}) est le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
         <p class="headline-caption">{data.headline.definition_fr}</p>
@@ -344,7 +354,7 @@ function qualityLabel(flag: string): string {
                   <p class="indicator-definition">{ind.definition_fr}</p>
                   <div class="national-value">
                     {fmt(ind.latest.value)}<span class="unit">%</span>
-                    <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                    <span class={`badge ${ind.latest.quality_flag}`}>{badgeLabel(ind.latest.quality_flag)}</span>
                     {stale && <span class="badge stale">ancien</span>}
                   </div>
                   <div class="national-meta">
@@ -385,14 +395,14 @@ function qualityLabel(flag: string): string {
                     <span><span class="swatch-dot"></span>{headlineLabel}</span>
                   </div>
                   <details class="disclosure">
-                    <summary>2 sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                    <summary>{ind.national.all_sources.length} sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
                     <table class="disclosure-table">
                       <thead><tr><th scope="col">Valeur</th><th scope="col">Statut</th><th scope="col">Période</th></tr></thead>
                       <tbody>
                         {ind.national.all_sources.map((s) => (
                           <tr>
                             <td class="num">{fmt(s.value)}%</td>
-                            <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                            <td><span class={`badge ${s.quality_flag}`}>{badgeLabel(s.quality_flag)}</span></td>
                             <td>{s.period}</td>
                           </tr>
                         ))}
@@ -427,7 +437,7 @@ function qualityLabel(flag: string): string {
                       <p class="indicator-definition">{ind.definition_fr}</p>
                       <div class="indicator-value">
                         {valueDisplay}<span class="unit"> {unit}, {ind.latest.period}</span>
-                        <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                        <span class={`badge ${ind.latest.quality_flag}`}>{badgeLabel(ind.latest.quality_flag)}</span>
                         {stale && <span class="badge stale">ancien</span>}
                       </div>
                       <div class="indicator-meta">Niveau le plus fin : pays</div>

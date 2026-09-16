@@ -1,9 +1,9 @@
 # BêAfrîka Data
 
 A public reference work about the Central African Republic: national figures
-across themes, drillable down to région, préfecture, sous-préfecture and
-commune - every number carrying its source and its date, and every gap stated
-rather than hidden.
+across themes, drillable down to région, préfecture and sous-préfecture -
+every number carrying its source and its date, and every gap stated rather
+than hidden.
 
 
 ## What this is

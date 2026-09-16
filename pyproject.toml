@@ -1,7 +1,7 @@
 [project]
 name = "rca-donnees-pipeline"
 version = "0.1.0"
-description = "Data pipeline for Données RCA: fetch, snapshot, crosswalk, validate."
+description = "Data pipeline for BêAfrîka Data (RCA): fetch, snapshot, crosswalk, validate."
 requires-python = ">=3.12"
 dependencies = [
     "pandas>=2.2",

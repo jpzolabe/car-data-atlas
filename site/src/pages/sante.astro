@@ -32,6 +32,15 @@ function isStale(indicatorId: string, period: string): boolean {
 
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
+// Compact badge text - the raw quality_flag values ("enquete", "estime")
+// are missing their accents.
+function badgeLabel(flag: string): string {
+  if (flag === "enquete") return "enquête";
+  if (flag === "estime") return "estimé";
+  if (flag === "osm") return "OSM";
+  return flag;
+}
+
 // Small build-time SVG sparkline, same technique as every other theme page.
 const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 40, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
 function sparkline(ind: { series: { period: string; value: number }[] }) {
@@ -261,7 +270,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                     <div class="national-figure">
                       <div class="national-value">
                         {fmt(ind.national.headline.value)}<span class="unit"> {ind.unit}, {ind.national.headline.period}</span>
-                        <span class={`badge ${ind.national.headline.quality_flag}`}>{ind.national.headline.quality_flag}</span>
+                        <span class={`badge ${ind.national.headline.quality_flag}`}>{badgeLabel(ind.national.headline.quality_flag)}</span>
                       </div>
                       <div class="national-meta">{ind.national.headline.producer}</div>
                       <details class="disclosure">
@@ -274,7 +283,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
                                 <td class="num">{fmt(s.value)}</td>
                                 <td>{s.producer}</td>
                                 <td>{s.period}</td>
-                                <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                                <td><span class={`badge ${s.quality_flag}`}>{badgeLabel(s.quality_flag)}</span></td>
                               </tr>
                             ))}
                           </tbody>
