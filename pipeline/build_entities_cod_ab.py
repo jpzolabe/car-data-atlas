@@ -61,11 +61,9 @@ def main(snapshot_dir: str):
             "valid_to": "",
             "superseded_by": "",
             "notes": (
-                "Niveau pays, non affecté par la réforme de 2020. valid_from "
-                "laissé vide : date de fondation non vérifiée dans cette passe "
-                "(indépendance le 13 août 1960 selon connaissance générale, non "
-                "confirmée via une source primaire ici - voir "
-                "docs/verification-debt.md)."
+                "Niveau pays. Indépendance le 13 août 1960, confirmée via "
+                "Encyclopædia Britannica le 2026-09-11 (source non contestée, "
+                "contrairement au découpage administratif interne)."
             ),
         }
     )

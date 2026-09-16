@@ -80,13 +80,12 @@ def inflation_notes() -> str:
     # here -- that methodology note in the source file is specific to the
     # index rows (IND1-13), not stated for this rate. A naive month-over-
     # month or year-over-year recomputation from IND1 doesn't reproduce this
-    # column either -- published as-is, not silently reinterpreted. See
-    # docs/verification-debt.md.
+    # column either -- published as-is, not silently reinterpreted.
     return (
         "Taux publié tel quel par la source dans la même feuille que "
         "l'indice ; une recomputation glissement mensuel ou annuel à partir "
         "de l'indice global (IND1) ne reproduit pas cette colonne, "
-        "méthodologie exacte non confirmée -- voir docs/verification-debt.md."
+        "et sa méthodologie exacte n'est pas confirmée."
     )
 
 

@@ -30,9 +30,8 @@ RGPH4_ROW = {
     "quality_flag": "provisoire",
     "notes": (
         "3 312 532 hommes / 3 343 737 femmes ; densité 10,7/km². "
-        "Marqué données non encore validées par ICASEES. Chiffre compilé "
-        "dans CLAUDE.md, page primaire ICASEES non localisée cette session - "
-        "voir docs/verification-debt.md."
+        "Marqué données non encore validées par ICASEES. Page primaire "
+        "ICASEES non localisée à ce jour."
     ),
 }
 

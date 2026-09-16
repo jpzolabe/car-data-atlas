@@ -95,8 +95,8 @@ NOTES_BY_SOURCE = {
     ),
     ADMIN_SOURCE: (
         "Donnée administrative nationale (annuaire scolaire) compilée "
-        "par l'UIS -- méthodologie exacte par indicateur non confirmée "
-        "point par point, voir docs/verification-debt.md."
+        "par l'UIS ; méthodologie exacte par indicateur non confirmée "
+        "point par point."
     ),
     LITERACY_SOURCE: (
         "Donnée de recensement ou d'enquête compilée par l'UIS."

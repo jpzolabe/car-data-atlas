@@ -61,7 +61,7 @@ def main():
                 "(2026-09-05) ; ce n'est pas un texte de loi, et n'a été "
                 "recoupé que par le fait que les 7 régions couvrent "
                 "exactement les 20 préfectures sans chevauchement ni "
-                "manque - voir docs/verification-debt.md."
+                "manque."
             ),
         })
         new_aliases.append({
