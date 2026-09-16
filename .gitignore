@@ -24,3 +24,9 @@ Thumbs.db
 # Editor
 .vscode/*
 !.vscode/extensions.json
+
+# Internal working docs - kept locally, never pushed to the remote
+/CLAUDE.md
+/docs/plan.md
+/docs/decisions.md
+/docs/verification-debt.md
