@@ -79,6 +79,11 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         border-bottom: 3px solid var(--t-lieu); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); margin: 12px 0 24px; }
+      .gap-note {
+        font-style: italic; color: var(--ink-muted); font-size: 13.5px;
+        border-left: 3px solid var(--ink-faint); padding-left: 12px; margin: 12px 0 20px;
+      }
+      .gap-note a { color: var(--t-lieu); }
       .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 8px; }
       .region-block {
         background: var(--surface); border: 1px solid var(--line);
@@ -114,6 +119,13 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
     <SiteNav />
     <main id="main-content">
       <h1>Préfectures</h1>
+      <p class="gap-note">
+        Beaucoup d'indicateurs importants - PIB, commerce extérieur, résultats
+        aux examens, entre autres - n'existent qu'à l'échelle nationale et ne
+        descendent pas jusqu'ici : à explorer plutôt via
+        <a href="/#explorer-par-theme">Explorer par thème</a> sur la page
+        d'accueil.
+      </p>
       <p class="lede">
         Les 20 préfectures du pays, regroupées en 7 régions depuis 2024 - un
         cran au-dessus des 85 sous-préfectures suivies pour la population, et

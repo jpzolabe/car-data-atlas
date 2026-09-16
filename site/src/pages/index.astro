@@ -72,7 +72,7 @@ const THEMES = [
   { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
   { name: "Ou explorer par préfecture", href: "/prefectures/", accent: "var(--t-lieu)", icon: ICONS.prefectures,
-    description: "Population, prix alimentaires et santé régionale, préfecture par préfecture - et ce qui n'y est pas encore mesuré." },
+    description: "Population, prix alimentaires et santé régionale, préfecture par préfecture." },
 ];
 
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
@@ -387,7 +387,7 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         }
       </script>
 
-      <h2>Explorer par thème</h2>
+      <h2 id="explorer-par-theme">Explorer par thème</h2>
       <div class="theme-rows">
         {THEMES.map((t) => (
           <div class="theme-row" style={`--row-accent: ${t.accent}`}>
