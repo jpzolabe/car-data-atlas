@@ -116,6 +116,39 @@ INDICATORS = {
 }
 
 
+# UN IGME's own documented method for crisis countries: fit the trend with
+# crisis years set aside, then add the crisis deaths back as a one-year
+# spike in the year each mortality survey was run - not spread across the
+# period it actually covers. Real, sourced excess-mortality data, not a
+# fetch error; without this note the spike looks exactly like the corrupted
+# esperance_vie series this project found and replaced. Checked on the web
+# (Our World in Data's IGME methodology notes, cross-checked against the
+# underlying academic source) rather than assumed from the shape of the jump.
+CRISIS_YEAR_NOTE = {
+    "SH.DYN.MORT": {
+        "2022": (
+            " Le pic de 2022 est réel, pas une erreur : selon la méthodologie "
+            "publiée de l'UN IGME pour les pays en crise, la tendance est "
+            "ajustée hors années de crise puis les décès de la crise sont "
+            "réintégrés comme un pic d'une seule année, l'année où l'enquête "
+            "de mortalité a eu lieu plutôt que répartis sur la période "
+            "qu'elle couvre réellement. Pour la RCA, ce pic provient de "
+            "l'enquête de Gang et al. (2023, Conflict and Health), qui a "
+            "trouvé une mortalité environ 4 fois supérieure aux statistiques "
+            "officielles de l'ONU sur la période étudiée."
+        ),
+        "2019": (
+            " Le pic de 2019 suit la même méthodologie documentée par l'UN "
+            "IGME pour les années de crise (décès réintégrés comme un pic "
+            "d'une seule année, l'année de l'enquête plutôt que répartis sur "
+            "la période couverte) ; l'enquête de mortalité spécifique à "
+            "l'origine de ce pic n'a pas été identifiée avec certitude."
+        ),
+    },
+}
+CRISIS_YEAR_NOTE["SP.DYN.IMRT.IN"] = CRISIS_YEAR_NOTE["SH.DYN.MORT"]
+
+
 def fetch_indicator(code: str, retrieved_at: str) -> list[dict]:
     indicator_id, source_id, unit, notes = INDICATORS[code]
     resp = httpx.get(
@@ -128,11 +161,12 @@ def fetch_indicator(code: str, retrieved_at: str) -> list[dict]:
     for r in records:
         if r["value"] is None:
             continue
+        row_notes = notes + CRISIS_YEAR_NOTE.get(code, {}).get(r["date"], "")
         rows.append({
             "entity_id": COUNTRY_ID, "indicator_id": indicator_id,
             "period": r["date"], "value": r["value"], "unit": unit,
             "source_id": source_id, "retrieved_at": retrieved_at,
-            "quality_flag": "estime", "notes": notes,
+            "quality_flag": "estime", "notes": row_notes,
         })
     return rows
 

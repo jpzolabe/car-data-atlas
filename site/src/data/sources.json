@@ -605,7 +605,7 @@
       "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
       "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
+      "licence_notes": "Pics ponctuels réels en 2019 et 2022, pas des erreurs de récupération : l'UN IGME ajuste sa tendance hors années de crise puis réintègre les décès de crise comme un pic d'une seule année (l'année de l'enquête de mortalité, pas répartis sur la période réellement couverte). Pour la RCA, le pic de 2022 provient de l'enquête de Gang et al. (2023, Conflict and Health), qui a trouvé une mortalité environ 4 fois supérieure aux statistiques officielles de l'ONU ; l'enquête à l'origine du pic de 2019 n'a pas été identifiée avec certitude. Confirmé via la documentation de méthodologie publique de l'UN IGME (relayée par Our World in Data), pas supposé à partir de la seule forme du pic.",
       "geography_vintage": "annuel ; source primaire = UN IGME (Inter-agency Group for Child Mortality Estimation)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
