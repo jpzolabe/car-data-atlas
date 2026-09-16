@@ -310,7 +310,9 @@ const SECONDARY_STATS = [
           <a class="ticker-item" href={s.href} style={`--ticker-accent: ${s.accent}`}>
             <span class="ticker-label">{s.label}</span>
             <span class="ticker-value">{s.value}<span class="unit">{s.unit}</span></span>
-            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>{s.period}</span>
+            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>
+              {s.period}{isStale(s.period) && " · ancien"}
+            </span>
           </a>
         ))}
       </div>
