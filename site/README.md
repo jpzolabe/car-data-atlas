@@ -35,9 +35,11 @@ against. Use `pnpm preview` to test it for real.
 
 ## Notes
 
-- `robots.txt` currently disallows all crawling - remove once there's
-  something worth indexing publicly (i.e. once Cloudflare Pages is connected
-  and this is meant to be found).
+- `robots.txt` currently disallows all crawling, and every page carries
+  `<meta name="robots" content="noindex">` - both are a deliberate pre-launch
+  guard so search engines don't index an unfinished, undeployed site. Remove
+  both once the site is actually meant to be found (i.e. once it's deployed
+  for real and presented as ready, not before).
 - No i18n config yet - French-only until the `/en/` mirror actually starts
   (`docs/plan.md` §2.1). See `astro.config.mjs` for the note.
 - Page-weight budget (150 KB/page, `CLAUDE.md`) is enforced in CI via
