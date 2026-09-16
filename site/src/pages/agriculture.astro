@@ -1,0 +1,304 @@
+---
+// Third and last brand-new theme this pass (théme #7 of 7 in docs/plan.md's
+// site map; all sitemap themes now exist). Same anatomy as sante.astro /
+// economie.astro: headline figure, categories ordered by logical sequence,
+// "Ce qui n'est pas mesuré" hand-written. No disclosure blocks; every
+// indicator has exactly one source so far.
+//
+// section-nav (added 2026-09-13): sticky in-page jump menu, one link per
+// category plus "Ce qui n'est pas mesuré" - same pattern as economie.astro,
+// education.astro and sante.astro. Categories stay fully expanded; pure
+// navigation.
+//
+// Three unit families here (%, indice, kg/ha), like économie's %/US$ split;
+// formatValue() branches by indicator_id. consommation_engrais gets 3
+// decimals instead of 1 (its real value, ~0.044, would round to a
+// misleading "0,0" otherwise; same fix as sentence_agriculture_rate in
+// pipeline/sentences.py).
+import data from "../data/agriculture.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+
+const CURRENT_YEAR = 2026;
+function isStale(period: string): boolean {
+  // méthode.astro's own threshold table: "< 5 ans" = actuel, "5 ans" =
+  // déjà ancien - so exactly 5 years old must already read as stale.
+  return CURRENT_YEAR - Number(period) >= 5;
+}
+
+function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
+  if (indicatorId === "consommation_engrais") {
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 3 }), unit: " kg/ha" };
+  }
+  if (indicatorId === "rendement_cereales") {
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " kg/ha" };
+  }
+  if (indicatorId === "indice_production_alimentaire") {
+    return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " indice" };
+  }
+  if (indicatorId === "superficie_agricole") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " km²" };
+  }
+  if (indicatorId === "production_cereales") {
+    return { display: Math.round(value).toLocaleString("fr-FR"), unit: " tonnes" };
+  }
+  return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: "%" };
+}
+
+// Small build-time SVG sparkline, same technique as every other theme page.
+const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 40, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
+function sparkline(ind: { series: { period: string; value: number }[] }) {
+  const s = ind.series;
+  const plotW = SPARK_W - SPARK_ML - SPARK_MR;
+  const plotH = SPARK_H - SPARK_MT - SPARK_MB;
+  const vals = s.map((d) => d.value);
+  const sMin = Math.min(...vals) * 0.9;
+  const sMax = Math.max(...vals) * 1.1;
+  const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW;
+  const sy = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
+  const points = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
+  // Hover targets: one per data point, native <title> tooltip - no chart
+  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // See docs/decisions.md.
+  const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
+  // One or two intermediate year labels (roughly a third and two-thirds of
+  // the way through) - user feedback, only first/last year were labelled.
+  const midLabels = [...new Set([
+    Math.round((s.length - 1) / 3),
+    Math.round((s.length - 1) * 2 / 3),
+  ])]
+    .filter((i) => i > 0 && i < s.length - 1)
+    .map((i) => ({ x: sx(i), year: s[i].period }));
+  return {
+    points, hoverPoints, midLabels, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    xFirst: sx(0), xLast: sx(s.length - 1),
+  };
+}
+
+const headlineValue = formatValue("emploi_agricole", data.headline.latest.value);
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Agriculture - BêAfrîka Data</title>
+    <style>
+      :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #8C8F7F; --line: #33362A;
+        --t-agri: #86C46B;
+        --stale: #E2694A; --stale-soft: #3A211A;
+      }
+      :root[data-theme="light"] {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-agri: #4C7A3D;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-agri: #4C7A3D;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-agri) 9%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-agri) 6%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+      }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--t-agri); text-decoration: underline; }
+      h1 {
+        font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
+        border-bottom: 3px solid var(--t-agri); padding-bottom: 4px;
+      }
+      .lede { color: var(--ink-muted); margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-agri); border-color: var(--t-agri); }
+      .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-agri); margin: 0 0 28px; }
+      .headline-block {
+        margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 4px solid var(--t-agri); border-radius: 3px;
+      }
+      .headline-value {
+        font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
+        color: var(--t-agri); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      }
+      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
+      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
+      .badge {
+        display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
+        padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
+      }
+      .badge.stale { background: var(--stale-soft); color: var(--stale); }
+      .indicator-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+        gap: 22px;
+      }
+      .indicator-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 16px 18px;
+      }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
+      .indicator-card .ind-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-agri); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+      }
+      .indicator-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      svg.mini-sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-agri); }
+      .mini-spark-line {
+        stroke: var(--t-agri); stroke-width: 2; fill: none;
+        stroke-dasharray: 2000; stroke-dashoffset: 2000;
+        animation: drawMiniSpark 1.1s ease-out forwards;
+      }
+      @keyframes drawMiniSpark { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) { .mini-spark-line { animation: none; stroke-dashoffset: 0; } }
+      .mini-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-agri) 6%, transparent);
+        border-radius: 3px;
+      }
+      .mini-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
+      .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
+      .not-measured li { margin-bottom: 4px; }
+      footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      footer a { color: var(--ink-muted); }
+      .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+      .site-nav a { color: var(--t-agri); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Agriculture</h1>
+      <p class="lede">
+        Les terres et ressources agricoles, la production, l'emploi rural
+        et l'alimentation, à l'échelle du pays, à partir des données de
+        la Banque mondiale. Voir aussi <a href="/economie/">Économie</a>,
+        dont ce thème est le complément sectoriel.
+      </p>
+
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label_fr}</a>
+        ))}
+      </nav>
+
+      <div class="headline-block">
+        <div class="headline-value">
+          {headlineValue.display}<span class="unit">{headlineValue.unit} de l'emploi, {data.headline.latest.period}</span>
+        </div>
+        <p class="headline-caption">L'emploi agricole représente deux actifs sur trois en République centrafricaine, le trait le plus caractéristique de son économie.</p>
+        <p class="headline-caption">{data.headline.definition_fr}</p>
+        <p class="mini-sentence">
+          {data.headline.lead_sentence}
+        </p>
+      </div>
+
+      {data.categories.map((category) => (
+        <>
+          <h2 id={category.key}>{category.label_fr}</h2>
+          <div class="indicator-grid">
+            {category.indicators.map((ind) => {
+              const spark = sparkline(ind);
+              const stale = isStale(ind.latest.period);
+              const val = formatValue(ind.indicator_id, ind.latest.value);
+              return (
+                <div class="indicator-card">
+                  <p class="ind-name">{ind.name_fr}</p>
+                  <p class="ind-definition">{ind.definition_fr}</p>
+                  <div class="ind-value">
+                    {val.display}<span class="unit">{val.unit}, {ind.latest.period}</span>
+                    {stale && <span class="badge stale">ancien</span>}
+                  </div>
+                  {ind.series.length > 1 ? (
+                    <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                      <polyline class="mini-spark-line" points={spark.points} />
+                      <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                      {spark.midLabels.map((m) => (
+                        <text class="mini-spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                      ))}
+                      <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                      {spark.hoverPoints.map((p) => {
+                        const pv = formatValue(ind.indicator_id, p.value);
+                        return (
+                          <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                            <title>{p.period} : {pv.display}{pv.unit}</title>
+                          </circle>
+                        );
+                      })}
+                    </svg>
+                  ) : (
+                    <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+                  )}
+                  <p class="mini-sentence">{ind.lead_sentence}</p>
+                  <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
+                    {ind.source.producer}. Récupéré le {ind.source.retrieved_at}.
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      ))}
+
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
+      <ul class="not-measured">
+        <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales.</li>
+        <li>Les prix agricoles au marché (manioc, riz, maïs...) sont désormais suivis sur la page <a href="/prix/">Prix</a>, à un niveau géographique différent (le marché de Bangui, un point, pas une zone) - voir cette page pour le détail.</li>
+        <li>Aucune donnée sur l'élevage, la pêche en tant que sous-secteur séparé, ou les surfaces cultivées par culture (manioc, maïs, arachide…).</li>
+        <li>Aucune donnée sur l'accès à la terre, les régimes fonciers, ou les coopératives agricoles.</li>
+      </ul>
+
+      <footer>
+        Toutes les données de cette page : World Bank (World Development Indicators),
+        récupérées via l'API publique <a href="https://api.worldbank.org/v2/country/CAF/indicator/">api.worldbank.org</a>, le 2026-09-12.
+        Détail par source sur la page <a href="/sources/">Sources</a>.
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/infrastructures/">Infrastructures</a>
+          <a href="/education/">Éducation</a>
+          <a href="/sante/">Santé</a>
+          <a href="/economie/">Économie</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

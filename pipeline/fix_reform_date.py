@@ -1,6 +1,6 @@
 """Correct valid_from on préfecture/sous-préfecture entities from the bill's
 adoption date (2020-12-10) to the law's actual promulgation date (2021-01-21,
-Loi n°21.001) — a law takes legal effect on promulgation, not adoption. Found and
+Loi n°21.001) - a law takes legal effect on promulgation, not adoption. Found and
 corroborated 2026-09-11, see docs/verification-debt.md's Resolved section.
 
 Usage: uv run python -m pipeline.fix_reform_date

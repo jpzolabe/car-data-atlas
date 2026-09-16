@@ -1,39 +1,71 @@
-# Données RCA
+# BêAfrîka Data
 
 A public reference work about the Central African Republic: national figures
 across themes, drillable down to région, préfecture, sous-préfecture and
-commune — every number carrying its source and its date, and every gap stated
+commune - every number carrying its source and its date, and every gap stated
 rather than hidden.
 
-> Explorer la République centrafricaine — ce que disent les données, d'où
+> Explorer la République centrafricaine - ce que disent les données, d'où
 > elles viennent, et ce que personne n'a encore mesuré.
 
-This repository is early — Phase 0 of the build plan (see below). There is no
-public site yet.
+## What this is
 
-## Start here
+Not a dashboard, not a data portal - a reference work about places and themes
+in the Central African Republic. Three rules shape every page:
 
-- **`CLAUDE.md`** — the standing rules: what this project is, rule zero
-  (never invent data), the geographic-crosswalk problem this project exists
-  to solve, and the technical constraints (zero client JS, 150 KB/page).
-- **`docs/plan.md`** — the full product spec and six-phase build plan.
-- **`docs/decisions.md`** — why the constraints in `CLAUDE.md` exist, and
-  which technical decisions are still open.
+- **Provenance.** No number is ever shown without its source, its date, and
+  the geographic level it refers to.
+- **Freshness is visible.** An old figure looks different from a current one
+  on the page; stale data is never presented with the same confidence as
+  fresh data.
+- **Gaps are content.** Where nothing has been measured, the site says so
+  explicitly, instead of leaving a silent hole.
+
+Themes: population, économie, prix, agriculture, santé, éducation,
+infrastructures. Built for readers on a slow connection first - the site
+ships no client-side JavaScript beyond a search box and a dark-mode toggle,
+and every page stays under 150 KB.
+
+## Status
+
+The site itself is built and functional locally, covering all seven themes
+plus every préfecture. It has not been deployed to a public URL yet.
+
+## Quickstart
+
+Data pipeline (Python, [`uv`](https://docs.astral.sh/uv/)):
+
+```
+uv sync
+uv run python -m pipeline.export_public_data   # regenerate site/public/donnees + site/src/data/donnees.json
+uv run python -m pipeline.export_sources_json   # regenerate site/src/data/sources.json
+```
+
+Each `pipeline/export_*.py` script rebuilds one JSON file the site reads from
+`data/*.csv` via DuckDB - re-run the relevant one after editing a CSV.
+
+Site (Node, `pnpm`):
+
+```
+cd site
+pnpm install
+pnpm dev      # local dev server
+pnpm build    # static build to site/dist, checked against the 150 KB/page budget
+```
 
 ## Layout
 
 ```
-data/       source of truth — CSVs (entities, aliases, sources, indicators,
+data/       source of truth - CSVs (entities, aliases, sources, indicators,
             observations, unresolved). See data/README.md.
 raw/        immutable snapshots of everything fetched. See raw/README.md.
 geo/        GeoJSON boundaries, per entity per version. See geo/README.md.
 fixtures/   fake data for tests only, never real data. See fixtures/README.md.
 pipeline/   Python: fetch, snapshot, transform, validate. See pipeline/README.md.
 site/       the Astro site. See site/README.md.
-docs/       plan, decisions, and other project documentation.
 ```
 
 ## Licence
 
-Data (`data/`, `geo/`, and extractions from `raw/`) is CC BY 4.0 — see
-`LICENCE-DONNEES.md`. Code (`pipeline/`, `site/`) is MIT — see `LICENSE`.
+Data (`data/`, `geo/`, and extractions from `raw/`) is CC BY 4.0 - see
+`LICENCE-DONNEES.md`. Code (`pipeline/`, `site/`) is MIT - see `LICENSE`.

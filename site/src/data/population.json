@@ -1,153 +1,906 @@
 {
-  "generated_note": "Généré à partir de data/observations.csv via pipeline/export_population_json.py — ne pas éditer directement.",
+  "generated_note": "Généré à partir de data/observations.csv via pipeline/export_population_json.py - ne pas éditer directement.",
   "source": {
-    "producer": "citypopulation.de (relaying ICASEES data, per the page's own stated data source)",
-    "dataset_name": "Central African Republic: Administrative Division (Prefectures and Sub-Prefectures)",
+    "producer": "citypopulation.de (relayant les données de l'ICASEES, selon la source indiquée par la page elle-même)",
+    "dataset_name": "République centrafricaine : découpage administratif (préfectures et sous-préfectures)",
     "url": "https://www.citypopulation.de/en/centralafrica/admin/",
     "retrieved_at": "2026-09-09"
   },
+  "definition_fr": "Cet indicateur donne le nombre total d'habitants dénombrés lors d'un recensement, ou estimés par projection entre deux recensements, pour cette entité géographique.",
   "lead_sentence": "En 2021, la population de la préfecture de Bangui était estimée à 1 425 276 habitants.",
   "lead_sentence_template_id": "population_totale_lieu_estime",
+  "national": {
+    "headline": {
+      "value": 6656269.0,
+      "period": "2025",
+      "quality_flag": "provisoire",
+      "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+      "dataset_name": "RGPH-4 - résultats provisoires (recensement)"
+    },
+    "spread_pct": 20.7,
+    "spread_vs_period": "2025",
+    "all_sources": [
+      {
+        "value": 6656269.0,
+        "period": "2025",
+        "quality_flag": "provisoire",
+        "producer": "ICASEES (Institut Centrafricain des Statistiques et des Etudes Economiques et Sociales)",
+        "dataset_name": "RGPH-4 - résultats provisoires (recensement)",
+        "url": "https://www.icasees.org/index.php?q=statistiques&r=resultats"
+      },
+      {
+        "value": 5513282.0,
+        "period": "2025",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5330690.0,
+        "period": "2024",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5152421.0,
+        "period": "2023",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5098039.0,
+        "period": "2022",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      },
+      {
+        "value": 5112100.0,
+        "period": "2021",
+        "quality_flag": "estime",
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population totale (SP.POP.TOTL)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json"
+      }
+    ]
+  },
+  "repartition_sexe": {
+    "hommes": 3312532.0,
+    "femmes": 3343737.0,
+    "hommes_pct": 49.8,
+    "femmes_pct": 50.2
+  },
   "prefectures": [
     {
       "prefecture": "Bangui",
       "region": "Bas-Oubangui",
       "pop_2003": 824057.0,
       "pop_2021": 1425276.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 1486900.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bangui-Centre",
+          "pop_2025": 243097.0
+        },
+        {
+          "name_fr": "Bangui-Fleuve",
+          "pop_2025": 550323.0
+        },
+        {
+          "name_fr": "Bangui-Kagas",
+          "pop_2025": 572373.0
+        },
+        {
+          "name_fr": "Bangui-Rapides",
+          "pop_2025": 121106.0
+        }
+      ]
     },
     {
       "prefecture": "Bamingui-Bangoran",
       "region": "Fertit",
       "pop_2003": 43229.0,
       "pop_2021": 82108.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 86754.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bamingui",
+          "pop_2025": 11258.0
+        },
+        {
+          "name_fr": "Ndélé",
+          "pop_2025": 75496.0
+        }
+      ]
     },
     {
       "prefecture": "Haute-Kotto",
       "region": "Fertit",
       "pop_2003": 90316.0,
       "pop_2021": 128342.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 146455.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bria",
+          "pop_2025": 114965.0
+        },
+        {
+          "name_fr": "Ouadda",
+          "pop_2025": 10201.0
+        },
+        {
+          "name_fr": "Ouandja-Kotto",
+          "pop_2025": 15104.0
+        },
+        {
+          "name_fr": "Yalinga",
+          "pop_2025": 6184.0
+        }
+      ]
     },
     {
       "prefecture": "Vakaga",
       "region": "Fertit",
       "pop_2003": 52255.0,
       "pop_2021": 83188.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 90527.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Am-Dafok",
+          "pop_2025": 10768.0
+        },
+        {
+          "name_fr": "Birao",
+          "pop_2025": 21823.0
+        },
+        {
+          "name_fr": "Ouada-Djallé",
+          "pop_2025": 7464.0
+        },
+        {
+          "name_fr": "Ouandja",
+          "pop_2025": 50472.0
+        }
+      ]
     },
     {
       "prefecture": "Basse-Kotto",
       "region": "Haut-Oubangui",
       "pop_2003": 249150.0,
       "pop_2021": 380172.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 399176.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Alindao",
+          "pop_2025": 131219.0
+        },
+        {
+          "name_fr": "Kembé",
+          "pop_2025": 47999.0
+        },
+        {
+          "name_fr": "Mingala",
+          "pop_2025": 41257.0
+        },
+        {
+          "name_fr": "Mobaye",
+          "pop_2025": 85883.0
+        },
+        {
+          "name_fr": "Satéma",
+          "pop_2025": 39457.0
+        },
+        {
+          "name_fr": "Zangba",
+          "pop_2025": 53361.0
+        }
+      ]
     },
     {
       "prefecture": "Haut-Mbomou",
       "region": "Haut-Oubangui",
       "pop_2003": 57602.0,
       "pop_2021": 52314.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 60113.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bambouti",
+          "pop_2025": 407.0
+        },
+        {
+          "name_fr": "Djémah",
+          "pop_2025": 3202.0
+        },
+        {
+          "name_fr": "Mboki",
+          "pop_2025": 7022.0
+        },
+        {
+          "name_fr": "Obo",
+          "pop_2025": 16837.0
+        },
+        {
+          "name_fr": "Zémio",
+          "pop_2025": 32645.0
+        }
+      ]
     },
     {
       "prefecture": "Mbomou",
       "region": "Haut-Oubangui",
       "pop_2003": 164009.0,
       "pop_2021": 257803.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 271661.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bakouma",
+          "pop_2025": 30410.0
+        },
+        {
+          "name_fr": "Bangassou",
+          "pop_2025": 117194.0
+        },
+        {
+          "name_fr": "Gambo",
+          "pop_2025": 34464.0
+        },
+        {
+          "name_fr": "Ouango",
+          "pop_2025": 66058.0
+        },
+        {
+          "name_fr": "Rafai",
+          "pop_2025": 23534.0
+        }
+      ]
     },
     {
       "prefecture": "Kémo",
       "region": "Kaga",
       "pop_2003": 118420.0,
       "pop_2021": 183742.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 200501.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Dékoa",
+          "pop_2025": 61285.0
+        },
+        {
+          "name_fr": "Mala",
+          "pop_2025": 21469.0
+        },
+        {
+          "name_fr": "Njoukou",
+          "pop_2025": 50881.0
+        },
+        {
+          "name_fr": "Sibut",
+          "pop_2025": 66865.0
+        }
+      ]
     },
     {
       "prefecture": "Nana-Gribizi",
       "region": "Kaga",
       "pop_2003": 117816.0,
       "pop_2021": 208821.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 235690.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Kaga-Bandoro",
+          "pop_2025": 161377.0
+        },
+        {
+          "name_fr": "Mbrès",
+          "pop_2025": 37754.0
+        },
+        {
+          "name_fr": "Nana-Outa",
+          "pop_2025": 36558.0
+        }
+      ]
     },
     {
       "prefecture": "Ouaka",
       "region": "Kaga",
       "pop_2003": 276710.0,
       "pop_2021": 446354.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 466306.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bakala",
+          "pop_2025": 12228.0
+        },
+        {
+          "name_fr": "Bambari",
+          "pop_2025": 227806.0
+        },
+        {
+          "name_fr": "Grimari",
+          "pop_2025": 53088.0
+        },
+        {
+          "name_fr": "Ippy",
+          "pop_2025": 61472.0
+        },
+        {
+          "name_fr": "Kouango",
+          "pop_2025": 111713.0
+        }
+      ]
     },
     {
       "prefecture": "Lobaye",
       "region": "Plateaux",
       "pop_2003": 246875.0,
       "pop_2021": 345108.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 366709.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Boda",
+          "pop_2025": 73029.0
+        },
+        {
+          "name_fr": "Boganangone",
+          "pop_2025": 40931.0
+        },
+        {
+          "name_fr": "Boganda",
+          "pop_2025": 20486.0
+        },
+        {
+          "name_fr": "Mbaïki",
+          "pop_2025": 146973.0
+        },
+        {
+          "name_fr": "Moboma",
+          "pop_2025": 50370.0
+        },
+        {
+          "name_fr": "Mongoumba",
+          "pop_2025": 34920.0
+        }
+      ]
     },
     {
       "prefecture": "Ombella M'Poko",
       "region": "Plateaux",
       "pop_2003": 155438.0,
       "pop_2021": 269809.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 297010.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Boali",
+          "pop_2025": 67723.0
+        },
+        {
+          "name_fr": "Bogangolo",
+          "pop_2025": 12070.0
+        },
+        {
+          "name_fr": "Bossembélé",
+          "pop_2025": 65181.0
+        },
+        {
+          "name_fr": "Damara",
+          "pop_2025": 61912.0
+        },
+        {
+          "name_fr": "Yaloké",
+          "pop_2025": 90123.0
+        }
+      ]
     },
     {
       "prefecture": "Lim-pendé",
       "region": "Yadé",
       "pop_2003": 248948.0,
       "pop_2021": 442151.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 476589.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Kodi",
+          "pop_2025": 47519.0
+        },
+        {
+          "name_fr": "Ndim",
+          "pop_2025": 33878.0
+        },
+        {
+          "name_fr": "Ngaoundaye",
+          "pop_2025": 63907.0
+        },
+        {
+          "name_fr": "Paoua",
+          "pop_2025": 244426.0
+        },
+        {
+          "name_fr": "Taley",
+          "pop_2025": 86860.0
+        }
+      ]
     },
     {
       "prefecture": "Ouham",
       "region": "Yadé",
       "pop_2003": 210021.0,
       "pop_2021": 297904.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 334591.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bossangoa",
+          "pop_2025": 188751.0
+        },
+        {
+          "name_fr": "Markounda",
+          "pop_2025": 41875.0
+        },
+        {
+          "name_fr": "Nana-Bakassa",
+          "pop_2025": 61816.0
+        },
+        {
+          "name_fr": "Nanga-Boguila",
+          "pop_2025": 42149.0
+        }
+      ]
     },
     {
       "prefecture": "Ouham Pendé",
       "region": "Yadé",
       "pop_2003": 181559.0,
       "pop_2021": 243315.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 258469.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bocaranga",
+          "pop_2025": 109571.0
+        },
+        {
+          "name_fr": "Bossemptélé",
+          "pop_2025": 25844.0
+        },
+        {
+          "name_fr": "Bozoum",
+          "pop_2025": 78386.0
+        },
+        {
+          "name_fr": "Koui",
+          "pop_2025": 44669.0
+        }
+      ]
     },
     {
       "prefecture": "Ouham-Fafa",
       "region": "Yadé",
       "pop_2003": 159199.0,
       "pop_2021": 225479.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 242745.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Batangafo",
+          "pop_2025": 95085.0
+        },
+        {
+          "name_fr": "Bouca",
+          "pop_2025": 86787.0
+        },
+        {
+          "name_fr": "Kabo",
+          "pop_2025": 50032.0
+        },
+        {
+          "name_fr": "Sido",
+          "pop_2025": 10841.0
+        }
+      ]
     },
     {
       "prefecture": "Mambéré",
       "region": "Équateur",
       "pop_2003": 167260.0,
       "pop_2021": 265479.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 329273.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Amada-Gaza",
+          "pop_2025": 20319.0
+        },
+        {
+          "name_fr": "Carnot",
+          "pop_2025": 183706.0
+        },
+        {
+          "name_fr": "Gadzi",
+          "pop_2025": 97966.0
+        },
+        {
+          "name_fr": "Semkpa-Mbaéré",
+          "pop_2025": 27281.0
+        }
+      ]
     },
     {
       "prefecture": "Mambéré-Kadéï",
       "region": "Équateur",
       "pop_2003": 197535.0,
       "pop_2021": 273166.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 285505.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Berbérati",
+          "pop_2025": 199199.0
+        },
+        {
+          "name_fr": "Dédé-Mokouba",
+          "pop_2025": 24253.0
+        },
+        {
+          "name_fr": "Gamboula",
+          "pop_2025": 43268.0
+        },
+        {
+          "name_fr": "Sosso-Nakombo",
+          "pop_2025": 18785.0
+        }
+      ]
     },
     {
       "prefecture": "Nana-Mambéré",
       "region": "Équateur",
       "pop_2003": 233666.0,
       "pop_2021": 341796.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 377443.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Abba",
+          "pop_2025": 33625.0
+        },
+        {
+          "name_fr": "Baboua",
+          "pop_2025": 82555.0
+        },
+        {
+          "name_fr": "Baoro",
+          "pop_2025": 63764.0
+        },
+        {
+          "name_fr": "Bouar",
+          "pop_2025": 197498.0
+        }
+      ]
     },
     {
       "prefecture": "Sangha-Mbaéré",
       "region": "Équateur",
       "pop_2003": 101074.0,
       "pop_2021": 138770.0,
-      "pop_2021_flag": "estime"
+      "pop_2021_flag": "estime",
+      "pop_2025": 154965.0,
+      "sous_prefectures": [
+        {
+          "name_fr": "Bambio",
+          "pop_2025": 27615.0
+        },
+        {
+          "name_fr": "Bayanga",
+          "pop_2025": 20940.0
+        },
+        {
+          "name_fr": "Nola",
+          "pop_2025": 106410.0
+        }
+      ]
+    }
+  ],
+  "other_indicators": [
+    {
+      "indicator_id": "taux_croissance_population",
+      "name_fr": "Croissance de la population",
+      "definition_fr": "Ce taux mesure la variation d'une année sur l'autre du nombre total d'habitants. Un taux positif signifie une population en hausse, un taux négatif une population en baisse.",
+      "latest": {
+        "period": "2025",
+        "value": 3.36794044132968
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 1.59035970102042
+        },
+        {
+          "period": "2012",
+          "value": 0.998867377606297
+        },
+        {
+          "period": "2013",
+          "value": 0.682377856508138
+        },
+        {
+          "period": "2014",
+          "value": -0.415235398986532
+        },
+        {
+          "period": "2015",
+          "value": 0.132677645471712
+        },
+        {
+          "period": "2016",
+          "value": 1.80553237158984
+        },
+        {
+          "period": "2017",
+          "value": 1.67978155291511
+        },
+        {
+          "period": "2018",
+          "value": 1.76068487647458
+        },
+        {
+          "period": "2019",
+          "value": 1.34469255324203
+        },
+        {
+          "period": "2020",
+          "value": 1.64324789708014
+        },
+        {
+          "period": "2021",
+          "value": 1.68608971248183
+        },
+        {
+          "period": "2022",
+          "value": -0.275432271573156
+        },
+        {
+          "period": "2023",
+          "value": 1.06107453184959
+        },
+        {
+          "period": "2024",
+          "value": 3.40139844069992
+        },
+        {
+          "period": "2025",
+          "value": 3.36794044132968
+        }
+      ],
+      "lead_sentence": "En 2025, le taux de croissance de la population en République centrafricaine s'établissait à 3,4%.",
+      "lead_sentence_template_id": "taux_croissance_population_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Croissance de la population, % annuel (SP.POP.GROW)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.GROW?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "taux_urbanisation",
+      "name_fr": "Population urbaine",
+      "definition_fr": "Ce taux mesure la part de la population résidant dans une zone classée urbaine par les autorités nationales. La définition d'une zone « urbaine » varie toutefois d'un pays à l'autre.",
+      "latest": {
+        "period": "2025",
+        "value": 44.5532156681816
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 38.8030669465007
+        },
+        {
+          "period": "2012",
+          "value": 39.0301696038517
+        },
+        {
+          "period": "2013",
+          "value": 39.3042963482777
+        },
+        {
+          "period": "2014",
+          "value": 39.6226521868738
+        },
+        {
+          "period": "2015",
+          "value": 39.9824421267351
+        },
+        {
+          "period": "2016",
+          "value": 40.3808711749566
+        },
+        {
+          "period": "2017",
+          "value": 40.8151443386334
+        },
+        {
+          "period": "2018",
+          "value": 41.2824666248606
+        },
+        {
+          "period": "2019",
+          "value": 41.7800430407332
+        },
+        {
+          "period": "2020",
+          "value": 42.3050785933463
+        },
+        {
+          "period": "2021",
+          "value": 42.8547782897949
+        },
+        {
+          "period": "2022",
+          "value": 43.2751967457285
+        },
+        {
+          "period": "2023",
+          "value": 43.6983692134165
+        },
+        {
+          "period": "2024",
+          "value": 44.1243555638904
+        },
+        {
+          "period": "2025",
+          "value": 44.5532156681816
+        }
+      ],
+      "lead_sentence": "En 2025, la part de la population urbaine en République centrafricaine s'établissait à 44,6%.",
+      "lead_sentence_template_id": "taux_urbanisation_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Population urbaine, % de la population totale (SP.URB.TOTL.IN.ZS)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.URB.TOTL.IN.ZS?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "taux_dependance_demographique",
+      "name_fr": "Taux de dépendance démographique",
+      "definition_fr": "Ce taux rapporte la population de moins de 15 ans et de 65 ans et plus à celle de 15 à 64 ans, en âge de travailler. Il peut dépasser 100 ; un chiffre élevé indique que chaque personne en âge de travailler soutient, en moyenne, un nombre important de personnes à charge.",
+      "latest": {
+        "period": "2025",
+        "value": 103.585626770159
+      },
+      "series": [
+        {
+          "period": "2011",
+          "value": 92.9822017540374
+        },
+        {
+          "period": "2012",
+          "value": 95.3176865088711
+        },
+        {
+          "period": "2013",
+          "value": 97.9595630955148
+        },
+        {
+          "period": "2014",
+          "value": 101.4546167589
+        },
+        {
+          "period": "2015",
+          "value": 103.91701516784
+        },
+        {
+          "period": "2016",
+          "value": 104.212210458458
+        },
+        {
+          "period": "2017",
+          "value": 104.593668985404
+        },
+        {
+          "period": "2018",
+          "value": 104.958245074818
+        },
+        {
+          "period": "2019",
+          "value": 104.954476234215
+        },
+        {
+          "period": "2020",
+          "value": 104.549331492918
+        },
+        {
+          "period": "2021",
+          "value": 105.023375496256
+        },
+        {
+          "period": "2022",
+          "value": 105.587559345916
+        },
+        {
+          "period": "2023",
+          "value": 105.177562449203
+        },
+        {
+          "period": "2024",
+          "value": 104.726849849797
+        },
+        {
+          "period": "2025",
+          "value": 103.585626770159
+        }
+      ],
+      "lead_sentence": "En 2025, le taux de dépendance démographique en République centrafricaine s'établissait à 103,6%.",
+      "lead_sentence_template_id": "taux_dependance_demographique_pays",
+      "source": {
+        "producer": "World Bank (World Development Indicators)",
+        "dataset_name": "Taux de dépendance démographique, % de la population d'âge actif (SP.POP.DPND)",
+        "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.DPND?format=json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "enregistrement_naissances",
+      "name_fr": "Enregistrement des naissances (moins de 5 ans)",
+      "definition_fr": "Ce taux mesure la part des enfants de moins de 5 ans dont la naissance a été enregistrée auprès d'une autorité civile. Sans acte de naissance, l'accès à l'école, aux soins ou à une pièce d'identité peut être compliqué plus tard dans la vie.",
+      "latest": {
+        "period": "2019",
+        "value": 44.8
+      },
+      "series": [
+        {
+          "period": "2019",
+          "value": 44.8
+        }
+      ],
+      "lead_sentence": "En 2019, le taux d'enregistrement des naissances chez les moins de 5 ans en République centrafricaine s'établissait à 44,8%.",
+      "lead_sentence_template_id": "enregistrement_naissances_pays",
+      "source": {
+        "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+        "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+        "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+        "retrieved_at": "2026-09-12"
+      }
+    },
+    {
+      "indicator_id": "mariage_precoce_filles",
+      "name_fr": "Mariage avant 18 ans (femmes de 20 à 24 ans)",
+      "definition_fr": "Ce taux mesure la part des femmes de 20 à 24 ans mariées ou en union avant l'âge de 18 ans.",
+      "latest": {
+        "period": "2019",
+        "value": 61.0
+      },
+      "series": [
+        {
+          "period": "2019",
+          "value": 61.0
+        }
+      ],
+      "lead_sentence": "En 2019, la part des femmes de 20 à 24 ans mariées avant 18 ans en République centrafricaine s'établissait à 61,0%.",
+      "lead_sentence_template_id": "mariage_precoce_filles_pays",
+      "source": {
+        "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+        "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+        "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+        "retrieved_at": "2026-09-12"
+      }
     }
   ]
 }

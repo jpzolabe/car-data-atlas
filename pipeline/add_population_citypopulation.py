@@ -3,10 +3,10 @@ admin table (which relays ICASEES 2003 census and 2021 estimate figures).
 
 Source: raw/citypopulation-de-caf/2026-09-09/admin_table_transcribed.csv, manually
 transcribed from the fetched page (raw HTML snapshot alongside it). Not yet parsed
-programmatically from the HTML — see data/sources.csv access_notes.
+programmatically from the HTML - see data/sources.csv access_notes.
 
-2003 column: recensement (RGPH-3), no quality_flag needed — a validated census result.
-2021 column: quality_flag=estime — the source itself states this breakdown came from
+2003 column: recensement (RGPH-3), no quality_flag needed - a validated census result.
+2021 column: quality_flag=estime - the source itself states this breakdown came from
 "incomplete digital mapping done in preparation of the next population census."
 
 Usage: uv run python -m pipeline.add_population_citypopulation

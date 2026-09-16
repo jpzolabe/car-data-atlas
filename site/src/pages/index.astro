@@ -1,80 +1,400 @@
 ---
-// Still a placeholder, not the real home page from docs/plan.md §2.2 —
-// that needs the headline-card/lead-story/theme-grid structure once more
-// than one indicator exists. This just links to what's actually built so
-// far instead of being a dead end.
+// The real home page, docs/plan.md Sec2.2. Redesigned 2026-09-13, twice
+// the same day: first pass still felt like a stack of same-weight boxes
+// with no focal point, so that got replaced with one hero moment
+// (population) plus a de-emphasized ticker for the other 5 quick
+// figures. That hero briefly carried an embedded ranked-préfectures bar
+// chart too - cut again almost immediately, this time on direct
+// feedback with a screenshot: the chart made the block visually heavy
+// and didn't hold up at phone widths (long value labels like "1 425
+// 276" clipped past the chart's right edge at narrow widths - a real
+// rendering bug, not just a size preference). The hero is headline
+// figure + source + link only now; the full ranked chart already lives
+// on /population/ itself, so nothing was actually lost.
+//
+// Theme grid (5 main themes, prix/agriculture nested under économie) and
+// the "no icons except one functional glyph family" stance are unchanged
+// from the previous pass - those calls were right, the overall
+// composition around them wasn't.
+//
+// Client JS on this page: the search box (existing exception) plus the
+// sitewide dark-mode toggle every page carries - see CLAUDE.md's
+// performance budget and ThemeToggle.astro. Everything else is computed
+// here at build time from the same JSON artifacts each theme page
+// already reads.
+import population from "../data/population.json";
+import prix from "../data/prix.json";
+import infrastructures from "../data/infrastructures.json";
+import education from "../data/education.json";
+import economie from "../data/economie.json";
+import prefectureMaps from "../data/prefecture_maps.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+
+const CURRENT_YEAR = 2026;
+const yearOf = (period: string) => Number(period.slice(0, 4));
+// méthode.astro's own threshold table: "< 5 ans" = actuel, "5 ans" = déjà
+// ancien - so exactly 5 years old must already read as stale.
+const isStale = (period: string) => CURRENT_YEAR - yearOf(period) >= 5;
+
+const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
+const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+// One-glyph icon per theme, same stroke style as the nav bar's home icon
+// (currentColor, 2px stroke, round caps) so the whole set reads as one
+// family rather than mismatched clip-art - wayfinding, not decoration.
+const ICONS = {
+  population: `<circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20v-1.2a6.5 6.5 0 0 1 13 0V20"></path>`,
+  infrastructures: `<path d="M13 2 5 14h5.5L9 22l9-13h-5.5L13 2Z"></path>`,
+  education: `<path d="M12 6.2c-2-1.4-5-1.9-8-1.4v13.4c3-.5 6 0 8 1.4 2-1.4 5-1.9 8-1.4V4.8c-3-.5-6 0-8 1.4Z"></path><path d="M12 6.2v13.4"></path>`,
+  sante: `<path d="M12 20s-7.3-4.4-9.6-8.7C.6 7.8 2.2 4 6 4c2.1 0 3.9 1.4 6 4 2.1-2.6 3.9-4 6-4 3.8 0 5.4 3.8 3.6 7.3C19.3 15.6 12 20 12 20Z"></path>`,
+  economie: `<path d="M4 4v16h16"></path><path d="M7 15.5l4-4.5 3.2 3 5-6"></path>`,
+};
+
+// 5 main themes, not all 7 site sections - prix and agriculture nest
+// under économie (their own pages/nav entries still exist elsewhere).
+const THEMES = [
+  { name: "Économie", href: "/economie/", accent: "var(--t-eco)", icon: ICONS.economie,
+    description: "PIB, commerce extérieur, dette - et prix et agriculture, en détail.",
+    subLinks: [
+      { name: "Prix", href: "/prix/" },
+      { name: "Agriculture", href: "/agriculture/" },
+    ] },
+  { name: "Santé", href: "/sante/", accent: "var(--t-sante)", icon: ICONS.sante,
+    description: "Espérance de vie, mortalité, vaccination, établissements de santé." },
+  { name: "Population", href: "/population/", accent: "var(--t-pop)", icon: ICONS.population,
+    description: "Recensements et projections, jusqu'à la sous-préfecture." },
+  { name: "Infrastructures", href: "/infrastructures/", accent: "var(--t-infra)", icon: ICONS.infrastructures,
+    description: "Électricité, eau, assainissement, internet et téléphonie." },
+  { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
+    description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
+];
+
+// taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
+// figure on /economie/ (administrative data outranks a modelled
+// estimate there, per méthode.astro's authority ranking - correct and
+// unchanged). The home page ticker wants a current snapshot instead, so
+// this takes the last point of the World Bank series directly.
+const croissancePibSeries = economie.categories
+  .flatMap((c: any) => c.indicators)
+  .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
+const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
+const electricite = infrastructures.series[infrastructures.series.length - 1];
+const reussiteBac = education.categories
+  .flatMap((c: any) => c.indicators)
+  .find((i: any) => i.indicator_id === "taux_reussite_baccalaureat").latest;
+
+// De-emphasized ticker, deliberately mixing fresh and stale (docs/plan.md
+// Sec2.2: "showing that a figure comes from an older survey is the
+// point") - secondary to the population hero below, not another grid of
+// equal-weight boxes.
+const SECONDARY_STATS = [
+  {
+    label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
+    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/",
+  },
+  {
+    label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
+    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/",
+  },
+  {
+    label: "Électricité", value: fmtPct(electricite.value), unit: "%",
+    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/",
+  },
+  {
+    label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
+    period: `${reussiteBac.period} (1er tour)`, accent: "var(--t-edu)", href: "/education/",
+  },
+];
 ---
 <!doctype html>
 <html lang="fr">
   <head>
+    <ThemeInit />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Données RCA</title>
+    <title>BêAfrîka Data</title>
     <style>
       :root {
-        --paper: #EDEEE6;
-        --ink: #1B2420;
-        --ink-muted: #5A6259;
-        --indigo: #2A56A8;
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #8C8F7F; --indigo: #6FA0E8; --line: #33362A;
+        --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
+        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
+      }
+      :root[data-theme="light"] {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
+        --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+        --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
+        --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+        --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+      }
+        body { background: #fff !important; background-image: none !important; }
+        #search { display: none; }
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: system-ui, sans-serif;
-        display: flex;
-        min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1200px 640px at 15% -10%, color-mix(in srgb, var(--indigo) 9%, transparent), transparent 60%),
+          radial-gradient(900px 520px at 100% 10%, color-mix(in srgb, var(--t-prix) 6%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
-      main {
-        max-width: 40ch;
-        text-align: center;
+      main { max-width: 900px; margin: 0 auto; padding: 88px 24px 80px; }
+
+      .hero { text-align: center; margin: 0 auto 8px; max-width: 640px; }
+      .hero-map {
+        display: block; width: 84px; height: auto; margin: 0 auto 16px;
       }
-      h1 {
-        font-size: 1.75rem;
-        margin: 0 0 12px;
+      .hero-map path { fill: var(--t-pop); }
+      h1 { font-size: 2.75rem; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
+      h1 .wordmark-data { color: var(--t-pop); font-weight: 400; margin-left: 7px; }
+      .tagline { margin: 14px auto 26px; max-width: 560px; text-align: center; }
+      .tagline-lead { color: var(--ink); font-size: 17px; font-weight: 600; margin: 0 0 8px; }
+      .tagline-detail { color: var(--ink-muted); font-size: 14.5px; line-height: 1.7; margin: 0; }
+
+      #search { max-width: 480px; margin: 0 auto; text-align: left; position: relative; }
+      #search input {
+        width: 100%; font: inherit; font-size: 1rem; padding: 13px 16px;
+        border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink);
+        box-shadow: 0 2px 10px -4px rgba(0,0,0,0.08);
       }
-      p {
-        color: var(--ink-muted);
-        line-height: 1.5;
-        margin: 0;
+      #search input:focus { outline: 2px solid var(--indigo); outline-offset: 1px; }
+      #search-results {
+        list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
+        width: 100%; background: var(--paper); border-radius: 6px;
       }
-      .status {
-        margin-top: 24px;
-        font-family: ui-monospace, monospace;
-        font-size: 0.75rem;
-        color: var(--indigo);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+      #search-results li:first-child { border-top: none; }
+      #search-results li { border-top: 1px solid var(--line); padding: 10px 2px; text-align: left; }
+      #search-results a { color: var(--indigo); font-size: 0.9rem; text-decoration: none; }
+      #search-results a:hover { text-decoration: underline; }
+      #search-results .excerpt { display: block; color: var(--ink-muted); font-size: 0.8rem; margin-top: 3px; }
+      #search-results .excerpt mark { background: none; color: var(--ink); font-weight: 600; }
+      #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; text-align: left; }
+
+      h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 44px 0 14px; }
+
+      .hero-stat {
+        margin-top: 36px; padding: 22px 26px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 4px solid var(--t-pop); border-radius: 6px;
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
       }
-      nav {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        gap: 16px;
+      .hero-stat-label { font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 8px; }
+      .hero-stat-value {
+        font-family: ui-monospace, monospace; font-size: 2.3rem; font-weight: 700; color: var(--t-pop);
+        margin: 0; line-height: 1; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
       }
-      nav a {
-        color: var(--indigo);
-        font-size: 0.9rem;
+      .hero-stat-value .unit { font-size: 0.85rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .hero-stat-source { font-size: 12px; color: var(--ink-muted); margin: 8px 0 0; max-width: 46ch; }
+      .hero-stat-cta {
+        font-size: 13px; color: var(--t-pop); text-decoration: none; white-space: nowrap;
+        padding-bottom: 3px; border-bottom: 1px solid color-mix(in srgb, var(--t-pop) 40%, transparent);
+        flex: none;
       }
+      .hero-stat-cta:hover { border-bottom-color: var(--t-pop); }
+      .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 10px; padding: 2px 6px; border-radius: 2px; background: var(--ochre-soft); color: var(--ochre); }
+
+      .ticker {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+        overflow: hidden;
+      }
+      .ticker-item {
+        display: flex; flex-direction: column; gap: 3px; padding: 12px 14px;
+        text-decoration: none; color: inherit; border-left: 1px solid var(--line);
+        transition: background-color 0.15s ease;
+      }
+      .ticker-item:first-child { border-left: none; }
+      .ticker-item:hover { background: color-mix(in srgb, var(--ticker-accent) 6%, transparent); }
+      .ticker-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.02em; }
+      .ticker-item:hover .ticker-label { color: var(--ink-muted); }
+      .ticker-value { font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: var(--ticker-accent); }
+      .ticker-value .unit { font-size: 10px; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .ticker-period { font-size: 10px; color: var(--ink-faint); }
+      .ticker-period.stale { color: var(--stale); }
+
+      .theme-rows {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+      .theme-row {
+        padding: 15px 17px; border-radius: 5px;
+        background: var(--surface); border: 1px solid var(--line);
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+      }
+      .theme-row:hover { border-color: var(--row-accent); background: color-mix(in srgb, var(--row-accent) 5%, var(--surface)); }
+      .theme-row .theme-heading { display: flex; align-items: center; gap: 9px; }
+      .theme-row .theme-icon { flex: none; color: var(--row-accent); }
+      .theme-row .theme-name { font-size: 15.5px; font-weight: 600; color: var(--row-accent); text-decoration: none; }
+      .theme-row .theme-name:hover { text-decoration: underline; }
+      .theme-row .theme-description { font-size: 12px; color: var(--ink-muted); margin: 7px 0 0; line-height: 1.45; }
+      .theme-row .theme-sublinks { margin: 9px 0 0; display: flex; gap: 12px; }
+      .theme-row .theme-sublinks a {
+        font-size: 11.5px; color: var(--ink-faint);
+        text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px;
+      }
+      .theme-row .theme-sublinks a:hover { color: var(--row-accent); }
+
+      footer {
+        margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--line);
+        font-size: 12.5px; color: var(--ink-faint); display: flex; flex-wrap: wrap;
+        justify-content: space-between; gap: 12px;
+      }
+      footer a { color: var(--ink-muted); }
+      .site-nav { display: flex; gap: 14px; flex-wrap: wrap; }
+      .site-nav a { color: var(--indigo); transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Données RCA</h1>
-      <p>
-        Explorer la République centrafricaine — ce que disent les données,
-        d'où elles viennent, et ce que personne n'a encore mesuré.
-      </p>
-      <p class="status">En construction — deux indicateurs pour l'instant</p>
-      <nav>
-        <a href="/population/">Population par préfecture →</a>
-        <a href="/prix/">Indice des prix →</a>
-      </nav>
+    <SiteNav />
+    <main id="main-content">
+      <div class="hero">
+        <!-- Small solid emblem above the title, not a background watermark
+             behind the text - a translucent full-width version (tried first)
+             overlapped and muddied the tagline and identity strip below it.
+             Giving the map its own space instead of sharing it with copy
+             sidesteps the saturation/legibility fight entirely. -->
+        <svg class="hero-map" viewBox={prefectureMaps.view_box} aria-hidden="true">
+          <path d={prefectureMaps.country_path}></path>
+        </svg>
+        <h1>BêAfrîka<span class="wordmark-data">Data</span></h1>
+        <div class="tagline">
+          <p class="tagline-lead">Explorer la République centrafricaine à travers ses données !</p>
+          <p class="tagline-detail">
+            Ce qu'elles disent, d'où elles viennent et à quoi elles servent.
+            Cette plateforme agrège les données existantes sur la RCA afin de
+            fournir un point d'entrée unique : un outil simple, rapide et
+            fiable. Chaque donnée est accompagnée de sa source et de son
+            année de production.
+          </p>
+        </div>
+        <div id="search">
+          <input
+            type="text" id="search-input"
+            placeholder="Rechercher une préfecture, un indicateur…"
+            aria-label="Rechercher une préfecture, un indicateur"
+            autocomplete="off"
+          />
+          <span id="search-status" aria-live="polite"></span>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+
+      <div class="hero-stat">
+        <div>
+          <p class="hero-stat-label">Population</p>
+          <p class="hero-stat-value">
+            {fmt(population.national.headline.value)}<span class="unit">habitants</span>
+            <span class="badge">provisoire</span>
+          </p>
+          <p class="hero-stat-source">ICASEES, RGPH-4 - résultats provisoires (recensement), {population.national.headline.period}</p>
+        </div>
+        <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
+      </div>
+
+      <div class="ticker">
+        {SECONDARY_STATS.map((s) => (
+          <a class="ticker-item" href={s.href} style={`--ticker-accent: ${s.accent}`}>
+            <span class="ticker-label">{s.label}</span>
+            <span class="ticker-value">{s.value}<span class="unit">{s.unit}</span></span>
+            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>{s.period}</span>
+          </a>
+        ))}
+      </div>
+
+      <h2>Explorer par thème</h2>
+      <div class="theme-rows">
+        {THEMES.map((t) => (
+          <div class="theme-row" style={`--row-accent: ${t.accent}`}>
+            <div class="theme-heading">
+              <svg class="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={t.icon} />
+              <a class="theme-name" href={t.href}>{t.name}</a>
+            </div>
+            <p class="theme-description">{t.description}</p>
+            {t.subLinks && (
+              <div class="theme-sublinks">
+                {t.subLinks.map((s) => <a href={s.href}>{s.name}</a>)}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <footer>
+        <span>
+          Données sous licence CC BY 4.0 (par source, voir <a href="/sources/">Sources</a>).
+          Code sous licence MIT, <a href="https://github.com/jpzolabe/car-data-atlas">github.com/jpzolabe/car-data-atlas</a>.
+        </span>
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/infrastructures/">Infrastructures</a>
+          <a href="/education/">Éducation</a>
+          <a href="/sante/">Santé</a>
+          <a href="/economie/">Économie</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
     </main>
+
+    <script is:inline type="module">
+      // Hand-built, not Pagefind's default UI bundle (~134 KB of JS/CSS for
+      // widget chrome) - this site's page-weight budget is real, so search
+      // uses the raw Pagefind API (~45 KB, loaded only on this page) plus a
+      // few lines of vanilla JS matching the site's own styling instead.
+      let pagefind;
+      const input = document.getElementById("search-input");
+      const results = document.getElementById("search-results");
+      const status = document.getElementById("search-status");
+
+      async function ensurePagefind() {
+        if (!pagefind) {
+          pagefind = await import("/pagefind/pagefind.js");
+          await pagefind.init();
+        }
+        return pagefind;
+      }
+
+      let debounceTimer;
+      input.addEventListener("input", () => {
+        clearTimeout(debounceTimer);
+        const term = input.value.trim();
+        if (!term) {
+          results.innerHTML = "";
+          status.textContent = "";
+          return;
+        }
+        debounceTimer = setTimeout(async () => {
+          status.textContent = "Recherche…";
+          const pf = await ensurePagefind();
+          const search = await pf.search(term);
+          const items = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+          status.textContent = items.length
+            ? `${items.length} résultat(s)`
+            : `Aucun résultat pour « ${term} ».`;
+          results.innerHTML = items
+            .map(
+              (item) =>
+                `<li><a href="${item.url}">${item.meta.title || item.url}</a>` +
+                `<span class="excerpt">${item.excerpt}</span></li>`
+            )
+            .join("");
+        }, 150);
+      });
+    </script>
   </body>
 </html>

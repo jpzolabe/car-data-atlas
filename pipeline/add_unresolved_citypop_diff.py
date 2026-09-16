@@ -6,7 +6,7 @@ per-préfecture count table this refines.
 Two different kinds of disagreement, logged distinctly:
 - "missing": citypopulation.de simply doesn't list a sous-préfecture COD-AB has.
   citypopulation.de's own page admits its 2021 breakdown is based on "incomplete
-  digital mapping" — plausible, not confirmed, explanation.
+  digital mapping" - plausible, not confirmed, explanation.
 - "conflict": names/codes actively disagree between the two sources, not just
   presence/absence. Bangui's whole naming scheme differs; Kodi/Ndim have a genuine
   p-code collision, re-verified directly (not a fetch-summary artifact).
@@ -35,18 +35,18 @@ CONFLICTS = [
         "Kodi",
         "COD-AB v02 code CF344 ; citypopulation.de code CF343 pour la même "
         "sous-préfecture (re-vérifié directement le 2026-09-09, citypopulation.de "
-        "note \"(← Ngaoundaye)\" suggérant une création récente par scission — "
+        "note \"(← Ngaoundaye)\" suggérant une création récente par scission - "
         "hypothèse d'un désaccord de re-numérotation, non confirmée).",
     ),
     (
         "Bangui-Centre / Bangui-Kagas / Bangui-Fleuve / Bangui-Rapides (COD-AB v02) "
         "vs. Bangui / Bimbo / Bégoua (citypopulation.de)",
         "Bangui : les deux sources ne s'accordent pas seulement sur le nombre "
-        "(4 vs 3) mais sur le schéma de nommage lui-même — COD-AB v02 utilise des "
+        "(4 vs 3) mais sur le schéma de nommage lui-même - COD-AB v02 utilise des "
         "zones (Centre/Kagas/Fleuve/Rapides), citypopulation.de utilise des noms "
         "de lieux (Bimbo, Bégoua) qui correspondent à des communes réelles. "
         "Chevauchement partiel des codes (CF711-713) mais avec des noms "
-        "différents attachés. Non résolu — nécessite une source supplémentaire "
+        "différents attachés. Non résolu - nécessite une source supplémentaire "
         "pour trancher plutôt qu'un choix arbitraire entre les deux schémas.",
     ),
 ]

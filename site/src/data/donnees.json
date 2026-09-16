@@ -1,0 +1,121 @@
+{
+  "generated_note": "Généré depuis data/ via pipeline/export_public_data.py - ne pas éditer directement.",
+  "files": [
+    {
+      "name": "entities.csv",
+      "rows": 154,
+      "description": "Une ligne par unité administrative, par version. Jamais modifié en place - un redécoupage crée une nouvelle entité."
+    },
+    {
+      "name": "aliases.csv",
+      "rows": 168,
+      "description": "Chaque orthographe, variante d'accent et code source, rattachés à un identifiant canonique."
+    },
+    {
+      "name": "sources.csv",
+      "rows": 55,
+      "description": "Une ligne par source : producteur, licence, cadence, vintage géographique, mise en garde éventuelle."
+    },
+    {
+      "name": "indicators.csv",
+      "rows": 91,
+      "description": "Un indicateur par ligne : définition, unité, thème, et le niveau géographique le plus fin qu'il atteint réellement."
+    },
+    {
+      "name": "observations.csv",
+      "rows": 5553,
+      "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
+    },
+    {
+      "name": "unresolved.csv",
+      "rows": 9,
+      "description": "Chaque cas que le rapprochement des sources n'a pas su résoudre - un livrable, pas un journal d'échecs."
+    }
+  ],
+  "coverage": [
+    {
+      "theme_id": "population",
+      "label": "Population",
+      "total": 8,
+      "by_level": {
+        "pays": 8,
+        "region": 1,
+        "prefecture": 1,
+        "sous_prefecture": 1
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "infrastructures",
+      "label": "Infrastructures",
+      "total": 5,
+      "by_level": {
+        "pays": 5,
+        "region": 0,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "education",
+      "label": "Éducation",
+      "total": 19,
+      "by_level": {
+        "pays": 19,
+        "region": 0,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "sante",
+      "label": "Santé",
+      "total": 19,
+      "by_level": {
+        "pays": 19,
+        "region": 1,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "economie",
+      "label": "Économie",
+      "total": 19,
+      "by_level": {
+        "pays": 19,
+        "region": 0,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "agriculture",
+      "label": "Agriculture",
+      "total": 11,
+      "by_level": {
+        "pays": 11,
+        "region": 0,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 0
+    },
+    {
+      "theme_id": "prix",
+      "label": "Prix",
+      "total": 10,
+      "by_level": {
+        "pays": 5,
+        "region": 0,
+        "prefecture": 0,
+        "sous_prefecture": 0
+      },
+      "marche": 5
+    }
+  ]
+}

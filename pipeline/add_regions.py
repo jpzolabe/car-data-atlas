@@ -4,7 +4,7 @@ the crosswalk).
 
 Source: 7 individual pages on minurbanisme-rca.org (Ministère de l'Urbanisme), each
 naming one région's constituent préfectures and chef-lieu, fetched and quoted
-2026-09-05. Not a law/decree — this is the ministry's own regional-directorate
+2026-09-05. Not a law/decree - this is the ministry's own regional-directorate
 structure, cross-checked only by the fact that its 7 lists sum to exactly 20
 préfectures with no overlaps or gaps against data/entities.csv.
 
@@ -27,9 +27,9 @@ REGIONS = [
 
 SOURCE_ID = "minurbanisme-rca-regions"
 REGION_VALID_FROM = "2024-06-01"  # governors for the new régions were first named
-# June 2024 per reporting found alongside these pages — this is the régions-as-a-
+# June 2024 per reporting found alongside these pages - this is the régions-as-a-
 # governance-layer date, not necessarily RGPH-4's own régions definition date.
-# Not independently verified further than that reporting — see verification-debt.md.
+# Not independently verified further than that reporting - see verification-debt.md.
 
 
 def main():
@@ -61,7 +61,7 @@ def main():
                 "(2026-09-05) ; ce n'est pas un texte de loi, et n'a été "
                 "recoupé que par le fait que les 7 régions couvrent "
                 "exactement les 20 préfectures sans chevauchement ni "
-                "manque — voir docs/verification-debt.md."
+                "manque - voir docs/verification-debt.md."
             ),
         })
         new_aliases.append({

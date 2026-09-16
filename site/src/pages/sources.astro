@@ -1,0 +1,148 @@
+---
+// Source register - docs/plan.md §2.7: "This page is what makes an
+// institution take the project seriously." Reads site/src/data/sources.json,
+// materialized by pipeline/export_sources_json.py from data/sources.csv.
+import data from "../data/sources.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+const sources = data.sources;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Sources - BêAfrîka Data</title>
+    <style>
+      :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #8C8F7F; --line: #33362A; --indigo: #6FA0E8;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
+      }
+      :root[data-theme="light"] {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--indigo) 8%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--indigo) 5%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+      }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+      .source-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+        gap: 22px; align-items: start;
+      }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
+      h1 { font-size: 1.8rem; margin: 0 0 8px; }
+      .lede { color: var(--ink-muted); margin: 0 0 28px; }
+      .source-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 16px 18px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      }
+      .source-card:hover {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--indigo) 40%, var(--line));
+        box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--indigo) 50%, transparent);
+      }
+      .source-card h2 { font-size: 15.5px; margin: 0 0 4px; }
+      .source-card .dataset { color: var(--ink-muted); font-size: 13.5px; margin: 0 0 10px; }
+      .meta-row {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px 18px; font-size: 12.5px; margin-bottom: 8px;
+      }
+      .meta-row div span.k {
+        display: block; font-family: ui-monospace, monospace; font-size: 10px;
+        text-transform: uppercase; color: var(--ink-faint); letter-spacing: .04em; margin-bottom: 2px;
+      }
+      .licence-flag {
+        display: inline-block; font-family: ui-monospace, monospace; font-size: 10px;
+        background: var(--ochre-soft); color: var(--ochre); padding: 1px 6px; border-radius: 2px;
+        margin-left: 6px; vertical-align: middle;
+      }
+      details { margin-top: 8px; font-size: 13px; }
+      summary { cursor: pointer; color: var(--indigo); font-family: ui-monospace, monospace; font-size: 11.5px; }
+      details p { color: var(--ink-muted); margin: 8px 0 0; }
+      .source-card a.url { font-size: 12.5px; word-break: break-all; }
+      footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+      .site-nav a { color: var(--indigo); font-size: 12.5px; }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Sources</h1>
+      <p class="lede">
+        Chaque source utilisée sur ce site, avec sa licence, sa date de
+        récupération et - quand elle existe - la mise en garde qui va avec.
+        Une licence signalée ⚠ a une restriction de réutilisation réelle,
+        pas seulement théorique.
+      </p>
+
+      <div class="source-grid">
+        {sources.map((s) => (
+          <div class="source-card">
+            <h2>{s.producer}</h2>
+            <p class="dataset">{s.dataset_name}</p>
+            <div class="meta-row">
+              <div><span class="k">Licence</span>{s.licence}{s.licence_notes && <span class="licence-flag">⚠ voir note</span>}</div>
+              <div><span class="k">Cadence</span>{s.update_cadence || "-"}</div>
+              <div><span class="k">Récupéré le</span>{s.retrieved_at || "-"}</div>
+              <div><span class="k">Couverture</span>{s.geography_vintage || "-"}</div>
+            </div>
+            {s.url && <a class="url" href={s.url}>{s.url}</a>}
+            {s.licence_notes && (
+              <details>
+                <summary>Note sur la licence</summary>
+                <p>{s.licence_notes}</p>
+              </details>
+            )}
+            {s.access_notes && (
+              <details>
+                <summary>Comment cette source est utilisée ici</summary>
+                <p>{s.access_notes}</p>
+              </details>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <footer>
+        {sources.length} sources au total. Voir <code>data/sources.csv</code>
+        pour les données brutes.
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/infrastructures/">Infrastructures</a>
+          <a href="/education/">Éducation</a>
+          <a href="/sante/">Santé</a>
+          <a href="/economie/">Économie</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

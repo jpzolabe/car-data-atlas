@@ -1,0 +1,3037 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_education_json.py - ne pas éditer directement.",
+  "headline": {
+    "indicator_id": "taux_achevement_primaire",
+    "latest": {
+      "period": "2019",
+      "value": 27.04540061950684,
+      "quality_flag": "enquete"
+    },
+    "national": {
+      "headline": {
+        "value": 27.04540061950684,
+        "period": "2019",
+        "quality_flag": "enquete",
+        "producer": "UNESCO Institut de statistique (UIS)",
+        "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)"
+      },
+      "spread_pct": 7.4,
+      "spread_vs_period": "2019",
+      "all_sources": [
+        {
+          "value": 27.04540061950684,
+          "period": "2019",
+          "quality_flag": "enquete",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+        },
+        {
+          "value": 29.21999931335449,
+          "period": "2019",
+          "quality_flag": "estime",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+        },
+        {
+          "value": 42.91474914550781,
+          "period": "2010",
+          "quality_flag": "enquete",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+        },
+        {
+          "value": 25.17000007629395,
+          "period": "2010",
+          "quality_flag": "estime",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+        },
+        {
+          "value": 25.72724914550781,
+          "period": "2006",
+          "quality_flag": "enquete",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+        },
+        {
+          "value": 22.94000053405762,
+          "period": "2006",
+          "quality_flag": "estime",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+        },
+        {
+          "value": 21.01,
+          "period": "2000",
+          "quality_flag": "enquete",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+        },
+        {
+          "value": 21.53000068664551,
+          "period": "2000",
+          "quality_flag": "estime",
+          "producer": "UNESCO Institut de statistique (UIS)",
+          "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+          "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+        }
+      ]
+    },
+    "series": [
+      {
+        "period": "1981",
+        "value": 18.73999977111816
+      },
+      {
+        "period": "1982",
+        "value": 18.90999984741211
+      },
+      {
+        "period": "1983",
+        "value": 19.06999969482422
+      },
+      {
+        "period": "1984",
+        "value": 19.23999977111816
+      },
+      {
+        "period": "1985",
+        "value": 19.43000030517578
+      },
+      {
+        "period": "1986",
+        "value": 19.6200008392334
+      },
+      {
+        "period": "1987",
+        "value": 19.88999938964844
+      },
+      {
+        "period": "1988",
+        "value": 20.14999961853027
+      },
+      {
+        "period": "1989",
+        "value": 20.3700008392334
+      },
+      {
+        "period": "1990",
+        "value": 20.56999969482422
+      },
+      {
+        "period": "1991",
+        "value": 20.70999908447266
+      },
+      {
+        "period": "1992",
+        "value": 20.81999969482422
+      },
+      {
+        "period": "1993",
+        "value": 20.88999938964844
+      },
+      {
+        "period": "1994",
+        "value": 20.95999908447266
+      },
+      {
+        "period": "1995",
+        "value": 21.07999992370605
+      },
+      {
+        "period": "1996",
+        "value": 21.20000076293945
+      },
+      {
+        "period": "1997",
+        "value": 21.38999938964844
+      },
+      {
+        "period": "1998",
+        "value": 21.45000076293945
+      },
+      {
+        "period": "1999",
+        "value": 21.52000045776367
+      },
+      {
+        "period": "2000",
+        "value": 21.53000068664551
+      },
+      {
+        "period": "2001",
+        "value": 21.55999946594238
+      },
+      {
+        "period": "2002",
+        "value": 21.63999938964844
+      },
+      {
+        "period": "2003",
+        "value": 21.81999969482422
+      },
+      {
+        "period": "2004",
+        "value": 22.07999992370605
+      },
+      {
+        "period": "2005",
+        "value": 22.45999908447266
+      },
+      {
+        "period": "2006",
+        "value": 22.94000053405762
+      },
+      {
+        "period": "2007",
+        "value": 23.5
+      },
+      {
+        "period": "2008",
+        "value": 24.03000068664551
+      },
+      {
+        "period": "2009",
+        "value": 24.59000015258789
+      },
+      {
+        "period": "2010",
+        "value": 25.17000007629395
+      },
+      {
+        "period": "2011",
+        "value": 25.79000091552734
+      },
+      {
+        "period": "2012",
+        "value": 26.30999946594238
+      },
+      {
+        "period": "2013",
+        "value": 26.82999992370605
+      },
+      {
+        "period": "2014",
+        "value": 27.26000022888184
+      },
+      {
+        "period": "2015",
+        "value": 27.70999908447266
+      },
+      {
+        "period": "2016",
+        "value": 28.11000061035156
+      },
+      {
+        "period": "2017",
+        "value": 28.54000091552734
+      },
+      {
+        "period": "2018",
+        "value": 28.89999961853027
+      },
+      {
+        "period": "2019",
+        "value": 29.21999931335449
+      },
+      {
+        "period": "2020",
+        "value": 29.54999923706055
+      },
+      {
+        "period": "2021",
+        "value": 29.79000091552734
+      },
+      {
+        "period": "2022",
+        "value": 30.03000068664551
+      },
+      {
+        "period": "2023",
+        "value": 30.32999992370605
+      },
+      {
+        "period": "2024",
+        "value": 30.54999923706055
+      },
+      {
+        "period": "2025",
+        "value": 30.81999969482422
+      }
+    ],
+    "survey_points": [
+      {
+        "period": "2000",
+        "value": 21.01
+      },
+      {
+        "period": "2006",
+        "value": 25.72724914550781
+      },
+      {
+        "period": "2010",
+        "value": 42.91474914550781
+      },
+      {
+        "period": "2019",
+        "value": 27.04540061950684
+      }
+    ],
+    "lead_sentence": "En 2019, 27,0% d'une cohorte d'âge avait achevé l'enseignement primaire en République centrafricaine, selon la dernière enquête nationale disponible.",
+    "lead_sentence_template_id": "taux_achevement_primaire_pays_enquete",
+    "source": {
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+      "retrieved_at": "2026-09-12"
+    },
+    "source_survey": {
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+      "retrieved_at": "2026-09-12"
+    },
+    "name_fr": "Taux d'achèvement du primaire",
+    "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un chiffre bas signifie que beaucoup d'enfants entrent à l'école sans en terminer le cycle, et non qu'ils n'y entrent jamais."
+  },
+  "categories": [
+    {
+      "key": "ressources",
+      "label_fr": "Ressources scolaires",
+      "indicators": [
+        {
+          "indicator_id": "nombre_etablissements_scolaires",
+          "latest": {
+            "period": "2024",
+            "value": 4078.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 4078.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 4 078 établissements scolaires.",
+          "lead_sentence_template_id": "nombre_etablissements_scolaires_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre d'établissements scolaires",
+          "definition_fr": "Cet indicateur donne un décompte national des établissements scolaires (préscolaire, primaire, secondaire, technique et professionnel), public et privé confondus, à partir du recensement scolaire administratif annuel.",
+          "unit": "établissements"
+        },
+        {
+          "indicator_id": "effectif_eleves",
+          "latest": {
+            "period": "2024",
+            "value": 1425970.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 1425970.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 1 425 970 élèves.",
+          "lead_sentence_template_id": "effectif_eleves_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Effectif des élèves",
+          "definition_fr": "Cet indicateur donne le nombre total d'élèves inscrits, tous niveaux d'enseignement confondus, du préscolaire à l'enseignement technique et professionnel, public et privé confondus.",
+          "unit": "élèves"
+        },
+        {
+          "indicator_id": "nombre_enseignants",
+          "latest": {
+            "period": "2024",
+            "value": 18959.0,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "2024",
+              "value": 18959.0
+            }
+          ],
+          "lead_sentence": "Pour l'année scolaire 2024-2025, la République centrafricaine comptait 18 959 enseignants.",
+          "lead_sentence_template_id": "nombre_enseignants_pays",
+          "source": {
+            "producer": "ICASEES / Ministère de l'Éducation Nationale (Direction Générale des Études, des Statistiques et de la Planification)",
+            "dataset_name": "Annuaire Statistique de l'Éducation 2024-2025",
+            "url": "https://icasees.org/index.php/publications/tableau-de-bord/education-annuaire-statistique-2024-2025-excel/download",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Nombre d'enseignants",
+          "definition_fr": "Cet indicateur donne le nombre total d'enseignants en poste, tous niveaux d'enseignement confondus, public et privé confondus.",
+          "unit": "enseignants"
+        }
+      ]
+    },
+    {
+      "key": "scolarisation",
+      "label_fr": "Scolarisation",
+      "indicators": [
+        {
+          "indicator_id": "taux_scolarisation_net_primaire",
+          "latest": {
+            "period": "2012",
+            "value": 62.10514831542969,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1971",
+              "value": 41.30102157592773
+            },
+            {
+              "period": "1972",
+              "value": 43.49893951416016
+            },
+            {
+              "period": "1973",
+              "value": 45.39469146728516
+            },
+            {
+              "period": "1977",
+              "value": 42.18550109863281
+            },
+            {
+              "period": "1978",
+              "value": 42.73484039306641
+            },
+            {
+              "period": "1981",
+              "value": 50.18886184692383
+            },
+            {
+              "period": "1982",
+              "value": 53.58449172973633
+            },
+            {
+              "period": "1983",
+              "value": 57.07403945922852
+            },
+            {
+              "period": "1986",
+              "value": 63.21735000610352
+            },
+            {
+              "period": "1987",
+              "value": 52.91696166992188
+            },
+            {
+              "period": "1988",
+              "value": 50.52188110351563
+            },
+            {
+              "period": "1989",
+              "value": 50.25603866577148
+            },
+            {
+              "period": "1990",
+              "value": 58.40776062011719
+            },
+            {
+              "period": "1991",
+              "value": 53.05331039428711
+            },
+            {
+              "period": "2005",
+              "value": 42.54558181762695
+            },
+            {
+              "period": "2006",
+              "value": 42.74797058105469
+            },
+            {
+              "period": "2007",
+              "value": 49.93352127075195
+            },
+            {
+              "period": "2008",
+              "value": 58.19178009033203
+            },
+            {
+              "period": "2009",
+              "value": 58.48981857299805
+            },
+            {
+              "period": "2010",
+              "value": 61.92502975463867
+            },
+            {
+              "period": "2011",
+              "value": 59.54299163818359
+            },
+            {
+              "period": "2012",
+              "value": 62.10514831542969
+            }
+          ],
+          "lead_sentence": "En 2012, le taux net de scolarisation dans le primaire en République centrafricaine s'établissait à 62,1%.",
+          "lead_sentence_template_id": "taux_scolarisation_net_primaire_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux net de scolarisation, primaire",
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le primaire et ayant l'âge officiel du primaire à la population de cet âge. Contrairement au taux brut, il ne peut pas dépasser 100 %, puisqu'il ne compte que les élèves ayant l'âge attendu pour ce cycle."
+        },
+        {
+          "indicator_id": "taux_scolarisation_brut_primaire",
+          "latest": {
+            "period": "2016",
+            "value": 96.8125991821289,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1971",
+              "value": 53.77951049804688
+            },
+            {
+              "period": "1972",
+              "value": 52.8709716796875
+            },
+            {
+              "period": "1973",
+              "value": 56.12878036499023
+            },
+            {
+              "period": "1974",
+              "value": 56.41395950317383
+            },
+            {
+              "period": "1975",
+              "value": 58.96860122680664
+            },
+            {
+              "period": "1976",
+              "value": 58.72499847412109
+            },
+            {
+              "period": "1977",
+              "value": 61.30345153808594
+            },
+            {
+              "period": "1978",
+              "value": 61.65982055664063
+            },
+            {
+              "period": "1979",
+              "value": 61.69538879394531
+            },
+            {
+              "period": "1980",
+              "value": 62.12615966796875
+            },
+            {
+              "period": "1981",
+              "value": 62.95542907714844
+            },
+            {
+              "period": "1982",
+              "value": 66.81968688964844
+            },
+            {
+              "period": "1983",
+              "value": 70.02423095703125
+            },
+            {
+              "period": "1984",
+              "value": 75.16403198242188
+            },
+            {
+              "period": "1985",
+              "value": 78.85787200927734
+            },
+            {
+              "period": "1986",
+              "value": 78.17089080810547
+            },
+            {
+              "period": "1987",
+              "value": 67.70252990722656
+            },
+            {
+              "period": "1988",
+              "value": 68.61475372314453
+            },
+            {
+              "period": "1989",
+              "value": 68.73835754394531
+            },
+            {
+              "period": "1990",
+              "value": 71.35777282714844
+            },
+            {
+              "period": "1991",
+              "value": 64.96514129638672
+            },
+            {
+              "period": "1992",
+              "value": 56.02481842041016
+            },
+            {
+              "period": "2001",
+              "value": 68.3127670288086
+            },
+            {
+              "period": "2002",
+              "value": 60.43114852905273
+            },
+            {
+              "period": "2003",
+              "value": 59.68717956542969
+            },
+            {
+              "period": "2004",
+              "value": 51.28705978393555
+            },
+            {
+              "period": "2005",
+              "value": 57.08509063720703
+            },
+            {
+              "period": "2006",
+              "value": 56.70103073120117
+            },
+            {
+              "period": "2007",
+              "value": 65.55345916748047
+            },
+            {
+              "period": "2008",
+              "value": 75.85034942626953
+            },
+            {
+              "period": "2009",
+              "value": 77.42991638183594
+            },
+            {
+              "period": "2010",
+              "value": 81.2789535522461
+            },
+            {
+              "period": "2011",
+              "value": 81.35040283203125
+            },
+            {
+              "period": "2012",
+              "value": 81.93150329589844
+            },
+            {
+              "period": "2016",
+              "value": 96.8125991821289
+            }
+          ],
+          "lead_sentence": "En 2016, le taux brut de scolarisation dans le primaire en République centrafricaine s'établissait à 96,8%.",
+          "lead_sentence_template_id": "taux_scolarisation_brut_primaire_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux brut de scolarisation, primaire",
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le primaire, quel que soit leur âge, à la population d'âge officiellement primaire. Il peut dépasser 100 %, car les redoublants et les entrées tardives comptent dans les effectifs sans changer la population de référence."
+        },
+        {
+          "indicator_id": "taux_scolarisation_brut_secondaire_1er_cycle",
+          "latest": {
+            "period": "2017",
+            "value": 20.71093940734863,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1991",
+              "value": 15.99234008789063
+            },
+            {
+              "period": "1992",
+              "value": 13.04098033905029
+            },
+            {
+              "period": "2001",
+              "value": 13.19246006011963
+            },
+            {
+              "period": "2002",
+              "value": 13.21870040893555
+            },
+            {
+              "period": "2006",
+              "value": 14.20818996429443
+            },
+            {
+              "period": "2008",
+              "value": 14.34568023681641
+            },
+            {
+              "period": "2009",
+              "value": 15.45201969146729
+            },
+            {
+              "period": "2011",
+              "value": 21.09590911865234
+            },
+            {
+              "period": "2012",
+              "value": 20.58604049682617
+            },
+            {
+              "period": "2016",
+              "value": 17.31715965270996
+            },
+            {
+              "period": "2017",
+              "value": 20.71093940734863
+            }
+          ],
+          "lead_sentence": "En 2017, le taux brut de scolarisation dans le premier cycle du secondaire en République centrafricaine s'établissait à 20,7%.",
+          "lead_sentence_template_id": "taux_scolarisation_brut_secondaire_1er_cycle_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux brut de scolarisation, premier cycle du secondaire",
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le premier cycle du secondaire, quel que soit leur âge, à la population d'âge officiel correspondant."
+        },
+        {
+          "indicator_id": "taux_scolarisation_brut_secondaire_2nd_cycle",
+          "latest": {
+            "period": "2017",
+            "value": 8.584810256958008,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1991",
+              "value": 6.943459987640381
+            },
+            {
+              "period": "1992",
+              "value": 5.956910133361816
+            },
+            {
+              "period": "2001",
+              "value": 7.521759986877441
+            },
+            {
+              "period": "2002",
+              "value": 7.531439781188965
+            },
+            {
+              "period": "2009",
+              "value": 6.88916015625
+            },
+            {
+              "period": "2011",
+              "value": 8.23882007598877
+            },
+            {
+              "period": "2012",
+              "value": 8.240530014038086
+            },
+            {
+              "period": "2016",
+              "value": 8.86497974395752
+            },
+            {
+              "period": "2017",
+              "value": 8.584810256958008
+            }
+          ],
+          "lead_sentence": "En 2017, le taux brut de scolarisation dans le second cycle du secondaire en République centrafricaine s'établissait à 8,6%.",
+          "lead_sentence_template_id": "taux_scolarisation_brut_secondaire_2nd_cycle_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux brut de scolarisation, second cycle du secondaire",
+          "definition_fr": "Ce taux rapporte les effectifs scolarisés dans le second cycle du secondaire, quel que soit leur âge, à la population d'âge officiel correspondant."
+        },
+        {
+          "indicator_id": "taux_scolarisation_brut_superieur",
+          "latest": {
+            "period": "2012",
+            "value": 2.775199890136719,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1971",
+              "value": 0.0844599977135658
+            },
+            {
+              "period": "1974",
+              "value": 0.1860699951648712
+            },
+            {
+              "period": "1975",
+              "value": 0.1997800022363663
+            },
+            {
+              "period": "1976",
+              "value": 0.3168599903583527
+            },
+            {
+              "period": "1977",
+              "value": 0.3448300063610077
+            },
+            {
+              "period": "1978",
+              "value": 0.4601800143718719
+            },
+            {
+              "period": "1979",
+              "value": 0.6640599966049194
+            },
+            {
+              "period": "1980",
+              "value": 0.9198799729347229
+            },
+            {
+              "period": "1981",
+              "value": 0.7435700297355652
+            },
+            {
+              "period": "1982",
+              "value": 1.086750030517578
+            },
+            {
+              "period": "1983",
+              "value": 0.9091799855232239
+            },
+            {
+              "period": "1984",
+              "value": 1.001559972763062
+            },
+            {
+              "period": "1985",
+              "value": 1.033169984817505
+            },
+            {
+              "period": "1986",
+              "value": 1.071290016174316
+            },
+            {
+              "period": "1987",
+              "value": 0.9764000177383423
+            },
+            {
+              "period": "1988",
+              "value": 1.08144998550415
+            },
+            {
+              "period": "1989",
+              "value": 1.188740015029907
+            },
+            {
+              "period": "1990",
+              "value": 1.321140050888062
+            },
+            {
+              "period": "1991",
+              "value": 1.430989980697632
+            },
+            {
+              "period": "1992",
+              "value": 1.349740028381348
+            },
+            {
+              "period": "1999",
+              "value": 2.015880107879639
+            },
+            {
+              "period": "2000",
+              "value": 1.943699955940247
+            },
+            {
+              "period": "2004",
+              "value": 1.66786003112793
+            },
+            {
+              "period": "2006",
+              "value": 1.086750030517578
+            },
+            {
+              "period": "2008",
+              "value": 2.164959907531738
+            },
+            {
+              "period": "2009",
+              "value": 2.30814003944397
+            },
+            {
+              "period": "2010",
+              "value": 2.538810014724731
+            },
+            {
+              "period": "2011",
+              "value": 2.95497989654541
+            },
+            {
+              "period": "2012",
+              "value": 2.775199890136719
+            }
+          ],
+          "lead_sentence": "En 2012, le taux brut de scolarisation dans l'enseignement supérieur en République centrafricaine s'établissait à 2,8%.",
+          "lead_sentence_template_id": "taux_scolarisation_brut_superieur_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux brut de scolarisation, enseignement supérieur",
+          "definition_fr": "Ce taux rapporte les effectifs inscrits dans l'enseignement supérieur, quel que soit leur âge, à la population ayant l'âge théorique de sortie du secondaire."
+        }
+      ]
+    },
+    {
+      "key": "retention",
+      "label_fr": "Rétention et abandon",
+      "indicators": [
+        {
+          "indicator_id": "taux_redoublement_primaire",
+          "latest": {
+            "period": "2011",
+            "value": 23.21821975708008,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1971",
+              "value": 27.88599014282227
+            },
+            {
+              "period": "1973",
+              "value": 33.31114959716797
+            },
+            {
+              "period": "1975",
+              "value": 36.21015167236328
+            },
+            {
+              "period": "1976",
+              "value": 33.72140884399414
+            },
+            {
+              "period": "1980",
+              "value": 35.49517059326172
+            },
+            {
+              "period": "1981",
+              "value": 36.65333938598633
+            },
+            {
+              "period": "1982",
+              "value": 36.84077072143555
+            },
+            {
+              "period": "1986",
+              "value": 30.94886016845703
+            },
+            {
+              "period": "1987",
+              "value": 36.30656814575195
+            },
+            {
+              "period": "1988",
+              "value": 35.16490173339844
+            },
+            {
+              "period": "1990",
+              "value": 30.19610023498535
+            },
+            {
+              "period": "1991",
+              "value": 33.53112030029297
+            },
+            {
+              "period": "2003",
+              "value": 26.72113990783691
+            },
+            {
+              "period": "2005",
+              "value": 28.61771011352539
+            },
+            {
+              "period": "2008",
+              "value": 24.78128051757813
+            },
+            {
+              "period": "2009",
+              "value": 21.6672306060791
+            },
+            {
+              "period": "2010",
+              "value": 23.00481986999512
+            },
+            {
+              "period": "2011",
+              "value": 23.21821975708008
+            }
+          ],
+          "lead_sentence": "En 2011, le taux de redoublement dans le primaire en République centrafricaine s'établissait à 23,2%.",
+          "lead_sentence_template_id": "taux_redoublement_primaire_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de redoublement, primaire",
+          "definition_fr": "Ce taux mesure la part des élèves du primaire, toutes années confondues, inscrits dans la même classe que l'année précédente. Un taux élevé indique un système où beaucoup d'élèves redoublent plutôt que de progresser."
+        },
+        {
+          "indicator_id": "taux_survie_primaire",
+          "latest": {
+            "period": "2011",
+            "value": 46.55628967285156,
+            "quality_flag": "administratif"
+          },
+          "series": [
+            {
+              "period": "1971",
+              "value": 29.87431907653809
+            },
+            {
+              "period": "1973",
+              "value": 44.29169082641602
+            },
+            {
+              "period": "1975",
+              "value": 49.89739990234375
+            },
+            {
+              "period": "1976",
+              "value": 55.66487884521484
+            },
+            {
+              "period": "1980",
+              "value": 40.86925888061523
+            },
+            {
+              "period": "1981",
+              "value": 55.20932006835938
+            },
+            {
+              "period": "1982",
+              "value": 47.98012161254883
+            },
+            {
+              "period": "1986",
+              "value": 17.13858032226563
+            },
+            {
+              "period": "1987",
+              "value": 58.60385894775391
+            },
+            {
+              "period": "1988",
+              "value": 50.73912048339844
+            },
+            {
+              "period": "1990",
+              "value": 28.37822914123535
+            },
+            {
+              "period": "1991",
+              "value": 16.36006927490234
+            },
+            {
+              "period": "2008",
+              "value": 46.4432487487793
+            },
+            {
+              "period": "2009",
+              "value": 46.89445114135742
+            },
+            {
+              "period": "2010",
+              "value": 46.47282028198242
+            },
+            {
+              "period": "2011",
+              "value": 46.55628967285156
+            }
+          ],
+          "lead_sentence": "En 2011, le taux de survie jusqu'à la dernière année du primaire en République centrafricaine s'établissait à 46,6%.",
+          "lead_sentence_template_id": "taux_survie_primaire_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de survie jusqu'à la dernière année du primaire",
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'élèves entrés en première année du primaire qui atteignent la dernière année du cycle, avec ou sans redoublement. Il se lit comme l'inverse d'un taux d'abandon."
+        },
+        {
+          "indicator_id": "taux_non_scolarisation_primaire",
+          "latest": {
+            "period": "2012",
+            "value": 37.89485168457031,
+            "quality_flag": "administratif"
+          },
+          "national": {
+            "headline": {
+              "value": 37.89485168457031,
+              "period": "2012",
+              "quality_flag": "administratif",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes"
+            },
+            "spread_pct": 6.4,
+            "spread_vs_period": "2012",
+            "all_sources": [
+              {
+                "value": 37.89485168457031,
+                "period": "2012",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 40.5,
+                "period": "2012",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 40.45700836181641,
+                "period": "2011",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 41.70000076293945,
+                "period": "2011",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 38.07497024536133,
+                "period": "2010",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 43.29999923706055,
+                "period": "2010",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 41.51018142700195,
+                "period": "2009",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 45.20000076293945,
+                "period": "2009",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 41.80821990966797,
+                "period": "2008",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 47.5,
+                "period": "2008",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 50.06647872924805,
+                "period": "2007",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 50.40000152587891,
+                "period": "2007",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 57.25202941894531,
+                "period": "2006",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 53.09999847412109,
+                "period": "2006",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 57.45441818237305,
+                "period": "2005",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 55.59999847412109,
+                "period": "2005",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 46.94668960571289,
+                "period": "1991",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 41.59223937988281,
+                "period": "1990",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 49.74396133422852,
+                "period": "1989",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 49.47811889648438,
+                "period": "1988",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 47.08303833007813,
+                "period": "1987",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 36.78264999389648,
+                "period": "1986",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 42.92596054077148,
+                "period": "1983",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 46.41550827026367,
+                "period": "1982",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 49.81113815307617,
+                "period": "1981",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 57.26515960693359,
+                "period": "1978",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 57.81449890136719,
+                "period": "1977",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 54.60530853271484,
+                "period": "1973",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 56.50106048583984,
+                "period": "1972",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 58.69897842407227,
+                "period": "1971",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "2000",
+              "value": 67.0999984741211
+            },
+            {
+              "period": "2001",
+              "value": 65.30000305175781
+            },
+            {
+              "period": "2002",
+              "value": 63.20000076293945
+            },
+            {
+              "period": "2003",
+              "value": 60.79999923706055
+            },
+            {
+              "period": "2004",
+              "value": 58.09999847412109
+            },
+            {
+              "period": "2005",
+              "value": 55.59999847412109
+            },
+            {
+              "period": "2006",
+              "value": 53.09999847412109
+            },
+            {
+              "period": "2007",
+              "value": 50.40000152587891
+            },
+            {
+              "period": "2008",
+              "value": 47.5
+            },
+            {
+              "period": "2009",
+              "value": 45.20000076293945
+            },
+            {
+              "period": "2010",
+              "value": 43.29999923706055
+            },
+            {
+              "period": "2011",
+              "value": 41.70000076293945
+            },
+            {
+              "period": "2012",
+              "value": 40.5
+            },
+            {
+              "period": "2013",
+              "value": 40.0
+            },
+            {
+              "period": "2014",
+              "value": 40.59999847412109
+            },
+            {
+              "period": "2015",
+              "value": 41.79999923706055
+            },
+            {
+              "period": "2016",
+              "value": 43.59999847412109
+            },
+            {
+              "period": "2017",
+              "value": 45.5
+            },
+            {
+              "period": "2018",
+              "value": 47.29999923706055
+            },
+            {
+              "period": "2019",
+              "value": 48.5
+            },
+            {
+              "period": "2020",
+              "value": 49.0
+            },
+            {
+              "period": "2021",
+              "value": 48.70000076293945
+            },
+            {
+              "period": "2022",
+              "value": 48.29999923706055
+            },
+            {
+              "period": "2023",
+              "value": 47.90000152587891
+            },
+            {
+              "period": "2024",
+              "value": 47.40000152587891
+            },
+            {
+              "period": "2025",
+              "value": 46.59999847412109
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "1971",
+              "value": 58.69897842407227
+            },
+            {
+              "period": "1972",
+              "value": 56.50106048583984
+            },
+            {
+              "period": "1973",
+              "value": 54.60530853271484
+            },
+            {
+              "period": "1977",
+              "value": 57.81449890136719
+            },
+            {
+              "period": "1978",
+              "value": 57.26515960693359
+            },
+            {
+              "period": "1981",
+              "value": 49.81113815307617
+            },
+            {
+              "period": "1982",
+              "value": 46.41550827026367
+            },
+            {
+              "period": "1983",
+              "value": 42.92596054077148
+            },
+            {
+              "period": "1986",
+              "value": 36.78264999389648
+            },
+            {
+              "period": "1987",
+              "value": 47.08303833007813
+            },
+            {
+              "period": "1988",
+              "value": 49.47811889648438
+            },
+            {
+              "period": "1989",
+              "value": 49.74396133422852
+            },
+            {
+              "period": "1990",
+              "value": 41.59223937988281
+            },
+            {
+              "period": "1991",
+              "value": 46.94668960571289
+            },
+            {
+              "period": "2005",
+              "value": 57.45441818237305
+            },
+            {
+              "period": "2006",
+              "value": 57.25202941894531
+            },
+            {
+              "period": "2007",
+              "value": 50.06647872924805
+            },
+            {
+              "period": "2008",
+              "value": 41.80821990966797
+            },
+            {
+              "period": "2009",
+              "value": 41.51018142700195
+            },
+            {
+              "period": "2010",
+              "value": 38.07497024536133
+            },
+            {
+              "period": "2011",
+              "value": 40.45700836181641
+            },
+            {
+              "period": "2012",
+              "value": 37.89485168457031
+            }
+          ],
+          "lead_sentence": "En 2012, 37,9% des enfants d'âge du primaire n'étaient pas scolarisés en République centrafricaine, selon la dernière donnée administrative disponible.",
+          "lead_sentence_template_id": "taux_non_scolarisation_primaire_pays_administratif",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de non-scolarisation, âge du primaire",
+          "definition_fr": "Ce taux mesure la part des enfants ayant l'âge officiel du primaire qui ne sont scolarisés à aucun niveau, primaire ou autre."
+        },
+        {
+          "indicator_id": "taux_non_scolarisation_secondaire_1er_cycle",
+          "latest": {
+            "period": "2012",
+            "value": 60.14358139038086,
+            "quality_flag": "administratif"
+          },
+          "national": {
+            "headline": {
+              "value": 60.14358139038086,
+              "period": "2012",
+              "quality_flag": "administratif",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes"
+            },
+            "spread_pct": 7.4,
+            "spread_vs_period": "2012",
+            "all_sources": [
+              {
+                "value": 60.14358139038086,
+                "period": "2012",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 56.0,
+                "period": "2012",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 59.71908187866211,
+                "period": "2011",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 57.79999923706055,
+                "period": "2011",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 63.21358871459961,
+                "period": "2009",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 61.40000152587891,
+                "period": "2009",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 77.79894256591797,
+                "period": "1973",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 80.48013305664062,
+                "period": "1972",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 76.77559661865234,
+                "period": "1971",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "2000",
+              "value": 72.30000305175781
+            },
+            {
+              "period": "2001",
+              "value": 71.4000015258789
+            },
+            {
+              "period": "2002",
+              "value": 70.5999984741211
+            },
+            {
+              "period": "2003",
+              "value": 70.0999984741211
+            },
+            {
+              "period": "2004",
+              "value": 69.5
+            },
+            {
+              "period": "2005",
+              "value": 68.5
+            },
+            {
+              "period": "2006",
+              "value": 67.0
+            },
+            {
+              "period": "2007",
+              "value": 65.0999984741211
+            },
+            {
+              "period": "2008",
+              "value": 63.29999923706055
+            },
+            {
+              "period": "2009",
+              "value": 61.40000152587891
+            },
+            {
+              "period": "2010",
+              "value": 59.5
+            },
+            {
+              "period": "2011",
+              "value": 57.79999923706055
+            },
+            {
+              "period": "2012",
+              "value": 56.0
+            },
+            {
+              "period": "2013",
+              "value": 54.09999847412109
+            },
+            {
+              "period": "2014",
+              "value": 52.20000076293945
+            },
+            {
+              "period": "2015",
+              "value": 50.5
+            },
+            {
+              "period": "2016",
+              "value": 49.0
+            },
+            {
+              "period": "2017",
+              "value": 48.09999847412109
+            },
+            {
+              "period": "2018",
+              "value": 47.79999923706055
+            },
+            {
+              "period": "2019",
+              "value": 47.79999923706055
+            },
+            {
+              "period": "2020",
+              "value": 48.70000076293945
+            },
+            {
+              "period": "2021",
+              "value": 50.40000152587891
+            },
+            {
+              "period": "2022",
+              "value": 52.40000152587891
+            },
+            {
+              "period": "2023",
+              "value": 54.0
+            },
+            {
+              "period": "2024",
+              "value": 54.70000076293945
+            },
+            {
+              "period": "2025",
+              "value": 54.90000152587891
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "1971",
+              "value": 76.77559661865234
+            },
+            {
+              "period": "1972",
+              "value": 80.48013305664062
+            },
+            {
+              "period": "1973",
+              "value": 77.79894256591797
+            },
+            {
+              "period": "2009",
+              "value": 63.21358871459961
+            },
+            {
+              "period": "2011",
+              "value": 59.71908187866211
+            },
+            {
+              "period": "2012",
+              "value": 60.14358139038086
+            }
+          ],
+          "lead_sentence": "En 2012, 60,1% des adolescents d'âge du premier cycle du secondaire n'étaient pas scolarisés en République centrafricaine, selon la dernière donnée administrative disponible.",
+          "lead_sentence_template_id": "taux_non_scolarisation_secondaire_1er_cycle_pays_administratif",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de non-scolarisation, âge du premier cycle du secondaire",
+          "definition_fr": "Ce taux mesure la part des adolescents ayant l'âge officiel du premier cycle du secondaire qui ne sont scolarisés à aucun niveau."
+        },
+        {
+          "indicator_id": "taux_non_scolarisation_secondaire_2nd_cycle",
+          "latest": {
+            "period": "2012",
+            "value": 85.9157485961914,
+            "quality_flag": "administratif"
+          },
+          "national": {
+            "headline": {
+              "value": 85.9157485961914,
+              "period": "2012",
+              "quality_flag": "administratif",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes"
+            },
+            "spread_pct": 5.3,
+            "spread_vs_period": "2012",
+            "all_sources": [
+              {
+                "value": 85.9157485961914,
+                "period": "2012",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 81.5999984741211,
+                "period": "2012",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 85.3030776977539,
+                "period": "2011",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 82.5999984741211,
+                "period": "2011",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              },
+              {
+                "value": 89.99529266357422,
+                "period": "2009",
+                "quality_flag": "administratif",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1"
+              },
+              {
+                "value": 84.80000305175781,
+                "period": "2009",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "2000",
+              "value": 88.0999984741211
+            },
+            {
+              "period": "2001",
+              "value": 87.5999984741211
+            },
+            {
+              "period": "2002",
+              "value": 87.19999694824219
+            },
+            {
+              "period": "2003",
+              "value": 86.69999694824219
+            },
+            {
+              "period": "2004",
+              "value": 86.19999694824219
+            },
+            {
+              "period": "2005",
+              "value": 85.9000015258789
+            },
+            {
+              "period": "2006",
+              "value": 85.9000015258789
+            },
+            {
+              "period": "2007",
+              "value": 85.80000305175781
+            },
+            {
+              "period": "2008",
+              "value": 85.5
+            },
+            {
+              "period": "2009",
+              "value": 84.80000305175781
+            },
+            {
+              "period": "2010",
+              "value": 83.69999694824219
+            },
+            {
+              "period": "2011",
+              "value": 82.5999984741211
+            },
+            {
+              "period": "2012",
+              "value": 81.5999984741211
+            },
+            {
+              "period": "2013",
+              "value": 80.4000015258789
+            },
+            {
+              "period": "2014",
+              "value": 79.0999984741211
+            },
+            {
+              "period": "2015",
+              "value": 77.9000015258789
+            },
+            {
+              "period": "2016",
+              "value": 76.69999694824219
+            },
+            {
+              "period": "2017",
+              "value": 75.0999984741211
+            },
+            {
+              "period": "2018",
+              "value": 73.0
+            },
+            {
+              "period": "2019",
+              "value": 71.4000015258789
+            },
+            {
+              "period": "2020",
+              "value": 70.30000305175781
+            },
+            {
+              "period": "2021",
+              "value": 69.9000015258789
+            },
+            {
+              "period": "2022",
+              "value": 69.19999694824219
+            },
+            {
+              "period": "2023",
+              "value": 69.0
+            },
+            {
+              "period": "2024",
+              "value": 69.80000305175781
+            },
+            {
+              "period": "2025",
+              "value": 71.5
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "2009",
+              "value": 89.99529266357422
+            },
+            {
+              "period": "2011",
+              "value": 85.3030776977539
+            },
+            {
+              "period": "2012",
+              "value": 85.9157485961914
+            }
+          ],
+          "lead_sentence": "En 2012, 85,9% des jeunes d'âge du second cycle du secondaire n'étaient pas scolarisés en République centrafricaine, selon la dernière donnée administrative disponible.",
+          "lead_sentence_template_id": "taux_non_scolarisation_secondaire_2nd_cycle_pays_administratif",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux de non-scolarisation (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (ROFST.MOD.1, ROFST.MOD.2, ROFST.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=ROFST.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux de non-scolarisation, âge du second cycle du secondaire",
+          "definition_fr": "Ce taux mesure la part des jeunes ayant l'âge officiel du second cycle du secondaire qui ne sont scolarisés à aucun niveau."
+        }
+      ]
+    },
+    {
+      "key": "achevement",
+      "label_fr": "Achèvement scolaire",
+      "indicators": [
+        {
+          "indicator_id": "taux_achevement_primaire",
+          "latest": {
+            "period": "2019",
+            "value": 27.04540061950684,
+            "quality_flag": "enquete"
+          },
+          "national": {
+            "headline": {
+              "value": 27.04540061950684,
+              "period": "2019",
+              "quality_flag": "enquete",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)"
+            },
+            "spread_pct": 7.4,
+            "spread_vs_period": "2019",
+            "all_sources": [
+              {
+                "value": 27.04540061950684,
+                "period": "2019",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 29.21999931335449,
+                "period": "2019",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 42.91474914550781,
+                "period": "2010",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 25.17000007629395,
+                "period": "2010",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 25.72724914550781,
+                "period": "2006",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 22.94000053405762,
+                "period": "2006",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 21.01,
+                "period": "2000",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 21.53000068664551,
+                "period": "2000",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "1981",
+              "value": 18.73999977111816
+            },
+            {
+              "period": "1982",
+              "value": 18.90999984741211
+            },
+            {
+              "period": "1983",
+              "value": 19.06999969482422
+            },
+            {
+              "period": "1984",
+              "value": 19.23999977111816
+            },
+            {
+              "period": "1985",
+              "value": 19.43000030517578
+            },
+            {
+              "period": "1986",
+              "value": 19.6200008392334
+            },
+            {
+              "period": "1987",
+              "value": 19.88999938964844
+            },
+            {
+              "period": "1988",
+              "value": 20.14999961853027
+            },
+            {
+              "period": "1989",
+              "value": 20.3700008392334
+            },
+            {
+              "period": "1990",
+              "value": 20.56999969482422
+            },
+            {
+              "period": "1991",
+              "value": 20.70999908447266
+            },
+            {
+              "period": "1992",
+              "value": 20.81999969482422
+            },
+            {
+              "period": "1993",
+              "value": 20.88999938964844
+            },
+            {
+              "period": "1994",
+              "value": 20.95999908447266
+            },
+            {
+              "period": "1995",
+              "value": 21.07999992370605
+            },
+            {
+              "period": "1996",
+              "value": 21.20000076293945
+            },
+            {
+              "period": "1997",
+              "value": 21.38999938964844
+            },
+            {
+              "period": "1998",
+              "value": 21.45000076293945
+            },
+            {
+              "period": "1999",
+              "value": 21.52000045776367
+            },
+            {
+              "period": "2000",
+              "value": 21.53000068664551
+            },
+            {
+              "period": "2001",
+              "value": 21.55999946594238
+            },
+            {
+              "period": "2002",
+              "value": 21.63999938964844
+            },
+            {
+              "period": "2003",
+              "value": 21.81999969482422
+            },
+            {
+              "period": "2004",
+              "value": 22.07999992370605
+            },
+            {
+              "period": "2005",
+              "value": 22.45999908447266
+            },
+            {
+              "period": "2006",
+              "value": 22.94000053405762
+            },
+            {
+              "period": "2007",
+              "value": 23.5
+            },
+            {
+              "period": "2008",
+              "value": 24.03000068664551
+            },
+            {
+              "period": "2009",
+              "value": 24.59000015258789
+            },
+            {
+              "period": "2010",
+              "value": 25.17000007629395
+            },
+            {
+              "period": "2011",
+              "value": 25.79000091552734
+            },
+            {
+              "period": "2012",
+              "value": 26.30999946594238
+            },
+            {
+              "period": "2013",
+              "value": 26.82999992370605
+            },
+            {
+              "period": "2014",
+              "value": 27.26000022888184
+            },
+            {
+              "period": "2015",
+              "value": 27.70999908447266
+            },
+            {
+              "period": "2016",
+              "value": 28.11000061035156
+            },
+            {
+              "period": "2017",
+              "value": 28.54000091552734
+            },
+            {
+              "period": "2018",
+              "value": 28.89999961853027
+            },
+            {
+              "period": "2019",
+              "value": 29.21999931335449
+            },
+            {
+              "period": "2020",
+              "value": 29.54999923706055
+            },
+            {
+              "period": "2021",
+              "value": 29.79000091552734
+            },
+            {
+              "period": "2022",
+              "value": 30.03000068664551
+            },
+            {
+              "period": "2023",
+              "value": 30.32999992370605
+            },
+            {
+              "period": "2024",
+              "value": 30.54999923706055
+            },
+            {
+              "period": "2025",
+              "value": 30.81999969482422
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "2000",
+              "value": 21.01
+            },
+            {
+              "period": "2006",
+              "value": 25.72724914550781
+            },
+            {
+              "period": "2010",
+              "value": 42.91474914550781
+            },
+            {
+              "period": "2019",
+              "value": 27.04540061950684
+            }
+          ],
+          "lead_sentence": "En 2019, 27,0% d'une cohorte d'âge avait achevé l'enseignement primaire en République centrafricaine, selon la dernière enquête nationale disponible.",
+          "lead_sentence_template_id": "taux_achevement_primaire_pays_enquete",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux d'achèvement du primaire",
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le cycle d'enseignement primaire, tous sexes confondus. Un chiffre bas signifie que beaucoup d'enfants entrent à l'école sans en terminer le cycle, et non qu'ils n'y entrent jamais."
+        },
+        {
+          "indicator_id": "taux_achevement_secondaire_1er_cycle",
+          "latest": {
+            "period": "2019",
+            "value": 12.30510997772217,
+            "quality_flag": "enquete"
+          },
+          "national": {
+            "headline": {
+              "value": 12.30510997772217,
+              "period": "2019",
+              "quality_flag": "enquete",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)"
+            },
+            "spread_pct": 2.5,
+            "spread_vs_period": "2019",
+            "all_sources": [
+              {
+                "value": 12.30510997772217,
+                "period": "2019",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 12.61999988555908,
+                "period": "2019",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 11.02186965942383,
+                "period": "2010",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 9.649999618530273,
+                "period": "2010",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 10.485520362854,
+                "period": "2006",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 8.8100004196167,
+                "period": "2006",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 7.98,
+                "period": "2000",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 8.479999542236328,
+                "period": "2000",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "1981",
+              "value": 7.420000076293945
+            },
+            {
+              "period": "1982",
+              "value": 7.539999961853027
+            },
+            {
+              "period": "1983",
+              "value": 7.679999828338623
+            },
+            {
+              "period": "1984",
+              "value": 7.849999904632568
+            },
+            {
+              "period": "1985",
+              "value": 7.900000095367432
+            },
+            {
+              "period": "1986",
+              "value": 7.869999885559082
+            },
+            {
+              "period": "1987",
+              "value": 7.840000152587891
+            },
+            {
+              "period": "1988",
+              "value": 7.800000190734863
+            },
+            {
+              "period": "1989",
+              "value": 7.769999980926514
+            },
+            {
+              "period": "1990",
+              "value": 7.75
+            },
+            {
+              "period": "1991",
+              "value": 7.789999961853027
+            },
+            {
+              "period": "1992",
+              "value": 7.849999904632568
+            },
+            {
+              "period": "1993",
+              "value": 7.940000057220459
+            },
+            {
+              "period": "1994",
+              "value": 8.010000228881836
+            },
+            {
+              "period": "1995",
+              "value": 8.109999656677246
+            },
+            {
+              "period": "1996",
+              "value": 8.220000267028809
+            },
+            {
+              "period": "1997",
+              "value": 8.329999923706055
+            },
+            {
+              "period": "1998",
+              "value": 8.40999984741211
+            },
+            {
+              "period": "1999",
+              "value": 8.420000076293945
+            },
+            {
+              "period": "2000",
+              "value": 8.479999542236328
+            },
+            {
+              "period": "2001",
+              "value": 8.600000381469727
+            },
+            {
+              "period": "2002",
+              "value": 8.75
+            },
+            {
+              "period": "2003",
+              "value": 8.789999961853027
+            },
+            {
+              "period": "2004",
+              "value": 8.770000457763672
+            },
+            {
+              "period": "2005",
+              "value": 8.770000457763672
+            },
+            {
+              "period": "2006",
+              "value": 8.8100004196167
+            },
+            {
+              "period": "2007",
+              "value": 9.010000228881836
+            },
+            {
+              "period": "2008",
+              "value": 9.199999809265137
+            },
+            {
+              "period": "2009",
+              "value": 9.4399995803833
+            },
+            {
+              "period": "2010",
+              "value": 9.649999618530273
+            },
+            {
+              "period": "2011",
+              "value": 9.90999984741211
+            },
+            {
+              "period": "2012",
+              "value": 10.14000034332275
+            },
+            {
+              "period": "2013",
+              "value": 10.42000007629395
+            },
+            {
+              "period": "2014",
+              "value": 10.72000026702881
+            },
+            {
+              "period": "2015",
+              "value": 11.07999992370605
+            },
+            {
+              "period": "2016",
+              "value": 11.52999973297119
+            },
+            {
+              "period": "2017",
+              "value": 11.97999954223633
+            },
+            {
+              "period": "2018",
+              "value": 12.34000015258789
+            },
+            {
+              "period": "2019",
+              "value": 12.61999988555908
+            },
+            {
+              "period": "2020",
+              "value": 12.85000038146973
+            },
+            {
+              "period": "2021",
+              "value": 13.07999992370605
+            },
+            {
+              "period": "2022",
+              "value": 13.35999965667725
+            },
+            {
+              "period": "2023",
+              "value": 13.63000011444092
+            },
+            {
+              "period": "2024",
+              "value": 13.82999992370605
+            },
+            {
+              "period": "2025",
+              "value": 14.01000022888184
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "2000",
+              "value": 7.98
+            },
+            {
+              "period": "2006",
+              "value": 10.485520362854
+            },
+            {
+              "period": "2010",
+              "value": 11.02186965942383
+            },
+            {
+              "period": "2019",
+              "value": 12.30510997772217
+            }
+          ],
+          "lead_sentence": "En 2019, 12,3% d'une cohorte d'âge avait achevé le premier cycle du secondaire en République centrafricaine, selon la dernière enquête nationale disponible.",
+          "lead_sentence_template_id": "taux_achevement_secondaire_1er_cycle_pays_enquete",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux d'achèvement du premier cycle du secondaire",
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le premier cycle de l'enseignement secondaire (collège), tous sexes confondus."
+        },
+        {
+          "indicator_id": "taux_achevement_secondaire_2nd_cycle",
+          "latest": {
+            "period": "2019",
+            "value": 5.58253002166748,
+            "quality_flag": "enquete"
+          },
+          "national": {
+            "headline": {
+              "value": 5.58253002166748,
+              "period": "2019",
+              "quality_flag": "enquete",
+              "producer": "UNESCO Institut de statistique (UIS)",
+              "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)"
+            },
+            "spread_pct": 11.9,
+            "spread_vs_period": "2019",
+            "all_sources": [
+              {
+                "value": 5.58253002166748,
+                "period": "2019",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 4.989999771118164,
+                "period": "2019",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 6.937839984893799,
+                "period": "2010",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 4.460000038146973,
+                "period": "2010",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 3.20799994468689,
+                "period": "2006",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 4.03000020980835,
+                "period": "2006",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              },
+              {
+                "value": 4.12,
+                "period": "2000",
+                "quality_flag": "enquete",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1"
+              },
+              {
+                "value": 3.970000028610229,
+                "period": "2000",
+                "quality_flag": "estime",
+                "producer": "UNESCO Institut de statistique (UIS)",
+                "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+                "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1"
+              }
+            ]
+          },
+          "series": [
+            {
+              "period": "1981",
+              "value": 3.430000066757202
+            },
+            {
+              "period": "1982",
+              "value": 3.410000085830688
+            },
+            {
+              "period": "1983",
+              "value": 3.420000076293945
+            },
+            {
+              "period": "1984",
+              "value": 3.410000085830688
+            },
+            {
+              "period": "1985",
+              "value": 3.430000066757202
+            },
+            {
+              "period": "1986",
+              "value": 3.460000038146973
+            },
+            {
+              "period": "1987",
+              "value": 3.480000019073486
+            },
+            {
+              "period": "1988",
+              "value": 3.5
+            },
+            {
+              "period": "1989",
+              "value": 3.5
+            },
+            {
+              "period": "1990",
+              "value": 3.529999971389771
+            },
+            {
+              "period": "1991",
+              "value": 3.519999980926514
+            },
+            {
+              "period": "1992",
+              "value": 3.539999961853027
+            },
+            {
+              "period": "1993",
+              "value": 3.559999942779541
+            },
+            {
+              "period": "1994",
+              "value": 3.640000104904175
+            },
+            {
+              "period": "1995",
+              "value": 3.740000009536743
+            },
+            {
+              "period": "1996",
+              "value": 3.819999933242798
+            },
+            {
+              "period": "1997",
+              "value": 3.890000104904175
+            },
+            {
+              "period": "1998",
+              "value": 3.910000085830688
+            },
+            {
+              "period": "1999",
+              "value": 3.950000047683716
+            },
+            {
+              "period": "2000",
+              "value": 3.970000028610229
+            },
+            {
+              "period": "2001",
+              "value": 3.980000019073486
+            },
+            {
+              "period": "2002",
+              "value": 3.950000047683716
+            },
+            {
+              "period": "2003",
+              "value": 3.930000066757202
+            },
+            {
+              "period": "2004",
+              "value": 3.930000066757202
+            },
+            {
+              "period": "2005",
+              "value": 3.970000028610229
+            },
+            {
+              "period": "2006",
+              "value": 4.03000020980835
+            },
+            {
+              "period": "2007",
+              "value": 4.110000133514404
+            },
+            {
+              "period": "2008",
+              "value": 4.25
+            },
+            {
+              "period": "2009",
+              "value": 4.369999885559082
+            },
+            {
+              "period": "2010",
+              "value": 4.460000038146973
+            },
+            {
+              "period": "2011",
+              "value": 4.480000019073486
+            },
+            {
+              "period": "2012",
+              "value": 4.5
+            },
+            {
+              "period": "2013",
+              "value": 4.489999771118164
+            },
+            {
+              "period": "2014",
+              "value": 4.510000228881836
+            },
+            {
+              "period": "2015",
+              "value": 4.579999923706055
+            },
+            {
+              "period": "2016",
+              "value": 4.690000057220459
+            },
+            {
+              "period": "2017",
+              "value": 4.800000190734863
+            },
+            {
+              "period": "2018",
+              "value": 4.869999885559082
+            },
+            {
+              "period": "2019",
+              "value": 4.989999771118164
+            },
+            {
+              "period": "2020",
+              "value": 5.090000152587891
+            },
+            {
+              "period": "2021",
+              "value": 5.190000057220459
+            },
+            {
+              "period": "2022",
+              "value": 5.28000020980835
+            },
+            {
+              "period": "2023",
+              "value": 5.360000133514404
+            },
+            {
+              "period": "2024",
+              "value": 5.460000038146973
+            },
+            {
+              "period": "2025",
+              "value": 5.550000190734863
+            }
+          ],
+          "survey_points": [
+            {
+              "period": "2000",
+              "value": 4.12
+            },
+            {
+              "period": "2006",
+              "value": 3.20799994468689
+            },
+            {
+              "period": "2010",
+              "value": 6.937839984893799
+            },
+            {
+              "period": "2019",
+              "value": 5.58253002166748
+            }
+          ],
+          "lead_sentence": "En 2019, 5,6% d'une cohorte d'âge avait achevé le second cycle du secondaire en République centrafricaine, selon la dernière enquête nationale disponible.",
+          "lead_sentence_template_id": "taux_achevement_secondaire_2nd_cycle_pays_enquete",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes, données modélisées (CR.MOD.1, CR.MOD.2, CR.MOD.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.MOD.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "source_survey": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'achèvement (primaire, 1er cycle secondaire, 2nd cycle secondaire), les deux sexes (CR.1, CR.2, CR.3)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=CR.1",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux d'achèvement du second cycle du secondaire",
+          "definition_fr": "Ce taux mesure la part d'une cohorte d'âge ayant achevé le second cycle de l'enseignement secondaire (lycée), tous sexes confondus."
+        },
+        {
+          "indicator_id": "taux_reussite_baccalaureat",
+          "latest": {
+            "period": "2026",
+            "value": 25.83,
+            "quality_flag": "provisoire"
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 25.0
+            },
+            {
+              "period": "2024",
+              "value": 36.66
+            },
+            {
+              "period": "2026",
+              "value": 25.83
+            }
+          ],
+          "lead_sentence": "En 2026, le taux de réussite au baccalauréat général en République centrafricaine s'établissait à 25,8%, un résultat provisoire.",
+          "lead_sentence_template_id": "taux_reussite_baccalaureat_pays",
+          "source": {
+            "producer": "Ministère de l'Éducation Nationale (RCA)",
+            "dataset_name": "Résultats du baccalauréat, premier tour, session 2026 (communiqué du ministère, relayé par la presse)",
+            "url": "https://www.journaldebangui.com/rca-baccalaureat-2026-2583-de-reussite-au-premier-tour/",
+            "retrieved_at": "2026-09-14"
+          },
+          "name_fr": "Taux de réussite au baccalauréat général",
+          "definition_fr": "Ce taux mesure la part des candidats ayant obtenu le baccalauréat général parmi ceux qui se sont présentés à l'examen, toutes séries confondues."
+        }
+      ]
+    },
+    {
+      "key": "alphabetisation",
+      "label_fr": "Alphabétisation",
+      "indicators": [
+        {
+          "indicator_id": "taux_alphabetisation_jeunes",
+          "latest": {
+            "period": "2019",
+            "value": 50.59999847412109,
+            "quality_flag": "enquete"
+          },
+          "series": [
+            {
+              "period": "1975",
+              "value": 37.04000091552734
+            },
+            {
+              "period": "1988",
+              "value": 48.20000076293945
+            },
+            {
+              "period": "2000",
+              "value": 60.81000137329102
+            },
+            {
+              "period": "2019",
+              "value": 50.59999847412109
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'alphabétisation des jeunes de 15 à 24 ans en République centrafricaine s'établissait à 50,6%.",
+          "lead_sentence_template_id": "taux_alphabetisation_jeunes_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'alphabétisation, jeunes (15-24 ans) et adultes (15 ans et plus), les deux sexes (LR.AG15T24, LR.AG15T99)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux d'alphabétisation des jeunes (15-24 ans)",
+          "definition_fr": "Ce taux mesure la part de la population âgée de 15 à 24 ans capable de lire et écrire un énoncé simple sur la vie courante. Il reflète surtout la scolarisation passée, ce qui en fait un indicateur retardé plutôt qu'immédiat."
+        },
+        {
+          "indicator_id": "taux_alphabetisation_adultes",
+          "latest": {
+            "period": "2019",
+            "value": 42.43999862670898,
+            "quality_flag": "enquete"
+          },
+          "series": [
+            {
+              "period": "1975",
+              "value": 18.23999977111816
+            },
+            {
+              "period": "1988",
+              "value": 33.61999893188477
+            },
+            {
+              "period": "2000",
+              "value": 50.65000152587891
+            },
+            {
+              "period": "2019",
+              "value": 42.43999862670898
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'alphabétisation des adultes de 15 ans et plus en République centrafricaine s'établissait à 42,4%.",
+          "lead_sentence_template_id": "taux_alphabetisation_adultes_pays",
+          "source": {
+            "producer": "UNESCO Institut de statistique (UIS)",
+            "dataset_name": "Taux d'alphabétisation, jeunes (15-24 ans) et adultes (15 ans et plus), les deux sexes (LR.AG15T24, LR.AG15T99)",
+            "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=LR.AG15T24",
+            "retrieved_at": "2026-09-12"
+          },
+          "name_fr": "Taux d'alphabétisation des adultes (15 ans et plus)",
+          "definition_fr": "Ce taux mesure la part de la population âgée de 15 ans et plus capable de lire et écrire un énoncé simple sur la vie courante."
+        }
+      ]
+    }
+  ]
+}

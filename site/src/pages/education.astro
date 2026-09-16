@@ -1,0 +1,497 @@
+---
+// Theme page, docs/plan.md Sec2.3 anatomy: theme header with coverage summary,
+// one orienting headline figure, indicator blocks grouped into categories
+// (ordered scolarisation -> retention -> achievement -> literacy, the
+// student's actual path, not achievement-first; see docs/decisions.md),
+// "Ce qui n'est pas mesuré" hand-written at the end. Widened from a single
+// indicator (primary completion) to 15 across 4 categories, all from UNESCO
+// UIS (CLAUDE.md's indicator-ID example was illustrative, not a scope limit).
+//
+// 6 indicators (3 completion levels + 3 out-of-school levels) keep the
+// population.astro-style multi-source disclosure block (a real disagreement
+// between a higher-authority point-in-time series and UIS's own modelled
+// series). The other 9 have one source so far and get a compact card: value,
+// sparkline, generated sentence, source line; no disclosure UI where
+// there's nothing to disclose.
+//
+// section-nav (added 2026-09-13): sticky in-page jump menu, one link per
+// category (ids already existed via category.key) plus "Ce qui n'est pas
+// mesuré" - same pattern as economie.astro. Categories stay fully expanded;
+// this is pure navigation, nothing gets collapsed.
+import data from "../data/education.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+
+const CURRENT_YEAR = 2026;
+
+// Achievement/literacy indicators come from the same household surveys as
+// population's census/survey figures (10-year threshold in méthode.astro);
+// administrative (school-census) indicators are meant to be annual, so 5
+// years is already generous.
+const SURVEY_LINKED = new Set([
+  "taux_achevement_primaire", "taux_achevement_secondaire_1er_cycle",
+  "taux_achevement_secondaire_2nd_cycle", "taux_alphabetisation_jeunes",
+  "taux_alphabetisation_adultes",
+]);
+function isStale(indicatorId: string, period: string): boolean {
+  // méthode.astro's own threshold table: "< N ans" = actuel, "N ans" =
+  // déjà ancien - so exactly N years old must already read as stale.
+  const threshold = SURVEY_LINKED.has(indicatorId) ? 10 : 5;
+  return CURRENT_YEAR - Number(period) >= threshold;
+}
+
+const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+const fmtInt = (n: number) => Math.round(n).toLocaleString("fr-FR");
+
+// Small build-time SVG line chart, shared by every indicator card; same
+// stroke-dasharray draw-in technique as prix.astro/infrastructures.astro,
+// just parameterized so it isn't rewritten 14 times.
+const SPARK_W = 460, SPARK_H = 100, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
+function sparkline(series: { period: string; value: number }[]) {
+  const plotW = SPARK_W - SPARK_ML - SPARK_MR;
+  const plotH = SPARK_H - SPARK_MT - SPARK_MB;
+  const values = series.map((d) => d.value);
+  const min = 0;
+  const max = Math.max(...values) * 1.1;
+  const x = (i: number) => SPARK_ML + (i / Math.max(series.length - 1, 1)) * plotW;
+  const y = (v: number) => SPARK_MT + plotH - ((v - min) / (max - min)) * plotH;
+  const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
+  // Hover targets: one per data point, native <title> tooltip - no chart
+  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // See docs/decisions.md. Left out of prix.astro's monthly series, where
+  // the same technique would blow the page-weight budget (dense series).
+  const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
+  // One or two intermediate year labels (roughly a third and two-thirds of
+  // the way through), so a reader isn't left guessing at the shape between
+  // the two endpoints - user feedback, only first/last year were labelled.
+  const midLabels = [...new Set([
+    Math.round((series.length - 1) / 3),
+    Math.round((series.length - 1) * 2 / 3),
+  ])]
+    .filter((i) => i > 0 && i < series.length - 1)
+    .map((i) => ({ x: x(i), year: series[i].period }));
+  return {
+    points, hoverPoints, midLabels,
+    firstYear: series[0].period,
+    lastYear: series[series.length - 1].period,
+    yMax: max,
+    yTick: y(max * 0.9),
+    yZero: y(0),
+    xFirst: x(0),
+    xLast: x(series.length - 1),
+  };
+}
+
+function qualityLabel(flag: string): string {
+  if (flag === "enquete") return "enquête nationale";
+  if (flag === "administratif") return "donnée administrative";
+  if (flag === "provisoire") return "résultat provisoire";
+  return "estimation modélisée";
+}
+
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Éducation - BêAfrîka Data</title>
+    <style>
+      :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #8C8F7F; --line: #33362A;
+        --t-edu: #E97A62;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
+        --stale: #E2694A; --stale-soft: #3A211A;
+      }
+      :root[data-theme="light"] {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-edu: #A83C2E;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9;
+        --t-edu: #A83C2E;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+        --stale: #AC3A1E; --stale-soft: #F6DCD5;
+      }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-edu) 9%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-edu) 6%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+      }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--t-edu); text-decoration: underline; }
+      h1 {
+        font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
+        border-bottom: 3px solid var(--t-edu); padding-bottom: 4px;
+      }
+      .lede { color: var(--ink-muted); margin: 12px 0 8px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-edu); border-color: var(--t-edu); }
+      .coverage {
+        font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
+        margin: 0 0 28px;
+      }
+      .headline-block {
+        margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 4px solid var(--t-edu); border-radius: 3px;
+      }
+      .headline-value {
+        font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
+        color: var(--t-edu); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      }
+      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
+      .headline-link {
+        display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace;
+        font-size: 12px; color: var(--t-edu);
+      }
+      h2 {
+        font-size: 1.15rem; margin: 40px 0 4px; padding-top: 18px;
+        border-top: 1px solid var(--line); scroll-margin-top: 104px;
+      }
+      .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 16px; }
+      .badge {
+        display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
+        padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
+      }
+      .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
+      .badge.enquete { background: color-mix(in srgb, var(--t-edu) 14%, var(--surface)); color: var(--t-edu); }
+      .badge.administratif { background: color-mix(in srgb, var(--ink-faint) 18%, var(--surface)); color: var(--ink-muted); }
+      .badge.provisoire { background: transparent; border: 1px solid var(--t-edu); color: var(--t-edu); }
+      .badge.stale { background: var(--stale-soft); color: var(--stale); }
+
+      /* Completion indicators: full-width disclosure card, same structure as
+         population.astro's national-figure block. */
+      .national-figure {
+        margin: 16px 0 32px; padding: 18px 20px; background: var(--surface);
+        border: 1px solid var(--line); border-left: 3px solid var(--t-edu); border-radius: 3px;
+      }
+      .national-value {
+        font-family: ui-monospace, monospace; font-size: 2rem; font-weight: 600;
+        color: var(--t-edu); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+      }
+      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--ink-faint); }
+      .national-meta { font-size: 12.5px; color: var(--ink-muted); margin-top: 4px; }
+      .indicator-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
+      .disclosure { margin-top: 12px; }
+      .disclosure summary {
+        cursor: pointer; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-edu);
+        list-style: none; display: flex; align-items: center; gap: 6px;
+      }
+      .disclosure summary::-webkit-details-marker { display: none; }
+      .disclosure summary::before { content: "▸"; font-size: 10px; transition: transform 0.15s ease; }
+      .disclosure[open] summary::before { transform: rotate(90deg); }
+      .disclosure-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12.5px; }
+      .disclosure-table th {
+        text-align: left; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase;
+        color: var(--ink-faint); letter-spacing: 0.04em; padding: 0 10px 6px 0; font-weight: 400;
+      }
+      .disclosure-table td { padding: 7px 10px 7px 0; border-top: 1px solid var(--line); }
+      .disclosure-table td.num { font-family: ui-monospace, monospace; }
+      .disclosure-note { font-size: 11.5px; color: var(--ink-faint); margin: 10px 0 0; max-width: 64ch; }
+      .sentence {
+        font-style: italic; font-size: 15.5px; line-height: 1.5; color: var(--ink);
+        margin: 12px 0 0; padding-left: 12px; border-left: 2px solid var(--t-edu);
+      }
+      .completion-chart { width: 100%; height: auto; display: block; margin: 14px 0 6px; }
+      .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); flex-wrap: wrap; }
+      .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+      .swatch { width: 14px; height: 2px; display: inline-block; }
+      .swatch-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--t-edu); }
+      footer-line { font-size: 11.5px; color: var(--ink-faint); display: block; margin-top: 10px; }
+
+      /* Simple indicators: compact 2-column card grid. */
+      .indicator-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+        gap: 22px;
+      }
+      .indicator-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 16px 18px;
+      }
+      .indicator-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-edu); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+      }
+      .indicator-value .unit { font-family: system-ui, sans-serif; font-size: 0.8rem; font-weight: 400; color: var(--ink-faint); }
+      .indicator-meta { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+      svg.sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
+      .spark-gridline { stroke: var(--line); stroke-width: 1; }
+      .spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-edu) 6%, transparent);
+        border-radius: 3px;
+      }
+      .spark-line {
+        stroke: var(--t-edu); stroke-width: 2; fill: none;
+        stroke-dasharray: 2000; stroke-dashoffset: 2000;
+        animation: drawSpark 1.1s ease-out forwards;
+      }
+      @keyframes drawSpark { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .spark-line, .line-modelled { animation: none !important; stroke-dashoffset: 0 !important; }
+      }
+      .line-modelled {
+        stroke: var(--t-edu); stroke-width: 2; stroke-dasharray: 4 3; fill: none; opacity: 0.75;
+      }
+      .survey-point { fill: var(--t-edu); stroke: var(--surface); stroke-width: 2; }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-edu); }
+      .survey-label { fill: var(--ink); font-size: 10.5px; font-family: ui-monospace, monospace; }
+      .gridline { stroke: var(--line); stroke-width: 1; }
+      .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
+
+      .not-measured {
+        margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7;
+      }
+      .not-measured li { margin-bottom: 4px; }
+      .gap-note { margin-top: 10px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      footer a { color: var(--ink-muted); }
+      .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+      .site-nav a { color: var(--t-edu); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Éducation</h1>
+      <p class="lede">
+        Le parcours scolaire dans son ensemble - ressources,
+        scolarisation, rétention, réussite et alphabétisation - suivi
+        dans l'ordre chronologique d'un élève, à partir des données de
+        l'UNESCO (Institut de statistique) et de l'annuaire statistique
+        de l'ICASEES et du Ministère de l'Éducation nationale. Niveau
+        national uniquement pour l'instant : aucune ventilation par
+        région ou préfecture.
+      </p>
+
+      <nav class="section-nav" aria-label="Sections de la page">
+        {data.categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label_fr}</a>
+        ))}
+      </nav>
+
+      <div class="headline-block">
+        <div class="headline-value">
+          {fmt(data.headline.latest.value)}<span class="unit">%</span>
+          <span class={`badge ${data.headline.latest.quality_flag}`}>{data.headline.latest.quality_flag}</span>
+        </div>
+        <p class="headline-caption">Le taux d'achèvement du primaire ({data.headline.latest.period}) est le chiffre le plus souvent cité pour résumer l'état de l'éducation en RCA.</p>
+        <p class="headline-caption">{data.headline.definition_fr}</p>
+        <p class="sentence">
+          {data.headline.lead_sentence}
+        </p>
+        <a class="headline-link" href="#achevement">Détail, sources et désaccord avec l'estimation modélisée ↓</a>
+      </div>
+
+      {data.categories.map((category) => {
+        const disclosureIndicators = category.indicators.filter((ind) => "national" in ind);
+        const simpleIndicators = category.indicators.filter((ind) => !("national" in ind));
+        return (
+          <>
+            <h2 id={category.key}>{category.label_fr}</h2>
+            {disclosureIndicators.length > 0 && (
+              <p class="category-note">
+                {disclosureIndicators.length === 1 ? "Un indicateur" : `${disclosureIndicators.length} indicateurs`} ci-dessous
+                {" "}{disclosureIndicators.length === 1 ? "a" : "ont"} deux sources qui ne s'accordent pas toujours : une donnée
+                de référence à quelques points dans le temps, et une estimation modélisée annuelle publiée par l'UIS qui va
+                jusqu'à 2025 - c'est elle qui rend le graphique plus récent que le chiffre affiché en gros.
+              </p>
+            )}
+
+            {disclosureIndicators.map((ind) => {
+              const spark = sparkline(ind.series);
+              const stale = isStale(ind.indicator_id, ind.latest.period);
+              const headlineLabel = qualityLabel(ind.latest.quality_flag);
+              return (
+                <div class="national-figure">
+                  <p class="indicator-name">{ind.name_fr}</p>
+                  <p class="indicator-definition">{ind.definition_fr}</p>
+                  <div class="national-value">
+                    {fmt(ind.latest.value)}<span class="unit">%</span>
+                    <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                    {stale && <span class="badge stale">ancien</span>}
+                  </div>
+                  <div class="national-meta">
+                    {ind.national.headline.producer} - {ind.national.headline.dataset_name}, {ind.national.headline.period}
+                  </div>
+                  <p class="sentence">
+                    {ind.lead_sentence}
+                  </p>
+                  <svg class="completion-chart" viewBox={`0 0 460 100`} role="img" aria-label={`${ind.name_fr}, estimation modélisée avec points de ${headlineLabel} superposés`}>
+                    <line class="gridline" x1="34" y1={spark.yTick} x2="450" y2={spark.yTick} />
+                    <line class="gridline" x1="34" y1={spark.yZero} x2="450" y2={spark.yZero} />
+                    <text class="axis-label" x="30" y={spark.yZero + 3} text-anchor="end">0%</text>
+                    <text class="axis-label" x={spark.xFirst} y="96" text-anchor="start">{spark.firstYear}</text>
+                    {spark.midLabels.map((m) => (
+                      <text class="axis-label" x={m.x} y="96" text-anchor="middle">{m.year}</text>
+                    ))}
+                    <text class="axis-label" x={spark.xLast} y="96" text-anchor="end">{spark.lastYear}</text>
+                    <polyline class="line-modelled" points={spark.points} />
+                    {spark.hoverPoints.map((p) => (
+                      <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                        <title>{p.period} : {fmt(p.value)}% (estimation modélisée)</title>
+                      </circle>
+                    ))}
+                    {ind.survey_points.map((d) => {
+                      const idx = ind.series.findIndex((s) => s.period === d.period);
+                      if (idx === -1) return null;
+                      const px = 34 + (idx / Math.max(ind.series.length - 1, 1)) * (460 - 34 - 10);
+                      const py = 10 + (100 - 10 - 18) - ((d.value - 0) / (Math.max(...ind.series.map((s) => s.value)) * 1.1)) * (100 - 10 - 18);
+                      return (
+                        <circle class="survey-point" cx={px} cy={py} r="4">
+                          <title>{d.period} : {fmt(d.value)}% ({headlineLabel})</title>
+                        </circle>
+                      );
+                    })}
+                  </svg>
+                  <div class="chart-legend">
+                    <span><span class="swatch" style="background:var(--t-edu);border-top:2px dashed var(--t-edu);height:0;opacity:0.75;"></span>estimation modélisée (UIS)</span>
+                    <span><span class="swatch-dot"></span>{headlineLabel}</span>
+                  </div>
+                  <details class="disclosure">
+                    <summary>2 sources - écart de {ind.national.spread_pct}% avec l'estimation modélisée de la même année</summary>
+                    <table class="disclosure-table">
+                      <thead><tr><th scope="col">Valeur</th><th scope="col">Statut</th><th scope="col">Période</th></tr></thead>
+                      <tbody>
+                        {ind.national.all_sources.map((s) => (
+                          <tr>
+                            <td class="num">{fmt(s.value)}%</td>
+                            <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                            <td>{s.period}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p class="disclosure-note">
+                      Écart calculé entre la {headlineLabel} et l'estimation
+                      modélisée pour la même année, pas contre la dernière
+                      année modélisée disponible. Classement d'autorité :
+                      {" "}{headlineLabel} &gt; estimation modélisée
+                      internationale - voir <a href="/methode/#classement">Méthode</a>.
+                    </p>
+                  </details>
+                  <span style="font-size:11.5px;color:var(--ink-faint);display:block;margin-top:10px;">
+                    {headlineLabel === "estimation modélisée" ? "Source" : headlineLabel.charAt(0).toUpperCase() + headlineLabel.slice(1)} : {ind.source_survey.dataset_name}, récupéré le {ind.source_survey.retrieved_at}, <a href={ind.source_survey.url}>{ind.source_survey.url}</a>.
+                    Modèle : récupéré le {ind.source.retrieved_at}, <a href={ind.source.url}>{ind.source.url}</a>.
+                  </span>
+                </div>
+              );
+            })}
+
+            {simpleIndicators.length > 0 && (
+              <div class="indicator-grid">
+                {simpleIndicators.map((ind) => {
+                  const spark = sparkline(ind.series);
+                  const stale = isStale(ind.indicator_id, ind.latest.period);
+                  const unit = ind.unit ?? "%";
+                  const valueDisplay = ind.unit ? fmtInt(ind.latest.value) : fmt(ind.latest.value);
+                  return (
+                    <div class="indicator-card">
+                      <p class="indicator-name">{ind.name_fr}</p>
+                      <p class="indicator-definition">{ind.definition_fr}</p>
+                      <div class="indicator-value">
+                        {valueDisplay}<span class="unit"> {unit}, {ind.latest.period}</span>
+                        <span class={`badge ${ind.latest.quality_flag}`}>{ind.latest.quality_flag}</span>
+                        {stale && <span class="badge stale">ancien</span>}
+                      </div>
+                      <div class="indicator-meta">Niveau le plus fin : pays</div>
+                      {ind.series.length > 1 ? (
+                        <svg class="sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                          <line class="spark-gridline" x1={SPARK_ML} y1={spark.yTick} x2={SPARK_W - SPARK_MR} y2={spark.yTick} />
+                          <line class="spark-gridline" x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} />
+                          <text class="spark-axis-label" x={SPARK_ML - 4} y={spark.yZero + 3} text-anchor="end">{ind.unit ? "0" : "0%"}</text>
+                          <text class="spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                          {spark.midLabels.map((m) => (
+                            <text class="spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                          ))}
+                          <text class="spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                          <polyline class="spark-line" points={spark.points} />
+                          {spark.hoverPoints.map((p) => (
+                            <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                              <title>{p.period} : {ind.unit ? fmtInt(p.value) : fmt(p.value)} {unit}</title>
+                            </circle>
+                          ))}
+                        </svg>
+                      ) : (
+                        <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+                      )}
+                      <p class="sentence">
+                        {ind.lead_sentence}
+                      </p>
+                      <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:8px;">
+                        {ind.source.producer} - {ind.source.dataset_name}. Récupéré le {ind.source.retrieved_at}.
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        );
+      })}
+
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
+      <ul class="not-measured">
+        <li>Rien par région, préfecture ou sous-préfecture : toutes ces données sont nationales ; l'UIS ne publie pas de ventilation infranationale pour la RCA.</li>
+        <li>Rien par sexe, milieu (urbain/rural) ou quintile de richesse - l'UIS publie ces ventilations pour plusieurs indicateurs (ex. <code>CR.1.F</code>, <code>CR.1.RUR</code>, <code>CR.1.Q1</code>), non intégrées ici pour l'instant.</li>
+        <li>Le taux de réussite au baccalauréat général (ci-dessus) vient de l'annuaire ICASEES ; le CEPE et le BEPC ne sont pas dans le même fichier, et un second tableau d'examens qu'il contient (session 2020/2021) est un gabarit vide, pas des chiffres réels.</li>
+        <li>Points d'eau, latrines et dépenses publiques d'éducation ne sont pas encore intégrés ; le nombre d'établissements (ci-dessus) l'est.</li>
+        <li>Toutes les figures affichées en gros ci-dessus restent anciennes (2011-2019) - l'UIS a une estimation modélisée plus récente (jusqu'à 2025) pour l'achèvement et la non-scolarisation, visible dans les graphiques, mais pas pour la scolarisation nette/brute, le redoublement ou la survie scolaire : pour ces cinq indicateurs, 2011-2017 est réellement tout ce que l'UIS a pour la RCA (vérifié en cherchant explicitement une variante modélisée pour chacun, pas supposé).</li>
+      </ul>
+
+      <footer>
+        Données de cette page : UNESCO Institut de statistique (UIS), récupérées via
+        l'API publique <a href="https://api.uis.unesco.org/api/public/data/indicators">api.uis.unesco.org</a>,
+        et ICASEES / Ministère de l'Éducation Nationale (annuaire statistique) - source
+        indiquée sous chaque indicateur. Détail complet par source sur la page <a href="/sources/">Sources</a>.
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/infrastructures/">Infrastructures</a>
+          <a href="/education/">Éducation</a>
+          <a href="/sante/">Santé</a>
+          <a href="/economie/">Économie</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,3107 @@
+{
+  "bamingui-bangoran": {
+    "entity_id": "cf-p-bamingui-bangoran-v1",
+    "name_fr": "Bamingui-Bangoran",
+    "slug": "bamingui-bangoran",
+    "region_name": "Fertit",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF51"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF51"
+      }
+    ],
+    "population": {
+      "pop_2003": 43229.0,
+      "pop_2021": 82108.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 86754.0,
+      "rank_2021": 19,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 1.6
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bamingui",
+        "pop_2025": 11258.0
+      },
+      {
+        "name_fr": "Ndélé",
+        "pop_2025": 75496.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Ndélé",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 144.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 230.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 3000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1450.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-haute-kotto-v1",
+        "name_fr": "Haute-Kotto",
+        "slug": "haute-kotto",
+        "pop_2021": 128342.0
+      },
+      {
+        "entity_id": "cf-p-vakaga-v1",
+        "name_fr": "Vakaga",
+        "slug": "vakaga",
+        "pop_2021": 83188.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "bangui": {
+    "entity_id": "cf-p-bangui-v1",
+    "name_fr": "Bangui",
+    "slug": "bangui",
+    "region_name": "Bas-Oubangui",
+    "valid_from": "2021-01-21",
+    "notes": "Créée par la Loi n°21.001 du 21 janvier 2021 (adoptée par l'Assemblée nationale le 2020-12-10, promulguée le 2021-01-21) (source : Oubangui Médias, Xinhua, Wikipédia - texte légal primaire/numéro de décret non encore vérifié).",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF71"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF71"
+      }
+    ],
+    "population": {
+      "pop_2003": 824057.0,
+      "pop_2021": 1425276.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 1486900.0,
+      "rank_2021": 1,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 27.9
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bangui-Centre",
+        "pop_2025": 243097.0
+      },
+      {
+        "name_fr": "Bangui-Fleuve",
+        "pop_2025": 550323.0
+      },
+      {
+        "name_fr": "Bangui-Kagas",
+        "pop_2025": 572373.0
+      },
+      {
+        "name_fr": "Bangui-Rapides",
+        "pop_2025": 121106.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bangui",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 365.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 6000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 775.0
+          }
+        }
+      }
+    ],
+    "siblings": [],
+    "sante_region": {
+      "region_name": "Bas-Oubangui",
+      "period": "2019",
+      "value": 23.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "basse-kotto": {
+    "entity_id": "cf-p-basse-kotto-v1",
+    "name_fr": "Basse-Kotto",
+    "slug": "basse-kotto",
+    "region_name": "Haut-Oubangui",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF61"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF61"
+      }
+    ],
+    "population": {
+      "pop_2003": 249150.0,
+      "pop_2021": 380172.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 399176.0,
+      "rank_2021": 4,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 7.4
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Alindao",
+        "pop_2025": 131219.0
+      },
+      {
+        "name_fr": "Kembé",
+        "pop_2025": 47999.0
+      },
+      {
+        "name_fr": "Mingala",
+        "pop_2025": 41257.0
+      },
+      {
+        "name_fr": "Mobaye",
+        "pop_2025": 85883.0
+      },
+      {
+        "name_fr": "Satéma",
+        "pop_2025": 39457.0
+      },
+      {
+        "name_fr": "Zangba",
+        "pop_2025": 53361.0
+      }
+    ],
+    "markets": [],
+    "siblings": [
+      {
+        "entity_id": "cf-p-haut-mbomou-v1",
+        "name_fr": "Haut-Mbomou",
+        "slug": "haut-mbomou",
+        "pop_2021": 52314.0
+      },
+      {
+        "entity_id": "cf-p-mbomou-v1",
+        "name_fr": "Mbomou",
+        "slug": "mbomou",
+        "pop_2021": 257803.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "haut-mbomou": {
+    "entity_id": "cf-p-haut-mbomou-v1",
+    "name_fr": "Haut-Mbomou",
+    "slug": "haut-mbomou",
+    "region_name": "Haut-Oubangui",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF63"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF63"
+      }
+    ],
+    "population": {
+      "pop_2003": 57602.0,
+      "pop_2021": 52314.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 60113.0,
+      "rank_2021": 20,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 1.0
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bambouti",
+        "pop_2025": 407.0
+      },
+      {
+        "name_fr": "Djémah",
+        "pop_2025": 3202.0
+      },
+      {
+        "name_fr": "Mboki",
+        "pop_2025": 7022.0
+      },
+      {
+        "name_fr": "Obo",
+        "pop_2025": 16837.0
+      },
+      {
+        "name_fr": "Zémio",
+        "pop_2025": 32645.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Obo",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-06",
+            "value": 308.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-06",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-05",
+            "value": 250.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2025-12",
+            "value": 3250.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Zemio",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 423.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 622.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 4250.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 700.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-basse-kotto-v1",
+        "name_fr": "Basse-Kotto",
+        "slug": "basse-kotto",
+        "pop_2021": 380172.0
+      },
+      {
+        "entity_id": "cf-p-mbomou-v1",
+        "name_fr": "Mbomou",
+        "slug": "mbomou",
+        "pop_2021": 257803.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "haute-kotto": {
+    "entity_id": "cf-p-haute-kotto-v1",
+    "name_fr": "Haute-Kotto",
+    "slug": "haute-kotto",
+    "region_name": "Fertit",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF52"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF52"
+      }
+    ],
+    "population": {
+      "pop_2003": 90316.0,
+      "pop_2021": 128342.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 146455.0,
+      "rank_2021": 17,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 2.5
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bria",
+        "pop_2025": 114965.0
+      },
+      {
+        "name_fr": "Ouadda",
+        "pop_2025": 10201.0
+      },
+      {
+        "name_fr": "Ouandja-Kotto",
+        "pop_2025": 15104.0
+      },
+      {
+        "name_fr": "Yalinga",
+        "pop_2025": 6184.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bria",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 250.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 338.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 825.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1550.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-bamingui-bangoran-v1",
+        "name_fr": "Bamingui-Bangoran",
+        "slug": "bamingui-bangoran",
+        "pop_2021": 82108.0
+      },
+      {
+        "entity_id": "cf-p-vakaga-v1",
+        "name_fr": "Vakaga",
+        "slug": "vakaga",
+        "pop_2021": 83188.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "kemo": {
+    "entity_id": "cf-p-kemo-v1",
+    "name_fr": "Kémo",
+    "slug": "kemo",
+    "region_name": "Kaga",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF41"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF41"
+      }
+    ],
+    "population": {
+      "pop_2003": 118420.0,
+      "pop_2021": 183742.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 200501.0,
+      "rank_2021": 15,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 3.6
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Dékoa",
+        "pop_2025": 61285.0
+      },
+      {
+        "name_fr": "Mala",
+        "pop_2025": 21469.0
+      },
+      {
+        "name_fr": "Njoukou",
+        "pop_2025": 50881.0
+      },
+      {
+        "name_fr": "Sibut",
+        "pop_2025": 66865.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Dekoa",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 106.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 203.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 3500.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1000.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Sibut",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 115.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 243.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 800.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-nana-gribizi-v1",
+        "name_fr": "Nana-Gribizi",
+        "slug": "nana-gribizi",
+        "pop_2021": 208821.0
+      },
+      {
+        "entity_id": "cf-p-ouaka-v1",
+        "name_fr": "Ouaka",
+        "slug": "ouaka",
+        "pop_2021": 446354.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "lim-pende": {
+    "entity_id": "cf-p-lim-pende-v1",
+    "name_fr": "Lim-pendé",
+    "slug": "lim-pende",
+    "region_name": "Yadé",
+    "valid_from": "2021-01-21",
+    "notes": "Créée par la Loi n°21.001 du 21 janvier 2021 (adoptée par l'Assemblée nationale le 2020-12-10, promulguée le 2021-01-21) (source : Oubangui Médias, Xinhua, Wikipédia - texte légal primaire/numéro de décret non encore vérifié).",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF34"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF34"
+      }
+    ],
+    "population": {
+      "pop_2003": 248948.0,
+      "pop_2021": 442151.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 476589.0,
+      "rank_2021": 3,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 8.6
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Kodi",
+        "pop_2025": 47519.0
+      },
+      {
+        "name_fr": "Ndim",
+        "pop_2025": 33878.0
+      },
+      {
+        "name_fr": "Ngaoundaye",
+        "pop_2025": 63907.0
+      },
+      {
+        "name_fr": "Paoua",
+        "pop_2025": 244426.0
+      },
+      {
+        "name_fr": "Taley",
+        "pop_2025": 86860.0
+      }
+    ],
+    "markets": [],
+    "siblings": [
+      {
+        "entity_id": "cf-p-ouham-v1",
+        "name_fr": "Ouham",
+        "slug": "ouham",
+        "pop_2021": 297904.0
+      },
+      {
+        "entity_id": "cf-p-ouham-pende-v1",
+        "name_fr": "Ouham Pendé",
+        "slug": "ouham-pende",
+        "pop_2021": 243315.0
+      },
+      {
+        "entity_id": "cf-p-ouham-fafa-v1",
+        "name_fr": "Ouham-Fafa",
+        "slug": "ouham-fafa",
+        "pop_2021": 225479.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "lobaye": {
+    "entity_id": "cf-p-lobaye-v1",
+    "name_fr": "Lobaye",
+    "slug": "lobaye",
+    "region_name": "Plateaux",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF12"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF12"
+      }
+    ],
+    "population": {
+      "pop_2003": 246875.0,
+      "pop_2021": 345108.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 366709.0,
+      "rank_2021": 5,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 6.8
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Boda",
+        "pop_2025": 73029.0
+      },
+      {
+        "name_fr": "Boganangone",
+        "pop_2025": 40931.0
+      },
+      {
+        "name_fr": "Boganda",
+        "pop_2025": 20486.0
+      },
+      {
+        "name_fr": "Mbaïki",
+        "pop_2025": 146973.0
+      },
+      {
+        "name_fr": "Moboma",
+        "pop_2025": 50370.0
+      },
+      {
+        "name_fr": "Mongoumba",
+        "pop_2025": 34920.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Boda",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 163.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 600.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Mbaïki",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 950.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 950.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-ombella-mpoko-v1",
+        "name_fr": "Ombella M'Poko",
+        "slug": "ombella-mpoko",
+        "pop_2021": 269809.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Plateaux",
+      "period": "2019",
+      "value": 112.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "mambere": {
+    "entity_id": "cf-p-mambere-v1",
+    "name_fr": "Mambéré",
+    "slug": "mambere",
+    "region_name": "Équateur",
+    "valid_from": "2021-01-21",
+    "notes": "Créée par la Loi n°21.001 du 21 janvier 2021 (adoptée par l'Assemblée nationale le 2020-12-10, promulguée le 2021-01-21) (source : Oubangui Médias, Xinhua, Wikipédia - texte légal primaire/numéro de décret non encore vérifié).",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF24"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF24"
+      }
+    ],
+    "population": {
+      "pop_2003": 167260.0,
+      "pop_2021": 265479.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 329273.0,
+      "rank_2021": 10,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 5.2
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Amada-Gaza",
+        "pop_2025": 20319.0
+      },
+      {
+        "name_fr": "Carnot",
+        "pop_2025": 183706.0
+      },
+      {
+        "name_fr": "Gadzi",
+        "pop_2025": 97966.0
+      },
+      {
+        "name_fr": "Semkpa-Mbaéré",
+        "pop_2025": 27281.0
+      }
+    ],
+    "markets": [],
+    "siblings": [
+      {
+        "entity_id": "cf-p-mambere-kadei-v1",
+        "name_fr": "Mambéré-Kadéï",
+        "slug": "mambere-kadei",
+        "pop_2021": 273166.0
+      },
+      {
+        "entity_id": "cf-p-nana-mambere-v1",
+        "name_fr": "Nana-Mambéré",
+        "slug": "nana-mambere",
+        "pop_2021": 341796.0
+      },
+      {
+        "entity_id": "cf-p-sangha-mbaere-v1",
+        "name_fr": "Sangha-Mbaéré",
+        "slug": "sangha-mbaere",
+        "pop_2021": 138770.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "mambere-kadei": {
+    "entity_id": "cf-p-mambere-kadei-v1",
+    "name_fr": "Mambéré-Kadéï",
+    "slug": "mambere-kadei",
+    "region_name": "Équateur",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF21"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF21"
+      }
+    ],
+    "population": {
+      "pop_2003": 197535.0,
+      "pop_2021": 273166.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 285505.0,
+      "rank_2021": 8,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 5.3
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Berbérati",
+        "pop_2025": 199199.0
+      },
+      {
+        "name_fr": "Dédé-Mokouba",
+        "pop_2025": 24253.0
+      },
+      {
+        "name_fr": "Gamboula",
+        "pop_2025": 43268.0
+      },
+      {
+        "name_fr": "Sosso-Nakombo",
+        "pop_2025": 18785.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Berbérati",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 146.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 257.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 900.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Carnot",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 183.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 311.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 838.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 900.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-mambere-v1",
+        "name_fr": "Mambéré",
+        "slug": "mambere",
+        "pop_2021": 265479.0
+      },
+      {
+        "entity_id": "cf-p-nana-mambere-v1",
+        "name_fr": "Nana-Mambéré",
+        "slug": "nana-mambere",
+        "pop_2021": 341796.0
+      },
+      {
+        "entity_id": "cf-p-sangha-mbaere-v1",
+        "name_fr": "Sangha-Mbaéré",
+        "slug": "sangha-mbaere",
+        "pop_2021": 138770.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "mbomou": {
+    "entity_id": "cf-p-mbomou-v1",
+    "name_fr": "Mbomou",
+    "slug": "mbomou",
+    "region_name": "Haut-Oubangui",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF62"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF62"
+      }
+    ],
+    "population": {
+      "pop_2003": 164009.0,
+      "pop_2021": 257803.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 271661.0,
+      "rank_2021": 11,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 5.0
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bakouma",
+        "pop_2025": 30410.0
+      },
+      {
+        "name_fr": "Bangassou",
+        "pop_2025": 117194.0
+      },
+      {
+        "name_fr": "Gambo",
+        "pop_2025": 34464.0
+      },
+      {
+        "name_fr": "Ouango",
+        "pop_2025": 66058.0
+      },
+      {
+        "name_fr": "Rafai",
+        "pop_2025": 23534.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bangassou",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 144.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 257.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 825.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-06",
+            "value": 3500.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 275.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-basse-kotto-v1",
+        "name_fr": "Basse-Kotto",
+        "slug": "basse-kotto",
+        "pop_2021": 380172.0
+      },
+      {
+        "entity_id": "cf-p-haut-mbomou-v1",
+        "name_fr": "Haut-Mbomou",
+        "slug": "haut-mbomou",
+        "pop_2021": 52314.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Haut-Oubangui",
+      "period": "2019",
+      "value": 109.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "nana-gribizi": {
+    "entity_id": "cf-p-nana-gribizi-v1",
+    "name_fr": "Nana-Gribizi",
+    "slug": "nana-gribizi",
+    "region_name": "Kaga",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF42"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF42"
+      }
+    ],
+    "population": {
+      "pop_2003": 117816.0,
+      "pop_2021": 208821.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 235690.0,
+      "rank_2021": 14,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 4.1
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Kaga-Bandoro",
+        "pop_2025": 161377.0
+      },
+      {
+        "name_fr": "Mbrès",
+        "pop_2025": 37754.0
+      },
+      {
+        "name_fr": "Nana-Outa",
+        "pop_2025": 36558.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Kaga-Bandoro",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 144.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 216.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 3750.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1225.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-kemo-v1",
+        "name_fr": "Kémo",
+        "slug": "kemo",
+        "pop_2021": 183742.0
+      },
+      {
+        "entity_id": "cf-p-ouaka-v1",
+        "name_fr": "Ouaka",
+        "slug": "ouaka",
+        "pop_2021": 446354.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "nana-mambere": {
+    "entity_id": "cf-p-nana-mambere-v1",
+    "name_fr": "Nana-Mambéré",
+    "slug": "nana-mambere",
+    "region_name": "Équateur",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF22"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF22"
+      }
+    ],
+    "population": {
+      "pop_2003": 233666.0,
+      "pop_2021": 341796.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 377443.0,
+      "rank_2021": 6,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 6.7
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Abba",
+        "pop_2025": 33625.0
+      },
+      {
+        "name_fr": "Baboua",
+        "pop_2025": 82555.0
+      },
+      {
+        "name_fr": "Baoro",
+        "pop_2025": 63764.0
+      },
+      {
+        "name_fr": "Bouar",
+        "pop_2025": 197498.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Baboua",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 154.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1000.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 750.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Baoro",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 125.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 257.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 775.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1150.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bouar",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 154.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 750.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-06",
+            "value": 1000.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-mambere-v1",
+        "name_fr": "Mambéré",
+        "slug": "mambere",
+        "pop_2021": 265479.0
+      },
+      {
+        "entity_id": "cf-p-mambere-kadei-v1",
+        "name_fr": "Mambéré-Kadéï",
+        "slug": "mambere-kadei",
+        "pop_2021": 273166.0
+      },
+      {
+        "entity_id": "cf-p-sangha-mbaere-v1",
+        "name_fr": "Sangha-Mbaéré",
+        "slug": "sangha-mbaere",
+        "pop_2021": 138770.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "ombella-mpoko": {
+    "entity_id": "cf-p-ombella-mpoko-v1",
+    "name_fr": "Ombella M'Poko",
+    "slug": "ombella-mpoko",
+    "region_name": "Plateaux",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF11"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF11"
+      }
+    ],
+    "population": {
+      "pop_2003": 155438.0,
+      "pop_2021": 269809.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 297010.0,
+      "rank_2021": 9,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 5.3
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Boali",
+        "pop_2025": 67723.0
+      },
+      {
+        "name_fr": "Bogangolo",
+        "pop_2025": 12070.0
+      },
+      {
+        "name_fr": "Bossembélé",
+        "pop_2025": 65181.0
+      },
+      {
+        "name_fr": "Damara",
+        "pop_2025": 61912.0
+      },
+      {
+        "name_fr": "Yaloké",
+        "pop_2025": 90123.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bimbo",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 378.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 763.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 700.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Boali",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-06",
+            "value": 173.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 775.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1000.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bossemptélé",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 115.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 297.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1225.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bégoua",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 324.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 6000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 775.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Damara",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 154.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 284.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-06",
+            "value": 3750.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1100.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Yaloké",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 125.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 257.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 950.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-lobaye-v1",
+        "name_fr": "Lobaye",
+        "slug": "lobaye",
+        "pop_2021": 345108.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Plateaux",
+      "period": "2019",
+      "value": 112.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "ouaka": {
+    "entity_id": "cf-p-ouaka-v1",
+    "name_fr": "Ouaka",
+    "slug": "ouaka",
+    "region_name": "Kaga",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF43"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF43"
+      }
+    ],
+    "population": {
+      "pop_2003": 276710.0,
+      "pop_2021": 446354.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 466306.0,
+      "rank_2021": 2,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 8.7
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bakala",
+        "pop_2025": 12228.0
+      },
+      {
+        "name_fr": "Bambari",
+        "pop_2025": 227806.0
+      },
+      {
+        "name_fr": "Grimari",
+        "pop_2025": 53088.0
+      },
+      {
+        "name_fr": "Ippy",
+        "pop_2025": 61472.0
+      },
+      {
+        "name_fr": "Kouango",
+        "pop_2025": 111713.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bambari",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 154.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-06",
+            "value": 2500.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 750.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Ippy",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 106.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 324.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 3000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1050.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-kemo-v1",
+        "name_fr": "Kémo",
+        "slug": "kemo",
+        "pop_2021": 183742.0
+      },
+      {
+        "entity_id": "cf-p-nana-gribizi-v1",
+        "name_fr": "Nana-Gribizi",
+        "slug": "nana-gribizi",
+        "pop_2021": 208821.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Kaga",
+      "period": "2019",
+      "value": 85.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "ouham": {
+    "entity_id": "cf-p-ouham-v1",
+    "name_fr": "Ouham",
+    "slug": "ouham",
+    "region_name": "Yadé",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF32"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF32"
+      }
+    ],
+    "population": {
+      "pop_2003": 210021.0,
+      "pop_2021": 297904.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 334591.0,
+      "rank_2021": 7,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 5.8
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bossangoa",
+        "pop_2025": 188751.0
+      },
+      {
+        "name_fr": "Markounda",
+        "pop_2025": 41875.0
+      },
+      {
+        "name_fr": "Nana-Bakassa",
+        "pop_2025": 61816.0
+      },
+      {
+        "name_fr": "Nanga-Boguila",
+        "pop_2025": 42149.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Batangafo",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 231.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 270.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-06",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1500.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bossangoa",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 154.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 230.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1225.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bouca",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 115.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1250.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 189.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-lim-pende-v1",
+        "name_fr": "Lim-pendé",
+        "slug": "lim-pende",
+        "pop_2021": 442151.0
+      },
+      {
+        "entity_id": "cf-p-ouham-pende-v1",
+        "name_fr": "Ouham Pendé",
+        "slug": "ouham-pende",
+        "pop_2021": 243315.0
+      },
+      {
+        "entity_id": "cf-p-ouham-fafa-v1",
+        "name_fr": "Ouham-Fafa",
+        "slug": "ouham-fafa",
+        "pop_2021": 225479.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "ouham-pende": {
+    "entity_id": "cf-p-ouham-pende-v1",
+    "name_fr": "Ouham Pendé",
+    "slug": "ouham-pende",
+    "region_name": "Yadé",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF31"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF31"
+      }
+    ],
+    "population": {
+      "pop_2003": 181559.0,
+      "pop_2021": 243315.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 258469.0,
+      "rank_2021": 12,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 4.8
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bocaranga",
+        "pop_2025": 109571.0
+      },
+      {
+        "name_fr": "Bossemptélé",
+        "pop_2025": 25844.0
+      },
+      {
+        "name_fr": "Bozoum",
+        "pop_2025": 78386.0
+      },
+      {
+        "name_fr": "Koui",
+        "pop_2025": 44669.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bocaranga",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 231.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 311.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 600.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1500.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Bozoum",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-06",
+            "value": 203.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4250.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1350.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Ngaoundaye",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 243.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 775.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1500.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Paoua",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 173.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 324.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 813.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 4250.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 1500.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-lim-pende-v1",
+        "name_fr": "Lim-pendé",
+        "slug": "lim-pende",
+        "pop_2021": 442151.0
+      },
+      {
+        "entity_id": "cf-p-ouham-v1",
+        "name_fr": "Ouham",
+        "slug": "ouham",
+        "pop_2021": 297904.0
+      },
+      {
+        "entity_id": "cf-p-ouham-fafa-v1",
+        "name_fr": "Ouham-Fafa",
+        "slug": "ouham-fafa",
+        "pop_2021": 225479.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "ouham-fafa": {
+    "entity_id": "cf-p-ouham-fafa-v1",
+    "name_fr": "Ouham-Fafa",
+    "slug": "ouham-fafa",
+    "region_name": "Yadé",
+    "valid_from": "2021-01-21",
+    "notes": "Créée par la Loi n°21.001 du 21 janvier 2021 (adoptée par l'Assemblée nationale le 2020-12-10, promulguée le 2021-01-21) (source : Oubangui Médias, Xinhua, Wikipédia - texte légal primaire/numéro de décret non encore vérifié).",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF33"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF33"
+      }
+    ],
+    "population": {
+      "pop_2003": 159199.0,
+      "pop_2021": 225479.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 242745.0,
+      "rank_2021": 13,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 4.4
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Batangafo",
+        "pop_2025": 95085.0
+      },
+      {
+        "name_fr": "Bouca",
+        "pop_2025": 86787.0
+      },
+      {
+        "name_fr": "Kabo",
+        "pop_2025": 50032.0
+      },
+      {
+        "name_fr": "Sido",
+        "pop_2025": 10841.0
+      }
+    ],
+    "markets": [],
+    "siblings": [
+      {
+        "entity_id": "cf-p-lim-pende-v1",
+        "name_fr": "Lim-pendé",
+        "slug": "lim-pende",
+        "pop_2021": 442151.0
+      },
+      {
+        "entity_id": "cf-p-ouham-v1",
+        "name_fr": "Ouham",
+        "slug": "ouham",
+        "pop_2021": 297904.0
+      },
+      {
+        "entity_id": "cf-p-ouham-pende-v1",
+        "name_fr": "Ouham Pendé",
+        "slug": "ouham-pende",
+        "pop_2021": 243315.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Yadé",
+      "period": "2019",
+      "value": 83.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "sangha-mbaere": {
+    "entity_id": "cf-p-sangha-mbaere-v1",
+    "name_fr": "Sangha-Mbaéré",
+    "slug": "sangha-mbaere",
+    "region_name": "Équateur",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF23"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF23"
+      }
+    ],
+    "population": {
+      "pop_2003": 101074.0,
+      "pop_2021": 138770.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 154965.0,
+      "rank_2021": 16,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 2.7
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Bambio",
+        "pop_2025": 27615.0
+      },
+      {
+        "name_fr": "Bayanga",
+        "pop_2025": 20940.0
+      },
+      {
+        "name_fr": "Nola",
+        "pop_2025": 106410.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Bayanga",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 192.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 432.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 850.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 550.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          }
+        }
+      },
+      {
+        "name_fr": "Marché de Nola",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 173.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 365.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 800.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2026-07",
+            "value": 550.0
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-mambere-v1",
+        "name_fr": "Mambéré",
+        "slug": "mambere",
+        "pop_2021": 265479.0
+      },
+      {
+        "entity_id": "cf-p-mambere-kadei-v1",
+        "name_fr": "Mambéré-Kadéï",
+        "slug": "mambere-kadei",
+        "pop_2021": 273166.0
+      },
+      {
+        "entity_id": "cf-p-nana-mambere-v1",
+        "name_fr": "Nana-Mambéré",
+        "slug": "nana-mambere",
+        "pop_2021": 341796.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Équateur",
+      "period": "2019",
+      "value": 95.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  },
+  "vakaga": {
+    "entity_id": "cf-p-vakaga-v1",
+    "name_fr": "Vakaga",
+    "slug": "vakaga",
+    "region_name": "Fertit",
+    "valid_from": "2021-01-21",
+    "notes": "Existait avant 2020 sous le découpage à 16 préfectures ; limites redéfinies par la Loi n°21.001 du 21 janvier 2021 (adoptée le 2020-12-10, promulguée le 2021-01-21). Version antérieure à 2020 non modélisée dans ce crosswalk pour l'instant.",
+    "aliases": [
+      {
+        "source_id": "cod-ab-caf",
+        "code": "CF53"
+      },
+      {
+        "source_id": "citypopulation-de-caf",
+        "code": "CF53"
+      }
+    ],
+    "population": {
+      "pop_2003": 52255.0,
+      "pop_2021": 83188.0,
+      "pop_2021_flag": "estime",
+      "pop_2025": 90527.0,
+      "rank_2021": 18,
+      "total_prefectures": 20,
+      "national_2021": 5112100.0,
+      "share_of_national_pct": 1.6
+    },
+    "sous_prefectures": [
+      {
+        "name_fr": "Am-Dafok",
+        "pop_2025": 10768.0
+      },
+      {
+        "name_fr": "Birao",
+        "pop_2025": 21823.0
+      },
+      {
+        "name_fr": "Ouada-Djallé",
+        "pop_2025": 7464.0
+      },
+      {
+        "name_fr": "Ouandja",
+        "pop_2025": 50472.0
+      }
+    ],
+    "markets": [
+      {
+        "name_fr": "Marché de Birao",
+        "prices": {
+          "prix_manioc_kg": {
+            "period": "2026-07",
+            "value": 462.0
+          },
+          "prix_mais_kg": {
+            "period": "2026-07",
+            "value": 514.0
+          },
+          "prix_riz_kg": {
+            "period": "2026-07",
+            "value": 4000.0
+          },
+          "prix_boeuf_kg": {
+            "period": "2026-07",
+            "value": 5000.0
+          },
+          "prix_huile_palme_l": {
+            "period": "2025-08",
+            "value": 480.77
+          }
+        }
+      }
+    ],
+    "siblings": [
+      {
+        "entity_id": "cf-p-bamingui-bangoran-v1",
+        "name_fr": "Bamingui-Bangoran",
+        "slug": "bamingui-bangoran",
+        "pop_2021": 82108.0
+      },
+      {
+        "entity_id": "cf-p-haute-kotto-v1",
+        "name_fr": "Haute-Kotto",
+        "slug": "haute-kotto",
+        "pop_2021": 128342.0
+      }
+    ],
+    "sante_region": {
+      "region_name": "Fertit",
+      "period": "2019",
+      "value": 48.0
+    },
+    "freshness": [
+      {
+        "theme": "Population",
+        "period": "2025",
+        "available": true,
+        "level": "sous_prefecture"
+      },
+      {
+        "theme": "Prix",
+        "period": "2026-07",
+        "available": true,
+        "level": "prefecture"
+      },
+      {
+        "theme": "Infrastructures",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Éducation",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Santé",
+        "period": "2019",
+        "available": true,
+        "level": "region"
+      },
+      {
+        "theme": "Économie",
+        "period": null,
+        "available": false,
+        "level": null
+      },
+      {
+        "theme": "Agriculture",
+        "period": null,
+        "available": false,
+        "level": null
+      }
+    ]
+  }
+}

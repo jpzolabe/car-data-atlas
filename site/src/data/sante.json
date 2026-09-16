@@ -1,0 +1,1282 @@
+{
+  "generated_note": "Généré depuis data/observations.csv via pipeline/export_sante_json.py - ne pas éditer directement.",
+  "headline": {
+    "indicator_id": "esperance_vie",
+    "latest": {
+      "period": "2024",
+      "value": 57.671
+    },
+    "series": [
+      {
+        "period": "2010",
+        "value": 46.871
+      },
+      {
+        "period": "2011",
+        "value": 50.107
+      },
+      {
+        "period": "2012",
+        "value": 51.336
+      },
+      {
+        "period": "2013",
+        "value": 49.487
+      },
+      {
+        "period": "2014",
+        "value": 40.265
+      },
+      {
+        "period": "2015",
+        "value": 51.934
+      },
+      {
+        "period": "2016",
+        "value": 50.999
+      },
+      {
+        "period": "2017",
+        "value": 45.231
+      },
+      {
+        "period": "2018",
+        "value": 52.297
+      },
+      {
+        "period": "2019",
+        "value": 31.53
+      },
+      {
+        "period": "2020",
+        "value": 50.596
+      },
+      {
+        "period": "2021",
+        "value": 40.279
+      },
+      {
+        "period": "2022",
+        "value": 18.818
+      },
+      {
+        "period": "2023",
+        "value": 57.408
+      },
+      {
+        "period": "2024",
+        "value": 57.671
+      }
+    ],
+    "lead_sentence": "En 2024, l'espérance de vie à la naissance en République centrafricaine s'établissait à 57,7 ans.",
+    "lead_sentence_template_id": "esperance_vie_pays",
+    "source": {
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
+      "retrieved_at": "2026-09-12"
+    },
+    "unit": "ans",
+    "name_fr": "Espérance de vie à la naissance",
+    "definition_fr": "Cet indicateur donne le nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes. C'est une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
+  },
+  "categories": [
+    {
+      "key": "systeme",
+      "label_fr": "Système de santé",
+      "indicators": [
+        {
+          "indicator_id": "nombre_etablissements_sante",
+          "unit": "établissements",
+          "latest": {
+            "period": "2019",
+            "value": 555.0
+          },
+          "series": [
+            {
+              "period": "2019",
+              "value": 555.0
+            },
+            {
+              "period": "2026",
+              "value": 425.0
+            }
+          ],
+          "lead_sentence": "En 2019, un registre gouvernemental compilé en 2019 recensait 555 établissements de santé en République centrafricaine.",
+          "lead_sentence_template_id": "nombre_etablissements_sante_pays",
+          "source": {
+            "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+            "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)",
+            "url": "https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa",
+            "retrieved_at": "2026-09-12"
+          },
+          "national": {
+            "headline": {
+              "value": 555.0,
+              "period": "2019",
+              "quality_flag": "administratif",
+              "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+              "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)"
+            },
+            "spread_pct": 30.6,
+            "spread_vs_period": "2026",
+            "all_sources": [
+              {
+                "value": 425.0,
+                "period": "2026",
+                "quality_flag": "osm",
+                "producer": "OpenStreetMap (via healthsites.io et HOTOSM), via HDX",
+                "dataset_name": "Central African Republic Healthsites",
+                "url": "https://data.humdata.org/dataset/central-african-republic-healthsites"
+              },
+              {
+                "value": 555.0,
+                "period": "2019",
+                "quality_flag": "administratif",
+                "producer": "Maina et al. (Scientific Data, 2019), via HDX",
+                "dataset_name": "Health Facilities in Sub-Saharan Africa (Master Facility List)",
+                "url": "https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa"
+              }
+            ]
+          },
+          "region_breakdown": [
+            {
+              "region_name": "Plateaux",
+              "value": 112.0
+            },
+            {
+              "region_name": "Haut-Oubangui",
+              "value": 109.0
+            },
+            {
+              "region_name": "Équateur",
+              "value": 95.0
+            },
+            {
+              "region_name": "Kaga",
+              "value": 85.0
+            },
+            {
+              "region_name": "Yadé",
+              "value": 83.0
+            },
+            {
+              "region_name": "Fertit",
+              "value": 48.0
+            },
+            {
+              "region_name": "Bas-Oubangui",
+              "value": 23.0
+            }
+          ],
+          "name_fr": "Nombre d'établissements de santé",
+          "definition_fr": "Cet indicateur donne un décompte national des établissements de santé : hôpitaux, centres et postes de santé. Deux sources sont disponibles et ne s'accordent pas, un registre gouvernemental compilé en 2019 et une cartographie communautaire (OpenStreetMap) mise à jour en continu ; le détail des deux chiffres est présenté ci-dessous plutôt qu'un seul nombre choisi."
+        },
+        {
+          "indicator_id": "depenses_sante_pib",
+          "latest": {
+            "period": "2023",
+            "value": 10.65553188
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 4.68325615
+            },
+            {
+              "period": "2010",
+              "value": 3.56699872
+            },
+            {
+              "period": "2011",
+              "value": 3.67561865
+            },
+            {
+              "period": "2012",
+              "value": 3.91814446
+            },
+            {
+              "period": "2013",
+              "value": 4.76660204
+            },
+            {
+              "period": "2014",
+              "value": 4.56557369
+            },
+            {
+              "period": "2015",
+              "value": 5.03434181
+            },
+            {
+              "period": "2016",
+              "value": 5.44402313
+            },
+            {
+              "period": "2017",
+              "value": 6.66541576
+            },
+            {
+              "period": "2018",
+              "value": 10.99484062
+            },
+            {
+              "period": "2019",
+              "value": 7.76081514
+            },
+            {
+              "period": "2020",
+              "value": 8.98488045
+            },
+            {
+              "period": "2021",
+              "value": 9.15097523
+            },
+            {
+              "period": "2022",
+              "value": 9.94993496
+            },
+            {
+              "period": "2023",
+              "value": 10.65553188
+            }
+          ],
+          "lead_sentence": "En 2023, le poids des dépenses de santé dans le PIB en République centrafricaine s'établissait à 10,7%.",
+          "lead_sentence_template_id": "depenses_sante_pib_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Dépenses courantes de santé, % du PIB (SH.XPD.CHEX.GD.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.XPD.CHEX.GD.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "% du PIB",
+          "name_fr": "Dépenses de santé",
+          "definition_fr": "Cet indicateur mesure les dépenses courantes de santé en part du PIB. Il inclut les dépenses publiques et privées, y compris celles des ménages, et pas seulement le budget de l'État."
+        },
+        {
+          "indicator_id": "densite_medecins",
+          "latest": {
+            "period": "2023",
+            "value": 0.074
+          },
+          "series": [
+            {
+              "period": "1980",
+              "value": 0.043
+            },
+            {
+              "period": "1981",
+              "value": 0.044
+            },
+            {
+              "period": "1982",
+              "value": 0.043
+            },
+            {
+              "period": "1989",
+              "value": 0.039
+            },
+            {
+              "period": "1990",
+              "value": 0.038
+            },
+            {
+              "period": "1993",
+              "value": 0.055
+            },
+            {
+              "period": "1995",
+              "value": 0.035
+            },
+            {
+              "period": "2004",
+              "value": 0.079
+            },
+            {
+              "period": "2008",
+              "value": 0.0405
+            },
+            {
+              "period": "2009",
+              "value": 0.045
+            },
+            {
+              "period": "2015",
+              "value": 0.07
+            },
+            {
+              "period": "2018",
+              "value": 0.069
+            },
+            {
+              "period": "2021",
+              "value": 0.022
+            },
+            {
+              "period": "2022",
+              "value": 0.029
+            },
+            {
+              "period": "2023",
+              "value": 0.074
+            }
+          ],
+          "lead_sentence": "En 2023, la densité de médecins en République centrafricaine s'établissait à 0,1 pour 1 000 habitants.",
+          "lead_sentence_template_id": "densite_medecins_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 1 000 habitants",
+          "name_fr": "Densité de médecins",
+          "definition_fr": "Cet indicateur donne le nombre de médecins pour 1 000 habitants. C'est une mesure relative à la population, à ne pas confondre avec l'effectif total (voir « Nombre de médecins » ci-dessous)."
+        },
+        {
+          "indicator_id": "nombre_medecins",
+          "latest": {
+            "period": "2024",
+            "value": 532.0
+          },
+          "series": [
+            {
+              "period": "2004",
+              "value": 331.0
+            },
+            {
+              "period": "2009",
+              "value": 205.0
+            },
+            {
+              "period": "2015",
+              "value": 324.0
+            },
+            {
+              "period": "2018",
+              "value": 335.0
+            },
+            {
+              "period": "2021",
+              "value": 447.0
+            },
+            {
+              "period": "2023",
+              "value": 383.0
+            },
+            {
+              "period": "2024",
+              "value": 532.0
+            }
+          ],
+          "lead_sentence": "En 2024, la République centrafricaine comptait 532 médecins.",
+          "lead_sentence_template_id": "nombre_medecins_pays",
+          "source": {
+            "producer": "WHO (Global Health Observatory)",
+            "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
+            "url": "https://ghoapi.azureedge.net/api/HWF_0002",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "personnes",
+          "name_fr": "Nombre de médecins",
+          "definition_fr": "Cet indicateur donne l'effectif total de médecins en exercice dans le pays. C'est un décompte brut, à distinguer de la densité pour 1 000 habitants (voir « Densité de médecins » ci-dessus), qui tient compte de la taille de la population."
+        },
+        {
+          "indicator_id": "densite_lits_hopital",
+          "latest": {
+            "period": "2011",
+            "value": 1.0
+          },
+          "series": [
+            {
+              "period": "1960",
+              "value": 1.23142111301422
+            },
+            {
+              "period": "1970",
+              "value": 1.87559998035431
+            },
+            {
+              "period": "1980",
+              "value": 1.55859994888306
+            },
+            {
+              "period": "1990",
+              "value": 0.8731999993
+            },
+            {
+              "period": "2006",
+              "value": 1.2
+            },
+            {
+              "period": "2011",
+              "value": 1.0
+            }
+          ],
+          "lead_sentence": "En 2011, la densité de lits d'hôpital en République centrafricaine s'établissait à 1,0 pour 1 000 habitants.",
+          "lead_sentence_template_id": "densite_lits_hopital_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 1 000 habitants",
+          "name_fr": "Densité de lits d'hôpital",
+          "definition_fr": "Cet indicateur donne le nombre de lits d'hôpital pour 1 000 habitants. Il mesure la capacité hospitalière disponible, indépendamment de la population totale du pays."
+        },
+        {
+          "indicator_id": "nombre_lits_hopital",
+          "latest": {
+            "period": "2011",
+            "value": 4565.0
+          },
+          "series": [
+            {
+              "period": "1960",
+              "value": 2096.0
+            },
+            {
+              "period": "1970",
+              "value": 3934.0
+            },
+            {
+              "period": "1980",
+              "value": 3819.0
+            },
+            {
+              "period": "1990",
+              "value": 2508.0
+            },
+            {
+              "period": "2006",
+              "value": 5253.0
+            },
+            {
+              "period": "2011",
+              "value": 4565.0
+            }
+          ],
+          "lead_sentence": "En 2011, la République centrafricaine comptait environ 4 565 lits d'hôpital, selon une estimation calculée à partir de la densité et de la population de cette année-là.",
+          "lead_sentence_template_id": "nombre_lits_hopital_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Médecins et lits d'hôpital, pour 1 000 habitants (SH.MED.PHYS.ZS, SH.MED.BEDS.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.MED.PHYS.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "lits",
+          "name_fr": "Nombre de lits d'hôpital",
+          "definition_fr": "Cette valeur est une estimation calculée (densité de lits multipliée par la population), et non un décompte publié directement."
+        },
+        {
+          "indicator_id": "nombre_personnel_infirmier",
+          "latest": {
+            "period": "2024",
+            "value": 2331.0
+          },
+          "series": [
+            {
+              "period": "2004",
+              "value": 1613.0
+            },
+            {
+              "period": "2008",
+              "value": 835.0
+            },
+            {
+              "period": "2009",
+              "value": 1097.0
+            },
+            {
+              "period": "2018",
+              "value": 1195.0
+            },
+            {
+              "period": "2021",
+              "value": 1042.0
+            },
+            {
+              "period": "2022",
+              "value": 2545.0
+            },
+            {
+              "period": "2023",
+              "value": 5653.0
+            },
+            {
+              "period": "2024",
+              "value": 2331.0
+            }
+          ],
+          "lead_sentence": "En 2024, la République centrafricaine comptait 2 331 membres du personnel infirmier et de sages-femmes.",
+          "lead_sentence_template_id": "nombre_personnel_infirmier_pays",
+          "source": {
+            "producer": "WHO (Global Health Observatory)",
+            "dataset_name": "Médecins et personnel infirmier/obstétrical, effectif (HWF_0002, HWF_0007)",
+            "url": "https://ghoapi.azureedge.net/api/HWF_0002",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "personnes",
+          "name_fr": "Personnel infirmier et sages-femmes",
+          "definition_fr": "Cet indicateur donne l'effectif total de personnel infirmier et de sages-femmes en exercice dans le pays."
+        }
+      ]
+    },
+    {
+      "key": "vaccination",
+      "label_fr": "Vaccination",
+      "indicators": [
+        {
+          "indicator_id": "taux_vaccination_rougeole",
+          "latest": {
+            "period": "2024",
+            "value": 41.0
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 53.0
+            },
+            {
+              "period": "2011",
+              "value": 49.0
+            },
+            {
+              "period": "2012",
+              "value": 48.0
+            },
+            {
+              "period": "2013",
+              "value": 25.0
+            },
+            {
+              "period": "2014",
+              "value": 47.0
+            },
+            {
+              "period": "2015",
+              "value": 46.0
+            },
+            {
+              "period": "2016",
+              "value": 45.0
+            },
+            {
+              "period": "2017",
+              "value": 41.0
+            },
+            {
+              "period": "2018",
+              "value": 39.0
+            },
+            {
+              "period": "2019",
+              "value": 37.0
+            },
+            {
+              "period": "2020",
+              "value": 36.0
+            },
+            {
+              "period": "2021",
+              "value": 34.0
+            },
+            {
+              "period": "2022",
+              "value": 32.0
+            },
+            {
+              "period": "2023",
+              "value": 39.0
+            },
+            {
+              "period": "2024",
+              "value": 41.0
+            }
+          ],
+          "lead_sentence": "En 2024, le taux de vaccination contre la rougeole en République centrafricaine s'établissait à 41,0%.",
+          "lead_sentence_template_id": "taux_vaccination_rougeole_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Vaccination, rougeole et DTC, % des enfants de 12 à 23 mois (SH.IMM.MEAS, SH.IMM.IDPT)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Vaccination contre la rougeole",
+          "definition_fr": "Ce taux mesure la part des enfants de 12 à 23 mois ayant reçu le vaccin contre la rougeole."
+        },
+        {
+          "indicator_id": "taux_vaccination_dtc",
+          "latest": {
+            "period": "2024",
+            "value": 42.0
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 45.0
+            },
+            {
+              "period": "2011",
+              "value": 47.0
+            },
+            {
+              "period": "2012",
+              "value": 47.0
+            },
+            {
+              "period": "2013",
+              "value": 23.0
+            },
+            {
+              "period": "2014",
+              "value": 45.0
+            },
+            {
+              "period": "2015",
+              "value": 43.0
+            },
+            {
+              "period": "2016",
+              "value": 42.0
+            },
+            {
+              "period": "2017",
+              "value": 42.0
+            },
+            {
+              "period": "2018",
+              "value": 40.0
+            },
+            {
+              "period": "2019",
+              "value": 38.0
+            },
+            {
+              "period": "2020",
+              "value": 37.0
+            },
+            {
+              "period": "2021",
+              "value": 35.0
+            },
+            {
+              "period": "2022",
+              "value": 33.0
+            },
+            {
+              "period": "2023",
+              "value": 40.0
+            },
+            {
+              "period": "2024",
+              "value": 42.0
+            }
+          ],
+          "lead_sentence": "En 2024, le taux de vaccination DTC en République centrafricaine s'établissait à 42,0%.",
+          "lead_sentence_template_id": "taux_vaccination_dtc_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Vaccination, rougeole et DTC, % des enfants de 12 à 23 mois (SH.IMM.MEAS, SH.IMM.IDPT)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.IMM.MEAS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Vaccination DTC",
+          "definition_fr": "Ce taux mesure la part des enfants de 12 à 23 mois ayant reçu le vaccin diphtérie-tétanos-coqueluche."
+        }
+      ]
+    },
+    {
+      "key": "maternelle_infantile",
+      "label_fr": "Santé maternelle et infantile",
+      "indicators": [
+        {
+          "indicator_id": "soins_prenatals_4visites",
+          "latest": {
+            "period": "2019",
+            "value": 41.4
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 38.1
+            },
+            {
+              "period": "2019",
+              "value": 41.4
+            }
+          ],
+          "lead_sentence": "En 2019, le taux de suivi prénatal (4 visites ou plus) en République centrafricaine s'établissait à 41,4%.",
+          "lead_sentence_template_id": "soins_prenatals_4visites_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Soins prénatals (4 visites ou plus)",
+          "definition_fr": "Ce taux mesure la part des femmes de 15 à 49 ans ayant reçu au moins 4 consultations prénatales pendant leur dernière grossesse."
+        },
+        {
+          "indicator_id": "accouchement_assiste",
+          "latest": {
+            "period": "2019",
+            "value": 40.3
+          },
+          "series": [
+            {
+              "period": "2000",
+              "value": 31.7
+            },
+            {
+              "period": "2006",
+              "value": 41.4
+            },
+            {
+              "period": "2008",
+              "value": 43.7
+            },
+            {
+              "period": "2010",
+              "value": 40.0
+            },
+            {
+              "period": "2019",
+              "value": 40.3
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'accouchement assisté par du personnel qualifié en République centrafricaine s'établissait à 40,3%.",
+          "lead_sentence_template_id": "accouchement_assiste_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Accouchement assisté par du personnel qualifié",
+          "definition_fr": "Ce taux mesure la part des accouchements assistés par un professionnel de santé formé : médecin, sage-femme ou infirmier."
+        },
+        {
+          "indicator_id": "allaitement_exclusif",
+          "latest": {
+            "period": "2019",
+            "value": 36.2
+          },
+          "series": [
+            {
+              "period": "1994",
+              "value": 3.0
+            },
+            {
+              "period": "2000",
+              "value": 16.5
+            },
+            {
+              "period": "2006",
+              "value": 22.8
+            },
+            {
+              "period": "2010",
+              "value": 33.0
+            },
+            {
+              "period": "2014",
+              "value": 28.8
+            },
+            {
+              "period": "2018",
+              "value": 38.8
+            },
+            {
+              "period": "2019",
+              "value": 36.2
+            }
+          ],
+          "lead_sentence": "En 2019, le taux d'allaitement exclusif chez les 0-5 mois en République centrafricaine s'établissait à 36,2%.",
+          "lead_sentence_template_id": "allaitement_exclusif_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Allaitement exclusif (0-5 mois)",
+          "definition_fr": "Ce taux mesure la part des enfants de 0 à 5 mois nourris exclusivement au lait maternel, sans autre aliment ni liquide."
+        },
+        {
+          "indicator_id": "retard_croissance_enfants",
+          "latest": {
+            "period": "2022",
+            "value": 37.9
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": 37.5
+            },
+            {
+              "period": "2022",
+              "value": 37.9
+            }
+          ],
+          "lead_sentence": "En 2022, le taux de retard de croissance chez les moins de 5 ans en République centrafricaine s'établissait à 37,9%.",
+          "lead_sentence_template_id": "retard_croissance_enfants_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Retard de croissance (enfants de moins de 5 ans)",
+          "definition_fr": "Ce taux mesure la part des enfants de moins de 5 ans dont la taille pour l'âge est inférieure à -2 écarts-types de la référence de croissance de l'OMS. Il traduit un retard de croissance chronique, résultat d'une malnutrition sur le long terme."
+        },
+        {
+          "indicator_id": "emaciation_enfants",
+          "latest": {
+            "period": "2022",
+            "value": 5.2
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": 6.5
+            },
+            {
+              "period": "2022",
+              "value": 5.2
+            }
+          ],
+          "lead_sentence": "En 2022, le taux d'émaciation chez les moins de 5 ans en République centrafricaine s'établissait à 5,2%.",
+          "lead_sentence_template_id": "emaciation_enfants_pays",
+          "source": {
+            "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
+            "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
+            "url": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,GLOBAL_DATAFLOW,1.0/CAF..?format=sdmx-json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "%",
+          "name_fr": "Émaciation (enfants de moins de 5 ans)",
+          "definition_fr": "Ce taux mesure la part des enfants de moins de 5 ans dont le poids pour la taille est inférieur à -2 écarts-types de la référence de croissance de l'OMS. Il traduit une émaciation aiguë, résultat d'une malnutrition à court terme, plus urgente à traiter que le retard de croissance."
+        }
+      ]
+    },
+    {
+      "key": "mortalite",
+      "label_fr": "Mortalité et espérance de vie",
+      "indicators": [
+        {
+          "indicator_id": "esperance_vie",
+          "latest": {
+            "period": "2024",
+            "value": 57.671
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 46.871
+            },
+            {
+              "period": "2011",
+              "value": 50.107
+            },
+            {
+              "period": "2012",
+              "value": 51.336
+            },
+            {
+              "period": "2013",
+              "value": 49.487
+            },
+            {
+              "period": "2014",
+              "value": 40.265
+            },
+            {
+              "period": "2015",
+              "value": 51.934
+            },
+            {
+              "period": "2016",
+              "value": 50.999
+            },
+            {
+              "period": "2017",
+              "value": 45.231
+            },
+            {
+              "period": "2018",
+              "value": 52.297
+            },
+            {
+              "period": "2019",
+              "value": 31.53
+            },
+            {
+              "period": "2020",
+              "value": 50.596
+            },
+            {
+              "period": "2021",
+              "value": 40.279
+            },
+            {
+              "period": "2022",
+              "value": 18.818
+            },
+            {
+              "period": "2023",
+              "value": 57.408
+            },
+            {
+              "period": "2024",
+              "value": 57.671
+            }
+          ],
+          "lead_sentence": "En 2024, l'espérance de vie à la naissance en République centrafricaine s'établissait à 57,7 ans.",
+          "lead_sentence_template_id": "esperance_vie_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "ans",
+          "name_fr": "Espérance de vie à la naissance",
+          "definition_fr": "Cet indicateur donne le nombre moyen d'années qu'un nouveau-né vivrait si les tendances actuelles de mortalité par âge restaient constantes. C'est une mesure synthétique de la mortalité à un instant donné, pas une prédiction individuelle."
+        },
+        {
+          "indicator_id": "taux_mortalite_moins_5ans",
+          "latest": {
+            "period": "2024",
+            "value": 89.7
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 150.7
+            },
+            {
+              "period": "2011",
+              "value": 125.1
+            },
+            {
+              "period": "2012",
+              "value": 121.9
+            },
+            {
+              "period": "2013",
+              "value": 134.2
+            },
+            {
+              "period": "2014",
+              "value": 186.8
+            },
+            {
+              "period": "2015",
+              "value": 113.7
+            },
+            {
+              "period": "2016",
+              "value": 126.8
+            },
+            {
+              "period": "2017",
+              "value": 155.2
+            },
+            {
+              "period": "2018",
+              "value": 120.2
+            },
+            {
+              "period": "2019",
+              "value": 254.7
+            },
+            {
+              "period": "2020",
+              "value": 124.2
+            },
+            {
+              "period": "2021",
+              "value": 178.7
+            },
+            {
+              "period": "2022",
+              "value": 424.6
+            },
+            {
+              "period": "2023",
+              "value": 92.6
+            },
+            {
+              "period": "2024",
+              "value": 89.7
+            }
+          ],
+          "lead_sentence": "En 2024, le taux de mortalité des moins de 5 ans en République centrafricaine s'établissait à 89,7 pour 1 000 naissances vivantes.",
+          "lead_sentence_template_id": "taux_mortalite_moins_5ans_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 1 000 naissances vivantes",
+          "name_fr": "Mortalité des moins de 5 ans",
+          "definition_fr": "Ce taux indique la probabilité de décès avant 5 ans, pour 1 000 naissances vivantes. C'est l'un des indicateurs de santé les plus suivis à l'échelle internationale, car il résume l'accès aux soins de base, à la nutrition et à l'eau potable."
+        },
+        {
+          "indicator_id": "taux_mortalite_infantile",
+          "latest": {
+            "period": "2024",
+            "value": 58.8
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 88.5
+            },
+            {
+              "period": "2011",
+              "value": 77.7
+            },
+            {
+              "period": "2012",
+              "value": 76.1
+            },
+            {
+              "period": "2013",
+              "value": 81.0
+            },
+            {
+              "period": "2014",
+              "value": 101.7
+            },
+            {
+              "period": "2015",
+              "value": 72.0
+            },
+            {
+              "period": "2016",
+              "value": 77.1
+            },
+            {
+              "period": "2017",
+              "value": 88.4
+            },
+            {
+              "period": "2018",
+              "value": 73.9
+            },
+            {
+              "period": "2019",
+              "value": 128.9
+            },
+            {
+              "period": "2020",
+              "value": 74.7
+            },
+            {
+              "period": "2021",
+              "value": 96.3
+            },
+            {
+              "period": "2022",
+              "value": 206.8
+            },
+            {
+              "period": "2023",
+              "value": 60.8
+            },
+            {
+              "period": "2024",
+              "value": 58.8
+            }
+          ],
+          "lead_sentence": "En 2024, le taux de mortalité infantile en République centrafricaine s'établissait à 58,8 pour 1 000 naissances vivantes.",
+          "lead_sentence_template_id": "taux_mortalite_infantile_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 1 000 naissances vivantes",
+          "name_fr": "Mortalité infantile",
+          "definition_fr": "Ce taux indique la probabilité de décès avant 1 an, pour 1 000 naissances vivantes."
+        },
+        {
+          "indicator_id": "taux_mortalite_maternelle",
+          "latest": {
+            "period": "2023",
+            "value": 692.0
+          },
+          "series": [
+            {
+              "period": "2009",
+              "value": 1272.0
+            },
+            {
+              "period": "2010",
+              "value": 1230.0
+            },
+            {
+              "period": "2011",
+              "value": 1131.0
+            },
+            {
+              "period": "2012",
+              "value": 1092.0
+            },
+            {
+              "period": "2013",
+              "value": 1092.0
+            },
+            {
+              "period": "2014",
+              "value": 1034.0
+            },
+            {
+              "period": "2015",
+              "value": 981.0
+            },
+            {
+              "period": "2016",
+              "value": 962.0
+            },
+            {
+              "period": "2017",
+              "value": 1093.0
+            },
+            {
+              "period": "2018",
+              "value": 881.0
+            },
+            {
+              "period": "2019",
+              "value": 1650.0
+            },
+            {
+              "period": "2020",
+              "value": 1296.0
+            },
+            {
+              "period": "2021",
+              "value": 1127.0
+            },
+            {
+              "period": "2022",
+              "value": 841.0
+            },
+            {
+              "period": "2023",
+              "value": 692.0
+            }
+          ],
+          "lead_sentence": "En 2023, le taux de mortalité maternelle en République centrafricaine s'établissait à 692,0 pour 100 000 naissances vivantes.",
+          "lead_sentence_template_id": "taux_mortalite_maternelle_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Taux de mortalité maternelle, pour 100 000 naissances vivantes (SH.STA.MMRT)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 100 000 naissances vivantes",
+          "name_fr": "Mortalité maternelle",
+          "definition_fr": "Ce taux compte les décès maternels pour 100 000 naissances vivantes, survenus pendant la grossesse, l'accouchement ou les 42 jours suivants, pour des causes liées à la grossesse."
+        }
+      ]
+    },
+    {
+      "key": "maladies",
+      "label_fr": "Maladies",
+      "indicators": [
+        {
+          "indicator_id": "incidence_vih",
+          "latest": {
+            "period": "2024",
+            "value": 0.95
+          },
+          "series": [
+            {
+              "period": "2010",
+              "value": 3.4
+            },
+            {
+              "period": "2011",
+              "value": 3.2
+            },
+            {
+              "period": "2012",
+              "value": 3.1
+            },
+            {
+              "period": "2013",
+              "value": 3.0
+            },
+            {
+              "period": "2014",
+              "value": 2.7
+            },
+            {
+              "period": "2015",
+              "value": 2.6
+            },
+            {
+              "period": "2016",
+              "value": 2.2
+            },
+            {
+              "period": "2017",
+              "value": 2.0
+            },
+            {
+              "period": "2018",
+              "value": 1.8
+            },
+            {
+              "period": "2019",
+              "value": 1.6
+            },
+            {
+              "period": "2020",
+              "value": 1.5
+            },
+            {
+              "period": "2021",
+              "value": 1.4
+            },
+            {
+              "period": "2022",
+              "value": 1.2
+            },
+            {
+              "period": "2023",
+              "value": 0.97
+            },
+            {
+              "period": "2024",
+              "value": 0.95
+            }
+          ],
+          "lead_sentence": "En 2024, l'incidence du VIH en République centrafricaine s'établissait à 0,9 pour 1 000 personnes non infectées de 15 à 49 ans.",
+          "lead_sentence_template_id": "incidence_vih_pays",
+          "source": {
+            "producer": "World Bank (World Development Indicators)",
+            "dataset_name": "Incidence du VIH, 15-49 ans, pour 1 000 personnes non infectées (SH.HIV.INCD.ZS)",
+            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.HIV.INCD.ZS?format=json",
+            "retrieved_at": "2026-09-12"
+          },
+          "unit": "pour 1 000 personnes non infectées 15-49 ans",
+          "name_fr": "Incidence du VIH",
+          "definition_fr": "Cet indicateur compte les nouvelles infections par le VIH, sur une année, pour 1 000 personnes non infectées âgées de 15 à 49 ans. Il mesure les nouveaux cas, non le nombre total de personnes vivant avec le VIH."
+        }
+      ]
+    }
+  ]
+}

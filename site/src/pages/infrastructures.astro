@@ -1,0 +1,303 @@
+---
+// Widened 2026-09-12 from a single indicator (électricité) to 5, following
+// the same headline-then-breakdown rule as education/prix (docs/plan.md
+// Sec2.3). Électricité stays the headline hero chart (CLAUDE.md's own domain
+// fact cites it, and its 2019 point independently matches MICS); internet
+// use, mobile subscriptions, water and sanitation access are additive cards
+// below, all World Bank, all confirmed live before adding; see
+// docs/decisions.md. File renamed from export_electricity_json.py /
+// electricite.json since the theme is no longer just electricity.
+import data from "../data/infrastructures.json";
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+
+const series = data.series;
+const values = series.map((d) => d.value);
+const min = 0; // honest zero-based axis for a percentage
+const max = Math.ceil(Math.max(...values) / 5) * 5;
+
+const W = 1000, H = 300, marginL = 46, marginR = 20, marginT = 20, marginB = 34;
+const plotW = W - marginL - marginR;
+const plotH = H - marginT - marginB;
+const x = (i: number) => marginL + (i / (series.length - 1)) * plotW;
+const y = (v: number) => marginT + plotH - ((v - min) / (max - min)) * plotH;
+const points = series.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
+
+const ticks = [0, max / 2, max];
+const latest = series[series.length - 1];
+const first = series[0];
+const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+// Hover targets: one per data point, native <title> tooltip - no chart
+// library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+// See docs/decisions.md.
+const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
+
+// Small build-time SVG sparkline for the "Autres indicateurs" cards; same
+// technique as education.astro/prix.astro's, duplicated per this project's
+// one-file-per-page convention.
+const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 34, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
+function sparkline(ind: { series: { period: string; value: number }[] }) {
+  const s = ind.series;
+  const plotW2 = SPARK_W - SPARK_ML - SPARK_MR;
+  const plotH2 = SPARK_H - SPARK_MT - SPARK_MB;
+  const vals = s.map((d) => d.value);
+  const sMin = 0;
+  const sMax = Math.max(...vals) * 1.1;
+  const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW2;
+  const sy = (v: number) => SPARK_MT + plotH2 - ((v - sMin) / (sMax - sMin)) * plotH2;
+  const pts = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
+  const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
+  // One or two intermediate year labels (roughly a third and two-thirds of
+  // the way through) - user feedback, only first/last year were labelled.
+  const midLabels = [...new Set([
+    Math.round((s.length - 1) / 3),
+    Math.round((s.length - 1) * 2 / 3),
+  ])]
+    .filter((i) => i > 0 && i < s.length - 1)
+    .map((i) => ({ x: sx(i), year: s[i].period }));
+  return {
+    points: pts, hoverPoints, midLabels, firstYear: s[0].period, lastYear: s[s.length - 1].period,
+    yZero: sy(0), xFirst: sx(0), xLast: sx(s.length - 1),
+  };
+}
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Infrastructures - BêAfrîka Data</title>
+    <style>
+      :root {
+        --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
+        --ink-faint: #8C8F7F; --line: #33362A; --indigo: #6FA0E8;
+        --t-infra: #A98BDD;
+        --ochre: #E0A83D; --ochre-soft: #3A2E12;
+      }
+      :root[data-theme="light"] {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --t-infra: #6B4A9E;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+      @media print {
+        :root {
+        --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
+        --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8;
+        --t-infra: #6B4A9E;
+        --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
+      }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--t-infra) 9%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--t-infra) 6%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+      }
+      main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
+      .crumb a { color: var(--ink-faint); text-decoration: none; }
+      .crumb a:hover { color: var(--t-infra); text-decoration: underline; }
+      h1 {
+        font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
+        border-bottom: 3px solid var(--t-infra); padding-bottom: 4px;
+      }
+      .lede { color: var(--ink-muted); margin: 12px 0 20px; }
+      .headline-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); margin: 0; font-family: ui-monospace, monospace; }
+      .headline { font-family: ui-monospace, monospace; font-size: 2rem; margin: 0; color: var(--t-infra); }
+      .headline .unit { font-size: 0.9rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
+      .headline-meta { color: var(--ink-faint); font-size: 12px; margin: 4px 0 20px; }
+      svg { width: 100%; height: auto; display: block; margin: 16px 0; }
+      .gridline { stroke: var(--line); stroke-width: 1; }
+      .axis-label { fill: var(--ink-faint); font-size: 10px; font-family: ui-monospace, monospace; }
+      .line-published {
+        stroke: var(--t-infra); stroke-width: 2.5; fill: none;
+        stroke-dasharray: 4000; stroke-dashoffset: 4000;
+        animation: drawLine 1.4s ease-out forwards;
+      }
+      .area-fill { fill: url(#infraGradient); }
+      .hover-pt { fill: transparent; pointer-events: all; }
+      .hover-pt:hover { fill: var(--t-infra); }
+      .sentence {
+        font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink);
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        border-left: 3px solid var(--t-infra); padding: 14px 0 14px 14px; margin: 20px 0;
+      }
+      .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
+      .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
+      .not-measured li { margin-bottom: 4px; }
+      h2 { font-size: 1.15rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); }
+      .indicator-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+        gap: 22px;
+      }
+      .indicator-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+        padding: 16px 18px;
+      }
+      .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
+      .indicator-card .ind-value {
+        font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+        color: var(--t-infra);
+      }
+      .indicator-card .ind-value .unit { font-size: 0.8rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      svg.mini-sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
+      .mini-spark-line {
+        stroke: var(--t-infra); stroke-width: 2; fill: none;
+        stroke-dasharray: 2000; stroke-dashoffset: 2000;
+        animation: drawMiniSpark 1.1s ease-out forwards;
+      }
+      @keyframes drawMiniSpark { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) { .mini-spark-line { animation: none; stroke-dashoffset: 0; } }
+      .mini-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
+      .single-point-note {
+        margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
+        background: color-mix(in srgb, var(--t-infra) 6%, transparent);
+        border-radius: 3px;
+      }
+      .mini-sentence { font-style: italic; font-size: 13px; color: var(--ink-muted); margin: 8px 0 0; }
+      footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
+      footer a { color: var(--ink-muted); }
+      .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+      .site-nav a { color: var(--t-infra); font-size: 12.5px; transition: opacity 0.15s ease; }
+      .site-nav a:hover { opacity: 0.7; }
+      @keyframes drawLine { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .line-published { animation: none; stroke-dashoffset: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <h1>Infrastructures</h1>
+      <p class="lede">
+        L'accès de la population aux infrastructures essentielles -
+        électricité, eau potable, assainissement, téléphonie mobile et
+        Internet - à l'échelle du pays, à partir des données de la
+        Banque mondiale.
+      </p>
+
+      <p class="headline-label">Accès à l'électricité</p>
+      <p class="headline">{fmt(latest.value)}<span class="unit">%, {latest.period}</span></p>
+      <p class="headline-meta">{data.definition_fr}</p>
+      <p class="headline-meta">
+        {first.period} : {fmt(first.value)}% ; {latest.period} : {fmt(latest.value)}%. Axe
+        vertical débutant à zéro. Le point 2019
+        ({fmt(series.find((d) => d.period === "2019")?.value ?? 0)}%) correspond
+        exactement à la valeur mesurée par l'enquête MICS 2018-19 : ce n'est pas
+        une coïncidence, cette source compile en partie les mêmes enquêtes.
+      </p>
+
+      <p class="sentence">
+        {data.lead_sentence}
+      </p>
+
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Accès à l'électricité de ${first.period} à ${latest.period}`}>
+        <defs>
+          <linearGradient id="infraGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--t-infra)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--t-infra)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        {ticks.map((t) => (
+          <>
+            <line class="gridline" x1={marginL} y1={y(t)} x2={W - marginR} y2={y(t)} />
+            <text class="axis-label" x={marginL - 6} y={y(t) + 3} text-anchor="end">{fmt(t)}%</text>
+          </>
+        ))}
+        {series.map((d, i) => (
+          i % 2 === 0 && <text class="axis-label" x={x(i)} y={H - marginB + 16} text-anchor="middle">{d.period}</text>
+        ))}
+        <polygon class="area-fill" points={`${points} ${x(series.length - 1)},${y(0)} ${x(0)},${y(0)}`} />
+        <polyline class="line-published" points={points} />
+        {hoverPoints.map((p) => (
+          <circle class="hover-pt" cx={p.cx} cy={p.cy} r="5">
+            <title>{p.period} : {fmt(p.value)}%</title>
+          </circle>
+        ))}
+      </svg>
+
+      <p class="gap-note">
+        Routes et transports ne sont pas encore intégrés - pas encore
+        cherchés, pas confirmés absents. Eau, assainissement et
+        télécommunications le sont désormais, ci-dessous.
+      </p>
+
+      <h2>Autres indicateurs</h2>
+      <div class="indicator-grid">
+        {data.other_indicators.map((ind) => {
+          const spark = sparkline(ind);
+          return (
+            <div class="indicator-card">
+              <p class="ind-name">{ind.name_fr}</p>
+              <p class="ind-definition">{ind.definition_fr}</p>
+              <p class="ind-value">
+                {fmt(ind.latest.value)}
+                <span class="unit"> {ind.indicator_id === "abonnements_mobiles" ? "pour 100 hab." : "%"}, {ind.latest.period}</span>
+              </p>
+              {ind.series.length > 1 ? (
+                <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
+                  <line x1={SPARK_ML} y1={spark.yZero} x2={SPARK_W - SPARK_MR} y2={spark.yZero} stroke="var(--line)" stroke-width="1" />
+                  <polyline class="mini-spark-line" points={spark.points} />
+                  <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
+                  {spark.midLabels.map((m) => (
+                    <text class="mini-spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
+                  ))}
+                  <text class="mini-spark-axis-label" x={spark.xLast} y={SPARK_H - 4} text-anchor="end">{spark.lastYear}</text>
+                  {spark.hoverPoints.map((p) => (
+                    <circle class="hover-pt" cx={p.cx} cy={p.cy} r="4">
+                      <title>{p.period} : {fmt(p.value)} {ind.indicator_id === "abonnements_mobiles" ? "pour 100 hab." : "%"}</title>
+                    </circle>
+                  ))}
+                </svg>
+              ) : (
+                <p class="single-point-note">Une seule mesure disponible ({ind.latest.period}) - pas d'évolution à montrer.</p>
+              )}
+              <p class="mini-sentence">{ind.lead_sentence}</p>
+              <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
+                {ind.source.producer}. Récupéré le {ind.source.retrieved_at}.
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2>Ce qui n'est pas mesuré</h2>
+      <ul class="not-measured">
+        <li>Routes et transports ne sont pas encore intégrés - pas encore cherchés, pas confirmés absents.</li>
+        <li>Rien par région, préfecture ou sous-préfecture : la Banque mondiale (World Development Indicators) ne publie ces indicateurs qu'au niveau national pour la RCA.</li>
+        <li>Seul l'accès est mesuré, pas la qualité de service - pannes d'électricité, débit Internet réel ou potabilité de l'eau ne sont pas couverts.</li>
+        <li>Aucune répartition urbain/rural, alors que l'écart est généralement large pour ce type d'indicateur.</li>
+        <li>Le logement (matériaux de construction, surpeuplement) n'est pas couvert par ce thème.</li>
+      </ul>
+
+      <footer>
+        Source : {data.source.producer} - {data.source.dataset_name}.
+        Récupéré le {data.source.retrieved_at}.
+        <a href={data.source.url}>{data.source.url}</a>
+        <nav class="site-nav">
+          <a href="/population/">Population</a>
+          <a href="/infrastructures/">Infrastructures</a>
+          <a href="/education/">Éducation</a>
+          <a href="/sante/">Santé</a>
+          <a href="/economie/">Économie</a>
+          <a href="/sources/">Sources</a>
+          <a href="/methode/">Méthode</a>
+          <a href="/donnees/">Données</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>
