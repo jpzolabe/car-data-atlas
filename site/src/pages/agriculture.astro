@@ -18,6 +18,7 @@
 import data from "../data/agriculture.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
+import Crumb from "../components/Crumb.astro";
 
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
@@ -118,9 +119,6 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-agri); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-agri); padding-bottom: 4px;
@@ -201,7 +199,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <Crumb accent="--t-agri" />
       <h1>Agriculture</h1>
       <p class="lede">
         Les terres et ressources agricoles, la production, l'emploi rural

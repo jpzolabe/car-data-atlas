@@ -4,6 +4,7 @@
 // what Phase 1 actually found, not generic boilerplate.
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
+import Crumb from "../components/Crumb.astro";
 ---
 <!doctype html>
 <html lang="fr">
@@ -40,9 +41,6 @@ import SiteNav from "../components/SiteNav.astro";
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
       }
       main { max-width: 700px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
       h1 { font-size: 1.8rem; margin: 0 0 8px; }
       .lede { color: var(--ink-muted); margin: 0 0 8px; }
       h2#geographie { scroll-margin-top: 20px; }
@@ -73,7 +71,7 @@ import SiteNav from "../components/SiteNav.astro";
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <Crumb accent="--indigo" />
       <h1>Méthode</h1>
       <p class="lede">
         Les règles qui décident quel chiffre s'affiche quand plusieurs sources

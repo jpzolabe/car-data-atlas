@@ -21,6 +21,7 @@ import lieux from "../../../data/lieux_prefectures.json";
 import prefectureMaps from "../../../data/prefecture_maps.json";
 import ThemeInit from "../../../components/ThemeInit.astro";
 import SiteNav from "../../../components/SiteNav.astro";
+import Crumb from "../../../components/Crumb.astro";
 
 export function getStaticPaths() {
   return Object.values(lieux).map((p: any) => ({
@@ -120,9 +121,6 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 4px; display: inline-block;
         border-bottom: 3px solid var(--t-lieu); padding-bottom: 4px;
@@ -205,9 +203,7 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb">
-        <a href="/">République centrafricaine</a> / <a href="/lieux/">Lieux</a>
-      </div>
+      <Crumb accent="--t-lieu" trail={[{ label: "Lieux", href: "/lieux/" }]} />
       <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
 
       <div class="identity-block">

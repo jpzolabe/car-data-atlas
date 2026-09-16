@@ -12,6 +12,7 @@
 import data from "../data/population.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
+import Crumb from "../components/Crumb.astro";
 
 const byRegion = new Map<string, typeof data.prefectures>();
 for (const row of data.prefectures) {
@@ -155,12 +156,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb {
-        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
-        letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
-      }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-pop); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-pop); padding-bottom: 4px;
@@ -367,7 +362,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <Crumb accent="--t-pop" />
       <h1>Population</h1>
       <p class="lede">
         Recensements et projections de la population, du niveau national

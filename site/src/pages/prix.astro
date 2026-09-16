@@ -6,6 +6,7 @@
 import data from "../data/prix.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
+import Crumb from "../components/Crumb.astro";
 
 const series = data.series;
 const values = series.map((d) => d.value);
@@ -121,9 +122,6 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-prix); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-prix); padding-bottom: 4px;
@@ -216,7 +214,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
+      <Crumb accent="--t-prix" />
       <h1>Indice des prix à la consommation</h1>
       <p class="lede">
         L'indice harmonisé des prix à la consommation (IHPC), toutes
