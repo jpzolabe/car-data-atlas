@@ -249,16 +249,15 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
 
       .ticker {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
-        overflow: hidden;
+        gap: 1px; margin-top: 12px; background: var(--line); border: 1px solid var(--line);
+        border-radius: 4px; overflow: hidden;
       }
       .ticker-item {
         display: flex; flex-direction: column; gap: 3px; padding: 12px 14px;
-        text-decoration: none; color: inherit; border-left: 1px solid var(--line);
+        text-decoration: none; color: inherit; background: var(--surface);
         transition: background-color 0.15s ease;
       }
-      .ticker-item:first-child { border-left: none; }
-      .ticker-item:hover { background: color-mix(in srgb, var(--ticker-accent) 6%, transparent); }
+      .ticker-item:hover { background: color-mix(in srgb, var(--surface) 94%, var(--ticker-accent)); }
       .ticker-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.02em; }
       .ticker-item:hover .ticker-label { color: var(--ink-muted); }
       .ticker-value { font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: var(--ticker-accent); }
