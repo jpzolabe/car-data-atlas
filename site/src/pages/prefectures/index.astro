@@ -1,7 +1,7 @@
 ---
 // Index for Phase 4's place pages - lists all 20 préfectures grouped by
-// région, each linking to /lieux/prefecture/{slug}. Named "Résumé par
-// préfecture" (not "villes"/"lieux") because that's the real floor of the
+// région, each linking to /prefectures/prefecture/{slug}. Named
+// "Préfectures" (not "villes"/"lieux") because that's the real floor of the
 // data - no source here goes finer than préfecture/sous-préfecture, see
 // CLAUDE.md's scope note on commune/localité. Linked from SiteNav and every
 // page's footer nav like the other theme pages - this page itself was
@@ -43,7 +43,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Résumé par préfecture - BêAfrîka Data</title>
+    <title>Préfectures - BêAfrîka Data</title>
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
@@ -113,12 +113,16 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
   <body>
     <SiteNav />
     <main id="main-content">
-      <h1>Résumé par préfecture</h1>
+      <h1>Préfectures</h1>
       <p class="lede">
-        Les 20 préfectures, regroupées par région - le niveau le plus fin que
-        couvre une source pour l'instant. Chaque page rassemble ce que l'on
-        sait d'une préfecture, tous thèmes confondus, et dit explicitement ce
-        qui n'est pas encore mesuré à ce niveau.
+        Les 20 préfectures du pays, regroupées en 7 régions depuis 2024 - un
+        cran au-dessus des 85 sous-préfectures suivies pour la population, et
+        le niveau le plus fin que couvrent la plupart des autres sources
+        aujourd'hui. Chaque préfecture a sa propre page : sa population
+        comparée à ses voisines de région et à la moyenne nationale, les prix
+        alimentaires quand ils y sont suivis, la santé au niveau régional
+        faute de mieux - et ce qui n'est pas encore mesuré à ce niveau, dit
+        explicitement plutôt que passé sous silence.
       </p>
 
       <div class="region-grid">
@@ -128,7 +132,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
             <ul class="place-list">
               {byRegion.get(region)!.map((p) => (
                 <li>
-                  <a href={`/lieux/prefecture/${p.slug}/`}>
+                  <a href={`/prefectures/prefecture/${p.slug}/`}>
                     <span>{p.name_fr}</span>
                     {p.population && <span class="pop">{fmt(p.population.pop_2021)} hab.</span>}
                   </a>
@@ -148,7 +152,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/lieux/">Résumé par préfecture</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

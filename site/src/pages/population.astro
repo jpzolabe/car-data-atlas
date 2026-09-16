@@ -328,6 +328,12 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
       }
+      .satellite-card {
+        background: var(--surface); border: 1px dashed var(--line); border-radius: 3px;
+        padding: 16px 18px; max-width: 640px; margin: 20px 0 0;
+      }
+      .satellite-card .mini-sentence { margin: 0; }
+      .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-pop); }
       .prefecture-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 22px; margin: 8px 0 4px;
@@ -488,6 +494,15 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         non encore résolu.
       </p>
 
+      <div class="satellite-card">
+        <p class="mini-sentence">
+          Chaque préfecture a aussi sa propre page : sa population comparée à
+          ses voisines de région et à la moyenne nationale, plus ce qui est
+          connu d'elle dans les autres thèmes.
+        </p>
+        <a class="satellite-link" href="/prefectures/">Voir les 20 préfectures →</a>
+      </div>
+
       <details class="section-toggle">
         <summary>Par sous-préfecture</summary>
         <p class="legend-note">
@@ -569,7 +584,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
-          <a href="/lieux/">Résumé par préfecture</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
