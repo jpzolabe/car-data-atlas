@@ -62,7 +62,7 @@ def main():
             row["geographic_floor"] = actual
 
     with open("data/indicators.csv", "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
+        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\r\n")
         writer.writeheader()
         writer.writerows(indicator_rows)
 

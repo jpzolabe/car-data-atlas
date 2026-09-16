@@ -116,6 +116,35 @@ def main() -> int:
     if orphan_obs_sources:
         failures.append(f"observations.csv references unknown source_id(s): {orphan_obs_sources}")
 
+    # indicators.csv's geographic_floor must match the finest entity level
+    # actually used in observations.csv - "set from observation, never from
+    # hope" (data/README.md). Read-only check: this gate flags drift, it
+    # doesn't fix it - run `uv run python -m pipeline.set_geographic_floor`
+    # to recompute and write the correct values.
+    floor_mismatches = con.execute("""
+        with level_rank(level, rank) as (
+            values ('pays', 0), ('region', 1), ('prefecture', 2),
+                   ('sous_prefecture', 3), ('marche', 4)
+        ),
+        finest as (
+            select o.indicator_id, max(lr.rank) as finest_rank
+            from observations o
+            join entities e on o.entity_id = e.entity_id
+            join level_rank lr on e.level = lr.level
+            group by o.indicator_id
+        )
+        select i.indicator_id, i.geographic_floor as stored, lr2.level as should_be
+        from indicators i
+        join finest f on i.indicator_id = f.indicator_id
+        join level_rank lr2 on lr2.rank = f.finest_rank
+        where i.geographic_floor != lr2.level
+    """).fetchall()
+    if floor_mismatches:
+        failures.append(
+            "indicators.csv geographic_floor doesn't match observations.csv - "
+            f"run pipeline.set_geographic_floor to fix: {floor_mismatches}"
+        )
+
     # Only annual periods ("2021", not "2020-01" or "2023-Q1") - monthly and
     # quarterly series have different natural volatility and aren't what
     # this gate is calibrated against.
