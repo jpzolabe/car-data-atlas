@@ -40,6 +40,9 @@ def main():
     import datetime
     today = datetime.date.today().isoformat()
     new_rows = fetch_rows(today)
+    if not new_rows:
+        raise SystemExit("No acces_electricite rows returned by the World Bank API - "
+                          "aborting rather than writing an empty replace.")
 
     with open("data/observations.csv", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)

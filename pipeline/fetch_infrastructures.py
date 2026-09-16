@@ -71,16 +71,21 @@ def main():
     new_rows = []
     for code in INDICATORS:
         new_rows.extend(fetch_indicator(code, today))
+    if not new_rows:
+        raise SystemExit('No rows returned by the World Bank API - aborting rather '
+                          'than deleting existing rows with nothing to replace them.')
 
     with open("data/observations.csv", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames
         existing = list(reader)
 
-    replaced_indicators = {v[0] for v in INDICATORS.values()}
+    # Filtered by source_id, not indicator_id - see docs/decisions.md for
+    # the original version of this bug, found in fetch_economie.py.
+    replaced_sources = {v[1] for v in INDICATORS.values()}
     existing = [
         r for r in existing
-        if not (r["entity_id"] == COUNTRY_ID and r["indicator_id"] in replaced_indicators)
+        if not (r["entity_id"] == COUNTRY_ID and r["source_id"] in replaced_sources)
     ]
 
     with open("data/observations.csv", "w", newline="", encoding="utf-8") as f:

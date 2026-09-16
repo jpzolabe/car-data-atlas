@@ -64,6 +64,16 @@ def main():
             "alias": name, "alias_type": "name",
         })
 
+    # Idempotency guard: dedupe against what's already in the file so a
+    # rerun doesn't duplicate every row - this script previously had none.
+    existing_keys = {
+        (a["entity_id"], a["source_id"], a["alias"], a["alias_type"]) for a in aliases
+    }
+    new_rows = [
+        r for r in new_rows
+        if (r["entity_id"], r["source_id"], r["alias"], r["alias_type"]) not in existing_keys
+    ]
+
     with open("data/aliases.csv", "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f, fieldnames=["entity_id", "source_id", "alias", "alias_type"],
@@ -71,9 +81,10 @@ def main():
         )
         writer.writerows(new_rows)
 
-    print(f"Added {len(new_rows)} citypopulation.de aliases "
+    print(f"Added {len(new_rows)} new citypopulation.de aliases "
           f"({len(PREFECTURES)} préfecture pcodes, "
-          f"{len(SOUS_PREFECTURES)} sous-préfecture pcode+name pairs).")
+          f"{len(SOUS_PREFECTURES)} sous-préfecture pcode+name pairs already declared; "
+          "already-present rows skipped).")
 
 
 if __name__ == "__main__":

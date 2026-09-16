@@ -24,8 +24,12 @@ findable this session (the old bulk-download endpoint at
 download.uis.unesco.org/bdds/ 404s; the "unesco_reader" Python package's docs
 don't spell out the URL either) -- confirmed instead by requesting
 api.uis.unesco.org/api/public/data/indicators with no params and reading its
-own 400 error body, which names the required query parameters. The API
-accepts a comma-separated list of indicator codes in one call.
+own 400 error body, which names the required query parameters. The API used
+to accept a comma-separated list of indicator codes in one call - as of
+2026-09-16 that now returns zero records with a "could not be found" hint
+for any 2+-code request, confirmed by testing 1 through 21 codes directly
+(1 works, 2 already fails) - an external API change, not something this
+project's own request changed. Fetches one code per request now.
 
 Usage: uv run python -m pipeline.fetch_education
 """
@@ -101,25 +105,25 @@ NOTES_BY_SOURCE = {
 
 
 def fetch_all(retrieved_at: str) -> list[dict]:
-    codes = ",".join(INDICATORS)
-    resp = httpx.get(
-        BASE_URL,
-        params={"geoUnit": GEO_UNIT, "indicator": codes},
-        timeout=30.0,
-        headers={"User-Agent": "rca-donnees-project/0.1"},
-    )
-    resp.raise_for_status()
     rows = []
-    for r in resp.json()["records"]:
-        if r["value"] is None or r["indicatorId"] not in INDICATORS:
-            continue
-        indicator_id, source_id, quality_flag = INDICATORS[r["indicatorId"]]
-        rows.append({
-            "entity_id": COUNTRY_ID, "indicator_id": indicator_id,
-            "period": str(r["year"]), "value": r["value"], "unit": "%",
-            "source_id": source_id, "retrieved_at": retrieved_at,
-            "quality_flag": quality_flag, "notes": NOTES_BY_SOURCE[source_id],
-        })
+    for code in INDICATORS:
+        resp = httpx.get(
+            BASE_URL,
+            params={"geoUnit": GEO_UNIT, "indicator": code},
+            timeout=30.0,
+            headers={"User-Agent": "rca-donnees-project/0.1"},
+        )
+        resp.raise_for_status()
+        for r in resp.json()["records"]:
+            if r["value"] is None or r["indicatorId"] not in INDICATORS:
+                continue
+            indicator_id, source_id, quality_flag = INDICATORS[r["indicatorId"]]
+            rows.append({
+                "entity_id": COUNTRY_ID, "indicator_id": indicator_id,
+                "period": str(r["year"]), "value": r["value"], "unit": "%",
+                "source_id": source_id, "retrieved_at": retrieved_at,
+                "quality_flag": quality_flag, "notes": NOTES_BY_SOURCE[source_id],
+            })
     return rows
 
 
@@ -127,16 +131,25 @@ def main():
     import datetime
     today = datetime.date.today().isoformat()
     new_rows = fetch_all(today)
+    if not new_rows:
+        raise SystemExit("No education rows returned by the UIS API - "
+                          "aborting rather than deleting existing rows with nothing to replace them.")
 
     with open("data/observations.csv", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames
         existing = list(reader)
 
-    education_indicators = {v[0] for v in INDICATORS.values()}
+    # Filtered by source_id, not indicator_id - several indicator_ids here
+    # (e.g. taux_achevement_primaire) are deliberately shared between a
+    # survey source and a modelled source for the disclosure mechanism; an
+    # indicator_id-only filter would risk one source's re-fetch deleting
+    # the other's rows for the same indicator. See docs/decisions.md for
+    # the original version of this bug, found in fetch_economie.py.
+    education_sources = {v[1] for v in INDICATORS.values()}
     existing = [
         r for r in existing
-        if not (r["entity_id"] == COUNTRY_ID and r["indicator_id"] in education_indicators)
+        if not (r["entity_id"] == COUNTRY_ID and r["source_id"] in education_sources)
     ]
 
     with open("data/observations.csv", "w", newline="", encoding="utf-8") as f:
