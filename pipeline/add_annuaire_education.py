@@ -7,7 +7,7 @@ site responded normally this time, no sign of the earlier block.
 Hand-transcribed, not auto-parsed, on purpose: the workbook
 (raw/icasees-annuaire-education/2026-09-12/annuaire_statistique_2024_2025.xlsx)
 is a single unstructured sheet mixing narrative text and tables at
-irregular positions -- CLAUDE.md itself names these yearbooks' layout as
+irregular positions -- AGENTS.md itself names these yearbooks' layout as
 irregular year to year, and a prior year's version of this same yearbook
 uses a different file structure per its own multiple Word/Excel variants
 on the publications page. A script parsing today's exact cell positions
@@ -27,7 +27,7 @@ Table 2 (rows ~238-267): a PSE (Plan Sectoriel de l'Éducation) tracking
 table with a clean, unambiguous header ("Valeur de base (2019)" /
 "Valeur réalisée 2024" / "Cible 2029") -- row 257 gives the Baccalauréat
 général pass rate directly: 25% (2019 baseline) and 36.66% (2024). This
-closes a gap CLAUDE.md names explicitly ("BEPC and Baccalauréat results
+closes a gap AGENTS.md names explicitly ("BEPC and Baccalauréat results
 are not published in machine-readable form"). A second exam-results table
 elsewhere in the workbook (row ~3789, "Résultats aux examens... de
 l'année précédente (2020/2021)") looked promising but its data rows are

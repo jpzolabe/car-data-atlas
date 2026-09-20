@@ -2,7 +2,7 @@
 full-replace, same pattern as fetch_ihpc.py - safe to re-run on a schedule.
 
 This is a real cross-check, not just new breadth: World Bank's 2019 value
-(14.3%) exactly matches CLAUDE.md's own domain fact ("MICS 2018-19 gives
+(14.3%) exactly matches AGENTS.md's own domain fact ("MICS 2018-19 gives
 14.3% nationally"), and the series extends to 2024 (18.2%) - genuinely
 fresher than what the brief assumed was stale.
 

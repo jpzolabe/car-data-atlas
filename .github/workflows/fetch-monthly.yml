@@ -1,6 +1,6 @@
 name: Fetch remaining sources (monthly)
 
-# CLAUDE.md: "GitHub Actions - cron per source: fetch, snapshot, transform,
+# AGENTS.md: "GitHub Actions - cron per source: fetch, snapshot, transform,
 # open a PR if data changed. Human review before merge." fetch-ihpc.yml and
 # fetch-wfp-prix.yml already do this at their own tuned cadences (weekly,
 # monthly) for the two sources with real month-to-month movement. Every
@@ -9,7 +9,7 @@ name: Fetch remaining sources (monthly)
 # NSDP) - one matrix job covering all of them monthly catches a new
 # release within at most a few weeks of publication without needing 10
 # near-identical workflow files. Each matrix entry still opens its own PR,
-# so review stays per-source (CLAUDE.md's "check the diff for a
+# so review stays per-source (AGENTS.md's "check the diff for a
 # discontinuity" applies to one source's numbers at a time, not a mixed
 # diff across several).
 #
@@ -126,4 +126,4 @@ jobs:
             --base develop \
             --head "$BRANCH" \
             --title "data: ${{ matrix.id }} refresh $(date +%Y-%m-%d)" \
-            --body "Automated monthly fetch: ${{ matrix.label }}. Quality gates (pipeline.validate) passed. Human review requested before merge, per CLAUDE.md - check the diff for anything that looks like a discontinuity rather than a real change."
+            --body "Automated monthly fetch: ${{ matrix.label }}. Quality gates (pipeline.validate) passed. Human review requested before merge, per AGENTS.md - check the diff for anything that looks like a discontinuity rather than a real change."

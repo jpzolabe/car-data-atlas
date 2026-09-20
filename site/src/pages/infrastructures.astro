@@ -1,7 +1,7 @@
 ---
 // Widened 2026-09-12 from a single indicator (électricité) to 5, following
 // the same headline-then-breakdown rule as education/prix (docs/plan.md
-// Sec2.3). Électricité stays the headline hero chart (CLAUDE.md's own domain
+// Sec2.3). Électricité stays the headline hero chart (AGENTS.md's own domain
 // fact cites it, and its 2019 point independently matches MICS); internet
 // use, mobile subscriptions, water and sanitation access are additive cards
 // below, all World Bank, all confirmed live before adding; see
@@ -29,7 +29,7 @@ const first = series[0];
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
 // Hover targets: one per data point, native <title> tooltip - no chart
-// library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+// library or client JS needed (AGENTS.md's zero-JS budget for charts).
 // See docs/decisions.md.
 const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
 

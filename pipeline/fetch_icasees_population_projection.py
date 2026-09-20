@@ -5,7 +5,7 @@ everywhere; population_totale had only reached préfecture until now).
 
 Found via HDX's cod-ps-caf dataset ("Central African Republic -
 Subnational Population Statistics"), which turned out to carry a much
-newer resource than CLAUDE.md's domain-facts note assumed ("built on the
+newer resource than AGENTS.md's domain-facts note assumed ("built on the
 2003 census projected to 2015... not yet fetched") - the dataset's own
 metadata lists projections through 2025, produced directly by ICASEES for
 the annual HNRP (Humanitarian Needs and Response Plan) cycle, not a

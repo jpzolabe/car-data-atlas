@@ -54,7 +54,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sy = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
   const points = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
   // Hover targets: one per data point, native <title> tooltip - no chart
-  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // library or client JS needed (AGENTS.md's zero-JS budget for charts).
   // See docs/decisions.md.
   const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   // One or two intermediate year labels (roughly a third and two-thirds of

@@ -6,7 +6,7 @@ API used for education, the World Bank API doesn't accept a comma-separated
 indicator list in one request).
 
 Part of a deliberate pass to widen infrastructures beyond its single
-indicator (acces_electricite) -- CLAUDE.md itself calls this "the weakest
+indicator (acces_electricite) -- AGENTS.md itself calls this "the weakest
 theme." All 4 codes below were confirmed to return real, non-empty, recent
 (up to 2024) CAF data before being added -- genuinely fresher than most of
 education's indicators.

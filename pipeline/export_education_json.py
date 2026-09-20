@@ -221,7 +221,7 @@ def main():
 
     # One orienting figure shown before the category breakdown -- primary
     # completion, since it's the single most legible "state of education"
-    # number and the one CLAUDE.md itself names as the example indicator.
+    # number and the one AGENTS.md itself names as the example indicator.
     # Reuses the block already built above rather than re-querying.
     headline_indicator = next(
         ind

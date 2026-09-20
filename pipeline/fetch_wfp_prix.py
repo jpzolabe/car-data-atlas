@@ -1,6 +1,6 @@
 """Fetch, snapshot, and transform WFP's Central African Republic food price
 series from HDX -- the first source at market-level geography (a point, not
-an administrative area), per CLAUDE.md's own named example (prix_manioc_kg).
+an administrative area), per AGENTS.md's own named example (prix_manioc_kg).
 
 Widened 2026-09-12 (Phase 4, step 1: "wire the crosswalk into the
 observation pipeline") from Bangui-only to every market with real, recent

@@ -34,7 +34,7 @@ the second source to disclose (unlike the two-source national figure).
 
 Also fixed here: earlier versions of this script fetched both files
 straight into memory without saving a raw snapshot, unlike every other
-fetch script in this project (CLAUDE.md's raw/ "immutable source
+fetch script in this project (AGENTS.md's raw/ "immutable source
 snapshots, never overwritten" rule). Both files are now written under
 raw/ before being parsed.
 

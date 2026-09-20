@@ -104,7 +104,7 @@ def main():
 
     # National-level multi-source disclosure - docs/plan.md §2.5. Two genuinely
     # independent sources disagree on the same country: RGPH-4 (census,
-    # provisional) vs World Bank WDI (modelled estimate). Per CLAUDE.md's
+    # provisional) vs World Bank WDI (modelled estimate). Per AGENTS.md's
     # authority ranking, census outranks modelled estimate regardless of
     # publication recency - the census row is hardcoded as the default/headline
     # here rather than computed generically, since authority_rank in

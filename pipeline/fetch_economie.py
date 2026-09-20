@@ -8,7 +8,7 @@ smoothed over: SI.POV.DDAY (poverty) only has 3 points total (household
 surveys are infrequent), and GC.REV.XGRT.GD.ZS (government revenue) stops
 at 2021.
 
-CLAUDE.md notes ICASEES has its own GDP rebasing (to a 2019 base) underway;
+AGENTS.md notes ICASEES has its own GDP rebasing (to a 2019 base) underway;
 these World Bank figures haven't been cross-checked against that once
 published. See data/sources.csv and docs/verification-debt.md.
 

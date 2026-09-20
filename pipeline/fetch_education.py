@@ -3,7 +3,7 @@
 fetch_electricity_access.py.
 
 Started as a single indicator (primary completion) and widened deliberately:
-CLAUDE.md's own indicator-ID example (`taux_achevement_primaire`) was
+AGENTS.md's own indicator-ID example (`taux_achevement_primaire`) was
 illustrative, not a scope limit, and the same free API has real CAF data
 across completion, enrollment, retention and literacy -- confirmed by
 querying each candidate code against geoUnit=CAF before adding it here, not

@@ -1,4 +1,4 @@
-"""Quality gates from CLAUDE.md, run over the data/ CSVs with DuckDB.
+"""Quality gates from AGENTS.md, run over the data/ CSVs with DuckDB.
 
 - Every CSV row has the same number of fields as its header (catches an unquoted
   comma inside a field silently shifting columns - has happened three times while

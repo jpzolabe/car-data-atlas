@@ -51,7 +51,7 @@ const REGION_COLORS: Record<string, string> = {
 };
 
 // Build-time bar chart - all 20 préfectures, 2021 estimate, ranked. Computed
-// here rather than shipped as a client chart library, per CLAUDE.md's
+// here rather than shipped as a client chart library, per AGENTS.md's
 // build-time-SVG approach (the "no client JS" default still holds here, it's
 // just not the letter of the budget rule that was the point - see the chat).
 const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
@@ -72,7 +72,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sy = (v: number) => SPARK_MT + plotH2 - ((v - sMin) / (sMax - sMin)) * plotH2;
   const pts = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
   // Hover targets: one per data point, native <title> tooltip - no chart
-  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // library or client JS needed (AGENTS.md's zero-JS budget for charts).
   // See docs/decisions.md.
   const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   // One or two intermediate year labels (roughly a third and two-thirds of

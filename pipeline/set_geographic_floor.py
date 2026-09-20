@@ -6,7 +6,7 @@ indicator from observation").
 For each indicator_id, finds the finest entity level any observation
 actually uses (pays -> region -> prefecture -> sous_prefecture, with
 marche as WFP prices' own separate finest case - a point, not an area,
-per CLAUDE.md) and writes that back to indicators.csv. This is
+per AGENTS.md) and writes that back to indicators.csv. This is
 deliberately mechanical: it reports what has actually been wired into
 observations.csv, not what a source might theoretically support if
 extracted further (see docs/decisions.md's ICASEES éducation yearbook

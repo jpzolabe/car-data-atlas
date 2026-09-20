@@ -1,4 +1,4 @@
-"""Deterministic sentence templates -- CLAUDE.md: "no model call in the pipeline
+"""Deterministic sentence templates -- AGENTS.md: "no model call in the pipeline
 and none on the page." Every sentence here is traceable to a template id plus
 the values that filled it; same inputs always produce the same sentence.
 
