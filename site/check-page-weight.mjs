@@ -1,8 +1,8 @@
-// Page-weight budget from CLAUDE.md: 150 KB/page, uncompressed, HTML+CSS+fonts+
+// Page-weight budget from AGENTS.md: 150 KB/page, uncompressed, HTML+CSS+fonts+
 // SVG+images combined. Since every page here is a single self-contained HTML
 // file (no separate CSS/JS/image requests), checking the HTML file size is
 // checking the whole page weight. Fails the build if any page is over budget,
-// per CLAUDE.md: "Fail the build if a page exceeds budget rather than shipping it."
+// per AGENTS.md: "Fail the build if a page exceeds budget rather than shipping it."
 
 import { readdirSync, statSync } from "node:fs";
 import { join } from "node:path";

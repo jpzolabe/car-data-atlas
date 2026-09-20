@@ -1,6 +1,6 @@
-"""Fetch, snapshot, and transform the national IHPC series - the reusable,
-idempotent version of what add_ihpc_observations.py did as a one-off. This is
-what .github/workflows/fetch-ihpc.yml runs on a schedule.
+"""Fetch, snapshot, and transform the national IHPC series - a reusable,
+idempotent fetch script rather than a one-off add_*.py. This is what
+.github/workflows/fetch-ihpc.yml runs on a schedule.
 
 Idempotent by design: ICASEES republishes the *entire* historical series each
 time (not incremental deltas), so re-running this fully replaces every
@@ -80,13 +80,12 @@ def inflation_notes() -> str:
     # here -- that methodology note in the source file is specific to the
     # index rows (IND1-13), not stated for this rate. A naive month-over-
     # month or year-over-year recomputation from IND1 doesn't reproduce this
-    # column either -- published as-is, not silently reinterpreted. See
-    # docs/verification-debt.md.
+    # column either -- published as-is, not silently reinterpreted.
     return (
         "Taux publié tel quel par la source dans la même feuille que "
         "l'indice ; une recomputation glissement mensuel ou annuel à partir "
         "de l'indice global (IND1) ne reproduit pas cette colonne, "
-        "méthodologie exacte non confirmée -- voir docs/verification-debt.md."
+        "et sa méthodologie exacte n'est pas confirmée."
     )
 
 

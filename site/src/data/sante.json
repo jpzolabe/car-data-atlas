@@ -3,78 +3,106 @@
   "headline": {
     "indicator_id": "esperance_vie",
     "latest": {
-      "period": "2024",
-      "value": 57.671
+      "period": "2021",
+      "value": 52.30772755
     },
     "series": [
       {
+        "period": "2000",
+        "value": 44.23425766
+      },
+      {
+        "period": "2001",
+        "value": 44.47178561
+      },
+      {
+        "period": "2002",
+        "value": 44.77185837
+      },
+      {
+        "period": "2003",
+        "value": 45.20505974
+      },
+      {
+        "period": "2004",
+        "value": 45.61618547
+      },
+      {
+        "period": "2005",
+        "value": 46.14092523
+      },
+      {
+        "period": "2006",
+        "value": 46.69775624
+      },
+      {
+        "period": "2007",
+        "value": 47.39415912
+      },
+      {
+        "period": "2008",
+        "value": 48.29879732
+      },
+      {
+        "period": "2009",
+        "value": 48.86668457
+      },
+      {
         "period": "2010",
-        "value": 46.871
+        "value": 49.20179696
       },
       {
         "period": "2011",
-        "value": 50.107
+        "value": 49.46797321
       },
       {
         "period": "2012",
-        "value": 51.336
+        "value": 49.82204247
       },
       {
         "period": "2013",
-        "value": 49.487
+        "value": 49.31139043
       },
       {
         "period": "2014",
-        "value": 40.265
+        "value": 49.17728884
       },
       {
         "period": "2015",
-        "value": 51.934
+        "value": 50.96983096
       },
       {
         "period": "2016",
-        "value": 50.999
+        "value": 51.50031283
       },
       {
         "period": "2017",
-        "value": 45.231
+        "value": 51.26742466
       },
       {
         "period": "2018",
-        "value": 52.297
+        "value": 52.13733768
       },
       {
         "period": "2019",
-        "value": 31.53
+        "value": 52.93260744
       },
       {
         "period": "2020",
-        "value": 50.596
+        "value": 53.07817181
       },
       {
         "period": "2021",
-        "value": 40.279
-      },
-      {
-        "period": "2022",
-        "value": 18.818
-      },
-      {
-        "period": "2023",
-        "value": 57.408
-      },
-      {
-        "period": "2024",
-        "value": 57.671
+        "value": 52.30772755
       }
     ],
-    "lead_sentence": "En 2024, l'espérance de vie à la naissance en République centrafricaine s'établissait à 57,7 ans.",
+    "lead_sentence": "En 2021, l'espérance de vie à la naissance en République centrafricaine s'établissait à 52,3 ans.",
     "lead_sentence_template_id": "esperance_vie_pays",
     "source": {
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
-      "retrieved_at": "2026-09-12"
+      "producer": "OMS (Global Health Observatory)",
+      "dataset_name": "Espérance de vie à la naissance, les deux sexes (WHOSIS_000001)",
+      "url": "https://ghoapi.azureedge.net/api/WHOSIS_000001",
+      "retrieved_at": "2026-09-16"
     },
     "unit": "ans",
     "name_fr": "Espérance de vie à la naissance",
@@ -873,78 +901,106 @@
         {
           "indicator_id": "esperance_vie",
           "latest": {
-            "period": "2024",
-            "value": 57.671
+            "period": "2021",
+            "value": 52.30772755
           },
           "series": [
             {
+              "period": "2000",
+              "value": 44.23425766
+            },
+            {
+              "period": "2001",
+              "value": 44.47178561
+            },
+            {
+              "period": "2002",
+              "value": 44.77185837
+            },
+            {
+              "period": "2003",
+              "value": 45.20505974
+            },
+            {
+              "period": "2004",
+              "value": 45.61618547
+            },
+            {
+              "period": "2005",
+              "value": 46.14092523
+            },
+            {
+              "period": "2006",
+              "value": 46.69775624
+            },
+            {
+              "period": "2007",
+              "value": 47.39415912
+            },
+            {
+              "period": "2008",
+              "value": 48.29879732
+            },
+            {
+              "period": "2009",
+              "value": 48.86668457
+            },
+            {
               "period": "2010",
-              "value": 46.871
+              "value": 49.20179696
             },
             {
               "period": "2011",
-              "value": 50.107
+              "value": 49.46797321
             },
             {
               "period": "2012",
-              "value": 51.336
+              "value": 49.82204247
             },
             {
               "period": "2013",
-              "value": 49.487
+              "value": 49.31139043
             },
             {
               "period": "2014",
-              "value": 40.265
+              "value": 49.17728884
             },
             {
               "period": "2015",
-              "value": 51.934
+              "value": 50.96983096
             },
             {
               "period": "2016",
-              "value": 50.999
+              "value": 51.50031283
             },
             {
               "period": "2017",
-              "value": 45.231
+              "value": 51.26742466
             },
             {
               "period": "2018",
-              "value": 52.297
+              "value": 52.13733768
             },
             {
               "period": "2019",
-              "value": 31.53
+              "value": 52.93260744
             },
             {
               "period": "2020",
-              "value": 50.596
+              "value": 53.07817181
             },
             {
               "period": "2021",
-              "value": 40.279
-            },
-            {
-              "period": "2022",
-              "value": 18.818
-            },
-            {
-              "period": "2023",
-              "value": 57.408
-            },
-            {
-              "period": "2024",
-              "value": 57.671
+              "value": 52.30772755
             }
           ],
-          "lead_sentence": "En 2024, l'espérance de vie à la naissance en République centrafricaine s'établissait à 57,7 ans.",
+          "lead_sentence": "En 2021, l'espérance de vie à la naissance en République centrafricaine s'établissait à 52,3 ans.",
           "lead_sentence_template_id": "esperance_vie_pays",
           "source": {
-            "producer": "World Bank (World Development Indicators)",
-            "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
-            "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
-            "retrieved_at": "2026-09-12"
+            "producer": "OMS (Global Health Observatory)",
+            "dataset_name": "Espérance de vie à la naissance, les deux sexes (WHOSIS_000001)",
+            "url": "https://ghoapi.azureedge.net/api/WHOSIS_000001",
+            "retrieved_at": "2026-09-16"
           },
           "unit": "ans",
           "name_fr": "Espérance de vie à la naissance",

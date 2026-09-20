@@ -1,8 +1,11 @@
 # raw/
 
-Immutable snapshots of everything fetched from an external source. Nothing
-here yet - this fills up starting in Phase 1 (the geography crosswalk fetches:
-COD-AB, COD-EM, COD-PS, ICASEES cartography tables, OSM boundaries).
+Immutable snapshots of everything fetched from a file-based external source
+(a PDF, an HTML page, a downloadable dataset file) - one subdirectory per
+`source_id`, growing as new sources are added. A source that's a live API
+with no file to snapshot (most World Bank/UNESCO/WHO/UNICEF/IMF indicators)
+has no directory here; `data/sources.csv` is the full, current list of every
+source either way.
 
 ## Convention
 

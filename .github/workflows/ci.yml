@@ -34,6 +34,6 @@ jobs:
         working-directory: site
       - run: pnpm build
         working-directory: site
-      - name: Page-weight budget (150 KB/page, CLAUDE.md)
+      - name: Page-weight budget (150 KB/page, AGENTS.md)
         run: node check-page-weight.mjs
         working-directory: site

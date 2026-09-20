@@ -60,11 +60,21 @@ def main():
             ),
         })
 
-    fieldnames = ["entity_id", "indicator_id", "period", "value", "unit",
-                  "source_id", "retrieved_at", "quality_flag", "notes"]
+    with open("data/observations.csv", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        existing = list(reader)
+
+    # Filter by source_id, not indicator_id alone - other sources also
+    # write population_totale rows (e.g. RGPH-4, World Bank), and an
+    # indicator_id-only filter would silently delete their rows too. See
+    # the same fix already applied in fetch_economie.py.
+    existing = [r for r in existing if r["source_id"] != SOURCE_ID]
+
     with open("data/observations.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
+        writer.writerows(existing)
         writer.writerows(observations)
 
     print(f"Wrote {len(observations)} observations "

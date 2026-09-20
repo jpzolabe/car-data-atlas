@@ -23,6 +23,15 @@ const regions = [...byRegion.keys()].sort();
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 const fmtDecimal = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
+// Compact badge text - the raw quality_flag values ("enquete", "estime")
+// are missing their accents.
+function badgeLabel(flag: string): string {
+  if (flag === "enquete") return "enquête";
+  if (flag === "estime") return "estimé";
+  if (flag === "osm") return "OSM";
+  return flag;
+}
+
 const national = data.national;
 const distinctSources = [...new Set(national.all_sources.map((s) => s.producer))];
 
@@ -42,7 +51,7 @@ const REGION_COLORS: Record<string, string> = {
 };
 
 // Build-time bar chart - all 20 préfectures, 2021 estimate, ranked. Computed
-// here rather than shipped as a client chart library, per CLAUDE.md's
+// here rather than shipped as a client chart library, per AGENTS.md's
 // build-time-SVG approach (the "no client JS" default still holds here, it's
 // just not the letter of the budget rule that was the point - see the chat).
 const ranked = [...data.prefectures].sort((a, b) => b.pop_2021 - a.pop_2021);
@@ -63,7 +72,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sy = (v: number) => SPARK_MT + plotH2 - ((v - sMin) / (sMax - sMin)) * plotH2;
   const pts = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
   // Hover targets: one per data point, native <title> tooltip - no chart
-  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // library or client JS needed (AGENTS.md's zero-JS budget for charts).
   // See docs/decisions.md.
   const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   // One or two intermediate year labels (roughly a third and two-thirds of
@@ -146,12 +155,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb {
-        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
-        letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px;
-      }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-pop); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-pop); padding-bottom: 4px;
@@ -174,11 +177,11 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       .section-nav a:hover { color: var(--t-pop); border-color: var(--t-pop); }
       h2 {
         font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em;
-        color: var(--t-pop); font-weight: 600; margin: 32px 0 8px;
+        color: var(--t-pop); font-weight: 600; margin: 35px 0 9px;
         border-bottom: 1px solid var(--line); padding-bottom: 6px;
         scroll-margin-top: 104px;
       }
-      .section-toggle { margin: 32px 0 8px; }
+      .section-toggle { margin: 35px 0 9px; }
       .section-toggle summary {
         font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em;
         color: var(--t-pop); font-weight: 600; margin: 0 0 8px;
@@ -194,11 +197,11 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       svg { width: 100%; height: auto; display: block; margin: 10px 0 4px; }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
-        gap: 22px;
+        gap: 25px;
       }
       .indicator-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 16px 18px;
+        padding: 17px 19px;
       }
       .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
       .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
@@ -238,14 +241,14 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       }
       .region-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px; margin-top: 8px;
+        gap: 27px; margin-top: 8px;
       }
       .region-block {
         background: var(--surface);
         border: 1px solid var(--line);
         border-left: 3px solid var(--region-accent, var(--ink-faint));
         border-radius: 3px;
-        padding: 14px 16px 8px;
+        padding: 15px 17px 9px;
         transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
       .region-block:hover {
@@ -325,13 +328,19 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px;
         border-left: 3px solid var(--ink-faint); padding-left: 12px;
       }
+      .satellite-card {
+        background: var(--surface); border: 1px dashed var(--line); border-radius: 3px;
+        padding: 17px 19px; max-width: 640px; margin: 20px 0 0;
+      }
+      .satellite-card .mini-sentence { margin: 0; }
+      .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-pop); }
       .prefecture-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 22px; margin: 8px 0 4px;
+        gap: 25px; margin: 8px 0 4px;
       }
       .prefecture-block {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 12px 14px;
+        padding: 15px 17px;
       }
       .prefecture-block h3 {
         font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
@@ -358,7 +367,6 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Population</h1>
       <p class="lede">
         Recensements et projections de la population, du niveau national
@@ -398,7 +406,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
                   <td class="num">{fmt(Math.round(s.value))}</td>
                   <td>{s.producer}</td>
                   <td>{s.period}</td>
-                  <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                  <td><span class={`badge ${s.quality_flag}`}>{badgeLabel(s.quality_flag)}</span></td>
                 </tr>
               ))}
             </tbody>
@@ -486,6 +494,15 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         non encore résolu.
       </p>
 
+      <div class="satellite-card">
+        <p class="mini-sentence">
+          Chaque préfecture a aussi sa propre page : sa population comparée à
+          ses voisines de région et à la moyenne nationale, plus ce qui est
+          connu d'elle dans les autres thèmes.
+        </p>
+        <a class="satellite-link" href="/prefectures/">Voir les 20 préfectures →</a>
+      </div>
+
       <details class="section-toggle">
         <summary>Par sous-préfecture</summary>
         <p class="legend-note">
@@ -567,6 +584,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

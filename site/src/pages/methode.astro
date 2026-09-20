@@ -40,14 +40,11 @@ import SiteNav from "../components/SiteNav.astro";
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
       }
       main { max-width: 700px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
       h1 { font-size: 1.8rem; margin: 0 0 8px; }
       .lede { color: var(--ink-muted); margin: 0 0 8px; }
       h2#geographie { scroll-margin-top: 20px; }
       h2 {
-        font-size: 1.1rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line);
+        font-size: 1.1rem; margin: 39px 0 11px; padding-top: 17px; border-top: 1px solid var(--line);
       }
       h3 { font-size: 0.95rem; margin: 20px 0 6px; }
       p { margin: 0 0 12px; }
@@ -73,7 +70,6 @@ import SiteNav from "../components/SiteNav.astro";
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Méthode</h1>
       <p class="lede">
         Les règles qui décident quel chiffre s'affiche quand plusieurs sources
@@ -169,29 +165,20 @@ import SiteNav from "../components/SiteNav.astro";
       <h2 id="phrases">Comment les phrases sont générées</h2>
       <p>
         Chaque phrase en italique accompagnant un chiffre est produite par un
-        gabarit déterministe (<code>pipeline/sentences.py</code>), rempli avec
-        les valeurs des données au moment de la construction du site. Aucun
-        modèle de langage n'intervient dans cette génération, ni dans le
-        pipeline ni sur la page - les mêmes données produisent toujours
-        exactement la même phrase, et chaque phrase est traçable jusqu'à son
-        gabarit.
+        modèle de texte fixe, rempli avec les valeurs des données au moment de
+        la construction du site. Les mêmes données produisent donc toujours
+        exactement la même phrase.
       </p>
       <p class="example">
         « En 2021, la population de la préfecture de Bangui était estimée à
         1&nbsp;425&nbsp;276 habitants. »
-        <br />- gabarit <code>population_totale_lieu_estime</code>
-      </p>
-      <p>
-        Écrire ces gabarits correctement en français (accords, élisions comme
-        « de l'Ouaka » contre « de Haut-Mbomou », pluriels) s'est révélé plus
-        délicat que prévu - deux erreurs réelles ont été détectées et
-        corrigées avant publication en vérifiant la sortie sur les 20 noms de
-        préfecture réels plutôt qu'en supposant la règle générale correcte.
       </p>
 
       <h2 id="erreur">Signaler une erreur</h2>
       <p>
-        Le mécanisme de signalement n'est pas encore en place.
+        Pas encore de formulaire dédié - en attendant, le contact indiqué sur
+        la page <a href="/a-propos/">À propos</a> fonctionne pour signaler une
+        erreur ou une source à vérifier.
       </p>
 
       <h2 id="portee">Ce que ce site n'est pas</h2>
@@ -210,6 +197,7 @@ import SiteNav from "../components/SiteNav.astro";
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

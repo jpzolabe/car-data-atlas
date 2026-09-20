@@ -2,7 +2,7 @@
 full-replace, same pattern as fetch_ihpc.py - safe to re-run on a schedule.
 
 This is a real cross-check, not just new breadth: World Bank's 2019 value
-(14.3%) exactly matches CLAUDE.md's own domain fact ("MICS 2018-19 gives
+(14.3%) exactly matches AGENTS.md's own domain fact ("MICS 2018-19 gives
 14.3% nationally"), and the series extends to 2024 (18.2%) - genuinely
 fresher than what the brief assumed was stale.
 
@@ -40,6 +40,9 @@ def main():
     import datetime
     today = datetime.date.today().isoformat()
     new_rows = fetch_rows(today)
+    if not new_rows:
+        raise SystemExit("No acces_electricite rows returned by the World Bank API - "
+                          "aborting rather than writing an empty replace.")
 
     with open("data/observations.csv", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)

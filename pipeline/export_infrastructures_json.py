@@ -3,7 +3,7 @@ export_electricity_json.py (renamed, not just extended -- the theme is no
 longer just electricity). Same CSV -> DuckDB -> JSON handoff as every other
 export script.
 
-Electricity stays the headline (CLAUDE.md's own domain fact cites it, and its
+Electricity stays the headline (AGENTS.md's own domain fact cites it, and its
 2019 value exactly matches the MICS 2018-19 figure -- the clearest, most
 independently-verified figure in this theme). Internet use, mobile
 subscriptions, water and sanitation access are additive "Autres indicateurs"

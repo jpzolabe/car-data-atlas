@@ -8,10 +8,9 @@ Texte complet de la licence : https://creativecommons.org/licenses/by/4.0/legalc
 Résumé en français : https://creativecommons.org/licenses/by/4.0/deed.fr
 
 Cette licence correspond à celle sous laquelle l'ICASEES (Institut Centrafricain des
-Statistiques et des Études Économiques et Sociales) publie ses propres données -
-voir `CLAUDE.md`. Ce projet republie et enrichit ce contenu (rattachement
-géographique, historique, indication de fraîcheur) sans en changer les conditions de
-réutilisation.
+Statistiques et des Études Économiques et Sociales) publie ses propres données. Ce
+projet republie et enrichit ce contenu (rattachement géographique, historique,
+indication de fraîcheur) sans en changer les conditions de réutilisation.
 
 ## Ce que ça permet
 

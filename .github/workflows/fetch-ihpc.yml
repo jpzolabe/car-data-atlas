@@ -1,12 +1,12 @@
 name: Fetch IHPC (scheduled)
 
-# CLAUDE.md: "GitHub Actions - cron per source: fetch, snapshot, transform, open
+# AGENTS.md: "GitHub Actions - cron per source: fetch, snapshot, transform, open
 # a PR if data changed. Human review before merge." This is that, for the one
 # source with a pipeline so far (IHPC). Uses the runner's built-in gh CLI and
 # GITHUB_TOKEN rather than a third-party action, to avoid adding a new
 # dependency for something already available.
 #
-# ICASEES publishes IHPC monthly, by the 10th (per CLAUDE.md) - weekly is
+# ICASEES publishes IHPC monthly, by the 10th (per AGENTS.md) - weekly is
 # frequent enough to catch a new month promptly without being wasteful.
 
 on:
@@ -65,4 +65,4 @@ jobs:
             --base develop \
             --head "$BRANCH" \
             --title "data: IHPC refresh $(date +%Y-%m-%d)" \
-            --body "Automated fetch from ICASEES's IHPC dashboard file. Quality gates (pipeline.validate) passed. Human review requested before merge, per CLAUDE.md - check the diff for anything that looks like a discontinuity rather than a real month-over-month change."
+            --body "Automated fetch from ICASEES's IHPC dashboard file. Quality gates (pipeline.validate) passed. Human review requested before merge, per AGENTS.md - check the diff for anything that looks like a discontinuity rather than a real month-over-month change."

@@ -1,5 +1,5 @@
 ---
-// docs/plan.md site map: bulk downloads and the crosswalk. CLAUDE.md's build
+// docs/plan.md site map: bulk downloads and the crosswalk. AGENTS.md's build
 // order calls this "the credential that gets you a meeting at ICASEES" - the
 // crosswalk is meant to be useful on its own, independent of the rest of the
 // site. Files are copied into public/donnees/ by
@@ -44,15 +44,12 @@ const coverage = data.coverage;
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
         gap: 18px;
       }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
       h1 { font-size: 1.8rem; margin: 0 0 8px; }
       .lede { color: var(--ink-muted); margin: 0 0 8px; }
       .stat { font-family: ui-monospace, monospace; font-size: 12px; color: var(--indigo); margin: 0 0 24px; }
       .file-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+        padding: 15px 17px; display: flex; align-items: center; gap: 14px;
         transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       }
       .file-card:hover {
@@ -70,7 +67,7 @@ const coverage = data.coverage;
       }
       .file-card a.dl:hover { background: var(--indigo); color: var(--surface); }
       .file-main { flex: 1; min-width: 0; }
-      h2 { font-size: 1rem; margin: 32px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1rem; margin: 35px 0 9px; padding-top: 15px; border-top: 1px solid var(--line); }
       h2.first { margin-top: 0; padding-top: 0; border-top: none; }
       p { margin: 0 0 12px; }
       .category-grid-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 16px; }
@@ -93,7 +90,6 @@ const coverage = data.coverage;
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Données</h1>
       <p class="lede">
         Le rapprochement géographique complet, en téléchargement direct -
@@ -177,6 +173,7 @@ const coverage = data.coverage;
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

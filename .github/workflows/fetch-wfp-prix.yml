@@ -1,6 +1,6 @@
 name: Fetch WFP food prices (scheduled)
 
-# CLAUDE.md: "GitHub Actions - cron per source: fetch, snapshot, transform, open
+# AGENTS.md: "GitHub Actions - cron per source: fetch, snapshot, transform, open
 # a PR if data changed. Human review before merge." Same shape as
 # fetch-ihpc.yml, for the WFP Central African Republic food prices source
 # (data/sources.csv: wfp-food-prices-hdx).
@@ -65,4 +65,4 @@ jobs:
             --base develop \
             --head "$BRANCH" \
             --title "data: WFP food prices refresh $(date +%Y-%m-%d)" \
-            --body "Automated fetch from WFP's Central African Republic food prices dataset on HDX. Quality gates (pipeline.validate) passed. Human review requested before merge, per CLAUDE.md - check the diff for anything that looks like a discontinuity rather than a real month-over-month change."
+            --body "Automated fetch from WFP's Central African Republic food prices dataset on HDX. Quality gates (pipeline.validate) passed. Human review requested before merge, per AGENTS.md - check the diff for anything that looks like a discontinuity rather than a real month-over-month change."

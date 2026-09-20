@@ -36,11 +36,8 @@ import SiteNav from "../components/SiteNav.astro";
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
       }
       main { max-width: 640px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--indigo); text-decoration: underline; }
       h1 { font-size: 1.8rem; margin: 0 0 8px; }
-      h2 { font-size: 1rem; margin: 28px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1rem; margin: 31px 0 9px; padding-top: 15px; border-top: 1px solid var(--line); }
       p { margin: 0 0 12px; }
       a { color: var(--indigo); transition: opacity 0.15s ease; }
       a:hover { opacity: 0.75; }
@@ -55,7 +52,6 @@ import SiteNav from "../components/SiteNav.astro";
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>À propos</h1>
 
       <h2>Ce que c'est</h2>
@@ -77,7 +73,7 @@ import SiteNav from "../components/SiteNav.astro";
       <h2>Qui le construit</h2>
       <p>
         Jean Paul Zolabe, passionné de projets citoyens et de vulgarisation
-        technologique. <a href="https://www.linkedin.com/in/jean-paul-zolabe-75515912b/">LinkedIn</a>.
+        technologique <a href="https://www.linkedin.com/in/jean-paul-zolabe-75515912b/">LinkedIn</a>.
       </p>
 
       <h2>Licence</h2>
@@ -86,7 +82,7 @@ import SiteNav from "../components/SiteNav.astro";
         de <code>raw/</code>) sont sous licence
         <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0</a>.
         Le code est sous licence MIT. Détails et mises en garde par source :
-        <a href="/sources/">page Sources</a>.
+        <a href="/sources/">Sources</a>.
       </p>
 
       <h2>Code source</h2>
@@ -107,6 +103,7 @@ import SiteNav from "../components/SiteNav.astro";
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

@@ -9,14 +9,14 @@ Follows geo/README.md's planned convention: geo/raw/{entity_id}.geojson
 budget). One deviation from that README, noted here rather than silently
 diverging: it names mapshaper as the simplification tool; this uses
 shapely instead (already an approved pipeline dependency, unlike
-mapshaper, which would need a new one - see CLAUDE.md's "ask before
+mapshaper, which would need a new one - see AGENTS.md's "ask before
 adding any dependency"). Same Douglas-Peucker algorithm either way.
 
 Uses the "_em" (edge-matched) geometries, not the plain admin0/admin1
-files - CLAUDE.md's own source notes name COD-EM as "for cartography"
+files - AGENTS.md's own source notes name COD-EM as "for cartography"
 specifically (shared borders between adjacent préfectures line up
 exactly, no gaps or overlaps), and it turns out to already be bundled in
-the same zip as COD-AB, not a separate fetch as CLAUDE.md's research
+the same zip as COD-AB, not a separate fetch as AGENTS.md's research
 table assumed when written.
 
 Joins every admin1_em feature to this project's préfecture entities via

@@ -3,7 +3,7 @@ préfecture place page, from the simplified GeoJSON in geo/simplified/
 (pipeline/build_geo_prefectures.py). Astro pages get plain "M x,y L x,y Z"
 path data and a shared viewBox - no GeoJSON parsing or projection math in
 the page itself, matching every other page's build-time-only-computation
-rule (CLAUDE.md: zero client JS on place pages).
+rule (AGENTS.md: zero client JS on place pages).
 
 Projection: a simple equirectangular fit, not a proper cartographic
 projection - fine at this scale (a small locator map of one mid-sized

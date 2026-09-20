@@ -18,7 +18,7 @@
 // composition around them wasn't.
 //
 // Client JS on this page: the search box (existing exception) plus the
-// sitewide dark-mode toggle every page carries - see CLAUDE.md's
+// sitewide dark-mode toggle every page carries - see AGENTS.md's
 // performance budget and ThemeToggle.astro. Everything else is computed
 // here at build time from the same JSON artifacts each theme page
 // already reads.
@@ -27,6 +27,8 @@ import prix from "../data/prix.json";
 import infrastructures from "../data/infrastructures.json";
 import education from "../data/education.json";
 import economie from "../data/economie.json";
+import sante from "../data/sante.json";
+import agriculture from "../data/agriculture.json";
 import prefectureMaps from "../data/prefecture_maps.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -49,6 +51,7 @@ const ICONS = {
   education: `<path d="M12 6.2c-2-1.4-5-1.9-8-1.4v13.4c3-.5 6 0 8 1.4 2-1.4 5-1.9 8-1.4V4.8c-3-.5-6 0-8 1.4Z"></path><path d="M12 6.2v13.4"></path>`,
   sante: `<path d="M12 20s-7.3-4.4-9.6-8.7C.6 7.8 2.2 4 6 4c2.1 0 3.9 1.4 6 4 2.1-2.6 3.9-4 6-4 3.8 0 5.4 3.8 3.6 7.3C19.3 15.6 12 20 12 20Z"></path>`,
   economie: `<path d="M4 4v16h16"></path><path d="M7 15.5l4-4.5 3.2 3 5-6"></path>`,
+  prefectures: `<path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle>`,
 };
 
 // 5 main themes, not all 7 site sections - prix and agriculture nest
@@ -68,6 +71,8 @@ const THEMES = [
     description: "Électricité, eau, assainissement, internet et téléphonie." },
   { name: "Éducation", href: "/education/", accent: "var(--t-edu)", icon: ICONS.education,
     description: "Scolarisation, achèvement, alphabétisation, personnel enseignant." },
+  { name: "Ou explorer par préfecture", href: "/prefectures/", accent: "var(--t-lieu)", icon: ICONS.prefectures,
+    description: "Population, prix alimentaires et santé régionale, préfecture par préfecture." },
 ];
 
 // taux_croissance_pib's own "latest" is deliberately ICASEES's 2021
@@ -80,32 +85,72 @@ const croissancePibSeries = economie.categories
   .find((i: any) => i.indicator_id === "taux_croissance_pib").series;
 const croissancePibLatest = croissancePibSeries[croissancePibSeries.length - 1];
 const electricite = infrastructures.series[infrastructures.series.length - 1];
-const reussiteBac = education.categories
-  .flatMap((c: any) => c.indicators)
-  .find((i: any) => i.indicator_id === "taux_reussite_baccalaureat").latest;
+
+const findLatest = (theme: any, id: string) =>
+  theme.categories.flatMap((c: any) => c.indicators).find((i: any) => i.indicator_id === id).latest;
+const findOther = (theme: any, id: string) =>
+  theme.other_indicators.find((i: any) => i.indicator_id === id).latest;
+
+// Rotating ticker pool (added 2026-09-16, docs/decisions.md): the ticker
+// used to hardcode the same 4 stats forever. Picked one legible,
+// plainly-named figure per theme area rather than every indicator on the
+// site - understandability mattered more than coverage here. Each entry
+// keeps the same shape SECONDARY_STATS always had.
+const reussiteBac = findLatest(education, "taux_reussite_baccalaureat");
+const POOL = [
+  { label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
+    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/" },
+  { label: "Taux de chômage", ...(() => { const v = findLatest(economie, "taux_chomage");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-eco)", href: "/economie/" },
+  { label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
+    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/" },
+  { label: "Accès à l'électricité", value: fmtPct(electricite.value), unit: "%",
+    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Accès à Internet", ...(() => { const v = findOther(infrastructures, "taux_utilisation_internet");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Accès à l'eau potable", ...(() => { const v = findOther(infrastructures, "acces_eau_potable_base");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-infra)", href: "/infrastructures/" },
+  { label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
+    period: `${reussiteBac.period} (1er tour)`, accent: "var(--t-edu)", href: "/education/" },
+  { label: "Alphabétisation des jeunes", ...(() => { const v = findLatest(education, "taux_alphabetisation_jeunes");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-edu)", href: "/education/" },
+  { label: "Espérance de vie", ...(() => { const v = findLatest(sante, "esperance_vie");
+    return { value: fmtPct(v.value), unit: " ans", period: v.period }; })(),
+    accent: "var(--t-sante)", href: "/sante/" },
+  { label: "Vaccination contre la rougeole", ...(() => { const v = findLatest(sante, "taux_vaccination_rougeole");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-sante)", href: "/sante/" },
+  { label: "Emploi agricole", ...(() => { const v = findLatest(agriculture, "emploi_agricole");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-agri)", href: "/agriculture/" },
+  { label: "Sous-alimentation", ...(() => { const v = findLatest(agriculture, "taux_sous_alimentation");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-agri)", href: "/agriculture/" },
+  { label: "Croissance de la population", ...(() => { const v = findOther(population, "taux_croissance_population");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-pop)", href: "/population/" },
+  { label: "Population urbaine", ...(() => { const v = findOther(population, "taux_urbanisation");
+    return { value: fmtPct(v.value), unit: "%", period: v.period }; })(),
+    accent: "var(--t-pop)", href: "/population/" },
+].map((s) => ({ ...s, stale: isStale(s.period) }));
 
 // De-emphasized ticker, deliberately mixing fresh and stale (docs/plan.md
 // Sec2.2: "showing that a figure comes from an older survey is the
 // point") - secondary to the population hero below, not another grid of
-// equal-weight boxes.
-const SECONDARY_STATS = [
-  {
-    label: "Croissance du PIB", value: fmtPct(croissancePibLatest.value), unit: "%",
-    period: croissancePibLatest.period, accent: "var(--t-eco)", href: "/economie/",
-  },
-  {
-    label: "Inflation", value: fmtPct(prix.inflation.latest.value), unit: "%",
-    period: prix.inflation.latest.period, accent: "var(--t-prix)", href: "/prix/",
-  },
-  {
-    label: "Électricité", value: fmtPct(electricite.value), unit: "%",
-    period: electricite.period, accent: "var(--t-infra)", href: "/infrastructures/",
-  },
-  {
-    label: "Réussite au baccalauréat", value: fmtPct(reussiteBac.value), unit: "%",
-    period: `${reussiteBac.period} (1er tour)`, accent: "var(--t-edu)", href: "/education/",
-  },
-];
+// equal-weight boxes. Shows a 4-item rotating window of POOL, advancing
+// by one position per day (build-time date here for the no-JS render;
+// the inline script below redoes the same computation from the visitor's
+// own clock so it stays correct between deploys without needing a daily
+// rebuild - see docs/decisions.md).
+const dayOfYear = Math.floor(
+  (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86_400_000
+);
+const tickerStart = dayOfYear % POOL.length;
+const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.length]);
 ---
 <!doctype html>
 <html lang="fr">
@@ -121,14 +166,14 @@ const SECONDARY_STATS = [
         --ink-faint: #8C8F7F; --indigo: #6FA0E8; --line: #33362A;
         --stale: #E2694A; --stale-soft: #3A211A; --ochre: #E0A83D; --ochre-soft: #3A2E12;
         --t-pop: #6FA0E8; --t-prix: #B9CC4A; --t-infra: #A98BDD; --t-edu: #E97A62;
-        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B;
+        --t-sante: #4FC7C5; --t-eco: #7FB4C4; --t-agri: #86C46B; --t-lieu: #D4A574;
       }
       :root[data-theme="light"] {
         --paper: #EDEEE6; --surface: #F8F8F2; --ink: #1B2420; --ink-muted: #5A6259;
         --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
         --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
         --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
-        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D; --t-lieu: #8B5E3C;
       }
       @media print {
         :root {
@@ -136,7 +181,7 @@ const SECONDARY_STATS = [
         --ink-faint: #8B9188; --indigo: #2A56A8; --line: #D6D7C9;
         --stale: #AC3A1E; --stale-soft: #F1DFD2; --ochre: #8C5A0C; --ochre-soft: #F1E3C6;
         --t-pop: #2A56A8; --t-prix: #71811A; --t-infra: #6B4A9E; --t-edu: #A83C2E;
-        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D;
+        --t-sante: #0E7C7B; --t-eco: #3D6373; --t-agri: #4C7A3D; --t-lieu: #8B5E3C;
       }
         body { background: #fff !important; background-image: none !important; }
         #search { display: none; }
@@ -183,10 +228,10 @@ const SECONDARY_STATS = [
       #search-results .excerpt mark { background: none; color: var(--ink); font-weight: 600; }
       #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; text-align: left; }
 
-      h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 44px 0 14px; }
+      h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 47px 0 15px; }
 
       .hero-stat {
-        margin-top: 36px; padding: 22px 26px; background: var(--surface);
+        margin-top: 39px; padding: 23px 27px; background: var(--surface);
         border: 1px solid var(--line); border-left: 4px solid var(--t-pop); border-radius: 6px;
         display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
       }
@@ -207,16 +252,15 @@ const SECONDARY_STATS = [
 
       .ticker {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
-        overflow: hidden;
+        gap: 1px; margin-top: 12px; background: var(--line); border: 1px solid var(--line);
+        border-radius: 4px; overflow: hidden;
       }
       .ticker-item {
         display: flex; flex-direction: column; gap: 3px; padding: 12px 14px;
-        text-decoration: none; color: inherit; border-left: 1px solid var(--line);
+        text-decoration: none; color: inherit; background: var(--surface);
         transition: background-color 0.15s ease;
       }
-      .ticker-item:first-child { border-left: none; }
-      .ticker-item:hover { background: color-mix(in srgb, var(--ticker-accent) 6%, transparent); }
+      .ticker-item:hover { background: color-mix(in srgb, var(--surface) 94%, var(--ticker-accent)); }
       .ticker-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.02em; }
       .ticker-item:hover .ticker-label { color: var(--ink-muted); }
       .ticker-value { font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: var(--ticker-accent); }
@@ -226,10 +270,11 @@ const SECONDARY_STATS = [
 
       .theme-rows {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 20px;
+        gap: 23px;
       }
       .theme-row {
-        padding: 15px 17px; border-radius: 5px;
+        position: relative;
+        padding: 16px 18px; border-radius: 5px;
         background: var(--surface); border: 1px solid var(--line);
         transition: border-color 0.15s ease, background-color 0.15s ease;
       }
@@ -237,9 +282,13 @@ const SECONDARY_STATS = [
       .theme-row .theme-heading { display: flex; align-items: center; gap: 9px; }
       .theme-row .theme-icon { flex: none; color: var(--row-accent); }
       .theme-row .theme-name { font-size: 15.5px; font-weight: 600; color: var(--row-accent); text-decoration: none; }
+      /* Stretches the theme-name link over the whole card, so the entire
+         box is clickable rather than just its name text - the hover style
+         on .theme-row already implied that, but only the text honored it. */
+      .theme-row .theme-name::after { content: ""; position: absolute; inset: 0; }
       .theme-row .theme-name:hover { text-decoration: underline; }
       .theme-row .theme-description { font-size: 12px; color: var(--ink-muted); margin: 7px 0 0; line-height: 1.45; }
-      .theme-row .theme-sublinks { margin: 9px 0 0; display: flex; gap: 12px; }
+      .theme-row .theme-sublinks { position: relative; z-index: 1; margin: 9px 0 0; display: flex; gap: 12px; }
       .theme-row .theme-sublinks a {
         font-size: 11.5px; color: var(--ink-faint);
         text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px;
@@ -276,15 +325,16 @@ const SECONDARY_STATS = [
             Ce qu'elles disent, d'où elles viennent et à quoi elles servent.
             Cette plateforme agrège les données existantes sur la RCA afin de
             fournir un point d'entrée unique : un outil simple, rapide et
-            fiable. Chaque donnée est accompagnée de sa source et de son
-            année de production.
+            fiable. Toutes les données sont accompagnées de leur source et
+            de leur année de production, et vérifiées chaque mois pour
+            d'éventuelles mises à jour.
           </p>
         </div>
         <div id="search">
           <input
             type="text" id="search-input"
-            placeholder="Rechercher une préfecture, un indicateur…"
-            aria-label="Rechercher une préfecture, un indicateur"
+            placeholder="Rechercher un indicateur…"
+            aria-label="Rechercher un indicateur"
             autocomplete="off"
           />
           <span id="search-status" aria-live="polite"></span>
@@ -301,20 +351,48 @@ const SECONDARY_STATS = [
           </p>
           <p class="hero-stat-source">ICASEES, RGPH-4 - résultats provisoires (recensement), {population.national.headline.period}</p>
         </div>
-        <a class="hero-stat-cta" href="/population/">Explorer par préfecture →</a>
+        <a class="hero-stat-cta" href="/population/">Explorer →</a>
       </div>
 
-      <div class="ticker">
-        {SECONDARY_STATS.map((s) => (
-          <a class="ticker-item" href={s.href} style={`--ticker-accent: ${s.accent}`}>
+      <div class="ticker" id="ticker">
+        {SECONDARY_STATS.map((s, i) => (
+          <a class="ticker-item" id={`ticker-item-${i}`} href={s.href} style={`--ticker-accent: ${s.accent}`}>
             <span class="ticker-label">{s.label}</span>
             <span class="ticker-value">{s.value}<span class="unit">{s.unit}</span></span>
-            <span class={`ticker-period ${isStale(s.period) ? "stale" : ""}`}>{s.period}</span>
+            <span class={`ticker-period ${s.stale ? "stale" : ""}`}>
+              {s.period}{s.stale && " · ancien"}
+            </span>
           </a>
         ))}
       </div>
+      <script type="application/json" id="ticker-pool" is:inline set:html={JSON.stringify(POOL)} />
+      <script is:inline>
+        // Rotates the 4 ticker slots to a different window of the pool
+        // each day, using the visitor's own clock. No interval, nothing
+        // moves after this runs once on load: only rewritten if the
+        // visitor's local day differs from what the server rendered (a
+        // stale deploy, or a visit past midnight).
+        const pool = JSON.parse(document.getElementById("ticker-pool").textContent);
+        const now = new Date();
+        const startOfYear = new Date(now.getFullYear(), 0, 0);
+        const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / 86_400_000);
+        const start = dayOfYear % pool.length;
+        for (let i = 0; i < 4; i++) {
+          const stat = pool[(start + i) % pool.length];
+          const item = document.getElementById(`ticker-item-${i}`);
+          if (!item) continue;
+          item.href = stat.href;
+          item.style.setProperty("--ticker-accent", stat.accent);
+          item.querySelector(".ticker-label").textContent = stat.label;
+          item.querySelector(".ticker-value").innerHTML =
+            `${stat.value}<span class="unit">${stat.unit}</span>`;
+          const periodEl = item.querySelector(".ticker-period");
+          periodEl.textContent = stat.period + (stat.stale ? " · ancien" : "");
+          periodEl.classList.toggle("stale", stat.stale);
+        }
+      </script>
 
-      <h2>Explorer par thème</h2>
+      <h2 id="explorer-par-theme">Explorer par thème</h2>
       <div class="theme-rows">
         {THEMES.map((t) => (
           <div class="theme-row" style={`--row-accent: ${t.accent}`}>
@@ -343,6 +421,7 @@ const SECONDARY_STATS = [
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

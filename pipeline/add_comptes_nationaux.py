@@ -49,7 +49,7 @@ PIB_NOTES = (
 CROISSANCE_NOTES = (
     "Comptes nationaux rebasés (base 2019, SCN 2008), Tableau 1, page 12. "
     "Le résumé narratif du même document (page 7) donne 1,6% pour 2021, en "
-    "désaccord avec cette valeur tabulée ; voir docs/verification-debt.md."
+    "désaccord avec cette valeur tabulée, non encore résolu."
 )
 
 

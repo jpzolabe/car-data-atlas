@@ -32,7 +32,7 @@
 // pages (own URL) but conceptually both sit inside "the economy" the way
 // most real economic dashboards treat them (IMF Article IV, World Bank
 // country pages, Trading Economics all fold prices into the economy view;
-// CLAUDE.md's own original theme list literally said "agriculture et prix"
+// AGENTS.md's own original theme list literally said "agriculture et prix"
 // as one theme before this session split them out). Rather than merge the
 // pages or move URLs, prix.json/agriculture.json are imported here too,
 // just for two brief summary cards with a link to the full page;
@@ -61,6 +61,15 @@ function isStale(period: string): boolean {
 }
 
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+// Compact badge text - the raw quality_flag values ("enquete", "estime")
+// are missing their accents.
+function badgeLabel(flag: string): string {
+  if (flag === "enquete") return "enquête";
+  if (flag === "estime") return "estimé";
+  if (flag === "osm") return "OSM";
+  return flag;
+}
 
 const MONTANT_INDICATORS = new Set(["exportations_montant", "importations_montant", "dette_exterieure_montant"]);
 const BUDGET_INDICATORS = new Set(["budget_ressources_totales", "budget_depenses_totales", "budget_solde_global"]);
@@ -105,7 +114,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   const sy = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
   const points = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
   // Hover targets: one per data point, native <title> tooltip - no chart
-  // library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+  // library or client JS needed (AGENTS.md's zero-JS budget for charts).
   // See docs/decisions.md.
   const hoverPoints = s.map((d, i) => ({ cx: sx(i), cy: sy(d.value), period: d.period, value: d.value }));
   // One or two intermediate year labels (roughly a third and two-thirds of
@@ -168,9 +177,6 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-eco); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-eco); padding-bottom: 4px;
@@ -191,9 +197,8 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         transition: color 0.15s ease, border-color 0.15s ease;
       }
       .section-nav a:hover { color: var(--t-eco); border-color: var(--t-eco); }
-      .coverage { font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); margin: 0 0 28px; }
       .headline-block {
-        margin: 0 0 32px; padding: 22px 24px; background: var(--surface);
+        margin: 0 0 35px; padding: 23px 25px; background: var(--surface);
         border: 1px solid var(--line); border-left: 4px solid var(--t-eco); border-radius: 3px;
       }
       .headline-value {
@@ -202,12 +207,12 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       }
       .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
-      h2 { font-size: 1.15rem; margin: 40px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
+      h2 { font-size: 1.15rem; margin: 43px 0 13px; padding-top: 19px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
       .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 12px; }
       .category-note a { color: var(--t-eco); }
       .satellite-card {
         background: var(--surface); border: 1px dashed var(--line); border-radius: 3px;
-        padding: 16px 18px; max-width: 640px;
+        padding: 17px 19px; max-width: 640px;
       }
       .satellite-card .ind-value {
         font-family: ui-monospace, monospace; font-size: 1.3rem; font-weight: 600;
@@ -223,7 +228,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       .badge.estime { background: var(--ochre-soft); color: var(--ochre); }
       .badge.administratif { background: color-mix(in srgb, var(--t-eco) 14%, var(--surface)); color: var(--t-eco); }
       .national-figure {
-        margin: 0; padding: 16px 18px; background: var(--surface);
+        margin: 0; padding: 17px 19px; background: var(--surface);
         border: 1px solid var(--line); border-left: 3px solid var(--t-eco); border-radius: 3px;
       }
       .national-value {
@@ -250,11 +255,11 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       .disclosure-note { font-size: 11px; color: var(--ink-faint); margin: 8px 0 0; max-width: 64ch; }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
-        gap: 22px;
+        gap: 25px;
       }
       .indicator-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 16px 18px;
+        padding: 17px 19px;
       }
       .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
       .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
@@ -292,7 +297,6 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Économie</h1>
       <p class="lede">
         La production, les finances publiques, le commerce extérieur et
@@ -346,7 +350,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                     <div class="national-figure">
                       <div class="national-value">
                         {fmtRate(ind.national.headline.value)}<span class="unit">%, {ind.national.headline.period}</span>
-                        <span class={`badge ${ind.national.headline.quality_flag}`}>{ind.national.headline.quality_flag}</span>
+                        <span class={`badge ${ind.national.headline.quality_flag}`}>{badgeLabel(ind.national.headline.quality_flag)}</span>
                       </div>
                       <div class="national-meta">
                         {ind.national.headline.producer} - {ind.national.headline.dataset_name}
@@ -361,7 +365,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                                 <td class="num">{fmtRate(s.value)}%</td>
                                 <td>{s.producer}</td>
                                 <td>{s.period}</td>
-                                <td><span class={`badge ${s.quality_flag}`}>{s.quality_flag}</span></td>
+                                <td><span class={`badge ${s.quality_flag}`}>{badgeLabel(s.quality_flag)}</span></td>
                               </tr>
                             ))}
                           </tbody>
@@ -489,6 +493,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

@@ -171,6 +171,19 @@
       "access_notes": "Téléchargé directement : gazetteer XLSX + GeoJSON depuis les URL de ressources HDX (Shapefile/Geodatabase également disponibles). Instantané : raw/cod-ab-caf/2026-09-05/."
     },
     {
+      "source_id": "who-gho-life-expectancy",
+      "producer": "OMS (Global Health Observatory)",
+      "dataset_name": "Espérance de vie à la naissance, les deux sexes (WHOSIS_000001)",
+      "url": "https://ghoapi.azureedge.net/api/WHOSIS_000001",
+      "licence": "non précisée - l'API OData du GHO de l'OMS n'indique pas de licence par indicateur ; les conditions générales de données ouvertes de l'OMS s'appliquent probablement mais n'ont pas été vérifiées",
+      "licence_notes": "Choisie à la place de world-bank-life-expectancy (SP.DYN.LE00.IN) après avoir trouvé cette dernière erratique pour la RCA (voir sa propre ligne) - la série OMS pour le même concept (espérance de vie à la naissance) est lisse, sans saut de plus de 2 ans d'une année sur l'autre, 2000-2021. Ne couvre pas encore 2022-2024 ; ce recul de fraîcheur est le prix d'une série fiable plutôt qu'une série plus récente mais incohérente.",
+      "geography_vintage": "annuel, 2000-2021",
+      "update_cadence": "annuelle (selon la publication World Health Statistics de l'OMS)",
+      "retrieved_at": "2026-09-16",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API OData publique de l'OMS (ghoapi.azureedge.net/api/WHOSIS_000001), sans authentification. Filtré sur Dim1=SEX_BTSX (les deux sexes) - l'API renvoie aussi des séries séparées par sexe (SEX_MLE, SEX_FMLE) sous le même code d'indicateur, qu'il ne faut pas confondre avec des années supplémentaires."
+    },
+    {
       "source_id": "hotosm-healthsites-caf",
       "producer": "OpenStreetMap (via healthsites.io et HOTOSM), via HDX",
       "dataset_name": "Central African Republic Healthsites",
@@ -195,19 +208,6 @@
       "retrieved_at": "2026-09-11",
       "authority_rank": "législation nationale (rang le plus élevé du classement d'autorité pour le découpage administratif)",
       "access_notes": "Deux citations secondaires indépendantes trouvées, dont une récupérée et citée directement (limko.cm) ; le PDF du Journal Officiel lui-même n'a pas été localisé lors de cette recherche."
-    },
-    {
-      "source_id": "unesco-uis-education-administrative",
-      "producer": "UNESCO Institut de statistique (UIS)",
-      "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
-      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
-      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
-      "licence_notes": "Même licence déclarée que les sources achèvement - voir cette note. Méthodologie précise par indicateur (données administratives issues des annuaires scolaires nationaux vs estimation UIS) non confirmée point par point via cette réponse d'API.",
-      "geography_vintage": "couverture et fraîcheur très inégales selon l'indicateur : de 1971 à une dernière année qui va de 2011 (redoublement, survie) à 2017 (scolarisation brute secondaire) - aucune série ne descend jusqu'à aujourd'hui",
-      "update_cadence": "irrégulière",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "donnée administrative nationale compilée par l'UIS (rang intermédiaire de l'échelle publiée sur la page Méthode, entre enquête nationale et estimation modélisée internationale) - classement provisoire, méthodologie exacte non confirmée par point",
-      "access_notes": "Récupéré via le même endpoint UIS que les indicateurs d'achèvement, indicateurs GER.1, GER.2, GER.3, GER.5T8, NERT.1.CP, REPR.1.CP, SR.1.GLAST.CP, ROFST.1.CP, ROFST.2.CP - neuf codes, un seul appel d'API groupé (paramètre indicator accepte une liste séparée par des virgules)."
     },
     {
       "source_id": "unesco-uis-literacy",
@@ -262,6 +262,19 @@
       "access_notes": "Même endpoint que la source enquête (api.uis.unesco.org/api/public/data/indicators), indicateurs CR.MOD.1/2/3. Utilisée ici spécifiquement pour exercer le mécanisme de divulgation multi-source avec un vrai désaccord enquête vs modèle, pas fabriqué : les deux séries divergent nettement en 2019 pour le primaire (27,0% enquête contre 29,2% modèle). Renommée depuis unesco-uis-cr1-modelled le 2026-09-12, même raison que la source enquête."
     },
     {
+      "source_id": "unesco-uis-education-administrative",
+      "producer": "UNESCO Institut de statistique (UIS)",
+      "dataset_name": "Indicateurs de scolarisation et de rétention scolaire (taux brut/net de scolarisation, redoublement, survie, non-scolarisation), les deux sexes",
+      "url": "https://api.uis.unesco.org/api/public/data/indicators?geoUnit=CAF&indicator=GER.1",
+      "licence": "CC BY-SA 4.0 (UIS Data Browser / API)",
+      "licence_notes": "Même licence déclarée que les sources achèvement - voir cette note. Méthodologie précise par indicateur (données administratives issues des annuaires scolaires nationaux vs estimation UIS) non confirmée point par point via cette réponse d'API.",
+      "geography_vintage": "couverture et fraîcheur très inégales selon l'indicateur : de 1971 à une dernière année qui va de 2011 (redoublement, survie) à 2017 (scolarisation brute secondaire) - aucune série ne descend jusqu'à aujourd'hui",
+      "update_cadence": "irrégulière",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "donnée administrative nationale compilée par l'UIS (rang intermédiaire de l'échelle publiée sur la page Méthode, entre enquête nationale et estimation modélisée internationale) - classement provisoire, méthodologie exacte non confirmée par point",
+      "access_notes": "Récupéré via le même endpoint UIS que les indicateurs d'achèvement, indicateurs GER.1, GER.2, GER.3, GER.5T8, NERT.1.CP, REPR.1.CP, SR.1.GLAST.CP, ROFST.1.CP, ROFST.2.CP - neuf codes, un seul appel d'API groupé (paramètre indicator accepte une liste séparée par des virgules)."
+    },
+    {
       "source_id": "unicef-data-warehouse",
       "producer": "UNICEF (Data Warehouse, GLOBAL_DATAFLOW)",
       "dataset_name": "Cross-sector indicators (SDMX), République centrafricaine",
@@ -301,17 +314,17 @@
       "access_notes": "Récupéré via WebFetch pour corroborer la réforme de 2020 et noter les variantes orthographiques des noms."
     },
     {
-      "source_id": "world-bank-external-debt",
+      "source_id": "world-bank-fdi",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
+      "dataset_name": "Investissements directs étrangers, entrées nettes, % du PIB (BX.KLT.DINV.WD.GD.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/BX.KLT.DINV.WD.GD.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = International Debt Statistics de la Banque mondiale",
+      "geography_vintage": "annuel ; source primaire = IMF Balance of Payments Statistics",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Élargi 2026-09-12 de la version % du RNB à la version en valeur absolue (dollars courants)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
     },
     {
       "source_id": "world-bank-water-access",
@@ -324,32 +337,6 @@
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
-    },
-    {
-      "source_id": "world-bank-maternal-mortality",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Taux de mortalité maternelle, pour 100 000 naissances vivantes (SH.STA.MMRT)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = WHO/UNICEF/UNFPA/World Bank/UNPD Maternal Mortality Estimation Inter-Agency Group",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
-    },
-    {
-      "source_id": "world-bank-life-expectancy",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = UN Population Division (World Population Prospects)",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
     },
     {
@@ -457,17 +444,30 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025) pour chaque indicateur. Élargi 2026-09-12 des versions % du PIB aux versions en valeur absolue (dollars courants)."
     },
     {
-      "source_id": "world-bank-fdi",
+      "source_id": "world-bank-external-debt",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Investissements directs étrangers, entrées nettes, % du PIB (BX.KLT.DINV.WD.GD.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/BX.KLT.DINV.WD.GD.ZS?format=json",
+      "dataset_name": "Encours de la dette extérieure, % du RNB et US$ courants (DT.DOD.DECT.GN.ZS, DT.DOD.DECT.CD)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/DT.DOD.DECT.GN.ZS?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = IMF Balance of Payments Statistics",
+      "geography_vintage": "annuel ; source primaire = International Debt Statistics de la Banque mondiale",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Élargi 2026-09-12 de la version % du RNB à la version en valeur absolue (dollars courants)."
+    },
+    {
+      "source_id": "world-bank-mobile-subscriptions",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Abonnements à la téléphonie mobile cellulaire, pour 100 habitants (IT.CEL.SETS.P2)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = ITU",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2022, la plus récente disponible malgré mrnev=15)."
     },
     {
       "source_id": "world-bank-government-revenue",
@@ -574,17 +574,17 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
-      "source_id": "world-bank-mobile-subscriptions",
+      "source_id": "world-bank-maternal-mortality",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Abonnements à la téléphonie mobile cellulaire, pour 100 habitants (IT.CEL.SETS.P2)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/IT.CEL.SETS.P2?format=json",
+      "dataset_name": "Taux de mortalité maternelle, pour 100 000 naissances vivantes (SH.STA.MMRT)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.STA.MMRT?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
       "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = ITU",
+      "geography_vintage": "annuel ; source primaire = WHO/UNICEF/UNFPA/World Bank/UNPD Maternal Mortality Estimation Inter-Agency Group",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2022, la plus récente disponible malgré mrnev=15)."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2009-2023)."
     },
     {
       "source_id": "world-bank-internet-users",
@@ -598,6 +598,19 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale (rang le plus bas de l'échelle publiée sur la page Méthode, hors chiffre de portail sans source citée)",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2008-2024)."
+    },
+    {
+      "source_id": "world-bank-child-mortality",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": "Pics ponctuels réels en 2019 et 2022, pas des erreurs de récupération : l'UN IGME ajuste sa tendance hors années de crise puis réintègre les décès de crise comme un pic d'une seule année (l'année de l'enquête de mortalité, pas répartis sur la période réellement couverte). Pour la RCA, le pic de 2022 provient de l'enquête de Gang et al. (2023, Conflict and Health), qui a trouvé une mortalité environ 4 fois supérieure aux statistiques officielles de l'ONU ; l'enquête à l'origine du pic de 2019 n'a pas été identifiée avec certitude. Confirmé via la documentation de méthodologie publique de l'UN IGME (relayée par Our World in Data), pas supposé à partir de la seule forme du pic.",
+      "geography_vintage": "annuel ; source primaire = UN IGME (Inter-agency Group for Child Mortality Estimation)",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
     },
     {
       "source_id": "world-bank-age-dependency",
@@ -639,19 +652,6 @@
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2011-2025)."
     },
     {
-      "source_id": "world-bank-electricity-access",
-      "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Accès à l'électricité, % de la population (EG.ELC.ACCS.ZS)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
-      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
-      "update_cadence": "annuelle",
-      "retrieved_at": "2026-09-12",
-      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19)",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
-    },
-    {
       "source_id": "world-bank-sanitation-access",
       "producer": "World Bank (World Development Indicators)",
       "dataset_name": "Personnes utilisant des services d'assainissement au moins basiques, % de la population (SH.STA.BASS.ZS)",
@@ -663,6 +663,19 @@
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales",
       "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024). Même méthodologie JMP que l'accès à l'eau potable - deux indicateurs, deux facettes du même programme de suivi."
+    },
+    {
+      "source_id": "world-bank-electricity-access",
+      "producer": "World Bank (World Development Indicators)",
+      "dataset_name": "Accès à l'électricité, % de la population (EG.ELC.ACCS.ZS)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/EG.ELC.ACCS.ZS?format=json",
+      "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
+      "licence_notes": null,
+      "geography_vintage": "annuel ; source primaire = SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale, https://trackingsdg7.esmap.org/downloads), qui compile industrie/enquêtes nationales/sources internationales",
+      "update_cadence": "annuelle",
+      "retrieved_at": "2026-09-12",
+      "authority_rank": "estimation modélisée internationale, compilée en partie depuis des enquêtes nationales (le point 2019 = 14,3% correspond exactement à la valeur MICS 2018-19)",
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 8 années (2017-2024)."
     },
     {
       "source_id": "world-bank-wdi-population",
@@ -678,17 +691,17 @@
       "access_notes": "Source composite selon les métadonnées de l'indicateur : UN Population Division (World Population Prospects) et offices statistiques nationaux. Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification."
     },
     {
-      "source_id": "world-bank-child-mortality",
+      "source_id": "world-bank-life-expectancy",
       "producer": "World Bank (World Development Indicators)",
-      "dataset_name": "Taux de mortalité, moins de 5 ans et infantile, pour 1 000 naissances vivantes (SH.DYN.MORT, SP.DYN.IMRT.IN)",
-      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SH.DYN.MORT?format=json",
+      "dataset_name": "Espérance de vie à la naissance, ensemble (SP.DYN.LE00.IN)",
+      "url": "https://api.worldbank.org/v2/country/CAF/indicator/SP.DYN.LE00.IN?format=json",
       "licence": "CC BY 4.0 (licence standard des données Banque mondiale)",
-      "licence_notes": null,
-      "geography_vintage": "annuel ; source primaire = UN IGME (Inter-agency Group for Child Mortality Estimation)",
+      "licence_notes": "Série jugée non fiable pour la RCA : valeurs erratiques d'une année sur l'autre (ex. 18,8 ans en 2022, contre 40,3 en 2021 et 50,6 en 2020 - un écart impossible pour une espérance de vie réelle). Confirmé en interrogeant l'API Banque mondiale en direct le 2026-09-16 : les mêmes valeurs y sont servies, donc ce n'est pas une erreur de récupération de ce projet, mais un problème de qualité des données en amont. Plus utilisée : remplacée par who-gho-life-expectancy (OMS), dont la série est lisse.",
+      "geography_vintage": "annuel ; source primaire = UN Population Division (World Population Prospects)",
       "update_cadence": "annuelle",
       "retrieved_at": "2026-09-12",
       "authority_rank": "estimation modélisée internationale",
-      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024) pour chaque indicateur."
+      "access_notes": "Récupéré directement via l'API REST publique de la Banque mondiale, sans authentification. 15 années (2010-2024)."
     },
     {
       "source_id": "wfp-food-prices-hdx",

@@ -1,7 +1,7 @@
 ---
 // Widened 2026-09-12 from a single indicator (électricité) to 5, following
 // the same headline-then-breakdown rule as education/prix (docs/plan.md
-// Sec2.3). Électricité stays the headline hero chart (CLAUDE.md's own domain
+// Sec2.3). Électricité stays the headline hero chart (AGENTS.md's own domain
 // fact cites it, and its 2019 point independently matches MICS); internet
 // use, mobile subscriptions, water and sanitation access are additive cards
 // below, all World Bank, all confirmed live before adding; see
@@ -29,7 +29,7 @@ const first = series[0];
 const fmt = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
 // Hover targets: one per data point, native <title> tooltip - no chart
-// library or client JS needed (CLAUDE.md's zero-JS budget for charts).
+// library or client JS needed (AGENTS.md's zero-JS budget for charts).
 // See docs/decisions.md.
 const hoverPoints = series.map((d, i) => ({ cx: x(i), cy: y(d.value), period: d.period, value: d.value }));
 
@@ -103,14 +103,26 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-infra); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-infra); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); margin: 12px 0 20px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-infra); border-color: var(--t-infra); }
       .headline-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); margin: 0; font-family: ui-monospace, monospace; }
       .headline { font-family: ui-monospace, monospace; font-size: 2rem; margin: 0; color: var(--t-infra); }
       .headline .unit { font-size: 0.9rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
@@ -134,14 +146,14 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }
       .not-measured { margin: 14px 0 0; padding-left: 20px; color: var(--ink-muted); font-size: 14px; line-height: 1.7; }
       .not-measured li { margin-bottom: 4px; }
-      h2 { font-size: 1.15rem; margin: 36px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); }
+      h2 { font-size: 1.15rem; margin: 39px 0 11px; padding-top: 17px; border-top: 1px solid var(--line); }
       .indicator-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
-        gap: 22px;
+        gap: 25px;
       }
       .indicator-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
-        padding: 16px 18px;
+        padding: 17px 19px;
       }
       .indicator-card .ind-name { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
       .indicator-card .ind-definition { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; margin: 0 0 8px; }
@@ -179,16 +191,23 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
       <h1>Infrastructures</h1>
       <p class="lede">
         L'accès de la population aux infrastructures essentielles -
         électricité, eau potable, assainissement, téléphonie mobile et
-        Internet - à l'échelle du pays, à partir des données de la
-        Banque mondiale.
+        Internet - des services dont la disponibilité pèse directement
+        sur la santé, la scolarisation et l'activité économique. Données
+        de la Banque mondiale, à l'échelle du pays uniquement : aucune
+        ventilation par région ou préfecture pour l'instant.
       </p>
 
-      <p class="headline-label">Accès à l'électricité</p>
+      <nav class="section-nav" aria-label="Sections de la page">
+        <a href="#electricite">Accès à l'électricité</a>
+        <a href="#autres-indicateurs">Autres indicateurs</a>
+        <a href="#non-mesure">Ce qui n'est pas mesuré</a>
+      </nav>
+
+      <p class="headline-label" id="electricite">Accès à l'électricité</p>
       <p class="headline">{fmt(latest.value)}<span class="unit">%, {latest.period}</span></p>
       <p class="headline-meta">{data.definition_fr}</p>
       <p class="headline-meta">
@@ -229,12 +248,12 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
       </svg>
 
       <p class="gap-note">
-        Routes et transports ne sont pas encore intégrés - pas encore
-        cherchés, pas confirmés absents. Eau, assainissement et
-        télécommunications le sont désormais, ci-dessous.
+        Eau, assainissement, téléphonie mobile et Internet sont couverts
+        ci-dessous - voir « Ce qui n'est pas mesuré » pour ce qui ne l'est
+        pas encore.
       </p>
 
-      <h2>Autres indicateurs</h2>
+      <h2 id="autres-indicateurs">Autres indicateurs</h2>
       <div class="indicator-grid">
         {data.other_indicators.map((ind) => {
           const spark = sparkline(ind);
@@ -273,7 +292,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
         })}
       </div>
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>Routes et transports ne sont pas encore intégrés - pas encore cherchés, pas confirmés absents.</li>
         <li>Rien par région, préfecture ou sous-préfecture : la Banque mondiale (World Development Indicators) ne publie ces indicateurs qu'au niveau national pour la RCA.</li>
@@ -292,6 +311,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>

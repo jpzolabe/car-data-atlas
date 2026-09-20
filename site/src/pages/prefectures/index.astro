@@ -1,8 +1,11 @@
 ---
 // Index for Phase 4's place pages - lists all 20 préfectures grouped by
-// région, each linking to /lieux/prefecture/{slug}. Without this page the
-// place pages built by [slug].astro would be orphaned (reachable only by
-// guessing a URL or via search).
+// région, each linking to /prefectures/prefecture/{slug}. Named
+// "Préfectures" (not "villes"/"lieux") because that's the real floor of the
+// data - no source here goes finer than préfecture/sous-préfecture, see
+// AGENTS.md's scope note on commune/localité. Linked from SiteNav and every
+// page's footer nav like the other theme pages - this page itself was
+// orphaned (reachable only by guessing the URL) until that was added.
 import lieux from "../../data/lieux_prefectures.json";
 import ThemeInit from "../../components/ThemeInit.astro";
 import SiteNav from "../../components/SiteNav.astro";
@@ -40,7 +43,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Lieux - BêAfrîka Data</title>
+    <title>Préfectures - BêAfrîka Data</title>
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
@@ -71,19 +74,21 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5;
       }
       main { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
-      .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
-      .crumb a { color: var(--ink-faint); text-decoration: none; }
-      .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
       h1 {
         font-size: 1.8rem; margin: 0 0 8px; display: inline-block;
         border-bottom: 3px solid var(--t-lieu); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); margin: 12px 0 24px; }
-      .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 8px; }
+      .gap-note {
+        font-style: italic; color: var(--ink-muted); font-size: 13.5px;
+        border-left: 3px solid var(--ink-faint); padding-left: 12px; margin: 12px 0 20px;
+      }
+      .gap-note a { color: var(--t-lieu); }
+      .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 27px; margin-top: 8px; }
       .region-block {
         background: var(--surface); border: 1px solid var(--line);
         border-left: 3px solid var(--region-accent, var(--ink-faint)); border-radius: 3px;
-        padding: 14px 16px;
+        padding: 15px 17px;
       }
       .region-block h2 {
         font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
@@ -113,12 +118,22 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/">République centrafricaine</a></div>
-      <h1>Lieux</h1>
+      <h1>Préfectures</h1>
+      <p class="gap-note">
+        Beaucoup d'indicateurs importants - PIB, commerce extérieur, résultats
+        aux examens, entre autres - n'existent qu'à l'échelle nationale et ne
+        descendent pas jusqu'au niveau de la préfecture : à explorer plutôt via
+        <a href="/#explorer-par-theme">Explorer par thème</a>.
+      </p>
       <p class="lede">
-        Les 20 préfectures, regroupées par région. Chaque page rassemble ce que
-        l'on sait d'un lieu, tous thèmes confondus - et dit explicitement ce
-        qui n'est pas encore mesuré à ce niveau.
+        Les 20 préfectures du pays sont regroupées en 7 régions depuis 2024,
+        un cran au-dessus des 85 sous-préfectures suivies pour la population -
+        le niveau le plus fin que couvrent la plupart des autres sources
+        aujourd'hui. Ce découpage vient de la réforme administrative de
+        2020-2021. Chaque préfecture a sa propre page : sa population
+        comparée à ses voisines de région et à la moyenne nationale, les prix
+        alimentaires suivis sur place le cas échéant, et la santé au niveau
+        régional. Cliquez sur une préfecture ci-dessous pour en voir le détail.
       </p>
 
       <div class="region-grid">
@@ -128,7 +143,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
             <ul class="place-list">
               {byRegion.get(region)!.map((p) => (
                 <li>
-                  <a href={`/lieux/prefecture/${p.slug}/`}>
+                  <a href={`/prefectures/prefecture/${p.slug}/`}>
                     <span>{p.name_fr}</span>
                     {p.population && <span class="pop">{fmt(p.population.pop_2021)} hab.</span>}
                   </a>
@@ -148,6 +163,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
           <a href="/donnees/">Données</a>
