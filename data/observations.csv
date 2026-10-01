@@ -5,21 +5,6 @@ cf-pays-centrafrique-v1,population_totale,2024,5330690,habitants,world-bank-wdi-
 cf-pays-centrafrique-v1,population_totale,2023,5152421,habitants,world-bank-wdi-population,2026-09-12,estime,"Estimation mi-année, midyear estimate (World Development Indicators)."
 cf-pays-centrafrique-v1,population_totale,2022,5098039,habitants,world-bank-wdi-population,2026-09-12,estime,"Estimation mi-année, midyear estimate (World Development Indicators)."
 cf-pays-centrafrique-v1,population_totale,2021,5112100,habitants,world-bank-wdi-population,2026-09-12,estime,"Estimation mi-année, midyear estimate (World Development Indicators)."
-cf-pays-centrafrique-v1,acces_electricite,2024,18.2,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2023,17.6,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2022,15.7,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2021,15.7,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2020,15.4,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2019,14.3,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2018,14.6,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2017,14.1,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2016,13.4,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2015,12.7,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2014,12,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2013,11.5,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2012,11,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2011,10.4,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
-cf-pays-centrafrique-v1,acces_electricite,2010,9.8,%,world-bank-electricity-access,2026-09-12,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
 cf-pays-centrafrique-v1,prix_ihpc_global,2015-01,85.99,indice,icasees-ihpc-dashboard,2026-09-12,estime,"Valeur reconciliée sur la base 2019 via le coefficient officiel 4,12919 (publié dans les avertissements des bulletins IHPC) - valeur brute d'origine (base 1981) conservée dans le fichier source, feuille Archive_Base1981_Brute."
 cf-pays-centrafrique-v1,prix_ihpc_global,2015-02,86.2,indice,icasees-ihpc-dashboard,2026-09-12,estime,"Valeur reconciliée sur la base 2019 via le coefficient officiel 4,12919 (publié dans les avertissements des bulletins IHPC) - valeur brute d'origine (base 1981) conservée dans le fichier source, feuille Archive_Base1981_Brute."
 cf-pays-centrafrique-v1,prix_ihpc_global,2015-03,84.55,indice,icasees-ihpc-dashboard,2026-09-12,estime,"Valeur reconciliée sur la base 2019 via le coefficient officiel 4,12919 (publié dans les avertissements des bulletins IHPC) - valeur brute d'origine (base 1981) conservée dans le fichier source, feuille Archive_Base1981_Brute."
@@ -5559,3 +5544,18 @@ cf-pays-centrafrique-v1,taux_alphabetisation_adultes,1975,18.23999977111816,%,un
 cf-pays-centrafrique-v1,taux_alphabetisation_adultes,1988,33.61999893188477,%,unesco-uis-literacy,2026-09-16,enquete,Donnée de recensement ou d'enquête compilée par l'UIS.
 cf-pays-centrafrique-v1,taux_alphabetisation_adultes,2000,50.65000152587891,%,unesco-uis-literacy,2026-09-16,enquete,Donnée de recensement ou d'enquête compilée par l'UIS.
 cf-pays-centrafrique-v1,taux_alphabetisation_adultes,2019,42.43999862670898,%,unesco-uis-literacy,2026-09-16,enquete,Donnée de recensement ou d'enquête compilée par l'UIS.
+cf-pays-centrafrique-v1,acces_electricite,2024,18.2,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2023,17.6,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2022,15.7,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2021,15.7,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2020,15.4,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2019,14.3,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2018,14.6,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2017,14.1,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2016,13.4,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2015,12.7,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2014,12,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2013,11.5,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2012,11,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2011,10.4,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
+cf-pays-centrafrique-v1,acces_electricite,2010,9.8,%,world-bank-electricity-access,2026-10-01,estime,Estimation SDG 7.1.1 Electrification Dataset (ESMAP/Banque mondiale).
