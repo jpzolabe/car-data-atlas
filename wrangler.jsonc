@@ -9,5 +9,17 @@
   "compatibility_date": "2026-10-07",
   "assets": {
     "directory": "./site/dist"
+  },
+  // Runs automatically as part of `wrangler deploy` (both locally and in
+  // Cloudflare's Workers Builds CI, since that just runs the dashboard's
+  // Deploy command "npx wrangler deploy") - so the dashboard's own Build
+  // command field can stay "None". `npx pnpm@<version>` (matching
+  // site/package.json's packageManager field) rather than `corepack
+  // enable` - the latter needs write access to the global Node install
+  // dir (fails locally on Windows with EPERM unless run elevated; not
+  // worth risking the same failure mode in CI).
+  "build": {
+    "command": "npx pnpm@11.25.0 install && npx pnpm@11.25.0 run build",
+    "cwd": "site"
   }
 }
