@@ -1,0 +1,13 @@
+{
+  // Cloudflare's current Workers-with-static-assets deploy flow (what the
+  // dashboard's "npx wrangler deploy" Deploy command actually runs) - this
+  // is the modern replacement for classic Pages. No "main" entry point:
+  // assets-only, so wrangler just serves site/dist as a static site.
+  // Root directory in the Cloudflare project is "/", so this path is
+  // relative to the repo root, matching netlify.toml's base=site + publish=dist.
+  "name": "car-data-atlas",
+  "compatibility_date": "2026-10-07",
+  "assets": {
+    "directory": "./site/dist"
+  }
+}
