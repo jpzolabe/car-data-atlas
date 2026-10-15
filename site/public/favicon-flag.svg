@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <!-- CAR flag, letterboxed into a square tile for comparison against
+       favicon.svg (the country-silhouette version) - same dark rounded
+       tile treatment, different artwork. Colors per the flag's official
+       specification: 4 equal horizontal bands (blue/white/green/yellow),
+       a red vertical band of equal width through the centre, a yellow
+       five-pointed star in the canton. -->
+  <rect width="900" height="900" rx="140" fill="#23251F"/>
+  <clipPath id="flag-round">
+    <rect x="0" y="150" width="900" height="600" rx="24"/>
+  </clipPath>
+  <g clip-path="url(#flag-round)">
+    <rect x="0" y="150" width="900" height="150" fill="#003082"/>
+    <rect x="0" y="300" width="900" height="150" fill="#FFFFFF"/>
+    <rect x="0" y="450" width="900" height="150" fill="#009739"/>
+    <rect x="0" y="600" width="900" height="150" fill="#FFD100"/>
+    <rect x="375" y="150" width="150" height="600" fill="#CE1126"/>
+    <path fill="#FFD100" d="M187.5,170.0 L199.8,208.0 L239.8,208.0 L207.5,231.5 L219.8,269.5 L187.5,246.0 L155.2,269.5 L167.5,231.5 L135.2,208.0 L175.2,208.0 Z"/>
+  </g>
+</svg>
