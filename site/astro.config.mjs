@@ -1,11 +1,13 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // French-only for now - see AGENTS.md ("French-first") and docs/plan.md §2.1
 // ("English mirror later under /en/, not at launch"). Add Astro's i18n router
 // config here when that mirror actually starts; it isn't worth the config
 // weight for a single locale.
 export default defineConfig({
-  site: "https://donnees-rca.example", // placeholder - replace once the real domain is chosen
+  site: "https://beafrikadata.com",
+  integrations: [sitemap()],
   compressHTML: true,
   // Every page is meant to be one self-contained HTML file (no separate CSS/JS
   // requests) - check-page-weight.mjs's budget check relies on that. Without
