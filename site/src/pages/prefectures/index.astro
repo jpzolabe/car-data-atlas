@@ -1,16 +1,20 @@
 ---
 // Index for Phase 4's place pages - lists all 20 préfectures grouped by
-// région, each linking to /prefectures/prefecture/{slug}. Named
+// région, each linking to /prefectures/{slug}. Named
 // "Préfectures" (not "villes"/"lieux") because that's the real floor of the
 // data - no source here goes finer than préfecture/sous-préfecture, see
 // AGENTS.md's scope note on commune/localité. Linked from SiteNav and every
 // page's footer nav like the other theme pages - this page itself was
 // orphaned (reachable only by guessing the URL) until that was added.
 import lieux from "../../data/lieux_prefectures.json";
+import lieuxRegions from "../../data/lieux_regions.json";
 import ThemeInit from "../../components/ThemeInit.astro";
 import SiteNav from "../../components/SiteNav.astro";
 
 const places = Object.values(lieux) as any[];
+const regionSlugByName = new Map<string, string>(
+  Object.values(lieuxRegions as any).map((r: any) => [r.name_fr, r.slug])
+);
 
 const byRegion = new Map<string, any[]>();
 for (const p of places) {
@@ -107,6 +111,8 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         display: flex; align-items: center; gap: 6px;
       }
       .region-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--region-accent, var(--ink-faint)); }
+      .region-block h2 a { color: inherit; text-decoration: none; }
+      .region-block h2 a:hover { text-decoration: underline; }
       .place-list { list-style: none; margin: 0; padding: 0; }
       .place-list li { border-top: 1px solid var(--line); }
       .place-list li:first-child { border-top: none; }
@@ -151,11 +157,11 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
       <div class="region-grid">
         {regions.map((region) => (
           <div class="region-block" style={`--region-accent: ${REGION_COLORS[region] ?? "var(--ink-faint)"}`}>
-            <h2><span class="region-dot"></span>{region}</h2>
+            <h2><span class="region-dot"></span><a href={`/regions/${regionSlugByName.get(region)}/`}>{region}</a></h2>
             <ul class="place-list">
               {byRegion.get(region)!.map((p) => (
                 <li>
-                  <a href={`/prefectures/prefecture/${p.slug}/`}>
+                  <a href={`/prefectures/${p.slug}/`}>
                     <span>{p.name_fr}</span>
                     {p.population && <span class="pop">{fmt(p.population.pop_2021)} hab.</span>}
                   </a>

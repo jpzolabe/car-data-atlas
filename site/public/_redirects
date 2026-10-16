@@ -1,0 +1,6 @@
+# Préfecture pages moved from /prefectures/prefecture/{slug}/ to
+# /prefectures/{slug}/ on 2026-10-16 to drop the doubled path segment
+# (flagged in an external UX review). Real 301s so any link or search
+# index entry pointing at the old URL keeps working rather than 404ing.
+# Netlify and Cloudflare Pages/Workers both read this same file format.
+/prefectures/prefecture/*  /prefectures/:splat  301

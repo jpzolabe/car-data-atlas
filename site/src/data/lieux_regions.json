@@ -1,0 +1,268 @@
+{
+  "bas-oubangui": {
+    "entity_id": "cf-r-bas-oubangui-v1",
+    "name_fr": "Bas-Oubangui",
+    "slug": "bas-oubangui",
+    "chef_lieu": "Bangui",
+    "notes": "Chef-lieu régional : Bangui. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-bangui-v1",
+        "name_fr": "Bangui",
+        "slug": "bangui",
+        "pop_2021": 1425276.0,
+        "pop_2025": 1486900.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 1425276.0,
+      "pop_2025_total": 1486900.0,
+      "share_of_national_pct": 27.9
+    },
+    "sante": {
+      "period": "2019",
+      "value": 23.0
+    }
+  },
+  "fertit": {
+    "entity_id": "cf-r-fertit-v1",
+    "name_fr": "Fertit",
+    "slug": "fertit",
+    "chef_lieu": "Bria",
+    "notes": "Chef-lieu régional : Bria. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-haute-kotto-v1",
+        "name_fr": "Haute-Kotto",
+        "slug": "haute-kotto",
+        "pop_2021": 128342.0,
+        "pop_2025": 146455.0
+      },
+      {
+        "entity_id": "cf-p-vakaga-v1",
+        "name_fr": "Vakaga",
+        "slug": "vakaga",
+        "pop_2021": 83188.0,
+        "pop_2025": 90527.0
+      },
+      {
+        "entity_id": "cf-p-bamingui-bangoran-v1",
+        "name_fr": "Bamingui-Bangoran",
+        "slug": "bamingui-bangoran",
+        "pop_2021": 82108.0,
+        "pop_2025": 86754.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 293638.0,
+      "pop_2025_total": 323736.0,
+      "share_of_national_pct": 5.7
+    },
+    "sante": {
+      "period": "2019",
+      "value": 48.0
+    }
+  },
+  "haut-oubangui": {
+    "entity_id": "cf-r-haut-oubangui-v1",
+    "name_fr": "Haut-Oubangui",
+    "slug": "haut-oubangui",
+    "chef_lieu": "Bangassou",
+    "notes": "Chef-lieu régional : Bangassou. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-basse-kotto-v1",
+        "name_fr": "Basse-Kotto",
+        "slug": "basse-kotto",
+        "pop_2021": 380172.0,
+        "pop_2025": 399176.0
+      },
+      {
+        "entity_id": "cf-p-mbomou-v1",
+        "name_fr": "Mbomou",
+        "slug": "mbomou",
+        "pop_2021": 257803.0,
+        "pop_2025": 271661.0
+      },
+      {
+        "entity_id": "cf-p-haut-mbomou-v1",
+        "name_fr": "Haut-Mbomou",
+        "slug": "haut-mbomou",
+        "pop_2021": 52314.0,
+        "pop_2025": 60113.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 690289.0,
+      "pop_2025_total": 730950.0,
+      "share_of_national_pct": 13.5
+    },
+    "sante": {
+      "period": "2019",
+      "value": 109.0
+    }
+  },
+  "kaga": {
+    "entity_id": "cf-r-kaga-v1",
+    "name_fr": "Kaga",
+    "slug": "kaga",
+    "chef_lieu": "Sibut",
+    "notes": "Chef-lieu régional : Sibut. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-ouaka-v1",
+        "name_fr": "Ouaka",
+        "slug": "ouaka",
+        "pop_2021": 446354.0,
+        "pop_2025": 466306.0
+      },
+      {
+        "entity_id": "cf-p-nana-gribizi-v1",
+        "name_fr": "Nana-Gribizi",
+        "slug": "nana-gribizi",
+        "pop_2021": 208821.0,
+        "pop_2025": 235690.0
+      },
+      {
+        "entity_id": "cf-p-kemo-v1",
+        "name_fr": "Kémo",
+        "slug": "kemo",
+        "pop_2021": 183742.0,
+        "pop_2025": 200501.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 838917.0,
+      "pop_2025_total": 902497.0,
+      "share_of_national_pct": 16.4
+    },
+    "sante": {
+      "period": "2019",
+      "value": 85.0
+    }
+  },
+  "plateaux": {
+    "entity_id": "cf-r-plateaux-v1",
+    "name_fr": "Plateaux",
+    "slug": "plateaux",
+    "chef_lieu": "Boali",
+    "notes": "Chef-lieu régional : Boali. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-lobaye-v1",
+        "name_fr": "Lobaye",
+        "slug": "lobaye",
+        "pop_2021": 345108.0,
+        "pop_2025": 366709.0
+      },
+      {
+        "entity_id": "cf-p-ombella-mpoko-v1",
+        "name_fr": "Ombella M'Poko",
+        "slug": "ombella-mpoko",
+        "pop_2021": 269809.0,
+        "pop_2025": 297010.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 614917.0,
+      "pop_2025_total": 663719.0,
+      "share_of_national_pct": 12.0
+    },
+    "sante": {
+      "period": "2019",
+      "value": 112.0
+    }
+  },
+  "yade": {
+    "entity_id": "cf-r-yade-v1",
+    "name_fr": "Yadé",
+    "slug": "yade",
+    "chef_lieu": "Bossangoa",
+    "notes": "Chef-lieu régional : Bossangoa. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-lim-pende-v1",
+        "name_fr": "Lim-pendé",
+        "slug": "lim-pende",
+        "pop_2021": 442151.0,
+        "pop_2025": 476589.0
+      },
+      {
+        "entity_id": "cf-p-ouham-v1",
+        "name_fr": "Ouham",
+        "slug": "ouham",
+        "pop_2021": 297904.0,
+        "pop_2025": 334591.0
+      },
+      {
+        "entity_id": "cf-p-ouham-pende-v1",
+        "name_fr": "Ouham Pendé",
+        "slug": "ouham-pende",
+        "pop_2021": 243315.0,
+        "pop_2025": 258469.0
+      },
+      {
+        "entity_id": "cf-p-ouham-fafa-v1",
+        "name_fr": "Ouham-Fafa",
+        "slug": "ouham-fafa",
+        "pop_2021": 225479.0,
+        "pop_2025": 242745.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 1208849.0,
+      "pop_2025_total": 1312394.0,
+      "share_of_national_pct": 23.6
+    },
+    "sante": {
+      "period": "2019",
+      "value": 83.0
+    }
+  },
+  "equateur": {
+    "entity_id": "cf-r-equateur-v1",
+    "name_fr": "Équateur",
+    "slug": "equateur",
+    "chef_lieu": "Berbérati",
+    "notes": "Chef-lieu régional : Berbérati. Composition et chef-lieu confirmés sur une page dédiée de minurbanisme-rca.org (2026-09-05) ; ce n'est pas un texte de loi, et n'a été recoupé que par le fait que les 7 régions couvrent exactement les 20 préfectures sans chevauchement ni manque.",
+    "prefectures": [
+      {
+        "entity_id": "cf-p-nana-mambere-v1",
+        "name_fr": "Nana-Mambéré",
+        "slug": "nana-mambere",
+        "pop_2021": 341796.0,
+        "pop_2025": 377443.0
+      },
+      {
+        "entity_id": "cf-p-mambere-kadei-v1",
+        "name_fr": "Mambéré-Kadéï",
+        "slug": "mambere-kadei",
+        "pop_2021": 273166.0,
+        "pop_2025": 285505.0
+      },
+      {
+        "entity_id": "cf-p-mambere-v1",
+        "name_fr": "Mambéré",
+        "slug": "mambere",
+        "pop_2021": 265479.0,
+        "pop_2025": 329273.0
+      },
+      {
+        "entity_id": "cf-p-sangha-mbaere-v1",
+        "name_fr": "Sangha-Mbaéré",
+        "slug": "sangha-mbaere",
+        "pop_2021": 138770.0,
+        "pop_2025": 154965.0
+      }
+    ],
+    "population": {
+      "pop_2021_total": 1019211.0,
+      "pop_2025_total": 1147186.0,
+      "share_of_national_pct": 19.9
+    },
+    "sante": {
+      "period": "2019",
+      "value": 95.0
+    }
+  }
+}

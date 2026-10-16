@@ -17,10 +17,11 @@
 // pass. Locator maps added 2026-09-12
 // (pipeline/build_geo_prefectures.py + export_prefecture_maps_json.py) -
 // ready SVG path strings, no GeoJSON parsing or projection math here.
-import lieux from "../../../data/lieux_prefectures.json";
-import prefectureMaps from "../../../data/prefecture_maps.json";
-import ThemeInit from "../../../components/ThemeInit.astro";
-import SiteNav from "../../../components/SiteNav.astro";
+import lieux from "../../data/lieux_prefectures.json";
+import lieuxRegions from "../../data/lieux_regions.json";
+import prefectureMaps from "../../data/prefecture_maps.json";
+import ThemeInit from "../../components/ThemeInit.astro";
+import SiteNav from "../../components/SiteNav.astro";
 
 export function getStaticPaths() {
   return Object.values(lieux).map((p: any) => ({
@@ -30,6 +31,10 @@ export function getStaticPaths() {
 }
 
 const { place } = Astro.props;
+const regionSlugByName = new Map<string, string>(
+  Object.values(lieuxRegions as any).map((r: any) => [r.name_fr, r.slug])
+);
+const regionSlug = regionSlugByName.get(place.region_name);
 const currentMapPath = (prefectureMaps.prefectures as any)[place.entity_id]?.path;
 const otherPrefectures = Object.entries(prefectureMaps.prefectures as any).filter(
   ([entityId]) => entityId !== place.entity_id
@@ -86,7 +91,8 @@ const breadcrumbJsonLd = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://beafrikadata.com/" },
     { "@type": "ListItem", "position": 2, "name": "Préfectures", "item": "https://beafrikadata.com/prefectures/" },
-    { "@type": "ListItem", "position": 3, "name": place.name_fr, "item": `https://beafrikadata.com/prefectures/prefecture/${place.slug}/` },
+    { "@type": "ListItem", "position": 3, "name": place.region_name, "item": `https://beafrikadata.com/regions/${regionSlug}/` },
+    { "@type": "ListItem", "position": 4, "name": place.name_fr, "item": `https://beafrikadata.com/prefectures/${place.slug}/` },
   ],
 };
 ---
@@ -99,12 +105,12 @@ const breadcrumbJsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{place.name_fr} - BêAfrîka Data</title>
     <meta name="description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
-    <link rel="canonical" href={`https://beafrikadata.com/prefectures/prefecture/${place.slug}/`} />
+    <link rel="canonical" href={`https://beafrikadata.com/prefectures/${place.slug}/`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="BêAfrîka Data" />
     <meta property="og:title" content={`${place.name_fr} - BêAfrîka Data`} />
     <meta property="og:description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
-    <meta property="og:url" content={`https://beafrikadata.com/prefectures/prefecture/${place.slug}/`} />
+    <meta property="og:url" content={`https://beafrikadata.com/prefectures/${place.slug}/`} />
     <meta property="og:locale" content="fr_FR" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={`${place.name_fr} - BêAfrîka Data`} />
@@ -232,7 +238,7 @@ const breadcrumbJsonLd = {
     <SiteNav />
     <main id="main-content">
       <div class="crumb">
-        <a href="/">Accueil</a> › <a href="/prefectures/">Préfectures</a> › {place.region_name} › {place.name_fr}
+        <a href="/">Accueil</a> › <a href="/prefectures/">Préfectures</a> › <a href={`/regions/${regionSlug}/`}>{place.region_name}</a> › {place.name_fr}
       </div>
       <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
 
