@@ -44,7 +44,7 @@ GHO_INDICATORS = {
     "HWF_0002": (
         "nombre_medecins", "who-gho-health-workforce", "personnes", "administratif", None,
         "Effectif publié par l'OMS (National Health Workforce Accounts), "
-        "pas une densité recalculée ; voir data/sources.csv.",
+        "pas une densité recalculée.",
     ),
     "HWF_0007": (
         "nombre_personnel_infirmier", "who-gho-health-workforce", "personnes", "administratif", None,
@@ -61,8 +61,8 @@ GHO_INDICATORS = {
         "pour la RCA sont erratiques d'une année sur l'autre (ex. 18,8 ans en "
         "2022, contre 40,3 en 2021 et 50,6 en 2020), confirmé de manière "
         "identique en interrogeant l'API Banque mondiale en direct, donc "
-        "pas une erreur de récupération de ce projet ; voir data/sources.csv "
-        "pour le détail. La série OMS est lisse (aucun saut de plus de 2 ans "
+        "pas une erreur de récupération de ce projet. La série OMS est lisse "
+        "(aucun saut de plus de 2 ans "
         "d'une année sur l'autre) et s'arrête en 2021 ; pas encore de "
         "données 2022-2024 publiées par l'OMS pour la RCA.",
     ),
@@ -102,7 +102,7 @@ INDICATORS = {
         "densite_lits_hopital", "world-bank-health-workforce",
         "pour 1 000 habitants",
         "Estimation OMS Global Health Workforce Statistics, réellement ancienne "
-        "(dernier point 2011) ; voir data/sources.csv.",
+        "(dernier point 2011).",
     ),
     "SH.XPD.CHEX.GD.ZS": (
         "depenses_sante_pib", "world-bank-health-expenditure", "% du PIB",
