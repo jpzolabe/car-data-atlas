@@ -101,22 +101,32 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
       .gap-note a { color: var(--t-lieu); }
       .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 27px; margin-top: 8px; }
       .region-block {
+        position: relative;
         background: var(--surface); border: 1px solid var(--line);
         border-left: 3px solid var(--region-accent, var(--ink-faint)); border-radius: 3px;
         padding: 15px 17px;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .region-block:has(.region-link:hover) {
+        background: color-mix(in srgb, var(--region-accent, var(--ink-faint)) 8%, var(--surface));
+        border-color: var(--region-accent, var(--ink-faint));
+      }
+      .region-link {
+        position: absolute; inset: 0; z-index: 1;
+        border-radius: 3px;
       }
       .region-block h2 {
+        position: relative; z-index: 2; pointer-events: none;
         font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
         color: var(--region-accent, var(--ink)); margin: 0 0 10px; font-weight: 600;
         display: flex; align-items: center; gap: 6px;
       }
       .region-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--region-accent, var(--ink-faint)); }
-      .region-block h2 a { color: inherit; text-decoration: none; }
-      .region-block h2 a:hover { text-decoration: underline; }
-      .place-list { list-style: none; margin: 0; padding: 0; }
+      .place-list { list-style: none; margin: 0; padding: 0; position: relative; z-index: 2; }
       .place-list li { border-top: 1px solid var(--line); }
       .place-list li:first-child { border-top: none; }
       .place-list a {
+        position: relative; z-index: 2;
         display: flex; justify-content: space-between; align-items: baseline;
         padding: 8px 0; color: var(--ink); text-decoration: none; font-size: 14px;
       }
@@ -158,7 +168,8 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
       <div class="region-grid">
         {regions.map((region) => (
           <div class="region-block" style={`--region-accent: ${REGION_COLORS[region] ?? "var(--ink-faint)"}`}>
-            <h2><span class="region-dot"></span><a href={`/regions/${regionSlugByName.get(region)}/`}>{region}</a></h2>
+            <a class="region-link" href={`/regions/${regionSlugByName.get(region)}/`} aria-label={`Voir la région ${region}`}></a>
+            <h2><span class="region-dot"></span>{region}</h2>
             <ul class="place-list">
               {byRegion.get(region)!.map((p) => (
                 <li>
