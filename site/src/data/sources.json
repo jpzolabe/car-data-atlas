@@ -47,7 +47,7 @@
       "url": "https://www.beac.int/economie-stats/statistiques-de-balance-paiements/",
       "licence": "non précisée - aucune licence indiquée sur beac.int",
       "licence_notes": "Site institutionnel sans licence de réutilisation déclarée - traité comme les autres sources gouvernementales/institutionnelles à licence non précisée de ce projet (citation suffisante, pas de blocage). Chaque exercice est un fichier Excel distinct (feuille TYPE, crédit/débit/solde, en million FCFA) plutôt qu'une série continue dans un seul fichier. Les fichiers 2021 et 2022 (BDP_RCA_2021_16092025.xlsx, BDP_RCA_2022_16092025.xlsx) sont des conteneurs ZIP corrompus côté serveur BEAC - reproduit sur téléchargement frais (Content-Length = octets reçus, donc pas une coupure réseau), confirmé par unzip -t et le module zipfile de Python. Celui de 2020 avait la même corruption mais a pu être réparé (zip -FF + openpyxl keep_links=False) ; 2021 et 2022 non - laissés en vrai manque plutôt que devinés. Chaque fichier se dit lui-même \"provisoire\" pour son exercice, y compris des exercices anciens de plusieurs années - BEAC ne semble jamais retirer cette mention.",
-      "geography_vintage": "fichiers annuels distincts ; 2018-2020 et 2023-2024 récupérés et exploitables ; 2021-2022 corrompus côté source (voir docs/verification-debt.md)",
+      "geography_vintage": "fichiers annuels distincts ; 2018-2020 et 2023-2024 récupérés et exploitables ; 2021-2022 corrompus côté source",
       "update_cadence": "annuelle (un fichier par exercice)",
       "retrieved_at": "2026-10-16",
       "authority_rank": "donnée administrative/institutionnelle (banque centrale régionale, pour le compte de l'État membre)",
