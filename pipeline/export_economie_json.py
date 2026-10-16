@@ -153,6 +153,25 @@ def build_croissance_disclosure(con) -> dict:
     same_year_wb = next(r for r in wb_block["series"] if r["period"] == admin_latest[0])
     spread_pct = abs(admin_latest[1] - same_year_wb["value"]) / abs(same_year_wb["value"]) * 100
 
+    # AfDB's 2026/2027 figures are a forward-looking projection, not another
+    # source disagreeing about a past year - kept separate from "series"
+    # (actuals/estimates) and "all_sources" (same-year disagreements) so the
+    # page can draw it as a distinct, clearly-labelled extension rather than
+    # silently continuing the historical line.
+    projection_rows = con.execute("""
+        select o.period, o.value, s.producer, s.dataset_name, s.url, s.retrieved_at::varchar
+        from observations o
+        join sources s on o.source_id = s.source_id
+        where o.entity_id = ? and o.indicator_id = 'taux_croissance_pib'
+              and o.source_id = 'afdb-meo-january-2026'
+        order by o.period
+    """, [COUNTRY_ID]).fetchall()
+    projection = [{"period": r[0], "value": r[1]} for r in projection_rows]
+    projection_source = {
+        "producer": projection_rows[0][2], "dataset_name": projection_rows[0][3],
+        "url": projection_rows[0][4], "retrieved_at": projection_rows[0][5],
+    } if projection_rows else None
+
     all_sources = [
         {
             "value": wb_latest["value"], "period": wb_latest["period"], "quality_flag": "estime",
@@ -190,6 +209,8 @@ def build_croissance_disclosure(con) -> dict:
             "spread_vs_period": admin_latest[0],
             "all_sources": all_sources,
         },
+        "projection": projection,
+        "projection_source": projection_source,
     }
 
 

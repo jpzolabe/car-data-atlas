@@ -536,6 +536,22 @@
               }
             ]
           },
+          "projection": [
+            {
+              "period": "2026",
+              "value": 2.8
+            },
+            {
+              "period": "2027",
+              "value": 3.2
+            }
+          ],
+          "projection_source": {
+            "producer": "African Development Bank Group",
+            "dataset_name": "Africa's Macroeconomic Performance and Outlook, January 2026",
+            "url": "https://www.afdb.org/sites/default/files/documents/publications/meo26_complete_english_0202_0.pdf",
+            "retrieved_at": "2026-10-16"
+          },
           "name_fr": "Croissance du PIB",
           "definition_fr": "Ce taux mesure la croissance annuelle du PIB réel, corrigé de l'inflation ; il reflète donc une variation de production, et non seulement de prix."
         }
