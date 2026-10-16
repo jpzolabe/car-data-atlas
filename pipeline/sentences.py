@@ -239,6 +239,24 @@ def sentence_population_rate(indicator_id: str, period: str, value: float) -> tu
     return text, f"{indicator_id}_pays"
 
 
+# label_fr must fit "La République centrafricaine comptait {label_fr}" -
+# checked by hand against these 5 real indicators.
+DISPLACEMENT_LABELS = {
+    "personnes_deplacees_internes": "personnes déplacées à l'intérieur du pays",
+    "refugies_a_letranger": "réfugiés centrafricains à l'étranger",
+    "demandeurs_asile_a_letranger": "demandeurs d'asile centrafricains à l'étranger",
+    "personnes_deplacees_rentrees": "personnes déplacées internes rentrées chez elles cette année-là",
+    "refugies_rentres": "réfugiés centrafricains rentrés au pays cette année-là",
+}
+
+
+def sentence_displacement(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format_int_fr(value)
+    label = DISPLACEMENT_LABELS[indicator_id]
+    text = f"Fin {period}, la République centrafricaine comptait {value_fr} {label}."
+    return text, f"{indicator_id}_pays"
+
+
 # label_fr must fit "{label_fr} en République centrafricaine s'établissait
 # à" grammatically -- checked by hand against these 8 real indicators. All
 # use "%", unlike santé's varied units, so no unit-branching needed here.
@@ -380,6 +398,94 @@ def sentence_economie_budget(indicator_id: str, period: str, value: float) -> tu
     text = (
         f"Pour {period}, {label} de la République centrafricaine "
         f"étaient budgétisées à {amount_fr} milliards de francs CFA."
+    )
+    return text, f"{indicator_id}_pays"
+
+
+# label_fr must fit "le {label_fr} de la République centrafricaine
+# présentait {état} de {amount} milliards de francs CFA" -- the first three
+# are genuine credit-minus-debit balances (BEAC balance-of-payments "TYPE"
+# sheet), so take the same déficit/excédent framing as budget_solde_global.
+# bop_besoin_financement_global is handled separately below: BEAC's own
+# label for this row is "Capacité (+)/Besoin (-) de financement", not a
+# surplus/deficit -- "un besoin/une capacité de financement" avoids the
+# redundant "le besoin ... présentait un déficit" a shared déficit/excédent
+# framing would produce.
+BOP_LABELS = {
+    "bop_solde_transactions_courantes": "solde du compte des transactions courantes",
+    "bop_solde_biens": "solde du commerce de biens",
+    "bop_solde_services": "solde du commerce de services",
+}
+
+
+def sentence_economie_bop(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    amount_fr = format(round(abs(value) / 1e9, 2), ".2f").replace(".", ",")
+
+    if indicator_id == "bop_besoin_financement_global":
+        etat = "un besoin de financement" if value < 0 else "une capacité de financement"
+        text = (
+            f"En {period}, la République centrafricaine présentait "
+            f"{etat} de {amount_fr} milliards de francs CFA, une fois "
+            f"combinés le compte des transactions courantes et le compte "
+            f"de capital, selon la balance des paiements de la BEAC."
+        )
+        return text, f"{indicator_id}_pays"
+
+    label = BOP_LABELS[indicator_id]
+    etat = "un déficit" if value < 0 else "un excédent"
+    text = (
+        f"En {period}, le {label} de la République centrafricaine "
+        f"présentait {etat} de {amount_fr} milliards de francs CFA, selon "
+        f"la balance des paiements de la BEAC."
+    )
+    return text, f"{indicator_id}_pays"
+
+
+# Same amount/sign framing as sentence_economie_bop, but "exécuté(es)"
+# (past, observed outturn) rather than "budgétisées" (sentence_economie_
+# budget's forward-looking voted-law framing) -- TOFE is what the État
+# actually collected/spent, not what the Assemblée nationale voted.
+TOFE_LABELS = {
+    "tofe_recettes_totales_execution": "les recettes totales exécutées de l'État",
+    "tofe_depenses_totales_execution": "les dépenses totales exécutées de l'État",
+}
+
+
+def sentence_economie_tofe(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    amount_fr = format(round(abs(value) / 1e9, 2), ".2f").replace(".", ",")
+
+    if indicator_id == "tofe_solde_global_execution":
+        etat = "un déficit" if value < 0 else "un excédent"
+        text = (
+            f"En {period}, l'exécution budgétaire de la République "
+            f"centrafricaine présentait {etat} global de {amount_fr} "
+            f"milliards de francs CFA, selon le TOFE de la BEAC."
+        )
+        return text, f"{indicator_id}_pays"
+
+    label = TOFE_LABELS[indicator_id]
+    text = (
+        f"En {period}, {label} de la République centrafricaine "
+        f"s'élevaient à {amount_fr} milliards de francs CFA, selon le TOFE "
+        f"de la BEAC."
+    )
+    return text, f"{indicator_id}_pays"
+
+
+PIB_SECTEUR_LABELS = {
+    "pib_secteur_primaire_fcfa": "le PIB du secteur primaire",
+    "pib_secteur_secondaire_fcfa": "le PIB du secteur secondaire",
+    "pib_secteur_tertiaire_fcfa": "le PIB du secteur tertiaire",
+}
+
+
+def sentence_economie_pib_secteur(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    amount_fr = format(round(value / 1e9, 2), ".2f").replace(".", ",")
+    label = PIB_SECTEUR_LABELS[indicator_id]
+    text = (
+        f"En {period}, {label} de la République centrafricaine "
+        f"s'établissait à {amount_fr} milliards de francs CFA à prix "
+        f"courants, selon les statistiques économiques de la BEAC."
     )
     return text, f"{indicator_id}_pays"
 

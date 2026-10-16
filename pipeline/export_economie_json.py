@@ -34,10 +34,13 @@ import duckdb
 
 from pipeline.sentences import (
     sentence_economie_activite,
+    sentence_economie_bop,
     sentence_economie_budget,
     sentence_economie_croissance_modele,
     sentence_economie_montant,
+    sentence_economie_pib_secteur,
     sentence_economie_rate,
+    sentence_economie_tofe,
 )
 
 OUT_PATH = "site/src/data/economie.json"
@@ -50,6 +53,35 @@ MONTANT_INDICATORS = {
 
 BUDGET_INDICATORS = {
     "budget_ressources_totales", "budget_depenses_totales", "budget_solde_global",
+}
+
+BOP_INDICATORS = {
+    "bop_solde_transactions_courantes", "bop_solde_biens", "bop_solde_services",
+    "bop_besoin_financement_global",
+}
+
+TOFE_INDICATORS = {
+    "tofe_recettes_totales_execution", "tofe_depenses_totales_execution",
+    "tofe_solde_global_execution",
+}
+
+PIB_SECTEUR_INDICATORS = {
+    "pib_secteur_primaire_fcfa", "pib_secteur_secondaire_fcfa", "pib_secteur_tertiaire_fcfa",
+}
+
+# OEC/BACI top-5 breakdown indicator_ids, grouped by what build_trade_composition
+# needs to pull out of observations.csv - see that function.
+EXPORT_PRODUCT_IDS = {
+    "exportations_bois", "exportations_pierres_precieuses",
+    "exportations_metaux_divers", "exportations_vehicules",
+}
+EXPORT_PARTNER_IDS = {
+    "exportations_vers_pakistan", "exportations_vers_tunisie", "exportations_vers_chine",
+    "exportations_vers_sri_lanka", "exportations_vers_egypte",
+}
+IMPORT_PARTNER_IDS = {
+    "importations_depuis_cameroun", "importations_depuis_chine", "importations_depuis_france",
+    "importations_depuis_etats_unis", "importations_depuis_japon",
 }
 
 # taux_croissance_pib is built separately (build_croissance_disclosure) since
@@ -67,6 +99,9 @@ CATEGORIES = [
         "pib_par_habitant",
         "pib_total_fcfa",
         "pib_par_habitant_fcfa",
+        "pib_secteur_primaire_fcfa",
+        "pib_secteur_secondaire_fcfa",
+        "pib_secteur_tertiaire_fcfa",
         "indice_activite_economique",
     ]),
     ("finances_publiques", "Finances publiques", [
@@ -74,6 +109,9 @@ CATEGORIES = [
         "budget_ressources_totales",
         "budget_depenses_totales",
         "budget_solde_global",
+        "tofe_recettes_totales_execution",
+        "tofe_depenses_totales_execution",
+        "tofe_solde_global_execution",
     ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
@@ -83,6 +121,10 @@ CATEGORIES = [
         "investissements_directs_etrangers",
         "dette_exterieure_rnb",
         "dette_exterieure_montant",
+        "bop_solde_transactions_courantes",
+        "bop_solde_biens",
+        "bop_solde_services",
+        "bop_besoin_financement_global",
     ]),
     ("niveau_de_vie", "Niveau de vie", [
         "taux_chomage",
@@ -108,6 +150,14 @@ def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dic
         lead_text, lead_template_id = sentence_economie_montant(indicator_id, latest[0], latest[1])
     elif indicator_id in BUDGET_INDICATORS:
         lead_text, lead_template_id = sentence_economie_budget(indicator_id, latest[0], latest[1])
+    elif indicator_id in BOP_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_bop(indicator_id, latest[0], latest[1])
+    elif indicator_id in TOFE_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_tofe(indicator_id, latest[0], latest[1])
+    elif indicator_id in PIB_SECTEUR_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_pib_secteur(
+            indicator_id, latest[0], latest[1]
+        )
     else:
         lead_text, lead_template_id = sentence_economie_rate(indicator_id, latest[0], latest[1])
 
@@ -153,6 +203,25 @@ def build_croissance_disclosure(con) -> dict:
     same_year_wb = next(r for r in wb_block["series"] if r["period"] == admin_latest[0])
     spread_pct = abs(admin_latest[1] - same_year_wb["value"]) / abs(same_year_wb["value"]) * 100
 
+    # AfDB's 2026/2027 figures are a forward-looking projection, not another
+    # source disagreeing about a past year - kept separate from "series"
+    # (actuals/estimates) and "all_sources" (same-year disagreements) so the
+    # page can draw it as a distinct, clearly-labelled extension rather than
+    # silently continuing the historical line.
+    projection_rows = con.execute("""
+        select o.period, o.value, s.producer, s.dataset_name, s.url, s.retrieved_at::varchar
+        from observations o
+        join sources s on o.source_id = s.source_id
+        where o.entity_id = ? and o.indicator_id = 'taux_croissance_pib'
+              and o.source_id = 'afdb-meo-january-2026'
+        order by o.period
+    """, [COUNTRY_ID]).fetchall()
+    projection = [{"period": r[0], "value": r[1]} for r in projection_rows]
+    projection_source = {
+        "producer": projection_rows[0][2], "dataset_name": projection_rows[0][3],
+        "url": projection_rows[0][4], "retrieved_at": projection_rows[0][5],
+    } if projection_rows else None
+
     all_sources = [
         {
             "value": wb_latest["value"], "period": wb_latest["period"], "quality_flag": "estime",
@@ -189,6 +258,48 @@ def build_croissance_disclosure(con) -> dict:
             "spread_pct": round(spread_pct, 1),
             "spread_vs_period": admin_latest[0],
             "all_sources": all_sources,
+        },
+        "projection": projection,
+        "projection_source": projection_source,
+    }
+
+
+def build_trade_composition(con, names: dict) -> dict:
+    """OEC/BACI top-5 export products, export destinations and import
+    origins for 2024 - a ranked snapshot, not a time series, so it's kept
+    separate from the indicator-card grid entirely rather than forced into
+    a sparkline shape that doesn't fit this kind of data.
+    """
+    def top_rows(indicator_ids: list[str]) -> list[dict]:
+        rows = con.execute("""
+            select o.indicator_id, o.value, o.notes, s.producer, s.dataset_name,
+                   s.url, s.retrieved_at::varchar
+            from observations o
+            join sources s on o.source_id = s.source_id
+            where o.entity_id = ? and o.indicator_id in ?
+            order by o.value desc
+        """, [COUNTRY_ID, indicator_ids]).fetchall()
+        return [
+            {
+                "indicator_id": r[0], "name_fr": names[r[0]], "value": r[1], "notes": r[2],
+                "producer": r[3], "dataset_name": r[4], "url": r[5], "retrieved_at": r[6],
+            }
+            for r in rows
+        ]
+
+    export_products = top_rows(list(EXPORT_PRODUCT_IDS))
+    export_partners = top_rows(list(EXPORT_PARTNER_IDS))
+    import_partners = top_rows(list(IMPORT_PARTNER_IDS))
+
+    return {
+        "year": "2024",
+        "top_exports": export_products,
+        "top_export_partners": export_partners,
+        "top_import_partners": import_partners,
+        "source": {
+            "producer": export_products[0]["producer"],
+            "dataset_name": export_products[0]["dataset_name"],
+            "retrieved_at": export_products[0]["retrieved_at"],
         },
     }
 
@@ -233,6 +344,7 @@ def main():
         ),
         "headline": headline_indicator,
         "categories": categories,
+        "trade_composition": build_trade_composition(con, names),
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:

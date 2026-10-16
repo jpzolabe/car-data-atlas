@@ -902,5 +902,382 @@
         "retrieved_at": "2026-09-12"
       }
     }
+  ],
+  "displacement": [
+    {
+      "indicator_id": "personnes_deplacees_internes",
+      "name_fr": "Personnes déplacées internes",
+      "definition_fr": "Nombre de personnes déplacées à l'intérieur du pays (PDI), contraintes de fuir leur domicile sans franchir de frontière internationale - fin d'année, source UNHCR.",
+      "latest": {
+        "period": "2025",
+        "value": 427479.0
+      },
+      "series": [
+        {
+          "period": "2012",
+          "value": 51679.0
+        },
+        {
+          "period": "2013",
+          "value": 894421.0
+        },
+        {
+          "period": "2014",
+          "value": 438538.0
+        },
+        {
+          "period": "2015",
+          "value": 216392.0
+        },
+        {
+          "period": "2016",
+          "value": 411785.0
+        },
+        {
+          "period": "2017",
+          "value": 688700.0
+        },
+        {
+          "period": "2018",
+          "value": 640970.0
+        },
+        {
+          "period": "2019",
+          "value": 669906.0
+        },
+        {
+          "period": "2020",
+          "value": 681930.0
+        },
+        {
+          "period": "2021",
+          "value": 691791.0
+        },
+        {
+          "period": "2022",
+          "value": 515665.0
+        },
+        {
+          "period": "2023",
+          "value": 511803.0
+        },
+        {
+          "period": "2024",
+          "value": 469342.0
+        },
+        {
+          "period": "2025",
+          "value": 427479.0
+        }
+      ],
+      "lead_sentence": "Fin 2025, la République centrafricaine comptait 427 479 personnes déplacées à l'intérieur du pays.",
+      "lead_sentence_template_id": "personnes_deplacees_internes_pays",
+      "source": {
+        "producer": "UNHCR (Haut Commissariat des Nations Unies pour les Réfugiés)",
+        "dataset_name": "Statistiques de déplacement forcé par pays d'origine (réfugiés, demandeurs d'asile, PDI, retours)",
+        "url": "https://api.unhcr.org/population/v1/population/?coo=CAF&cf_type=ISO",
+        "retrieved_at": "2026-10-16"
+      }
+    },
+    {
+      "indicator_id": "refugies_a_letranger",
+      "name_fr": "Réfugiés centrafricains à l'étranger",
+      "definition_fr": "Nombre de personnes originaires de République centrafricaine ayant obtenu le statut de réfugié dans un autre pays - fin d'année, source UNHCR.",
+      "latest": {
+        "period": "2025",
+        "value": 674222.0
+      },
+      "series": [
+        {
+          "period": "2012",
+          "value": 164567.0
+        },
+        {
+          "period": "2013",
+          "value": 252854.0
+        },
+        {
+          "period": "2014",
+          "value": 412028.0
+        },
+        {
+          "period": "2015",
+          "value": 471093.0
+        },
+        {
+          "period": "2016",
+          "value": 490879.0
+        },
+        {
+          "period": "2017",
+          "value": 545513.0
+        },
+        {
+          "period": "2018",
+          "value": 590858.0
+        },
+        {
+          "period": "2019",
+          "value": 610152.0
+        },
+        {
+          "period": "2020",
+          "value": 642161.0
+        },
+        {
+          "period": "2021",
+          "value": 737658.0
+        },
+        {
+          "period": "2022",
+          "value": 748344.0
+        },
+        {
+          "period": "2023",
+          "value": 759187.0
+        },
+        {
+          "period": "2024",
+          "value": 693488.0
+        },
+        {
+          "period": "2025",
+          "value": 674222.0
+        }
+      ],
+      "lead_sentence": "Fin 2025, la République centrafricaine comptait 674 222 réfugiés centrafricains à l'étranger.",
+      "lead_sentence_template_id": "refugies_a_letranger_pays",
+      "source": {
+        "producer": "UNHCR (Haut Commissariat des Nations Unies pour les Réfugiés)",
+        "dataset_name": "Statistiques de déplacement forcé par pays d'origine (réfugiés, demandeurs d'asile, PDI, retours)",
+        "url": "https://api.unhcr.org/population/v1/population/?coo=CAF&cf_type=ISO",
+        "retrieved_at": "2026-10-16"
+      }
+    },
+    {
+      "indicator_id": "demandeurs_asile_a_letranger",
+      "name_fr": "Demandeurs d'asile centrafricains à l'étranger",
+      "definition_fr": "Nombre de personnes originaires de République centrafricaine ayant déposé une demande d'asile à l'étranger, en attente de décision - fin d'année, source UNHCR.",
+      "latest": {
+        "period": "2025",
+        "value": 82600.0
+      },
+      "series": [
+        {
+          "period": "2012",
+          "value": 1899.0
+        },
+        {
+          "period": "2013",
+          "value": 7459.0
+        },
+        {
+          "period": "2014",
+          "value": 14361.0
+        },
+        {
+          "period": "2015",
+          "value": 10634.0
+        },
+        {
+          "period": "2016",
+          "value": 10603.0
+        },
+        {
+          "period": "2017",
+          "value": 12997.0
+        },
+        {
+          "period": "2018",
+          "value": 17278.0
+        },
+        {
+          "period": "2019",
+          "value": 15935.0
+        },
+        {
+          "period": "2020",
+          "value": 13458.0
+        },
+        {
+          "period": "2021",
+          "value": 14283.0
+        },
+        {
+          "period": "2022",
+          "value": 14291.0
+        },
+        {
+          "period": "2023",
+          "value": 14775.0
+        },
+        {
+          "period": "2024",
+          "value": 18082.0
+        },
+        {
+          "period": "2025",
+          "value": 82600.0
+        }
+      ],
+      "lead_sentence": "Fin 2025, la République centrafricaine comptait 82 600 demandeurs d'asile centrafricains à l'étranger.",
+      "lead_sentence_template_id": "demandeurs_asile_a_letranger_pays",
+      "source": {
+        "producer": "UNHCR (Haut Commissariat des Nations Unies pour les Réfugiés)",
+        "dataset_name": "Statistiques de déplacement forcé par pays d'origine (réfugiés, demandeurs d'asile, PDI, retours)",
+        "url": "https://api.unhcr.org/population/v1/population/?coo=CAF&cf_type=ISO",
+        "retrieved_at": "2026-10-16"
+      }
+    },
+    {
+      "indicator_id": "personnes_deplacees_rentrees",
+      "name_fr": "Personnes déplacées internes rentrées",
+      "definition_fr": "Nombre de personnes déplacées à l'intérieur du pays qui sont rentrées chez elles au cours de l'année - un flux annuel, pas un effectif cumulé, source UNHCR.",
+      "latest": {
+        "period": "2025",
+        "value": 183922.0
+      },
+      "series": [
+        {
+          "period": "2012",
+          "value": 35433.0
+        },
+        {
+          "period": "2013",
+          "value": 0.0
+        },
+        {
+          "period": "2014",
+          "value": 610903.0
+        },
+        {
+          "period": "2015",
+          "value": 258276.0
+        },
+        {
+          "period": "2016",
+          "value": 0.0
+        },
+        {
+          "period": "2017",
+          "value": 89019.0
+        },
+        {
+          "period": "2018",
+          "value": 306246.0
+        },
+        {
+          "period": "2019",
+          "value": 90672.0
+        },
+        {
+          "period": "2020",
+          "value": 158247.0
+        },
+        {
+          "period": "2021",
+          "value": 371285.0
+        },
+        {
+          "period": "2022",
+          "value": 404628.0
+        },
+        {
+          "period": "2023",
+          "value": 325938.0
+        },
+        {
+          "period": "2024",
+          "value": 151765.0
+        },
+        {
+          "period": "2025",
+          "value": 183922.0
+        }
+      ],
+      "lead_sentence": "Fin 2025, la République centrafricaine comptait 183 922 personnes déplacées internes rentrées chez elles cette année-là.",
+      "lead_sentence_template_id": "personnes_deplacees_rentrees_pays",
+      "source": {
+        "producer": "UNHCR (Haut Commissariat des Nations Unies pour les Réfugiés)",
+        "dataset_name": "Statistiques de déplacement forcé par pays d'origine (réfugiés, demandeurs d'asile, PDI, retours)",
+        "url": "https://api.unhcr.org/population/v1/population/?coo=CAF&cf_type=ISO",
+        "retrieved_at": "2026-10-16"
+      }
+    },
+    {
+      "indicator_id": "refugies_rentres",
+      "name_fr": "Réfugiés centrafricains rentrés",
+      "definition_fr": "Nombre de réfugiés centrafricains rentrés en République centrafricaine au cours de l'année - un flux annuel, pas un effectif cumulé, source UNHCR.",
+      "latest": {
+        "period": "2025",
+        "value": 21664.0
+      },
+      "series": [
+        {
+          "period": "2012",
+          "value": 2313.0
+        },
+        {
+          "period": "2013",
+          "value": 0.0
+        },
+        {
+          "period": "2014",
+          "value": 0.0
+        },
+        {
+          "period": "2015",
+          "value": 21632.0
+        },
+        {
+          "period": "2016",
+          "value": 34401.0
+        },
+        {
+          "period": "2017",
+          "value": 78620.0
+        },
+        {
+          "period": "2018",
+          "value": 35182.0
+        },
+        {
+          "period": "2019",
+          "value": 46523.0
+        },
+        {
+          "period": "2020",
+          "value": 4978.0
+        },
+        {
+          "period": "2021",
+          "value": 5579.0
+        },
+        {
+          "period": "2022",
+          "value": 5703.0
+        },
+        {
+          "period": "2023",
+          "value": 14449.0
+        },
+        {
+          "period": "2024",
+          "value": 19875.0
+        },
+        {
+          "period": "2025",
+          "value": 21664.0
+        }
+      ],
+      "lead_sentence": "Fin 2025, la République centrafricaine comptait 21 664 réfugiés centrafricains rentrés au pays cette année-là.",
+      "lead_sentence_template_id": "refugies_rentres_pays",
+      "source": {
+        "producer": "UNHCR (Haut Commissariat des Nations Unies pour les Réfugiés)",
+        "dataset_name": "Statistiques de déplacement forcé par pays d'origine (réfugiés, demandeurs d'asile, PDI, retours)",
+        "url": "https://api.unhcr.org/population/v1/population/?coo=CAF&cf_type=ISO",
+        "retrieved_at": "2026-10-16"
+      }
+    }
   ]
 }

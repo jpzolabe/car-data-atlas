@@ -76,6 +76,11 @@ function isStale(period: string): boolean {
 }
 
 const fmtPct = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+// Trade-composition values (OEC/BACI) are all in the tens-to-low-hundreds
+// of millions - same "M US$" shape as formatValue's MONTANT_INDICATORS
+// branch below, but these indicator_ids don't go through that per-card
+// dispatch since they're rendered as ranked lists, not indicator cards.
+const fmtTradeUSD = (n: number) => `${(n / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 })} M US$`;
 
 // Compact badge text - the raw quality_flag values ("enquete", "estime")
 // are missing their accents.
@@ -88,6 +93,16 @@ function badgeLabel(flag: string): string {
 
 const MONTANT_INDICATORS = new Set(["exportations_montant", "importations_montant", "dette_exterieure_montant"]);
 const BUDGET_INDICATORS = new Set(["budget_ressources_totales", "budget_depenses_totales", "budget_solde_global"]);
+// BOP/TOFE/PIB-par-secteur (BEAC) share the same "Md FCFA" display shape as
+// BUDGET_INDICATORS - kept as separate sets rather than merged into it since
+// they're different underlying concepts (balance-of-payments balances,
+// budget execution, sector GDP) that just happen to format the same way.
+const FCFA_MD_INDICATORS = new Set([
+  "bop_solde_transactions_courantes", "bop_solde_biens", "bop_solde_services",
+  "bop_besoin_financement_global", "tofe_recettes_totales_execution",
+  "tofe_depenses_totales_execution", "tofe_solde_global_execution",
+  "pib_secteur_primaire_fcfa", "pib_secteur_secondaire_fcfa", "pib_secteur_tertiaire_fcfa",
+]);
 
 function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
   if (indicatorId === "pib_total") {
@@ -105,7 +120,7 @@ function formatValue(indicatorId: string, value: number): { display: string; uni
   if (indicatorId === "indice_activite_economique") {
     return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " indice" };
   }
-  if (BUDGET_INDICATORS.has(indicatorId)) {
+  if (BUDGET_INDICATORS.has(indicatorId) || FCFA_MD_INDICATORS.has(indicatorId)) {
     return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: " Md FCFA" };
   }
   if (MONTANT_INDICATORS.has(indicatorId)) {
@@ -118,14 +133,18 @@ function formatValue(indicatorId: string, value: number): { display: string; uni
 
 // Small build-time SVG sparkline, same technique as every other theme page.
 const SPARK_W = 460, SPARK_H = 90, SPARK_ML = 40, SPARK_MR = 10, SPARK_MT = 10, SPARK_MB = 18;
-function sparkline(ind: { series: { period: string; value: number }[] }) {
+function sparkline(
+  ind: { series: { period: string; value: number }[] },
+  projection: { period: string; value: number }[] = []
+) {
   const s = ind.series;
+  const totalLen = s.length + projection.length;
   const plotW = SPARK_W - SPARK_ML - SPARK_MR;
   const plotH = SPARK_H - SPARK_MT - SPARK_MB;
-  const vals = s.map((d) => d.value);
+  const vals = [...s.map((d) => d.value), ...projection.map((d) => d.value)];
   const sMin = Math.min(...vals) * 0.9;
   const sMax = Math.max(...vals) * 1.1;
-  const sx = (i: number) => SPARK_ML + (i / Math.max(s.length - 1, 1)) * plotW;
+  const sx = (i: number) => SPARK_ML + (i / Math.max(totalLen - 1, 1)) * plotW;
   const sy = (v: number) => SPARK_MT + plotH - ((v - sMin) / (sMax - sMin)) * plotH;
   const points = s.map((d, i) => `${sx(i).toFixed(1)},${sy(d.value).toFixed(1)}`).join(" ");
   // Hover targets: one per data point, native <title> tooltip - no chart
@@ -140,9 +159,27 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   ])]
     .filter((i) => i > 0 && i < s.length - 1)
     .map((i) => ({ x: sx(i), year: s[i].period }));
+
+  // Projection (if any): a dashed continuation from the last actual point
+  // through each projected point, same scale as the rest of the chart -
+  // visually a future extension, not another historical observation.
+  let projectionPoints = "";
+  let projectionHoverPoints: { cx: number; cy: number; period: string; value: number }[] = [];
+  if (projection.length > 0) {
+    const lastActual = { x: sx(s.length - 1), y: sy(s[s.length - 1].value) };
+    const projCoords = projection.map((d, i) => ({
+      x: sx(s.length + i), y: sy(d.value), period: d.period, value: d.value,
+    }));
+    projectionPoints = [lastActual, ...projCoords]
+      .map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+    projectionHoverPoints = projCoords;
+  }
+
   return {
-    points, hoverPoints, midLabels, firstYear: s[0].period, lastYear: s[s.length - 1].period,
-    xFirst: sx(0), xLast: sx(s.length - 1),
+    points, hoverPoints, midLabels, firstYear: s[0].period,
+    lastYear: projection.length > 0 ? projection[projection.length - 1].period : s[s.length - 1].period,
+    xFirst: sx(0), xLast: sx(totalLen - 1),
+    projectionPoints, projectionHoverPoints,
   };
 }
 
@@ -247,6 +284,18 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       }
       .satellite-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
       .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); }
+      .trade-composition-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 26px; margin-top: 4px;
+      }
+      .trade-list h3 { font-size: 13px; margin: 0 0 10px; color: var(--ink-muted); font-weight: 600; }
+      .rank-list { list-style: none; margin: 0; padding: 0; }
+      .rank-list li { margin-bottom: 12px; }
+      .rank-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 4px; }
+      .rank-label { color: var(--ink); }
+      .rank-value { font-family: ui-monospace, monospace; color: var(--t-eco); white-space: nowrap; }
+      .rank-bar-track { background: var(--line); border-radius: 2px; height: 6px; overflow: hidden; }
+      .rank-bar-fill { background: var(--t-eco); height: 100%; border-radius: 2px 0 0 2px; }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
         padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
@@ -305,6 +354,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       }
       @keyframes drawMiniSpark { to { stroke-dashoffset: 0; } }
       @media (prefers-reduced-motion: reduce) { .mini-spark-line { animation: none; stroke-dashoffset: 0; } }
+      .mini-spark-projection { stroke: var(--t-eco); stroke-width: 2; fill: none; stroke-dasharray: 4 3; opacity: 0.6; }
       .mini-spark-axis-label { fill: var(--ink-faint); font-size: 9px; font-family: ui-monospace, monospace; }
       .single-point-note {
         margin: 8px 0 0; padding: 8px 10px; font-size: 12px; color: var(--ink-faint);
@@ -344,6 +394,9 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                 <a href="#prix">Prix</a>
               </>
             )}
+            {category.key === "commerce" && (
+              <a href="#composition-commerce">Composition</a>
+            )}
           </>
         ))}
       </nav>
@@ -364,7 +417,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
           <h2 id={category.key}>{category.label_fr}</h2>
           <div class="indicator-grid">
             {category.indicators.map((ind) => {
-              const spark = sparkline(ind);
+              const spark = sparkline(ind, ind.projection ?? []);
               const stale = isStale(ind.latest.period);
               const val = formatValue(ind.indicator_id, ind.latest.value);
 
@@ -411,6 +464,9 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                     </div>
                     <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
                       <polyline class="mini-spark-line" points={spark.points} />
+                      {spark.projectionPoints && (
+                        <polyline class="mini-spark-projection" points={spark.projectionPoints} />
+                      )}
                       <text class="mini-spark-axis-label" x={spark.xFirst} y={SPARK_H - 4} text-anchor="start">{spark.firstYear}</text>
                       {spark.midLabels.map((m) => (
                         <text class="mini-spark-axis-label" x={m.x} y={SPARK_H - 4} text-anchor="middle">{m.year}</text>
@@ -424,10 +480,23 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                           </circle>
                         );
                       })}
+                      {spark.projectionHoverPoints.map((p) => {
+                        const pv = formatValue(ind.indicator_id, p.value);
+                        return (
+                          <circle class="hover-pt hover-pt-projection" cx={p.cx} cy={p.cy} r="4">
+                            <title>{p.period} : {pv.display}{pv.unit} (projection AfDB)</title>
+                          </circle>
+                        );
+                      })}
                     </svg>
                     <p class="mini-sentence">{ind.lead_sentence}</p>
                     <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:6px;">
                       Graphique : {ind.source.producer} (série complète). Récupéré le {ind.source.retrieved_at}.
+                      {ind.projection && ind.projection.length > 0 && (
+                        <>
+                          {" "}Pointillés : projection {ind.projection_source.producer} ({ind.projection.map((p) => `${p.period} : ${formatValue(ind.indicator_id, p.value).display}%`).join(", ")}).
+                        </>
+                      )}
                     </span>
                   </div>
                 );
@@ -495,6 +564,69 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                 <p class="mini-sentence">{prixData.inflation.lead_sentence}</p>
                 <a class="satellite-link" href="/prix/">Voir le détail (indice, par fonction COICOP) →</a>
               </div>
+            </>
+          )}
+
+          {category.key === "commerce" && (
+            <>
+              <h2 id="composition-commerce">Composition du commerce extérieur</h2>
+              <p class="category-note">
+                Les premiers postes, {data.trade_composition.year} - une donnée miroir
+                de commerce (OEC/BACI), distincte des totaux Banque mondiale ci-dessus.
+              </p>
+              <div class="trade-composition-grid">
+                <div class="trade-list">
+                  <h3>Principaux produits exportés</h3>
+                  <ul class="rank-list">
+                    {data.trade_composition.top_exports.map((r: any) => (
+                      <li>
+                        <div class="rank-row">
+                          <span class="rank-label">{r.name_fr.replace("Exportations - ", "")}</span>
+                          <span class="rank-value">{fmtTradeUSD(r.value)}</span>
+                        </div>
+                        <div class="rank-bar-track">
+                          <div class="rank-bar-fill" style={`width:${(r.value / data.trade_composition.top_exports[0].value * 100).toFixed(1)}%`}></div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="trade-list">
+                  <h3>Principales destinations à l'export</h3>
+                  <ul class="rank-list">
+                    {data.trade_composition.top_export_partners.map((r: any) => (
+                      <li>
+                        <div class="rank-row">
+                          <span class="rank-label">{r.name_fr.replace("Exportations vers ", "").replace(/^(le |la |l')/, "")}</span>
+                          <span class="rank-value">{fmtTradeUSD(r.value)}</span>
+                        </div>
+                        <div class="rank-bar-track">
+                          <div class="rank-bar-fill" style={`width:${(r.value / data.trade_composition.top_export_partners[0].value * 100).toFixed(1)}%`}></div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="trade-list">
+                  <h3>Principales origines à l'import</h3>
+                  <ul class="rank-list">
+                    {data.trade_composition.top_import_partners.map((r: any) => (
+                      <li>
+                        <div class="rank-row">
+                          <span class="rank-label">{r.name_fr.replace("Importations depuis ", "").replace(/^(le |la |les |l')/, "")}</span>
+                          <span class="rank-value">{fmtTradeUSD(r.value)}</span>
+                        </div>
+                        <div class="rank-bar-track">
+                          <div class="rank-bar-fill" style={`width:${(r.value / data.trade_composition.top_import_partners[0].value * 100).toFixed(1)}%`}></div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <span style="font-size:11px;color:var(--ink-faint);display:block;margin-top:10px;">
+                {data.trade_composition.source.producer}. Récupéré le {data.trade_composition.source.retrieved_at}.
+              </span>
             </>
           )}
         </>
