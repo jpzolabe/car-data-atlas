@@ -55,7 +55,7 @@ BUDGET_INDICATORS = {
 # OEC/BACI top-5 breakdown indicator_ids, grouped by what build_trade_composition
 # needs to pull out of observations.csv - see that function.
 EXPORT_PRODUCT_IDS = {
-    "exportations_aeronautique", "exportations_bois", "exportations_pierres_precieuses",
+    "exportations_bois", "exportations_pierres_precieuses",
     "exportations_metaux_divers", "exportations_vehicules",
 }
 EXPORT_PARTNER_IDS = {

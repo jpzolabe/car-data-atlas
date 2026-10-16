@@ -18,12 +18,12 @@
     },
     {
       "name": "indicators.csv",
-      "rows": 106,
+      "rows": 105,
       "description": "Un indicateur par ligne : définition, unité, thème, et le niveau géographique le plus fin qu'il atteint réellement."
     },
     {
       "name": "observations.csv",
-      "rows": 5577,
+      "rows": 5576,
       "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
     },
     {
@@ -84,9 +84,9 @@
     {
       "theme_id": "economie",
       "label": "Économie",
-      "total": 34,
+      "total": 33,
       "by_level": {
-        "pays": 34,
+        "pays": 33,
         "region": 0,
         "prefecture": 0,
         "sous_prefecture": 0

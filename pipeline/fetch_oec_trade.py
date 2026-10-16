@@ -7,10 +7,12 @@ idempotent-replace pattern.
 Deliberately NOT re-sourcing exportations_montant/importations_montant
 (the existing World Bank-backed aggregate totals) - this is new content
 (product/partner composition), not a competing source for a number the
-site already shows. Bounded to the top 5 of each category for the most
+site already shows. Bounded to a handful of each category for the most
 recent year (2024) rather than the full ~73-product breakdown, since
 these are meant as a small "what/who" snapshot alongside the trade
-totals, not a full trade-statistics explorer.
+totals, not a full trade-statistics explorer. Products: top 4, not top
+5 - "Aircraft and Spacecraft" was excluded (see EXPORT_PRODUCTS below),
+leaving one fewer than the two partner lists.
 
 BACI's HS6-depth edition used here (cube trade_i_baci_a_22) only covers
 2022-2024 - that's the dataset's entire time span, not a fetch limitation.
@@ -30,12 +32,13 @@ BASE_URL = "https://api-v2.oec.world/tesseract/data.jsonrecords"
 YEAR = "2024"
 
 # HS2 product category (English, as returned by the API) -> indicator_id.
-# Top 5 export products by value for YEAR, picked after fetching the full
+# Top export products by value for YEAR, picked after fetching the full
 # ~73-category breakdown and sorting by Trade Value - see the chat history
-# for that query. Aircraft and Spacecraft's outsized share is flagged in
-# its own note below, not silently presented.
+# for that query. "Aircraft and Spacecraft" was the single largest category
+# (~47% of 2024 export value on its own) but deliberately left out: almost
+# certainly a one-off aircraft sale/transfer rather than a real export
+# sector, and misleading to show as "what CAR exports" even with a caveat.
 EXPORT_PRODUCTS = {
-    "Aircraft and Spacecraft": "exportations_aeronautique",
     "Wood, wood articles, & charcoal": "exportations_bois",
     "Precious stones, metals, & pearls": "exportations_pierres_precieuses",
     "Miscellaneous metal products": "exportations_metaux_divers",
@@ -58,14 +61,6 @@ IMPORT_PARTNERS = {
     "Japan": "importations_depuis_japon",
 }
 
-AIRCRAFT_NOTE = (
-    "Donnée miroir de commerce (OEC/BACI, CEPII), 2024. Cette catégorie a "
-    "représenté à elle seule environ 47% de la valeur totale des "
-    "exportations centrafricaines déclarées cette année-là - reflète "
-    "vraisemblablement une cession ponctuelle d'aéronef plutôt qu'une "
-    "industrie aéronautique établie dans le pays ; publiée telle quelle, "
-    "sans réinterprétation."
-)
 DEFAULT_NOTE = "Donnée miroir de commerce (OEC/BACI, CEPII), {year}."
 
 
@@ -101,7 +96,7 @@ def build_rows(retrieved_at: str) -> list[dict]:
             "period": YEAR, "value": value, "unit": "US$",
             "source_id": SOURCE_ID, "retrieved_at": retrieved_at,
             "quality_flag": "administratif",
-            "notes": AIRCRAFT_NOTE if indicator_id == "exportations_aeronautique" else DEFAULT_NOTE.format(year=YEAR),
+            "notes": DEFAULT_NOTE.format(year=YEAR),
         })
 
     export_partner_rows = fetch_rows("Importer Country Official", "Exporter Country Official", "caf")

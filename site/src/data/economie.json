@@ -1387,16 +1387,6 @@
     "year": "2024",
     "top_exports": [
       {
-        "indicator_id": "exportations_aeronautique",
-        "name_fr": "Exportations - aéronautique et aérospatiale",
-        "value": 115179112.0,
-        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024. Cette catégorie a représenté à elle seule environ 47% de la valeur totale des exportations centrafricaines déclarées cette année-là - reflète vraisemblablement une cession ponctuelle d'aéronef plutôt qu'une industrie aéronautique établie dans le pays ; publiée telle quelle, sans réinterprétation.",
-        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
-        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
-        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
-        "retrieved_at": "2026-10-16"
-      },
-      {
         "indicator_id": "exportations_bois",
         "name_fr": "Exportations - bois et charbon de bois",
         "value": 52803854.0,
