@@ -269,7 +269,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
         color: var(--t-eco); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
       }
-      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
       h2 { font-size: 1.15rem; margin: 43px 0 13px; padding-top: 19px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
       .category-note { font-size: 13px; color: var(--ink-muted); margin: 0 0 12px; }
@@ -282,7 +282,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         font-family: ui-monospace, monospace; font-size: 1.3rem; font-weight: 600;
         color: var(--t-eco);
       }
-      .satellite-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .satellite-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; margin-left: 6px; }
       .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); }
       .trade-composition-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -311,7 +311,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-eco); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
       }
-      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.75rem; font-weight: 400; color: var(--ink-faint); }
+      .national-value .unit { font-family: system-ui, sans-serif; font-size: 0.75rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
       .national-meta { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
       .disclosure { margin-top: 10px; }
       .disclosure summary {
@@ -343,7 +343,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
         font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
         color: var(--t-eco); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
       }
-      .indicator-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .indicator-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; margin-left: 6px; }
       svg.mini-sparkline { width: 100%; height: auto; display: block; margin-top: 8px; }
       .hover-pt { fill: transparent; pointer-events: all; }
       .hover-pt:hover { fill: var(--t-eco); }
@@ -436,7 +436,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                         {ind.national.headline.producer} - {ind.national.headline.dataset_name}
                       </div>
                       <details class="disclosure">
-                        <summary>{ind.national.all_sources.length} sources - la donnée administrative de {ind.national.spread_vs_period} diffère de {ind.national.spread_pct}% de l'estimation modélisée de la même année</summary>
+                        <summary>{ind.national.all_sources.length} sources - la donnée administrative de {ind.national.spread_vs_period} diffère de {fmtPct(ind.national.spread_pct)}% de l'estimation modélisée de la même année</summary>
                         <table class="disclosure-table">
                           <thead><tr><th scope="col">Valeur</th><th scope="col">Producteur</th><th scope="col">Période</th><th scope="col">Statut</th></tr></thead>
                           <tbody>
@@ -652,6 +652,8 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/agriculture/">Agriculture</a>
+          <a href="/prix/">Prix</a>
           <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>

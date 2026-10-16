@@ -37,6 +37,7 @@ const otherPrefectures = Object.entries(prefectureMaps.prefectures as any).filte
 
 const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
 const fmtPrice = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+const fmt1 = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
 const DENREE_SHORT: Record<string, string> = {
   prix_manioc_kg: "Manioc",
@@ -178,7 +179,7 @@ const breadcrumbJsonLd = {
         font-family: ui-monospace, monospace; font-size: 2.6rem; font-weight: 600;
         color: var(--t-lieu); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
       }
-      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .headline-value .unit { font-size: 1.1rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
       .headline-caption { color: var(--ink-muted); font-size: 13.5px; margin: 4px 0 0; }
       .badge {
         display: inline-block; font-family: ui-monospace, monospace; font-size: 10.5px;
@@ -220,11 +221,6 @@ const breadcrumbJsonLd = {
       .crumb { font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 6px; }
       .crumb a { color: var(--ink-faint); text-decoration: none; }
       .crumb a:hover { color: var(--t-lieu); text-decoration: underline; }
-      .gap-note {
-        font-style: italic; color: var(--ink-muted); font-size: 13.5px;
-        border-left: 3px solid var(--ink-faint); padding-left: 12px; margin: 4px 0 20px;
-      }
-      .gap-note a { color: var(--t-lieu); }
       footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       footer a { color: var(--ink-muted); }
       .site-nav { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
@@ -235,15 +231,10 @@ const breadcrumbJsonLd = {
   <body>
     <SiteNav />
     <main id="main-content">
-      <div class="crumb"><a href="/prefectures/">Préfectures</a></div>
+      <div class="crumb">
+        <a href="/">Accueil</a> › <a href="/prefectures/">Préfectures</a> › {place.region_name} › {place.name_fr}
+      </div>
       <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
-
-      <p class="gap-note">
-        Beaucoup d'indicateurs importants - PIB, commerce extérieur, résultats
-        aux examens, entre autres - n'existent qu'à l'échelle nationale et ne
-        descendent pas jusqu'au niveau de la préfecture : à explorer plutôt via
-        <a href="/#explorer-par-theme">Explorer par thème</a>.
-      </p>
 
       <div class="identity-block">
         <dl>
@@ -252,7 +243,7 @@ const breadcrumbJsonLd = {
           {place.aliases.length > 0 && (
             <>
               <dt>Codes sources</dt>
-              <dd>{place.aliases.map((a: any) => <code>{a.code}</code>).reduce((prev: any, curr: any) => [prev, " ", curr])}</dd>
+              <dd>{[...new Set(place.aliases.map((a: any) => a.code))].map((code: any) => <code>{code}</code>).reduce((prev: any, curr: any) => [prev, " ", curr])}</dd>
             </>
           )}
         </dl>
@@ -274,11 +265,17 @@ const breadcrumbJsonLd = {
       {place.population && (
         <div class="headline-block">
           <div class="headline-value">
-            {fmt(place.population.pop_2021)}<span class="unit">habitants, 2021</span>
-            {place.population.pop_2021_flag === "estime" && <span class="badge estime">estimé</span>}
+            {place.population.pop_2025 ? (
+              <>{fmt(place.population.pop_2025)}<span class="unit">habitants, 2025 (projection)</span></>
+            ) : (
+              <>
+                {fmt(place.population.pop_2021)}<span class="unit">habitants, 2021</span>
+                {place.population.pop_2021_flag === "estime" && <span class="badge estime">estimé</span>}
+              </>
+            )}
           </div>
           <p class="headline-caption">
-            {place.population.rank_2021}ᵉ préfecture la plus peuplée sur {place.population.total_prefectures}, {place.population.share_of_national_pct}% de la population nationale.
+            {place.population.rank_2021}ᵉ préfecture la plus peuplée sur {place.population.total_prefectures} (estimation 2021), {fmt1(place.population.share_of_national_pct)}% de la population nationale.
           </p>
           <p class="sentence">
             En 2003, {place.name_fr} comptait {fmt(place.population.pop_2003)} habitants (recensement) ; en 2021, l'estimation est de {fmt(place.population.pop_2021)}
@@ -342,7 +339,7 @@ const breadcrumbJsonLd = {
           <p class="headline-caption">
             Population 2021 de {place.name_fr}, contre la moyenne nationale par préfecture
             (population nationale 2021 divisée par {place.population.total_prefectures}) -
-            {" "}{place.name_fr} compte {nationalRatio.toFixed(1)}× cette moyenne.
+            {" "}{place.name_fr} compte {fmt1(nationalRatio)}× cette moyenne.
           </p>
           <div style="margin-top: 12px;">
             {nationalComparisonRows.map((r) => (
@@ -447,6 +444,8 @@ const breadcrumbJsonLd = {
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/agriculture/">Agriculture</a>
+          <a href="/prix/">Prix</a>
           <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>

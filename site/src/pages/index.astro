@@ -251,7 +251,7 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         font-family: ui-monospace, monospace; font-size: 2.3rem; font-weight: 700; color: var(--t-pop);
         margin: 0; line-height: 1; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
       }
-      .hero-stat-value .unit { font-size: 0.85rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; }
+      .hero-stat-value .unit { font-size: 0.85rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; margin-left: 6px; }
       .hero-stat-source { font-size: 12px; color: var(--ink-muted); margin: 8px 0 0; max-width: 46ch; }
       .hero-stat-cta {
         font-size: 13px; color: var(--t-pop); text-decoration: none; white-space: nowrap;
@@ -275,7 +275,7 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
       .ticker-label { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.02em; }
       .ticker-item:hover .ticker-label { color: var(--ink-muted); }
       .ticker-value { font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: var(--ticker-accent); }
-      .ticker-value .unit { font-size: 10px; color: var(--ink-faint); font-family: system-ui, sans-serif; }
+      .ticker-value .unit { font-size: 10px; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
       .ticker-period { font-size: 10px; color: var(--ink-faint); }
       .ticker-period.stale { color: var(--stale); }
 
@@ -431,6 +431,8 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
           <a href="/education/">Éducation</a>
           <a href="/sante/">Santé</a>
           <a href="/economie/">Économie</a>
+          <a href="/agriculture/">Agriculture</a>
+          <a href="/prix/">Prix</a>
           <a href="/prefectures/">Préfectures</a>
           <a href="/sources/">Sources</a>
           <a href="/methode/">Méthode</a>
