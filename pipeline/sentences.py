@@ -239,6 +239,24 @@ def sentence_population_rate(indicator_id: str, period: str, value: float) -> tu
     return text, f"{indicator_id}_pays"
 
 
+# label_fr must fit "La République centrafricaine comptait {label_fr}" -
+# checked by hand against these 5 real indicators.
+DISPLACEMENT_LABELS = {
+    "personnes_deplacees_internes": "personnes déplacées à l'intérieur du pays",
+    "refugies_a_letranger": "réfugiés centrafricains à l'étranger",
+    "demandeurs_asile_a_letranger": "demandeurs d'asile centrafricains à l'étranger",
+    "personnes_deplacees_rentrees": "personnes déplacées internes rentrées chez elles cette année-là",
+    "refugies_rentres": "réfugiés centrafricains rentrés au pays cette année-là",
+}
+
+
+def sentence_displacement(indicator_id: str, period: str, value: float) -> tuple[str, str]:
+    value_fr = format_int_fr(value)
+    label = DISPLACEMENT_LABELS[indicator_id]
+    text = f"Fin {period}, la République centrafricaine comptait {value_fr} {label}."
+    return text, f"{indicator_id}_pays"
+
+
 # label_fr must fit "{label_fr} en République centrafricaine s'établissait
 # à" grammatically -- checked by hand against these 8 real indicators. All
 # use "%", unlike santé's varied units, so no unit-branching needed here.

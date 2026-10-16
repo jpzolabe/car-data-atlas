@@ -24,7 +24,7 @@ import json
 
 import duckdb
 
-from pipeline.sentences import sentence_population, sentence_population_rate
+from pipeline.sentences import sentence_displacement, sentence_population, sentence_population_rate
 
 OUT_PATH = "site/src/data/population.json"
 
@@ -34,6 +34,19 @@ OTHER_INDICATORS = [
     "taux_dependance_demographique",
     "enregistrement_naissances",
     "mariage_precoce_filles",
+]
+
+# UNHCR displacement, shown as its own compact section right under
+# "Population par région" rather than mixed into OTHER_INDICATORS - a
+# different kind of count (forced displacement status, not a demographic
+# rate) that deserves its own framing rather than blending into the
+# generic indicator-card grid.
+DISPLACEMENT_INDICATORS = [
+    "personnes_deplacees_internes",
+    "refugies_a_letranger",
+    "demandeurs_asile_a_letranger",
+    "personnes_deplacees_rentrees",
+    "refugies_rentres",
 ]
 
 
@@ -182,6 +195,33 @@ def main():
             },
         })
 
+    displacement = []
+    for indicator_id in DISPLACEMENT_INDICATORS:
+        disp_rows = con.execute("""
+            select o.period, o.value, s.producer, s.dataset_name, s.url, s.retrieved_at::varchar
+            from observations o
+            join sources s on o.source_id = s.source_id
+            where o.entity_id = 'cf-pays-centrafrique-v1' and o.indicator_id = ?
+            order by o.period
+        """, [indicator_id]).fetchall()
+        disp_latest = disp_rows[-1]
+        disp_lead, disp_template_id = sentence_displacement(
+            indicator_id, disp_latest[0], disp_latest[1]
+        )
+        displacement.append({
+            "indicator_id": indicator_id,
+            "name_fr": names[indicator_id],
+            "definition_fr": definitions[indicator_id],
+            "latest": {"period": disp_latest[0], "value": disp_latest[1]},
+            "series": [{"period": r[0], "value": r[1]} for r in disp_rows],
+            "lead_sentence": disp_lead,
+            "lead_sentence_template_id": disp_template_id,
+            "source": {
+                "producer": disp_latest[2], "dataset_name": disp_latest[3],
+                "url": disp_latest[4], "retrieved_at": disp_latest[5],
+            },
+        })
+
     data = {
         "generated_note": (
             "Généré à partir de data/observations.csv via "
@@ -206,6 +246,7 @@ def main():
             for r in rows
         ],
         "other_indicators": others,
+        "displacement": displacement,
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
@@ -213,7 +254,8 @@ def main():
 
     print(
         f"Wrote {len(rows)} préfectures ({len(sp_rows)} sous-préfectures) "
-        f"+ {len(others)} other indicators to {OUT_PATH}"
+        f"+ {len(others)} other indicators + {len(displacement)} displacement "
+        f"indicators to {OUT_PATH}"
     )
 
 
