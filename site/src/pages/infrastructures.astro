@@ -11,6 +11,21 @@ import data from "../data/infrastructures.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Infrastructures - BêAfrîka Data",
+  "description": "Accès de la population centrafricaine à l'électricité, l'eau potable, l'assainissement, la téléphonie mobile et Internet. Données Banque mondiale.",
+  "url": "https://beafrikadata.com/infrastructures/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const series = data.series;
 const values = series.map((d) => d.value);
 const min = 0; // honest zero-based axis for a percentage
@@ -70,6 +85,18 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Infrastructures - BêAfrîka Data</title>
+    <meta name="description" content="Accès de la population centrafricaine à l'électricité, l'eau potable, l'assainissement, la téléphonie mobile et Internet. Données Banque mondiale." />
+    <link rel="canonical" href="https://beafrikadata.com/infrastructures/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Infrastructures - BêAfrîka Data" />
+    <meta property="og:description" content="Accès de la population centrafricaine à l'électricité, l'eau potable, l'assainissement, la téléphonie mobile et Internet. Données Banque mondiale." />
+    <meta property="og:url" content="https://beafrikadata.com/infrastructures/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Infrastructures - BêAfrîka Data" />
+    <meta name="twitter:description" content="Accès de la population centrafricaine à l'électricité, l'eau potable, l'assainissement, la téléphonie mobile et Internet. Données Banque mondiale." />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

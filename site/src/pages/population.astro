@@ -13,6 +13,21 @@ import data from "../data/population.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Population - BêAfrîka Data",
+  "description": "Recensements et projections de la population centrafricaine, du national à la sous-préfecture : RGPH-4, RGPH-3 et projections par préfecture.",
+  "url": "https://beafrikadata.com/population/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const byRegion = new Map<string, typeof data.prefectures>();
 for (const row of data.prefectures) {
   if (!byRegion.has(row.region)) byRegion.set(row.region, []);
@@ -104,6 +119,18 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Population - BêAfrîka Data</title>
+    <meta name="description" content="Recensements et projections de la population centrafricaine, du national à la sous-préfecture : RGPH-4, RGPH-3 et projections par préfecture." />
+    <link rel="canonical" href="https://beafrikadata.com/population/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Population - BêAfrîka Data" />
+    <meta property="og:description" content="Recensements et projections de la population centrafricaine, du national à la sous-préfecture : RGPH-4, RGPH-3 et projections par préfecture." />
+    <meta property="og:url" content="https://beafrikadata.com/population/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Population - BêAfrîka Data" />
+    <meta name="twitter:description" content="Recensements et projections de la population centrafricaine, du national à la sous-préfecture : RGPH-4, RGPH-3 et projections par préfecture." />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

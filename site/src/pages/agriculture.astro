@@ -19,6 +19,21 @@ import data from "../data/agriculture.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Agriculture - BêAfrîka Data",
+  "description": "Terres agricoles, production, emploi rural et alimentation en République centrafricaine, secteur qui emploie près des deux tiers de la population active. Données Banque mondiale et FAO.",
+  "url": "https://beafrikadata.com/agriculture/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const CURRENT_YEAR = 2026;
 function isStale(period: string): boolean {
   // méthode.astro's own threshold table: "< 5 ans" = actuel, "5 ans" =
@@ -85,6 +100,18 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Agriculture - BêAfrîka Data</title>
+    <meta name="description" content="Terres agricoles, production, emploi rural et alimentation en République centrafricaine, secteur qui emploie près des deux tiers de la population active. Données Banque mondiale et FAO." />
+    <link rel="canonical" href="https://beafrikadata.com/agriculture/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Agriculture - BêAfrîka Data" />
+    <meta property="og:description" content="Terres agricoles, production, emploi rural et alimentation en République centrafricaine, secteur qui emploie près des deux tiers de la population active. Données Banque mondiale et FAO." />
+    <meta property="og:url" content="https://beafrikadata.com/agriculture/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agriculture - BêAfrîka Data" />
+    <meta name="twitter:description" content="Terres agricoles, production, emploi rural et alimentation en République centrafricaine, secteur qui emploie près des deux tiers de la population active. Données Banque mondiale et FAO." />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

@@ -1,0 +1,67 @@
+---
+// Astro's reserved 404.astro convention - built to dist/404.html, served
+// with a real 404 status by Netlify and Cloudflare. Previously relied on
+// each host's generic fallback page; this one at least looks like the
+// site and points back to a real page instead of a dead end.
+import ThemeInit from "../components/ThemeInit.astro";
+import SiteNav from "../components/SiteNav.astro";
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page introuvable - BêAfrîka Data</title>
+    <style>
+      :root {
+        --paper: #23251F; --ink: #E8E6DA; --ink-muted: #A6A895; --ink-faint: #8C8F7F;
+        --line: #33362A; --indigo: #6FA0E8;
+      }
+      :root[data-theme="light"] { --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8; }
+      @media print {
+        :root { --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8; }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--indigo) 8%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--indigo) 5%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
+      }
+      main {
+        max-width: 480px; margin: 0 auto; padding: 120px 24px 80px;
+        text-align: center;
+      }
+      .code { font-family: ui-monospace, monospace; font-size: 13px; color: var(--ink-faint); letter-spacing: 0.04em; }
+      h1 { font-size: 1.6rem; margin: 8px 0 12px; }
+      p { color: var(--ink-muted); margin: 0 0 24px; }
+      a { color: var(--indigo); transition: opacity 0.15s ease; }
+      a:hover { opacity: 0.75; }
+      .site-nav { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; font-size: 12.5px; }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <p class="code">404</p>
+      <h1>Page introuvable</h1>
+      <p>Cette page n'existe pas ou a été déplacée.</p>
+      <p><a href="/">Retour à l'accueil</a></p>
+      <nav class="site-nav">
+        <a href="/population/">Population</a>
+        <a href="/infrastructures/">Infrastructures</a>
+        <a href="/education/">Éducation</a>
+        <a href="/sante/">Santé</a>
+        <a href="/economie/">Économie</a>
+        <a href="/prefectures/">Préfectures</a>
+        <a href="/sources/">Sources</a>
+      </nav>
+    </main>
+  </body>
+</html>

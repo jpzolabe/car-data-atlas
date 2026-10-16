@@ -14,6 +14,21 @@ import data from "../data/sante.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Santé - BêAfrîka Data",
+  "description": "Le système de santé centrafricain : vaccination, santé maternelle et infantile, mortalité, espérance de vie et VIH. Données Banque mondiale, OMS, UNICEF.",
+  "url": "https://beafrikadata.com/sante/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const CURRENT_YEAR = 2026;
 // 5 maternal/child health indicators (added 2026-09-12, UNICEF Data
 // Warehouse) are survey-linked (MICS-style, not annually updated) - 10-year
@@ -80,6 +95,18 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Santé - BêAfrîka Data</title>
+    <meta name="description" content="Le système de santé centrafricain : vaccination, santé maternelle et infantile, mortalité, espérance de vie et VIH. Données Banque mondiale, OMS, UNICEF." />
+    <link rel="canonical" href="https://beafrikadata.com/sante/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Santé - BêAfrîka Data" />
+    <meta property="og:description" content="Le système de santé centrafricain : vaccination, santé maternelle et infantile, mortalité, espérance de vie et VIH. Données Banque mondiale, OMS, UNICEF." />
+    <meta property="og:url" content="https://beafrikadata.com/sante/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Santé - BêAfrîka Data" />
+    <meta name="twitter:description" content="Le système de santé centrafricain : vaccination, santé maternelle et infantile, mortalité, espérance de vie et VIH. Données Banque mondiale, OMS, UNICEF." />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
