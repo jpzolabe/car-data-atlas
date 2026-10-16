@@ -75,6 +75,19 @@ const nationalComparisonRows = place.population
   : [];
 const maxNationalComparisonPop = Math.max(1, ...nationalComparisonRows.map((r) => r.pop_2021));
 const nationalRatio = place.population ? place.population.pop_2021 / nationalAveragePop : 0;
+
+// BreadcrumbList structured data (schema.org/JSON-LD) - lets Google show
+// the Accueil > Préfectures > {place} trail in search results instead of
+// a raw URL, matching the on-page crumb below it.
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://beafrikadata.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Préfectures", "item": "https://beafrikadata.com/prefectures/" },
+    { "@type": "ListItem", "position": 3, "name": place.name_fr, "item": `https://beafrikadata.com/prefectures/prefecture/${place.slug}/` },
+  ],
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -92,6 +105,10 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
     <meta property="og:description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
     <meta property="og:url" content={`https://beafrikadata.com/prefectures/prefecture/${place.slug}/`} />
     <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${place.name_fr} - BêAfrîka Data`} />
+    <meta name="twitter:description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
