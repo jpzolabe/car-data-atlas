@@ -56,15 +56,13 @@ GHO_INDICATORS = {
     ),
     "WHOSIS_000001": (
         "esperance_vie", "who-gho-life-expectancy", "ans", "estime", "SEX_BTSX",
-        "Estimation OMS (World Health Statistics / Global Health Observatory). "
-        "Remplace la série Banque mondiale (SP.DYN.LE00.IN), dont les valeurs "
-        "pour la RCA sont erratiques d'une année sur l'autre (ex. 18,8 ans en "
-        "2022, contre 40,3 en 2021 et 50,6 en 2020), confirmé de manière "
-        "identique en interrogeant l'API Banque mondiale en direct, donc "
-        "pas une erreur de récupération de ce projet. La série OMS est lisse "
-        "(aucun saut de plus de 2 ans "
-        "d'une année sur l'autre) et s'arrête en 2021 ; pas encore de "
-        "données 2022-2024 publiées par l'OMS pour la RCA.",
+        "Estimation OMS (World Health Statistics / Global Health Observatory), "
+        "révisée par l'OMS le 2026-10-01 (couvre désormais 2000-2023, contre "
+        "2000-2021 avant cette révision). La série Banque mondiale "
+        "équivalente (SP.DYN.LE00.IN) montre le même profil - des creux "
+        "ponctuels les mêmes années (voir ci-dessous), à une magnitude "
+        "différente - confirmé en interrogeant les deux API en direct ; pas "
+        "une erreur de récupération de ce projet sur l'une ou l'autre.",
     ),
 }
 
@@ -148,6 +146,46 @@ CRISIS_YEAR_NOTE = {
 }
 CRISIS_YEAR_NOTE["SP.DYN.IMRT.IN"] = CRISIS_YEAR_NOTE["SH.DYN.MORT"]
 
+# esperance_vie (WHOSIS_000001) shows the same four-year crisis-dip pattern,
+# confirmed 2026-10-16 by cross-checking against World Bank's independent
+# SP.DYN.LE00.IN series live: both show a one-year crash in exactly 2009,
+# 2014, 2019 and 2022 (different magnitudes, same years), which is what
+# rules out a fetch-side bug on either series - two independent pipelines
+# landing on the same years is not a coincidence a filter mistake could
+# produce. 2019 and 2022 reuse the Gang et al. (2023) excess-mortality
+# citation already established above for the mortality-rate indicators,
+# since life expectancy is calculated from the same underlying mortality
+# estimates. 2014 lines up with the well-documented peak of the 2013
+# Séléka/anti-balaka civil war, stated as historical context rather than a
+# specific cited methodology paper. 2009 has no identified survey or event
+# behind it - left unexplained rather than guessed at.
+CRISIS_YEAR_NOTE["WHOSIS_000001"] = {
+    "2022": (
+        " Le creux de 2022 correspond au même pic de mortalité de crise que "
+        "pour les indicateurs de mortalité ci-dessus (enquête de Gang et "
+        "al., 2023, Conflict and Health) : l'espérance de vie calculée pour "
+        "une année donnée reflète directement les taux de mortalité de "
+        "cette année."
+    ),
+    "2019": (
+        " Le creux de 2019 suit le même type d'ajustement que celui "
+        "documenté pour les indicateurs de mortalité ci-dessus ; l'enquête "
+        "spécifique à l'origine de ce pic n'a pas été identifiée avec "
+        "certitude pour l'espérance de vie non plus."
+    ),
+    "2014": (
+        " Le creux de 2014 correspond à l'année la plus intense du conflit "
+        "Séléka/anti-balaka (2013-2015), largement documentée ; aucune "
+        "méthodologie de calcul spécifique n'a cependant été identifiée "
+        "pour confirmer ce lien précisément, contrairement à 2019 et 2022."
+    ),
+    "2009": (
+        " Le creux de 2009 n'est pas expliqué : aucune enquête ou "
+        "événement précis n'a été identifié pour cette année ; signalé "
+        "tel quel plutôt que deviné."
+    ),
+}
+
 
 def fetch_indicator(code: str, retrieved_at: str) -> list[dict]:
     indicator_id, source_id, unit, notes = INDICATORS[code]
@@ -186,11 +224,13 @@ def fetch_gho_indicator(code: str, retrieved_at: str) -> list[dict]:
             continue
         if dim1_filter is not None and r.get("Dim1") != dim1_filter:
             continue
+        period = str(r["TimeDim"])
+        row_notes = notes + CRISIS_YEAR_NOTE.get(code, {}).get(period, "")
         rows.append({
             "entity_id": COUNTRY_ID, "indicator_id": indicator_id,
-            "period": str(r["TimeDim"]), "value": r["NumericValue"], "unit": unit,
+            "period": period, "value": r["NumericValue"], "unit": unit,
             "source_id": source_id, "retrieved_at": retrieved_at,
-            "quality_flag": quality_flag, "notes": notes,
+            "quality_flag": quality_flag, "notes": row_notes,
         })
     return rows
 

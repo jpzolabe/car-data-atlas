@@ -23,7 +23,7 @@
     },
     {
       "name": "observations.csv",
-      "rows": 5732,
+      "rows": 5734,
       "description": "Les valeurs elles-mêmes, format long : entité, indicateur, période, valeur, source."
     },
     {
