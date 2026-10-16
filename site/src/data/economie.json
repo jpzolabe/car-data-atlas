@@ -305,6 +305,195 @@
           "definition_fr": "Le produit intérieur brut par habitant, en francs CFA, provient des comptes nationaux rebasés de l'ICASEES (base 2019). Il ne doit pas être comparé directement au PIB par habitant en dollars ci-dessus : la source, la devise et la méthode de conversion diffèrent."
         },
         {
+          "indicator_id": "pib_secteur_primaire_fcfa",
+          "latest": {
+            "period": "2022",
+            "value": 508330619871.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 497753000000.0
+            },
+            {
+              "period": "2013",
+              "value": 277013000000.0
+            },
+            {
+              "period": "2014",
+              "value": 322168000000.0
+            },
+            {
+              "period": "2015",
+              "value": 318566000000.0
+            },
+            {
+              "period": "2016",
+              "value": 347646000000.0
+            },
+            {
+              "period": "2017",
+              "value": 397040000000.0
+            },
+            {
+              "period": "2018",
+              "value": 386977000000.0
+            },
+            {
+              "period": "2019",
+              "value": 413308313789.0
+            },
+            {
+              "period": "2020",
+              "value": 428863600890.0
+            },
+            {
+              "period": "2021",
+              "value": 454943493629.0
+            },
+            {
+              "period": "2022",
+              "value": 508330619871.0
+            }
+          ],
+          "lead_sentence": "En 2022, le PIB du secteur primaire de la République centrafricaine s'établissait à 508,33 milliards de francs CFA à prix courants, selon les statistiques économiques de la BEAC.",
+          "lead_sentence_template_id": "pib_secteur_primaire_fcfa_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Produit Intérieur Brut (PIB) par secteur",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deor_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "PIB du secteur primaire",
+          "definition_fr": "Cet indicateur mesure la valeur ajoutée du secteur primaire (agriculture, élevage, chasse et pêche, sylviculture, industries extractives), à prix courants, en francs CFA."
+        },
+        {
+          "indicator_id": "pib_secteur_secondaire_fcfa",
+          "latest": {
+            "period": "2022",
+            "value": 258803522071.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 326768000000.0
+            },
+            {
+              "period": "2013",
+              "value": 194602000000.0
+            },
+            {
+              "period": "2014",
+              "value": 178067000000.0
+            },
+            {
+              "period": "2015",
+              "value": 219350000000.0
+            },
+            {
+              "period": "2016",
+              "value": 231584000000.0
+            },
+            {
+              "period": "2017",
+              "value": 247068000000.0
+            },
+            {
+              "period": "2018",
+              "value": 252010000000.0
+            },
+            {
+              "period": "2019",
+              "value": 267336145996.0
+            },
+            {
+              "period": "2020",
+              "value": 266107723649.0
+            },
+            {
+              "period": "2021",
+              "value": 266201198951.0
+            },
+            {
+              "period": "2022",
+              "value": 258803522071.0
+            }
+          ],
+          "lead_sentence": "En 2022, le PIB du secteur secondaire de la République centrafricaine s'établissait à 258,80 milliards de francs CFA à prix courants, selon les statistiques économiques de la BEAC.",
+          "lead_sentence_template_id": "pib_secteur_secondaire_fcfa_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Produit Intérieur Brut (PIB) par secteur",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deor_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "PIB du secteur secondaire",
+          "definition_fr": "Cet indicateur mesure la valeur ajoutée du secteur secondaire (industrie manufacturière, énergie, construction), à prix courants, en francs CFA."
+        },
+        {
+          "indicator_id": "pib_secteur_tertiaire_fcfa",
+          "latest": {
+            "period": "2022",
+            "value": 612864689124.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 385408000000.0
+            },
+            {
+              "period": "2013",
+              "value": 331138000000.0
+            },
+            {
+              "period": "2014",
+              "value": 391007000000.0
+            },
+            {
+              "period": "2015",
+              "value": 422416000000.0
+            },
+            {
+              "period": "2016",
+              "value": 450787000000.0
+            },
+            {
+              "period": "2017",
+              "value": 503947000000.0
+            },
+            {
+              "period": "2018",
+              "value": 517748000000.0
+            },
+            {
+              "period": "2019",
+              "value": 556069714779.0
+            },
+            {
+              "period": "2020",
+              "value": 599712974011.0
+            },
+            {
+              "period": "2021",
+              "value": 587630942012.0
+            },
+            {
+              "period": "2022",
+              "value": 612864689124.0
+            }
+          ],
+          "lead_sentence": "En 2022, le PIB du secteur tertiaire de la République centrafricaine s'établissait à 612,86 milliards de francs CFA à prix courants, selon les statistiques économiques de la BEAC.",
+          "lead_sentence_template_id": "pib_secteur_tertiaire_fcfa_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Produit Intérieur Brut (PIB) par secteur",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deor_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "PIB du secteur tertiaire",
+          "definition_fr": "Cet indicateur mesure la valeur ajoutée du secteur tertiaire (services privés, administrations publiques), à prix courants, en francs CFA."
+        },
+        {
           "indicator_id": "indice_activite_economique",
           "latest": {
             "period": "2023-Q1",
@@ -704,6 +893,195 @@
           },
           "name_fr": "Solde budgétaire global",
           "definition_fr": "L'écart entre les ressources totales et les dépenses totales du budget de l'État pour l'exercice, tel que voté par la loi de finances. Une valeur négative indique un déficit budgétaire prévisionnel, couvert par emprunt ou appui extérieur."
+        },
+        {
+          "indicator_id": "tofe_recettes_totales_execution",
+          "latest": {
+            "period": "2022",
+            "value": 117200000000.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 127800000000.0
+            },
+            {
+              "period": "2013",
+              "value": 43205273734.0
+            },
+            {
+              "period": "2014",
+              "value": 41784235709.0
+            },
+            {
+              "period": "2015",
+              "value": 66500000000.0
+            },
+            {
+              "period": "2016",
+              "value": 62857078206.0
+            },
+            {
+              "period": "2017",
+              "value": 93478000000.0
+            },
+            {
+              "period": "2018",
+              "value": 112386133386.0
+            },
+            {
+              "period": "2019",
+              "value": 116067464303.0
+            },
+            {
+              "period": "2020",
+              "value": 125700000000.0
+            },
+            {
+              "period": "2021",
+              "value": 125900000000.0
+            },
+            {
+              "period": "2022",
+              "value": 117200000000.0
+            }
+          ],
+          "lead_sentence": "En 2022, les recettes totales exécutées de l'État de la République centrafricaine s'élevaient à 117,20 milliards de francs CFA, selon le TOFE de la BEAC.",
+          "lead_sentence_template_id": "tofe_recettes_totales_execution_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Tableau des Opérations Financières de l'État (TOFE)",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deofe_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Recettes totales exécutées de l'État",
+          "definition_fr": "Cet indicateur mesure les recettes effectivement collectées par l'État au cours de l'exercice (impôts, taxes, dons et autres ressources), à distinguer du chiffre voté en loi de finances (voir « Ressources totales du budget de l'État »)."
+        },
+        {
+          "indicator_id": "tofe_depenses_totales_execution",
+          "latest": {
+            "period": "2022",
+            "value": 271400000000.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 162943400000.0
+            },
+            {
+              "period": "2013",
+              "value": 111900000000.0
+            },
+            {
+              "period": "2014",
+              "value": 107174180000.0
+            },
+            {
+              "period": "2015",
+              "value": 141764700000.0
+            },
+            {
+              "period": "2016",
+              "value": 130841000000.0
+            },
+            {
+              "period": "2017",
+              "value": 166800000000.0
+            },
+            {
+              "period": "2018",
+              "value": 205932000000.0
+            },
+            {
+              "period": "2019",
+              "value": 225902000000.0
+            },
+            {
+              "period": "2020",
+              "value": 335561600000.0
+            },
+            {
+              "period": "2021",
+              "value": 281900000000.0
+            },
+            {
+              "period": "2022",
+              "value": 271400000000.0
+            }
+          ],
+          "lead_sentence": "En 2022, les dépenses totales exécutées de l'État de la République centrafricaine s'élevaient à 271,40 milliards de francs CFA, selon le TOFE de la BEAC.",
+          "lead_sentence_template_id": "tofe_depenses_totales_execution_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Tableau des Opérations Financières de l'État (TOFE)",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deofe_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Dépenses totales exécutées de l'État",
+          "definition_fr": "Cet indicateur mesure les dépenses effectivement engagées par l'État au cours de l'exercice, à distinguer du chiffre voté en loi de finances (voir « Dépenses totales du budget de l'État »)."
+        },
+        {
+          "indicator_id": "tofe_solde_global_execution",
+          "latest": {
+            "period": "2022",
+            "value": -85800000000.0
+          },
+          "series": [
+            {
+              "period": "2012",
+              "value": 11932600000.0
+            },
+            {
+              "period": "2013",
+              "value": -47994726266.0
+            },
+            {
+              "period": "2014",
+              "value": 19910055709.0
+            },
+            {
+              "period": "2015",
+              "value": 4696300000.0
+            },
+            {
+              "period": "2016",
+              "value": -5783921794.0
+            },
+            {
+              "period": "2017",
+              "value": -12722000000.0
+            },
+            {
+              "period": "2018",
+              "value": 4654133386.0
+            },
+            {
+              "period": "2019",
+              "value": 18908464303.0
+            },
+            {
+              "period": "2020",
+              "value": -36961600000.0
+            },
+            {
+              "period": "2021",
+              "value": -86200000000.0
+            },
+            {
+              "period": "2022",
+              "value": -85800000000.0
+            }
+          ],
+          "lead_sentence": "En 2022, l'exécution budgétaire de la République centrafricaine présentait un déficit global de 85,80 milliards de francs CFA, selon le TOFE de la BEAC.",
+          "lead_sentence_template_id": "tofe_solde_global_execution_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "RCA : Tableau des Opérations Financières de l'État (TOFE)",
+            "url": "https://www.beac.int/wp-content/uploads/2016/10/deofe_rca-1.xlsx",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Solde budgétaire global exécuté",
+          "definition_fr": "Cet indicateur mesure l'écart entre les recettes et les dépenses effectivement exécutées par l'État au cours de l'exercice, dons compris. Une valeur négative indique un déficit réel, à distinguer du solde prévisionnel voté en loi de finances (voir « Solde budgétaire global »)."
         }
       ]
     },
@@ -1263,6 +1641,162 @@
           },
           "name_fr": "Dette extérieure (montant)",
           "definition_fr": "Cet indicateur donne l'encours de la dette extérieure, en dollars américains courants, c'est-à-dire le montant total dû, à distinguer de son poids relatif au revenu national (voir « Dette extérieure » ci-dessus)."
+        },
+        {
+          "indicator_id": "bop_solde_transactions_courantes",
+          "latest": {
+            "period": "2024",
+            "value": -143953000000.0
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": -143196000000.0
+            },
+            {
+              "period": "2019",
+              "value": -89185000000.0
+            },
+            {
+              "period": "2020",
+              "value": -92096000000.0
+            },
+            {
+              "period": "2023",
+              "value": -62409000000.0
+            },
+            {
+              "period": "2024",
+              "value": -143953000000.0
+            }
+          ],
+          "lead_sentence": "En 2024, le solde du compte des transactions courantes de la République centrafricaine présentait un déficit de 143,95 milliards de francs CFA, selon la balance des paiements de la BEAC.",
+          "lead_sentence_template_id": "bop_solde_transactions_courantes_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "Balance des Paiements type de la République Centrafricaine (fichiers annuels)",
+            "url": "https://www.beac.int/economie-stats/statistiques-de-balance-paiements/",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Solde du compte des transactions courantes",
+          "definition_fr": "Cet indicateur mesure la différence entre les recettes et les dépenses du pays au titre des échanges de biens, de services, de revenus et de transferts courants avec l'étranger. Un solde négatif indique un déficit, couvert par des financements extérieurs."
+        },
+        {
+          "indicator_id": "bop_solde_biens",
+          "latest": {
+            "period": "2024",
+            "value": -210032000000.0
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": -235829000000.0
+            },
+            {
+              "period": "2019",
+              "value": -272036000000.0
+            },
+            {
+              "period": "2020",
+              "value": -213863000000.0
+            },
+            {
+              "period": "2023",
+              "value": -160164000000.0
+            },
+            {
+              "period": "2024",
+              "value": -210032000000.0
+            }
+          ],
+          "lead_sentence": "En 2024, le solde du commerce de biens de la République centrafricaine présentait un déficit de 210,03 milliards de francs CFA, selon la balance des paiements de la BEAC.",
+          "lead_sentence_template_id": "bop_solde_biens_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "Balance des Paiements type de la République Centrafricaine (fichiers annuels)",
+            "url": "https://www.beac.int/economie-stats/statistiques-de-balance-paiements/",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Solde du commerce de biens",
+          "definition_fr": "Cet indicateur mesure la différence entre les exportations et les importations de biens, en francs CFA. Un solde négatif indique que le pays importe plus de biens qu'il n'en exporte."
+        },
+        {
+          "indicator_id": "bop_solde_services",
+          "latest": {
+            "period": "2024",
+            "value": -38569000000.0
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": -86953000000.0
+            },
+            {
+              "period": "2019",
+              "value": -56819000000.0
+            },
+            {
+              "period": "2020",
+              "value": -36416000000.0
+            },
+            {
+              "period": "2023",
+              "value": -39722000000.0
+            },
+            {
+              "period": "2024",
+              "value": -38569000000.0
+            }
+          ],
+          "lead_sentence": "En 2024, le solde du commerce de services de la République centrafricaine présentait un déficit de 38,57 milliards de francs CFA, selon la balance des paiements de la BEAC.",
+          "lead_sentence_template_id": "bop_solde_services_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "Balance des Paiements type de la République Centrafricaine (fichiers annuels)",
+            "url": "https://www.beac.int/economie-stats/statistiques-de-balance-paiements/",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Solde du commerce de services",
+          "definition_fr": "Cet indicateur mesure la différence entre les exportations et les importations de services (transports, voyages, assurance, télécommunications, etc.), en francs CFA."
+        },
+        {
+          "indicator_id": "bop_besoin_financement_global",
+          "latest": {
+            "period": "2024",
+            "value": -48453000000.0
+          },
+          "series": [
+            {
+              "period": "2018",
+              "value": -57677000000.0
+            },
+            {
+              "period": "2019",
+              "value": -24168000000.0
+            },
+            {
+              "period": "2020",
+              "value": 71338000000.0
+            },
+            {
+              "period": "2023",
+              "value": -22676000000.0
+            },
+            {
+              "period": "2024",
+              "value": -48453000000.0
+            }
+          ],
+          "lead_sentence": "En 2024, la République centrafricaine présentait un besoin de financement de 48,45 milliards de francs CFA, une fois combinés le compte des transactions courantes et le compte de capital, selon la balance des paiements de la BEAC.",
+          "lead_sentence_template_id": "bop_besoin_financement_global_pays",
+          "source": {
+            "producer": "BEAC (Banque des États de l'Afrique Centrale)",
+            "dataset_name": "Balance des Paiements type de la République Centrafricaine (fichiers annuels)",
+            "url": "https://www.beac.int/economie-stats/statistiques-de-balance-paiements/",
+            "retrieved_at": "2026-10-16"
+          },
+          "name_fr": "Besoin de financement global",
+          "definition_fr": "Cet indicateur mesure la capacité ou le besoin de financement du pays une fois combinés le solde des transactions courantes et le compte de capital. Une valeur négative indique un besoin de financement, couvert par le compte financier (emprunts, investissements, réserves)."
         }
       ]
     },

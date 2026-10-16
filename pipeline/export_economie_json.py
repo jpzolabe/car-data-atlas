@@ -34,10 +34,13 @@ import duckdb
 
 from pipeline.sentences import (
     sentence_economie_activite,
+    sentence_economie_bop,
     sentence_economie_budget,
     sentence_economie_croissance_modele,
     sentence_economie_montant,
+    sentence_economie_pib_secteur,
     sentence_economie_rate,
+    sentence_economie_tofe,
 )
 
 OUT_PATH = "site/src/data/economie.json"
@@ -50,6 +53,20 @@ MONTANT_INDICATORS = {
 
 BUDGET_INDICATORS = {
     "budget_ressources_totales", "budget_depenses_totales", "budget_solde_global",
+}
+
+BOP_INDICATORS = {
+    "bop_solde_transactions_courantes", "bop_solde_biens", "bop_solde_services",
+    "bop_besoin_financement_global",
+}
+
+TOFE_INDICATORS = {
+    "tofe_recettes_totales_execution", "tofe_depenses_totales_execution",
+    "tofe_solde_global_execution",
+}
+
+PIB_SECTEUR_INDICATORS = {
+    "pib_secteur_primaire_fcfa", "pib_secteur_secondaire_fcfa", "pib_secteur_tertiaire_fcfa",
 }
 
 # OEC/BACI top-5 breakdown indicator_ids, grouped by what build_trade_composition
@@ -82,6 +99,9 @@ CATEGORIES = [
         "pib_par_habitant",
         "pib_total_fcfa",
         "pib_par_habitant_fcfa",
+        "pib_secteur_primaire_fcfa",
+        "pib_secteur_secondaire_fcfa",
+        "pib_secteur_tertiaire_fcfa",
         "indice_activite_economique",
     ]),
     ("finances_publiques", "Finances publiques", [
@@ -89,6 +109,9 @@ CATEGORIES = [
         "budget_ressources_totales",
         "budget_depenses_totales",
         "budget_solde_global",
+        "tofe_recettes_totales_execution",
+        "tofe_depenses_totales_execution",
+        "tofe_solde_global_execution",
     ]),
     ("commerce", "Commerce extérieur", [
         "exportations_pib",
@@ -98,6 +121,10 @@ CATEGORIES = [
         "investissements_directs_etrangers",
         "dette_exterieure_rnb",
         "dette_exterieure_montant",
+        "bop_solde_transactions_courantes",
+        "bop_solde_biens",
+        "bop_solde_services",
+        "bop_besoin_financement_global",
     ]),
     ("niveau_de_vie", "Niveau de vie", [
         "taux_chomage",
@@ -123,6 +150,14 @@ def build_indicator(con, indicator_id: str, source_id: str | None = None) -> dic
         lead_text, lead_template_id = sentence_economie_montant(indicator_id, latest[0], latest[1])
     elif indicator_id in BUDGET_INDICATORS:
         lead_text, lead_template_id = sentence_economie_budget(indicator_id, latest[0], latest[1])
+    elif indicator_id in BOP_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_bop(indicator_id, latest[0], latest[1])
+    elif indicator_id in TOFE_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_tofe(indicator_id, latest[0], latest[1])
+    elif indicator_id in PIB_SECTEUR_INDICATORS:
+        lead_text, lead_template_id = sentence_economie_pib_secteur(
+            indicator_id, latest[0], latest[1]
+        )
     else:
         lead_text, lead_template_id = sentence_economie_rate(indicator_id, latest[0], latest[1])
 

@@ -93,6 +93,16 @@ function badgeLabel(flag: string): string {
 
 const MONTANT_INDICATORS = new Set(["exportations_montant", "importations_montant", "dette_exterieure_montant"]);
 const BUDGET_INDICATORS = new Set(["budget_ressources_totales", "budget_depenses_totales", "budget_solde_global"]);
+// BOP/TOFE/PIB-par-secteur (BEAC) share the same "Md FCFA" display shape as
+// BUDGET_INDICATORS - kept as separate sets rather than merged into it since
+// they're different underlying concepts (balance-of-payments balances,
+// budget execution, sector GDP) that just happen to format the same way.
+const FCFA_MD_INDICATORS = new Set([
+  "bop_solde_transactions_courantes", "bop_solde_biens", "bop_solde_services",
+  "bop_besoin_financement_global", "tofe_recettes_totales_execution",
+  "tofe_depenses_totales_execution", "tofe_solde_global_execution",
+  "pib_secteur_primaire_fcfa", "pib_secteur_secondaire_fcfa", "pib_secteur_tertiaire_fcfa",
+]);
 
 function formatValue(indicatorId: string, value: number): { display: string; unit: string } {
   if (indicatorId === "pib_total") {
@@ -110,7 +120,7 @@ function formatValue(indicatorId: string, value: number): { display: string; uni
   if (indicatorId === "indice_activite_economique") {
     return { display: value.toLocaleString("fr-FR", { maximumFractionDigits: 1 }), unit: " indice" };
   }
-  if (BUDGET_INDICATORS.has(indicatorId)) {
+  if (BUDGET_INDICATORS.has(indicatorId) || FCFA_MD_INDICATORS.has(indicatorId)) {
     return { display: (value / 1e9).toLocaleString("fr-FR", { maximumFractionDigits: 2 }), unit: " Md FCFA" };
   }
   if (MONTANT_INDICATORS.has(indicatorId)) {

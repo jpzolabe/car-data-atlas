@@ -66,7 +66,7 @@ def build_rows() -> list[dict]:
         (SECTEUR_SECONDAIRE, "pib_secteur_secondaire_fcfa"),
         (SECTEUR_TERTIAIRE, "pib_secteur_tertiaire_fcfa"),
     ]:
-        for period, value in zip(YEARS, series):
+        for period, value in zip(YEARS, series, strict=True):
             rows.append({
                 "entity_id": COUNTRY_ID, "indicator_id": indicator_id,
                 "period": period, "value": round(value * 1_000_000_000), "unit": "FCFA",
