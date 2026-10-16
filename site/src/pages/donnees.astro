@@ -10,6 +10,28 @@ import SiteNav from "../components/SiteNav.astro";
 const files = data.files;
 const totalRows = files.reduce((sum, f) => sum + f.rows, 0);
 const coverage = data.coverage;
+
+// Dataset structured data (schema.org/JSON-LD), with a real distribution
+// entry per downloadable file - lets Google's Dataset Search index this
+// as an actual dataset with its real download links, not just a page.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Données - BêAfrîka Data",
+  "description": "Téléchargez directement les données de BêAfrîka Data : le rapprochement géographique complet de la République centrafricaine, en CSV.",
+  "url": "https://beafrikadata.com/donnees/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+  "distribution": files.map((f) => ({
+    "@type": "DataDownload",
+    "name": f.name,
+    "description": f.description,
+    "encodingFormat": "text/csv",
+    "contentUrl": `https://beafrikadata.com/donnees/${f.name}`,
+  })),
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -19,6 +41,15 @@ const coverage = data.coverage;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Données - BêAfrîka Data</title>
+    <meta name="description" content="Téléchargez directement les données de BêAfrîka Data : le rapprochement géographique complet de la République centrafricaine, en CSV." />
+    <link rel="canonical" href="https://beafrikadata.com/donnees/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Données - BêAfrîka Data" />
+    <meta property="og:description" content="Téléchargez directement les données de BêAfrîka Data : le rapprochement géographique complet de la République centrafricaine, en CSV." />
+    <meta property="og:url" content="https://beafrikadata.com/donnees/" />
+    <meta property="og:locale" content="fr_FR" />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

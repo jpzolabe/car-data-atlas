@@ -7,6 +7,21 @@ import data from "../data/prix.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Indice des prix à la consommation - BêAfrîka Data",
+  "description": "Indice harmonisé des prix à la consommation (IHPC) en République centrafricaine depuis 2015, et prix réels de cinq denrées au marché de Bangui.",
+  "url": "https://beafrikadata.com/prix/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const series = data.series;
 const values = series.map((d) => d.value);
 const min = Math.min(...values);
@@ -88,6 +103,15 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Indice des prix à la consommation - BêAfrîka Data</title>
+    <meta name="description" content="Indice harmonisé des prix à la consommation (IHPC) en République centrafricaine depuis 2015, et prix réels de cinq denrées au marché de Bangui." />
+    <link rel="canonical" href="https://beafrikadata.com/prix/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Indice des prix à la consommation - BêAfrîka Data" />
+    <meta property="og:description" content="Indice harmonisé des prix à la consommation (IHPC) en République centrafricaine depuis 2015, et prix réels de cinq denrées au marché de Bangui." />
+    <meta property="og:url" content="https://beafrikadata.com/prix/" />
+    <meta property="og:locale" content="fr_FR" />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

@@ -84,6 +84,14 @@ const nationalRatio = place.population ? place.population.pop_2021 / nationalAve
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{place.name_fr} - BêAfrîka Data</title>
+    <meta name="description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
+    <link rel="canonical" href={`https://beafrikadata.com/prefectures/prefecture/${place.slug}/`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content={`${place.name_fr} - BêAfrîka Data`} />
+    <meta property="og:description" content={`Population, prix alimentaires et santé de la préfecture de ${place.name_fr} (région ${place.region_name}), République centrafricaine.`} />
+    <meta property="og:url" content={`https://beafrikadata.com/prefectures/prefecture/${place.slug}/`} />
+    <meta property="og:locale" content="fr_FR" />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

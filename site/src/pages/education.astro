@@ -22,6 +22,21 @@ import data from "../data/education.json";
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
 
+// Dataset structured data (schema.org/JSON-LD) - lets Google's
+// Dataset Search index this theme's indicators as a dataset,
+// separate from regular web search.
+const datasetJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Éducation - BêAfrîka Data",
+  "description": "Le parcours scolaire en République centrafricaine : scolarisation, rétention, réussite et alphabétisation. Données UNESCO, ICASEES et Ministère de l'Éducation.",
+  "url": "https://beafrikadata.com/education/",
+  "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "creator": { "@type": "Organization", "name": "BêAfrîka Data", "url": "https://beafrikadata.com/" },
+  "spatialCoverage": { "@type": "Place", "name": "République centrafricaine" },
+  "inLanguage": "fr",
+};
+
 const CURRENT_YEAR = 2026;
 
 // Achievement/literacy indicators come from the same household surveys as
@@ -108,6 +123,15 @@ function badgeLabel(flag: string): string {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Éducation - BêAfrîka Data</title>
+    <meta name="description" content="Le parcours scolaire en République centrafricaine : scolarisation, rétention, réussite et alphabétisation. Données UNESCO, ICASEES et Ministère de l'Éducation." />
+    <link rel="canonical" href="https://beafrikadata.com/education/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BêAfrîka Data" />
+    <meta property="og:title" content="Éducation - BêAfrîka Data" />
+    <meta property="og:description" content="Le parcours scolaire en République centrafricaine : scolarisation, rétention, réussite et alphabétisation. Données UNESCO, ICASEES et Ministère de l'Éducation." />
+    <meta property="og:url" content="https://beafrikadata.com/education/" />
+    <meta property="og:locale" content="fr_FR" />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;

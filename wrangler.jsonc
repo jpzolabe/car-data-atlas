@@ -8,7 +8,8 @@
   "name": "car-data-atlas",
   "compatibility_date": "2026-10-07",
   "assets": {
-    "directory": "./site/dist"
+    "directory": "./site/dist",
+    "not_found_handling": "404-page"
   },
   // Runs automatically as part of `wrangler deploy` (both locally and in
   // Cloudflare's Workers Builds CI, since that just runs the dashboard's
