@@ -52,6 +52,21 @@ BUDGET_INDICATORS = {
     "budget_ressources_totales", "budget_depenses_totales", "budget_solde_global",
 }
 
+# OEC/BACI top-5 breakdown indicator_ids, grouped by what build_trade_composition
+# needs to pull out of observations.csv - see that function.
+EXPORT_PRODUCT_IDS = {
+    "exportations_aeronautique", "exportations_bois", "exportations_pierres_precieuses",
+    "exportations_metaux_divers", "exportations_vehicules",
+}
+EXPORT_PARTNER_IDS = {
+    "exportations_vers_pakistan", "exportations_vers_tunisie", "exportations_vers_chine",
+    "exportations_vers_sri_lanka", "exportations_vers_egypte",
+}
+IMPORT_PARTNER_IDS = {
+    "importations_depuis_cameroun", "importations_depuis_chine", "importations_depuis_france",
+    "importations_depuis_etats_unis", "importations_depuis_japon",
+}
+
 # taux_croissance_pib is built separately (build_croissance_disclosure) since
 # it now has two disagreeing sources: World Bank's annual modelled series
 # (kept as the chart's "series") and ICASEES's own rebased comptes nationaux,
@@ -214,6 +229,46 @@ def build_croissance_disclosure(con) -> dict:
     }
 
 
+def build_trade_composition(con, names: dict) -> dict:
+    """OEC/BACI top-5 export products, export destinations and import
+    origins for 2024 - a ranked snapshot, not a time series, so it's kept
+    separate from the indicator-card grid entirely rather than forced into
+    a sparkline shape that doesn't fit this kind of data.
+    """
+    def top_rows(indicator_ids: list[str]) -> list[dict]:
+        rows = con.execute("""
+            select o.indicator_id, o.value, o.notes, s.producer, s.dataset_name,
+                   s.url, s.retrieved_at::varchar
+            from observations o
+            join sources s on o.source_id = s.source_id
+            where o.entity_id = ? and o.indicator_id in ?
+            order by o.value desc
+        """, [COUNTRY_ID, indicator_ids]).fetchall()
+        return [
+            {
+                "indicator_id": r[0], "name_fr": names[r[0]], "value": r[1], "notes": r[2],
+                "producer": r[3], "dataset_name": r[4], "url": r[5], "retrieved_at": r[6],
+            }
+            for r in rows
+        ]
+
+    export_products = top_rows(list(EXPORT_PRODUCT_IDS))
+    export_partners = top_rows(list(EXPORT_PARTNER_IDS))
+    import_partners = top_rows(list(IMPORT_PARTNER_IDS))
+
+    return {
+        "year": "2024",
+        "top_exports": export_products,
+        "top_export_partners": export_partners,
+        "top_import_partners": import_partners,
+        "source": {
+            "producer": export_products[0]["producer"],
+            "dataset_name": export_products[0]["dataset_name"],
+            "retrieved_at": export_products[0]["retrieved_at"],
+        },
+    }
+
+
 def main():
     con = duckdb.connect()
     con.execute("""
@@ -254,6 +309,7 @@ def main():
         ),
         "headline": headline_indicator,
         "categories": categories,
+        "trade_composition": build_trade_composition(con, names),
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:

@@ -1382,5 +1382,169 @@
         }
       ]
     }
-  ]
+  ],
+  "trade_composition": {
+    "year": "2024",
+    "top_exports": [
+      {
+        "indicator_id": "exportations_aeronautique",
+        "name_fr": "Exportations - aéronautique et aérospatiale",
+        "value": 115179112.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024. Cette catégorie a représenté à elle seule environ 47% de la valeur totale des exportations centrafricaines déclarées cette année-là - reflète vraisemblablement une cession ponctuelle d'aéronef plutôt qu'une industrie aéronautique établie dans le pays ; publiée telle quelle, sans réinterprétation.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_bois",
+        "name_fr": "Exportations - bois et charbon de bois",
+        "value": 52803854.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_pierres_precieuses",
+        "name_fr": "Exportations - pierres précieuses, métaux précieux et perles",
+        "value": 21717504.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_metaux_divers",
+        "name_fr": "Exportations - produits métalliques divers",
+        "value": 20537192.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_vehicules",
+        "name_fr": "Exportations - véhicules et pièces détachées",
+        "value": 14216610.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      }
+    ],
+    "top_export_partners": [
+      {
+        "indicator_id": "exportations_vers_pakistan",
+        "name_fr": "Exportations vers le Pakistan",
+        "value": 62727667.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_vers_tunisie",
+        "name_fr": "Exportations vers la Tunisie",
+        "value": 40146366.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_vers_chine",
+        "name_fr": "Exportations vers la Chine",
+        "value": 33068089.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_vers_sri_lanka",
+        "name_fr": "Exportations vers le Sri Lanka",
+        "value": 28053276.000000004,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "exportations_vers_egypte",
+        "name_fr": "Exportations vers l'Égypte",
+        "value": 11779351.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      }
+    ],
+    "top_import_partners": [
+      {
+        "indicator_id": "importations_depuis_cameroun",
+        "name_fr": "Importations depuis le Cameroun",
+        "value": 205912806.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "importations_depuis_chine",
+        "name_fr": "Importations depuis la Chine",
+        "value": 174227033.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "importations_depuis_france",
+        "name_fr": "Importations depuis la France",
+        "value": 56126148.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "importations_depuis_etats_unis",
+        "name_fr": "Importations depuis les États-Unis",
+        "value": 48446240.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      },
+      {
+        "indicator_id": "importations_depuis_japon",
+        "name_fr": "Importations depuis le Japon",
+        "value": 32878524.0,
+        "notes": "Donnée miroir de commerce (OEC/BACI, CEPII), 2024.",
+        "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+        "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+        "url": "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_22",
+        "retrieved_at": "2026-10-16"
+      }
+    ],
+    "source": {
+      "producer": "The Observatory of Economic Complexity (OEC), données BACI du CEPII",
+      "dataset_name": "Product Trade by Year and Country (HS 6-digit depth) - cube trade_i_baci_a_22",
+      "retrieved_at": "2026-10-16"
+    }
+  }
 }
