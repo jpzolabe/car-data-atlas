@@ -12,6 +12,16 @@
 // legible on every page regardless of which page-specific --t-* tokens
 // exist, so it only uses the base tokens every page already defines
 // (--paper/--surface/--ink/--ink-muted/--line).
+//
+// Mobile menu (2026-10-19): .nav-links disappears below 560px with
+// nothing replacing it - on a phone (the primary access path now),
+// every theme link became unreachable from any page except by scrolling
+// to that page's own footer. Fixed with a hamburger built on native
+// <details>/<summary> rather than a JS-toggled menu - opens/closes with
+// zero script, so it's not a new client-JS exception to log, unlike the
+// dark-mode toggle or search box. .mobile-nav-trigger and .nav-links
+// occupy the same grid cell and swap visibility at the same 560px
+// breakpoint, so exactly one is ever shown.
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -32,6 +42,23 @@ import ThemeToggle from "./ThemeToggle.astro";
     <a href="/prix/">Prix</a>
     <a href="/prefectures/">Préfectures</a>
   </div>
+  <details class="mobile-nav-trigger">
+    <summary aria-label="Ouvrir le menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </summary>
+    <nav class="mobile-nav-panel" aria-label="Thèmes">
+      <a href="/population/">Population</a>
+      <a href="/infrastructures/">Infrastructures</a>
+      <a href="/education/">Éducation</a>
+      <a href="/sante/">Santé</a>
+      <a href="/economie/">Économie</a>
+      <a href="/agriculture/">Agriculture</a>
+      <a href="/prix/">Prix</a>
+      <a href="/prefectures/">Préfectures</a>
+    </nav>
+  </details>
   <div class="theme-toggle-slot">
     <ThemeToggle />
   </div>
@@ -64,6 +91,7 @@ import ThemeToggle from "./ThemeToggle.astro";
   }
   .home-link:hover { color: var(--ink-faint); }
   .nav-links {
+    grid-column: 2;
     display: flex; gap: 20px; justify-content: center;
     overflow-x: auto; scrollbar-width: none; max-width: 100%;
   }
@@ -73,9 +101,34 @@ import ThemeToggle from "./ThemeToggle.astro";
     transition: color 0.15s ease;
   }
   .nav-links a:hover { color: var(--ink); }
-  .theme-toggle-slot { justify-self: end; }
+  .theme-toggle-slot { grid-column: 3; justify-self: end; }
+  .mobile-nav-trigger { display: none; grid-column: 2; justify-self: center; }
+  .mobile-nav-trigger summary {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; list-style: none; cursor: pointer;
+    color: var(--ink-muted); border-radius: 4px; transition: color 0.15s ease;
+  }
+  .mobile-nav-trigger summary::-webkit-details-marker { display: none; }
+  .mobile-nav-trigger summary:hover,
+  .mobile-nav-trigger[open] summary { color: var(--ink); }
+  .mobile-nav-trigger summary:focus-visible {
+    outline: 2px solid var(--ink-faint); outline-offset: 2px;
+  }
+  .mobile-nav-panel {
+    position: absolute; top: 100%; left: 0; right: 0;
+    display: flex; flex-direction: column;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 8px 16px 14px;
+  }
+  .mobile-nav-panel a {
+    padding: 11px 4px; font-size: 15px; color: var(--ink-muted);
+    text-decoration: none; border-top: 1px solid var(--line);
+  }
+  .mobile-nav-panel a:first-child { border-top: none; }
+  .mobile-nav-panel a:hover { color: var(--ink); }
   @media (max-width: 560px) {
     .nav-links { display: none; }
+    .mobile-nav-trigger { display: block; }
     .site-nav-fixed { grid-template-columns: auto 1fr auto; }
   }
   @media print {
