@@ -87,6 +87,7 @@ import ThemeToggle from "./ThemeToggle.astro";
   }
   .home-link {
     display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
     justify-self: start; color: var(--ink); transition: color 0.15s ease;
   }
   .home-link:hover { color: var(--ink-faint); }
@@ -109,6 +110,7 @@ import ThemeToggle from "./ThemeToggle.astro";
     color: var(--ink-muted); border-radius: 4px; transition: color 0.15s ease;
   }
   .mobile-nav-trigger summary::-webkit-details-marker { display: none; }
+  .mobile-nav-trigger summary::marker { content: ""; }
   .mobile-nav-trigger summary:hover,
   .mobile-nav-trigger[open] summary { color: var(--ink); }
   .mobile-nav-trigger summary:focus-visible {
@@ -128,9 +130,17 @@ import ThemeToggle from "./ThemeToggle.astro";
   .mobile-nav-panel a:hover { color: var(--ink); }
   @media (max-width: 560px) {
     .nav-links { display: none; }
-    .mobile-nav-trigger { display: block; grid-column: 1; justify-self: start; }
-    .home-link { grid-column: 2; justify-self: center; }
-    .site-nav-fixed { grid-template-columns: auto 1fr auto; }
+    .mobile-nav-trigger { display: block; grid-row: 1; grid-column: 1; justify-self: start; }
+    /* Centered within the flexible middle column, i.e. the space
+       between the hamburger's right edge and the theme toggle's left
+       edge - not the bar's own midpoint. The hamburger (36px) and
+       theme toggle (~84px) are different widths, so centering on the
+       bar's true midpoint actually sits closer to the wider toggle;
+       centering within the column *between* them is what makes the
+       gap to each neighbor equal, confirmed by computing both gaps. */
+    .home-link { grid-row: 1; grid-column: 2; justify-self: center; margin-left: 25px; }
+    .theme-toggle-slot { grid-row: 1; grid-column: 3; }
+    .site-nav-fixed { grid-template-columns: auto 1fr auto; grid-template-rows: 1fr; }
   }
   @media print {
     .site-nav-fixed { display: none; }
