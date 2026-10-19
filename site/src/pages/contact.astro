@@ -2,11 +2,21 @@
 // Added 2026-10-19 to replace à-propos's "Contact" section as the site's
 // one reachable contact point, after à-propos itself was taken offline
 // (moved to src/_offline/, not deleted - see that file's own note).
-// Static site, no backend: a plain mailto link, not a form - a real form
-// would need a third-party service (e.g. Formspree), a new dependency
-// this project asks before adding.
+//
+// Real form, not just a mailto link - submits via Web3Forms
+// (web3forms.com): a plain HTML POST to their API, no JS needed, no
+// account/dashboard required (unlike Formspree). Chosen over Netlify
+// Forms specifically because the live site is deployed on Cloudflare,
+// not Netlify - Netlify's native form handling only works when Netlify
+// is actually serving the site. The access key below identifies which
+// inbox submissions get forwarded to (hello.usex@gmail.com) - it's
+// meant to be public, it isn't a secret the way an API key normally is.
+// Honeypot field (botcheck) is Web3Forms' documented spam-trap pattern:
+// hidden from humans via CSS, so only bots fill it in.
 import ThemeInit from "../components/ThemeInit.astro";
 import SiteNav from "../components/SiteNav.astro";
+
+const WEB3FORMS_ACCESS_KEY = "WEB3FORMS_ACCESS_KEY_PLACEHOLDER";
 ---
 <!doctype html>
 <html lang="fr">
@@ -50,17 +60,30 @@ import SiteNav from "../components/SiteNav.astro";
       main { max-width: 560px; margin: 0 auto; padding: 84px 24px 80px; }
       h1 { font-size: 1.8rem; margin: 0 0 12px; }
       p { margin: 0 0 20px; color: var(--ink-muted); }
-      .email-block {
-        display: inline-flex; align-items: center; gap: 10px;
+      form { margin-bottom: 8px; }
+      .field { margin-bottom: 16px; }
+      label {
+        display: block; font-size: 12.5px; text-transform: uppercase;
+        letter-spacing: 0.03em; color: var(--ink-faint); margin-bottom: 6px;
+      }
+      input, textarea {
+        width: 100%; font: inherit; font-size: 14.5px; color: var(--ink);
         background: #2B2E27; border: 1px solid var(--line); border-radius: 4px;
-        padding: 14px 20px; margin-bottom: 20px;
+        padding: 10px 12px;
       }
-      :root[data-theme="light"] .email-block { background: #F8F8F2; }
-      .email-block a {
-        font-family: ui-monospace, monospace; font-size: 1.05rem;
-        color: var(--indigo); text-decoration: none;
+      :root[data-theme="light"] input, :root[data-theme="light"] textarea { background: #F8F8F2; }
+      input:focus, textarea:focus {
+        outline: none; border-color: var(--indigo);
       }
-      .email-block a:hover { text-decoration: underline; }
+      textarea { resize: vertical; min-height: 120px; }
+      .botcheck { position: absolute; left: -9999px; }
+      button[type="submit"] {
+        font: inherit; font-size: 14.5px; font-weight: 600;
+        color: var(--paper); background: var(--indigo);
+        border: none; border-radius: 4px; padding: 11px 22px;
+        cursor: pointer; transition: opacity 0.15s ease;
+      }
+      button[type="submit"]:hover { opacity: 0.85; }
       footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); }
       .site-nav { display: flex; gap: 14px; flex-wrap: wrap; }
       .site-nav a { color: var(--indigo); font-size: 12.5px; transition: opacity 0.15s ease; }
@@ -73,11 +96,29 @@ import SiteNav from "../components/SiteNav.astro";
       <h1>Contact</h1>
       <p>
         Une question, une correction à signaler ou une source à proposer
-        pour BêAfrîka Data : écrivez directement par e-mail.
+        pour BêAfrîka Data : écrivez-nous ci-dessous.
       </p>
-      <div class="email-block">
-        <a href="mailto:hello.usex@gmail.com">hello.usex@gmail.com</a>
-      </div>
+
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+        <input type="hidden" name="subject" value="Nouveau message - BêAfrîka Data" />
+        <input type="hidden" name="redirect" value="https://beafrikadata.com/contact/merci/" />
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
+
+        <div class="field">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
 
       <footer>
         <nav class="site-nav">

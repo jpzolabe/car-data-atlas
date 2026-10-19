@@ -1,0 +1,58 @@
+---
+// Redirect target for the Web3Forms submission on /contact/ - a plain
+// static page, not a JS-driven "thank you" toast, consistent with the
+// rest of the site shipping zero client JS. Not linked from anywhere
+// (no reason to visit directly); robots.txt-wise it's harmless either
+// way, so no noindex added.
+import ThemeInit from "../../components/ThemeInit.astro";
+import SiteNav from "../../components/SiteNav.astro";
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <ThemeInit />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Message envoyé - BêAfrîka Data</title>
+    <meta name="description" content="Votre message a bien été envoyé à BêAfrîka Data." />
+    <link rel="canonical" href="https://beafrikadata.com/contact/merci/" />
+    <style>
+      :root {
+        --paper: #23251F; --ink: #E8E6DA; --ink-muted: #A6A895; --ink-faint: #8C8F7F;
+        --line: #33362A; --indigo: #6FA0E8;
+      }
+      :root[data-theme="light"] { --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8; }
+      @media print {
+        :root { --paper: #EDEEE6; --ink: #1B2420; --ink-muted: #5A6259; --ink-faint: #8B9188; --line: #D6D7C9; --indigo: #2A56A8; }
+        body { background: #fff !important; background-image: none !important; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        background-image:
+          radial-gradient(1000px 520px at 10% -10%, color-mix(in srgb, var(--indigo) 8%, transparent), transparent 60%),
+          radial-gradient(700px 420px at 100% 100%, color-mix(in srgb, var(--indigo) 5%, transparent), transparent 60%);
+        background-attachment: fixed;
+        color: var(--ink); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6;
+      }
+      main {
+        max-width: 480px; margin: 0 auto; padding: 120px 24px 80px;
+        text-align: center;
+      }
+      h1 { font-size: 1.6rem; margin: 8px 0 12px; }
+      p { color: var(--ink-muted); margin: 0 0 24px; }
+      a { color: var(--indigo); transition: opacity 0.15s ease; }
+      a:hover { opacity: 0.75; }
+    </style>
+  </head>
+  <body>
+    <SiteNav />
+    <main id="main-content">
+      <h1>Message envoyé</h1>
+      <p>Merci, votre message a bien été reçu. Réponse par e-mail dès que possible.</p>
+      <p><a href="/">Retour à l'accueil</a></p>
+    </main>
+  </body>
+</html>
