@@ -1,19 +1,19 @@
 ---
 // Sitewide theme control: toggles Sombre <-> Clair, shown as a sun/moon
-// icon (2026-10-19, replacing a text label) rather than "Nuit"/"Jour" or
-// any other text variant - instantly recognizable with no reading
-// required, and stays consistent if a language variant is ever added.
-// The icon shown reflects the current state (moon = dark right now), not
-// the state a click would switch to; the state is still in the button's
-// title tooltip and aria-label for anyone who wants the words. Sombre is
-// the site's default (2026-09-13, on request) - every page's bare :root is
-// default (2026-09-13, on request) - every page's bare :root is the dark
-// palette, so "no stored preference" already means dark with no attribute
-// needed. Choosing Clair stamps data-theme="light" on <html> and stores
-// it; choosing Sombre again just removes both, falling back to the
-// default rather than storing a redundant explicit "dark". Paired with
-// ThemeInit.astro, which applies a stored "light" choice before first
-// paint (the only case it needs to handle).
+// sliding switch (2026-10-19: both icons visible flanking a switch track,
+// replacing an earlier version where a single icon swapped out - showing
+// both at once and sliding a knob between them reads clearer than one
+// icon changing shape). The icon on the active side is full-contrast
+// (var(--ink)); the inactive one is dimmed (var(--ink-faint)) - that
+// contrast plus the knob position both carry the state, not just one or
+// the other. Sombre is the site's default (2026-09-13, on request) -
+// every page's bare :root is the dark palette, so "no stored preference"
+// already means dark with no attribute needed. Choosing Clair stamps
+// data-theme="light" on <html> and stores it; choosing Sombre again just
+// removes both, falling back to the default rather than storing a
+// redundant explicit "dark". Paired with ThemeInit.astro, which applies
+// a stored "light" choice before first paint (the only case it needs to
+// handle).
 // Styled only with the base tokens every page already defines
 // (--surface/--ink/--ink-muted/--ink-faint/--line), so it needs no
 // page-specific accent to render correctly, and can be dropped into any
@@ -24,12 +24,15 @@
 // second independently-floating fixed element next to SiteNav's own bar
 // read as two competing widgets rather than one coherent piece of chrome.
 ---
-<button id="theme-toggle" type="button" aria-label="Changer de thème (clair ou sombre)">
-  <svg id="theme-icon-sun" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<button id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Changer de thème (clair ou sombre)">
+  <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <circle cx="12" cy="12" r="4"></circle>
     <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
   </svg>
-  <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <span class="theme-switch-track">
+    <span class="theme-switch-knob"></span>
+  </span>
+  <svg class="theme-icon theme-icon-moon is-active" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
   </svg>
 </button>
@@ -37,46 +40,73 @@
   #theme-toggle {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    color: var(--ink-muted);
+    gap: 7px;
+    font: inherit;
+    color: var(--ink-faint);
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 3px;
+    border-radius: 999px;
+    padding: 5px 9px;
     cursor: pointer;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    transition: border-color 0.15s ease;
   }
   #theme-toggle:hover {
-    color: var(--ink);
     border-color: var(--ink-faint);
   }
   #theme-toggle:focus-visible {
     outline: 2px solid var(--ink-faint);
     outline-offset: 2px;
   }
-  #theme-toggle svg {
-    width: 16px;
-    height: 16px;
+  .theme-icon {
+    width: 13px;
+    height: 13px;
+    flex: none;
+    color: var(--ink-faint);
+    transition: color 0.15s ease;
+  }
+  .theme-icon.is-active {
+    color: var(--ink);
+  }
+  .theme-switch-track {
+    position: relative;
+    width: 26px;
+    height: 13px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--line);
+  }
+  .theme-switch-knob {
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink);
+    transform: translateX(13px);
+    transition: transform 0.15s ease;
+  }
+  #theme-toggle[data-mode="light"] .theme-switch-knob {
+    transform: translateX(0);
   }
 </style>
 <script is:inline>
   (function () {
     var TITLES = { light: "Thème : clair", dark: "Thème : sombre" };
     var btn = document.getElementById("theme-toggle");
-    var sunIcon = document.getElementById("theme-icon-sun");
-    var moonIcon = document.getElementById("theme-icon-moon");
+    var sunIcon = btn.querySelector(".theme-icon-sun");
+    var moonIcon = btn.querySelector(".theme-icon-moon");
 
     function current() {
       return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
     }
 
     function render(state) {
-      // Icon shown = current state (a moon means it's dark right now),
-      // not the state a click would switch to.
-      sunIcon.style.display = state === "light" ? "block" : "none";
-      moonIcon.style.display = state === "dark" ? "block" : "none";
+      btn.dataset.mode = state;
+      btn.setAttribute("aria-checked", state === "light" ? "true" : "false");
       btn.title = TITLES[state];
+      sunIcon.classList.toggle("is-active", state === "light");
+      moonIcon.classList.toggle("is-active", state === "dark");
     }
 
     function apply(state) {
