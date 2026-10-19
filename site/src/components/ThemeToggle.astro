@@ -1,5 +1,12 @@
 ---
-// Sitewide theme control: toggles Sombre <-> Clair. Sombre is the site's
+// Sitewide theme control: toggles Sombre <-> Clair, shown as a sun/moon
+// icon (2026-10-19, replacing a text label) rather than "Nuit"/"Jour" or
+// any other text variant - instantly recognizable with no reading
+// required, and stays consistent if a language variant is ever added.
+// The icon shown reflects the current state (moon = dark right now), not
+// the state a click would switch to; the state is still in the button's
+// title tooltip and aria-label for anyone who wants the words. Sombre is
+// the site's default (2026-09-13, on request) - every page's bare :root is
 // default (2026-09-13, on request) - every page's bare :root is the dark
 // palette, so "no stored preference" already means dark with no attribute
 // needed. Choosing Clair stamps data-theme="light" on <html> and stores
@@ -18,20 +25,25 @@
 // read as two competing widgets rather than one coherent piece of chrome.
 ---
 <button id="theme-toggle" type="button" aria-label="Changer de thème (clair ou sombre)">
-  <span id="theme-toggle-label">Thème : sombre</span>
+  <svg id="theme-icon-sun" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+  </svg>
 </button>
 <style>
   #theme-toggle {
-    font: inherit;
-    font-family: ui-monospace, monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
     color: var(--ink-muted);
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 3px;
-    padding: 5px 9px;
     cursor: pointer;
     transition: color 0.15s ease, border-color 0.15s ease;
   }
@@ -43,15 +55,28 @@
     outline: 2px solid var(--ink-faint);
     outline-offset: 2px;
   }
+  #theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
 </style>
 <script is:inline>
   (function () {
-    var LABELS = { light: "Thème : clair", dark: "Thème : sombre" };
+    var TITLES = { light: "Thème : clair", dark: "Thème : sombre" };
     var btn = document.getElementById("theme-toggle");
-    var label = document.getElementById("theme-toggle-label");
+    var sunIcon = document.getElementById("theme-icon-sun");
+    var moonIcon = document.getElementById("theme-icon-moon");
 
     function current() {
       return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    }
+
+    function render(state) {
+      // Icon shown = current state (a moon means it's dark right now),
+      // not the state a click would switch to.
+      sunIcon.style.display = state === "light" ? "block" : "none";
+      moonIcon.style.display = state === "dark" ? "block" : "none";
+      btn.title = TITLES[state];
     }
 
     function apply(state) {
@@ -66,10 +91,10 @@
           localStorage.removeItem("theme");
         } catch (e) {}
       }
-      label.textContent = LABELS[state];
+      render(state);
     }
 
-    label.textContent = LABELS[current()];
+    render(current());
 
     btn.addEventListener("click", function () {
       apply(current() === "dark" ? "light" : "dark");
