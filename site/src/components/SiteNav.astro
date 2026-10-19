@@ -128,7 +128,8 @@ import ThemeToggle from "./ThemeToggle.astro";
   .mobile-nav-panel a:hover { color: var(--ink); }
   @media (max-width: 560px) {
     .nav-links { display: none; }
-    .mobile-nav-trigger { display: block; }
+    .mobile-nav-trigger { display: block; grid-column: 1; justify-self: start; }
+    .home-link { grid-column: 2; justify-self: center; }
     .site-nav-fixed { grid-template-columns: auto 1fr auto; }
   }
   @media print {
