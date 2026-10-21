@@ -238,12 +238,16 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
          width select sharing a row with a flex:1 input leaves the input too
          narrow to show its own placeholder on a phone ("Rechercher un
          indicate..."). Shrink both controls rather than stack them - kept
-         side by side on request, same layout as desktop. Values checked
-         against the actual rendered placeholder width down to a 320px
-         viewport (the narrowest in real use), not guessed. */
+         side by side on request, same layout as desktop.
+         2026-10-21: the first fix over-corrected - input's flex:1 let it
+         claim all spare width while #search-theme stayed capped at 94px,
+         cropping "Tous les thèmes" to "Tous les thè…" even with visible
+         slack in the input. Widened the select's cap to 150px (fits its
+         own default option in full) and bumped both controls' font-size
+         for legibility now that there's room for it. */
       @media (max-width: 480px) {
-        #search input { font-size: 0.78rem; padding: 13px 8px; }
-        #search-theme { max-width: 94px; font-size: 0.65rem; padding: 0 4px; }
+        #search input { flex: 1; font-size: 0.92rem; padding: 13px 8px; }
+        #search-theme { max-width: 150px; font-size: 0.8rem; padding: 0 4px; }
       }
       #search-results {
         list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
@@ -478,14 +482,16 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
           <a href="/donnees/">Données</a>
           <a href="/contact/">Contact</a>
         </nav>
-        <svg class="footer-flag" viewBox="0 0 900 600" width="32" height="21" role="img" aria-label="Drapeau de la République centrafricaine" style="display:block;flex-basis:100%;margin:14px auto 0;">
-          <rect width="900" height="150" fill="#003082"/>
-          <rect y="150" width="900" height="150" fill="#FFFFFF"/>
-          <rect y="300" width="900" height="150" fill="#009739"/>
-          <rect y="450" width="900" height="150" fill="#FFD100"/>
-          <rect x="375" width="150" height="600" fill="#CE1126"/>
-          <path fill="#FFD100" d="M187.5,20 L199.8,58 L239.8,58 L207.5,81.5 L219.8,119.5 L187.5,96 L155.2,119.5 L167.5,81.5 L135.2,58 L175.2,58 Z"/>
-        </svg>
+        <div style="flex-basis:100%;text-align:center;padding:40px 0 20px;">
+          <svg class="footer-flag" viewBox="0 0 900 600" width="44" height="29" role="img" aria-label="Drapeau de la République centrafricaine">
+            <rect width="900" height="150" fill="#003082"/>
+            <rect y="150" width="900" height="150" fill="#FFFFFF"/>
+            <rect y="300" width="900" height="150" fill="#009739"/>
+            <rect y="450" width="900" height="150" fill="#FFD100"/>
+            <rect x="375" width="150" height="600" fill="#CE1126"/>
+            <path fill="#FFD100" d="M187.5,20 L199.8,58 L239.8,58 L207.5,81.5 L219.8,119.5 L187.5,96 L155.2,119.5 L167.5,81.5 L135.2,58 L175.2,58 Z"/>
+          </svg>
+        </div>
       </footer>
     </main>
 
