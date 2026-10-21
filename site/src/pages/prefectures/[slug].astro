@@ -240,7 +240,7 @@ const breadcrumbJsonLd = {
       <div class="crumb">
         <a href="/">Accueil</a> › <a href="/prefectures/">Préfectures</a> › <a href={`/regions/${regionSlug}/`}>{place.region_name}</a> › {place.name_fr}
       </div>
-      <h1>{place.name_fr}<span class="level-tag">préfecture</span></h1>
+      <h1>{place.name_fr} <span class="level-tag">préfecture</span></h1>
 
       <div class="identity-block">
         <dl>
@@ -400,7 +400,7 @@ const breadcrumbJsonLd = {
 
       {place.sante_region && (
         <>
-          <h2>Santé<span class="level-tag" style="margin-left: 8px;">niveau régional</span></h2>
+          <h2>Santé <span class="level-tag" style="margin-left: 8px;">niveau régional</span></h2>
           <p class="headline-caption">
             {place.name_fr} fait partie de la région {place.sante_region.region_name}, qui comptait{" "}
             {fmt(place.sante_region.value)} établissements de santé en {place.sante_region.period}

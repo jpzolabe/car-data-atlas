@@ -237,15 +237,26 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
       #search-results {
         list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
         width: 100%; background: var(--paper); border-radius: 6px;
+        max-height: min(60vh, 420px); overflow-y: auto;
+        box-shadow: 0 8px 24px -8px rgba(0,0,0,0.3); border: 1px solid var(--line);
       }
-      #search-results li:first-child { border-top: none; }
-      #search-results li { border-top: 1px solid var(--line); padding: 10px 2px; text-align: left; }
-      #search-results a { color: var(--indigo); font-size: 0.9rem; text-decoration: none; }
-      #search-results a:hover { text-decoration: underline; }
-      #search-results .excerpt { display: block; color: var(--ink-muted); font-size: 0.8rem; margin-top: 3px; }
-      #search-results .excerpt mark { background: none; color: var(--ink); font-weight: 600; }
-      #search-results .no-results { color: var(--ink-muted); font-size: 0.85rem; line-height: 1.6; }
-      #search-results .no-results-links { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+      /* :global() below: everything inside #search-results is injected at
+         runtime via innerHTML (Pagefind results), not written in this
+         template - Astro's scoped-style attribute (data-astro-cid-*) only
+         lands on elements it sees statically, so a plain scoped selector
+         here would silently never match. Pre-existing gap (the original
+         single-line excerpt masked it); surfaced once sub_results made
+         excerpts long enough that display:block not applying was visible
+         as a wall of run-on text instead of title-then-excerpt. */
+      :global(#search-results li:first-child) { border-top: none; }
+      :global(#search-results li) { border-top: 1px solid var(--line); padding: 10px 2px; text-align: left; }
+      :global(#search-results a) { color: var(--indigo); font-size: 0.9rem; text-decoration: none; }
+      :global(#search-results a:hover) { text-decoration: underline; }
+      :global(#search-results .excerpt) { display: block; color: var(--ink-muted); font-size: 0.8rem; margin-top: 3px; }
+      :global(#search-results .excerpt mark) { background: none; color: var(--ink); font-weight: 600; }
+      :global(#search-results .no-results) { color: var(--ink-muted); font-size: 0.85rem; line-height: 1.6; }
+      :global(#search-results .no-results-links) { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+      :global(#search-results .no-results-links a) { color: var(--indigo); font-size: 0.8rem; }
       #search-status { font-family: ui-monospace, monospace; font-size: 0.7rem; color: var(--ink-faint); margin-top: 6px; display: block; text-align: left; }
 
       h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); font-weight: 600; margin: 47px 0 15px; }
@@ -492,6 +503,11 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         if (!pagefind) {
           pagefind = await import("/pagefind/pagefind.js");
           await pagefind.init();
+          // Default excerpt is 30 words - with per-indicator sub-results now
+          // showing one result per heading, a 30-word excerpt often grabs a
+          // dense run of table/sparkline numbers rather than a scannable
+          // snippet. Shorter excerpts keep each result a glance, not a read.
+          pagefind.options({ excerptLength: 12 });
           const filters = await pagefind.filters();
           for (const value of Object.keys(filters.theme ?? {}).sort()) {
             const opt = document.createElement("option");
