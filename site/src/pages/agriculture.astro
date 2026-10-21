@@ -224,7 +224,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Agriculture">
       <h1>Agriculture</h1>
       <p class="lede">
         Les terres et ressources agricoles, la production, l'emploi rural
@@ -262,7 +262,7 @@ const headlineValue = formatValue("emploi_agricole", data.headline.latest.value)
               const val = formatValue(ind.indicator_id, ind.latest.value);
               return (
                 <div class="indicator-card">
-                  <p class="ind-name">{ind.name_fr}</p>
+                  <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
                   <p class="ind-definition">{ind.definition_fr}</p>
                   <div class="ind-value">
                     {val.display}<span class="unit">{val.unit}, {ind.latest.period}</span>

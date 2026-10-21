@@ -285,7 +285,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       .satellite-card .ind-value .unit { font-size: 0.75rem; color: var(--ink-faint); font-family: system-ui, sans-serif; font-weight: 400; margin-left: 6px; }
       .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-eco); }
       .trade-composition-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
         gap: 26px; margin-top: 4px;
       }
       .trade-list h3 { font-size: 13px; margin: 0 0 10px; color: var(--ink-muted); font-weight: 600; }
@@ -373,7 +373,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Économie">
       <h1>Économie</h1>
       <p class="lede">
         La production économique, les finances publiques, le commerce extérieur et
@@ -425,7 +425,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
                 const fmtRate = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
                 return (
                   <div class="indicator-card">
-                    <p class="ind-name">{ind.name_fr}</p>
+                    <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
                     <p class="ind-definition">{ind.definition_fr}</p>
                     <div class="national-figure">
                       <div class="national-value">
@@ -504,7 +504,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
 
               return (
                 <div class="indicator-card">
-                  <p class="ind-name">{ind.name_fr}</p>
+                  <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
                   <p class="ind-definition">{ind.definition_fr}</p>
                   <div class="ind-value">
                     {val.display}<span class="unit">{val.unit}, {ind.latest.period}</span>

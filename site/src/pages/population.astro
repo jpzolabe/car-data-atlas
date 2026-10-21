@@ -267,7 +267,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
         margin: 4px 0 18px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
       }
       .region-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
         gap: 27px; margin-top: 8px;
       }
       .region-block {
@@ -363,7 +363,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       .satellite-card .mini-sentence { margin: 0; }
       .satellite-link { display: inline-block; margin-top: 10px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--t-pop); }
       .prefecture-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
         gap: 25px; margin: 8px 0 4px;
       }
       .prefecture-block {
@@ -394,7 +394,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Population">
       <h1>Population</h1>
       <p class="lede">
         Recensements et projections de la population, du niveau national
@@ -535,7 +535,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           const spark = sparkline(ind);
           return (
             <div class="indicator-card">
-              <p class="ind-name">{ind.name_fr}</p>
+              <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
               <p class="ind-definition">{ind.definition_fr}</p>
               <p class="ind-value">{fmt(ind.latest.value)}<span class="unit"> pers., {ind.latest.period}</span></p>
               <svg class="mini-sparkline" viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} role="img" aria-label={`${ind.name_fr}, ${spark.firstYear} à ${spark.lastYear}`}>
@@ -603,7 +603,7 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
           const spark = sparkline(ind);
           return (
             <div class="indicator-card">
-              <p class="ind-name">{ind.name_fr}</p>
+              <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
               <p class="ind-definition">{ind.definition_fr}</p>
               <p class="ind-value">{fmt(Math.round(ind.latest.value * 10) / 10)}<span class="unit">%, {ind.latest.period}</span></p>
               {ind.series.length > 1 ? (

@@ -217,7 +217,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Infrastructures">
       <h1>Infrastructures</h1>
       <p class="lede">
         L'accès de la population aux infrastructures essentielles -
@@ -286,7 +286,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
           const spark = sparkline(ind);
           return (
             <div class="indicator-card">
-              <p class="ind-name">{ind.name_fr}</p>
+              <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
               <p class="ind-definition">{ind.definition_fr}</p>
               <p class="ind-value">
                 {fmt(ind.latest.value)}

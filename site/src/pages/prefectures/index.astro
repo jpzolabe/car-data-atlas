@@ -99,7 +99,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         border-left: 3px solid var(--ink-faint); padding-left: 12px; margin: 12px 0 20px;
       }
       .gap-note a { color: var(--t-lieu); }
-      .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 27px; margin-top: 8px; }
+      .region-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 27px; margin-top: 8px; }
       .region-block {
         position: relative;
         background: var(--surface); border: 1px solid var(--line);
@@ -146,7 +146,7 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Préfectures">
       <h1>Préfectures</h1>
       <p class="lede">Cliquez sur le nom d'une région ci-dessous pour en voir le détail.</p>
       <p class="gap-note">

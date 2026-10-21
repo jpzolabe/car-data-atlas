@@ -247,7 +247,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
   </head>
   <body>
     <SiteNav />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-filter="theme:Santé">
       <h1>Santé</h1>
       <p class="lede">
         Le système de santé dans son ensemble - vaccination, santé
@@ -288,7 +288,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
               if ("national" in ind) {
                 return (
                   <div class="indicator-card">
-                    <p class="ind-name">{ind.name_fr}</p>
+                    <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
                     <p class="ind-definition">{ind.definition_fr}</p>
                     <div class="national-figure">
                       <div class="national-value">
@@ -363,7 +363,7 @@ function sparkline(ind: { series: { period: string; value: number }[] }) {
 
               return (
                 <div class="indicator-card">
-                  <p class="ind-name">{ind.name_fr}</p>
+                  <h3 class="ind-name" id={ind.indicator_id}>{ind.name_fr}</h3>
                   <p class="ind-definition">{ind.definition_fr}</p>
                   <div class="ind-value">
                     {fmt(ind.latest.value)}<span class="unit"> {ind.unit}, {ind.latest.period}</span>
