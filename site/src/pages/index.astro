@@ -231,17 +231,19 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
       #search-theme {
         flex: none; font: inherit; font-size: 0.8rem; padding: 0 8px;
         border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink-muted);
-        max-width: 130px;
+        max-width: 130px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
       }
       #search-theme:focus { outline: 2px solid var(--indigo); outline-offset: 1px; }
       /* Same bug class as the rest of the mobile-overflow audit: a fixed-
          width select sharing a row with a flex:1 input leaves the input too
          narrow to show its own placeholder on a phone ("Rechercher un
-         indicate..."). Stack instead of shrink below the width search was
-         actually designed at. */
+         indicate..."). Shrink both controls rather than stack them - kept
+         side by side on request, same layout as desktop. Values checked
+         against the actual rendered placeholder width down to a 320px
+         viewport (the narrowest in real use), not guessed. */
       @media (max-width: 480px) {
-        .search-row { flex-direction: column; }
-        #search-theme { max-width: 100%; }
+        #search input { font-size: 0.78rem; padding: 13px 8px; }
+        #search-theme { max-width: 94px; font-size: 0.65rem; padding: 0 4px; }
       }
       #search-results {
         list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
