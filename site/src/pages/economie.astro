@@ -292,7 +292,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
       .rank-list { list-style: none; margin: 0; padding: 0; }
       .rank-list li { margin-bottom: 12px; }
       .rank-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 4px; }
-      .rank-label { color: var(--ink); }
+      .rank-label { color: var(--ink); flex: 1 1 auto; min-width: 0; }
       .rank-value { font-family: ui-monospace, monospace; color: var(--t-eco); white-space: nowrap; }
       .rank-bar-track { background: var(--line); border-radius: 2px; height: 6px; overflow: hidden; }
       .rank-bar-fill { background: var(--t-eco); height: 100%; border-radius: 2px 0 0 2px; }
@@ -376,7 +376,7 @@ const headlineValue = formatValue("pib_par_habitant", data.headline.latest.value
     <main id="main-content">
       <h1>Économie</h1>
       <p class="lede">
-        La production, les finances publiques, le commerce extérieur et
+        La production économique, les finances publiques, le commerce extérieur et
         le niveau de vie, à partir des données de la Banque mondiale
         portant sur l'ensemble du pays (aucune ventilation par région ou
         préfecture). Prix et agriculture, deux thèmes complets à part

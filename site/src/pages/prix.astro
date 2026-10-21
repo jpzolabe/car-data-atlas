@@ -203,7 +203,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       }
       .boundary { stroke: var(--ochre); stroke-width: 1; stroke-dasharray: 2 2; }
       .boundary-label { fill: var(--ochre); font-size: 10px; font-family: ui-monospace, monospace; }
-      .chart-legend { display: flex; gap: 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); margin-top: 4px; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-muted); margin-top: 4px; }
       .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
       .swatch { width: 14px; height: 2px; display: inline-block; }
       .gap-note { margin-top: 24px; font-style: italic; color: var(--ink-muted); font-size: 13.5px; border-left: 3px solid var(--ink-faint); padding-left: 12px; }

@@ -131,7 +131,9 @@ const fmt = (n: number) => Math.round(n).toLocaleString("fr-FR");
         padding: 8px 0; color: var(--ink); text-decoration: none; font-size: 14px;
       }
       .place-list a:hover { color: var(--t-lieu); }
+      .place-list a > span:first-child { flex: 1 1 auto; min-width: 0; }
       .place-list .pop {
+        flex: none;
         font-family: ui-monospace, monospace; font-size: 12px; color: var(--ink-faint);
         font-variant-numeric: tabular-nums;
       }
