@@ -151,6 +151,20 @@ const dayOfYear = Math.floor(
 );
 const tickerStart = dayOfYear % POOL.length;
 const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.length]);
+
+// WebSite structured data, added 2026-10-21 for discoverability: the
+// site's real name uses two accented letters (ê, î) nobody types when
+// searching, so "beafrika", "befrika data" and "beafrica data" have
+// nothing plain-ASCII to match against anywhere on the page otherwise.
+// alternateName lists the spellings people actually search with - a
+// standard schema.org field for exactly this, not a trick.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "BêAfrîka Data",
+  "alternateName": ["BeAfrika Data", "Beafrika Data", "Beafrika", "Befrika Data", "Beafrica Data"],
+  "url": "https://beafrikadata.com/",
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -171,6 +185,7 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="BêAfrîka Data" />
     <meta name="twitter:description" content="Explorer la République centrafricaine à travers ses données : population, économie, santé, éducation et plus, chaque chiffre avec sa source et sa date." />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     <style>
       :root {
         --paper: #23251F; --surface: #2B2E27; --ink: #E8E6DA; --ink-muted: #A6A895;
