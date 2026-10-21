@@ -234,6 +234,15 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         max-width: 130px;
       }
       #search-theme:focus { outline: 2px solid var(--indigo); outline-offset: 1px; }
+      /* Same bug class as the rest of the mobile-overflow audit: a fixed-
+         width select sharing a row with a flex:1 input leaves the input too
+         narrow to show its own placeholder on a phone ("Rechercher un
+         indicate..."). Stack instead of shrink below the width search was
+         actually designed at. */
+      @media (max-width: 480px) {
+        .search-row { flex-direction: column; }
+        #search-theme { max-width: 100%; }
+      }
       #search-results {
         list-style: none; margin: 6px 0 0; padding: 0; position: absolute; z-index: 5;
         width: 100%; background: var(--paper); border-radius: 6px;
@@ -576,6 +585,15 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
         debounceTimer = setTimeout(runSearch, 150);
       });
       themeSelect.addEventListener("change", runSearch);
+
+      // ensurePagefind() was only ever triggered by typing or changing the
+      // filter - so opening the theme dropdown first, before typing
+      // anything, showed only "Tous les thèmes" (its options are filled in
+      // once Pagefind has actually loaded and queried its filter index).
+      // Kick it off after idle instead, so it's ready by the time either
+      // control is used, without delaying first paint.
+      const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 200));
+      idle(() => { ensurePagefind(); });
     </script>
   </body>
 </html>
