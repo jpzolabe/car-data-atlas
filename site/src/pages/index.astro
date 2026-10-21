@@ -157,12 +157,23 @@ const SECONDARY_STATS = [0, 1, 2, 3].map((i) => POOL[(tickerStart + i) % POOL.le
 // searching, so "beafrika", "befrika data" and "beafrica data" have
 // nothing plain-ASCII to match against anywhere on the page otherwise.
 // alternateName lists the spellings people actually search with - a
-// standard schema.org field for exactly this, not a trick.
+// standard schema.org field for exactly this, not a trick. Widened
+// 2026-10-21 to also cover the country's own names: "Données RCA" is
+// this project's actual former public name (AGENTS.md: renamed from
+// that to BêAfrîka Data 2026-09-13) - a real prior identity, not a
+// guessed synonym. The rest pair RCA/Centrafrique/Central African
+// Republic with data/données, since a reader may search by country
+// name rather than the site's own name at all.
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "BêAfrîka Data",
-  "alternateName": ["BeAfrika Data", "Beafrika Data", "Beafrika", "Befrika Data", "Beafrica Data"],
+  "alternateName": [
+    "BeAfrika Data", "Beafrika Data", "Beafrika", "Befrika Data", "Beafrica Data",
+    "Données RCA", "RCA Data", "RCA Données",
+    "Centrafrique Data", "Données Centrafrique",
+    "Central African Republic Data",
+  ],
   "url": "https://beafrikadata.com/",
 };
 ---
