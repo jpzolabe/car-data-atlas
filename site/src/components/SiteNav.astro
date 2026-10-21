@@ -145,4 +145,13 @@ import ThemeToggle from "./ThemeToggle.astro";
   @media print {
     .site-nav-fixed { display: none; }
   }
+  /* .home-link, .nav-links a and .mobile-nav-panel a had no focus style of
+     their own - keyboard focus fell through to the browser default, which
+     renders near-invisible against this site's dark background (confirmed
+     by tabbing through the live page: outline-color computed to near-black).
+     Centralized here rather than per-page since every page renders this
+     same nav. */
+  .home-link:focus-visible, .nav-links a:focus-visible, .mobile-nav-panel a:focus-visible {
+    outline: 2px solid var(--ink-faint); outline-offset: 2px; border-radius: 2px;
+  }
 </style>

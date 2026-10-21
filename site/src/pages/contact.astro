@@ -88,6 +88,9 @@ const WEB3FORMS_ACCESS_KEY = "WEB3FORMS_ACCESS_KEY_PLACEHOLDER";
       .site-nav { display: flex; gap: 14px; flex-wrap: wrap; }
       .site-nav a { color: var(--indigo); font-size: 12.5px; transition: opacity 0.15s ease; }
       .site-nav a:hover { opacity: 0.7; }
+      a:focus-visible, summary:focus-visible, button:focus-visible {
+        outline: 2px solid var(--ink-faint); outline-offset: 2px; border-radius: 2px;
+      }
     </style>
   </head>
   <body>

@@ -390,6 +390,9 @@ const barWidth = (v: number) => (v / maxPop) * BAR_MAX_W;
       @media (prefers-reduced-motion: reduce) {
         .bar-rect { animation: none; }
       }
+      a:focus-visible, summary:focus-visible, button:focus-visible {
+        outline: 2px solid var(--ink-faint); outline-offset: 2px; border-radius: 2px;
+      }
     </style>
   </head>
   <body>

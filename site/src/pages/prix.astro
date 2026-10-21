@@ -153,6 +153,21 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         border-bottom: 3px solid var(--t-prix); padding-bottom: 4px;
       }
       .lede { color: var(--ink-muted); margin: 12px 0 20px; }
+      .section-nav {
+        position: sticky; top: 54px; z-index: 40;
+        display: flex; gap: 6px; flex-wrap: wrap;
+        padding: 10px 0; margin: 0 0 20px;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .section-nav a {
+        font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+        color: var(--ink-muted); text-decoration: none; white-space: nowrap;
+        padding: 5px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .section-nav a:hover { color: var(--t-prix); border-color: var(--t-prix); }
       .headline { font-family: ui-monospace, monospace; font-size: 2rem; margin: 0; color: var(--t-prix); }
       .headline .unit { font-size: 0.9rem; color: var(--ink-faint); font-family: system-ui, sans-serif; margin-left: 6px; }
       .headline-meta { color: var(--ink-faint); font-size: 12px; margin: 4px 0 8px; }
@@ -235,6 +250,9 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
       @media (prefers-reduced-motion: reduce) {
         .line-published { animation: none; stroke-dashoffset: 0; }
       }
+      a:focus-visible, summary:focus-visible, button:focus-visible {
+        outline: 2px solid var(--ink-faint); outline-offset: 2px; border-radius: 2px;
+      }
     </style>
   </head>
   <body>
@@ -249,6 +267,13 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         <a href="/economie/">Économie</a>, où l'inflation est résumée aux
         côtés du PIB et des autres indicateurs macroéconomiques.
       </p>
+
+      <nav class="section-nav" aria-label="Sections de la page">
+        <a href="#par-fonction">Par fonction</a>
+        <a href="#denrees-bangui">Denrées à Bangui</a>
+        <a href="#prix-prefecture">Par préfecture</a>
+        <a href="#non-mesure">Ce qui n'est pas mesuré</a>
+      </nav>
 
       <p class="headline">{fmt(latest.value)}<span class="unit">indice, {latest.period}</span></p>
       <p class="headline-meta">{data.definition_fr}</p>
@@ -302,7 +327,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         méthodologie exacte n'est pas confirmée à ce jour.
       </p>
 
-      <h2>Par fonction (COICOP)</h2>
+      <h2 id="par-fonction">Par fonction (COICOP)</h2>
       <p class="category-grid-note">
         3 des 12 fonctions de l'IHPC - les autres (habillement, logement,
         communications, loisirs, enseignement…) ne sont pas encore intégrées ;
@@ -335,7 +360,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         })}
       </div>
 
-      <h2>Denrées alimentaires au marché de Bangui</h2>
+      <h2 id="denrees-bangui">Denrées alimentaires au marché de Bangui</h2>
       <p class="category-grid-note">
         L'IHPC ci-dessus est un indice national. Ces 5 denrées sont des prix de
         détail réels, relevés au {data.market.entity_name} - le marché, un point
@@ -375,7 +400,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         {" "}{data.market.source.dataset_name}. Récupéré le {data.market.source.retrieved_at}.
       </p>
 
-      <h2>Prix par préfecture</h2>
+      <h2 id="prix-prefecture">Prix par préfecture</h2>
       <p class="category-grid-note">
         Dernier prix connu pour chaque denrée, marché par marché, groupé par
         préfecture - 34 marchés dans 16 des 20 préfectures. Bangui a en plus
@@ -418,7 +443,7 @@ function sparkline(cat: { series: { period: string; value: number }[] }) {
         Mambéré et Ouham-Fafa.
       </p>
 
-      <h2>Ce qui n'est pas mesuré</h2>
+      <h2 id="non-mesure">Ce qui n'est pas mesuré</h2>
       <ul class="not-measured">
         <li>L'IHPC ne couvre que 3 des 12 fonctions de consommation (alimentation, santé, transports) - les 9 autres (habillement, logement, communications, loisirs, enseignement…) ne sont pas encore intégrées.</li>
         <li>5 denrées seulement sont suivies au marché sur les 39 que compte la source - les 34 autres ne sont pas encore intégrées.</li>
