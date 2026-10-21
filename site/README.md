@@ -19,9 +19,12 @@ The Astro site. 14 page templates, 33 built pages:
 ```
 cd site
 pnpm install
-pnpm dev       # local dev server - search is inert here, see below
-pnpm build     # static build to dist/, then runs Pagefind indexing
-pnpm preview   # serve the real built output, including working search
+pnpm dev            # local dev server - search is inert here, see below
+pnpm build          # static build to dist/, then runs Pagefind indexing
+pnpm preview        # serve the real built output, including working search
+pnpm preview:fresh  # build + preview in one step, for whenever the dist/
+                     # output might be stale (e.g. testing search after a
+                     # change - saves forgetting the build step first)
 ```
 
 ## Client JS
